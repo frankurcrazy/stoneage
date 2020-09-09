@@ -1,4 +1,4 @@
-﻿/************************/
+/************************/
 /*	battleMap.c			*/
 /************************/
 #include "../systeminc/version.h"
@@ -10,7 +10,7 @@
 // ??????????
 #define BATTLE_MAP_SIZE 400
 
-#ifdef _NEWDRAWBATTLEMAP		   // (不可开放) Syu ADD 自动产生BattleMap
+#ifdef _NEWDRAWBATTLEMAP		   // (不可開放) Syu ADD 自動産生BattleMap
 #define RAND(x,y)   ((x-1)+1+ (int)( (double)(y-(x-1))*rand()/(RAND_MAX+1.0)) )
 int RandBattleBg = 0;
 #endif
@@ -18,9 +18,9 @@ int RandBattleBg = 0;
 #ifdef __ATTACK_MAGIC
 
 // Global vars
-extern int			g_iRunEarthQuake;			// 地震的状况: 0 --> 没地震 , 1 --> 初始化地震 , 2 --> 地震中
-extern int			g_iCurRunEarthQuake;		// 目前地震的位置线
-extern int			g_iNumRunEarthQuake;		// 地震的总次数
+extern int			g_iRunEarthQuake;			// 地震的狀況: 0 --> 沒地震 , 1 --> 初始化地震 , 2 --> 地震中
+extern int			g_iCurRunEarthQuake;		// 目前地震的位置綫
+extern int			g_iNumRunEarthQuake;		// 地震的總次數
 
 #endif
 
@@ -31,8 +31,8 @@ int MessageBoxNew(HWND hWnd,LPCSTR lpText,LPCSTR lpCaption,UINT uType);
 // ??????????
 int BattleMapNo = 0;
 
-#ifdef _NEWDRAWBATTLEMAP_FIX		   // (不可开)ROG ADD 战斗地图修改
-int BattleMapAdvance = 0;			   // 战斗地图效能改进
+#ifdef _NEWDRAWBATTLEMAP_FIX		   // (不可開)ROG ADD 戰鬥地圖修改
+int BattleMapAdvance = 0;			   // 戰鬥地圖效能改進
 #endif
 // ?????? ????
 char *BattleMapFile[] = {	
@@ -40,15 +40,15 @@ char *BattleMapFile[] = {
 };
 						
 // ?????????????????????? ***************************/
-// 水晶地表战斗地图编号
+// 水晶地錶戰鬥地圖編號
 static int iCrystalBattleMap[4][3] =
-{	// 绿								// 蓝								// 红								// 黄
+{	// 綠								// 藍								// 紅								// 黃
 	{29060,29061,29062},{29058,29059,29066},{29063,29064,29065},{29057,29067,29068}
 };
 
 BOOL ReadBattleMap( int no )
 {
-#ifdef _NEWDRAWBATTLEMAP_FIX		   // (不可开)ROG ADD 战斗地图修改
+#ifdef _NEWDRAWBATTLEMAP_FIX		   // (不可開)ROG ADD 戰鬥地圖修改
 	extern void ddrawBattleMap();
 	ddrawBattleMap();
 #else
@@ -66,8 +66,8 @@ BOOL ReadBattleMap( int no )
 	BattleMapNo = no;
 	// ??????????????
 	if( ( fp = fopen( BattleMapFile[ no ], "rb" ) ) == NULL ){
-		sprintf_s( msg, "%s读取失败。", BattleMapFile[ no ] );
-		MessageBoxNew( hWnd, msg, "战场地图错误", MB_OK | MB_ICONSTOP );
+		sprintf_s( msg, "%s讀取失敗。", BattleMapFile[ no ] );
+		MessageBoxNew( hWnd, msg, "戰場地圖錯誤", MB_OK | MB_ICONSTOP );
 		return FALSE;
 	}
 	// ????????
@@ -75,7 +75,7 @@ BOOL ReadBattleMap( int no )
 	header[ 4 ] = '\0';
 	// ????????
 	if( !( strstr( header, "SAB" )) )
-		MessageBoxNew( hWnd, "SAB 档案不存在", "战场地图错误", MB_OK | MB_ICONSTOP );
+		MessageBoxNew( hWnd, "SAB 檔案不存在", "戰場地圖錯誤", MB_OK | MB_ICONSTOP );
 	// ??????
 	for( i = 0 ; i < 1089 ; i++ ){
 		// ?????????? ????????? ?
@@ -86,12 +86,12 @@ BOOL ReadBattleMap( int no )
 	}
 	// ??????
 	fclose( fp );
-	//ROG FIX 战斗地图绘图位址调整
+	//ROG FIX 戰鬥地圖繪圖位址調整
 	//posX = 32 * ( -9 ) + (400 >> 1);
 	//posY = 24 * 10 + (300 >> 1);
 	posX = -416;
 	posY=272;
-#ifdef _NEWDRAWBATTLEMAP		   // Syu ADD 自动产生BattleMap
+#ifdef _NEWDRAWBATTLEMAP		   // Syu ADD 自動産生BattleMap
 	extern int nowFloor ; 
 
 	if(((nowFloor == 817) || (nowFloor == 8007) || (nowFloor == 8101) || (nowFloor == 8100) ||
@@ -111,7 +111,7 @@ BOOL ReadBattleMap( int no )
 		else if ( RandBattleBg == 4 ) RandBattleBg = 29025 ;
 		
 		RandBattleBg = RAND ( 29047 , 29049 );
-		// 水晶地表战斗地图
+		// 水晶地錶戰鬥地圖
 		if(nowFloor == 30022) RandBattleBg = iCrystalBattleMap[0][RAND(0,2)];
 		else if(nowFloor == 30023) RandBattleBg = iCrystalBattleMap[1][RAND(0,2)];
 		else if(nowFloor == 30024) RandBattleBg = iCrystalBattleMap[2][RAND(0,2)];
@@ -186,7 +186,7 @@ BOOL ReadBattleMap( int no )
 }	
 
 // ??????? ***********************************************************/
-#ifdef _NEWDRAWBATTLEMAP_FIX		   // (不可开)ROG ADD 战斗地图修改
+#ifdef _NEWDRAWBATTLEMAP_FIX		   // (不可開)ROG ADD 戰鬥地圖修改
 #define	RASTER_CLEARANCE	24		   //增加效能
 #else
 #define	RASTER_CLEARANCE	8
@@ -212,9 +212,9 @@ void DrawBattleMap( void )
 	short bx , by;
 #ifdef __ATTACK_MAGIC
 
-	// 特殊地图编号或地震中
+	// 特殊地圖編號或地震中
 
-#ifdef _NEWDRAWBATTLEMAP		   // Syu ADD 自动产生BattleMap
+#ifdef _NEWDRAWBATTLEMAP		   // Syu ADD 自動産生BattleMap
 	extern int nowFloor;
 	if( ( BattleMapNo >= 148 && BattleMapNo <= 150 ) || 2 == g_iRunEarthQuake || 
 		nowFloor == 817 || nowFloor == 8007 || nowFloor == 8101 || nowFloor == 8100 || 

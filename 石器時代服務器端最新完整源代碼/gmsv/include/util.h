@@ -34,7 +34,7 @@ typedef struct tagPOINT
     int     y;
 }POINT;
 
-/* strtol ¼°·ÂÓÀÓÉ¡õåÃ±åÒøµ¤ */
+/* strtol Â¼Â°Â·Ã‚Ã“Ã€Ã“Ã‰Â¡ÃµÃ¥ÃƒÂ±Ã¥Ã’Ã¸ÂµÂ¤ */
 typedef enum
 {
     CHAR,SHORT,INT,DOUBLE
@@ -103,20 +103,20 @@ char *strcpy_s(char *des, size_t n, const char *src);
 char * itoa(long n, int base);
 
 
-/*  Ñ¨ÛÍ·òØ¦Ô»  */
+/*  Ã‘Â¨Ã›ÃÂ·Ã²Ã˜Â¦Ã”Â»  */
 #define ABS(x)      ((x)>=0 ? (x) : -(x))
 
-/*    éùÃ« 0 - 7 ±åå§¸²±åÔÊÔÂ   */
+/*    Ã©Ã¹ÃƒÂ« 0 - 7 Â±Ã¥Ã¥Â§Â¸Â²Â±Ã¥Ã”ÃŠÃ”Ã‚   */
 #define VALIDATEDIR(x)  ({(x)%=8;(x)=((x)+8)%8;})
 
-/*  4ÌïÄÌÐþ·¸¡õÕýÃ«2ÌïÄÌÐþ·¸¡õÕýÎçØÆ»¯Òøµ¤  */
+/*  4ÃŒÃ¯Ã„ÃŒÃÃ¾Â·Â¸Â¡ÃµÃ•Ã½ÃƒÂ«2ÃŒÃ¯Ã„ÃŒÃÃ¾Â·Â¸Â¡ÃµÃ•Ã½ÃŽÃ§Ã˜Ã†Â»Â¯Ã’Ã¸ÂµÂ¤  */
 #define GETLOWVALUE(x)  (  (x)&0x0000ffff)
 #define GETHIGHVALUE(x) ((((x)&0xffff0000)>>16)&0x0000ffff)
 #define SETLOWVALUE(x,y)  ((x)=((x)&0xffff0000)|( (y)     &0x0000ffff))
 #define SETHIGHVALUE(x,y) ((x)=((x)&0x0000ffff)|(((y)<<16)&0xffff0000))
 #define MAKE2VALUE(x,y)  ((((x)<<16)&0xffff0000)|((y)&0x0000ffff))
 
-/*  4ÌïÄÌÐþ·¸¡õÕýÃ«1ÌïÄÌÐþ*4ÎçØÆ»¯Ø¤¹´¾®µ¤Ñ¨ÛÍ·ò    */
+/*  4ÃŒÃ¯Ã„ÃŒÃÃ¾Â·Â¸Â¡ÃµÃ•Ã½ÃƒÂ«1ÃŒÃ¯Ã„ÃŒÃÃ¾*4ÃŽÃ§Ã˜Ã†Â»Â¯Ã˜Â¤Â¹Â´Â¾Â®ÂµÂ¤Ã‘Â¨Ã›ÃÂ·Ã²    */
 #define GETFIRSTVALUE(x)  (  (x)&0x000000ff )
 #define GETSECONDVALUE(x) ((((x)&0x0000ff00)>>8 )&0x000000ff)
 #define GETTHIRDVALUE(x)  ((((x)&0x00ff0000)>>16)&0x000000ff)

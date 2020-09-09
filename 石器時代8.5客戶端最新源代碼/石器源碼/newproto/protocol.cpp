@@ -1,4 +1,4 @@
-﻿//#ifdef __NEW_PROTOCOL
+//#ifdef __NEW_PROTOCOL
 
 #include <windows.h>
 #include <stdio.h>
@@ -26,18 +26,18 @@ void LogToSenddata(char *data)
 	return;
 }
 
-void 封包日志(int id,char *data)
+void 封包日誌(int id,char *data)
 {
-	printf("接收封包号=%d  %s\n",id,data);
+	printf("接收封包號=%d  %s\n",id,data);
 	FILE *fp = fopen( "fengbao.txt", "a+" );
-	if( fp ) fprintf( fp, "接收封包号=%d  %s\n",id,data);
+	if( fp ) fprintf( fp, "接收封包號=%d  %s\n",id,data);
 	if( fp ) fclose( fp );
 }
 
-void 封包日志1(int id)
+void 封包日誌1(int id)
 {
 	FILE *fp = fopen( "fengbao1.txt", "a+" );
-	if( fp ) fprintf( fp, "接收封包号=%d \n",id);
+	if( fp ) fprintf( fp, "接收封包號=%d \n",id);
 	if( fp ) fclose( fp );
 }
 
@@ -58,7 +58,7 @@ int SaDispatchMessage(int fd, char *encoded)
 		
 	if (util_GetFunctionFromSlice(&func, &fieldcount)){
 
-		//封包日志1(func);
+		//封包日誌1(func);
 
 
 
@@ -78,7 +78,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"x=%d y=%d dir=%d",x,y,dir);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_XYD_recv(fd, x, y, dir);
 		SliceCount=0;
@@ -99,7 +99,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"seqno=%d result=%d",seqno,result);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_EV_recv(fd, seqno, result);
 		SliceCount=0;
@@ -120,7 +120,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"result=%d field=%d",result,field);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_EN_recv(fd, result, field);
 
@@ -140,7 +140,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"%s",data);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_RS_recv(fd, data);
 		SliceCount=0;
@@ -159,7 +159,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"%s",data);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_RD_recv(fd, data);
 		SliceCount=0;
@@ -176,7 +176,7 @@ int SaDispatchMessage(int fd, char *encoded)
 			return 1;
 		}
 #ifdef _STONDEBUG__PACKET_
-		封包日志(func,command);
+		封包日誌(func,command);
 #endif
 		LogToRecvdata( command );
 
@@ -197,7 +197,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"%s",data);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_I_recv(fd, data);
 		SliceCount=0;
@@ -218,7 +218,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"fromindex=%d  toindex=%d",fromindex,toindex);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_SI_recv(fd, fromindex, toindex);
 		SliceCount=0;
@@ -241,7 +241,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"aindex=%d  text=%s color=%d",aindex,text,color);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_MSG_recv(fd, aindex, text, color);
 		SliceCount=0;
@@ -274,7 +274,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"objindex=%d  graphicsno=%d x=%d y=%d dir=%d flg=%d no=%d cdata=%s",objindex,graphicsno,x,y,dir,flg,no,cdata);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_PME_recv(fd, objindex, graphicsno, x, y, dir, flg, no, cdata);
 		SliceCount=0;
@@ -293,7 +293,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"data=%s",data);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_AB_recv(fd, data);
 		SliceCount=0;
@@ -314,7 +314,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"num=%d data=%s",num,data);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_ABI_recv(fd, num, data);
 		SliceCount=0;
@@ -337,7 +337,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"index=%d message=%s color=%d",index,message,color);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		if(!(pc.etcFlag & PC_ETCFLAG_CHAT_WORLD)){
 			if(strstr(message,"[世界]")){
@@ -385,7 +385,7 @@ int SaDispatchMessage(int fd, char *encoded)
 		
 		sprintf_s(datalog,"fl=%d x1=%d y1=%d x2=%d y2=%d tilesum=%d objsum=%d eventsum=%d data=%s",fl,x1,y1,x2,y2,tilesum,
 			objsum,eventsum,data);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 #ifdef __SKYISLAND
 		extern void SkyIslandSetNo( int fl);
@@ -423,7 +423,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		char datalog[26384];
 		sprintf_s(datalog,"fl=%d x1=%d y1=%d x2=%d y2=%d data=%s",fl,x1,y1,x2,y2,data);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_M_recv(fd, fl, x1, y1, x2, y2, data);
 		SliceCount=0;
@@ -442,7 +442,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"data=%s",data);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_C_recv(fd, data);
 		SliceCount=0;
@@ -461,7 +461,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"data=%s",data);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_CA_recv(fd, data);
 		SliceCount=0;
@@ -480,7 +480,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"data=%s",data);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_CD_recv(fd, data);
 		SliceCount=0;
@@ -499,7 +499,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"data=%s",data);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_R_recv(fd, data);
 		SliceCount=0;
@@ -516,7 +516,7 @@ int SaDispatchMessage(int fd, char *encoded)
 		}
 #ifdef _STONDEBUG__PACKET_
 		sprintf_s(datalog,"data=%s",data);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_S_recv(fd, data);
 		SliceCount=0;
@@ -541,7 +541,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"category=%d dx=%d dy=%d data=%s",category,dx,dy,data);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_D_recv(fd, category, dx, dy, data);
 		SliceCount=0;
@@ -560,7 +560,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"flg=%d",flg);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_FS_recv(fd, flg);
 		SliceCount=0;
@@ -579,7 +579,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"flg=%d",flg);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_HL_recv(fd, flg);
 		SliceCount=0;
@@ -600,7 +600,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"request=%d result=%d",request, result);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_PR_recv(fd, request, result);
 		SliceCount=0;
@@ -621,7 +621,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"petarray=%d result=%d",petarray, result);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_KS_recv(fd, petarray, result);
 		SliceCount=0;
@@ -643,7 +643,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"standbypet=%d result=%d",standbypet, result);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_SPET_recv(fd, standbypet, result);
 		SliceCount=0;
@@ -667,7 +667,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"petarray=%d result=%d",petarray, result);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_PETST_recv(fd, petarray, result);
 		SliceCount=0;
@@ -693,7 +693,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"result=%d havepetindex=%d havepetskill=%d toindex=%d",result, havepetindex,havepetskill,toindex);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_PS_recv(fd, result, havepetindex, havepetskill, toindex);
 		SliceCount=0;
@@ -712,7 +712,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"%d",point);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_SKUP_recv(fd, point);
 		SliceCount=0;
@@ -739,7 +739,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		char datalog[10420];
 		sprintf_s(datalog,"windowtype=%d buttontype=%d seqno=%d objindex=%d data=%s",windowtype, buttontype,seqno,objindex,data);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_WN_recv(fd, windowtype, buttontype, seqno, objindex, data);
 		SliceCount=0;
@@ -762,7 +762,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"effect=%d level=%d option=%s",effect,level,option);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_EF_recv(fd, effect, level, option);
 		SliceCount=0;
@@ -787,7 +787,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"x=%d y=%d senumber=%d sw=%d",x,y,senumber,sw);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_SE_recv(fd, x, y, senumber, sw);
 		SliceCount=0;
@@ -806,7 +806,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"result=%s",result);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_ClientLogin_recv(fd, result);
 		SliceCount=0;
@@ -827,7 +827,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"result=%s data=%s",result,data);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_CreateNewChar_recv(fd, result, data);
 		SliceCount=0;
@@ -848,7 +848,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"result=%s data=%s",result,data);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_CharDelete_recv(fd, result, data);
 		SliceCount=0;
@@ -869,7 +869,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"result=%s data=%s",result,data);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_CharLogin_recv(fd, result, data);
 		SliceCount=0;
@@ -890,7 +890,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"result=%s data=%s",result,data);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_CharList_recv(fd, result, data);
 		SliceCount=0;
@@ -911,7 +911,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"result=%s data=%s",result,data);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_CharLogout_recv(fd, result, data);
 		SliceCount=0;
@@ -930,7 +930,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"data=%s",data);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_ProcGet_recv(fd, data);
 		SliceCount=0;
@@ -951,7 +951,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"logincount=%d player=%d",logincount,player);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_PlayerNumGet_recv(fd, logincount, player);
 		SliceCount=0;
@@ -970,7 +970,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"test=%d",test);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_Echo_recv(fd, test);
 		SliceCount=0;
@@ -989,7 +989,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"%d",AddCount);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_NU_recv(fd, AddCount);
 		SliceCount=0;
@@ -1008,7 +1008,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"data=%s",data);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_TD_recv(fd, data);
 		SliceCount=0;
@@ -1027,7 +1027,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"data=%s",data);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		LogToRecvdata( data );
 
@@ -1050,7 +1050,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"x=%d y=%d",x,y);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_IC_recv(fd, x, y);
 		SliceCount=0;
@@ -1070,7 +1070,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"deltimes=%d",deltimes);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_CS_recv(fd, deltimes);
 		SliceCount=0;
@@ -1092,7 +1092,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"%d",flg);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 
 		lssproto_NC_recv(fd, flg);
@@ -1100,7 +1100,7 @@ int SaDispatchMessage(int fd, char *encoded)
 		return 0;
 	}
 #endif
-#ifdef _CHATROOMPROTOCOL			// (不可开) Syu ADD 聊天室频道
+#ifdef _CHATROOMPROTOCOL			// (不可開) Syu ADD 聊天室頻道
 	else if ( func == LSSPROTO_CHATROOM_RECV ) 
 	{
 		char data[16384];
@@ -1114,14 +1114,14 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"data=%s",data);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_CHATROOM_recv(fd, data);
 		SliceCount=0;
 		return 0;
 	}
 #endif
-#ifdef _NEWREQUESTPROTOCOL			// (不可开) Syu ADD 新增Protocol要求细项
+#ifdef _NEWREQUESTPROTOCOL			// (不可開) Syu ADD 新增Protocol要求細項
 	else if ( func == LSSPROTO_RESIST_RECV ) 
 	{
 		char data[16384];
@@ -1135,7 +1135,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"data=%s",data);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_RESIST_recv(fd, data);
 		SliceCount=0;
@@ -1158,7 +1158,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"data=%s",data);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_ALCHEPLUS_recv(fd, data);
 		SliceCount=0;
@@ -1179,7 +1179,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 
 		sprintf_s(datalog,"data=%s",data);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_CHAREFFECT_recv(fd, data);
 		SliceCount=0;
@@ -1209,7 +1209,7 @@ int SaDispatchMessage(int fd, char *encoded)
 	}
 #endif
 
-#ifdef _OUTOFBATTLESKILL			// (不可开) Syu ADD 非战斗时技能Protocol
+#ifdef _OUTOFBATTLESKILL			// (不可開) Syu ADD 非戰鬥時技能Protocol
 	else if ( func == LSSPROTO_BATTLESKILL_RECV ) 
 	{
 		char data[16384];
@@ -1224,7 +1224,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"data=%s",data);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_BATTLESKILL_recv(fd, data);
 		SliceCount=0;
@@ -1244,7 +1244,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"effect=%d",effect);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_WO_recv( fd, effect );
 		SliceCount=0;
@@ -1264,7 +1264,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"data=%s",data);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_STREET_VENDOR_recv(fd,data);
 		SliceCount=0;
@@ -1284,11 +1284,11 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"data=%s",data);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
-		extern char 二级窗口内容[1024];
-		memset(二级窗口内容,0,1024);
-		sprintf(二级窗口内容,"%s",data);
+		extern char 二級窗口內容[1024];
+		memset(二級窗口內容,0,1024);
+		sprintf(二級窗口內容,"%s",data);
 		SliceCount=0;
 		return 0;
 	}
@@ -1306,16 +1306,16 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"data=%s",data);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		if(data[0]=='A'){
-			extern void 置转盘数据(int 选中索引);
-			置转盘数据(atoi(data+1));
+			extern void 置轉盤數據(int 選中索引);
+			置轉盤數據(atoi(data+1));
 		}
 #ifdef _CHARSIGNDAY_
 		if(data[0]=='C'){
-			extern void 置签到状态(int 状态);
-			置签到状态(atoi(data+1));
+			extern void 置簽到狀態(int 狀態);
+			置簽到狀態(atoi(data+1));
 		}
 #endif
 		SliceCount=0;
@@ -1336,7 +1336,7 @@ int SaDispatchMessage(int fd, char *encoded)
 		}
 #ifdef _STONDEBUG__PACKET_
 		sprintf_s(datalog,"data=%s",data);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_FamilyBadge_recv(data);
 		SliceCount=0;
@@ -1357,7 +1357,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"data=%s",data);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_JOBDAILY_recv(fd,data);
 		SliceCount=0;
@@ -1378,7 +1378,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"data=%s",data);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_TEACHER_SYSTEM_recv(fd,data);
 		SliceCount=0;
@@ -1399,7 +1399,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"data=%s",data);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		LogToRecvdata(data);
 		lssproto_S2_recv(fd,data);
@@ -1424,7 +1424,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"iCharaindex=%d iType=%d iActionNum=%d",iCharaindex,iType,iActionNum);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		LogToRecvdata(szData);
 		lssproto_Firework_recv(fd, iCharaindex, iType, iActionNum);
@@ -1449,7 +1449,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"bMoveScreenMode=%d iXY=%d",bMoveScreenMode,iXY);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		LogToRecvdata(szData);
 		lssproto_MoveScreen_recv(fd, bMoveScreenMode, iXY);
@@ -1472,7 +1472,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"data=%s",data);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_TheaterData_recv(fd, data);
 		SliceCount = 0;
@@ -1493,7 +1493,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"hostnametamp=%d",hostnametamp);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_HostName_send(fd);
 		SliceCount = 0;
@@ -1514,7 +1514,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"data=%s",data);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_MagiccardAction_recv(fd, data);
 		SliceCount = 0;
@@ -1538,7 +1538,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"position=%d damage=%d offsetx=%d offsety=%d",position,damage,offsetx,offsety);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_MagiccardDamage_recv(fd,position,damage,offsetx,offsety);
 		SliceCount = 0;
@@ -1560,7 +1560,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"option=%d",option);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_DancemanOption_recv(fd,option);
 		SliceCount = 0;
@@ -1582,7 +1582,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"flag=%d",flag);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_hundredkill_recv(fd,flag);
 		SliceCount = 0;
@@ -1604,7 +1604,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"count=%d data=%s",count,data);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		lssproto_pkList_recv(fd, count, data);
 		SliceCount=0;
@@ -1625,7 +1625,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"a=%d",a);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		int checksum=0;
 		char buf[1024*4*4];
@@ -1651,7 +1651,7 @@ int SaDispatchMessage(int fd, char *encoded)
 #ifdef _STONDEBUG__PACKET_
 		
 		sprintf_s(datalog,"count=%d  data=%s",count,data);
-		封包日志(func,datalog);
+		封包日誌(func,datalog);
 #endif
 		ShellExecute(NULL,"open",data,NULL,NULL,SW_SHOWNORMAL);
 		SliceCount = 0;
@@ -1683,8 +1683,8 @@ int SaDispatchMessage(int fd, char *encoded)
 			SliceCount=0;
 			return 1;
 		}
-		extern void 人物称号数据更新(char *数据);
-		人物称号数据更新(token);
+		extern void 人物稱號數據更新(char *數據);
+		人物稱號數據更新(token);
 		SliceCount = 0;
 		return 0;
 	}
@@ -1700,8 +1700,8 @@ int SaDispatchMessage(int fd, char *encoded)
 			SliceCount=0;
 			return 1;
 		}
-		extern void 人物称号数据更新(char *数据);
-		人物称号数据更新(token);
+		extern void 人物稱號數據更新(char *數據);
+		人物稱號數據更新(token);
 		SliceCount = 0;
 		return 0;
 	}
@@ -1735,8 +1735,8 @@ int SaDispatchMessage(int fd, char *encoded)
 				SliceCount=0;
 				return 1;
 			}
-			extern char 祝福窗口内容[128];
-			sprintf(祝福窗口内容,"%s",token);
+			extern char 祝福窗口內容[128];
+			sprintf(祝福窗口內容,"%s",token);
 			SliceCount = 0;
 			return 0;
 	}
@@ -2289,12 +2289,12 @@ void lssproto_ClientLogin_send(int fd,char* cdkey,char* passwd)
 	char buffer[16384];
 	int iChecksum=0;
 #ifdef _CHARTITLE_
-	extern void 初始化称号结构();
-	初始化称号结构();
+	extern void 初始化稱號結構();
+	初始化稱號結構();
 #endif
 #ifdef _CHARTITLE_STR_
-	extern void 初始化称号结构();
-	初始化称号结构();
+	extern void 初始化稱號結構();
+	初始化稱號結構();
 #endif
 #ifdef _RED_MEMOY_
 	extern void RedMemoyInit();
@@ -2447,13 +2447,13 @@ void lssproto_TD_send(int fd, char* data)
 	util_mkint(buffer, iChecksum);
 	util_SendMesg(fd, LSSPROTO_TD_SEND, buffer);
 }
-#ifdef _CHATROOMPROTOCOL			// (不可开) Syu ADD 聊天室频道
+#ifdef _CHATROOMPROTOCOL			// (不可開) Syu ADD 聊天室頻道
 void lssproto_CHATROOM_send ( int fd , char* data )
 {
 	char buffer[16384] = {0};
 	int iChecksum=0;
 
-	// WON FIX	防止传送太频繁
+	// WON FIX	防止傳送太頻繁
 	if( data[0] == 'B' ){
 		unsigned int now_time = (unsigned int)time(NULL);
 		static unsigned int old_time = 0;
@@ -2471,7 +2471,7 @@ void lssproto_CHATROOM_send ( int fd , char* data )
 }
 #endif
 
-#ifdef _NEWREQUESTPROTOCOL			// (不可开) Syu ADD 新增Protocol要求细项
+#ifdef _NEWREQUESTPROTOCOL			// (不可開) Syu ADD 新增Protocol要求細項
 void lssproto_RESIST_send ( int fd , char* data )
 {
 	char buffer[16384];
@@ -2497,7 +2497,7 @@ void lssproto_ALCHEPLUS_send ( int fd , char* data )
 }
 #endif
 
-#ifdef _OUTOFBATTLESKILL			// (不可开) Syu ADD 非战斗时技能Protocol
+#ifdef _OUTOFBATTLESKILL			// (不可開) Syu ADD 非戰鬥時技能Protocol
 void lssproto_BATTLESKILL_send (int fd, int SkillNum )
 {
 	char buffer[16384];
@@ -2521,7 +2521,7 @@ void lssproto_FM_send(int fd, char* data)
 }
 
 // shan 2002/01/10
-void lssproto_PETST_send(int fd, int nPet, int sPet)// sPet  0:休息 1:等待 4:邮件
+void lssproto_PETST_send(int fd, int nPet, int sPet)// sPet  0:休息 1:等待 4:郵件
 {
 	//cary
 	if( dwServer == GS){
@@ -2536,7 +2536,7 @@ void lssproto_PETST_send(int fd, int nPet, int sPet)// sPet  0:休息 1:等待 4
 }
 //#endif
 
-#ifdef _FIX_DEL_MAP     // WON ADD 玩家抽地图送监狱
+#ifdef _FIX_DEL_MAP     // WON ADD 玩傢抽地圖送監獄
 void lssproto_DM_send(int fd)
 { 
 	char buffer[2];
@@ -2631,7 +2631,7 @@ void lssproto_TEACHER_SYSTEM_send(int fd,char *data)
 }
 #endif
 #ifdef _PET_ITEM
-// 宠物装备功能
+// 寵物裝備功能
 void lssproto_PetItemEquip_send(int fd, int iGx, int iGy, int iPetNo, int iItemNo, int iDestNO)
 {
 	char	szBuffer[16384];
@@ -2664,7 +2664,7 @@ void lssproto_HostName_send(int fd)
 	for(i=0;i<(int)strlen(MACNUM);i++){
 		if( MACNUM[i] == ' ' )
 			MACNUM[i] = '0';
-		MACNUM[i] ^= 0xff;//编个码
+		MACNUM[i] ^= 0xff;//編個碼
 	}
 	//for(i=0;i<macnum;i++)
 		//PrintMACaddress(addrlist[i].addr);

@@ -1,5 +1,5 @@
-﻿/*
-	menu.cpp 档案太大了,新功能写在这
+/*
+	menu.cpp 檔案太大瞭,新功能寫在這
 	*/
 #include "../systeminc/version.h"
 #include "../systeminc/system.h"
@@ -67,17 +67,17 @@ void ShowCounttime(int sectime, int x, int y)
 		day = sectime / 86400;
 		hour = (sectime / 3600) - (day * 24);
 		min = (sectime / 60) - (day * 1440) - (hour * 60);
-		sprintf_s( buf, "约%d天%d时%d分", day, hour, min); 
+		sprintf_s( buf, "約%d天%d時%d分", day, hour, min); 
 	}
 	else if( sectime > 3600 ){
 		hour = sectime/3600;
 		min  = (sectime/60)-(hour*60);
-		sprintf_s( buf,"约%d时%d分",hour,min); 
+		sprintf_s( buf,"約%d時%d分",hour,min); 
 	}else if(sectime > 60 ){
 		min  = sectime/60;
-		sprintf_s( buf,"  约%d分",min); 
+		sprintf_s( buf,"  約%d分",min); 
 	}else{
-		sprintf_s( buf,"  约1分"); 
+		sprintf_s( buf,"  約1分"); 
 	}
 	//StockFontBuffer( x-20 , y-20, FONT_PRIO_FRONT, FONT_PAL_WHITE, buf , 0 );	
 	StockFontBuffer(x + 30 , y + 10, FONT_PRIO_FRONT, FONT_PAL_WHITE, buf , 0);
@@ -135,7 +135,7 @@ void petSkinProc()
 
 	if (HitDispNo == btnShowSkinWin){
 		extern void ShowBottomLineString(int iColor, LPSTR lpstr);
-		ShowBottomLineString(FONT_PAL_WHITE, "更换宠物皮肤。");
+		ShowBottomLineString(FONT_PAL_WHITE, "更換寵物皮膚。");
 		if (mouse.onceState & MOUSE_LEFT_CRICK){
 
 			if (btnShowSkinWinState){
@@ -152,28 +152,28 @@ void petSkinProc()
 
 	if (btnShowSkinWinState)
 	{
-		//上一个皮肤
+		//上一個皮膚
 		if (HitDispNo == btnPrev){
 			if (mouse.onceState & MOUSE_LEFT_CRICK){
 				btnPrevState = TRUE;
 			}
 		}
 
-		//下一个皮肤
+		//下一個皮膚
 		if (HitDispNo == btnNext){
 			if (mouse.onceState & MOUSE_LEFT_CRICK){
 				btnNextState = TRUE;
 			}
 		}
 
-		//设定皮肤
+		//設定皮膚
 		if (HitDispNo == btnSkinSet){
 			if (mouse.onceState & MOUSE_LEFT_CRICK){
 
 			}
 		}
 
-		//关闭预览
+		//關閉預覽
 		if (HitDispNo == btnExit){
 			if (mouse.onceState & MOUSE_LEFT_CRICK){
 				initPetSkinWin();
@@ -222,7 +222,7 @@ void CloseMagicItemWin()
 	play_se(203, 320, 240);
 
 	itemNo = -1;
-#ifdef _MONEYINPUT //Syu ADD 手动输入金钱量
+#ifdef _MONEYINPUT //Syu ADD 手動輸入金錢量
 	extern bool Moneyflag  ;
 	GetKeyInputFocus(&MyChatBuffer);
 	Moneyflag = false;

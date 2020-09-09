@@ -26,31 +26,31 @@
 
 
 /*
- * ·òºëÄÌ¼şØÆ»¯ÖĞØ¦ÖĞ£ı ·òºëÄÌ¼şØÆ»¯ÖĞÔÂ£ı ·òºëÄÌ¼ş   Æ½ÅÒ·Â×ÛÔ»
- * ·òºëÊ§ËüĞş  ( ±¾¡õÆ¤   ) , ·òºëÊ§ËüĞş  ( Ê§¼ş·òÓÀÛÍ   )
- *  N ·´ NOT £ı W ·´ WHILE , UL ·´ UNLOCK ¼°ÒÇ
+ * å¤«å¼˜å¥¶ä»¶ä»„åŒ–ä¸­å…ä¸­ï½ å¤«å¼˜å¥¶ä»¶ä»„åŒ–ä¸­æœˆï½ å¤«å¼˜å¥¶ä»¶   å¹³ä¹“ä»¿ç¶œæ›°
+ * å¤«å¼˜å¤±å®ƒç„  ( æœ¬â–¡çš®   ) , å¤«å¼˜å¤±å®ƒç„  ( å¤±ä»¶å¤«æ°¸å¼   )
+ *  N å NOT ï½ W å WHILE , UL å UNLOCK åŠå„€
  */
 typedef enum
 {
 	NULLCONNECT,
-    NOTLOGIN,           /*  ·òºëÄÌ¼şØÆ»¯ÖĞØ¦ÖĞ  */
-    LOGIN,              /*  ·òºëÄÌ¼ş            */
-    WHILELOGIN,         /*  ·òºëÄÌ¼şØÆ»¯ÖĞÔÂ    */
-    WHILECREATE,        /*  ×ÛÔÈ»¯ÖĞÔÂ          */
-    WHILELOGOUTSAVE,    /*  ·òºëÊ§ËüĞş¼°±¾¡õÆ¤      */
-    WHILECANNOTLOGIN,   /*  ·òºëÄÌ¼şÆ¥ÎåØ¦¾®ÔÈĞ×Áİ¼°Ê§¼ş·òÓÀÛÍÖÊ        */
-    WHILECHARDELETE,    /*  Æ½ÅÒ·Â´ÂÂÖ      */
-    WHILEDOWNLOADCHARLIST,  /*  Æ½ÅÒ·ÂØøµ©ĞşÄ¸Ëü¼ş·ò¡õÓñ    */
-    WHILECHANGEPASSWD,  /*  ÓÉµ©·¥¡õÓñ  µÊ      */
+    NOTLOGIN,           /*  å¤«å¼˜å¥¶ä»¶ä»„åŒ–ä¸­å…ä¸­  */
+    LOGIN,              /*  å¤«å¼˜å¥¶ä»¶            */
+    WHILELOGIN,         /*  å¤«å¼˜å¥¶ä»¶ä»„åŒ–ä¸­æœˆ    */
+    WHILECREATE,        /*  ç¶œå‹»åŒ–ä¸­æœˆ          */
+    WHILELOGOUTSAVE,    /*  å¤«å¼˜å¤±å®ƒç„åŠæœ¬â–¡çš®      */
+    WHILECANNOTLOGIN,   /*  å¤«å¼˜å¥¶ä»¶åŒ¹äº”å…äº•å‹»å‡¶å‡œåŠå¤±ä»¶å¤«æ°¸å¼è³ª        */
+    WHILECHARDELETE,    /*  å¹³ä¹“ä»¿ç¶½è¼ª      */
+    WHILEDOWNLOADCHARLIST,  /*  å¹³ä¹“ä»¿ä¼‰æ—¦ç„æ¯å®ƒä»¶å¤«â–¡ç‰    */
+    WHILECHANGEPASSWD,  /*  ç”±æ—¦ä¼â–¡ç‰  å‡³      */
 
-    WHILELOSTCHARSAVE,  /*  ·òµ©ĞşÆ¥Æ½ÅÒ·Â±¾¡õÆ¤ØÆ      */
-    WHILELOSTCHARDELETE,/*  ·òµ©ĞşÆ¥Æ½ÅÒ·ÂÛÕØÆ      */
+    WHILELOSTCHARSAVE,  /*  å¤«æ—¦ç„åŒ¹å¹³ä¹“ä»¿æœ¬â–¡çš®ä»„      */
+    WHILELOSTCHARDELETE,/*  å¤«æ—¦ç„åŒ¹å¹³ä¹“ä»¿å£…ä»„      */
 
-    WHILECLOSEALLSOCKETSSAVE, /* closeallsockets Æ¥Æ½ÅÒ·Â±¾¡õÆ¤ØÆ  */
-    WHILESAVEWAIT,              /* ·òºëÊ§ËüĞş¼°±¾¡õÆ¤±åµæÈÊó¡¼°´Í  ½÷ÇĞ  */
+    WHILECLOSEALLSOCKETSSAVE, /* closeallsockets åŒ¹å¹³ä¹“ä»¿æœ¬â–¡çš®ä»„  */
+    WHILESAVEWAIT,              /* å¤«å¼˜å¤±å®ƒç„åŠæœ¬â–¡çš®åå¢Šä»èŸ†åŠè³œ  è¬¹åˆ‡  */
 }LoginType;
 
-/*     ØÆ»¯ÖĞØ¦ÖĞ£ıÊ§ÊĞËü¼şĞşÈÓ¡õÌï£ıÛÍ·ÂÄÌÊ§¼şĞş£ıÊ§ÓñØ© */
+/*     ä»„åŒ–ä¸­å…ä¸­ï½å¤±å¸‚å®ƒä»¶ç„æ‰”â–¡ç”°ï½å¼ä»¿å¥¶å¤±ä»¶ç„ï½å¤±ç‰ä¸ */
 typedef enum
 {
     NOTDETECTED,
@@ -63,22 +63,22 @@ typedef enum
 }ConnectType;
 
 
-/*  ÈÓ¡õÌï»¥âçĞåØÆ»¯ÔÆÈÊÓ®½ñ    */
+/*  æ‰”â–¡ç”°äº’å¿¡ç¶‰ä»„åŒ–é›²ä»è´ä»Š    */
 #define CDKEYLEN    16
 #define PASSWDLEN   33
-/* ³ğÄ¾¼°  µÊ·´æØµÚ(ÔÊÔÂØ¦ÈÕ Char ¼°STRING64 ÊÖØÍå©Ø¦°À±åå©Ô»¾§ÔÂ³ğÎç*/
+/* ä»‡æœ¨åŠ  å‡³åå°•ç¬¬(å…æœˆå…æ—¥ Char åŠSTRING64 æ‰‹è´‹æ¿ å…è¥–åæ¿ æ›°æ™¶æœˆä»‡åˆ*/
 #define CHARNAMELEN     32
 
-#define CLITIMEOUT_SEC  120     /* ÛÍ·ÂÄÌÊ§¼şĞş¾®ÈÕreadØÆØ¦¾®ÔÈĞ×ÈÕ£ı
-                                   ³ğ¼°ÁİÃŞÆ¥ÕıÄÌØ©Ê§ËüĞş£ı·òºëÊ§ËüĞş£Û */
+#define CLITIMEOUT_SEC  120     /* å¼ä»¿å¥¶å¤±ä»¶ç„äº•æ—¥readä»„å…äº•å‹»å‡¶æ—¥ï½
+                                   ä»‡åŠå‡œæ£‰åŒ¹æ­£å¥¶ä¸å¤±å®ƒç„ï½å¤«å¼˜å¤±å®ƒç„ï¼» */
 
 #define		NET_STRING_SUCCESSFULL	"successful"
 #define		NET_STRING_FAILED		"failed"
 
-// ¿×¹´µ¤¼°    ¼°Øø¡õÓñ£İ·ÂÄÌĞşÌïÓÀ°×ÑëÈÓÄÌÊõ
+// å­”å‹¾ä¸¹åŠ    åŠä¼‰â–¡ç‰ï¼½ä»¿å¥¶ç„ç”°æ°¸ç™½å¤®æ‰”å¥¶è¡“
 #define RBSIZE (1024*64)
 #define WBSIZE (1024*256)
-// Ê§ÊĞËü¼şĞşÈÓ¡õÌï¡õåÃ
+// å¤±å¸‚å®ƒä»¶ç„æ‰”â–¡ç”°â–¡è¿•
 
 //#define	AC_RBSIZE (65536*48)
 //#define	AC_RBSIZE (65536*32)
@@ -96,10 +96,10 @@ EXTERN int      svfd;
 #ifdef _OTHER_SAAC_LINK
 EXTERN int      osfd;
 #endif
-EXTERN int      ConnectLen;   /*Æ±¼°°À¼°Ó®½ñ*/
+EXTERN int      ConnectLen;   /*ç¥¨åŠè¥–åŠè´ä»Š*/
 #define CONNECT_WINDOWBUFSIZE 7
 
-/* Ïæ  Ğ×ÇĞ */
+/* æ¹˜  å‡¶åˆ‡ */
 BOOL initConnect( int size );
 void endConnect( void );
 #define		CONNECT_endOne( sockfd, lin) \
@@ -137,14 +137,14 @@ void SERVSTATE_setDsptime(int a);
 void SERVSTATE_setLimittime(int a);
 
 
-/* ¹«¼°»Ã¾® */
+/* å…¬åŠå¹»äº• */
 void outputNetProcLog( int fd, int mode);
 void chardatasavecheck( void );
 void closeAllConnectionandSaveData( void );
 BOOL SetShutdown( BOOL nvalue );
 int GetShutdown( void );
 
-/* »ï¡õÃóØÆ»¯¸¹³ñèúĞÑ */
+/* å¤¥â–¡çš¿ä»„åŒ–è…¹ç¶¢æ¥®é†’ */
 int getfdFromCdkey( char* cd );
 int getfdFromCharaIndex( int charaindex );
 int getcdkeyFromCharaIndex( int charaindex , char *out, int outlen );
@@ -154,7 +154,7 @@ int getfdFromFdid( int fdid );
 int getfdFromCdkeyWithLogin( char* cd );
 
 
-/* ØÆÈÕÍÍ */
+/* ä»„æ—¥å±¯ */
 INLINE int CONNECT_checkfd( int fd );
 BOOL CONNECT_isCLI( int fd );
 BOOL CONNECT_isAC( int fd );
@@ -194,10 +194,10 @@ void CONNECT_setJoinpartycharaindex( int fd, int i , int a);
 int CONNECT_getJoinpartycharaindex( int fd, int i );
 void CONNECT_setTradecardcharaindex( int fd, int i , int a );
 int CONNECT_getTradecardcharaindex( int fd, int i );
-/* MT·¸ÌïÓÀºëåÃÑ¨ÛÍ·ò */
+/* MTçŠ¯ç”°æ°¸å¼˜è¿•ç©´å¼å¤« */
 #define CONNECT_endOne_debug(a) CONNECT_endOne( (a) , __LINE__ )
 
-/* ·¸¡õÕı³ó×ÛèúĞÑ(ÒıÔÂÇĞÔÊÄ¾ÔÈÉı¸²É±åÃ) */
+/* çŠ¯â–¡æ­£é†œç¶œæ¥®é†’(å¼•æœˆåˆ‡å…æœ¨å‹»å‡è¦†æ®ºè¿•) */
 void CONNECT_setCDKEY( int sockfd, char *cd );
 void CONNECT_getCDKEY( int sockfd , char *out, int outlen );
 void CONNECT_setState( int fd, int s );
@@ -306,9 +306,9 @@ BOOL OtherSaacConnect( void );
 
 #ifdef _EPOLL_ET_MODE
 int doSocketAccept();
-//½ÓÊÕ
+//æ¥æ”¶
 void doSocketRecv(struct epoll_event ev);
-//·¢ËÍ
+//ç™¼é€
 void doSocketSend(struct epoll_event ev);
 //void doSocketSend();
 BOOL CONNECT_checkthreadflag( int fd, int flag );

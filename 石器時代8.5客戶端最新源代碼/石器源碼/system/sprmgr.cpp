@@ -1,4 +1,4 @@
-﻿/************************/
+/************************/
 /*	sprmgr.c			*/
 /************************/
 #include "../systeminc/version.h"
@@ -111,13 +111,13 @@ void AllocateBmpToSurface( int bmpNo)
 				}
 			}
 			if( SpriteInfo[ bmpNo ].lpSurfaceInfo == NULL ){
-				// 第一张图的surfaceinfo
+				// 第一張圖的surfaceinfo
 				SpriteInfo[ bmpNo ].lpSurfaceInfo = &SurfaceInfo[ SurfaceSearchPoint ];
 #ifdef _READ16BITBMP
 				if(g_bUseAlpha)	SpriteInfo[bmpNo].lpSurfaceInfoSys = &SurfaceInfoSys[SurfaceSearchPoint];
 #endif
 			}else{
-				// 指向下一张surfaceinfo
+				// 指嚮下一張surfaceinfo
 				prevSurfaceInfo->pNext = &SurfaceInfo[ SurfaceSearchPoint ];
 #ifdef _READ16BITBMP
 				if(g_bUseAlpha)	prevSurfaceInfoSys->pNext = &SurfaceInfoSys[SurfaceSearchPoint];
@@ -241,7 +241,7 @@ void AllocateBmpToSurface( int bmpNo)
 									NULL );
 #endif
 			totalSurfaceCnt++;
-			// 所有的图都已存入offscreen
+			// 所有的圖都已存入offscreen
 			if( totalSurfaceCnt >= totalSurface ){
 				SurfaceInfo[ SurfaceSearchPoint ].pNext = NULL;
 #ifdef _READ16BITBMP
@@ -285,7 +285,7 @@ BOOL InitOffScreenSurface( void )
 		if( vramFullFlag == FALSE ){
 			if ((SurfaceInfo[i].lpSurface = CreateSurface(SurfaceSizeX, SurfaceSizeY, DEF_COLORKEY, /*DDSCAPS_SYSTEMMEMORY*/ DDSCAPS_VIDEOMEMORY)) == NULL){
 #ifdef _STONDEBUG_
-				MessageBoxNew( hWnd ,"SurfaceInfo:建立VideoRAM Surface失败！" ,"确定",MB_OK | MB_ICONSTOP );
+				MessageBoxNew( hWnd ,"SurfaceInfo:建立VideoRAM Surface失敗！" ,"確定",MB_OK | MB_ICONSTOP );
 #endif
 				vramFullFlag = TRUE;
 			}else{
@@ -295,7 +295,7 @@ BOOL InitOffScreenSurface( void )
 		if( vramFullFlag == TRUE ){
 			if( ( SurfaceInfo[ i ].lpSurface = CreateSurface( SurfaceSizeX, SurfaceSizeY, DEF_COLORKEY, DDSCAPS_SYSTEMMEMORY )) == NULL ){
 #ifdef _STONDEBUG_
-				MessageBoxNew( hWnd ,"建立SysRAM Surface失败！" ,"确定",MB_OK | MB_ICONSTOP );
+				MessageBoxNew( hWnd ,"建立SysRAM Surface失敗！" ,"確定",MB_OK | MB_ICONSTOP );
 #endif
 				return FALSE;
 			}else SysramSurfaceCnt++;
@@ -304,7 +304,7 @@ BOOL InitOffScreenSurface( void )
 		if(g_bUseAlpha){
 			if((SurfaceInfo[i].lpAlphaData = (BYTE*)MALLOC(SurfaceSizeX*SurfaceSizeY)) == NULL){
 	#ifdef _STONDEBUG_
-				MessageBoxNew( hWnd ,"alpha记忆体配置失败！","确定",MB_OK | MB_ICONSTOP);
+				MessageBoxNew( hWnd ,"alpha記憶體配置失敗！","確定",MB_OK | MB_ICONSTOP);
 	#endif
 				return FALSE;
 			}
@@ -320,7 +320,7 @@ BOOL InitOffScreenSurface( void )
 		if(g_bUseAlpha){
 			if((SurfaceInfoSys[i].lpSurface = CreateSurface(SurfaceSizeX,SurfaceSizeY,DEF_COLORKEY,DDSCAPS_SYSTEMMEMORY )) == NULL){
 	#ifdef _STONDEBUG_
-				MessageBoxNew(hWnd,"建立SysRAM Surface(2)失败！","确定",MB_OK | MB_ICONSTOP);
+				MessageBoxNew(hWnd,"建立SysRAM Surface(2)失敗！","確定",MB_OK | MB_ICONSTOP);
 	#endif
 				return FALSE;
 			}
@@ -388,7 +388,7 @@ BOOL LoadBmp( int bmpNo )
 	}
 #ifdef _CACHE_SURFACE_
 	else{
-		//如果已经缓存，刷新date，以免被释放
+		//如果已經緩存，刷新date，以免被釋放
 		for (SURFACE_INFO* info = SpriteInfo[bmpNo].lpSurfaceInfo; info->pNext != NULL; info = info->pNext)
 		{
 			info->date = SurfaceDate;

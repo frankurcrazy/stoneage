@@ -1,7 +1,7 @@
-﻿#ifndef _ICONBUTTONS_
-void 转盘窗口初始化(char * 内容);
-ACTION* 创建转盘窗口();
-ACTION* 转盘数据显示();
-void 置转盘数据(int 选中索引);
+#ifndef _ICONBUTTONS_
+void 轉盤窗口初始化(char * 內容);
+ACTION* 創建轉盤窗口();
+ACTION* 轉盤數據顯示();
+void 置轉盤數據(int 選中索引);
 #endif
 

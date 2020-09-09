@@ -1,6 +1,6 @@
-﻿/*-----------------------------------------------
+/*-----------------------------------------------
    Message.h -- Message format definition
-               (c) 许百胜Cary Hsu, 1999.8.18
+               (c) 許百勝Cary Hsu, 1999.8.18
 	+----+------------+------------------+
 	|name|Data len'\0'|       Data       |
 	|1B  |  5 Byte    |       0~4090B    |
@@ -20,7 +20,7 @@
 #define M_MESG 'M'
 #define M_ERRO 'E'	// (E Error) or E ID
 #define M_SKEY 'S'	// S 1234567
-#define M_LOAD 'L'	// L 人数
+#define M_LOAD 'L'	// L 人數
 #define M_ACKN 'K'	// K ID CodingData
 #define M_DATA 'D'	// D ID SaveData
 #define M_GOTO 'G'	// G 202.52.121.208
@@ -81,7 +81,7 @@
 
 
 //#ifdef _STONDEBUG_
-#define NO_WGS		//不使用WGS认证
+#define NO_WGS		//不使用WGS認證
 //#endif
 
 struct Parameter
@@ -125,7 +125,7 @@ enum
 #define FORMAT_ONLYONE		0x03
 
 #ifdef _BACK_VERSION ////
-#define SZ_ECB	"9304001" //产品序号
+#define SZ_ECB	"9304001" //産品序號
 #else
 #ifdef _PK_SERVER
 #define SZ_ECB	"9306001"

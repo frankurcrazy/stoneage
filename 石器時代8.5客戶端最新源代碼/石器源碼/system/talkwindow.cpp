@@ -1,4 +1,4 @@
-﻿#include "../systeminc/version.h"
+#include "../systeminc/version.h"
 #include "../systeminc/talkwindow.h"
 #include "../systeminc/main.h"
 #include "../resource.h"
@@ -48,14 +48,14 @@ void CTalkWindow::Init(HWND hWnd,HINSTANCE hInstance)
 	}
 	pCBL = m_pCBLView = m_pCBLViewBottom = m_pCBLString = m_pCBLHead = (ChatBufferLink*)MALLOC(sizeof(ChatBufferLink));
 	if(pCBL == NULL){
-		MessageBoxNew(hWnd,TEXT("CTalkWindow::Init()记忆体配置失败(1)!!"),TEXT("确定"),MB_OK);
+		MessageBoxNew(hWnd,TEXT("CTalkWindow::Init()記憶體配置失敗(1)!!"),TEXT("確定"),MB_OK);
 		return;
 	}
 	memset(pCBL,0,sizeof(ChatBufferLink));
 	for(i=0;i<TALK_WINDOW_MAX_CHAT_LINE;i++){
 		pCBL->next = (ChatBufferLink*)MALLOC(sizeof(ChatBufferLink));
 		if(pCBL == NULL){
-			MessageBoxNew(hWnd,TEXT("CTalkWindow::Init()记忆体配置失败(2)!!"),TEXT("确定"),MB_OK);
+			MessageBoxNew(hWnd,TEXT("CTalkWindow::Init()記憶體配置失敗(2)!!"),TEXT("確定"),MB_OK);
 			Release();
 			return;
 		}
@@ -164,7 +164,7 @@ void CTalkWindow::LoadSkin(char *szSkinPath)
 	char szFileName[5][32] = 
 	{ "\\base.bmp","\\up_arrow_g.bmp","\\up_arrow_r.bmp","\\down_arrow_g.bmp","\\down_arrow_r.bmp"};
 	char szTemp[128];
-	// 读入skin的图
+	// 讀入skin的圖
 	for(int i=0;i<SKIN_KIND;i++){
 		sprintf_s(szTemp,"%s%s",szSkinPath,szFileName[i]);
 		m_hSkin[i] = LoadImage(NULL,szTemp,IMAGE_BITMAP,0,0,LR_LOADFROMFILE | LR_DEFAULTSIZE);
@@ -186,7 +186,7 @@ void CTalkWindow::DrawSkin(BOOL bShowCursor)
 	HDC hdc;
 	ChatBufferLink *pCBL;
 	
-	// 显示skin到backbuffer dc
+	// 顯示skin到backbuffer dc
 	BitBlt(m_hdcBackBuffer,0,0,SKIN_WIDTH,SKIN_HEIGHT,m_hdcSkin[0],0,0,SRCCOPY);
 	if(m_bUpArrowHit) BitBlt(m_hdcBackBuffer,620,8,SKIN_WIDTH,SKIN_HEIGHT,m_hdcSkin[2],0,0,SRCCOPY);
 	else BitBlt(m_hdcBackBuffer,620,8,SKIN_WIDTH,SKIN_HEIGHT,m_hdcSkin[1],0,0,SRCCOPY);
@@ -196,7 +196,7 @@ void CTalkWindow::DrawSkin(BOOL bShowCursor)
 	SetBkMode(m_hdcBackBuffer,TRANSPARENT);
 	hOldFont = (HFONT)SelectObject(m_hdcBackBuffer,hFont);
 	j = 0;
-	// 显示输出的文字
+	// 顯示輸齣的文字
 	pCBL = m_pCBLView;
 	for(int i=0;i<MAX_TALK_WINDOW_LINE;i++){
 		if(pCBL != NULL){
@@ -217,21 +217,21 @@ void CTalkWindow::DrawSkin(BOOL bShowCursor)
 		if(pCBL->next == NULL) pCBL = m_pCBLHead;
 		else pCBL = pCBL->next;
 	}
-	// 显示输入的文字
+	// 顯示輸入的文字
 	strcpy(szBuffer,MyChatBuffer.buffer);
 	color = MyChatBuffer.color;
 	SetTextColor(m_hdcBackBuffer,0);
 #ifdef _CHANNEL_MODIFY
-	TextOut(m_hdcBackBuffer,TALK_WINDOW_SXI - 25,TALK_WINDOW_SYI+1,g_szChannelTitle[TalkMode],(int)strlen(g_szChannelTitle[TalkMode]));  // 显示频道
+	TextOut(m_hdcBackBuffer,TALK_WINDOW_SXI - 25,TALK_WINDOW_SYI+1,g_szChannelTitle[TalkMode],(int)strlen(g_szChannelTitle[TalkMode]));  // 顯示頻道
 #endif
 	TextOut(m_hdcBackBuffer,TALK_WINDOW_SXI + 1,TALK_WINDOW_SYI + 1,szBuffer,(int)strlen(szBuffer)); 
 	SetTextColor(m_hdcBackBuffer,FontPal[color]);
 #ifdef _CHANNEL_MODIFY
-	TextOut(m_hdcBackBuffer,TALK_WINDOW_SXI - 26,TALK_WINDOW_SYI,g_szChannelTitle[TalkMode],(int)strlen(g_szChannelTitle[TalkMode])); // 显示频道
+	TextOut(m_hdcBackBuffer,TALK_WINDOW_SXI - 26,TALK_WINDOW_SYI,g_szChannelTitle[TalkMode],(int)strlen(g_szChannelTitle[TalkMode])); // 顯示頻道
 #endif
 	TextOut(m_hdcBackBuffer,TALK_WINDOW_SXI,TALK_WINDOW_SYI,szBuffer,(int)strlen(szBuffer)); 
 	
-	// 显示游标
+	// 顯示遊標
 	if(bShowCursor){
 		int x;
 
@@ -254,47 +254,47 @@ void CTalkWindow::DrawSkin(BOOL bShowCursor)
 void CTalkWindow::AddString(char *szString,int color)
 {
 	if(m_hTalkWindow){
-		// 游戏一开始没字串,所以要先把 m_iline 累加到 MAX_TALK_WINDOW_LINE 才进行显示框的移动
+		// 遊戲一開始沒字串,所以要先把 m_iline 纍加到 MAX_TALK_WINDOW_LINE 纔進行顯示框的移動
 		if(m_iline <= MAX_TALK_WINDOW_LINE) m_iline++;
 		strcpy(m_pCBLString->ChatBuffer.buffer,szString);
 		m_pCBLString->ChatBuffer.color = color;
 		m_pCBLString->bUse = TRUE;
-		// 游戏一开始都没有字串,所以要当 m_iline 值大于等于 MAX_TALK_WINDOW_LINE 时才进行显示框的移动
-		// 正处于卷动状态时不进行显示框的移动
+		// 遊戲一開始都沒有字串,所以要當 m_iline 值大於等於 MAX_TALK_WINDOW_LINE 時纔進行顯示框的移動
+		// 正處於捲動狀態時不進行顯示框的移動
 		if(!m_bScroll && m_iline > MAX_TALK_WINDOW_LINE){
 			if(m_pCBLView->next != NULL) m_pCBLView = m_pCBLView->next;
 			else m_pCBLView = m_pCBLHead;
 		}
-		// 不处于卷动状态时进行显示框的移动
+		// 不處於捲動狀態時進行顯示框的移動
 		if(!m_bScroll){
 			if(m_pCBLViewBottom->next != NULL) m_pCBLViewBottom = m_pCBLViewBottom->next;
 			else m_pCBLViewBottom = m_pCBLHead;
 		}
-		// 当 m_pCBLString->next 时,表示已到 list 尾,指回 list 头
+		// 當 m_pCBLString->next 時,錶示已到 list 尾,指迴 list 頭
 		if(m_pCBLString->next == NULL) m_pCBLString = m_pCBLHead;
 		else m_pCBLString = m_pCBLString->next;
 	}
 }
 
-// 上卷
+// 上捲
 void CTalkWindow::UpArrowHit(BOOL bHit)
 { 
 	m_bUpArrowHit = bHit;
 	if(bHit){
 		m_bScroll = FALSE;
-		// 若 m_pCBLView 和 m_pCBLString 不相等,表示目前显示范围还没超过 m_pCBLString
+		// 若 m_pCBLView 和 m_pCBLString 不相等,錶示目前顯示範圍還沒超過 m_pCBLString
 		if(m_pCBLView != m_pCBLString){
-			// 若 m_pCBLView->prev 为 NULL,表示上卷到底了
+			// 若 m_pCBLView->prev 為 NULL,錶示上捲到底瞭
 			if(m_pCBLView->prev == NULL){
-				// 若list尾部有在使用的话,把 m_pCBLView 指向 m_pCBLTail
+				// 若list尾部有在使用的話,把 m_pCBLView 指嚮 m_pCBLTail
 				if(m_pCBLTail->bUse){
 					m_pCBLView = m_pCBLTail;
 					m_bScroll = TRUE;
-					m_pCBLViewBottom = m_pCBLViewBottom->prev;	// 移动显示框
+					m_pCBLViewBottom = m_pCBLViewBottom->prev;	// 移動顯示框
 					if(m_pCBLViewBottom == NULL) m_pCBLViewBottom = m_pCBLTail;
 				}
 			}
-			// 未卷到底
+			// 未捲到底
 			else if(m_pCBLView->prev->bUse){
 				m_pCBLView = m_pCBLView->prev;
 				m_bScroll = TRUE;
@@ -305,25 +305,25 @@ void CTalkWindow::UpArrowHit(BOOL bHit)
 	}
 }
 
-// 下卷
+// 下捲
 void CTalkWindow::DownArrowHit(BOOL bHit)
 { 
 	m_bDownArrowHit = bHit;
 	if(bHit){
 		m_bScroll = FALSE;
-		// 若 m_pCBLViewBottom 和 m_pCBLString 不相等,表示目前显示范围还没超过 m_pCBLString
+		// 若 m_pCBLViewBottom 和 m_pCBLString 不相等,錶示目前顯示範圍還沒超過 m_pCBLString
 		if(m_pCBLViewBottom != m_pCBLString){
-			// 若 m_pCBLView->next 为 NULL,表示下卷到底了
+			// 若 m_pCBLView->next 為 NULL,錶示下捲到底瞭
 			if(m_pCBLView->next == NULL){
-				// 若list尾部有在使用的话,把 m_pCBLView 指向 m_pCBLHead
+				// 若list尾部有在使用的話,把 m_pCBLView 指嚮 m_pCBLHead
 				if(m_pCBLTail->bUse){
 					m_pCBLView = m_pCBLHead;
 					m_bScroll = TRUE;
-					m_pCBLViewBottom = m_pCBLViewBottom->next;	// 移动显示框
+					m_pCBLViewBottom = m_pCBLViewBottom->next;	// 移動顯示框
 					if(m_pCBLViewBottom == NULL) m_pCBLViewBottom = m_pCBLHead;
 				}
 			}
-			// 未卷到底
+			// 未捲到底
 			else if(m_pCBLView->next->bUse){
 				m_pCBLView = m_pCBLView->next;
 				m_bScroll = TRUE;
@@ -389,7 +389,7 @@ void CTalkWindow::InitFaceSymbol(COLORREF MaskColor)
 				m_fsFaceSymbol[i].bUse = FALSE;
 				continue;
 			}
-			hTemp = CopyImage(m_fsFaceSymbol[i].hLoadBMP,IMAGE_BITMAP,SYMBOL_WIDTH,SYMBOL_HEIGHT,LR_COPYDELETEORG); // 如果原图比19 19大,则会自动缩小
+			hTemp = CopyImage(m_fsFaceSymbol[i].hLoadBMP,IMAGE_BITMAP,SYMBOL_WIDTH,SYMBOL_HEIGHT,LR_COPYDELETEORG); // 如果原圖比19 19大,則會自動縮小
 			DeleteObject(m_fsFaceSymbol[i].hLoadBMP);
 			if(hTemp == NULL){
 				m_fsFaceSymbol[i].bUse = FALSE;
@@ -399,15 +399,15 @@ void CTalkWindow::InitFaceSymbol(COLORREF MaskColor)
 			m_fsFaceSymbol[i].hDraw = CreateCompatibleDC(NULL);
 			m_fsFaceSymbol[i].hOldLoadBMP = SelectObject(m_fsFaceSymbol[i].hDraw,m_fsFaceSymbol[i].hLoadBMP);
 			m_fsFaceSymbol[i].hDrawMask = CreateCompatibleDC(m_fsFaceSymbol[i].hDraw);
-			// 产生单色通透图
+			// 産生單色通透圖
 			m_fsFaceSymbol[i].hbmpMaskBMP = CreateBitmap(SYMBOL_WIDTH,SYMBOL_HEIGHT,1,1,NULL);
 			m_fsFaceSymbol[i].hOldMaskBMP = SelectObject(m_fsFaceSymbol[i].hDrawMask,m_fsFaceSymbol[i].hbmpMaskBMP);
-			// 设定透明色
+			// 設定透明色
 			SetBkColor(m_fsFaceSymbol[i].hDraw,MaskColor);
 			SetTextColor(m_fsFaceSymbol[i].hDraw,RGB(0,0,0));
-			// 产生透明区域为白色,其他区域为黑色的单色图
+			// 産生透明區域為白色,其他區域為黑色的單色圖
 			BitBlt(m_fsFaceSymbol[i].hDrawMask,0,0,SYMBOL_WIDTH,SYMBOL_HEIGHT,m_fsFaceSymbol[i].hDraw,0,0,SRCCOPY);
-			// 把原图换成透明区域为黑色,其他区域不变的图
+			// 把原圖換成透明區域為黑色,其他區域不變的圖
 			SetBkColor(m_fsFaceSymbol[i].hDraw,RGB(0,0,0));
 			SetTextColor(m_fsFaceSymbol[i].hDraw,RGB(255,255,255));
 			BitBlt(m_fsFaceSymbol[i].hDraw,0,0,SYMBOL_WIDTH,SYMBOL_HEIGHT,m_fsFaceSymbol[i].hDrawMask,0,0,SRCAND);
@@ -459,7 +459,7 @@ void CTalkWindow::SetToFaceSymbolString(char *szDestString,ChatBufferLink *pCBL,
 					if(szSourString[i] == m_fsFaceSymbol[j].szSymbol[k]){
 						k++;iCheck++;
 						if(m_fsFaceSymbol[j].szSymbol[k] == '\0'){
-							// 显示的图 x 座标超过了最右边,把接下来的字串拼入到下一行
+							// 顯示的圖 x 座標超過瞭最右邊,把接下來的字串拼入到下一行
 							if((x + (iStoreX + iSymbolNum) * (FONT_SIZE>>1)) > 610){
 								if(pCBL->next != NULL){
 									sprintf_s(szTemp,"%s%s",&szSourString[iStoreX],pCBL->next->ChatBuffer.buffer);
@@ -468,11 +468,11 @@ void CTalkWindow::SetToFaceSymbolString(char *szDestString,ChatBufferLink *pCBL,
 									sprintf_s(szTemp,"%s%s",&szSourString[iStoreX],m_pCBLHead->ChatBuffer.buffer);
 									sprintf_s(m_pCBLHead->ChatBuffer.buffer,"%s",szTemp);
 								}
-								// 把原先的字串分离成二行
+								// 把原先的字串分離成二行
 								memcpy(szTemp,szSourString,iStoreX);
 								sprintf_s(szSourString,"%s",szTemp);
 								sprintf_s(pCBL->ChatBuffer.buffer,"%s",szTemp);
-								// 设定 i 为 STR_BUFFER_SIZE + 1 是为了直接离开 i 那层 loop
+								// 設定 i 為 STR_BUFFER_SIZE + 1 是為瞭直接離開 i 那層 loop
 								i = STR_BUFFER_SIZE + 1;
 								bBreak = TRUE;
 								break;
@@ -480,7 +480,7 @@ void CTalkWindow::SetToFaceSymbolString(char *szDestString,ChatBufferLink *pCBL,
 							szDestString[iCount++] = ' ';
 							szDestString[iCount++] = ' ';
 							szDestString[iCount++] = ' ';
-							// 记录要在那个位置显示表情符号
+							// 記錄要在那個位置顯示錶情符號
 							m_ssStoreSymbol[m_iSymbolCount].bUse = TRUE;
 							m_ssStoreSymbol[m_iSymbolCount].hDraw = m_fsFaceSymbol[j].hDraw;
 							m_ssStoreSymbol[m_iSymbolCount].hDrawMask = m_fsFaceSymbol[j].hDrawMask;
@@ -516,7 +516,7 @@ void CTalkWindow::ShowFaceSymbol(void)
 			BitBlt(m_hdcBackBuffer,m_ssStoreSymbol[i].x,m_ssStoreSymbol[i].y,SKIN_WIDTH,SKIN_HEIGHT,m_ssStoreSymbol[i].hDrawMask,0,0,SRCAND);
 			BitBlt(m_hdcBackBuffer,m_ssStoreSymbol[i].x,m_ssStoreSymbol[i].y,SKIN_WIDTH,SKIN_HEIGHT,m_ssStoreSymbol[i].hDraw,0,0,SRCPAINT);
 		}
-		// 因为 m_ssStoreSymbol 内容的产生是照顺序产生的,所以只要有一个 m_ssStoreSymbol 的 bUse 为 FALSE 就可以直接离开 loop
+		// 因為 m_ssStoreSymbol 內容的産生是照順序産生的,所以隻要有一個 m_ssStoreSymbol 的 bUse 為 FALSE 就可以直接離開 loop
 		else break;
 	}
 	memset(m_ssStoreSymbol,0,sizeof(m_ssStoreSymbol));

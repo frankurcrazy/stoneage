@@ -83,7 +83,7 @@ const int getCharBaseValue(lua_State *L, int narg, CharBase *charbase, int num)
 			}
 			
 			if(i == num){
-				print("\ncharbaseȱʧ�ֶ�[%s]\n",field);
+				print("\ncharbaseÈ±Ê§×Ö¶Î[%s]\n",field);
 				return -1;
 			}
 			line++;

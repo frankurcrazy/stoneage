@@ -1,4 +1,4 @@
-﻿/************************/
+/************************/
 /*	mouse.c				*/
 /************************/
 #include "../systeminc/version.h"
@@ -399,7 +399,7 @@ void HitMouseCursor( void )
 	
 	/* ???牙?????????牙??！????????? */
 	for( i = DispBuffer.DispCnt - 1; i >= 0 ; i--, pDispSort-- ){
-		// 牙????向????????????
+		// 牙????嚮????????????
 		pDispInfo = DispBuffer.DispInfo + pDispSort->no;
 		
 		// ???刪叉??????
@@ -456,13 +456,13 @@ void HitMouseCursor( void )
 			}
 
 			// 酘奻善衵狟晤瘍峈6 , 7 , 8 , 9
-			// 絞躺夔恁寁等齬醴垀恁寁腔婓扂源腔弇离
+			// 絞躺夔恁寁等齬醴垀恁寁腔婓扂源腔弇離
 			if( BattleMyNo >= 10 && ( 6 == pDispInfo->hitFlag || 7 == pDispInfo->hitFlag ) )
 			{
 				hitFlag = FALSE;
 				continue;
 			}
-			// 絞躺夔恁寁等齬醴垀恁寁腔婓扂源腔弇离
+			// 絞躺夔恁寁等齬醴垀恁寁腔婓扂源腔弇離
 			if( BattleMyNo < 10 && ( 8 == pDispInfo->hitFlag || 9 == pDispInfo->hitFlag ) )
 			{
 				hitFlag = FALSE;

@@ -1,4 +1,4 @@
-﻿#include<stdio.h>
+#include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
 #include<direct.h>
@@ -46,10 +46,10 @@ short drawTimeAnimeFlag = 0;
 
 extern BOOL bNewServer;
 extern BOOL g_bUseAlpha;
-//新增 动作表情切换地图BUG
-ACTION *ptActMenuWin1 = NULL;//表情动作窗口
+//新增 動作錶情切換地圖BUG
+ACTION *ptActMenuWin1 = NULL;//錶情動作窗口
 
-#ifdef _WATERANIMATION //Syu ADD 泪之海动画层
+#ifdef _WATERANIMATION //Syu ADD 淚之海動畫層
 #define RAND(x,y) ((x - 1) + 1 + (int)((double)(y - (x - 1)) * rand() / (RAND_MAX + 1.0)))
 bool in817flag = false;
 #endif
@@ -58,7 +58,7 @@ bool in817flag = false;
 void TeacherSystemWndfunc(int flag,char *data);
 #endif
 
-BOOL BattlingFlag = FALSE;  //for线回系统与任务日志使用
+BOOL BattlingFlag = FALSE;  //for綫迴係統與任務日誌使用
 
 #ifdef __ONLINEGM
 BOOL OnlineGmFlag = FALSE;
@@ -72,21 +72,21 @@ int	 JobdailyGetMax = FALSE;
 //int		 PageIndex = 0;
 #endif
 
-#ifdef _CLOUD_EFFECT				// (不可开) ROG ADD云层效果
+#ifdef _CLOUD_EFFECT				// (不可開) ROG ADD雲層效果
 void CloudDraw();
 #endif
 
-#ifdef _SURFACE_ANIM        //ROG ADD 动态地上物显示
+#ifdef _SURFACE_ANIM        //ROG ADD 動態地上物顯示
 	int ani_num = 0;
 	BOOL breadAniFlag = FALSE;
 	ACTION *SPACT[MAX_ANIM];
-	int ProduceXY[MAX_ANIM][7] = { -1 }; //0: spr编号, 1: x座标, 2: y座标, 3: 出现时间 4:优先权 5:是否完成 6:ACTION
+	int ProduceXY[MAX_ANIM][7] = { -1 }; //0: spr編號, 1: x座標, 2: y座標, 3: 齣現時間 4:優先權 5:是否完成 6:ACTION
 #else
-	#ifdef _SPECIALSPACEANIM	// Syu ADD 特殊场景动画配置
+	#ifdef _SPECIALSPACEANIM	// Syu ADD 特殊場景動畫配置
 		static ACTION *SPACT[MAX_ANIM];
 		#ifdef _SPECIALSPACEANIM_FIX
 			#ifdef _MOON_FAIRYLAND       // ROG ADD 月之仙境
-				// 0:地图上x座标 1:地图上y座标 2:地图编号 3:grano 4:此ProduceXY有没有使用 5:此ProduceXY在SPACT的位置 6:显示优先顺序
+				// 0:地圖上x座標 1:地圖上y座標 2:地圖編號 3:grano 4:此ProduceXY有沒有使用 5:此ProduceXY在SPACT的位置 6:顯示優先順序
 				int ProduceXY[TOTAL_ANIM][7] = {
 					{  48 , 27 , 1200 , 101290 , 0 , -1 , 30},	
 					{  36 , 28 , 8255 , 101730 , 0 , -1 , 0 },
@@ -107,31 +107,31 @@ void CloudDraw();
 	#endif
 #endif
 
-#ifdef _AniCrossFrame	  // Syu ADD 动画层游过画面生物
-static ACTION *WaterAct2;	   //游过画面动画
-bool delFlag = false;		   //游过画面动画删除与否旗标
-bool flag22 = true;			   //游过画面动画的什么忘了
-bool Timeflag2 = false;		   //游过画面动画计时器旗标
-int TimeTick2 = 0;			   //游过画面动画计时器
-int TimeTickMax2 = 0;		   //游过画面动画计时器上限
+#ifdef _AniCrossFrame	  // Syu ADD 動畫層遊過畫麵生物
+static ACTION *WaterAct2;	   //遊過畫麵動畫
+bool delFlag = false;		   //遊過畫麵動畫刪除與否旗標
+bool flag22 = true;			   //遊過畫麵動畫的什麼忘瞭
+bool Timeflag2 = false;		   //遊過畫麵動畫計時器旗標
+int TimeTick2 = 0;			   //遊過畫麵動畫計時器
+int TimeTickMax2 = 0;		   //遊過畫麵動畫計時器上限
 #endif
 
-#ifdef _AniRandom   // Syu ADD 随机产生环境动画
-static ACTION *WaterAct[50];   //环境动画
-bool Timeflag[50] = {false};   //环境动画产生旗标
-int TimeTick[50] = {0};		   //环境动画计时器
-int TimeTickMax[50] = {0};	   //环境动画计时器上限
-bool AniFlag = false;		   //环境动画消灭旗标
+#ifdef _AniRandom   // Syu ADD 隨機産生環境動畫
+static ACTION *WaterAct[50];   //環境動畫
+bool Timeflag[50] = {false};   //環境動畫産生旗標
+int TimeTick[50] = {0};		   //環境動畫計時器
+int TimeTickMax[50] = {0};	   //環境動畫計時器上限
+bool AniFlag = false;		   //環境動畫消滅旗標
 #endif
 
 
 
-#ifdef _AniImmobile	 // Syu ADD 定点产生特定动画
-static ACTION *WaterAct3[30];  //定点动画
-bool Updownflag = false;	   //定点动画上下漂浮旗标
-int XYposition[560][7] =       //定点动画产生点阵列 
-							   //{ X座标, Y座标, 图号, 存在与否旗标, 配置的Action编号, 
-							   //  漂浮上下旗标(1会动,2不会动), 漂浮计时器}
+#ifdef _AniImmobile	 // Syu ADD 定點産生特定動畫
+static ACTION *WaterAct3[30];  //定點動畫
+bool Updownflag = false;	   //定點動畫上下漂浮旗標
+int XYposition[560][7] =       //定點動畫産生點陣列 
+							   //{ X座標, Y座標, 圖號, 存在與否旗標, 配置的Action編號, 
+							   //  漂浮上下旗標(1會動,2不會動), 漂浮計時器}
 {
 	{ 252 , 255 , 101511 , 0 , -1 , 1 , 0},
 	{ 233 , 268 , 101510 , 0 , -1 , 1 , 0},
@@ -234,7 +234,7 @@ int XYposition[560][7] =       //定点动画产生点阵列
 	{ 162 , 211 , 101516 , 0 , -1 , 1 , 0},
 	{ 170 , 202 , 101510 , 0 , -1 , 1 , 0},
 
-	//大红海草右 101595             大红海草左 101597
+	//大紅海草右 101595             大紅海草左 101597
 	{130,181, 101595 , 0 , -1 , 2 , 0},{275,255, 101597 , 0 , -1 , 2 , 0},
 	{124,161, 101595 , 0 , -1 , 2 , 0},{261,265, 101597 , 0 , -1 , 2 , 0},
 	{243,90 , 101595 , 0 , -1 , 2 , 0},{226,250, 101597 , 0 , -1 , 2 , 0},
@@ -273,7 +273,7 @@ int XYposition[560][7] =       //定点动画产生点阵列
 	{360,157, 101595 , 0 , -1 , 2 , 0},{349,225, 101597 , 0 , -1 , 2 , 0},
 	{370,170, 101595 , 0 , -1 , 2 , 0},{341,234, 101597 , 0 , -1 , 2 , 0},
 	{300,254, 101595 , 0 , -1 , 2 , 0},{311,239, 101597 , 0 , -1 , 2 , 0},
-	//大绿海草右 101594             大绿海草左 101596
+	//大綠海草右 101594             大綠海草左 101596
 	{129,185, 101594 , 0 , -1 , 2 , 0},{367,204, 101596 , 0 , -1 , 2 , 0},
 	{133,160, 101594 , 0 , -1 , 2 , 0},{340,221, 101596 , 0 , -1 , 2 , 0},
 	{248,87 , 101594 , 0 , -1 , 2 , 0},{330,227, 101596 , 0 , -1 , 2 , 0},
@@ -312,7 +312,7 @@ int XYposition[560][7] =       //定点动画产生点阵列
 	{365,154, 101594 , 0 , -1 , 2 , 0},{146,428, 101596 , 0 , -1 , 2 , 0},
 	{360,169, 101594 , 0 , -1 , 2 , 0},{128,405, 101596 , 0 , -1 , 2 , 0},
 	{373,186, 101594 , 0 , -1 , 2 , 0},{92,381 , 101596 , 0 , -1 , 2 , 0},
-	// 中绿海草右 101598              中绿海草左 101600
+	// 中綠海草右 101598              中綠海草左 101600
 	{148,199, 101598 , 0 , -1 , 2 , 0},{356,218, 101600 , 0 , -1 , 2 , 0},
 	{120,158, 101598 , 0 , -1 , 2 , 0},{337,222, 101600 , 0 , -1 , 2 , 0},
 	{235,78 , 101598 , 0 , -1 , 2 , 0},{319,233, 101600 , 0 , -1 , 2 , 0},
@@ -351,7 +351,7 @@ int XYposition[560][7] =       //定点动画产生点阵列
 	{349,131, 101598 , 0 , -1 , 2 , 0},{132,414, 101600 , 0 , -1 , 2 , 0},
 	{372,177, 101598 , 0 , -1 , 2 , 0},{137,392, 101600 , 0 , -1 , 2 , 0},
 	{381,203, 101598 , 0 , -1 , 2 , 0},{79,374 , 101600 , 0 , -1 , 2 , 0},
-	//中蓝海草右 101599               中蓝海草左 101601
+	//中藍海草右 101599               中藍海草左 101601
 	{141,202, 101599 , 0 , -1 , 2 , 0},{358,210, 101601 , 0 , -1 , 2 , 0},
 	{125,162, 101599 , 0 , -1 , 2 , 0},{344,230, 101601 , 0 , -1 , 2 , 0},
 	{243,94 , 101599 , 0 , -1 , 2 , 0},{326,229, 101601 , 0 , -1 , 2 , 0},
@@ -390,7 +390,7 @@ int XYposition[560][7] =       //定点动画产生点阵列
 	{363,162, 101599 , 0 , -1 , 2 , 0},{134,424, 101601 , 0 , -1 , 2 , 0},
 	{373,171, 101599 , 0 , -1 , 2 , 0},{127,403, 101601 , 0 , -1 , 2 , 0},
 	{385,192, 101599 , 0 , -1 , 2 , 0},{85,377 , 101601 , 0 , -1 , 2 , 0},
-	// 小绿海草右 101603              小绿海草左 101605
+	// 小綠海草右 101603              小綠海草左 101605
 	{136,173, 101603 , 0 , -1 , 2 , 0},{349,213, 101605 , 0 , -1 , 2 , 0},
 	{118,158, 101603 , 0 , -1 , 2 , 0},{339,225, 101605 , 0 , -1 , 2 , 0},
 	{227,75 , 101603 , 0 , -1 , 2 , 0},{322,244, 101605 , 0 , -1 , 2 , 0},
@@ -429,7 +429,7 @@ int XYposition[560][7] =       //定点动画产生点阵列
 	{365,165, 101603 , 0 , -1 , 2 , 0},{142,398, 101605 , 0 , -1 , 2 , 0},
 	{373,184, 101603 , 0 , -1 , 2 , 0},{105,385, 101605 , 0 , -1 , 2 , 0},
 	{372,185, 101603 , 0 , -1 , 2 , 0},{71,371 , 101605 , 0 , -1 , 2 , 0},
-	//小红海草右 101602               小红海草右 101604
+	//小紅海草右 101602               小紅海草右 101604
 
 	{154,200, 101602 , 0 , -1 , 2 , 0},{349,211, 101604 , 0 , -1 , 2 , 0},
 	{119,157, 101602 , 0 , -1 , 2 , 0},{345,231, 101604 , 0 , -1 , 2 , 0},
@@ -486,12 +486,12 @@ int sStreetVendorBtnGraNo[] =
 	CG_FIELD_SV_BTN_ON
 };
 
-// 输入售价视窗
+// 輸入售價視窗
 extern void CheckNumber(char *buf,int num);
 static ACTION *pActSellPriceWnd = NULL;
 int SellPriceWndfunc()
 {
-	static STR_BUFFER str_bufferMoney;		// 售价输入栏,最多一千万	
+	static STR_BUFFER str_bufferMoney;		// 售價輸入欄,最多一韆萬	
 	int x,y,iConfirm;
 
 	if (pActSellPriceWnd == NULL)
@@ -503,7 +503,7 @@ int SellPriceWndfunc()
 
 		pActSellPriceWnd = MakeWindowDisp(winX, winY,
 										  winW, winH, CG_FIELD_SV_SELL_PRICE_PANEL, -1, FALSE);
-		// 售价文字初始化
+		// 售價文字初始化
 		ZeroMemory(str_bufferMoney.buffer, sizeof(str_bufferMoney.buffer));
 		str_bufferMoney.cnt      = 0;
 		str_bufferMoney.cursor   = 0;
@@ -527,7 +527,7 @@ int SellPriceWndfunc()
 							DISP_PRIO_MENU, CG_FIELD_SV_SELL_PRICE_PANEL, 1);
 			iConfirm = StockDispBuffer(x + 55,y + 67, DISP_PRIO_IME3, 26289, 2);
 
-			// 按下确定
+			// 按下確定
 			if ((mouse.onceState & MOUSE_LEFT_CRICK) && HitDispNo == iConfirm)
 			{
 				DeathAction(pActSellPriceWnd);
@@ -535,11 +535,11 @@ int SellPriceWndfunc()
 				GetKeyInputFocus(&MyChatBuffer);
 				return atoi(str_bufferMoney.buffer);
 			}
-			// 滑鼠在售价区内
+			// 滑鼠在售價區內
 			if (MakeHitBox(str_bufferMoney.x, str_bufferMoney.y, str_bufferMoney.x + 88, str_bufferMoney.y + 22, DISP_PRIO_BOX2) == TRUE)
 				GetKeyInputFocus(&str_bufferMoney);
 			CheckNumber(str_bufferMoney.buffer, 10000000);
-			// 显示价格
+			// 顯示價格
 			StockFontBuffer2(&str_bufferMoney);
 		}
 	}
@@ -547,7 +547,7 @@ int SellPriceWndfunc()
 	return -1;
 }
 
-// 摆摊功能视窗
+// 擺攤功能視窗
 
 extern void CheckSpace(char *buf);
 ACTION *pShowPet = NULL;
@@ -573,7 +573,7 @@ void StreetVendorWndfunc(bool bReset,char *data)
 	static bool bChangePet = true,bRunSellPrice = false;
 	static Show_Sell_Item *pShowSellItem = NULL;
 #ifdef _NEW_ITEM_
-	extern int 道具栏页数;
+	extern int 道具欄頁數;
 	static int iItemOnSell[MAX_MAXHAVEITEM*3];
 #else
 	static int iItemOnSell[MAX_MAXHAVEITEM];
@@ -585,7 +585,7 @@ void StreetVendorWndfunc(bool bReset,char *data)
 		int winX = (lpDraw->xSize-winW)/2;
 		int winY = (lpDraw->ySize-winH)/2;
 #ifdef _NEW_ITEM_
-		道具栏页数=0;
+		道具欄頁數=0;
 #endif
 
 #ifdef _NEW_RESOMODE
@@ -660,7 +660,7 @@ void StreetVendorWndfunc(bool bReset,char *data)
 						pShowSellItem->usage = true;
 						iItemOnSell[index - 9] = index;
 					}
-					// 宠
+					// 寵
 					else if(kind == 1 && pet[index].useFlag)
 					{
 						pShowSellItem->kind = kind;
@@ -700,23 +700,23 @@ void StreetVendorWndfunc(bool bReset,char *data)
 			y = pActStreetVendorWnd->y;
 			selId = focusFontId(iSellItemBtn, sizeof(iSellItemBtn) / sizeof(int));
 			
-			// 显示及设定button出现的位置
-			// 确定
+			// 顯示及設定button齣現的位置
+			// 確定
 			iBtn[0] = StockDispBuffer(x + 80, y + 388, DISP_PRIO_IME3, 26289, 2);
 			// 取消
 			iBtn[1] = StockDispBuffer(x + 230, y + 388, DISP_PRIO_IME3, 26291, 2);
-			// 上卷箭头
+			// 上捲箭頭
 			iBtn[2] = StockDispBuffer(x + 305, y + 44, DISP_PRIO_IME3, 26331, 2);
-			// 下卷箭头
+			// 下捲箭頭
 			iBtn[3] = StockDispBuffer(x + 305, y + 304, DISP_PRIO_IME3, 26332, 2);
-			// 放置按钮
+			// 放置按鈕
 			iBtn[4] = StockDispBuffer(x + 335, y + 300, DISP_PRIO_IME3, 26062, 2);
-			// 左箭头
+			// 左箭頭
 			iBtn[5] = StockDispBuffer(x + 520, y + 60, DISP_PRIO_IME3, 26047, 2);
-			// 右箭头
+			// 右箭頭
 			iBtn[6] = StockDispBuffer(x + 570, y + 60, DISP_PRIO_IME3, 26048, 2);
 
-			// 显示左方的物品列表
+			// 顯示左方的物品列錶
 			for (i = iListStart, j = 0; i < iListStart + 10; i++, j++)
 			{
 				if (ShowSellItem[i].usage)
@@ -729,7 +729,7 @@ void StreetVendorWndfunc(bool bReset,char *data)
 							StockFontBuffer(x + 20, y + 32 + 28 * j, FONT_PRIO_FRONT, FONT_PAL_WHITE, ShowSellItem[i].name, 0);
 							sprintf(tempstr,"x%d",ShowSellItem[i].pile);
 							StockFontBuffer(x + 180-getTextLength(tempstr)/2, y + 32 + 28 * j, FONT_PRIO_FRONT, FONT_PAL_WHITE, tempstr, 0);	
-							StockFontBuffer(x + 250-getTextLength("议价")/2, y + 32 + 28 * j, FONT_PRIO_FRONT, FONT_PAL_WHITE, "议价", 0);	
+							StockFontBuffer(x + 250-getTextLength("議價")/2, y + 32 + 28 * j, FONT_PRIO_FRONT, FONT_PAL_WHITE, "議價", 0);	
 						}else{
 							StockFontBuffer(x + 20, y + 32 + 28 * j, FONT_PRIO_FRONT, FONT_PAL_WHITE, ShowSellItem[i].name, 0);
 							sprintf(tempstr,"x%d",ShowSellItem[i].pile);
@@ -741,7 +741,7 @@ void StreetVendorWndfunc(bool bReset,char *data)
 						if (ShowSellItem[i].price == 0){
 							StockFontBuffer(x + 20, y + 32 + 28 * j, FONT_PRIO_FRONT, FONT_PAL_WHITE, ShowSellItem[i].name, 0);
 							StockFontBuffer(x + 175- getTextLength(ShowSellItem[i].freeName)/2, y + 32 + 28 * j, FONT_PRIO_FRONT, FONT_PAL_WHITE, ShowSellItem[i].freeName, 0);	
-							StockFontBuffer(x + 250-getTextLength("议价")/2, y + 32 + 28 * j, FONT_PRIO_FRONT, FONT_PAL_WHITE, "议价", 0);	
+							StockFontBuffer(x + 250-getTextLength("議價")/2, y + 32 + 28 * j, FONT_PRIO_FRONT, FONT_PAL_WHITE, "議價", 0);	
 						}else{
 							StockFontBuffer(x + 20, y + 32 + 28 * j, FONT_PRIO_FRONT, FONT_PAL_WHITE, ShowSellItem[i].name, 0);
 							StockFontBuffer(x + 175 - getTextLength(ShowSellItem[i].freeName)/2, y + 32 + 28 * j, FONT_PRIO_FRONT, FONT_PAL_WHITE, ShowSellItem[i].freeName, 0);	
@@ -755,14 +755,14 @@ void StreetVendorWndfunc(bool bReset,char *data)
 					if (ShowSellItem[i].kind == 0)
 					{
 						if (ShowSellItem[i].price == 0)
-							sprintf_s(szMsg, "%-20sx%3d%13s", ShowSellItem[i].name, ShowSellItem[i].pile, "议价");
+							sprintf_s(szMsg, "%-20sx%3d%13s", ShowSellItem[i].name, ShowSellItem[i].pile, "議價");
 						else
 							sprintf_s(szMsg, "%-20sx%3d%13d", ShowSellItem[i].name, ShowSellItem[i].pile, ShowSellItem[i].price);
 					}
 					else
 					{
 						if (ShowSellItem[i].price == 0)
-							sprintf_s(szMsg, "%-17s%-12s%8s", ShowSellItem[i].name, ShowSellItem[i].freeName, "议价");
+							sprintf_s(szMsg, "%-17s%-12s%8s", ShowSellItem[i].name, ShowSellItem[i].freeName, "議價");
 						else
 							sprintf_s(szMsg, "%-17s%-12s%8d", ShowSellItem[i].name, ShowSellItem[i].freeName, ShowSellItem[i].price);
 					}
@@ -782,7 +782,7 @@ void StreetVendorWndfunc(bool bReset,char *data)
 						play_se(217, 320, 240);
 						switch (i)
 						{
-						// 确定
+						// 確定
 						case 0:
 							if (!bRunSellPrice)
 							{
@@ -791,26 +791,26 @@ void StreetVendorWndfunc(bool bReset,char *data)
 
 								memset(szMsg, 0, sizeof(szMsg));
 								memset(szTemp, 0, sizeof(szTemp));
-								// 把要卖的东西的索引传给server
+								// 把要賣的東西的索引傳給server
 								for (j = 0; j < MAX_SELL_ITEM; j++)
 								{
 									if (ShowSellItem[j].usage)
 									{
 										sprintf_s(szTemp1, "%d|%d|%d|", ShowSellItem[j].kind, ShowSellItem[j].index, ShowSellItem[j].price);
 										strcat_s(szTemp, szTemp1);
-										count++;	// 总数统计
+										count++;	// 總數統計
 									}
 								}
 								if (count != 0)
 								{
 									if (str_bufferVendorName.cnt == 0 || str_bufferVendorName.cnt>16)
 									{
-										sprintf_s(str_bufferVendorName.buffer, "欢迎光临!!");
+										sprintf_s(str_bufferVendorName.buffer, "歡迎光臨!!");
 										str_bufferVendorName.cnt = 10;
 									}
 									sprintf_s(szMsg, "S|%d|%s%s", count, szTemp, str_bufferVendorName.buffer);
 									lssproto_STREET_VENDOR_send(sockfd, szMsg);
-									// 摆摊有骑宠,要下马
+									// 擺攤有騎寵,要下馬
 									if (pc.ridePetNo > -1)
 									{
 										char buf[64];
@@ -851,13 +851,13 @@ void StreetVendorWndfunc(bool bReset,char *data)
 							pActSellPriceWnd = NULL;
 							GetKeyInputFocus(&MyChatBuffer);
 							break;
-						// 上卷
+						// 上捲
 						case 2:
 							iListStart--;
 							if (iListStart < 0)
 								iListStart = 0;
 							break;
-						// 下卷
+						// 下捲
 						case 3:
 							iListStart++;
 							if (iListStart > 10)
@@ -868,7 +868,7 @@ void StreetVendorWndfunc(bool bReset,char *data)
 							if (!bRunSellPrice)
 							{
 								pShowSellItem = GetEmptyShowSellItem(ShowSellItem);
-								// 还有空间能卖
+								// 還有空間能賣
 								if (pShowSellItem != NULL && iPetOnSell[iShowPet] == -1 && pShowPet != NULL)
 								{
 									iPetOnSell[iShowPet] = iShowPet;
@@ -883,7 +883,7 @@ void StreetVendorWndfunc(bool bReset,char *data)
 								}
 							}
 							break;
-						// 左箭头
+						// 左箭頭
 						case 5:
 							if (!bRunSellPrice)
 							{
@@ -891,7 +891,7 @@ void StreetVendorWndfunc(bool bReset,char *data)
 								bChangePet = true;
 							}
 							break;
-						// 右箭头
+						// 右箭頭
 						case 6:
 							if (!bRunSellPrice)
 							{
@@ -908,7 +908,7 @@ void StreetVendorWndfunc(bool bReset,char *data)
 			{
 				for (i = 0; i < 10; i++)
 				{
-					// 修改价格
+					// 修改價格
 					if (mouse.onceState & MOUSE_LEFT_CRICK)
 					{
 						if (selId == iSellItemBtn[i])
@@ -918,7 +918,7 @@ void StreetVendorWndfunc(bool bReset,char *data)
 							break;
 						}
 					}
-					// 取消不卖
+					// 取消不賣
 					else if (mouse.onceState & MOUSE_RIGHT_CRICK)
 					{
 						if (selId == iSellItemBtn[i])
@@ -945,12 +945,12 @@ void StreetVendorWndfunc(bool bReset,char *data)
 
 #ifdef _NEW_ITEM_
 			for(i=0;i<3;i++){
-				if(i==道具栏页数){
+				if(i==道具欄頁數){
 					StockDispBuffer(722,350+i*56, DISP_PRIO_IME3,55223+i, 1);
 				}else{
 					BOOL flg=FALSE;
 					if(i){
-						if(pc.道具栏状态&1<<i){
+						if(pc.道具欄狀態&1<<i){
 							flg=TRUE;
 						}
 					}else flg=TRUE;
@@ -958,7 +958,7 @@ void StreetVendorWndfunc(bool bReset,char *data)
 						StockDispBuffer(727-9,350+i*56, DISP_PRIO_IME3,55226+i, 1);
 						if(MakeHitBox(717-9 ,322+i*56,717+20-9,319+i*56+60, DISP_PRIO_IME4)){
 							if(mouse.onceState & MOUSE_LEFT_CRICK){
-								道具栏页数=i;
+								道具欄頁數=i;
 							}
 						}
 					}else StockDispBuffer(727-9,350+i*56, DISP_PRIO_IME3,55229+i, 1);
@@ -972,21 +972,21 @@ void StreetVendorWndfunc(bool bReset,char *data)
 				{
 					itemx = x + 323 + i * 51;
 					itemy = y + 247 + j * 48;
-					// 显示玩家身上的道具
+					// 顯示玩傢身上的道具
 
 #ifdef _NEW_ITEM_
-					int 道具索引 = j * 5 + i + 9+道具栏页数*15;
+					int 道具索引 = j * 5 + i + 9+道具欄頁數*15;
 					if (pItem[道具索引].useFlag)
 					{
 						if (!bRunSellPrice)
 							StockDispBuffer(itemx + 25, itemy + 25, DISP_PRIO_ITEM, pItem[道具索引].graNo, 0);
-						// 若输入价格视窗开启,disp_prio 设定成menu才不会盖在价格视窗上
+						// 若輸入價格視窗開啓,disp_prio 設定成menu纔不會蓋在價格視窗上
 						else
 							StockDispBuffer(itemx + 25, itemy + 25, DISP_PRIO_MENU, pItem[道具索引].graNo, 0);
 					}
 					if (iItemOnSell[道具索引-9] != -1)
 					{
-						// 若输入价格视窗开启,不显示sell
+						// 若輸入價格視窗開啓,不顯示sell
 						if (!bRunSellPrice)
 							StockFontBuffer(itemx + 25, itemy + 25, FONT_PRIO_FRONT, FONT_PAL_RED, "SELL", 0);
 					}
@@ -998,19 +998,19 @@ void StreetVendorWndfunc(bool bReset,char *data)
 							if( pItem[道具索引].useFlag )
 								ShowItemup(pItem[道具索引].itemup,mouse.nowPoint.x,mouse.nowPoint.y);
 #endif
-							// 有这个道具
+							// 有這個道具
 							if (pItem[道具索引].useFlag &&
-								// 判断道具是否被选择
+								// 判斷道具是否被選擇
 								 (mouse.onceState & MOUSE_LEFT_DBL_CRICK) &&
-								// 还没卖
+								// 還沒賣
 								 (iItemOnSell[道具索引-9] == -1)
 								)
 							{
 								pShowSellItem = GetEmptyShowSellItem(ShowSellItem);
-								// 还有空间能卖
+								// 還有空間能賣
 								if (pShowSellItem != NULL)
 								{
-									iItemOnSell[道具索引-9] = 道具索引; // 记录身上那个道具要被卖
+									iItemOnSell[道具索引-9] = 道具索引; // 記錄身上那個道具要被賣
 									play_se(217,320,240);
 									bRunSellPrice = true;
 									pShowSellItem->usage = true;
@@ -1028,13 +1028,13 @@ void StreetVendorWndfunc(bool bReset,char *data)
 					{
 						if (!bRunSellPrice)
 							StockDispBuffer(itemx + 25, itemy + 25, DISP_PRIO_ITEM, pItem[j * 5 + i + 9].graNo, 0);
-						// 若输入价格视窗开启,disp_prio 设定成menu才不会盖在价格视窗上
+						// 若輸入價格視窗開啓,disp_prio 設定成menu纔不會蓋在價格視窗上
 						else
 							StockDispBuffer(itemx + 25, itemy + 25, DISP_PRIO_MENU, pItem[j * 5 + i + 9].graNo, 0);
 					}
 					if (iItemOnSell[j * 5 + i] != -1)
 					{
-						// 若输入价格视窗开启,不显示sell
+						// 若輸入價格視窗開啓,不顯示sell
 						if (!bRunSellPrice)
 							StockFontBuffer(itemx + 25, itemy + 25, FONT_PRIO_FRONT, FONT_PAL_RED, "SELL", 0);
 					}
@@ -1046,19 +1046,19 @@ void StreetVendorWndfunc(bool bReset,char *data)
 							if( pItem[j * 5 + i + 9].useFlag )
 								ShowItemup(pItem[j * 5 + i + 9].itemup,mouse.nowPoint.x,mouse.nowPoint.y);
 #endif
-							// 有这个道具
+							// 有這個道具
 							if (pItem[j * 5 + i + 9].useFlag &&
-								// 判断道具是否被选择
+								// 判斷道具是否被選擇
 								 (mouse.onceState & MOUSE_LEFT_DBL_CRICK) &&
-								// 还没卖
+								// 還沒賣
 								 (iItemOnSell[j * 5 + i] == -1)
 								)
 							{
 								pShowSellItem = GetEmptyShowSellItem(ShowSellItem);
-								// 还有空间能卖
+								// 還有空間能賣
 								if (pShowSellItem != NULL)
 								{
-									iItemOnSell[j * 5 + i] = j * 5 + i + 9; // 记录身上那个道具要被卖
+									iItemOnSell[j * 5 + i] = j * 5 + i + 9; // 記錄身上那個道具要被賣
 									play_se(217,320,240);
 									bRunSellPrice = true;
 									pShowSellItem->usage = true;
@@ -1074,12 +1074,12 @@ void StreetVendorWndfunc(bool bReset,char *data)
 #endif
 				}
 			}
-			// 秀宠物
+			// 秀寵物
 			for (i = 0; i < MAX_PET; i++)
 			{
 				if (bChangePet && !bRunSellPrice)
 				{
-					// 有这只宠且不是正在骑乘及设定成宠邮的宠
+					// 有這隻寵且不是正在騎乘及設定成寵郵的寵
 					if (pet[iShowPet].useFlag == 1 && (pc.ridePetNo != iShowPet) && (pc.mailPetNo != iShowPet))
 					{
 						if (pShowPet != NULL)
@@ -1103,15 +1103,15 @@ void StreetVendorWndfunc(bool bReset,char *data)
 				}
 				if (pShowPet != NULL)
 				{
-					// 显示宠物资料
+					// 顯示寵物資料
 					if (iPetOnSell[iShowPet] != -1) 
 						StockFontBuffer(x + 440, y + 195, FONT_PRIO_FRONT, FONT_PAL_RED, "SELL", 0);
-					// 显示宠物名称
+					// 顯示寵物名稱
 					if (strlen(pet[iShowPet].freeName) > 0)
 						StockFontBuffer(x + 336, y + 28, FONT_PRIO_FRONT, 0, pet[iShowPet].freeName, 0);
 					else 
 						StockFontBuffer(x + 336, y + 28, FONT_PRIO_FRONT, 0, pet[iShowPet].name, 0);
-					// 显示宠物的属性
+					// 顯示寵物的屬性
 					_itoa_s(pet[iShowPet].level, temp, 10);
 					StockFontBuffer(x + 542, y + 92    , FONT_PRIO_FRONT, FONT_PAL_WHITE, temp, 0);
 					_itoa_s(pet[iShowPet].atk, temp, 10);
@@ -1124,7 +1124,7 @@ void StreetVendorWndfunc(bool bReset,char *data)
 					StockFontBuffer(x + 542, y + 92 + 97, FONT_PRIO_FRONT, FONT_PAL_WHITE, temp, 0);
 				}
 			}
-			// 身上没宠
+			// 身上沒寵
 			if (i == MAX_PET && bChangePet)
 			{
 				bChangePet = false;
@@ -1134,12 +1134,12 @@ void StreetVendorWndfunc(bool bReset,char *data)
 					pShowPet = NULL;
 				}
 			}
-			// 滑鼠在店名区内
+			// 滑鼠在店名區內
 			if (MakeHitBox(str_bufferVendorName.x, str_bufferVendorName.y, str_bufferVendorName.x + 250,
 						   str_bufferVendorName.y + 24, DISP_PRIO_BOX2) == TRUE)
 				GetKeyInputFocus(&str_bufferVendorName);
 			CheckSpace(str_bufferVendorName.buffer);
-			// 显示店名
+			// 顯示店名
 			StockFontBuffer2(&str_bufferVendorName);
 			StockDispBuffer(((WINDOW_DISP *)pActStreetVendorWnd->pYobi)->mx,
 							((WINDOW_DISP *)pActStreetVendorWnd->pYobi)->my,
@@ -1148,15 +1148,15 @@ void StreetVendorWndfunc(bool bReset,char *data)
 	}
 }
 
-// 摆摊购买介面
+// 擺攤購買介麵
 Show_Vendor_Item ShowVendorItem[MAX_SELL_ITEM];
 
 void StreetVendorBuyWndfunc(char *data)
 {
 	int i,j,x,y,selId = 0;
 	const int	iMaxBtnNum = 5;
-	static int	iBtn[iMaxBtnNum],iBuyItemBtn[MAX_SELL_ITEM],iListStart,iTotalBuy[2]; //iTotalBuy[0]:买入道具数量 iTotalBuy[1]:宠物买入数量
-	static int	iEmptyNum[2],iCurrentShow,iTotalBuyMoney; // iEmptyNum[0]:身上道具栏空位数量 iEmptyNum[1]:宠物栏空位数量
+	static int	iBtn[iMaxBtnNum],iBuyItemBtn[MAX_SELL_ITEM],iListStart,iTotalBuy[2]; //iTotalBuy[0]:買入道具數量 iTotalBuy[1]:寵物買入數量
+	static int	iEmptyNum[2],iCurrentShow,iTotalBuyMoney; // iEmptyNum[0]:身上道具欄空位數量 iEmptyNum[1]:寵物欄空位數量
 	static int	iMakePetAni = -1;
 #ifdef _PET_ITEM
 	static BOOL	bViewPetItem = FALSE;
@@ -1206,14 +1206,14 @@ void StreetVendorBuyWndfunc(char *data)
 			x = pActStreetVendorBuyWnd->x;
 			y = pActStreetVendorBuyWnd->y;
 			selId = focusFontId(iBuyItemBtn, sizeof(iBuyItemBtn) / sizeof(int));
-			// 显示及设定button出现的位置
-			// 确定
+			// 顯示及設定button齣現的位置
+			// 確定
 			iBtn[0] = StockDispBuffer(x + 410, y + 378, DISP_PRIO_IME3, 26289, 2);
 			// 取消
 			iBtn[1] = StockDispBuffer(x + 535, y + 378, DISP_PRIO_IME3, 26291, 2);
-			// 上卷箭头
+			// 上捲箭頭
 			iBtn[2] = StockDispBuffer(x + 300, y + 34, DISP_PRIO_IME3, 26331, 2);
-			// 下卷箭头
+			// 下捲箭頭
 			iBtn[3] = StockDispBuffer(x + 300, y + 374, DISP_PRIO_IME3, 26332, 2);
 #ifdef _PET_ITEM
 			if (bViewPetItem)
@@ -1230,7 +1230,7 @@ void StreetVendorBuyWndfunc(char *data)
 						play_se(217, 320, 240);
 						switch (i)
 						{
-						// 确定
+						// 確定
 						case 0:
 							{
 								int count = 0;
@@ -1238,14 +1238,14 @@ void StreetVendorBuyWndfunc(char *data)
 								
 								memset(szMsg, 0, sizeof(szMsg));
 								memset(szTemp, 0, sizeof(szTemp));
-								// 把要买的东西的索引传给server
+								// 把要買的東西的索引傳給server
 								for(j = 0; j < MAX_SELL_ITEM; j++)
 								{
 									if (ShowVendorItem[j].bBuy)
 									{
 										sprintf_s(szTemp1, "%d|", ShowVendorItem[j].index);
 										strcat_s(szTemp, szTemp1);
-										count++;	// 总数统计
+										count++;	// 總數統計
 									}
 								}
 								if (count != 0)
@@ -1271,13 +1271,13 @@ void StreetVendorBuyWndfunc(char *data)
 								DeathAction(pActSellPriceWnd);
 							pActSellPriceWnd = NULL;
 							break;
-						// 上卷
+						// 上捲
 						case 2:
 							iListStart--;
 							if (iListStart < 0)
 								iListStart = 0;
 							break;
-						// 下卷
+						// 下捲
 						case 3:
 							iListStart++;
 							if (iListStart > 13)
@@ -1294,7 +1294,7 @@ void StreetVendorBuyWndfunc(char *data)
 				}
 			}
 
-			// 显示左方的物品列表
+			// 顯示左方的物品列錶
 			for (i = iListStart, j = 0; i < iListStart + 13; i++, j++)
 			{
 				iBuyItemBtn[j]=-2;
@@ -1309,7 +1309,7 @@ void StreetVendorBuyWndfunc(char *data)
 							StockFontBuffer(x + 20, y + 22 + 28 * j, FONT_PRIO_FRONT, FONT_PAL_WHITE, ShowVendorItem[i].name, 0);
 							sprintf(tempstr,"x%d",ShowVendorItem[i].pile);
 							StockFontBuffer(x + 180-getTextLength(tempstr)/2, y + 22 + 28 * j, FONT_PRIO_FRONT, FONT_PAL_WHITE, tempstr, 0);	
-							StockFontBuffer(x + 250-getTextLength("议价")/2, y + 22 + 28 * j, FONT_PRIO_FRONT, FONT_PAL_WHITE, "议价", 0);	
+							StockFontBuffer(x + 250-getTextLength("議價")/2, y + 22 + 28 * j, FONT_PRIO_FRONT, FONT_PAL_WHITE, "議價", 0);	
 						}else{
 							StockFontBuffer(x + 20, y + 22 + 28 * j, FONT_PRIO_FRONT, FONT_PAL_WHITE, ShowVendorItem[i].name, 0);
 							sprintf(tempstr,"x%d",ShowVendorItem[i].pile);
@@ -1319,7 +1319,7 @@ void StreetVendorBuyWndfunc(char *data)
 						}
 #else
 						if (ShowVendorItem[i].price == 0)
-							sprintf_s(szMsg, "%-20sx%3d%13s", ShowVendorItem[i].name, ShowVendorItem[i].pile, "议价");
+							sprintf_s(szMsg, "%-20sx%3d%13s", ShowVendorItem[i].name, ShowVendorItem[i].pile, "議價");
 						else
 							sprintf_s(szMsg, "%-20sx%3d%13d", ShowVendorItem[i].name, ShowVendorItem[i].pile, ShowVendorItem[i].price);
 #endif
@@ -1332,7 +1332,7 @@ void StreetVendorBuyWndfunc(char *data)
 						if (ShowVendorItem[i].price == 0){
 							StockFontBuffer(x + 20, y + 22 + 28 * j, FONT_PRIO_FRONT, FONT_PAL_WHITE, ShowVendorItem[i].name, 0);
 							StockFontBuffer(x + 175- getTextLength(ShowVendorItem[i].freeName)/2, y + 22 + 28 * j, FONT_PRIO_FRONT, FONT_PAL_WHITE, ShowVendorItem[i].freeName, 0);	
-							StockFontBuffer(x + 250-getTextLength("议价")/2, y + 22 + 28 * j, FONT_PRIO_FRONT, FONT_PAL_WHITE, "议价", 0);	
+							StockFontBuffer(x + 250-getTextLength("議價")/2, y + 22 + 28 * j, FONT_PRIO_FRONT, FONT_PAL_WHITE, "議價", 0);	
 						}else{
 							StockFontBuffer(x + 20, y + 22 + 28 * j, FONT_PRIO_FRONT, FONT_PAL_WHITE, ShowVendorItem[i].name, 0);
 							StockFontBuffer(x + 175 - getTextLength(ShowVendorItem[i].freeName)/2, y + 22 + 28 * j, FONT_PRIO_FRONT, FONT_PAL_WHITE, ShowVendorItem[i].freeName, 0);	
@@ -1341,7 +1341,7 @@ void StreetVendorBuyWndfunc(char *data)
 						}
 #else
 						if (ShowVendorItem[i].price == 0)
-							sprintf_s(szMsg, "%-17s%-12s%8s", ShowVendorItem[i].name, ShowVendorItem[i].freeName, "议价");
+							sprintf_s(szMsg, "%-17s%-12s%8s", ShowVendorItem[i].name, ShowVendorItem[i].freeName, "議價");
 						else
 							sprintf_s(szMsg, "%-17s%-12s%8d", ShowVendorItem[i].name, ShowVendorItem[i].freeName, ShowVendorItem[i].price);
 #endif
@@ -1359,36 +1359,36 @@ void StreetVendorBuyWndfunc(char *data)
 					//iBuyItemBtn[j] = StockFontBuffer(x + 20, y + 22 + 28 * j, FONT_PRIO_FRONT, FONT_PAL_WHITE, "", 0);
 			}
 
-			// 显示项目详细资料
+			// 顯示項目詳細資料
 			if (ShowVendorItem[iCurrentShow].bGetData)
 			{
-				// 显示道具详细资料
+				// 顯示道具詳細資料
 				if (ShowVendorItem[iCurrentShow].kind == 0)
 				{
 					int		iy = y + 198, color = ShowVendorItem[iCurrentShow].color;
 					char	*splitPoint = ShowVendorItem[iCurrentShow].memo;
 
-					// 清除宠物图
+					// 清除寵物圖
 					if (pShowPet != NULL)
 					{
 						DeathAction(pShowPet);
 						pShowPet = NULL;
 					}
-					// 显示道具
+					// 顯示道具
 					StockDispBuffer(x + 415, y + 100, DISP_PRIO_ITEM, ShowVendorItem[iCurrentShow].bmpNo, 0);
-					// 显示道具底下的石板
+					// 顯示道具底下的石闆
 					StockDispBuffer(x + 415, y + 100, DISP_PRIO_IME3, 26269, 0);
-					// 显示道具名称
+					// 顯示道具名稱
 					StockFontBuffer(x + 325, y + 150, FONT_PRIO_FRONT, color, ShowVendorItem[iCurrentShow].name, 0);
 
-					// 显示道具耐久度
+					// 顯示道具耐久度
 					sprintf_s(szMsg, "耐久度(%s)", ShowVendorItem[iCurrentShow].damage);
 					StockFontBuffer(x + 325, y + 174, FONT_PRIO_FRONT, color, szMsg, 0);
 
 #ifdef _NPC_ITEMUP
 					ShowItemup(ShowVendorItem[iCurrentShow].itemup,x+325+250,y+194);
 #endif
-					// 显示道具叙述
+					// 顯示道具敘述
 					while (1)
 					{
 						if (strlen(splitPoint) > 28)
@@ -1416,19 +1416,19 @@ void StreetVendorBuyWndfunc(char *data)
 						}
 					}
 				}
-				// 显示宠物详细资料
+				// 顯示寵物詳細資料
 				else
 				{
 					if (pShowPet != NULL)
 					{
 #ifdef _PET_ITEM
-						// 显示宠物身上道具
+						// 顯示寵物身上道具
 						if (bViewPetItem)
 						{
 							int		nY = 251, nColor;
 							char	*splitPoint;
 
-							// 显示宠物装备栏的底图及装备
+							// 顯示寵物裝備欄的底圖及裝備
 							for (i = 0; i < PET_EQUIPNUM; i++)
 							{	
 								StockDispBuffer(ItemBuffer[i].defX, ItemBuffer[i].defY, DISP_PRIO_IME3, nPetItemEquipBmpNumber[i][0], 0);
@@ -1437,7 +1437,7 @@ void StreetVendorBuyWndfunc(char *data)
 							}
 							for (i = 0; i < PET_EQUIPNUM; i++)
 							{
-								// 显示装备内容
+								// 顯示裝備內容
 								if (MakeHitBox( ItemBuffer[i].defX - 26, ItemBuffer[i].defY - 26,
 												ItemBuffer[i].defX + 26, ItemBuffer[i].defY + 23, DISP_PRIO_IME3) == TRUE)
 								{
@@ -1445,7 +1445,7 @@ void StreetVendorBuyWndfunc(char *data)
 									{
 										nColor = ShowVendorItem[iCurrentShow].oPetItemInfo[i].color;
 										splitPoint = ShowVendorItem[iCurrentShow].oPetItemInfo[i].memo;
-										// 装备名称
+										// 裝備名稱
 										StockFontBuffer(x + 325, y + 195, FONT_PRIO_FRONT, nColor, ShowVendorItem[iCurrentShow].oPetItemInfo[i].name,0);
 
 										// 耐久度
@@ -1455,7 +1455,7 @@ void StreetVendorBuyWndfunc(char *data)
 #ifdef _NPC_ITEMUP
 										ShowItemup(ShowVendorItem[iCurrentShow].itemup,x+325+250,y+235);
 #endif
-										// 显示道具叙述
+										// 顯示道具敘述
 										while (1)
 										{
 											if (strlen(splitPoint) > 28)
@@ -1489,18 +1489,18 @@ void StreetVendorBuyWndfunc(char *data)
 						else
 #endif
 						{
-							// 显示宠物名字
+							// 顯示寵物名字
 							StockFontBuffer(x + 325, y + 35, FONT_PRIO_FRONT, FONT_PAL_WHITE, ShowVendorItem[iCurrentShow].name, 0);
-							// 显示宠物转生数
-							sprintf_s(szMsg, "%d 转", ShowVendorItem[iCurrentShow].trans);
+							// 顯示寵物轉生數
+							sprintf_s(szMsg, "%d 轉", ShowVendorItem[iCurrentShow].trans);
 							StockFontBuffer(x + 570, y + 35, FONT_PRIO_FRONT, FONT_PAL_WHITE, szMsg, 0);
-							// 显示宠物被改后的名字
+							// 顯示寵物被改後的名字
 							//StockFontBuffer(x + 325, y + 55, FONT_PRIO_FRONT, FONT_PAL_RED, ShowVendorItem[iCurrentShow].freeName, 0);
-							// 显示宠物等级,,血,攻,防,敏,四属性
+							// 顯示寵物等級,,血,攻,防,敏,四屬性
 #ifdef _NEWFONT_
-							sprintf_s(szMsg, "  当前     原始        预测        成长       其它");
+							sprintf_s(szMsg, "  當前     原始        預測        成長       其它");
 #else
-							sprintf_s(szMsg, "  当前   原始    预测     成长    其它");
+							sprintf_s(szMsg, "  當前   原始    預測     成長    其它");
 #endif
 							StockFontBuffer(x + 325, y + 60, FONT_PRIO_FRONT, FONT_PAL_GREEN, szMsg, 0);
 							sprintf_s(szMsg, "Lv：%d", ShowVendorItem[iCurrentShow].level);
@@ -1620,7 +1620,7 @@ void StreetVendorBuyWndfunc(char *data)
 							StockFontBuffer(x + 560, y + 100, FONT_PRIO_FRONT, FONT_PAL_BLUE, szMsg, 0);
 							sprintf_s(szMsg, "火：%d", ShowVendorItem[iCurrentShow].fire/10);
 							StockFontBuffer(x + 560, y + 120, FONT_PRIO_FRONT, FONT_PAL_RED, szMsg, 0);
-							sprintf_s(szMsg, "风：%d", ShowVendorItem[iCurrentShow].wind/10);
+							sprintf_s(szMsg, "風：%d", ShowVendorItem[iCurrentShow].wind/10);
 							StockFontBuffer(x + 560, y + 140, FONT_PRIO_FRONT, FONT_PAL_YELLOW, szMsg, 0);
 							sprintf_s(szMsg, "忠：%d", ShowVendorItem[iCurrentShow].fidelity);
 							StockFontBuffer(x + 560, y + 160, FONT_PRIO_FRONT, FONT_PAL_WHITE, szMsg, 0);
@@ -1628,7 +1628,7 @@ void StreetVendorBuyWndfunc(char *data)
 
 
 
-							// 显示宠技
+							// 顯示寵技
 							for (i = 0; i < ShowVendorItem[iCurrentShow].maxSkill; i++)
 							{
 								sprintf_s(szMsg, "技 %d：%s", i + 1, ShowVendorItem[iCurrentShow].skillname[i]);
@@ -1639,12 +1639,12 @@ void StreetVendorBuyWndfunc(char *data)
 				}
 			}
 
-			// 处理左方项目
+			// 處理左方項目
 			int kind;
 
 			for (i = 0; i < 13; i++)
 			{
-				// 选定要买
+				// 選定要買
 				if (mouse.onceState & MOUSE_LEFT_CRICK)
 				{
 					//selId = focusFontId(iBuyItemBtn, sizeof(iBuyItemBtn) / sizeof(int));
@@ -1652,20 +1652,20 @@ void StreetVendorBuyWndfunc(char *data)
 					{
 						kind = ShowVendorItem[i + iListStart].kind;
 						
-						// 若已点选则取消
+						// 若已點選則取消
 						if (ShowVendorItem[i + iListStart].bBuy)
 						{
 							ShowVendorItem[i + iListStart].bBuy = false;
 							iTotalBuy[kind]--;
 							iTotalBuyMoney -= ShowVendorItem[i + iListStart].price;
 						}
-						// 是否是议价物品
+						// 是否是議價物品
 						else if (ShowVendorItem[i + iListStart].price > 0)
 						{
-							// 身上还有空位
+							// 身上還有空位
 							if (iEmptyNum[kind] > iTotalBuy[kind])
 							{
-								// 身上的钱足够
+								// 身上的錢足夠
 								if ((iTotalBuyMoney + ShowVendorItem[i + iListStart].price) <= pc.gold)
 								{
 									ShowVendorItem[i + iListStart].bBuy = true;
@@ -1673,22 +1673,22 @@ void StreetVendorBuyWndfunc(char *data)
 									iTotalBuyMoney += ShowVendorItem[i + iListStart].price;
 								}
 								else
-									StockChatBufferLine("石币不足！", FONT_PAL_RED);
+									StockChatBufferLine("石幣不足！", FONT_PAL_RED);
 							}
 							else
 							{
 								if (kind == 0)
-									StockChatBufferLine("身上道具栏位不足！", FONT_PAL_RED);
+									StockChatBufferLine("身上道具欄位不足！", FONT_PAL_RED);
 								else if (kind == 1)
-									StockChatBufferLine("身上宠物栏栏位不足！", FONT_PAL_RED);
+									StockChatBufferLine("身上寵物欄欄位不足！", FONT_PAL_RED);
 							}
 						}
 						else 
-							StockChatBufferLine("议价物品不可点选！", FONT_PAL_RED);
+							StockChatBufferLine("議價物品不可點選！", FONT_PAL_RED);
 						break;
 					}
 				}
-				// 看项目内容
+				// 看項目內容
 				else if (mouse.onceState & MOUSE_RIGHT_CRICK)
 				{
 					if (HitFontNo == iBuyItemBtn[i])
@@ -1719,10 +1719,10 @@ void StreetVendorBuyWndfunc(char *data)
 				}
 			}
 
-			// 显示身上的钱
+			// 顯示身上的錢
 			sprintf_s(szMsg, "%d", pc.gold);
 			StockFontBuffer(x + 380, y + 336, FONT_PRIO_FRONT, FONT_PAL_WHITE, szMsg, 0);
-			// 显示点选的物品的总价
+			// 顯示點選的物品的總價
 			sprintf_s(szMsg, "%d", iTotalBuyMoney);
 			StockFontBuffer(x + 525, y + 336, FONT_PRIO_FRONT, FONT_PAL_WHITE, szMsg, 0);
 			if (iMakePetAni > -1)
@@ -1742,7 +1742,7 @@ void StreetVendorBuyWndfunc(char *data)
 		int nPetItemPlace;
 #endif
 		getStringToken(data, '|', 1, sizeof(szMsg) - 1, szMsg);
-		// 贩卖物基本资料
+		// 販賣物基本資料
 		if (szMsg[0] == 'B')
 		{
 			getStringToken(data, '|', 2, sizeof(szMsg) - 1, szMsg);
@@ -1765,7 +1765,7 @@ void StreetVendorBuyWndfunc(char *data)
 				ShowVendorItem[i].usage = true;
 			}
 		}
-		// 贩卖物详细资料
+		// 販賣物詳細資料
 		else if (szMsg[0] == 'D')
 		{
 			getStringToken(data, '|', 2, sizeof(szMsg) - 1, szMsg);
@@ -1857,7 +1857,7 @@ void StreetVendorBuyWndfunc(char *data)
 #ifdef _PET_ITEM
 					for (int j = 0; j < MAX_PET_ITEM; j++)
 					{
-						// 装备位置
+						// 裝備位置
 						if (getStringToken(data, '|', 16 + i + j * 6, sizeof(szMsg) - 1, szMsg))
 							continue;
 						nPetItemPlace = atoi(szMsg);
@@ -1865,7 +1865,7 @@ void StreetVendorBuyWndfunc(char *data)
 						getStringToken(data, '|', 17 + i + j * 6,
 							sizeof(ShowVendorItem[index].oPetItemInfo[nPetItemPlace].name) - 1,
 							ShowVendorItem[index].oPetItemInfo[nPetItemPlace].name);
-						// 说明
+						// 說明
 						getStringToken(data, '|', 18 + i + j * 6,
 							sizeof(ShowVendorItem[index].oPetItemInfo[nPetItemPlace].memo) - 1,
 							ShowVendorItem[index].oPetItemInfo[nPetItemPlace].memo);
@@ -1873,10 +1873,10 @@ void StreetVendorBuyWndfunc(char *data)
 						getStringToken(data, '|', 19 + i + j * 6,
 							sizeof(ShowVendorItem[index].oPetItemInfo[nPetItemPlace].damage) - 1,
 							ShowVendorItem[index].oPetItemInfo[nPetItemPlace].damage);
-						// 文字颜色
+						// 文字顔色
 						getStringToken(data, '|', 20 + i + j * 6, sizeof(szMsg) - 1, szMsg);
 						ShowVendorItem[index].oPetItemInfo[nPetItemPlace].color	= atoi(szMsg);
-						// 图号
+						// 圖號
 						getStringToken(data, '|', 21 + i + j * 6, sizeof(szMsg) - 1, szMsg);
 						ShowVendorItem[index].oPetItemInfo[nPetItemPlace].bmpNo	= atoi(szMsg);
 					}
@@ -1889,7 +1889,7 @@ void StreetVendorBuyWndfunc(char *data)
 }
 
 #else
-#ifdef _TABLEOFSKILL				// (不可开) Syu ADD 7.0 新增人物技能表单
+#ifdef _TABLEOFSKILL				// (不可開) Syu ADD 7.0 新增人物技能錶單
 int SkillWnd = 0 ; 
 ACTION *pActSkillWnd;
 short skillBtn = 0;
@@ -1899,7 +1899,7 @@ int skillBtnGraNo[] =
 	CG_FIELD_SKILL_BTN_OFF,
 	CG_FIELD_SKILL_BTN_ON
 };
-// 职业技能视窗
+// 職業技能視窗
 void SkillWndfunc()
 {
 	int x , y , j ; 
@@ -1999,10 +1999,10 @@ void SkillWndfunc()
 					StockFontBuffer(355, 310 + DISPLACEMENT_Y, FONT_PRIO_FRONT, use_color, msg, 0);
 					sprintf_s(msg, "%d％", profession_skill[AssitSkill[j + i * 4]].skill_level);
 					StockFontBuffer(440, 310 + DISPLACEMENT_Y, FONT_PRIO_FRONT, use_color, msg, 0);
-					sprintf_s(msg, "(耗费MP:%d)", profession_skill[AssitSkill[j + i * 4]].costmp);
+					sprintf_s(msg, "(耗費MP:%d)", profession_skill[AssitSkill[j + i * 4]].costmp);
 					StockFontBuffer(500, 310 + DISPLACEMENT_Y, FONT_PRIO_FRONT, use_color, msg, 0);
 					sprintf_s(msg, "%s", profession_skill[AssitSkill[j + i * 4]].memo);
-#ifdef _OUTOFBATTLESKILL			// (不可开) Syu ADD 非战斗时技能Protocol
+#ifdef _OUTOFBATTLESKILL			// (不可開) Syu ADD 非戰鬥時技能Protocol
 					if (mouse.onceState & MOUSE_LEFT_CRICK && profession_skill[AssitSkill[j + i * 4]].useFlag == 0)
 					{
 						if (pc.mp >= profession_skill[AssitSkill[j + i * 4]].costmp && profession_skill[AssitSkill[j + i * 4]].costmp != 0)
@@ -2044,10 +2044,10 @@ void SkillWndfunc()
 					StockFontBuffer(355, 310 + DISPLACEMENT_Y, FONT_PRIO_FRONT, use_color, msg, 0);
 					sprintf_s(msg, "%d％", profession_skill[BattleSkill[j + i * 4]].skill_level);
 					StockFontBuffer(440, 310 + DISPLACEMENT_Y, FONT_PRIO_FRONT, use_color, msg, 0);
-					sprintf_s(msg, "(耗费MP:%d)", profession_skill[BattleSkill[j + i * 4]].costmp);
+					sprintf_s(msg, "(耗費MP:%d)", profession_skill[BattleSkill[j + i * 4]].costmp);
 					StockFontBuffer(500, 310 + DISPLACEMENT_Y, FONT_PRIO_FRONT, use_color, msg, 0);
 					sprintf_s(msg, "%s", profession_skill[BattleSkill[j + i * 4]].memo);
-#ifdef _OUTOFBATTLESKILL			// (不可开) Syu ADD 非战斗时技能Protocol
+#ifdef _OUTOFBATTLESKILL			// (不可開) Syu ADD 非戰鬥時技能Protocol
 					if (mouse.onceState & MOUSE_LEFT_CRICK && profession_skill[BattleSkill[j + i * 4]].useFlag == 0)
 					{
 						if (pc.mp >= profession_skill[BattleSkill[j + i * 4]].costmp && profession_skill[BattleSkill[j + i * 4]].costmp != 0)
@@ -2089,10 +2089,10 @@ void SkillWndfunc()
 					StockFontBuffer(355, 310 + DISPLACEMENT_Y, FONT_PRIO_FRONT, use_color, msg, 0);
 					sprintf_s(msg, "%d％", profession_skill[AdvanceSkill[j + i * 4]].skill_level);
 					StockFontBuffer(440, 310 + DISPLACEMENT_Y, FONT_PRIO_FRONT, use_color, msg, 0);
-					sprintf_s(msg, "(耗费MP:%d)" , profession_skill[AdvanceSkill[j + i * 4]].costmp);
+					sprintf_s(msg, "(耗費MP:%d)" , profession_skill[AdvanceSkill[j + i * 4]].costmp);
 					StockFontBuffer(500, 310 + DISPLACEMENT_Y, FONT_PRIO_FRONT, use_color, msg, 0);
 					sprintf_s(msg, "%s", profession_skill[AdvanceSkill[j + i * 4]].memo);
-#ifdef _OUTOFBATTLESKILL			// (不可开) Syu ADD 非战斗时技能Protocol
+#ifdef _OUTOFBATTLESKILL			// (不可開) Syu ADD 非戰鬥時技能Protocol
 					if (mouse.onceState & MOUSE_LEFT_CRICK && profession_skill[AdvanceSkill[j + i * 4]].useFlag == 0)
 					{
 						if (pc.mp >= profession_skill[AdvanceSkill[j + i * 4]].costmp && profession_skill[AdvanceSkill[j + i * 4]].costmp != 0)
@@ -2144,7 +2144,7 @@ void SkillWndfunc()
 	#endif
 #endif
 
-#ifdef _FRIENDCHANNEL			//ROG ADD 好友频道
+#ifdef _FRIENDCHANNEL			//ROG ADD 好友頻道
 ACTION *pChatRoomWnd;
 short  chatRoomBtn = 0;
 short  SelRoomBtn = 0;
@@ -2395,11 +2395,11 @@ void initFieldProc( void )
 	sStreetVendorBtn = 0;
 	sStreetVendorBuyBtn = 0;
 #else
-	#ifdef _TABLEOFSKILL				// (不可开) Syu ADD 7.0 新增人物技能表单
+	#ifdef _TABLEOFSKILL				// (不可開) Syu ADD 7.0 新增人物技能錶單
 	skillBtn = 0 ; 
 	#endif
 #endif
-#ifdef _FRIENDCHANNEL      //ROG ADD 好友频道
+#ifdef _FRIENDCHANNEL      //ROG ADD 好友頻道
 	chatRoomBtn = 0;
 	SelRoomBtn = 0;
 	TalkMode = 0;
@@ -2539,12 +2539,12 @@ void fieldProc( void )
 		||	*/nowFloor == 31706 || nowFloor == 10204 || (10601 <= nowFloor && nowFloor <= 10605)
 		|| nowFloor == 10919 || nowFloor == 10920 || nowFloor == 20711 || nowFloor == 20712
 		|| nowFloor == 1008 || nowFloor == 1021 || nowFloor == 3008 || nowFloor == 3021 
-#ifdef _LOCKPARTYFLOOR				// (可开放) Syu ADD 增加不可组队的地图编号
+#ifdef _LOCKPARTYFLOOR				// (可開放) Syu ADD 增加不可組隊的地圖編號
 		|| ( nowFloor <= 8213 && nowFloor >= 8200 )
 #endif
-		|| ( nowFloor >= 30017 && nowFloor <= 30021 ) || ( nowFloor == 7025  )	// 森林捉宠活动
+		|| ( nowFloor >= 30017 && nowFloor <= 30021 ) || ( nowFloor == 7025  )	// 森林捉寵活動
 #ifdef _THEATER
-		|| nowFloor == 17001		// 剧场
+		|| nowFloor == 17001		// 劇場
 #endif
 #ifdef _NPC_MAGICCARD
 		|| nowFloor == 17003 || nowFloor == 17005 
@@ -2626,13 +2626,13 @@ void fieldProc( void )
 		{
 #ifdef _THEATER
 			if (pc.iTheaterMode & 0x00000002)
-				StockChatBufferLine("请专心表演", FONT_PAL_RED);
+				StockChatBufferLine("請專心錶演", FONT_PAL_RED);
 			else
 #endif //_THEATER
 			{
 #ifdef _MOVE_SCREEN
 				if(pc.bMoveScreenMode)
-					StockChatBufferLine("特殊状态无法摆摊",FONT_PAL_RED);
+					StockChatBufferLine("特殊狀態無法擺攤",FONT_PAL_RED);
 				else
 #endif
 				{
@@ -2653,7 +2653,7 @@ void fieldProc( void )
 		sStreetVendorBtn = 2;
 		iOldGX = nowGx;
 		iOldGY = nowGy;
-		// 交易及组队及PK选项关闭
+		// 交易及組隊及PK選項關閉
 		pc.etcFlag &= ~PC_ETCFLAG_TRADE;
 		pc.etcFlag &= ~PC_ETCFLAG_PARTY;
 		pc.etcFlag &= ~PC_ETCFLAG_DUEL;
@@ -2729,7 +2729,7 @@ void fieldProc( void )
 			lssproto_STREET_VENDOR_send(sockfd, "N|");
 		}
 	}
-	// 在摆摊或是向摆摊的人购买时走动则取消
+	// 在擺攤或是嚮擺攤的人購買時走動則取消
 	if ((pc.iOnStreetVendor == 1 || sStreetVendorBuyBtn == 2) && (iOldGX != nowGx || iOldGY != nowGy))
 	{
 		if (pc.iOnStreetVendor == 1)
@@ -2765,7 +2765,7 @@ void fieldProc( void )
 	}
 	if (skillBtn == 1)
 	{
-		//主要技能视窗函式
+		//主要技能視窗函式
 		SkillWndfunc();
 		if (((joy_trg[0] & JOY_ESC) && GetImeString() == NULL) || CheckMenuFlag())
 		{
@@ -2821,7 +2821,7 @@ void fieldProc( void )
 			}
 #ifdef _THEATER
 			if (pc.iTheaterMode > 0)
-				StockChatBufferLine("请专心表演", FONT_PAL_RED);
+				StockChatBufferLine("請專心錶演", FONT_PAL_RED);
 #endif
 			play_se(217, 320, 240);	// ?????
 		}
@@ -2842,13 +2842,13 @@ void fieldProc( void )
 		if (selId == FIELD_FUNC_SIGNIN)
 		{
 #ifdef _RIDEQUERY_
-			lssproto_RideQuery_send(sockfd);//骑宠封包
+			lssproto_RideQuery_send(sockfd);//騎寵封包
 			fieldBtnPushTime = TimeGetTime();
 			play_se(217, 320, 240);
 #endif
 #ifdef _CHARSIGNDAY_
 
-			lssproto_SignDay_send(sockfd);//骑宠封包
+			lssproto_SignDay_send(sockfd);//騎寵封包
 			fieldBtnPushTime = TimeGetTime();
 			play_se(217, 320, 240);
 #endif
@@ -2886,12 +2886,12 @@ void fieldProc( void )
 				extern void AI_CloseWnd();
 				AI_CloseWnd();
 #endif
-				extern ACTION* 商城动作地址;
-				if(商城动作地址){
-					DeathAction(商城动作地址);
+				extern ACTION* 商城動作地址;
+				if(商城動作地址){
+					DeathAction(商城動作地址);
 					windowTypeWN = -1;
 					wnCloseFlag = 1;
-					商城动作地址 = 0;
+					商城動作地址 = 0;
 				}else{
 					extern 商城文件_ 商城文件[5];
 					extern int util_mkint(char *buffer, int value);
@@ -2900,11 +2900,11 @@ void fieldProc( void )
 					int checksum=0;
 					char buf[1024*4*4];
 					memset(buf,0,1024*4*4);
-					checksum += util_mkstring(buf,商城文件[0].MD5码);
-					checksum += util_mkstring(buf,商城文件[1].MD5码);
-					checksum += util_mkstring(buf,商城文件[2].MD5码);
-					checksum += util_mkstring(buf,商城文件[3].MD5码);
-					checksum += util_mkstring(buf,商城文件[4].MD5码);
+					checksum += util_mkstring(buf,商城文件[0].MD5碼);
+					checksum += util_mkstring(buf,商城文件[1].MD5碼);
+					checksum += util_mkstring(buf,商城文件[2].MD5碼);
+					checksum += util_mkstring(buf,商城文件[3].MD5碼);
+					checksum += util_mkstring(buf,商城文件[4].MD5碼);
 					util_mkint(buf, checksum);
 					util_SendMesg(sockfd, 203, buf);
 				}
@@ -2918,7 +2918,7 @@ void fieldProc( void )
 			marketBtnFocus = 0;
 #endif
 
-#ifdef _FRIENDCHANNEL			//ROG ADD 好友频道
+#ifdef _FRIENDCHANNEL			//ROG ADD 好友頻道
 	if (pushId == FIELD_FUNC_CHATROOM)
 	{
 		if( selId == FIELD_FUNC_CHATROOM)
@@ -2935,7 +2935,7 @@ void fieldProc( void )
 				else
 				{
 				/*
-				// WON ADD	防止传送太频繁
+				// WON ADD	防止傳送太頻繁
 				{
 				unsigned int now_time = (unsigned int)time(NULL);
 				static unsigned int old_time = 0;
@@ -3047,11 +3047,11 @@ void fieldProc( void )
 			}
 #ifdef _STREET_VENDOR
 			if (pc.iOnStreetVendor == 1)
-				StockChatBufferLine("摆摊中不得进行交易", FONT_PAL_RED);
+				StockChatBufferLine("擺攤中不得進行交易", FONT_PAL_RED);
 #endif
 #ifdef _THEATER
 			if (pc.iTheaterMode > 0)
-				StockChatBufferLine("请专心表演", FONT_PAL_RED);
+				StockChatBufferLine("請專心錶演", FONT_PAL_RED);
 #endif
 			//play_se(217, 320, 240);	// ?????
 		}
@@ -3188,7 +3188,7 @@ void fieldProc( void )
 		{
 			char buf[64];
 
-			lssproto_TK_recv(sockfd, 0, "P|请先加入家族。", 0);
+			lssproto_TK_recv(sockfd, 0, "P|請先加入傢族。", 0);
 			sprintf_s(buf, "S|P", selId);
 			if (bNewServer)
 				lssproto_FM_send(sockfd, buf);
@@ -3287,11 +3287,11 @@ void fieldProc( void )
 				}
 #ifdef _STREET_VENDOR
 				if (pc.iOnStreetVendor == 1)
-					StockChatBufferLine("摆摊中不得组队", FONT_PAL_RED);
+					StockChatBufferLine("擺攤中不得組隊", FONT_PAL_RED);
 #endif
 #ifdef _THEATER
 				if (pc.iTheaterMode > 0)
-					StockChatBufferLine("请专心表演", FONT_PAL_RED);
+					StockChatBufferLine("請專心錶演", FONT_PAL_RED);
 #endif
 			}
 			else
@@ -3373,14 +3373,14 @@ void fieldProc( void )
 	// LeiBoy 2002 Feb. 2 --- Cell Phone's Messages Button -- END
 #endif
 #ifdef _RENWU_
-	extern BOOL 任务查询开关;
+	extern BOOL 任務查詢開關;
 	extern int HelpProc();
 	
-	if(任务查询开关)
+	if(任務查詢開關)
 		if (HelpProc()==1)
 		{
 			actBtn = 0;
-			任务查询开关=FALSE;
+			任務查詢開關=FALSE;
 
 		}
 #endif
@@ -3439,7 +3439,7 @@ void fieldProc( void )
 				time_t longTime;
 				time(&longTime);
 				localtime_s(&nowTime, &longTime);
-				fprintf(logf, "[%02d-%02d-%02d %02d:%02d:%02d] 状态=%d; 标记=%d; 值=%d\r\n",
+				fprintf(logf, "[%02d-%02d-%02d %02d:%02d:%02d] 狀態=%d; 標記=%d; 值=%d\r\n",
 					(nowTime.tm_year % 100), nowTime.tm_mon + 1, nowTime.tm_mday,
 					nowTime.tm_hour, nowTime.tm_min, nowTime.tm_sec,
 					tradeStatus, MenuToggleFlag, MenuToggleFlag & JOY_CTRL_T);
@@ -3572,7 +3572,7 @@ void fieldProc( void )
 #ifdef _THEATER
 		if (pc.iTheaterMode & 0x00000001)
 		{
-			StockChatBufferLine("请专心看表演", FONT_PAL_RED);
+			StockChatBufferLine("請專心看錶演", FONT_PAL_RED);
 			actBtn = 0;
 		}
 		else
@@ -3640,7 +3640,7 @@ void fieldProc2(void)
 		menuBtn = 0;
 }
 
-#ifdef _AniCrossFrame	  // Syu ADD 动画层游过画面生物
+#ifdef _AniCrossFrame	  // Syu ADD 動畫層遊過畫麵生物
 void crossAniRelease()
 {
 	if (WaterAct2 != NULL)
@@ -3652,7 +3652,7 @@ void crossAniRelease()
 }
 #endif
 
-#ifdef _AniImmobile	 // Syu ADD 定点产生特定动画
+#ifdef _AniImmobile	 // Syu ADD 定點産生特定動畫
 void ImmobileAniRelease()
 {
 	Updownflag = false;
@@ -3666,7 +3666,7 @@ void ImmobileAniRelease()
 				WaterAct3[XYposition[i][4]] = NULL;
 				XYposition[i][3] = 0  ;
 				XYposition[i][4] = -1 ;
-//				XYposition[i][5] = 1  ; //新增不漂浮的旗标2，故不做
+//				XYposition[i][5] = 1  ; //新增不漂浮的旗標2，故不做
 				XYposition[i][6] = 0  ;
 			}
 		}
@@ -3674,7 +3674,7 @@ void ImmobileAniRelease()
 }
 #endif
 
-#ifdef _AniRandom   // Syu ADD 随机产生环境动画
+#ifdef _AniRandom   // Syu ADD 隨機産生環境動畫
 void AniRandomRelease()
 {
 	for (int i = 0; i < 50; i ++)
@@ -3697,14 +3697,14 @@ void drawField(void)
 	int rightUpPanelX = 504 + DISPLACEMENT_X ;	// ????????
 	int rightUpPanelY = 0;
 	int i;
-#ifdef _WATERANIMATION //Syu ADD 泪之海动画层
+#ifdef _WATERANIMATION //Syu ADD 淚之海動畫層
 	int Createflag = 0;
 	int RandAnimate = 0 ;
 #endif
-#ifdef _AniRandom   // Syu ADD 随机产生环境动画
+#ifdef _AniRandom   // Syu ADD 隨機産生環境動畫
 	int x1 , y1;
 #endif
-#ifdef _AniCrossFrame	  // Syu ADD 动画层游过画面生物
+#ifdef _AniCrossFrame	  // Syu ADD 動畫層遊過畫麵生物
 	int x2 , y2;
 #endif
 
@@ -3723,14 +3723,14 @@ void drawField(void)
 #endif
 #endif
 
-#ifdef _SPECIALSPACEANIM	// Syu ADD 特殊场景动画配置
+#ifdef _SPECIALSPACEANIM	// Syu ADD 特殊場景動畫配置
 	SpecAnim(nowFloor);
 #endif
-#ifdef _AniCrossFrame	  // Syu ADD 动画层游过画面生物
+#ifdef _AniCrossFrame	  // Syu ADD 動畫層遊過畫麵生物
 	if ((nowFloor == 817) || (nowFloor == 8007) || (nowFloor == 8101) || (nowFloor == 8100) ||
 		(nowFloor == 8027) || (nowFloor == 8028) || (nowFloor == 8029) || (nowFloor == 8015) || (nowFloor == 8113) || (nowFloor == 8114) )
 	{
-		//游过画面动画 Start
+		//遊過畫麵動畫 Start
 		if (flag22 == false)
 		{
 			if (WaterAct2 != NULL && Timeflag2 == false)
@@ -3738,7 +3738,7 @@ void drawField(void)
 				DeathAction(WaterAct2);
 				WaterAct2 = NULL;
 				Timeflag2 = true;
-				//结束后下一次出现的等待时间
+				//結束後下一次齣現的等待時間
 				TimeTickMax2 = RAND(500, 1500);
 			}
 		}
@@ -3759,7 +3759,7 @@ void drawField(void)
 			RandAnimate = RAND(0, 2);
 			if (RandAnimate > 1)
 				RandAnimate = RAND(101512, 101515);
-			//有右下、左下、右上、左上四个方向
+			//有右下、左下、右上、左上四個方嚮
 			else
 			{
 				RandAnimate = RAND(0, 4);
@@ -3776,7 +3776,7 @@ void drawField(void)
 						(RandAnimate <= 101593 && RandAnimate >= 101588))
 					x2 = RAND(6, 7); //右上
 			}
-			//决定进入画面的位置
+			//決定進入畫麵的位置
 			if (x2 == 0)  // 左下
 			{
 				x2 = RAND(50, lpDraw->xSize);
@@ -3836,17 +3836,17 @@ void drawField(void)
 	}
 #endif
 
-#ifdef _AniImmobile	 // Syu ADD 定点产生特定动画
+#ifdef _AniImmobile	 // Syu ADD 定點産生特定動畫
 	if (nowFloor == 817)
 	{
 		in817flag = true ;
 		for (i = 0; i < 560; i++)  
 		{
-			//判断定点动画产生点是否在人物 32 * 32范围内
+			//判斷定點動畫産生點是否在人物 32 * 32範圍內
 			if ((nowGx > XYposition[i][0] - 16) && (nowGx < XYposition[i][0] + 16) && 
 				(nowGy > XYposition[i][1] - 16) && (nowGy < XYposition[i][1] + 16))
 			{
-				//判断是否已产生
+				//判斷是否已産生
 				if (XYposition[i][3] == 0)
 				{
 					//配置ACTION
@@ -3866,9 +3866,9 @@ void drawField(void)
 				}
 				else 
 				{
-					//做定点动画的漂浮
+					//做定點動畫的漂浮
 					XYposition[i][6]++;
-					//时间固定
+					//時間固定
 					if (XYposition[i][6] > 65)
 					{
 						XYposition[i][6] = 0;	
@@ -3890,7 +3890,7 @@ void drawField(void)
 					}
 				}
 			}
-// 合并
+// 閤並
 			if (XYposition[i][3] == 1)
 			{
 				if ((nowGx < XYposition[i][0] - 16) || (nowGx > XYposition[i][0] + 16 ) ||
@@ -3927,22 +3927,22 @@ void drawField(void)
 	}
 #endif
 
-#ifdef _AniRandom   // Syu ADD 随机产生环境动画
+#ifdef _AniRandom   // Syu ADD 隨機産生環境動畫
 	if ((nowFloor == 817) || (nowFloor == 8007) || (nowFloor == 8100) || (nowFloor == 8101) ||
-		(nowFloor == 8029) || (nowFloor == 8028) || (nowFloor == 8027) || (nowFloor == 8015) || (nowFloor == 8113) || (nowFloor == 8114) )  //判断地图
+		(nowFloor == 8029) || (nowFloor == 8028) || (nowFloor == 8027) || (nowFloor == 8015) || (nowFloor == 8113) || (nowFloor == 8114) )  //判斷地圖
 	{
 		AniFlag = true;
 		for (i = 0; i < 50; i++) 
 		{
 			if (Timeflag[i] == false)
 			{
-				//随机决定产生与否，不论与否都产生等待时间
+				//隨機決定産生與否，不論與否都産生等待時間
  				Createflag = RAND(0, 3);
 				if (Createflag > 0) 
 				{
 					if (WaterAct[i] == NULL)
 					{
-						//产生范围在人物 30 * 30 范围中
+						//産生範圍在人物 30 * 30 範圍中
 						x1 = RAND(nowGx - 15, nowGx + 15);
 						y1 = RAND(nowGy - 15, nowGy + 15);
 						RandAnimate = RAND(0, 6);
@@ -3962,7 +3962,7 @@ void drawField(void)
 				}
 			}
 		}
-		//活着的环境动画计时
+		//活著的環境動畫計時
 		for (i = 0; i < 50; i++)
 		{
 			if (Timeflag[i] == true)
@@ -3976,7 +3976,7 @@ void drawField(void)
 			}
 		}
 	}
-	//消灭动画
+	//消滅動畫
 	else if (((nowFloor != 817) && (nowFloor != 8007) && (nowFloor != 8100) && (nowFloor != 8101) && (nowFloor != 8113) && (nowFloor != 8114) &&
 			(nowFloor != 8027) && (nowFloor != 8028) && (nowFloor != 8029) && (nowFloor != 8015)) && (AniFlag == true))
 	{
@@ -4036,24 +4036,24 @@ void drawField(void)
 
 
 #ifdef _MO_SIGN_IN
-		static int 临时;
+		static int 臨時;
 #ifdef _CHARSIGNADY_NO_
 		extern PC pc;
-		static DWORD 时间记录 = TimeGetTime() + 300;
-		if(!pc.签到标记){
-			if(时间记录 < TimeGetTime()){
-				时间记录 = TimeGetTime() + 300;
-				if(临时) 临时 =0;
-				else 临时=1;
+		static DWORD 時間記錄 = TimeGetTime() + 300;
+		if(!pc.簽到標記){
+			if(時間記錄 < TimeGetTime()){
+				時間記錄 = TimeGetTime() + 300;
+				if(臨時) 臨時 =0;
+				else 臨時=1;
 			}
-		}else 临时 = signInBtn;
+		}else 臨時 = signInBtn;
 #else
-		临时 = signInBtn;
+		臨時 = signInBtn;
 #endif
-		fieldBtnHitId[FIELD_FUNC_SIGNIN] = StockDispBuffer(leftUpPanelX + 207, leftUpPanelY + 19, DISP_PRIO_IME3, signInBtnGraNo[临时], 2);
+		fieldBtnHitId[FIELD_FUNC_SIGNIN] = StockDispBuffer(leftUpPanelX + 207, leftUpPanelY + 19, DISP_PRIO_IME3, signInBtnGraNo[臨時], 2);
 		if (signInBtnFocus)
 #ifdef _SA_VERSION_25
-			ShowBottomLineString(FONT_PAL_WHITE, "骑宠查询。");
+			ShowBottomLineString(FONT_PAL_WHITE, "騎寵查詢。");
 #endif
 #endif 
 
@@ -4062,7 +4062,7 @@ void drawField(void)
 		fieldBtnHitId[FIELD_FUNC_CHANGETEAM] = StockDispBuffer(leftUpPanelX + 241, leftUpPanelY + 19, DISP_PRIO_IME3, schangeteamBtnGraNo[changeteamBtn], 2);
 #endif
 		if (changeteamBtnFocus)
-			ShowBottomLineString(FONT_PAL_WHITE, "队长切换。");
+			ShowBottomLineString(FONT_PAL_WHITE, "隊長切換。");
 
 #endif 
 
@@ -4077,26 +4077,26 @@ void drawField(void)
 #ifdef _STREET_VENDOR
 		fieldBtnHitId[FIELD_FUNC_STREET_VENDOR] = StockDispBuffer(leftUpPanelX + 176, leftUpPanelY + 19, DISP_PRIO_IME3, sStreetVendorBtnGraNo[pc.iOnStreetVendor], 2);
 		if (sStreetVendorBtnFocus)
-			ShowBottomLineString(FONT_PAL_WHITE, "摆摊功能。");
+			ShowBottomLineString(FONT_PAL_WHITE, "擺攤功能。");
 #else
 	#ifdef _TABLEOFSKILL
 		fieldBtnHitId[FIELD_FUNC_SKILL] = StockDispBuffer(leftUpPanelX + 108, leftUpPanelY + 28, DISP_PRIO_IME3, skillBtnGraNo[skillBtn], 2);
 		if (skillBtnFocus)
-			ShowBottomLineString(FONT_PAL_WHITE, "职业技能。");
+			ShowBottomLineString(FONT_PAL_WHITE, "職業技能。");
 	#endif
 #endif
 		// ????????
 		fieldBtnHitId[FIELD_FUNC_MENU] = StockDispBuffer(leftUpPanelX + 52, leftUpPanelY + 28, DISP_PRIO_IME3, menuBtnGraNo[menuBtn], 2);
 		if (menuBtnFocus)
-			ShowBottomLineString(FONT_PAL_WHITE, "游戏设定。");
+			ShowBottomLineString(FONT_PAL_WHITE, "遊戲設定。");
 		// ????
 		fieldBtnHitId[FIELD_FUNC_CARD] = StockDispBuffer(leftUpPanelX + 52, leftUpPanelY + 28, DISP_PRIO_IME3, cardBtnGraNo[cardBtn], 2);
 		if (cardBtnFocus)
-			ShowBottomLineString(FONT_PAL_WHITE, "交换名片。");
+			ShowBottomLineString(FONT_PAL_WHITE, "交換名片。");
 		// Robin 04/12 Trade
 		fieldBtnHitId[FIELD_FUNC_TRADE] = StockDispBuffer(leftUpPanelX + 104 + 10, leftUpPanelY + 28 - 10, DISP_PRIO_IME3, tradeBtnGraNo[tradeBtn], 2);
 		if (tradeBtnFocus)
-			ShowBottomLineString(FONT_PAL_WHITE, "进行交易。");
+			ShowBottomLineString(FONT_PAL_WHITE, "進行交易。");
 
 #ifdef __PHONEMESSAGE
 // LeiBoy 2002 Jan.26 --- Cell Phone's Messages Button -- BEGIN
@@ -4108,12 +4108,12 @@ void drawField(void)
 
 		if (msgBtnFocus)
 
-			ShowBottomLineString(FONT_PAL_WHITE, "（免费）积分商城。");
+			ShowBottomLineString(FONT_PAL_WHITE, "（免費）積分商城。");
 
 // LeiBoy 2002 Jan.26 --- Cell Phone's Messages Button -- END
 #endif
 
-#ifdef _FRIENDCHANNEL				//ROG ADD 好友频道
+#ifdef _FRIENDCHANNEL				//ROG ADD 好友頻道
 		if (SelRoomBtn == 1 || chatRoomBtn == 1)
 			fieldBtnHitId[FIELD_FUNC_CHATROOM] = StockDispBuffer(leftUpPanelX + 141, leftUpPanelY + 29, DISP_PRIO_IME3, chatRoomBtnGraNo[1], 2);
 		else
@@ -4121,9 +4121,9 @@ void drawField(void)
 		if (chatRoomBtnFocus)
 		{
 			if(strcmp(pc.chatRoomNum, "") == 0)
-				ShowBottomLineString(FONT_PAL_WHITE, "选择频道");
+				ShowBottomLineString(FONT_PAL_WHITE, "選擇頻道");
 			else
-				ShowBottomLineString(FONT_PAL_WHITE, "开启频道");
+				ShowBottomLineString(FONT_PAL_WHITE, "開啓頻道");
 		}
 #endif
 //#ifdef __FAMILY_UI_
@@ -4143,7 +4143,7 @@ void drawField(void)
 #endif
 			fieldBtnHitId[FIELD_FUNC_CHANNEL] = StockDispBuffer(leftUpPanelX + 115, leftUpPanelY + 28, DISP_PRIO_IME3, channelBtnGraNo[channelBtn], 2);
 			if (channelBtnFocus)
-				ShowBottomLineString(FONT_PAL_WHITE, "家族功能。");
+				ShowBottomLineString(FONT_PAL_WHITE, "傢族功能。");
 		}
 //#endif
 		// ??????
@@ -4153,9 +4153,9 @@ void drawField(void)
 			// ?????
 			// ???????????????????
 			if (partyBtnEnableFlag == 0)
-				ShowBottomLineString(FONT_PAL_WHITE, "不能加入队伍。");
+				ShowBottomLineString(FONT_PAL_WHITE, "不能加入隊伍。");
 			else
-				ShowBottomLineString(FONT_PAL_WHITE, "加入队伍。");
+				ShowBottomLineString(FONT_PAL_WHITE, "加入隊伍。");
 		}
 
 		// ???????
@@ -4165,7 +4165,7 @@ void drawField(void)
 #ifdef _RED_MEMOY_
 		StockDispBuffer(rightUpPanelX + 40, rightUpPanelY + 31, DISP_PRIO_MENU, CG_FIELD_MENU_RIGHT, 0);
 		fieldBtnHitId[FIELD_FUNC_RED_MEMOY] = StockDispBuffer(rightUpPanelX - 34, rightUpPanelY + 19, DISP_PRIO_IME3, redmemoyGraNo[redmemoyBtn], 2);
-		if (redmemoyBtnFocus) ShowBottomLineString(FONT_PAL_WHITE, "发红包。");
+		if (redmemoyBtnFocus) ShowBottomLineString(FONT_PAL_WHITE, "發紅包。");
 #else
 		StockDispBuffer(rightUpPanelX + 54, rightUpPanelY + 33, DISP_PRIO_MENU, CG_FIELD_MENU_RIGHT, 0);
 #endif
@@ -4173,31 +4173,31 @@ void drawField(void)
 		if (joinBattleBtnFocus)
 		{
 #ifdef _NEW_MATCH
-			ShowBottomLineString(FONT_PAL_WHITE, "加入战斗。");
+			ShowBottomLineString(FONT_PAL_WHITE, "加入戰鬥。");
 #else
 			if (joinBattleHelpMsgFlag == 1)
-				ShowBottomLineString(FONT_PAL_WHITE, "加入战斗。");
+				ShowBottomLineString(FONT_PAL_WHITE, "加入戰鬥。");
 			else if (joinBattleHelpMsgFlag == 2)
-				ShowBottomLineString(FONT_PAL_WHITE, "不能加入战斗。");
+				ShowBottomLineString(FONT_PAL_WHITE, "不能加入戰鬥。");
 			else
-				ShowBottomLineString(FONT_PAL_WHITE,"观战。");
+				ShowBottomLineString(FONT_PAL_WHITE,"觀戰。");
 #endif
 		}
 
 		// ????
 		fieldBtnHitId[FIELD_FUNC_DUEL] = StockDispBuffer(rightUpPanelX + 38, rightUpPanelY + 32, DISP_PRIO_IME3, duelBtnGraNo[duelBtn], 2);
 		if (duelBtnFocus)
-			ShowBottomLineString(FONT_PAL_WHITE, "跟其他玩家决斗。");
+			ShowBottomLineString(FONT_PAL_WHITE, "跟其他玩傢決鬥。");
 		if (helpBtnFocus)
 #ifdef _NEW_MATCH
-			ShowBottomLineString(FONT_PAL_WHITE, "观战。");
+			ShowBottomLineString(FONT_PAL_WHITE, "觀戰。");
 #else
-			ShowBottomLineString(FONT_PAL_WHITE, "任务查询。");
+			ShowBottomLineString(FONT_PAL_WHITE, "任務查詢。");
 #endif
 		fieldBtnHitId[FIELD_FUNC_HELP] = StockDispBuffer(rightUpPanelX + 115, rightUpPanelY + 33, DISP_PRIO_IME3, helpBtnGraNo[helpBtn], 2);
 		fieldBtnHitId[FIELD_FUNC_ACT] = StockDispBuffer(rightUpPanelX + 68, rightUpPanelY + 32, DISP_PRIO_IME3, actBtnGraNo[actBtn], 2);
 		if (actBtnForcus)
-			ShowBottomLineString(FONT_PAL_WHITE, "人物的各种动作。");
+			ShowBottomLineString(FONT_PAL_WHITE, "人物的各種動作。");
 
 		// ?????
 		if (drawTimeAnimeFlag)
@@ -4212,12 +4212,12 @@ void drawField(void)
 #ifdef _ANGEL_SUMMON
 		fieldBtnHitId[FIELD_FUNC_ANGEL] = StockDispBuffer(leftUpPanelX + 104 + 10 + 158, leftUpPanelY + 20, DISP_PRIO_IME3, angelBtnGraNo[angelBtn], 2);
 		if (angelBtnFocus)
-			ShowBottomLineString(FONT_PAL_WHITE, "精灵的召唤。");
+			ShowBottomLineString(FONT_PAL_WHITE, "精靈的召喚。");
 #endif
 #ifdef _TEACHER_SYSTEM
 		fieldBtnHitId[FIELD_FUNC_TEACHER] = StockDispBuffer(leftUpPanelX + 305, leftUpPanelY + 20, DISP_PRIO_IME3, iTeacherSystemBtnGraNo[sTeacherSystemBtn > 0 ? 1:0], 2);
 		if (sTeacherSystemBtnFocus)
-			ShowBottomLineString(FONT_PAL_WHITE, "导师系统。");
+			ShowBottomLineString(FONT_PAL_WHITE, "導師係統。");
 #endif
 	}
 	else
@@ -4256,40 +4256,40 @@ int charActionAnimeChange(void)
 	{
 		" 坐  下 ",
 		" 站  立 ",
-		" 挥  手 ",
-		" 走  动 ",
-		" 点  头 ",
-		" 晕  倒 ",
-		" 高  兴 ",
-		" 攻  击 ",
-		" 生  气 ",
-		" 防  御 ",
-		" 悲  伤 ",
-		" 受  伤 ",
-		" 投  掷 " 
+		" 揮  手 ",
+		" 走  動 ",
+		" 點  頭 ",
+		" 暈  倒 ",
+		" 高  興 ",
+		" 攻  擊 ",
+		" 生  氣 ",
+		" 防  禦 ",
+		" 悲  傷 ",
+		" 受  傷 ",
+		" 投  擲 " 
 #ifdef __EMOTION
 		," 打  呼 "
-		," 冷  场 "
+		," 冷  場 "
 #endif
 	};
 	char *msg2[] =
 	{
-		"坐下的动作。 (Ctrl+1)",
-		"站立的动作。 (Ctrl+7)",
-		"挥手的动作。 (Ctrl+2)",
-		"走动的动作。 (Ctrl+8)",
-		"点头的动作。 (Ctrl+3)",
-		"晕倒的动作。 (Ctrl+9)",
-		"高兴的动作。 (Ctrl+4)",
-		"攻击的动作。 (Ctrl+0)",
-		"生气的动作。 (Ctrl+5)",
-		"防御的动作。 (Ctrl+-)",
-		"悲伤的动作。 (Ctrl+6)",
-		"受伤的动作。 (Ctrl+=)",
-		"投掷的动作。 (Ctrl+\\)"
+		"坐下的動作。 (Ctrl+1)",
+		"站立的動作。 (Ctrl+7)",
+		"揮手的動作。 (Ctrl+2)",
+		"走動的動作。 (Ctrl+8)",
+		"點頭的動作。 (Ctrl+3)",
+		"暈倒的動作。 (Ctrl+9)",
+		"高興的動作。 (Ctrl+4)",
+		"攻擊的動作。 (Ctrl+0)",
+		"生氣的動作。 (Ctrl+5)",
+		"防禦的動作。 (Ctrl+-)",
+		"悲傷的動作。 (Ctrl+6)",
+		"受傷的動作。 (Ctrl+=)",
+		"投擲的動作。 (Ctrl+\\)"
 #ifdef __EMOTION
-		,"睡觉的动作。"
-		,"冷场的动作。"
+		,"睡覺的動作。"
+		,"冷場的動作。"
 #endif
 	};
 	int i, j;
@@ -4324,7 +4324,7 @@ int charActionAnimeChange(void)
 		h = 6;
 		x = 440;
 		y = 16;
-		//新增 动作表情切换地图BUG
+		//新增 動作錶情切換地圖BUG
 		ptActMenuWin1 = MakeWindowDisp(x, y, w, h, NULL, 1);
 #ifdef _NEW_RESOMODE  //800 600模式
 		x = ptActMenuWin1->x;
@@ -4332,12 +4332,12 @@ int charActionAnimeChange(void)
 #endif
 		charActionAnimeChangeProcNo++;
 	}
-	//新增 动作表情切换地图BUG
+	//新增 動作錶情切換地圖BUG
 	if (ptActMenuWin1 != NULL)
 	{
 		id = -1;
 		focusId = -1;
-		//新增 动作表情切换地图BUG
+		//新增 動作錶情切換地圖BUG
 		if (ptActMenuWin1->hp >= 1)
 		{
 			// ????
@@ -4427,17 +4427,17 @@ int charActionAnimeChange(void)
 #endif
 		if (id >= 0)
 		{
-			//新增 动作表情切换地图BUG
+			//新增 動作錶情切換地圖BUG
 			DeathAction(ptActMenuWin1);
 			ptActMenuWin1 = NULL;
 			return 1;
 		}
-		//新增 动作表情切换地图BUG
+		//新增 動作錶情切換地圖BUG
 		if (ptActMenuWin1->hp >= 1)
 		{
 			btnId[0] = StockDispBuffer(x + 96, y + 258, DISP_PRIO_MENU, CG_CLOSE_BTN, 2);
 			if (focusId == 0)
-				ShowBottomLineString(FONT_PAL_WHITE, "关闭动作视窗");
+				ShowBottomLineString(FONT_PAL_WHITE, "關閉動作視窗");
 #ifdef __EMOTION
 			for (i = 0; i < 7; i++)
 #else
@@ -4504,24 +4504,24 @@ int etcSwitch(void)
 	int focusId = 0;
 	char *msg[] =
 	{
-		"组    队：",
-		"决    斗：",
-		"交换名片：",
+		"組    隊：",
+		"決    鬥：",
+		"交換名片：",
 #ifndef _CHANNEL_MODIFY
 		"聊    天：",
 #else
 #ifdef _NEWFONT_
-		"频      道      开    关",
+		"頻      道      開    關",
 #else
-		"频    道    开    关",
+		"頻    道    開    關",
 #endif
 #endif
 		"交    易：",
 #ifdef __ONLINEGM
-		"线    上    回    报",
+		"綫    上    迴    報",
 #endif
 //#ifdef _JOBDAILY
-//		"任    务    日    志",
+//		"任    務    日    誌",
 //#endif
 	};
 
@@ -4534,27 +4534,27 @@ int etcSwitch(void)
 #ifndef _CHANNEL_MODIFY
 	char *msg3[] =
 	{
-		" 全  员",
-		" 队  伍"
+		" 全  員",
+		" 隊  伍"
 	};
 #endif
 	char *msg4[] =
 	{
-		"设定是否接受其他人加入你的队伍。",
-		"设定是否接受其他人的挑战。",
-		"设定是否接受名片交换。",
+		"設定是否接受其他人加入你的隊伍。",
+		"設定是否接受其他人的挑戰。",
+		"設定是否接受名片交換。",
 #ifndef _CHANNEL_MODIFY
-		"设定聊天内容可以被听到的范围。",
+		"設定聊天內容可以被聽到的範圍。",
 #else
-		"设定各个频道的开启或关闭。",
+		"設定各個頻道的開啓或關閉。",
 #endif
-		"设定是否接受交易。"
+		"設定是否接受交易。"
 #ifdef __ONLINEGM
 		,
-		"开启线上回报系统",
+		"開啓綫上迴報係統",
 #endif
 //#ifdef _JOBDAILY
-//		"查看任务日志",
+//		"查看任務日誌",
 //#endif
 	};
 
@@ -4575,17 +4575,17 @@ int etcSwitch(void)
 	};
 #ifdef _CHANNEL_MODIFY
 	char *pszChannel[] = {
-		"密语频道",
-		"家族频道",
+		"密語頻道",
+		"傢族頻道",
 #ifdef _CHAR_PROFESSION
-		"职业频道",
+		"職業頻道",
 #endif
-		"对话储存"
+		"對話儲存"
 #ifdef _CHANNEL_WORLD
-		,"世界频道"
+		,"世界頻道"
 #endif
 #ifdef _CHANNEL_ALL_SERV
-		,"星球频道"
+		,"星球頻道"
 #endif
 	};
 	int iChannelSwitch[] = {
@@ -4606,9 +4606,9 @@ int etcSwitch(void)
 
 /*#ifdef _JOBDAILY
 	char *msg5[] = {
-		"关  闭",
-		"上一页",
-		"下一页"
+		"關  閉",
+		"上一頁",
+		"下一頁"
 	};
 #endif*/
 
@@ -4635,7 +4635,7 @@ int etcSwitch(void)
 		etcSwitchProcNo++;
 	}
 #ifdef _CHANNEL_MODIFY
-	// 频道开关视窗
+	// 頻道開關視窗
 	if (etcSwitchProcNo == 100)
 	{
 		w = 3;
@@ -4697,7 +4697,7 @@ int etcSwitch(void)
 					case 1:
 						if (pc.familyleader <= 0)
 						{
-							StockChatBufferLine("你尚未加入家族", FONT_PAL_RED);
+							StockChatBufferLine("你尚未加入傢族", FONT_PAL_RED);
 							pc.etcFlag &= ~iChannelSwitch[id];	
 						}
 						break;
@@ -4705,7 +4705,7 @@ int etcSwitch(void)
 					case 2:
 						if (pc.profession_class == 0)
 						{
-							StockChatBufferLine("你尚未就职", FONT_PAL_RED);
+							StockChatBufferLine("你尚未就職", FONT_PAL_RED);
 							pc.etcFlag &= ~iChannelSwitch[id];
 						}
 						break;
@@ -4754,7 +4754,7 @@ int etcSwitch(void)
 				DeathAction(pActChannelWin);
 				pActChannelWin = NULL;
 				if ((pf = fopen("data\\channel.dat","w+")) == NULL)
-					StockChatBufferLine("频道设定档读取失败", FONT_PAL_RED);
+					StockChatBufferLine("頻道設定檔讀取失敗", FONT_PAL_RED);
 				else
 				{
 					char buf[5];
@@ -4780,7 +4780,7 @@ int etcSwitch(void)
 			iChannelbtnId[0] = StockDispBuffer(x + 96, h * 48 - 24, DISP_PRIO_IME3, CG_CLOSE_BTN, 2);
 
 			if (focusId == 0)
-				ShowBottomLineString(FONT_PAL_WHITE, "关闭选单视窗。");
+				ShowBottomLineString(FONT_PAL_WHITE, "關閉選單視窗。");
 				
 			for (i = 0; i < sizeof(pszChannel) / sizeof(char*); i++)
 			{
@@ -4796,7 +4796,7 @@ int etcSwitch(void)
 		int ret = iOnlineGmProc();
 
 		if (ret)
-		{  // 关闭
+		{  // 關閉
 			GetKeyInputFocus(&MyChatBuffer);
 			OnlineGmFlag = FALSE;
 			return 1;
@@ -4835,11 +4835,11 @@ int etcSwitch(void)
 			return 1;
 		}
 		if(pActJobdailyWin->hp >= 1){
-			StockFontBuffer(274,94,FONT_PRIO_FRONT,FONT_PAL_YELLOW,"任 务 日 志",0);
-			StockFontBuffer(x+30,118,FONT_PRIO_FRONT,FONT_PAL_GREEN,"编号		--------------------任务说明--------------------",0);
-			StockFontBuffer(x+440,118,FONT_PRIO_FRONT,FONT_PAL_GREEN,"状态",0);
+			StockFontBuffer(274,94,FONT_PRIO_FRONT,FONT_PAL_YELLOW,"任 務 日 誌",0);
+			StockFontBuffer(x+30,118,FONT_PRIO_FRONT,FONT_PAL_GREEN,"編號		--------------------任務說明--------------------",0);
+			StockFontBuffer(x+440,118,FONT_PRIO_FRONT,FONT_PAL_GREEN,"狀態",0);
 
-			if(JobdailyGetFlag){  //把接收到的资料秀出
+			if(JobdailyGetFlag){  //把接收到的資料秀齣
 				char buf[20];
 				for(i=0;i<10;i++){
 					sprintf_s(buf,"%d",jobdaily[i+PageIndex*10].JobId);
@@ -4860,8 +4860,8 @@ int etcSwitch(void)
 				y1 = y+30+23+196+45;
 				x2 = x1 + 48;
 				y2 = y1 + 22;	
-				if(i==1)	if(PageIndex==0) continue; //上一页
-				if(i==2)	if(PageIndex==MaxPage-1) continue;  //下一页
+				if(i==1)	if(PageIndex==0) continue; //上一頁
+				if(i==2)	if(PageIndex==MaxPage-1) continue;  //下一頁
 				if(MakeHitBox(x1,y1,x2,y2,DISP_PRIO_BOX2)){
 					if(mouse.onceState & MOUSE_LEFT_CRICK) id = i+1;
 					focusId = i+1;
@@ -4888,7 +4888,7 @@ int etcSwitch(void)
 				if(PageIndex==MaxPage) PageIndex--;
 			}			
 
-			if(focusId == 1) ShowBottomLineString(FONT_PAL_WHITE,"关闭任务日志视窗。");
+			if(focusId == 1) ShowBottomLineString(FONT_PAL_WHITE,"關閉任務日誌視窗。");
 			
 			for(i = 0;i < sizeof(msg5)/sizeof(char*);i++){
 				StockFontBuffer(x+80+i*150,y+30+26+196+45,FONT_PRIO_FRONT,FONT_PAL_YELLOW,msg5[i],0);
@@ -4967,7 +4967,7 @@ int etcSwitch(void)
 			}
 			else
 			{
-				StockChatBufferLine("战斗中无法开启线上回报系统...", FONT_PAL_RED);
+				StockChatBufferLine("戰鬥中無法開啓綫上迴報係統...", FONT_PAL_RED);
 				return 0;
 			}
 		}
@@ -4982,7 +4982,7 @@ int etcSwitch(void)
 				etcSwitchProcNo = 201;
 				return 0;
 			}else{
-				StockChatBufferLine("战斗中无法开启任务日志...",FONT_PAL_RED);
+				StockChatBufferLine("戰鬥中無法開啓任務日誌...",FONT_PAL_RED);
 				return 0;
 			}
 		}
@@ -5001,7 +5001,7 @@ int etcSwitch(void)
 				if (pc.iOnStreetVendor == 1 || sStreetVendorBuyBtn == 2)
 				{
 					if (mask[id] == PC_ETCFLAG_TRADE || mask[id] == PC_ETCFLAG_PARTY || mask[id] == PC_ETCFLAG_DUEL)
-						StockChatBufferLine("摆摊中不可开交易、组队及对战功能", FONT_PAL_RED);
+						StockChatBufferLine("擺攤中不可開交易、組隊及對戰功能", FONT_PAL_RED);
 					else
 						pc.etcFlag |= mask[id];
 				}
@@ -5040,12 +5040,12 @@ int etcSwitch(void)
 		{
 			btnId[0] = StockDispBuffer(x + 96, h * 48 - 24 , DISP_PRIO_IME3, CG_CLOSE_BTN, 2);
 			if (focusId == 0)
-				ShowBottomLineString(FONT_PAL_WHITE, "关闭选单视窗。");
+				ShowBottomLineString(FONT_PAL_WHITE, "關閉選單視窗。");
 			for (i = 0; i < sizeof(msg) / sizeof(char*); i++)
 			{
 				StockFontBuffer(x + 20, y + i * 30 + 26, FONT_PRIO_FRONT, FONT_PAL_WHITE, msg[i], 0);
 
-				if (i != 3 && i != 5)    //修改主选单必须注意
+				if (i != 3 && i != 5)    //修改主選單必須注意
 					StockFontBuffer(x + 105, y + i * 30 + 26, FONT_PRIO_FRONT, FONT_PAL_WHITE, msg2[((pc.etcFlag & mask[i]) ? 1:0)], 0);
 #ifndef _CHANNEL_MODIFY
 				else
@@ -5071,8 +5071,8 @@ int disconnectServer( void )
 	int id = 0;
 	char *msg[] =
 	{
-		"与服务器切断连线",
-		"回到开头画面"
+		"與服務器切斷連綫",
+		"迴到開頭畫麵"
 	};
 	int i;
 	int ret = 0;
@@ -5103,7 +5103,7 @@ int disconnectServer( void )
 #endif
 	}
 #ifdef _AIDENGLU_
-	extern int 自动登陆是否开启;
+	extern int 自動登陸是否開啓;
 #endif
 	if (ptActMenuWin != NULL)
 	{
@@ -5114,7 +5114,7 @@ int disconnectServer( void )
 			if (
 				id >= 0
 #ifdef _AIDENGLU_
-				|| 自动登陆是否开启
+				|| 自動登陸是否開啓
 #endif
 				)
 			{
@@ -5130,8 +5130,8 @@ int disconnectServer( void )
 				StockFontBuffer(x+ xx, y + (i + 1) * yy, FONT_PRIO_FRONT, FONT_PAL_WHITE, msg[i], 0);
 			}
 
-			xx = (w * 64 - strlen("确定") / 2 * 17) / 2;
-			btnId[0] = StockFontBuffer(x + xx, y + 3 * yy, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "确定", 2);
+			xx = (w * 64 - strlen("確定") / 2 * 17) / 2;
+			btnId[0] = StockFontBuffer(x + xx, y + 3 * yy, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "確定", 2);
 		}
 	}
 
@@ -5245,7 +5245,7 @@ void actionShortCutKeyProc(void)
 	{
 #ifdef _THEATER
 		if (pc.iTheaterMode & 0x00000001)
-			StockChatBufferLine("请专心看表演", FONT_PAL_RED);
+			StockChatBufferLine("請專心看錶演", FONT_PAL_RED);
 		else
 #endif
 		if (fieldBtnPushTime + FIELD_BTN_PUSH_WAIT < TimeGetTime())// ??
@@ -5267,24 +5267,24 @@ static ACTION *ptActLeaderFuncWin = NULL;
 #ifndef _FM_MODIFY
 char channelName[9][20] =
 {
-	" 家族资料  ",
-	"家族频道 １",
-	"家族频道 ２",
-	"家族频道 ３",
-	"家族频道 ４",
-	" 族长广播  ",
-	" 离开频道  ",
-	" 族长功能  ",
-	"  离   开  "
+	" 傢族資料  ",
+	"傢族頻道 １",
+	"傢族頻道 ２",
+	"傢族頻道 ３",
+	"傢族頻道 ４",
+	" 族長廣播  ",
+	" 離開頻道  ",
+	" 族長功能  ",
+	"  離   開  "
 };
 #else
 char channelName[5][20] =
 {
-	" 家族资料 ",
-	" 族长功能 ",
-	"家族布告栏",
-	" 关闭广播 ",
-	" 家族徽章 "
+	" 傢族資料 ",
+	" 族長功能 ",
+	"傢族布告欄",
+	" 關閉廣播 ",
+	" 傢族徽章 "
 };
 #endif
 
@@ -5511,49 +5511,49 @@ void joinChannelWN(void)
 			switch (selId)
 			{
 			case 0:
-				ShowBottomLineString(FONT_PAL_WHITE, "查看家族详细资料。");
+				ShowBottomLineString(FONT_PAL_WHITE, "查看傢族詳細資料。");
 				break;
 			case 1:
 			case 2:
 			case 3:
 				if (pc.channel == selId)
-					sprintf_s(buf, "你目前在这个频道。");
+					sprintf_s(buf, "你目前在這個頻道。");
 				else
-					sprintf_s(buf, "查看这个聊天频道。");
+					sprintf_s(buf, "查看這個聊天頻道。");
 				ShowBottomLineString(FONT_PAL_WHITE, buf);
 				break;
 			case 5:
-				ShowBottomLineString(FONT_PAL_WHITE, "族长对全星系的族员广播。");
+				ShowBottomLineString(FONT_PAL_WHITE, "族長對全星係的族員廣播。");
 				break;
 			case 6:
-				ShowBottomLineString(FONT_PAL_WHITE, "退出目前的频道。");
+				ShowBottomLineString(FONT_PAL_WHITE, "退齣目前的頻道。");
 				break;
 			case 7:
-				ShowBottomLineString(FONT_PAL_WHITE, "族长专用功能。");
+				ShowBottomLineString(FONT_PAL_WHITE, "族長專用功能。");
 				break;
 			default:
 				if (selgraId == 0)
-					ShowBottomLineString(FONT_PAL_WHITE, "离开聊天频道选单。");
+					ShowBottomLineString(FONT_PAL_WHITE, "離開聊天頻道選單。");
 				break;
 			}
 #else
 			switch (selId)
 			{
 			case 0:
-				ShowBottomLineString(FONT_PAL_WHITE, "查看家族详细资料。");
+				ShowBottomLineString(FONT_PAL_WHITE, "查看傢族詳細資料。");
 				break;
 			case 1:
-				ShowBottomLineString(FONT_PAL_WHITE, "族长专用功能。");
+				ShowBottomLineString(FONT_PAL_WHITE, "族長專用功能。");
 				break;
 			case 2:
-				ShowBottomLineString(FONT_PAL_WHITE, "使用家族布告栏功能。");
+				ShowBottomLineString(FONT_PAL_WHITE, "使用傢族布告欄功能。");
 				break;
 			case 3:
-				ShowBottomLineString(FONT_PAL_WHITE, "关闭族长广播功能。");
+				ShowBottomLineString(FONT_PAL_WHITE, "關閉族長廣播功能。");
 				break;
 			default:
 				if (selgraId == 0)
-					ShowBottomLineString(FONT_PAL_WHITE, "离开聊天频道选单。");
+					ShowBottomLineString(FONT_PAL_WHITE, "離開聊天頻道選單。");
 				break;
 			}
 #endif
@@ -5576,8 +5576,8 @@ static TchannelData channelData;
 
 char pageStr[2][10] =
 {
-	"上一页",
-	"下一页",
+	"上一頁",
+	"下一頁",
 };
 static int pageNum;
 
@@ -5648,10 +5648,10 @@ void joinChannel2WN(void)
 		switch (selId)
 		{
 		case 0:
-			ShowBottomLineString(FONT_PAL_WHITE, "加入本频道。");
+			ShowBottomLineString(FONT_PAL_WHITE, "加入本頻道。");
 			break;
 		case 1:
-			ShowBottomLineString(FONT_PAL_WHITE, "关闭这个视窗。");
+			ShowBottomLineString(FONT_PAL_WHITE, "關閉這個視窗。");
 			break;
 		}
 
@@ -5692,7 +5692,7 @@ void joinChannel2WN(void)
 		}
 
 		fontBtnId[0] = StockFontBuffer(x + 240, y + 340, FONT_PRIO_FRONT, FONT_PAL_YELLOW, " 加  入 ", 2);
-		fontBtnId[1] = StockFontBuffer(x + 340, y + 340, FONT_PRIO_FRONT, FONT_PAL_YELLOW, " 离  开 ", 2);
+		fontBtnId[1] = StockFontBuffer(x + 340, y + 340, FONT_PRIO_FRONT, FONT_PAL_YELLOW, " 離  開 ", 2);
 
 		switch (pageNum)
 		{
@@ -5711,11 +5711,11 @@ void joinChannel2WN(void)
 		}
 		StockFontBuffer(x + 25, y + 25, FONT_PRIO_FRONT, FONT_PAL_WHITE, channelName[channelData.index], 0);
 
-		StockFontBuffer(x + 25, y + 50, FONT_PRIO_FRONT, FONT_PAL_WHITE, "[ 频 道 成 员 ]", 0);
+		StockFontBuffer(x + 25, y + 50, FONT_PRIO_FRONT, FONT_PAL_WHITE, "[ 頻 道 成 員 ]", 0);
 		
-		sprintf_s(buf, "目前有 %d 位家族成员在本星球。", channelData.num);
+		sprintf_s(buf, "目前有 %d 位傢族成員在本星球。", channelData.num);
 		StockFontBuffer(x + 200, y + 25, FONT_PRIO_FRONT, FONT_PAL_WHITE, buf, 0);
-		sprintf_s(buf, "有 %d 人在本频道。", channelData.joinNum);
+		sprintf_s(buf, "有 %d 人在本頻道。", channelData.joinNum);
 		StockFontBuffer(x + 280, y + 50, FONT_PRIO_FRONT, FONT_PAL_WHITE, buf, 0);
 
 		for (i = 0 ; i < channelData.num; i++)
@@ -5860,7 +5860,7 @@ void leaderFuncWN(void)
 				play_se(203, 320, 240);	// ????????
 				return;
 			}
-#ifdef	_ADD_FAMILY_TAX		// WON ADD 增加庄园税收
+#ifdef	_ADD_FAMILY_TAX		// WON ADD 增加莊園稅收
 			if (selId == 6) 
 			{
 				sprintf_s(buf, "L|FMTAX|W");
@@ -5882,56 +5882,56 @@ void leaderFuncWN(void)
 #endif
 		{
 			if (pc.channel == 5)
-				btnId[1] = StockFontBuffer(x + 22, y + 65 + 36 * 0, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "  族长广播  ", 2);
+				btnId[1] = StockFontBuffer(x + 22, y + 65 + 36 * 0, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "  族長廣播  ", 2);
 			else
-				btnId[1] = StockFontBuffer(x + 22, y + 65 + 36 * 0, FONT_PRIO_FRONT, FONT_PAL_WHITE, "  族长广播  ", 2);
+				btnId[1] = StockFontBuffer(x + 22, y + 65 + 36 * 0, FONT_PRIO_FRONT, FONT_PAL_WHITE, "  族長廣播  ", 2);
 
-			btnId[2] = StockFontBuffer(x + 22, y + 65 + 36 * 1, FONT_PRIO_FRONT, FONT_PAL_WHITE, "家族成员管理", 2);
+			btnId[2] = StockFontBuffer(x + 22, y + 65 + 36 * 1, FONT_PRIO_FRONT, FONT_PAL_WHITE, "傢族成員管理", 2);
 
-			btnId[3] = StockFontBuffer(x + 22, y + 65 + 36 * 2, FONT_PRIO_FRONT, FONT_PAL_WHITE, " 家族邀请函 ", 2);
-			//btnId[4] = StockFontBuffer(x + 22, y + 65 + 36 * 3, FONT_PRIO_FRONT, FONT_PAL_WHITE, " 学习同意书 ", 2);
-			//btnId[5] = StockFontBuffer(x + 22, y + 65 + 36 * 4, FONT_PRIO_FRONT, FONT_PAL_WHITE, "  族长让位  ", 2);
-			btnId[5] = StockFontBuffer(x + 22, y + 65 + 36 * 3, FONT_PRIO_FRONT, FONT_PAL_WHITE, "  族长让位  ", 2);
+			btnId[3] = StockFontBuffer(x + 22, y + 65 + 36 * 2, FONT_PRIO_FRONT, FONT_PAL_WHITE, " 傢族邀請函 ", 2);
+			//btnId[4] = StockFontBuffer(x + 22, y + 65 + 36 * 3, FONT_PRIO_FRONT, FONT_PAL_WHITE, " 學習同意書 ", 2);
+			//btnId[5] = StockFontBuffer(x + 22, y + 65 + 36 * 4, FONT_PRIO_FRONT, FONT_PAL_WHITE, "  族長讓位  ", 2);
+			btnId[5] = StockFontBuffer(x + 22, y + 65 + 36 * 3, FONT_PRIO_FRONT, FONT_PAL_WHITE, "  族長讓位  ", 2);
 
 
-#ifdef	_ADD_FAMILY_TAX		// WON ADD 增加庄园税收
-			btnId[6] = StockFontBuffer(x + 22, y + 65 + 36 * 5, FONT_PRIO_FRONT, FONT_PAL_WHITE, "调整庄园税率", 2);
+#ifdef	_ADD_FAMILY_TAX		// WON ADD 增加莊園稅收
+			btnId[6] = StockFontBuffer(x + 22, y + 65 + 36 * 5, FONT_PRIO_FRONT, FONT_PAL_WHITE, "調整莊園稅率", 2);
 #endif
 		}
 // shan begin
 #ifdef _FMVER21
 		if (pc.familyleader == FMMEMBER_ELDER)
 		{
-			btnId[1] = StockFontBuffer(x + 22, y + 65 + 36 * 0, FONT_PRIO_FRONT, FONT_PAL_GRAY, "  族长广播  ", 0);
-			btnId[2] = StockFontBuffer(x + 22, y + 65 + 36 * 1, FONT_PRIO_FRONT, FONT_PAL_WHITE, "家族成员管理", 2);
+			btnId[1] = StockFontBuffer(x + 22, y + 65 + 36 * 0, FONT_PRIO_FRONT, FONT_PAL_GRAY, "  族長廣播  ", 0);
+			btnId[2] = StockFontBuffer(x + 22, y + 65 + 36 * 1, FONT_PRIO_FRONT, FONT_PAL_WHITE, "傢族成員管理", 2);
 
-			btnId[3] = StockFontBuffer(x + 22, y + 65 + 36 * 2, FONT_PRIO_FRONT, FONT_PAL_WHITE, " 家族邀请函 ", 2);
-			btnId[4] = StockFontBuffer(x + 22, y + 65 + 36 * 3, FONT_PRIO_FRONT, FONT_PAL_WHITE, " 学习同意书 ", 2);
-			btnId[5] = StockFontBuffer(x + 22, y + 65 + 36 * 4, FONT_PRIO_FRONT, FONT_PAL_GRAY, "  族长让位  ", 0);
+			btnId[3] = StockFontBuffer(x + 22, y + 65 + 36 * 2, FONT_PRIO_FRONT, FONT_PAL_WHITE, " 傢族邀請函 ", 2);
+			btnId[4] = StockFontBuffer(x + 22, y + 65 + 36 * 3, FONT_PRIO_FRONT, FONT_PAL_WHITE, " 學習同意書 ", 2);
+			btnId[5] = StockFontBuffer(x + 22, y + 65 + 36 * 4, FONT_PRIO_FRONT, FONT_PAL_GRAY, "  族長讓位  ", 0);
 
-#ifdef	_ADD_FAMILY_TAX		// WON ADD 增加庄园税收
-			btnId[6] = StockFontBuffer(x + 22, y + 65 + 36 * 5, FONT_PRIO_FRONT, FONT_PAL_GRAY, "  调整庄园税率  ", 0);
+#ifdef	_ADD_FAMILY_TAX		// WON ADD 增加莊園稅收
+			btnId[6] = StockFontBuffer(x + 22, y + 65 + 36 * 5, FONT_PRIO_FRONT, FONT_PAL_GRAY, "  調整莊園稅率  ", 0);
 #endif
 		}
 #endif
 // shan end
 		if (selId == 1)
-			ShowBottomLineString(FONT_PAL_WHITE, "族长对全星系的族员广播。");
+			ShowBottomLineString(FONT_PAL_WHITE, "族長對全星係的族員廣播。");
 		else if (selId == 2)
-			ShowBottomLineString(FONT_PAL_WHITE, "家族成员列表。");
+			ShowBottomLineString(FONT_PAL_WHITE, "傢族成員列錶。");
 		else if (selId == 3)
-			ShowBottomLineString(FONT_PAL_WHITE, "制作家族参观邀请函。");
+			ShowBottomLineString(FONT_PAL_WHITE, "製作傢族參觀邀請函。");
 		else if (selId == 4)
-			ShowBottomLineString(FONT_PAL_WHITE, "制作学习骑乘同意书。");
-#ifdef	_ADD_FAMILY_TAX		// WON ADD 增加庄园税收
+			ShowBottomLineString(FONT_PAL_WHITE, "製作學習騎乘同意書。");
+#ifdef	_ADD_FAMILY_TAX		// WON ADD 增加莊園稅收
 		else if (selId == 6)
-			ShowBottomLineString(FONT_PAL_WHITE, "调整庄园内物品税收。");
+			ShowBottomLineString(FONT_PAL_WHITE, "調整莊園內物品稅收。");
 #endif
 	}
 
 }
 
-#ifdef _SURFACE_ANIM        //ROG ADD 动态地上物显示
+#ifdef _SURFACE_ANIM        //ROG ADD 動態地上物顯示
 int ReadAniFile(int floor)
 {
 	HANDLE hFile;
@@ -5939,7 +5939,7 @@ int ReadAniFile(int floor)
 	char fileName[32];
 	ani_num = 0;
 	int col = 0, row = 0; 
-	breadAniFlag = TRUE;  //读取档案旗标
+	breadAniFlag = TRUE;  //讀取檔案旗標
 	sprintf_s(fileName, "map\\%d.ani", floor);
 	for (int i = 0; i < MAX_ANIM; i++)
 	{
@@ -5954,7 +5954,7 @@ int ReadAniFile(int floor)
 		ProduceXY[row][5] = 0 ; 
 		row++;
 	}
-	ani_num = row; //该地图总动画数
+	ani_num = row; //該地圖總動畫數
 	CloseHandle(hFile);
 
 	return 1;
@@ -6061,7 +6061,7 @@ void ReleaseSpecAnim ()
 
 #else
 
-#ifdef _SPECIALSPACEANIM	// Syu ADD 特殊场景动画配置
+#ifdef _SPECIALSPACEANIM	// Syu ADD 特殊場景動畫配置
 void SpecAnim (int floor)
 {
 	int j = 0;
@@ -6116,7 +6116,7 @@ void ReleaseSpecAnim()
 #endif
 #endif
 
-#ifdef _CLOUD_EFFECT				// (不可开) ROG ADD云层效果
+#ifdef _CLOUD_EFFECT				// (不可開) ROG ADD雲層效果
 void CloudDraw()
 {
 	static DWORD SlowDraw;
@@ -6158,13 +6158,13 @@ void TeacherSystemWndfunc(int flag, char *data)
 		memset(szBuf, 0, sizeof(szBuf));
 		switch (flag)
 		{
-			// 只有一个人
+			// 隻有一個人
 			case 0:
 				winW = 5;
 				winH = 2;
 				// get name
-				getStringToken(data, '|', 2, sizeof(szBuf[0]) - 1, szBuf[0]); // 存导师的名字
-				getStringToken(data, '|', 3, sizeof(szBuf[6]) - 1, szBuf[6]); // 取出导师 index
+				getStringToken(data, '|', 2, sizeof(szBuf[0]) - 1, szBuf[0]); // 存導師的名字
+				getStringToken(data, '|', 3, sizeof(szBuf[6]) - 1, szBuf[6]); // 取齣導師 index
 				iIndex[0] = atoi(szBuf[6]);
 				break;
 			// 一人以上在同一格
@@ -6176,19 +6176,19 @@ void TeacherSystemWndfunc(int flag, char *data)
 				// get name
 				for (i = 0; i < iGetNum; i++)
 				{
-					getStringToken(data, '|', 3 + i * 2, sizeof(szBuf[i]) - 1, szBuf[i]); // 存导师的名字
-					getStringToken(data, '|', 4 + i * 2, sizeof(szBuf[6]) - 1, szBuf[6]); // 取出导师 index
+					getStringToken(data, '|', 3 + i * 2, sizeof(szBuf[i]) - 1, szBuf[i]); // 存導師的名字
+					getStringToken(data, '|', 4 + i * 2, sizeof(szBuf[6]) - 1, szBuf[6]); // 取齣導師 index
 					iIndex[i] = atoi(szBuf[6]);
 				}
 				break;
-			// 显示导师资料
+			// 顯示導師資料
 			case 2:
 				winW = 5;
 				winH = 3;
-				getStringToken(data, '|', 2, sizeof(szBuf[0]) - 1, szBuf[0]);	// 存导师的名字
-				getStringToken(data, '|', 3, sizeof(szBuf[6]) - 1, szBuf[6]); // 取出在不在线状态
+				getStringToken(data, '|', 2, sizeof(szBuf[0]) - 1, szBuf[0]);	// 存導師的名字
+				getStringToken(data, '|', 3, sizeof(szBuf[6]) - 1, szBuf[6]); // 取齣在不在綫狀態
 				iOnline = atoi(szBuf[6]);
-				getStringToken(data, '|', 4, sizeof(szBuf[1]) - 1, szBuf[1]); // 存星系 ip
+				getStringToken(data, '|', 4, sizeof(szBuf[1]) - 1, szBuf[1]); // 存星係 ip
 				break;
 			case 3:
 				winW = 5;
@@ -6198,10 +6198,10 @@ void TeacherSystemWndfunc(int flag, char *data)
 			case 4:
 				winW = 5;
 				winH = 3;
-				getStringToken(data, '|', 2, sizeof(szBuf[0]) - 1, szBuf[0]);	// 存学生的名字
-				getStringToken(data, '|', 3, sizeof(szBuf[6]) - 1, szBuf[6]); // 取出在不在线状态
+				getStringToken(data, '|', 2, sizeof(szBuf[0]) - 1, szBuf[0]);	// 存學生的名字
+				getStringToken(data, '|', 3, sizeof(szBuf[6]) - 1, szBuf[6]); // 取齣在不在綫狀態
 				iOnline = atoi(szBuf[6]);
-				getStringToken(data, '|', 4, sizeof(szBuf[1]) - 1, szBuf[1]); // 存星系 ip
+				getStringToken(data, '|', 4, sizeof(szBuf[1]) - 1, szBuf[1]); // 存星係 ip
 				break;
 			case 5:
 				winW = 5;
@@ -6231,13 +6231,13 @@ void TeacherSystemWndfunc(int flag, char *data)
 		{
 			if (!bOpen)
 				bOpen = TRUE;
-			// 只有一个人询问是否要对方当你的导师
+			// 隻有一個人詢問是否要對方當你的導師
 			if (flag == 0)
 			{
-				sprintf_s(szMsg, "你是否将认定 %s", szBuf[0]);
+				sprintf_s(szMsg, "你是否將認定 %s", szBuf[0]);
 				StockFontBuffer(winX + 20, winY + 20, FONT_PRIO_FRONT, FONT_PAL_WHITE, szMsg, 0);
-				StockFontBuffer(winX + 20, winY + 36, FONT_PRIO_FRONT, FONT_PAL_WHITE, "成为你的导师？", 0);
-				iFontId[0] = StockFontBuffer(winX + 64, winY + winH * 30, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "确  定", 2);
+				StockFontBuffer(winX + 20, winY + 36, FONT_PRIO_FRONT, FONT_PAL_WHITE, "成為你的導師？", 0);
+				iFontId[0] = StockFontBuffer(winX + 64, winY + winH * 30, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "確  定", 2);
 				iFontId[1] = StockFontBuffer(winX + (winW + 1) * 32, winY + winH * 30, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "取  消", 2);
 				if (mouse.onceState & MOUSE_LEFT_CRICK)
 				{
@@ -6246,7 +6246,7 @@ void TeacherSystemWndfunc(int flag, char *data)
 						if (HitFontNo == iFontId[i])
 						{
 							play_se(217, 320, 240);
-							// 确定
+							// 確定
 							if (i == 0)
 							{
 								sprintf_s(szMsg, "O|%d", iIndex[0]);
@@ -6261,10 +6261,10 @@ void TeacherSystemWndfunc(int flag, char *data)
 					}
 				}
 			}
-			// 一人以上在同一格询问是否要对方当你的导师
+			// 一人以上在同一格詢問是否要對方當你的導師
 			else if (flag == 1)
 			{
-				sprintf_s(szMsg, "选谁作为你的导师呢？");
+				sprintf_s(szMsg, "選誰作為你的導師呢？");
 				StockFontBuffer(winX + 20, winY + 20, FONT_PRIO_FRONT, FONT_PAL_WHITE, szMsg, 0);
 				iFontId[0] = StockFontBuffer(winX + winW / 2 * 64, winY + (winH - 1)* 48, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "取  消", 2);
 				for (i = 0; i < iGetNum; i++)
@@ -6276,7 +6276,7 @@ void TeacherSystemWndfunc(int flag, char *data)
 						if (HitFontNo == iFontId[i])
 						{
 							play_se(217,320,240);
-							// 选好了导师
+							// 選好瞭導師
 							if (i != 0)
 							{
 								sprintf_s(szMsg, "O|%d", iIndex[i-1]);
@@ -6291,17 +6291,17 @@ void TeacherSystemWndfunc(int flag, char *data)
 					}
 				}
 			}
-			// 显示导师资料
+			// 顯示導師資料
 			else if (flag == 2)
 			{
-				sprintf_s(szMsg, "导师状态");
+				sprintf_s(szMsg, "導師狀態");
 				StockFontBuffer(winX + 130, winY + 20, FONT_PRIO_FRONT, FONT_PAL_WHITE, szMsg, 0);
-				sprintf_s(szMsg, "导师姓名：%s", szBuf[0]);
+				sprintf_s(szMsg, "導師姓名：%s", szBuf[0]);
 				StockFontBuffer(winX + 20, winY + 36, FONT_PRIO_FRONT, FONT_PAL_WHITE, szMsg, 0);
-				StockFontBuffer(winX + 20, winY + 52, FONT_PRIO_FRONT, FONT_PAL_WHITE, "状态：", 0);
+				StockFontBuffer(winX + 20, winY + 52, FONT_PRIO_FRONT, FONT_PAL_WHITE, "狀態：", 0);
 				StockFontBuffer(winX + 66, winY + 52, FONT_PRIO_FRONT,
 								iOnline == 1 ? FONT_PAL_YELLOW : FONT_PAL_RED, iOnline == 1 ? "Online" : "Offline", 0);
-				StockFontBuffer(winX + 148, winY + 52, FONT_PRIO_FRONT, FONT_PAL_WHITE, "星系：", 0);
+				StockFontBuffer(winX + 148, winY + 52, FONT_PRIO_FRONT, FONT_PAL_WHITE, "星係：", 0);
 				if (iOnline == 1)
 				{
 					for (i = 0; i < MAX_GMSV; i++)
@@ -6317,9 +6317,9 @@ void TeacherSystemWndfunc(int flag, char *data)
 					}
 				}
 				else
-					StockFontBuffer(winX + 190, winY + 52, FONT_PRIO_FRONT, FONT_PAL_WHITE, "无", 0);
-				iFontId[0] = StockFontBuffer(winX + 64, winY + winH * 30, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "关  闭", 2);
-				iFontId[1] = StockFontBuffer(winX + (winW + 1) * 32, winY + winH * 30, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "取消导师资格", 2);
+					StockFontBuffer(winX + 190, winY + 52, FONT_PRIO_FRONT, FONT_PAL_WHITE, "無", 0);
+				iFontId[0] = StockFontBuffer(winX + 64, winY + winH * 30, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "關  閉", 2);
+				iFontId[1] = StockFontBuffer(winX + (winW + 1) * 32, winY + winH * 30, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "取消導師資格", 2);
 				if (mouse.onceState & MOUSE_LEFT_CRICK)
 				{
 					for (i = 0; i < 2; i++)
@@ -6328,7 +6328,7 @@ void TeacherSystemWndfunc(int flag, char *data)
 						{
 							play_se(217,320,240);
 							sTeacherSystemBtn = 0;
-							// 取消导师资格
+							// 取消導師資格
 							if (i != 0)
 								sTeacherSystemBtn = 5;
 							DeathAction(pActTeacherSystemWnd);
@@ -6339,12 +6339,12 @@ void TeacherSystemWndfunc(int flag, char *data)
 					}
 				}
 			}
-			// 确认是否真的要取消导师
+			// 確認是否真的要取消導師
 			else if (flag == 3)
 			{
-				StockFontBuffer(winX + 20, winY + 20, FONT_PRIO_FRONT, FONT_PAL_WHITE, "取消导师将会减少你的魅力值，", 0);
-				StockFontBuffer(winX + 20, winY + 40, FONT_PRIO_FRONT, FONT_PAL_WHITE, "你确定要取消导师？", 0);
-				iFontId[0] = StockFontBuffer(winX + 64, winY + winH * 30, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "确  定", 2);
+				StockFontBuffer(winX + 20, winY + 20, FONT_PRIO_FRONT, FONT_PAL_WHITE, "取消導師將會減少你的魅力值，", 0);
+				StockFontBuffer(winX + 20, winY + 40, FONT_PRIO_FRONT, FONT_PAL_WHITE, "你確定要取消導師？", 0);
+				iFontId[0] = StockFontBuffer(winX + 64, winY + winH * 30, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "確  定", 2);
 				iFontId[1] = StockFontBuffer(winX + (winW + 1) * 32, winY + winH * 30, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "取  消", 2);
 				if (mouse.onceState & MOUSE_LEFT_CRICK)
 				{
@@ -6353,7 +6353,7 @@ void TeacherSystemWndfunc(int flag, char *data)
 						if (HitFontNo == iFontId[i])
 						{
 							play_se(217,320,240);
-							// 取消导师资格
+							// 取消導師資格
 							if (i == 0)
 								lssproto_TEACHER_SYSTEM_send(sockfd, "C|");
 							DeathAction(pActTeacherSystemWnd);
@@ -6366,17 +6366,17 @@ void TeacherSystemWndfunc(int flag, char *data)
 				}
 			}
 #ifdef _TEACHER_SYSTEM_2
-			// 显示学生资料
+			// 顯示學生資料
 			else if (flag == 4)
 			{
-				sprintf_s(szMsg, "学生状态");
+				sprintf_s(szMsg, "學生狀態");
 				StockFontBuffer(winX + 130, winY + 20, FONT_PRIO_FRONT, FONT_PAL_WHITE, szMsg, 0);
-				sprintf_s(szMsg, "学生姓名：%s", szBuf[0]);
+				sprintf_s(szMsg, "學生姓名：%s", szBuf[0]);
 				StockFontBuffer(winX + 20, winY + 36, FONT_PRIO_FRONT, FONT_PAL_WHITE, szMsg, 0);
-				StockFontBuffer(winX + 20, winY + 52, FONT_PRIO_FRONT, FONT_PAL_WHITE, "状态：", 0);
+				StockFontBuffer(winX + 20, winY + 52, FONT_PRIO_FRONT, FONT_PAL_WHITE, "狀態：", 0);
 				StockFontBuffer(winX + 66, winY + 52, FONT_PRIO_FRONT,
 								iOnline == 1 ? FONT_PAL_YELLOW : FONT_PAL_RED, iOnline == 1 ? "Online" : "Offline", 0);
-				StockFontBuffer(winX + 148, winY + 52, FONT_PRIO_FRONT, FONT_PAL_WHITE, "星系：", 0);
+				StockFontBuffer(winX + 148, winY + 52, FONT_PRIO_FRONT, FONT_PAL_WHITE, "星係：", 0);
 				if (iOnline == 1)
 				{
 					for (i = 0; i < MAX_GMSV; i++)
@@ -6392,9 +6392,9 @@ void TeacherSystemWndfunc(int flag, char *data)
 					}
 				}
 				else
-					StockFontBuffer(winX + 190, winY + 52, FONT_PRIO_FRONT, FONT_PAL_WHITE, "无", 0);
-				iFontId[0] = StockFontBuffer(winX + 64, winY + winH * 30, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "关  闭", 2);
-				iFontId[1] = StockFontBuffer(winX + (winW + 1) * 32, winY + winH * 30, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "取消学生资格", 2);
+					StockFontBuffer(winX + 190, winY + 52, FONT_PRIO_FRONT, FONT_PAL_WHITE, "無", 0);
+				iFontId[0] = StockFontBuffer(winX + 64, winY + winH * 30, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "關  閉", 2);
+				iFontId[1] = StockFontBuffer(winX + (winW + 1) * 32, winY + winH * 30, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "取消學生資格", 2);
 				if (mouse.onceState & MOUSE_LEFT_CRICK)
 				{
 					for (i = 0; i < 2; i++)
@@ -6403,7 +6403,7 @@ void TeacherSystemWndfunc(int flag, char *data)
 						{
 							play_se(217,320,240);
 							sTeacherSystemBtn = 0;
-							// 取消学生资格
+							// 取消學生資格
 							if (i != 0)
 								sTeacherSystemBtn = 7;
 							DeathAction(pActTeacherSystemWnd);
@@ -6414,11 +6414,11 @@ void TeacherSystemWndfunc(int flag, char *data)
 					}
 				}
 			}
-			// 确认是否真的要取消学生
+			// 確認是否真的要取消學生
 			else if (flag == 5)
 			{
-				StockFontBuffer(winX + 20, winY + 20, FONT_PRIO_FRONT, FONT_PAL_WHITE, "你确定要取消学生？", 0);
-				iFontId[0] = StockFontBuffer(winX + 64, winY + winH * 30, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "确  定", 2);
+				StockFontBuffer(winX + 20, winY + 20, FONT_PRIO_FRONT, FONT_PAL_WHITE, "你確定要取消學生？", 0);
+				iFontId[0] = StockFontBuffer(winX + 64, winY + winH * 30, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "確  定", 2);
 				iFontId[1] = StockFontBuffer(winX + (winW + 1) * 32, winY + winH * 30, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "取  消", 2);
 				if (mouse.onceState & MOUSE_LEFT_CRICK)
 				{
@@ -6427,7 +6427,7 @@ void TeacherSystemWndfunc(int flag, char *data)
 						if (HitFontNo == iFontId[i])
 						{
 							play_se(217,320,240);
-							// 取消学生资格
+							// 取消學生資格
 							if (i == 0)
 								lssproto_TEACHER_SYSTEM_send(sockfd, "D|");
 							DeathAction(pActTeacherSystemWnd);

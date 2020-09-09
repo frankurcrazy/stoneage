@@ -1,4 +1,4 @@
-﻿#include "../systeminc/version.h"
+#include "../systeminc/version.h"
 #include "../systeminc/system.h"
 
 #define ASCII(a) a-'A'+10
@@ -29,7 +29,7 @@ char* sunday( char* str,  char* subStr)
 	}
 	for(i=0;i<subLen;i++)
 	{
-		next[ (unsigned char)subStr[i] ] = subLen-i;//计算子串中的字符到字符串结尾的\0之间的距离
+		next[ (unsigned char)subStr[i] ] = subLen-i;//計算子串中的字符到字符串結尾的\0之間的距離
 	}
 	pos=0;
 	while(pos<=(strLen-subLen))
@@ -40,12 +40,12 @@ char* sunday( char* str,  char* subStr)
 			
 			if(str[i] != subStr[j])
 			{
-				pos += next[ (unsigned char)str[pos+subLen] ];//向后移动
+				pos += next[ (unsigned char)str[pos+subLen] ];//嚮後移動
 				break;
 			}
 			
 		}
-		if(j==subLen)//找到字串，返回
+		if(j==subLen)//找到字串，返迴
 		{
 			return str+pos;
 		}
@@ -63,18 +63,18 @@ int StockFontBufferExt( int x, int y, char fontPrio, int color, char *str, BOOL 
 	FontBuffer[ FontCnt ].fontPrio = fontPrio;
 	FontBuffer[ FontCnt ].color = color;
 	FontBuffer[ FontCnt ].hitFlag = hitFlag;
-	extern int 编码;
-	extern int 繁体开关;
-	if(繁体开关){
-		char 繁体[1024]={0};
-		LCMapString (0x804,0x4000000,str, strlen(str),繁体,1024);
-		if(编码==950){
+	extern int 編碼;
+	extern int 繁體開關;
+	if(繁體開關){
+		char 繁體[1024]={0};
+		LCMapString (0x804,0x4000000,str, strlen(str),繁體,1024);
+		if(編碼==950){
 			extern char* GB2312ToBIG5(const char* szBIG5String);
-			strcpy( FontBuffer[ FontCnt ].str, GB2312ToBIG5((const char *)繁体) );
+			strcpy( FontBuffer[ FontCnt ].str, GB2312ToBIG5((const char *)繁體) );
 		}else
-			strcpy( FontBuffer[ FontCnt ].str, 繁体 );
+			strcpy( FontBuffer[ FontCnt ].str, 繁體 );
 	}else{
-		if(编码==950){
+		if(編碼==950){
 			extern char* GB2312ToBIG5(const char* szBIG5String);
 			strcpy( FontBuffer[ FontCnt ].str, GB2312ToBIG5((const char *)str) );
 		}else
@@ -97,12 +97,12 @@ int StockFontBuffer( int x, int y, char fontPrio, int color, char *str, BOOL hit
 	FontBuffer[ FontCnt ].fontPrio = fontPrio;
 	FontBuffer[ FontCnt ].color = color;
 	FontBuffer[ FontCnt ].hitFlag = hitFlag;
-	extern int 编码;
-	extern int 繁体开关;
-	if(繁体开关){
-		char 繁体[1024]={0};
-		LCMapString (0x804,0x4000000,str, strlen(str),繁体,1024);
-		strcpy( FontBuffer[ FontCnt ].str, 繁体 );
+	extern int 編碼;
+	extern int 繁體開關;
+	if(繁體開關){
+		char 繁體[1024]={0};
+		LCMapString (0x804,0x4000000,str, strlen(str),繁體,1024);
+		strcpy( FontBuffer[ FontCnt ].str, 繁體 );
 	}else{
 		strcpy( FontBuffer[ FontCnt ].str, str );
 	}
@@ -117,9 +117,9 @@ void CreatFontHdc()
 	FontSizeHdc = CreateCompatibleDC(hScrDC);
 	if(FontSizeHdc){
 #ifdef _NEWFONT_
-		extern int 编码;
+		extern int 編碼;
 		char strfame[128];
-		if(编码==950){
+		if(編碼==950){
 			sprintf(strfame,"Microsoft JhengHei");
 		}else{
 			sprintf(strfame,"Microsoft JhengHei");
@@ -127,23 +127,23 @@ void CreatFontHdc()
 		HFONT font=CreateFont(FONT_SIZE1,0,0,0,FW_NORMAL,FALSE,FALSE,FALSE,1,
 			0,0,0,17,(LPCTSTR)strfame);
 #else
-				extern int 编码;
+				extern int 編碼;
 		char strfame[128];
 		HFONT font;
-		if(编码==950){
+		if(編碼==950){
 			sprintf(strfame,"Microsoft JhengHei");
 			font=CreateFont(FONT_SIZE2,0,0,0,FW_NORMAL,FALSE,FALSE,FALSE,1,
 			0,0,0,17,(LPCTSTR)strfame);
 		}else{
 			font=CreateFont(FONT_SIZE1,0,0,0,400,FALSE,FALSE,FALSE,134,
-			OUT_DEFAULT_PRECIS,CLIP_DEFAULT_PRECIS,DEFAULT_QUALITY,FIXED_PITCH|FF_ROMAN,(LPCTSTR)"宋体");
+			OUT_DEFAULT_PRECIS,CLIP_DEFAULT_PRECIS,DEFAULT_QUALITY,FIXED_PITCH|FF_ROMAN,(LPCTSTR)"宋體");
 		}
 
 
 #endif
 		SelectObject(FontSizeHdc, font);
 	}else{
-		MessageBoxNew(NULL,"创建HDC错误！","ＳｔｏｎｅＡｇｅ",NULL);
+		MessageBoxNew(NULL,"創建HDC錯誤！","ＳｔｏｎｅＡｇｅ",NULL);
 		exit(0);
 	}
 }
@@ -160,7 +160,7 @@ void delFontBuffer(CHAT_BUFFER *chatbuffer)
 {
 
 	CHAT_BUFFER *pHAIH = chatbuffer->NextChatBuffer;
-	while(pHAIH)	//如果链中还存在结点
+	while(pHAIH)	//如果鏈中還存在結點
 	{
 		CHAT_BUFFER* pTemp;
 		pTemp = pHAIH;
@@ -242,7 +242,7 @@ void StockFontBuffer2( STR_BUFFER *strBuffer )
 		strBuffer->hitFontNo = -2;
 		return;
 	}
-	//需要分行时
+	//需要分行時
 	if( strBuffer->lineLen != 0 ){
 		cursor=strBuffer->cursor;
 		while( strlen( strBuffer->buffer + splitPoint ) >= strBuffer->lineLen ){
@@ -251,7 +251,7 @@ void StockFontBuffer2( STR_BUFFER *strBuffer )
 			strncpy_s( splitStr, strBuffer->buffer + splitPoint, strBuffer->lineLen );
 			*( splitStr + strBuffer->lineLen ) = NULL;
 			if( GetStrLastByte( splitStr ) == 3 ){
-				//分割到中DBCS时，退回一个byte
+				//分割到中DBCS時，退迴一個byte
 				splitPoint = strBuffer->lineLen - 1 + splitPoint;
 				*( splitStr + strBuffer->lineLen - 1 ) = NULL; 
 			}else
@@ -278,7 +278,7 @@ void StockFontBuffer2( STR_BUFFER *strBuffer )
 #ifdef _FONT_SIZE
 		FontBuffer[ FontCnt ].size = 0;
 #endif
-//定义Hook_type用来处理星号产生
+//定義Hook_type用來處理星號産生
 #ifdef _SAHOOK //Syu ADD Hook程式
 		if( strBuffer->filterFlag == HOOK_TYPE){
 			extern int HOOK_PASSWD_NUM;
@@ -296,8 +296,8 @@ void StockFontBuffer2( STR_BUFFER *strBuffer )
 				FontBuffer[ FontCnt ].str[ i ] = '*';
 			FontBuffer[ FontCnt ].str[ i ] = NULL;
 		}else{
-			extern int 编码;
-			if(编码==950){
+			extern int 編碼;
+			if(編碼==950){
 				extern char* GB2312ToBIG5(const char* szBIG5String);
 				strcpy( FontBuffer[ FontCnt ].str, GB2312ToBIG5((const char *)strBuffer->buffer));
 			}else
@@ -336,11 +336,11 @@ int StockFontBuffer3( STR_BUFFER *strBuffer )
 	char splitStr[ 256 ];
 	
 	cursor=strBuffer->cursor;
-	//需要分行时
+	//需要分行時
 	while( strlen( strBuffer->buffer + splitPoint ) >= (unsigned)strBuffer->lineLen-1 ){
 		bakSplitPoint=splitPoint;
-		strcpy( splitStr , strBuffer->buffer + splitPoint );  //一个字
-		*( splitStr + strBuffer->lineLen ) = NULL;  //指向最后
+		strcpy( splitStr , strBuffer->buffer + splitPoint );  //一個字
+		*( splitStr + strBuffer->lineLen ) = NULL;  //指嚮最後
 		splitPoint = strBuffer->lineLen + splitPoint;
 		StockFontBuffer( strBuffer->x, strBuffer->y , strBuffer->fontPrio, 0 , splitStr, 0 );
 
@@ -352,7 +352,7 @@ int StockFontBuffer3( STR_BUFFER *strBuffer )
 		lineDist += strBuffer->lineDist;	
 		return 1;
 	}
-	if(!SetCursor){  // 游标不需换行
+	if(!SetCursor){  // 遊標不需換行
 		strBuffer->imeX = strBuffer->x + (strBuffer->cursor-splitPoint)*(FONT_SIZE>>1);
 		strBuffer->imeY = strBuffer->y + lineDist;
 	}
@@ -372,22 +372,22 @@ void StockFontBufferFamily( STR_BUFFER *strBuffer )
 		strBuffer->hitFontNo = -2;
 		return;
 	}
-	int 行字数;
+	int 行字數;
 	if( strBuffer->lineLen != 0 ){
 		cursor=strBuffer->cursor;
-		if(lineDist) 行字数 = strBuffer->lineLen;
-		else 行字数 = 38;
-		while( strlen( strBuffer->buffer + splitPoint ) >=行字数 ){
+		if(lineDist) 行字數 = strBuffer->lineLen;
+		else 行字數 = 38;
+		while( strlen( strBuffer->buffer + splitPoint ) >=行字數 ){
 			bakSplitPoint=splitPoint;
 			//copy一行的字串
-			strncpy_s( splitStr, strBuffer->buffer + splitPoint, 行字数 );
-			*( splitStr +行字数 ) = NULL;
+			strncpy_s( splitStr, strBuffer->buffer + splitPoint, 行字數 );
+			*( splitStr +行字數 ) = NULL;
 			if( GetStrLastByte( splitStr ) == 3 ){
-				//分割到中DBCS时，退回一个byte
-				splitPoint = 行字数 - 1 + splitPoint;
-				*( splitStr + 行字数 - 1 ) = NULL; 
+				//分割到中DBCS時，退迴一個byte
+				splitPoint = 行字數 - 1 + splitPoint;
+				*( splitStr + 行字數 - 1 ) = NULL; 
 			}else
-				splitPoint =行字数 + splitPoint;
+				splitPoint =行字數 + splitPoint;
 			if(lineDist)
 				StockFontBuffer( strBuffer->x-60, strBuffer->y + lineDist, strBuffer->fontPrio, 0, splitStr, 0 );
 			else
@@ -401,8 +401,8 @@ void StockFontBufferFamily( STR_BUFFER *strBuffer )
 				SetCursor=TRUE;
 			}
 			lineDist += strBuffer->lineDist;
-			if(lineDist) 行字数 = strBuffer->lineLen;
-			else 行字数 = 38;
+			if(lineDist) 行字數 = strBuffer->lineLen;
+			else 行字數 = 38;
 		}
 		if(!SetCursor){
 			if(lineDist)
@@ -424,7 +424,7 @@ void StockFontBufferFamily( STR_BUFFER *strBuffer )
 #ifdef _FONT_SIZE
 		FontBuffer[ FontCnt ].size = 0;
 #endif
-		//定义Hook_type用来处理星号产生
+		//定義Hook_type用來處理星號産生
 #ifdef _SAHOOK //Syu ADD Hook程式
 		if( strBuffer->filterFlag == HOOK_TYPE){
 			extern int HOOK_PASSWD_NUM;
@@ -442,8 +442,8 @@ void StockFontBufferFamily( STR_BUFFER *strBuffer )
 				FontBuffer[ FontCnt ].str[ i ] = '*';
 			FontBuffer[ FontCnt ].str[ i ] = NULL;
 		}else {
-		extern int 编码;
-		if(编码==950){
+		extern int 編碼;
+		if(編碼==950){
 			extern char* GB2312ToBIG5(const char* szBIG5String);
 			strcpy( FontBuffer[ FontCnt ].str, GB2312ToBIG5((const char *)strBuffer->buffer) );
 		}else

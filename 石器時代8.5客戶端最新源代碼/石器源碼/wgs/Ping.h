@@ -1,16 +1,16 @@
-﻿//ping.h
+//ping.h
 #ifndef _CPING_H_
 #define _CPING_H_
 #pragma pack(1)
 
 #define ICMP_ECHOREPLY  0
 #define ICMP_ECHOREQ    8
-#define REQ_DATASIZE    32      // Echo 请求数据的大小
+#define REQ_DATASIZE    32      // Echo 請求數據的大小
 
 class CPing
 {
 public:
-	//ping host， nRetries-ping次数
+	//ping host， nRetries-ping次數
 	bool Ping(LPCSTR pstrHost, UINT nRetries = 4);
 
 	void Result(int* nElapseTime, float* fMissPack = NULL, u_char* cTTL = NULL);
@@ -18,7 +18,7 @@ public:
 
 private:
 	int  WaitForEchoReply(SOCKET s);
-	//ICMP回应的请求和回答函数
+	//ICMP迴應的請求和迴答函數
 	int     SendEchoRequest(SOCKET, LPSOCKADDR_IN);
 	DWORD   RecvEchoReply(SOCKET, LPSOCKADDR_IN, u_char *);
 	u_short in_cksum(u_short *addr, int len);
@@ -26,9 +26,9 @@ private:
 private:
 	struct REQ_RESULT
 	{
-		int         nElapseTime;    //请求响应时间。
-		u_char      cTTL;           //请求TTL(生存时间)
-		float       fMissPack;  //丢包率
+		int         nElapseTime;    //請求響應時間。
+		u_char      cTTL;           //請求TTL(生存時間)
+		float       fMissPack;  //丟包率
 	};
 
 	REQ_RESULT m_Result;

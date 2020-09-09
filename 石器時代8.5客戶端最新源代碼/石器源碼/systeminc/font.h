@@ -1,4 +1,4 @@
-﻿/************************/
+/************************/
 /*	font.h				*/
 /************************/
 #ifndef _FONT_H_
@@ -20,7 +20,7 @@ enum{
 	FONT_PRIO_BACK, 		/* ??? 	*/
 	FONT_PRIO_FRONT			/* ? 	*/
 
-#ifdef _TRADETALKWND				// (不可开) Syu ADD 交易新增对话框架
+#ifdef _TRADETALKWND				// (不可開) Syu ADD 交易新增對話框架
 	, FONT_PRIO_AFRONT
 #endif
 #ifdef _CHANNEL_MODIFY

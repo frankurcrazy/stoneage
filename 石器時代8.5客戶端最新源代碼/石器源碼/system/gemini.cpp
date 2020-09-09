@@ -1,4 +1,4 @@
-﻿//#include 	"main.h"
+//#include 	"main.h"
 //#include 	"action.h"
 #include "../systeminc/version.h"
 #include 	"../systeminc/system.h"

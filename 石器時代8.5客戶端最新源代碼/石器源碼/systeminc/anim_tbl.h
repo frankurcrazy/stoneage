@@ -1,94 +1,94 @@
-﻿#ifndef _ANIM_TBL_H_
+#ifndef _ANIM_TBL_H_
 #define _ANIM_TBL_H_
 
 #include "../other/anim_tbl_set.h"
 
-/*石器７．０专案新增图号 ＳＴＡＲＴ*/
+/*石器７．０專案新增圖號 ＳＴＡＲＴ*/
 
-#define CG_DROPWND				35322   //26195图有误	 丢弃宠物确认
+#define CG_DROPWND				35322   //26195圖有誤	 丟棄寵物確認
 
-#define CG_PKSERVER_BTN_UP		26193	// 选取星系人物钮Up
-#define CG_PKSERVER_BTN_DOWN	26194	// 选取星系人物钮Down
-#define CG_STATUS_DETAIL		26387	// 状态明细钮
-#define CG_AUCWND_DETAIL		26381	// 拍卖明细视窗
-#define CG_AUCWND_MESSAGE		26382	// 拍卖讯息视窗
-#define CG_AUCWND_COLUMN		26383	// 拍卖专栏
-#define CG_AUCWND_CHANGE		26384	// 拍卖交换视窗
-#define CG_AUCWND_DETAIL2		26385	// 拍卖明细视窗2
+#define CG_PKSERVER_BTN_UP		26193	// 選取星係人物鈕Up
+#define CG_PKSERVER_BTN_DOWN	26194	// 選取星係人物鈕Down
+#define CG_STATUS_DETAIL		26387	// 狀態明細鈕
+#define CG_AUCWND_DETAIL		26381	// 拍賣明細視窗
+#define CG_AUCWND_MESSAGE		26382	// 拍賣訊息視窗
+#define CG_AUCWND_COLUMN		26383	// 拍賣專欄
+#define CG_AUCWND_CHANGE		26384	// 拍賣交換視窗
+#define CG_AUCWND_DETAIL2		26385	// 拍賣明細視窗2
 
-#define CG_BATTLE_ATT_DOWN		26361	// 战斗攻击钮Down
-#define CG_BATTLE_ATT_UP		26362	// 战斗攻击钮Up
-#define CG_BATTLE_HELP_DOWN		26363	// 战斗求救钮Down
-#define CG_BATTLE_HELP_UP		26364	// 战斗求救钮Up
-#define CG_BATTLE_DEF_DOWN		26365	// 战斗防御钮Down
-#define CG_BATTLE_DEF_UP		26366	// 战斗防御钮Up
-#define CG_BATTLE_JUJUTSU_DOWN	26367	// 战斗咒术钮Down
-#define CG_BATTLE_JUJUTSU_UP	26368	// 战斗咒术钮Up
-#define CG_BATTLE_PANEL			26369	// 战斗底板
-#define CG_BATTLE_ESCAPE_DOWN	26370	// 战斗逃跑钮Down
-#define CG_BATTLE_ESCAPE_UP		26371	// 战斗逃跑钮Up
-#define CG_BATTLE_PET_DOWN		26372	// 战斗宠物钮Down
-#define CG_BATTLE_PET_UP		26373	// 战斗宠物钮Up
-#define CG_BATTLE_CAPTURE_DOWN	26374	// 战斗捕捉钮Down
-#define CG_BATTLE_CAPTURE_UP	26375	// 战斗捕捉钮Up
-#define CG_BATTLE_ITEM_DOWN		26376	// 战斗道具钮Down
-#define CG_BATTLE_ITEM_UP		26377	// 战斗道具钮Up
-#define CG_BATTLE_PROSKL_DOWN	26378	// 战斗技能钮Down
-#define CG_BATTLE_PROSKL_UP		26379	// 战斗技能钮Up
+#define CG_BATTLE_ATT_DOWN		26361	// 戰鬥攻擊鈕Down
+#define CG_BATTLE_ATT_UP		26362	// 戰鬥攻擊鈕Up
+#define CG_BATTLE_HELP_DOWN		26363	// 戰鬥求救鈕Down
+#define CG_BATTLE_HELP_UP		26364	// 戰鬥求救鈕Up
+#define CG_BATTLE_DEF_DOWN		26365	// 戰鬥防禦鈕Down
+#define CG_BATTLE_DEF_UP		26366	// 戰鬥防禦鈕Up
+#define CG_BATTLE_JUJUTSU_DOWN	26367	// 戰鬥咒術鈕Down
+#define CG_BATTLE_JUJUTSU_UP	26368	// 戰鬥咒術鈕Up
+#define CG_BATTLE_PANEL			26369	// 戰鬥底闆
+#define CG_BATTLE_ESCAPE_DOWN	26370	// 戰鬥逃跑鈕Down
+#define CG_BATTLE_ESCAPE_UP		26371	// 戰鬥逃跑鈕Up
+#define CG_BATTLE_PET_DOWN		26372	// 戰鬥寵物鈕Down
+#define CG_BATTLE_PET_UP		26373	// 戰鬥寵物鈕Up
+#define CG_BATTLE_CAPTURE_DOWN	26374	// 戰鬥捕捉鈕Down
+#define CG_BATTLE_CAPTURE_UP	26375	// 戰鬥捕捉鈕Up
+#define CG_BATTLE_ITEM_DOWN		26376	// 戰鬥道具鈕Down
+#define CG_BATTLE_ITEM_UP		26377	// 戰鬥道具鈕Up
+#define CG_BATTLE_PROSKL_DOWN	26378	// 戰鬥技能鈕Down
+#define CG_BATTLE_PROSKL_UP		26379	// 戰鬥技能鈕Up
 
-#define CG_FIELD_SKILL_TILE		26354	// 职业技能底板
-#define CG_FIELD_SKILL_ADVSK	26355	// 职业技能介面进阶技能钮
-#define CG_FIELD_SKILL_BATTLE	26357	// 职业技能介面战斗技能钮
-#define CG_FIELD_SKILL_ASSIT	26356	// 职业技能介面辅助技能钮
+#define CG_FIELD_SKILL_TILE		26354	// 職業技能底闆
+#define CG_FIELD_SKILL_ADVSK	26355	// 職業技能介麵進階技能鈕
+#define CG_FIELD_SKILL_BATTLE	26357	// 職業技能介麵戰鬥技能鈕
+#define CG_FIELD_SKILL_ASSIT	26356	// 職業技能介麵輔助技能鈕
 
-#define CG_FIELD_SKILL_MENU		26358	// 新左上按钮面板
-#define CG_FIELD_SKILL_BTN_OFF	26360	// 职业技能钮OFF
-#define CG_FIELD_SKILL_BTN_ON	26361	// 职业技能钮ON
+#define CG_FIELD_SKILL_MENU		26358	// 新左上按鈕麵闆
+#define CG_FIELD_SKILL_BTN_OFF	26360	// 職業技能鈕OFF
+#define CG_FIELD_SKILL_BTN_ON	26361	// 職業技能鈕ON
 
-#ifdef _FRIENDCHANNEL			//ROG ADD 好友频道
-#define CG_FIELD_CHATROOM_BTN_ON         26453   //聊天室左上按钮
-#define CG_FIELD_CHATROOM_BTN_OFF        26454   //聊天室左上按钮
-#define CG_FIELD_CLOSE_BTN_UP			 26444   //聊天室关闭按钮
-#define CG_FIELD_CLOSE_BTN_DOWN			 26445   //聊天室关闭按钮
-#define CG_FIELD_CHANGECHIEF_BTN_UP		 26435   //聊天室更换室长按钮
-#define CG_FIELD_CHANGECHIEF_BTN_DOWN	 26436   //聊天室更换室长按钮
-#define CG_FIELD_CHANGECHIEF_BTN_DISABLE 26437   //聊天室更换室长按钮
+#ifdef _FRIENDCHANNEL			//ROG ADD 好友頻道
+#define CG_FIELD_CHATROOM_BTN_ON         26453   //聊天室左上按鈕
+#define CG_FIELD_CHATROOM_BTN_OFF        26454   //聊天室左上按鈕
+#define CG_FIELD_CLOSE_BTN_UP			 26444   //聊天室關閉按鈕
+#define CG_FIELD_CLOSE_BTN_DOWN			 26445   //聊天室關閉按鈕
+#define CG_FIELD_CHANGECHIEF_BTN_UP		 26435   //聊天室更換室長按鈕
+#define CG_FIELD_CHANGECHIEF_BTN_DOWN	 26436   //聊天室更換室長按鈕
+#define CG_FIELD_CHANGECHIEF_BTN_DISABLE 26437   //聊天室更換室長按鈕
 #define CG_FIELD_OUTMEMBER_BTN_UP        26432   //聊天室踢人
 #define CG_FIELD_OUTMEMBER_BTN_DOWN      26433   //聊天室踢人
 #define CG_FIELD_OUTMEMBER_BTN_DISABLE   26434   //聊天室踢人
-#define CG_FIELD_LEAVE_BTN_UP			 26441   //聊天离开按钮
-#define CG_FIELD_LEAVE_BTN_DOWN			 26442   //聊天离开按钮
-#define CG_FIELD_DELETE_BTN_UP			 26438	 //删除聊天室
-#define CG_FIELD_DELETE_BTN_DOWN		 26439	 //删除聊天室
-#define CG_FIELD_DELETE_BTN_DISABLE		 26440	 //删除聊天室
-#define CG_FIELD_AGREE_BTN				 26091   //聊天同意按钮
-#define CG_FIELD_DISAGREE_BTN			 26092   //聊天否定按钮
-#define CG_FIELD_CHANNEL_MENU			 26452	 //新左上按钮面板
-#define CG_FIELD_CHANNEL_SCROLL			 26447   //卷轴
-#define CG_FIELD_SCROLL_HUP				 26448   //卷轴
-#define CG_FIELD_SCROLL_HDOWN			 26449   //卷轴
-#define CG_FIELD_SCROLL_LUP			     26450   //卷轴
-#define CG_FIELD_SCROLL_LDOWN			 26451   //卷轴
+#define CG_FIELD_LEAVE_BTN_UP			 26441   //聊天離開按鈕
+#define CG_FIELD_LEAVE_BTN_DOWN			 26442   //聊天離開按鈕
+#define CG_FIELD_DELETE_BTN_UP			 26438	 //刪除聊天室
+#define CG_FIELD_DELETE_BTN_DOWN		 26439	 //刪除聊天室
+#define CG_FIELD_DELETE_BTN_DISABLE		 26440	 //刪除聊天室
+#define CG_FIELD_AGREE_BTN				 26091   //聊天同意按鈕
+#define CG_FIELD_DISAGREE_BTN			 26092   //聊天否定按鈕
+#define CG_FIELD_CHANNEL_MENU			 26452	 //新左上按鈕麵闆
+#define CG_FIELD_CHANNEL_SCROLL			 26447   //捲軸
+#define CG_FIELD_SCROLL_HUP				 26448   //捲軸
+#define CG_FIELD_SCROLL_HDOWN			 26449   //捲軸
+#define CG_FIELD_SCROLL_LUP			     26450   //捲軸
+#define CG_FIELD_SCROLL_LDOWN			 26451   //捲軸
 #endif
 
 #ifdef _STREET_VENDOR
-#define CG_FIELD_SV_BTN_OFF							35227		// 左上摆摊功能按键关(绿)
-#define CG_FIELD_SV_BTN_ON							35226		// 左上摆摊功能按键开(红)
-#define CG_FIELD_SV_BUY_PANEL						35240		// 摆摊介面(买方)
+#define CG_FIELD_SV_BTN_OFF							35227		// 左上擺攤功能按鍵關(綠)
+#define CG_FIELD_SV_BTN_ON							35226		// 左上擺攤功能按鍵開(紅)
+#define CG_FIELD_SV_BUY_PANEL						35240		// 擺攤介麵(買方)
 #endif
 
 #ifdef _TEACHER_SYSTEM
-#define CG_FIELD_TS_BTN_OFF							28555		// 功能列导师功能按键关(绿)
-#define CG_FIELD_TS_BTN_ON							28554		// 功能列导师功能按键关(红)
+#define CG_FIELD_TS_BTN_OFF							28555		// 功能列導師功能按鍵關(綠)
+#define CG_FIELD_TS_BTN_ON							28554		// 功能列導師功能按鍵關(紅)
 #define CG_FIELD_TS_LEFT_MENU						28553
 #endif
 
-#ifdef	_TIMEBAR_FUNCTION                        //时间BAR函式
-#define CG_TIMEBAR_PANEL                 26350   //时间bar的框
-#define CG_TIMEBAR_UNIT					 26428   //时间条的单位
+#ifdef	_TIMEBAR_FUNCTION                        //時間BAR函式
+#define CG_TIMEBAR_PANEL                 26350   //時間bar的框
+#define CG_TIMEBAR_UNIT					 26428   //時間條的單位
 #endif
 
-#ifdef _NEWPANEL //Syu ADD 7.0 新人物状态介面
+#ifdef _NEWPANEL //Syu ADD 7.0 新人物狀態介麵
 #define CG_NEW_STATUS_SKILL_BTN_UP		26312
 #ifdef _MAG_MENU
 #define CG_SKILL_TABLE					26473
@@ -103,28 +103,28 @@
 #define CG_HUNTER_ICON_SMALL			29286
 #endif
 
-//#define CG_NEWITEM_WND			26349	// 人物装备栏位视窗(左手、脚)
-#ifdef _TRADESYSTEM2	// (不可开) Syu ADD 新交易系统
+//#define CG_NEWITEM_WND			26349	// 人物裝備欄位視窗(左手、腳)
+#ifdef _TRADESYSTEM2	// (不可開) Syu ADD 新交易係統
 #define CG_TRADE_SEAL			26330	// 交易印章
-#define CG_TRADE_SCROLL_UP		26331	// 交易卷轴上箭头
-#define CG_TRADE_SCROLL_DOWN	26332	// 交易卷轴下箭头
-#define CG_TRADE_SCROLL_BTN		26333	// 交易卷轴拖曳钮
-#define CG_TRADE_DEF_LINE		26334	// 检视视窗防御线
-#define CG_TRADE_LV_LINE		26335	// 检视视窗等级线
-#define CG_TRADE_LINE			26336	// 检视视窗名字线
-#define CG_TRADE_DEX_LINE		26337	// 检视视窗速度线
-#define CG_TRADE_ATK_LINE		26338	// 检视视窗攻击线
-#define CG_TRADE_SK1_LINE		26339	// 检视视窗技能１
-#define CG_TRADE_SK2_LINE		26340	// 检视视窗技能２
-#define CG_TRADE_SK3_LINE		26341	// 检视视窗技能３
-#define CG_TRADE_SK4_LINE		26342	// 检视视窗技能４	
-#define CG_TRADE_SK5_LINE		26343	// 检视视窗技能５
-#define CG_TRADE_SK6_LINE		26344	// 检视视窗技能６
-#define CG_TRADE_SK7_LINE		26345	// 检视视窗技能７
-#define CG_TRADE_HP_LINE		26346	// 检视视窗血量线
-#define CG_TRADE_VIEW_BTN		26347	// 交易视窗检视钮
-#define CG_TRADE_BACK_BTN		26348	// 检视视窗返回钮
-#define CG_TRADE_TALK_WND		26350	// 交易对话视窗
+#define CG_TRADE_SCROLL_UP		26331	// 交易捲軸上箭頭
+#define CG_TRADE_SCROLL_DOWN	26332	// 交易捲軸下箭頭
+#define CG_TRADE_SCROLL_BTN		26333	// 交易捲軸拖曳鈕
+#define CG_TRADE_DEF_LINE		26334	// 檢視視窗防禦綫
+#define CG_TRADE_LV_LINE		26335	// 檢視視窗等級綫
+#define CG_TRADE_LINE			26336	// 檢視視窗名字綫
+#define CG_TRADE_DEX_LINE		26337	// 檢視視窗速度綫
+#define CG_TRADE_ATK_LINE		26338	// 檢視視窗攻擊綫
+#define CG_TRADE_SK1_LINE		26339	// 檢視視窗技能１
+#define CG_TRADE_SK2_LINE		26340	// 檢視視窗技能２
+#define CG_TRADE_SK3_LINE		26341	// 檢視視窗技能３
+#define CG_TRADE_SK4_LINE		26342	// 檢視視窗技能４	
+#define CG_TRADE_SK5_LINE		26343	// 檢視視窗技能５
+#define CG_TRADE_SK6_LINE		26344	// 檢視視窗技能６
+#define CG_TRADE_SK7_LINE		26345	// 檢視視窗技能７
+#define CG_TRADE_HP_LINE		26346	// 檢視視窗血量綫
+#define CG_TRADE_VIEW_BTN		26347	// 交易視窗檢視鈕
+#define CG_TRADE_BACK_BTN		26348	// 檢視視窗返迴鈕
+#define CG_TRADE_TALK_WND		26350	// 交易對話視窗
 #endif
 
 /*
@@ -136,69 +136,69 @@
 #define CG_BATTLE_CAPTURE_UP	26516
 */
 /*
-#define SPR_bloodbug			101623	//噬血蛊 ( Wiz ) 
-#define SPR_bthunder			101624	//电流术 ( Wiz ) 
-#define SPR_bugnet				101625	//驯服宠物 ( Hunter )
-#define SPR_lightning			101626  //暴击击中 ( War )
-#define SPR_redsmoke			101627	//红烟雾 ( 不详 ) 
-#define SPR_sthunder			101628	//召雷术 ( Wiz ) 
-#define SPR_track				101629	//追寻敌踪 ( Hunter ) 
+#define SPR_bloodbug			101623	//噬血蠱 ( Wiz ) 
+#define SPR_bthunder			101624	//電流術 ( Wiz ) 
+#define SPR_bugnet				101625	//馴服寵物 ( Hunter )
+#define SPR_lightning			101626  //暴擊擊中 ( War )
+#define SPR_redsmoke			101627	//紅煙霧 ( 不詳 ) 
+#define SPR_sthunder			101628	//召雷術 ( Wiz ) 
+#define SPR_track				101629	//追尋敵蹤 ( Hunter ) 
 #define SPR_trap				101630  //陷阱 ( Hunter ) 
-#define SPR_shieldattack		101631	//盾击 ( War ) 攻击左方
-#define SPR_shieldattack2		101632	//盾击 ( War ) 攻击右方
-#define SPR_bloodsucker			101633	//一针见血 ( Wiz ) 
-#define SPR_bstorm				101634  //暴风雨 大 ( Wiz ) 攻击右边
-#define SPR_bstorm2				101635	//暴风雨 大 ( Wiz ) 攻击左边
-#define SPR_concentrate			101636	//专注战斗 ( War ) 
-#define SPR_deadattach			101637	//濒死攻击 ( War )
-#define SPR_dodge				101638	//回避 ( War ) 
-#define SPR_doom				101639  //世界末日 ( Wiz ) 攻击右方
-#define SPR_doom2				101640  //世界末日 ( Wiz ) 攻击左方
-#define SPR_dragonbreath		101641	//火龙枪 ( Wiz ) 攻击左方
-#define SPR_dragonbreath2		101642	//火龙枪 ( Wiz ) 攻击右方
-#define SPR_encloseghost		101643	//附身术 ( Wiz ) 攻击右方
-#define SPR_encloseghost2		101644	//附身术 ( Wiz ) 攻击左方
+#define SPR_shieldattack		101631	//盾擊 ( War ) 攻擊左方
+#define SPR_shieldattack2		101632	//盾擊 ( War ) 攻擊右方
+#define SPR_bloodsucker			101633	//一針見血 ( Wiz ) 
+#define SPR_bstorm				101634  //暴風雨 大 ( Wiz ) 攻擊右邊
+#define SPR_bstorm2				101635	//暴風雨 大 ( Wiz ) 攻擊左邊
+#define SPR_concentrate			101636	//專注戰鬥 ( War ) 
+#define SPR_deadattach			101637	//瀕死攻擊 ( War )
+#define SPR_dodge				101638	//迴避 ( War ) 
+#define SPR_doom				101639  //世界末日 ( Wiz ) 攻擊右方
+#define SPR_doom2				101640  //世界末日 ( Wiz ) 攻擊左方
+#define SPR_dragonbreath		101641	//火龍槍 ( Wiz ) 攻擊左方
+#define SPR_dragonbreath2		101642	//火龍槍 ( Wiz ) 攻擊右方
+#define SPR_encloseghost		101643	//附身術 ( Wiz ) 攻擊右方
+#define SPR_encloseghost2		101644	//附身術 ( Wiz ) 攻擊左方
 #define SPR_energycollect		101645	//能量聚集 ( War ) 
-#define SPR_fireresist1			101646	//火焰抗性 ( Hunter ) 放出
+#define SPR_fireresist1			101646	//火焰抗性 ( Hunter ) 放齣
 #define SPR_fireresist2			101647	//火焰抗性 ( Hunter ) 收
-#define SPR_icearrow			101648	//冰箭术 ( Wiz ) 攻击左方
-#define SPR_icearrow2			101649	//冰箭术 ( Wiz ) 攻击右方
-#define SPR_iceexplode			101650  //冰爆术 ( Wiz ) 攻击右方
-#define SPR_iceexplode2			101651  //冰爆术 ( Wiz ) 攻击左方
-#define SPR_icemirror			101652	//冰镜术 ( Wiz ) 
-#define SPR_iceresist1			101653	//冰冻抗性 ( Hunter ) 放出
-#define SPR_iceresist2			101654	//冰冻抗性 ( Hunter ) 收
-#define SPR_lgyration			101655	//回旋攻击 ( War ) 放
-#define SPR_lgyration1			101656	//回旋攻击 ( War ) 后排
-#define SPR_lgyration2			101657	//回旋攻击 ( War ) 前排
-#define SPR_lightresist1		101658	//闪电抗性 ( Hunter ) 放出
-#define SPR_lightresist2		101659	//闪电抗性 ( Hunter ) 中
-#define SPR_lpentrate1			101660	//贯穿攻击 ( War ) 攻击右方的放
-#define SPR_lpentrate2			101661	//贯穿攻击 ( War )
-#define SPR_lpentrate3			101662	//贯穿攻击 ( War )
-#define SPR_lpentrate4			101663	//贯穿攻击 ( War )
-#define SPR_lpentrate5			101664	//贯穿攻击 ( War )
-#define SPR_lpentrate6			101665	//贯穿攻击 ( War )
-#define SPR_poisonresist1		101666	//剧毒抗性 ( Hunter ) 放出
-#define SPR_poisonresist2		101667	//剧毒抗性 ( Hunter ) 收
-#define SPR_rgyration			101668	//回旋攻击 ( War ) 
-#define SPR_rgyration1			101669  //回旋攻击 ( War ) 
-#define SPR_rgyration2			101670  //回旋攻击 ( War ) 
-#define SPR_rpentrate1			101671	//贯穿攻击 ( War ) 攻击左方的放
-#define SPR_rpentrate2			101672	//贯穿攻击 ( War ) 
-#define SPR_rpentrate3			101673	//贯穿攻击 ( War ) 
-#define SPR_rpentrate4			101674	//贯穿攻击 ( War ) 
-#define SPR_rpentrate5			101675	//贯穿攻击 ( War ) 
-#define SPR_rpentrate6			101676	//贯穿攻击 ( War ) 
-#define SPR_storm				101677	//暴风雪 ( Wiz ) 攻击右方
-#define SPR_storm2				101678	//暴风雪 ( Wiz ) 攻击左方
-#define SPR_violent				101679	//激化攻击 ( War ) 
-#define SPR_waterdrop			101680	//水滴状态
-#define SPR_weakness			101681	//弱点攻击 ( Hunter ) 
-#define SPR_root				101682	//树根缠绕	( Hunter ) 
-#define SPR_net					101683	//天罗地网	( Hunter ) 
-#define SPR_boomattack			101684  //暴击		( War ) 
-#define SPR_superthunder		101685	//召雷术 Lv10 ( Wiz )
+#define SPR_icearrow			101648	//冰箭術 ( Wiz ) 攻擊左方
+#define SPR_icearrow2			101649	//冰箭術 ( Wiz ) 攻擊右方
+#define SPR_iceexplode			101650  //冰爆術 ( Wiz ) 攻擊右方
+#define SPR_iceexplode2			101651  //冰爆術 ( Wiz ) 攻擊左方
+#define SPR_icemirror			101652	//冰鏡術 ( Wiz ) 
+#define SPR_iceresist1			101653	//冰凍抗性 ( Hunter ) 放齣
+#define SPR_iceresist2			101654	//冰凍抗性 ( Hunter ) 收
+#define SPR_lgyration			101655	//迴鏇攻擊 ( War ) 放
+#define SPR_lgyration1			101656	//迴鏇攻擊 ( War ) 後排
+#define SPR_lgyration2			101657	//迴鏇攻擊 ( War ) 前排
+#define SPR_lightresist1		101658	//閃電抗性 ( Hunter ) 放齣
+#define SPR_lightresist2		101659	//閃電抗性 ( Hunter ) 中
+#define SPR_lpentrate1			101660	//貫穿攻擊 ( War ) 攻擊右方的放
+#define SPR_lpentrate2			101661	//貫穿攻擊 ( War )
+#define SPR_lpentrate3			101662	//貫穿攻擊 ( War )
+#define SPR_lpentrate4			101663	//貫穿攻擊 ( War )
+#define SPR_lpentrate5			101664	//貫穿攻擊 ( War )
+#define SPR_lpentrate6			101665	//貫穿攻擊 ( War )
+#define SPR_poisonresist1		101666	//劇毒抗性 ( Hunter ) 放齣
+#define SPR_poisonresist2		101667	//劇毒抗性 ( Hunter ) 收
+#define SPR_rgyration			101668	//迴鏇攻擊 ( War ) 
+#define SPR_rgyration1			101669  //迴鏇攻擊 ( War ) 
+#define SPR_rgyration2			101670  //迴鏇攻擊 ( War ) 
+#define SPR_rpentrate1			101671	//貫穿攻擊 ( War ) 攻擊左方的放
+#define SPR_rpentrate2			101672	//貫穿攻擊 ( War ) 
+#define SPR_rpentrate3			101673	//貫穿攻擊 ( War ) 
+#define SPR_rpentrate4			101674	//貫穿攻擊 ( War ) 
+#define SPR_rpentrate5			101675	//貫穿攻擊 ( War ) 
+#define SPR_rpentrate6			101676	//貫穿攻擊 ( War ) 
+#define SPR_storm				101677	//暴風雪 ( Wiz ) 攻擊右方
+#define SPR_storm2				101678	//暴風雪 ( Wiz ) 攻擊左方
+#define SPR_violent				101679	//激化攻擊 ( War ) 
+#define SPR_waterdrop			101680	//水滴狀態
+#define SPR_weakness			101681	//弱點攻擊 ( Hunter ) 
+#define SPR_root				101682	//樹根纏繞	( Hunter ) 
+#define SPR_net					101683	//天羅地網	( Hunter ) 
+#define SPR_boomattack			101684  //暴擊		( War ) 
+#define SPR_superthunder		101685	//召雷術 Lv10 ( Wiz )
 #define SPR_volspring1			101686	//火山泉 大	 ( Wiz ) 
 #define SPR_volspring2			101687	//火山泉 大	 ( Wiz ) 
 #define SPR_volspring3			101688	//火山泉 大	 ( Wiz ) 
@@ -206,42 +206,42 @@
 #define SPR_bloodthirsty2		101690	//嗜血成性 Lv7	( Wiz ) 
 #define SPR_bloodthirsty3		101691	//嗜血成性 Lv4	( Wiz ) 
 #define SPR_bloodthirsty4		101692	//嗜血成性 Lv1	( Wiz ) 
-#define SPR_lfireplanet			101693	//火星球	( Wiz ) 攻击左方
-#define SPR_rfireplanet			101694	//火星球	( Wiz ) 攻击右方
-#define SPR_tree				101695	//移形换位	( Wiz ) 
+#define SPR_lfireplanet			101693	//火星球	( Wiz ) 攻擊左方
+#define SPR_rfireplanet			101694	//火星球	( Wiz ) 攻擊右方
+#define SPR_tree				101695	//移形換位	( Wiz ) 
 #define SPR_trap1				101696  //陷阱
-#define SPR_wizuse				101697	//法师使用
-#define SPR_hunteruse			101698	//猎人使用
-#define SPR_fireattack			101699	//火附体攻击
-#define SPR_iceattack			101700	//冰附体攻击
-#define SPR_lightattack			101701	//雷附体攻击
+#define SPR_wizuse				101697	//法師使用
+#define SPR_hunteruse			101698	//獵人使用
+#define SPR_fireattack			101699	//火附體攻擊
+#define SPR_iceattack			101700	//冰附體攻擊
+#define SPR_lightattack			101701	//雷附體攻擊
 101705	水火海豚
-101706	风海豚
-101707	水火海参
-101708	风地海参
-101709	风地飞鱼
-101710	火风飞鱼
-101711	水火白鲸
-101712	地水白鲸
-101713	风地大熊猫
-101714	火风大熊猫
+101706	風海豚
+101707	水火海參
+101708	風地海參
+101709	風地飛魚
+101710	火風飛魚
+101711	水火白鯨
+101712	地水白鯨
+101713	風地大熊貓
+101714	火風大熊貓
 101715	地水海星   ( 未更新 )
-101716	火风海星   ( 未更新 )
-101717  风地龙战士 
-101718  水火龙战士
-101719  火风小熊猫
-101720  水火小熊猫
-101721  火风三头蛇 
-101722  风地三头蛇 
-101723  火风伞蜥蜴 ( 未更新 )
-101724  地水伞蜥蜴 ( 未更新 )
-101725	狮子地水  
-101726  狮子水火  
-101727	狮子火风  
-101728	狮子风地  
+101716	火風海星   ( 未更新 )
+101717  風地龍戰士 
+101718  水火龍戰士
+101719  火風小熊貓
+101720  水火小熊貓
+101721  火風三頭蛇 
+101722  風地三頭蛇 
+101723  火風傘蜥蜴 ( 未更新 )
+101724  地水傘蜥蜴 ( 未更新 )
+101725	獅子地水  
+101726  獅子水火  
+101727	獅子火風  
+101728	獅子風地  
 101729	蜥蜴	 
 */
-/*石器７．０专案新增图号 ＥＮＤ */
+/*石器７．０專案新增圖號 ＥＮＤ */
 
 
 
@@ -827,10 +827,10 @@
 #define SPR_poison			100555		//	?????
 #define SPR_zokusei			100556		//	??????
 #ifdef _MAGIC_WEAKEN
-#define	SPR_weaken          101420	//虚弱	
+#define	SPR_weaken          101420	//虛弱	
 #endif
 #ifdef _MAGIC_DEEPPOISION
-#define	SPR_deeppoison      101417	//剧毒	
+#define	SPR_deeppoison      101417	//劇毒	
 #endif
 #ifdef _MAGIC_BARRIER
 #define	SPR_barrier         101421	//魔障
@@ -839,22 +839,22 @@
 #define	SPR_nocast          101419	//沉默
 #endif
 
-//属性强化
-#define	SPR_all_att			101406	//全属性
+//屬性強化
+#define	SPR_all_att			101406	//全屬性
 #define	SPR_land_att		101403	//地
 #define	SPR_water_att		101404	//水
 #define	SPR_fire_att		101402	//火
-#define	SPR_wind_att		101405	//风
-//属性转换
-//#define	SPR_all_att			101406	//全属性
+#define	SPR_wind_att		101405	//風
+//屬性轉換
+//#define	SPR_all_att			101406	//全屬性
 #define	SPR_ch_earth		101408	//地
 #define	SPR_ch_water		101409	//水
 #define	SPR_ch_fire		101407	//火
-#define	SPR_ch_wind		101410	//风
+#define	SPR_ch_wind		101410	//風
 
-#define	SPR_tooth			101415	//啮齿
-#define	SPR_mic_def			101411	//魔法防御
-#define	SPR_ironwall		101416	//铁壁
+#define	SPR_tooth			101415	//嚙齒
+#define	SPR_mic_def			101411	//魔法防禦
+#define	SPR_ironwall		101416	//鐵壁
 #define	SPR_bomb            101418  //自爆
 
 #ifdef _MIND_ICON
@@ -1301,11 +1301,11 @@
 #define SPR_ride118			101118
 #define SPR_ride119			101119
 
-#define SPR_pet340			101152		//蓝年兽
-#define SPR_pet341			101153		//红年兽
-#define SPR_pet342			101154		//绿年兽
-#define SPR_pet343			101155		//黄年兽
-#define SPR_180m			101156		//财神
+#define SPR_pet340			101152		//藍年獸
+#define SPR_pet341			101153		//紅年獸
+#define SPR_pet342			101154		//綠年獸
+#define SPR_pet343			101155		//黃年獸
+#define SPR_180m			101156		//財神
 
 #define SPR_170em			101157
 #define SPR_170ax			101158
@@ -1337,19 +1337,19 @@
 
 #define SPR_DRAGON	    	101180
 
-#define SPR_pet1115       102079 // 蓝雪怪
-#define SPR_pet1116       102080 // 红雪怪
+#define SPR_pet1115       102079 // 藍雪怪
+#define SPR_pet1116       102080 // 紅雪怪
 
-//#define SPR_pet1170       102079 // 红刺猬
-//#define SPR_pet1171       102080 // 蓝刺猬
+//#define SPR_pet1170       102079 // 紅刺蝟
+//#define SPR_pet1171       102080 // 藍刺蝟
 
-#define SPR_pet1180       102081 // 大嘴鸟
+#define SPR_pet1180       102081 // 大嘴鳥
 #define SPR_pet1181       102082
 #define SPR_pet1182       102083
 #define SPR_pet1183       102084
 
 
-#define SPR_ride262		103262	// 金暴骑宠
+#define SPR_ride262		103262	// 金暴騎寵
 #define SPR_ride263		103263
 #define SPR_ride264		103264
 #define SPR_ride265		103265
@@ -1362,7 +1362,7 @@
 #define SPR_ride272		103272
 #define SPR_ride273		103273
 
-#define SPR_ride274		103274	// 蓝豹骑宠
+#define SPR_ride274		103274	// 藍豹騎寵
 #define SPR_ride275		103275
 #define SPR_ride276		103276
 #define SPR_ride277		103277
@@ -1378,7 +1378,7 @@
 
 
 
-#ifdef _WATERANIMATION //Syu ADD 泪之海动画层
+#ifdef _WATERANIMATION //Syu ADD 淚之海動畫層
 #define SPR_learthbubble1		101502
 #define SPR_learthbubble2		101503
 #define SPR_learthbubble3		101504
@@ -1614,7 +1614,7 @@
 #define CG_ARROW_15					25645
 
 // ?????????
-#define CG_CNT_DOWN_0				25900   //战斗时间
+#define CG_CNT_DOWN_0				25900   //戰鬥時間
 #define CG_CNT_DOWN_1				25901
 #define CG_CNT_DOWN_2				25902
 #define CG_CNT_DOWN_3				25903
@@ -1668,8 +1668,8 @@
 #define CG_NAME_CHANGE_BTN_DOWN	26059	// ?????
 
 #ifdef _PETCOM_
-#define CG_PETCOM_CHANGE_BTN	55218 //宠物计算成成按钮
-#define CG_PETCOM_WND           55220 //宠物计算成长背景
+#define CG_PETCOM_CHANGE_BTN	55218 //寵物計算成成按鈕
+#define CG_PETCOM_WND           55220 //寵物計算成長背景
 #endif
 
 #define CG_PET_WND_REST_BTN		26052	// ????????
@@ -1701,7 +1701,7 @@
 #define CG_STATUS_WND_SHOUGOU_BTN_DOWN	26079	// ?????
 #define CG_STATUS_WND_GROUP_BTN			26080	// ?????????
 
-#ifdef _DELBORNPLACE //Syu ADD 6.0 统一出生于新手村
+#ifdef _DELBORNPLACE //Syu ADD 6.0 統一齣生於新手村
 #define CG_NEWBORNPET_WND				26326
 #endif
 
@@ -1727,17 +1727,17 @@
 #define CG_ALBUM_WND_SNAP_BTN_UP		26170	// ??
 #define CG_ALBUM_WND_SNAP_BTN_DOWN		26171	// ???
 
-//宠物皮肤
+//寵物皮膚
 #ifdef _PET_SKINS
 
-#define CG_PET_SKINS_WIN				55270	//宠物皮肤窗体
-#define CG_PET_SKINS_SET				55271   //设为使用
+#define CG_PET_SKINS_WIN				55270	//寵物皮膚窗體
+#define CG_PET_SKINS_SET				55271   //設為使用
 #define CG_PET_SKINS_PREV_BTN			55272   //<
 #define CG_PET_SKINS_PREV_PRESSED_BTN	55273	//<按下
 #define CG_PET_SKINS_NEXT_BTN			55274	//>
 #define CG_PET_SKINS_NEXT_PRESSED_BTN	55275	//>按下
-#define CG_PET_SKINS_SHOW_BTN			55276	//宠物皮肤按钮
-#define CG_PET_SKINS_SHOW_PRESSED_BTN	55277	//宠物皮肤按下
+#define CG_PET_SKINS_SHOW_BTN			55276	//寵物皮膚按鈕
+#define CG_PET_SKINS_SHOW_PRESSED_BTN	55277	//寵物皮膚按下
 
 #endif
 
@@ -1749,7 +1749,7 @@
 #define CG_FIELD_MENU_LEFT				26100
 #else
 // ??????????
-#define CG_FIELD_MENU_LEFT_OLD			26100	// mail call 左上角底板
+#define CG_FIELD_MENU_LEFT_OLD			26100	// mail call 左上角底闆
 //#ifdef __FAMILY_UI_
 #ifdef _SPECIAL_LOGO
 #define CG_FIELD_MENU_LEFT_NEW			28553
@@ -1875,7 +1875,7 @@
 #define CG_ICON_GUARD_BREAK 	26514	// ?Guard Break!?
 #define CG_ICON_CRUSH		 	26515	// ?Crush!?
 #define CG_ICON_CAPTURE_UP	 	26516	// ?Capture Up!?
-#ifdef _SKILL_ROAR  //宠技:大吼(克年兽)
+#ifdef _SKILL_ROAR  //寵技:大吼(剋年獸)
 #define CG_ICON_ROAR		 	25869	// ?Hwaoo!?
 #endif
 
@@ -1891,7 +1891,7 @@
 #ifdef _v4_0
 #define CG_TITLE			29025
 #endif
-#ifdef _NEWLOGO				   // Syu ADD 6.0登入画面新logo 要关_v4_0
+#ifdef _NEWLOGO				   // Syu ADD 6.0登入畫麵新logo 要關_v4_0
 #define CG_TITLE			29025
 #endif
 #ifdef _SPECIAL_LOGO
@@ -1925,7 +1925,7 @@
 #define CG_TITLE_ID_PASS_QUIT	29028
 #endif
 
-#ifdef _NEWLOGO				   // Syu ADD 6.0登入画面新logo 要关_v4_0
+#ifdef _NEWLOGO				   // Syu ADD 6.0登入畫麵新logo 要關_v4_0
 
 #ifdef _NEWPANEL_71
 	#ifdef _BACK_LOGO
@@ -2271,18 +2271,18 @@ typedef struct	{
 
 static tagRideNoList RideNoList[] = {
 #ifdef _8_RIDEPETS
-	//{ 机暴, 长毛象, 飞龙, 围巾蜥蜴, 人龙, 穿山甲, 兽蛙, 猩猩, 蓝暴, 红暴, 飞雷龙, 工鱼, 蓝豹, 金暴 }
-	{ 101305, 101306, 101307, 101308, 101309, 101310, 101311, 101312, 101008, 101009, 101989, 101978, SPR_ride278, SPR_ride266}, // 玉米头
-	{ 101313, 101314, 101315, 101316, 101317, 101318, 101319, 101320, 101018, 101019, 101988, 101986, SPR_ride274, SPR_ride262}, // 刺猬头
-	{ 101321, 101322, 101323, 101324, 101325, 101326, 101327, 101328, 101028, 101029, 101965, 101975, SPR_ride275, SPR_ride263}, // 小马尾
+	//{ 機暴, 長毛象, 飛龍, 圍巾蜥蜴, 人龍, 穿山甲, 獸蛙, 猩猩, 藍暴, 紅暴, 飛雷龍, 工魚, 藍豹, 金暴 }
+	{ 101305, 101306, 101307, 101308, 101309, 101310, 101311, 101312, 101008, 101009, 101989, 101978, SPR_ride278, SPR_ride266}, // 玉米頭
+	{ 101313, 101314, 101315, 101316, 101317, 101318, 101319, 101320, 101018, 101019, 101988, 101986, SPR_ride274, SPR_ride262}, // 刺蝟頭
+	{ 101321, 101322, 101323, 101324, 101325, 101326, 101327, 101328, 101028, 101029, 101965, 101975, SPR_ride275, SPR_ride263}, // 小馬尾
 	{ 101329, 101330, 101331, 101332, 101333, 101334, 101335, 101336, 101038, 101039, 101966, 101976, SPR_ride276, SPR_ride264}, // 酷哥
-	{ 101337, 101338, 101339, 101340, 101341, 101342, 101343, 101344, 101048, 101049, 101973, 101984, SPR_ride284, SPR_ride272}, // 兽皮兄贵
-	{ 101345, 101346, 101347, 101348, 101349, 101350, 101351, 101352, 101058, 101059, 101974, 101985, SPR_ride285, SPR_ride273}, // 酋长
+	{ 101337, 101338, 101339, 101340, 101341, 101342, 101343, 101344, 101048, 101049, 101973, 101984, SPR_ride284, SPR_ride272}, // 獸皮兄貴
+	{ 101345, 101346, 101347, 101348, 101349, 101350, 101351, 101352, 101058, 101059, 101974, 101985, SPR_ride285, SPR_ride273}, // 酋長
 
 	{ 101353, 101354, 101355, 101356, 101357, 101358, 101359, 101360, 101068, 101069, 101967, 101977, SPR_ride277, SPR_ride265}, // 小女孩
-	{ 101361, 101362, 101363, 101364, 101365, 101366, 101367, 101368, 101078, 101079, 101968, 101979, SPR_ride279, SPR_ride267}, // 玛蕾菲雅
+	{ 101361, 101362, 101363, 101364, 101365, 101366, 101367, 101368, 101078, 101079, 101968, 101979, SPR_ride279, SPR_ride267}, // 瑪蕾菲雅
 	{ 101369, 101370, 101371, 101372, 101373, 101374, 101375, 101376, 101088, 101089, 101970, 101981, SPR_ride281, SPR_ride269}, // 小帽子
-	{ 101377, 101378, 101379, 101380, 101381, 101382, 101383, 101384, 101098, 101099, 101969, 101980, SPR_ride280, SPR_ride268}, // 发箍
+	{ 101377, 101378, 101379, 101380, 101381, 101382, 101383, 101384, 101098, 101099, 101969, 101980, SPR_ride280, SPR_ride268}, // 發箍
 	{ 101385, 101386, 101387, 101388, 101389, 101390, 101391, 101392, 101108, 101109, 101972, 101983, SPR_ride283, SPR_ride271}, // 不良女 
 	{ 101393, 101394, 101395, 101396, 101397, 101398, 101399, 101400, 101118, 101119, 101971, 101982, SPR_ride282, SPR_ride270}, // 熟女
 #else
@@ -2308,16 +2308,16 @@ typedef struct	{
 
 static tagRidePetList RPlistMode[] = {
 	{ 100000, 0 }, { 100005, 0 }, { 100010, 0 }, { 100015, 0 },	//小矮子
-	{ 100020, 1 }, { 100025, 1 }, { 100030, 1 }, { 100035, 1 },	//赛亚人
-	{ 100040, 2 }, { 100045, 2 }, { 100050, 2 }, { 100055, 2 },	//辫子男孩
+	{ 100020, 1 }, { 100025, 1 }, { 100030, 1 }, { 100035, 1 },	//賽亞人
+	{ 100040, 2 }, { 100045, 2 }, { 100050, 2 }, { 100055, 2 },	//辮子男孩
 	{ 100060, 3 }, { 100065, 3 }, { 100070, 3 }, { 100075, 3 },	//酷哥
 	{ 100080, 4 }, { 100085, 4 }, { 100090, 4 }, { 100095, 4 },	//熊皮男
-	{ 100100, 5 }, { 100105, 5 }, { 100110, 5 }, { 100115, 5 },	//大个
+	{ 100100, 5 }, { 100105, 5 }, { 100110, 5 }, { 100115, 5 },	//大個
 
 	{ 100120, 6 }, { 100125, 6 }, { 100130, 6 }, { 100135, 6 },	//小矮妹
 	{ 100140, 7 }, { 100145, 7 }, { 100150, 7 }, { 100155, 7 },	//熊皮妹
 	{ 100160, 8 }, { 100165, 8 }, { 100170, 8 }, { 100175, 8 },	//帽子妹
-	{ 100180, 9 }, { 100185, 9 }, { 100190, 9 }, { 100195, 9 },	//短法发夹妹
+	{ 100180, 9 }, { 100185, 9 }, { 100190, 9 }, { 100195, 9 },	//短法發夾妹
 	{ 100200, 10 }, { 100205, 10 }, { 100210, 10 }, { 100215, 10 },	//手套女
 	{ 100220, 11 }, { 100225, 11 }, { 100230, 11 }, { 100235, 11 },	//辣妹
 };
@@ -2327,153 +2327,153 @@ static tagRidePetList RPlistMode[] = {
 #ifdef _MO_IMAGE_EXTENSION
 #define CG_CHR_MAKE_NEWFACE		54500
 #define SPRNEW_001em			102003		//火	
-#define SPRNEW_001ax			102004		//斧头 			?
+#define SPRNEW_001ax			102004		//斧頭 			?
 #define SPRNEW_001cl			102005		//木棍			??
 #define SPRNEW_001sp			102006		//矛			?
 #define SPRNEW_001bw			102007		//弓			?
 
 #define SPRNEW_002em			102008		//水	
-#define SPRNEW_002ax			102009		//斧头 			?
+#define SPRNEW_002ax			102009		//斧頭 			?
 #define SPRNEW_002cl			102010		//木棍			??
 #define SPRNEW_002sp			102011		//矛			?
 #define SPRNEW_002bw			102012		//弓
 
-#define SPRNEW_003em			102013		//风	
-#define SPRNEW_003ax			102014		//斧头 			?
+#define SPRNEW_003em			102013		//風	
+#define SPRNEW_003ax			102014		//斧頭 			?
 #define SPRNEW_003cl			102015		//木棍			??
 #define SPRNEW_003sp			102016		//矛			?
 #define SPRNEW_003bw			102017		//弓
 
 #define SPRNEW_004em			102018		//地	
-#define SPRNEW_004ax			102019		//斧头 			?
+#define SPRNEW_004ax			102019		//斧頭 			?
 #define SPRNEW_004cl			102020		//木棍			??
 #define SPRNEW_004sp			102021		//矛			?
 #define SPRNEW_004bw			102022		//弓
 
 
 #define SPRNEW_005em			102023		//火	
-#define SPRNEW_005ax			102024		//斧头 			?
+#define SPRNEW_005ax			102024		//斧頭 			?
 #define SPRNEW_005cl			102025		//木棍			??
 #define SPRNEW_005sp			102026		//矛			?
 #define SPRNEW_005bw			102027		//弓			?
 
 #define SPRNEW_006em			102028		//水	
-#define SPRNEW_006ax			102029		//斧头 			?
+#define SPRNEW_006ax			102029		//斧頭 			?
 #define SPRNEW_006cl			102030		//木棍			??
 #define SPRNEW_006sp			102031		//矛			?
 #define SPRNEW_006bw			102032		//弓
 
-#define SPRNEW_007em			102033		//风	
-#define SPRNEW_007ax			102034		//斧头 			?
+#define SPRNEW_007em			102033		//風	
+#define SPRNEW_007ax			102034		//斧頭 			?
 #define SPRNEW_007cl			102035		//木棍			??
 #define SPRNEW_007sp			102036		//矛			?
 #define SPRNEW_007bw			102037		//弓
 
 #define SPRNEW_008em			102038		//地	
-#define SPRNEW_008ax			102039		//斧头 			?
+#define SPRNEW_008ax			102039		//斧頭 			?
 #define SPRNEW_008cl			102040		//木棍			??
 #define SPRNEW_008sp			102041		//矛			?
 #define SPRNEW_008bw			102042		//弓
 
 #define SPRNEW_009em			102043		//火	
-#define SPRNEW_009ax			102044		//斧头 			?
+#define SPRNEW_009ax			102044		//斧頭 			?
 #define SPRNEW_009cl			102045		//木棍			??
 #define SPRNEW_009sp			102046		//矛			?
 #define SPRNEW_009bw			102047		//弓			?
 
 #define SPRNEW_010em			102048		//水	
-#define SPRNEW_010ax			102049		//斧头 			?
+#define SPRNEW_010ax			102049		//斧頭 			?
 #define SPRNEW_010cl			102050		//木棍			??
 #define SPRNEW_010sp			102051		//矛			?
 #define SPRNEW_010bw			102052		//弓
 
-#define SPRNEW_011em			102053		//风	
-#define SPRNEW_011ax			102054		//斧头 			?
+#define SPRNEW_011em			102053		//風	
+#define SPRNEW_011ax			102054		//斧頭 			?
 #define SPRNEW_011cl			102055		//木棍			??
 #define SPRNEW_011sp			102056		//矛			?
 #define SPRNEW_011bw			102057		//弓
 
 #define SPRNEW_012em			102058		//地	
-#define SPRNEW_012ax			102059		//斧头 			?
+#define SPRNEW_012ax			102059		//斧頭 			?
 #define SPRNEW_012cl			102060		//木棍			??
 #define SPRNEW_012sp			102061		//矛			?
 #define SPRNEW_012bw			102062		//弓
 
 
 #define SPRNEW_013em			102063		//火	
-#define SPRNEW_013ax			102064		//斧头 			?
+#define SPRNEW_013ax			102064		//斧頭 			?
 #define SPRNEW_013cl			102065		//木棍			??
 #define SPRNEW_013sp			102066		//矛			?
 #define SPRNEW_013bw			102067		//弓			?
 
 #define SPRNEW_014em			102068		//水	
-#define SPRNEW_014ax			102069		//斧头 			?
+#define SPRNEW_014ax			102069		//斧頭 			?
 #define SPRNEW_014cl			102070		//木棍			??
 #define SPRNEW_014sp			102071		//矛			?
 #define SPRNEW_014bw			102072		//弓
 
-#define SPRNEW_015em			102073		//风	
-#define SPRNEW_015ax			102074		//斧头 			?
+#define SPRNEW_015em			102073		//風	
+#define SPRNEW_015ax			102074		//斧頭 			?
 #define SPRNEW_015cl			102075		//木棍			??
 #define SPRNEW_015sp			102076		//矛			?
 #define SPRNEW_015bw			102077		//弓
 
 #define SPRNEW_016em			102078		//地	
-#define SPRNEW_016ax			102079		//斧头 			?
+#define SPRNEW_016ax			102079		//斧頭 			?
 #define SPRNEW_016cl			102080		//木棍			??
 #define SPRNEW_016sp			102081		//矛			?
 #define SPRNEW_016bw			102082		//弓
 
 #define SPRNEW_016em			102078		//地	
-#define SPRNEW_016ax			102079		//斧头 			?
+#define SPRNEW_016ax			102079		//斧頭 			?
 #define SPRNEW_016cl			102080		//木棍			??
 #define SPRNEW_016sp			102081		//矛			?
 #define SPRNEW_016bw			102082		//弓
 
 #define SPRNEW_017em			102089		//地	
-#define SPRNEW_017ax			102090		//斧头 			?
+#define SPRNEW_017ax			102090		//斧頭 			?
 #define SPRNEW_017cl			102091		//木棍			??
 #define SPRNEW_017sp			102092		//矛			?
 #define SPRNEW_017bw			102093		//弓
 
 #define SPRNEW_018em			102094		//地	
-#define SPRNEW_018ax			102095		//斧头 			?
+#define SPRNEW_018ax			102095		//斧頭 			?
 #define SPRNEW_018cl			102096		//木棍			??
 #define SPRNEW_018sp			102097		//矛			?
 #define SPRNEW_018bw			102098		//弓
 
 #define SPRNEW_019em			102099		//地	
-#define SPRNEW_019ax			102100		//斧头 			?
+#define SPRNEW_019ax			102100		//斧頭 			?
 #define SPRNEW_019cl			102101		//木棍			??
 #define SPRNEW_019sp			102102		//矛			?
 #define SPRNEW_019bw			102103		//弓
 
 #define SPRNEW_020em			102104		//地	
-#define SPRNEW_020ax			102105		//斧头 			?
+#define SPRNEW_020ax			102105		//斧頭 			?
 #define SPRNEW_020cl			102106		//木棍			??
 #define SPRNEW_020sp			102107		//矛			?
 #define SPRNEW_020bw			102108		//弓
 
 #define SPRNEW_021em			102109		//地	
-#define SPRNEW_021ax			102110		//斧头 			?
+#define SPRNEW_021ax			102110		//斧頭 			?
 #define SPRNEW_021cl			102111		//木棍			??
 #define SPRNEW_021sp			102112		//矛			?
 #define SPRNEW_021bw			102113		//弓
 
 #define SPRNEW_022em			102114		//地	
-#define SPRNEW_022ax			102115		//斧头 			?
+#define SPRNEW_022ax			102115		//斧頭 			?
 #define SPRNEW_022cl			102116		//木棍			??
 #define SPRNEW_022sp			102117		//矛			?
 #define SPRNEW_022bw			102118		//弓
 
 #define SPRNEW_023em			102119		//地	
-#define SPRNEW_023ax			102120		//斧头 			?
+#define SPRNEW_023ax			102120		//斧頭 			?
 #define SPRNEW_023cl			102121		//木棍			??
 #define SPRNEW_023sp			102122		//矛			?
 #define SPRNEW_023bw			102123		//弓
 
 #define SPRNEW_024em			102124		//地	
-#define SPRNEW_024ax			102125		//斧头 			?
+#define SPRNEW_024ax			102125		//斧頭 			?
 #define SPRNEW_024cl			102126		//木棍			??
 #define SPRNEW_024sp			102127		//矛			?
 #define SPRNEW_024bw			102128		//弓

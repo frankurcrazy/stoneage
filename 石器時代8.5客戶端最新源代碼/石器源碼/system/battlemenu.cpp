@@ -1,4 +1,4 @@
-﻿/************************/
+/************************/
 /*	battleMenu.cpp		*/
 /************************/
 #include "../systeminc/version.h"
@@ -24,7 +24,7 @@ enum{
 	BATTLE_CAPTURE,
 	BATTLE_ITEM,
 	BATTLE_WAZA,
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 	BATTLE_PROWAZA,
 #endif
 };
@@ -42,14 +42,14 @@ enum{
 #define BATTLE_MENU_WAZA_FONTS			9
 
 // ????????
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 #define BATTLE_BUTTON_SUU	10
 #else
 #define BATTLE_BUTTON_SUU	9
 #endif
 
 #ifndef PK_SYSTEM_TIMER_BY_ZHU
-#define BATTLE_CNT_DOWN_TIME  _BATTLE_TIME_  //每局战斗时间
+#define BATTLE_CNT_DOWN_TIME  _BATTLE_TIME_  //每局戰鬥時間
 #endif
 
 char BattleCmd[ BATTLE_COMMAND_SIZE ];
@@ -146,7 +146,7 @@ static ACTION *pActWnd = NULL;
 // ????????
 static int buttonX, buttonY, buttonA;
 
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 int wonflag = 0 ; 
 int prouseskill = -1 ; 
 int SkillWnd2 = 0 ; 
@@ -345,7 +345,7 @@ void BattleButtonOff( void )
 	// ?????
 	BattleCmdNo = -1;
 
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 	wonflag = 0 ; 
 #endif
 
@@ -408,7 +408,7 @@ void HpMeterDisp( int no )
 							meterY - 2,
 							DISP_PRIO_IME2, SYSTEM_PAL_GREEN, 2 );
 		// ??
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 		StockBoxDispBuffer( meterX - 21,
 							meterY + 1,
 							meterX - 21 + (int)( ( (double)p_party[ BattleMyNo ]->mp / (double)p_party[ BattleMyNo ]->maxMp ) * 40.0 ),
@@ -431,7 +431,7 @@ void HpMeterDisp( int no )
 							meterY + 2,
 							DISP_PRIO_IME2, SYSTEM_PAL_YELLOW, 2 );
 #endif
-		//cary 秀出骑宠的宠物血量 
+		//cary 秀齣騎寵的寵物血量 
 		if( p_party[ BattleMyNo ]->onRide > 0 ){
 			meterY += 25;
 			meterX += 20;
@@ -467,7 +467,7 @@ void HpMeterDisp( int no )
 							meterX - 21 + (int)( ( (double)p_party[ no ]->hp / (double)p_party[ no ]->maxHp ) * 40.0 ),
 							meterY + 0,
 							DISP_PRIO_IME2, SYSTEM_PAL_GREEN, 2 );
-		//cary 秀出骑宠的宠物血量 
+		//cary 秀齣騎寵的寵物血量 
 		if( p_party[ no ]->onRide > 0 ){
 			meterY += 25;
 			meterX += 20;
@@ -586,7 +586,7 @@ void BattleButtonAttack( void )
 				}
 			}
 		}
-		strcpy( OneLineInfoStr,"攻击。");
+		strcpy( OneLineInfoStr,"攻擊。");
 	}
 }
 */
@@ -650,7 +650,7 @@ void BattleButtonAttack( void )
 				}
 			}
 		}
-		strcpy( OneLineInfoStr,"攻击。");
+		strcpy( OneLineInfoStr,"攻擊。");
 	}
 }
 
@@ -689,12 +689,12 @@ void BattleButtonJujutsu( void )
 			}
 		}
 
-		strcpy( OneLineInfoStr, "吟唱咒术。");
+		strcpy( OneLineInfoStr, "吟唱咒術。");
 #ifdef _MAGIC_NOCAST
 	  }
 	  else
 	  {
-        strcpy( OneLineInfoStr, "沉默中无法吟唱咒术。");
+        strcpy( OneLineInfoStr, "沉默中無法吟唱咒術。");
 	  }
 #endif
 	}
@@ -1136,7 +1136,7 @@ void BattleButtonJujutsu( void )
 							flag = TRUE;
 						}
 					}
-					if( flag == FALSE ) StockFontBuffer( x, y, FONT_PRIO_FRONT, 0, "没有咒术", 0 );
+					if( flag == FALSE ) StockFontBuffer( x, y, FONT_PRIO_FRONT, 0, "沒有咒術", 0 );
 
 					battleMenuJujutsuFontNo[ 5 ] = StockDispBuffer( ( ( WINDOW_DISP *)pActWnd->pYobi )->mx, pActWnd->y + 262 + 10, DISP_PRIO_IME3, CG_CLOSE_BTN, 2 );
 				}
@@ -1146,14 +1146,14 @@ void BattleButtonJujutsu( void )
 }
 
 // ????? *****************************************************************/
-void BattleButtonCapture( void )//捕捉宠物
+void BattleButtonCapture( void )//捕捉寵物
 {
 	int i, bak;
 	if( HitDispNo == battleButtonDispNo[ 2 ] || battleButtonBak2 == 2 ){
 		// ?????????
 		if( CheckPetSuu() >= 5 ){
 			// ??????
-			strcpy( OneLineInfoStr,"不能再捕获更多的宠物了。");
+			strcpy( OneLineInfoStr,"不能再捕獲更多的寵物瞭。");
 			// ?????????
 			if( mouse.onceState & MOUSE_LEFT_CRICK ){
 				// ???
@@ -1253,11 +1253,11 @@ void BattleButtonGuard( void )
 			play_se( 203, 320, 240 );
 		}
 
-		strcpy( OneLineInfoStr, "防御。");
+		strcpy( OneLineInfoStr, "防禦。");
 	}
 }
 #ifdef _NEW_ITEM_
-extern int 道具栏页数;
+extern int 道具欄頁數;
 #endif
 
 void BattleButtonItem( void )
@@ -1282,7 +1282,7 @@ void BattleButtonItem( void )
 #ifdef _NEW_WIN_POS_
 				pActWnd = MakeWindowDisp( 520, 160, 271, 281, 0, -1 , FALSE );
 #ifdef _NEW_ITEM_
-				道具栏页数=0;				
+				道具欄頁數=0;				
 #endif
 #else
 				pActWnd = MakeWindowDisp( 380, 160, 271, 281, 0, -1 , FALSE );
@@ -1326,12 +1326,12 @@ void BattleButtonItem( void )
 					y = pActWnd->y + 191 + 7;
 #ifdef _NEW_ITEM_
 					for(i=0;i<3;i++){
-						if(i==道具栏页数){
+						if(i==道具欄頁數){
 							StockDispBuffer(513,182+i*56, DISP_PRIO_IME3,55113+i, 1);
 						}else{
 							BOOL flg=FALSE;
 							if(i){
-								if(pc.道具栏状态&1<<i){
+								if(pc.道具欄狀態&1<<i){
 									flg=TRUE;
 									if (DuelFlag){
 										flg=FALSE;
@@ -1342,11 +1342,11 @@ void BattleButtonItem( void )
 								StockDispBuffer(518,182+i*56, DISP_PRIO_IME3,55110+i, 1);
 								if(MakeHitBox(508 ,154+i*56,508+20,151+i*56+60, DISP_PRIO_IME4)){
 									if(mouse.onceState & MOUSE_LEFT_CRICK){
-										道具栏页数=i;
+										道具欄頁數=i;
 
 #ifdef _MAPITEMNO_
 									if(nowFloor==12345)
-										StockChatBufferLine("该地图战斗下不允许使用扩展包裹！",FONT_PAL_RED);
+										StockChatBufferLine("該地圖戰鬥下不允許使用擴展包裹！",FONT_PAL_RED);
 #endif
 									}
 								}
@@ -1354,15 +1354,15 @@ void BattleButtonItem( void )
 						}
 					}
 #ifdef _MAPITEMNO_
-					if(nowFloor==12345) 道具栏页数=0;
+					if(nowFloor==12345) 道具欄頁數=0;
 #endif
 #endif
 					for(  i = MAX_ITEM -1 ; i >= MAX_ITEMSTART ; i-- ){
 #ifdef _NEW_ITEM_
-						int 道具起始 = MAX_ITEMSTART+MAX_MAXHAVEITEM*道具栏页数;
-						int 道具结束 = 道具起始+MAX_MAXHAVEITEM;
+						int 道具起始 = MAX_ITEMSTART+MAX_MAXHAVEITEM*道具欄頁數;
+						int 道具結束 = 道具起始+MAX_MAXHAVEITEM;
 						if(i>=MAX_ITEMSTART){
-							if(i<道具起始||i>=道具结束) continue;
+							if(i<道具起始||i>=道具結束) continue;
 						}
 #endif		
 						if( MakeHitBox( ItemBuffer[ i ].defX - 24, ItemBuffer[ i ].defY - 24, 
@@ -1613,8 +1613,8 @@ void BattleButtonItem( void )
 											play_se( 217, 320, 240 );
 											break;
 #ifdef _PET_ITEM
-										case ITEM_TARGET_PET:	// 战斗中不可更换宠物装备
-											StockChatBufferLine("战斗中不可更换宠物装备",FONT_PAL_RED);
+										case ITEM_TARGET_PET:	// 戰鬥中不可更換寵物裝備
+											StockChatBufferLine("戰鬥中不可更換寵物裝備",FONT_PAL_RED);
 											break;
 #endif
 										}
@@ -1669,7 +1669,7 @@ void BattleButtonPet( void )
 			}	
 		}
 
-		strcpy( OneLineInfoStr, "更换宠物。");
+		strcpy( OneLineInfoStr, "更換寵物。");
 	}
 
 	if( battleButtonFlag[ 6 ] == TRUE ){
@@ -1801,7 +1801,7 @@ void BattleButtonPet( void )
 							battleMenuPetFontNo[ 6 ] = StockDispBuffer( ( ( WINDOW_DISP *)pActWnd->pYobi )->mx, pActWnd->y + 367, DISP_PRIO_IME3, CG_CLOSE_BTN, 2 );
 						}
 					}else{
-						StockFontBuffer( x + 11, y, FONT_PRIO_FRONT, 0, "没有参战的宠物", 0 );
+						StockFontBuffer( x + 11, y, FONT_PRIO_FRONT, 0, "沒有參戰的寵物", 0 );
 						battleMenuPetFontNo[ 6 ] = StockDispBuffer( ( ( WINDOW_DISP *)pActWnd->pYobi )->mx, pActWnd->y + 367, DISP_PRIO_IME3, CG_CLOSE_BTN, 2 );
 					}
 				}			
@@ -1809,7 +1809,7 @@ void BattleButtonPet( void )
 		}
 	}
 }
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 void BattleButtonPPLSKILL( void )
 {
 	if ( MenuToggleFlag & JOY_ESC || MenuToggleFlag & JOY_CTRL_E || MenuToggleFlag & JOY_CTRL_A) {
@@ -1832,7 +1832,7 @@ void BattleButtonPPLSKILL( void )
 			//MenuToggleFlag &= ~JOY_CTRL_A;
 			( wonflag == 0 ) ? wonflag = 1 : wonflag = 0  ; 
 		}
-		strcpy( OneLineInfoStr, "职业技能");
+		strcpy( OneLineInfoStr, "職業技能");
 	}
 	if ( wonflag == 1 ) {
 		for ( int i = 0 ; i < 3 ; i ++ ) {
@@ -1892,14 +1892,14 @@ void BattleButtonPPLSKILL( void )
 							use_color = FONT_PAL_GRAY;									
 						}
 						if ( profession_skill[ AssitSkill [ j + i * 4 ] ].skillId == 11	)
-							use_color = FONT_PAL_WHITE; //嗜血成性不做mp限制
+							use_color = FONT_PAL_WHITE; //嗜血成性不做mp限製
 						sprintf_s( msg2 , "%s" , profession_skill[AssitSkill [ j + i * 4 ]].name );
 						StockFontBuffer( 20, 312, FONT_PRIO_FRONT, use_color, msg2, 0 );
 
 						sprintf_s( msg , "  %d％", profession_skill[AssitSkill [ j + i * 4 ]].skill_level ) ; 
 						StockFontBuffer( 85, 310, FONT_PRIO_FRONT, use_color, msg, 0 );
 				
-						sprintf_s( msg2 , "(耗费MP:%d)" , profession_skill[AssitSkill [ j + i * 4 ]].costmp );
+						sprintf_s( msg2 , "(耗費MP:%d)" , profession_skill[AssitSkill [ j + i * 4 ]].costmp );
 						StockFontBuffer( 170, 312, FONT_PRIO_FRONT, use_color, msg2, 0 );				
 
 						sprintf_s( msg , "%s" ,	 profession_skill[AssitSkill [ j + i * 4 ]].memo ) ; 
@@ -1911,7 +1911,7 @@ void BattleButtonPPLSKILL( void )
 								prouseskill = AssitSkill [ j + i * 4 ] ; 
 								BattleSetWazaHitBox( profession_skill[AssitSkill [ j + i * 4 ] ].target , 1) ; 
 							}
-							else if ( profession_skill[ AssitSkill [ j + i * 4 ] ].skillId == 11 && profession_skill[AssitSkill [ j + i * 4 ]].costmp == 0 ) { //嗜血成性不做mp限制
+							else if ( profession_skill[ AssitSkill [ j + i * 4 ] ].skillId == 11 && profession_skill[AssitSkill [ j + i * 4 ]].costmp == 0 ) { //嗜血成性不做mp限製
 								wonflag = 0 ; 
 								prouseskill = AssitSkill [ j + i * 4 ] ; 
 								BattleSetWazaHitBox( profession_skill[AssitSkill [ j + i * 4 ] ].target , 1) ; 
@@ -1954,7 +1954,7 @@ void BattleButtonPPLSKILL( void )
 						sprintf_s( msg , "  %d％", profession_skill[BattleSkill [ j + i * 4 ]].skill_level ) ; 
 						StockFontBuffer( 85, 310, FONT_PRIO_FRONT, use_color, msg, 0 );
 
-						sprintf_s( msg2 , "(耗费MP:%d)" , profession_skill[BattleSkill [ j + i * 4 ]].costmp );
+						sprintf_s( msg2 , "(耗費MP:%d)" , profession_skill[BattleSkill [ j + i * 4 ]].costmp );
 						StockFontBuffer( 170, 312, FONT_PRIO_FRONT, use_color, msg2, 0 );
 
 						sprintf_s( msg , "%s" , profession_skill[BattleSkill [ j + i * 4 ]].memo ) ; 
@@ -1962,7 +1962,7 @@ void BattleButtonPPLSKILL( void )
 					if( mouse.onceState & MOUSE_LEFT_CRICK_UP ) {
 						if ( HitDispNo == BattleSkillBtn [ j + i * 4 ] && profession_skill[ BattleSkill [ j + i * 4 ] ].useFlag != 0) {
 							if( p_party[ BattleMyNo ]->mp >= profession_skill[BattleSkill [ j + i * 4 ]].costmp && profession_skill[BattleSkill [ j + i * 4 ]].costmp != 0  ) {
-								if ( !(profession_skill[ BattleSkill [ j + i * 4 ] ].skillId == 40 && p_party[ BattleMyNo ]->hp <= 10) ) { //濒死攻击限制
+								if ( !(profession_skill[ BattleSkill [ j + i * 4 ] ].skillId == 40 && p_party[ BattleMyNo ]->hp <= 10) ) { //瀕死攻擊限製
 									wonflag = 0 ; 
 									prouseskill = BattleSkill [ j + i * 4 ] ; 
 									BattleSetWazaHitBox( profession_skill[BattleSkill [ j + i * 4 ] ].target , 1) ; 
@@ -2003,7 +2003,7 @@ void BattleButtonPPLSKILL( void )
 						}
 #ifdef _PROFESSION_ADDSKILL
 					//	if ( profession_skill[ AdvanceSkill [ j + i * 4 ] ].skillId == 2 )
-					//		use_color = FONT_PAL_WHITE; //针针相对不做mp限制
+					//		use_color = FONT_PAL_WHITE; //針針相對不做mp限製
 #endif			
 #ifdef _PRO_ABSOLUTE_DEFENSE
 						if ( ( profession_skill[ AdvanceSkill [ j + i * 4 ] ].skillId == 75 
@@ -2021,7 +2021,7 @@ void BattleButtonPPLSKILL( void )
 						sprintf_s( msg , "  %d％", profession_skill[AdvanceSkill [ j + i * 4 ]].skill_level ) ; 
 						StockFontBuffer( 85, 310, FONT_PRIO_FRONT, use_color, msg, 0 );
 						
-						sprintf_s( msg2 , "(耗费MP:%d)" , profession_skill[AdvanceSkill [ j + i * 4 ]].costmp );
+						sprintf_s( msg2 , "(耗費MP:%d)" , profession_skill[AdvanceSkill [ j + i * 4 ]].costmp );
 						StockFontBuffer( 170, 312, FONT_PRIO_FRONT, use_color, msg2, 0 );
 
 						sprintf_s( msg , "%s" , profession_skill[AdvanceSkill [ j + i * 4 ]].memo ) ; 
@@ -2052,7 +2052,7 @@ void BattleButtonPPLSKILL( void )
 							}
 #endif	
 #ifdef _PROFESSION_ADDSKILL
-					//		else if ( profession_skill[ AdvanceSkill [ j + i * 4 ] ].skillId == 2 && profession_skill[AdvanceSkill [ j + i * 4 ]].costmp == 0 ) { //针针相对不做mp限制
+					//		else if ( profession_skill[ AdvanceSkill [ j + i * 4 ] ].skillId == 2 && profession_skill[AdvanceSkill [ j + i * 4 ]].costmp == 0 ) { //針針相對不做mp限製
 					//			wonflag = 0 ; 
 					//			BattleSetWazaHitBox( profession_skill[AdvanceSkill [ j + i * 4 ] ].target , 1) ; 
 					//			prouseskill = AdvanceSkill [ j + i * 4  ];  
@@ -2118,12 +2118,12 @@ void BattleButtonEscape( void )
 			play_se( 203, 320, 240 );
 		}
 		// ??????
-		strcpy( OneLineInfoStr, "逃脱。");
+		strcpy( OneLineInfoStr, "逃脫。");
 	}
 }
 
 // ?????????????? **************************************************/
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 void BattleSetWazaHitBox( int no , int typeflag )
 #else
 void BattleSetWazaHitBox( int no )
@@ -2132,7 +2132,7 @@ void BattleSetWazaHitBox( int no )
 	char moji[ 256 ];
 	int i;
 
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 	int switchnum = 0 ;
 
 	if ( typeflag == 0 ){
@@ -2151,7 +2151,7 @@ void BattleSetWazaHitBox( int no )
 
 	case PETSKILL_TARGET_MYSELF:	// ?????
 		// ????????????
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 		if ( typeflag == 1 ) 
 			p_party[ BattleMyNo ]->atr |= ACT_ATR_HIT_BOX;
 		else
@@ -2164,7 +2164,7 @@ void BattleSetWazaHitBox( int no )
 		DeathAction( pActWnd );
 		pActWnd = NULL;
 		ClearBattleButton();
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 		if ( typeflag == 1 )
 			BattleCmdNo = BATTLE_PROWAZA;
 		else
@@ -2187,14 +2187,14 @@ void BattleSetWazaHitBox( int no )
 		DeathAction( pActWnd );
 		pActWnd = NULL;
 		ClearBattleButton();
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 		if ( typeflag == 1 )
 			BattleCmdNo = BATTLE_PROWAZA;
 		else
 #endif
 		BattleCmdNo = BATTLE_WAZA;
 		play_se( 217, 320, 240 );
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 		if ( typeflag != 1 )
 #endif
 			battleWazaTargetBak = no;
@@ -2230,7 +2230,7 @@ void BattleSetWazaHitBox( int no )
 		DeathAction( pActWnd );
 		pActWnd = NULL;
 		ClearBattleButton();
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 		if ( typeflag == 1 )
 			BattleCmdNo = BATTLE_PROWAZA;
 		else
@@ -2273,7 +2273,7 @@ void BattleSetWazaHitBox( int no )
 		// ?????????
 		ClearBattleButton();
 		// ?????
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 		if ( typeflag == 1 )
 			BattleCmdNo = BATTLE_PROWAZA;
 		else
@@ -2303,7 +2303,7 @@ void BattleSetWazaHitBox( int no )
 		// ?????????
 		ClearBattleButton();
 		// ?????
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 		if ( typeflag == 1 )
 			BattleCmdNo = BATTLE_PROWAZA;
 		else
@@ -2320,7 +2320,7 @@ void BattleSetWazaHitBox( int no )
 		BattleButtonOff(); // ????????????
 		battleMenuReturn = TRUE;
 		// ???
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 		if ( typeflag == 1 ) 
 			sprintf_s( moji,"P|%X|%X", prouseskill, BattleMyNo );
 		else
@@ -2332,7 +2332,7 @@ void BattleSetWazaHitBox( int no )
 		// ????????
 		play_se( 203, 320, 240 );
 		//andy_add
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 		if ( typeflag == 0 ){
 			battleWazaTargetBak = -1;
 			battleTargetSelectFlag = FALSE;
@@ -2357,7 +2357,7 @@ void BattleSetWazaHitBox( int no )
 		DeathAction( pActWnd );
 		pActWnd = NULL;
 		ClearBattleButton();
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 		if ( typeflag == 1 )
 			BattleCmdNo = BATTLE_PROWAZA;
 		else
@@ -2392,7 +2392,7 @@ void BattleSetWazaHitBox( int no )
 		// ?????????
 		ClearBattleButton();
 		// ?????
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 		if ( typeflag == 1 )
 			BattleCmdNo = BATTLE_PROWAZA;
 		else
@@ -2403,7 +2403,7 @@ void BattleSetWazaHitBox( int no )
 		// ????????
 		battleWazaTargetBak = no;
 		break;
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 	case PETSKILL_TARGET_ONE_ROW:
 		for( i = 0 ; i < 5 ; i++ )	{
 			if( p_party[i]->func == NULL )	continue;
@@ -2598,7 +2598,7 @@ void BattleButtonWaza( void )
 			// ?????????
 			if( bak == FALSE ){
 				// ?????????
-				battleButtonFlag[ 8 ] = TRUE; //打开技能选项盒
+				battleButtonFlag[ 8 ] = TRUE; //打開技能選項盒
 				// ?????????
 				battleWazaTargetBak = -1;
 				// ?????
@@ -2680,7 +2680,7 @@ void BattleButtonWaza( void )
 											)
 #endif
 											// ??????????????
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 											BattleSetWazaHitBox( i , 0 ) ; 
 #else
 										BattleSetWazaHitBox( i );
@@ -2725,7 +2725,7 @@ void BattleButtonWaza( void )
 					}
 /*
 #ifndef __AI
-					//cary 宠物的自动战斗
+					//cary 寵物的自動戰鬥
 					if( !PauseAI && AI!=AI_NONE && FALSE==battleTargetSelectFlag){
 						if( (BattleIntervalCnt==0 && (BattleCntDown-TimeGetTime())<=29000) || BattleIntervalCnt<TimeGetTime()){
 							BattleIntervalCnt = TimeGetTime()+500;
@@ -2747,7 +2747,7 @@ void BattleButtonWaza( void )
 										if( petSkill[ battlePetNoBak ][ i ].skillId!=2 && firstattack==-1)
 											firstattack = i;
 										if( petSkill[ battlePetNoBak ][ i ].skillId == 1){
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 											BattleSetWazaHitBox( i , 0 );
 
 #else
@@ -2757,7 +2757,7 @@ void BattleButtonWaza( void )
 										}
 									}else if( ai == AI_GUARD){
 										if( petSkill[ battlePetNoBak ][ i ].skillId == 2){
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 											BattleSetWazaHitBox( i , 0 );
 #else
 											BattleSetWazaHitBox( i );
@@ -2781,7 +2781,7 @@ void BattleButtonWaza( void )
 									// ?????
 									//play_se( 217, 320, 240 );
 								}else
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 									BattleSetWazaHitBox( first , 0 );
 #else
 									BattleSetWazaHitBox( first );
@@ -2856,8 +2856,8 @@ void BattleTargetSelect( void )
 			pActInfoWnd = MakeWindowDisp( 210, 356, 3, 2, 0, 1 );
 		}else{	
 			if( pActInfoWnd->hp > 0 ){
-				StockFontBuffer( pActInfoWnd->x + 38, pActInfoWnd->y + 28, FONT_PRIO_FRONT, FONT_PAL_YELLOW, 	"请选择", 0 );
-				StockFontBuffer( pActInfoWnd->x + 38, pActInfoWnd->y + 52, FONT_PRIO_FRONT, FONT_PAL_YELLOW, 	"您的目标", 0 );
+				StockFontBuffer( pActInfoWnd->x + 38, pActInfoWnd->y + 28, FONT_PRIO_FRONT, FONT_PAL_YELLOW, 	"請選擇", 0 );
+				StockFontBuffer( pActInfoWnd->x + 38, pActInfoWnd->y + 52, FONT_PRIO_FRONT, FONT_PAL_YELLOW, 	"您的目標", 0 );
 			}
 #ifdef _NEW_WIN_POS_
 			if( mouse.nowPoint.y > 400 ) pActInfoWnd->y = 4;
@@ -2870,7 +2870,7 @@ void BattleTargetSelect( void )
 		pActInfoWnd = NULL;
 	}
 
-	//cary 自动攻击
+	//cary 自動攻擊
 	if( mouse.onceState & MOUSE_LEFT_CRICK ){
 
 		if( ( targetNo = CheckBattelTarget() ) != -1 ){
@@ -2898,7 +2898,7 @@ void BattleTargetSelect( void )
 
 				#ifdef __ATTACK_MAGIC
 
-				// 敌军某一人
+				// 敵軍某一人
 				case MAGIC_TARGET_SINGLE:
 
 					sprintf_s( moji , "J|%X|%X" , BattleJujutuNo , targetNo );
@@ -2910,7 +2910,7 @@ void BattleTargetSelect( void )
 
 					break;
 
-				// 敌军一整排
+				// 敵軍一整排
 				case MAGIC_TARGET_ONE_ROW:
 
 					// 23: 左上第一列 , 24: 左上第二列 , 25: 右下第一列 , 26: 右下第二列
@@ -2932,7 +2932,7 @@ void BattleTargetSelect( void )
 
 					break;
 
-				// 敌军全体
+				// 敵軍全體
 				case MAGIC_TARGET_ALL_ROWS:
 
 					( BattleMyNo < 10 )? no = BATTLKPKPLYAERNUM + 1 : no = BATTLKPKPLYAERNUM;
@@ -3013,7 +3013,7 @@ void BattleTargetSelect( void )
 				}
 				break;
 				
-				//Change note 道具选择对象后送出封包
+				//Change note 道具選擇對象後送齣封包
 			case BATTLE_ITEM:
 				//cary*
 				switch( pc.item[ BattleItemNo ].target ){
@@ -3074,7 +3074,7 @@ void BattleTargetSelect( void )
 				}
 				break;
 
-				//Change note 宠技选择对象后送出封包
+				//Change note 寵技選擇對象後送齣封包
 			case BATTLE_WAZA:
 				switch( petSkill[ battlePetNoBak ][ BattleWazaNo ].target ){
 				case PETSKILL_TARGET_MYSELF:
@@ -3152,8 +3152,8 @@ void BattleTargetSelect( void )
 				}
 				break;
 				
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
-				//Change note 职业技能选择对象后送出封包
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
+				//Change note 職業技能選擇對象後送齣封包
 			case BATTLE_PROWAZA:
 				switch( profession_skill[prouseskill].target ){
 				case PETSKILL_TARGET_MYSELF:
@@ -3312,7 +3312,7 @@ void BattleCntDownDisp( void )
 	// ?????????
 /*//人物ai
 #ifndef __AI
-	//cary 自动战斗
+	//cary 自動戰鬥
 	if( AI!=AI_NONE && !PauseAI){
 		if( battleMenuFlag&BATTLE_MENU && battleTargetSelectFlag){
 			if( (BattleIntervalCnt==0 && BattleCntDownRest<=28000) || (BattleIntervalCnt!=0 && BattleIntervalCnt<TimeGetTime())){
@@ -3510,7 +3510,7 @@ void BattleCntDownDisp( void )
 	if( DuelFlag == TRUE 
 		){
 		// ???????
-		sprintf_s( moji, "第 %02d 回合", BattleCliTurnNo + 1 );
+		sprintf_s( moji, "第 %02d 迴閤", BattleCliTurnNo + 1 );
 		// 
 		if(ResoMode == 0 || ResoMode == 2){
 			StockFontBuffer( 290, 180, FONT_PRIO_BACK, FONT_PAL_YELLOW, moji, 0 );
@@ -3563,7 +3563,7 @@ void BattleDown( void )
 }
 #endif
 
-// 修复战斗AI转换的BUG
+// 修復戰鬥AI轉換的BUG
 #ifdef _FIX_BATTLE_AI
 void battleMenuFix(void)
 {
@@ -3715,7 +3715,7 @@ void BattleMenuProc( void )
 			BattleButtonItem();
 			BattleButtonPet();
 			BattleButtonEscape();
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 			BattleButtonPPLSKILL();
 #endif
 
@@ -3742,7 +3742,7 @@ void BattleMenuProc( void )
 				ClearBattleButton();
 			}
 		}
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 		battleButtonDispNo[ 0 ] = StockDispBuffer( buttonX, buttonY, DISP_PRIO_IME3, CG_BATTLE_ATT_UP 		- battleButtonFlag[ 0 ], 2 );
 		battleButtonDispNo[ 1 ] = StockDispBuffer( buttonX, buttonY, DISP_PRIO_IME3, CG_BATTLE_JUJUTSU_UP 	- battleButtonFlag[ 1 ], 2 );
 		battleButtonDispNo[ 2 ] = StockDispBuffer( buttonX, buttonY, DISP_PRIO_IME3, CG_BATTLE_CAPTURE_UP 	- battleButtonFlag[ 2 ], 2 );
@@ -3766,20 +3766,20 @@ void BattleMenuProc( void )
 #endif
 
 		if( CheckPetSuu() >= 5 ){
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 			StockDispBuffer( buttonX + 44, buttonY - 14, DISP_PRIO_IME4, CG_BTL_BUTTON_CROSS, 0 );
 #else
 			StockDispBuffer( buttonX + 28, buttonY - 18, DISP_PRIO_IME4, CG_BTL_BUTTON_CROSS, 0 );
 #endif
 		}
-#ifdef _LOCKHELP_OK				// (不可开) Syu ADD 锁定不可加入战斗
+#ifdef _LOCKHELP_OK				// (不可開) Syu ADD 鎖定不可加入戰鬥
 		extern int nowFloor;
 		if((nowFloor <= 8213 && nowFloor >= 8200) ||
 			 (nowFloor >= 30017 && nowFloor <= 30021)
 		)	NoHelpFlag = TRUE ; 
 #endif
 		if( NoHelpFlag == TRUE ){
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 			StockDispBuffer( buttonX + 28 + 54 + 4 , buttonY - 18 + 4 , DISP_PRIO_IME4, CG_BTL_BUTTON_CROSS, 0 );
 #else
 			StockDispBuffer( buttonX + 28 + 54, buttonY - 18, DISP_PRIO_IME4, CG_BTL_BUTTON_CROSS, 0 );
@@ -3787,7 +3787,7 @@ void BattleMenuProc( void )
 		}
 #ifdef _MAGIC_NOCAST
 		if( NoCastFlag == TRUE ){
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 			StockDispBuffer( buttonX + 28 -54 - 14, buttonY - 18 + 4, DISP_PRIO_IME4, CG_BTL_BUTTON_CROSS, 0 );
 #else
 			StockDispBuffer( buttonX + 28 -54, buttonY - 18, DISP_PRIO_IME4, CG_BTL_BUTTON_CROSS, 0 );
@@ -3821,19 +3821,19 @@ void BattleMenuProc( void )
 
 			ClearBoxFlag();
 
-#ifdef _PETSKILL_DAMAGETOHP	  // 宠技:浴血狂狼(嗜血技的变体) 
-			if( battleWazaTargetBak != -1 ){//上一回合的技能编号
-				//为了避免当这个技能不可使用时,却被当成已选择,所以再让使用者再选一次
-				if( petSkill[battlePetNoBak][battleWazaTargetBak].field == 2 //被标示为不可选
-					|| petSkill[battlePetNoBak][battleWazaTargetBak].skillId == 0 //Change fix 人物使用针针相对或暴风雨时,若宠接着选防守或待机,则接下来宠物的选单不会出来,这里强制让选单出现
+#ifdef _PETSKILL_DAMAGETOHP	  // 寵技:浴血狂狼(嗜血技的變體) 
+			if( battleWazaTargetBak != -1 ){//上一迴閤的技能編號
+				//為瞭避免當這個技能不可使用時,卻被當成已選擇,所以再讓使用者再選一次
+				if( petSkill[battlePetNoBak][battleWazaTargetBak].field == 2 //被標示為不可選
+					|| petSkill[battlePetNoBak][battleWazaTargetBak].skillId == 0 //Change fix 人物使用針針相對或暴風雨時,若寵接著選防守或待機,則接下來寵物的選單不會齣來,這裏強製讓選單齣現
 					|| petSkill[battlePetNoBak][battleWazaTargetBak].skillId == 2 ){ 
-				//if( petSkill[battlePetNoBak][battleWazaTargetBak].skillId == 623 ){ //623:在petskill2.txt内的技能编号
+				//if( petSkill[battlePetNoBak][battleWazaTargetBak].skillId == 623 ){ //623:在petskill2.txt內的技能編號
 				    battleWazaTargetBak = -1;
 				    battlePetButtonFlag = TRUE;
 				}
 				else{
 					
-#ifdef _BATTLESKILL              // (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL              // (不可開) Syu ADD 戰鬥技能介麵
 //					BattleWazaNo = battlePetNoBak;
 					BattleSetWazaHitBox( BattleWazaNo , 0 );
 #else
@@ -3842,8 +3842,8 @@ void BattleMenuProc( void )
 				}
 			}
 #else
-			if( battleWazaTargetBak != -1  ){ //上一回合的技能编号
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+			if( battleWazaTargetBak != -1  ){ //上一迴閤的技能編號
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 //				BattleWazaNo = battlePetNoBak;
 				BattleSetWazaHitBox( BattleWazaNo , 0 );
 #else

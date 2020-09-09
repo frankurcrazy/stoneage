@@ -1,4 +1,4 @@
-﻿#ifndef _DIRECT_DRAW_H_
+#ifndef _DIRECT_DRAW_H_
 #define _DIRECT_DRAW_H_
 
 #include "sprmgr.h"

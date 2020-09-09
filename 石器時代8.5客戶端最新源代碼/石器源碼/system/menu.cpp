@@ -1,4 +1,4 @@
-﻿#include "../systeminc/version.h"
+#include "../systeminc/version.h"
 #include "../systeminc/system.h"
 #include "../systeminc/font.h"
 #include "../other/caryIme.h"
@@ -23,24 +23,24 @@
 #include "../systeminc/talkwindow.h"
 #endif
 #ifdef _MAGIC_ITEM_
-ACTION* 道具光环Act=NULL;
+ACTION* 道具光環Act=NULL;
 extern ACTION* MagicItemActAddr;
 extern int MagicItemCombinData[3];
 extern int MagicItemPosState[4];
 #endif
 #ifdef _RENWU_
-BOOL 任务查询开关=FALSE;
+BOOL 任務查詢開關=FALSE;
 #endif
 extern int MessageBoxNew(HWND hWnd, LPCSTR lpText, LPCSTR lpCaption, UINT uType);
-int 繁体开关 = FALSE;
-int 经验开关 = TRUE;
-int 人物屏蔽开关 = FALSE;
-int 右键攻击 = FALSE;
+int 繁體開關 = FALSE;
+int 經驗開關 = TRUE;
+int 人物屏蔽開關 = FALSE;
+int 右鍵攻擊 = FALSE;
 
 #ifdef _PETBLESS_
-int 祝福窗口开关 = FALSE;
-char 祝福窗口内容[128];
-int 祝福窗口选中;
+int 祝福窗口開關 = FALSE;
+char 祝福窗口內容[128];
+int 祝福窗口選中;
 #endif
 
 
@@ -48,7 +48,7 @@ int 祝福窗口选中;
 extern void ShowBottomLineString(int iColor, LPSTR lpstr);
 extern Landed PcLanded;
 #endif
-#ifdef _NEWPANEL //Syu ADD 7.0 新人物状态介面
+#ifdef _NEWPANEL //Syu ADD 7.0 新人物狀態介麵
 #ifdef _SYUTEST3
 #define MENU_STATUS_0   25
 #else
@@ -57,7 +57,7 @@ extern Landed PcLanded;
 #else
 #define MENU_STATUS_0	12
 #endif
-#ifdef _DROPPETWND					// (可开放) Syu ADD 丢弃宠物确认
+#ifdef _DROPPETWND					// (可開放) Syu ADD 丟棄寵物確認
 #define MENU_PET_0		24
 #else
 #define MENU_PET_0		20
@@ -65,7 +65,7 @@ extern Landed PcLanded;
 #define MENU_ITEM_0		40
 #define MENU_MAIL_0		40
 #define MENU_ALBUM_0	20
-#ifdef _TRADESYSTEM2	// (不可开) Syu ADD 新交易系统
+#ifdef _TRADESYSTEM2	// (不可開) Syu ADD 新交易係統
 #define MENU_TRADE_0	22
 #endif
 #define MENU_BANK_0		20
@@ -84,18 +84,18 @@ extern BOOL g_bUseAlpha;
 #define MAX_CHAT_REGISTY_STR		8		// ?????????
 #define MAX_CHAT_REGISTY_STR_LEN	26 		// ??????????
 
-#ifdef _DROPPETWND					// (可开放) Syu ADD 丢弃宠物确认
-bool DropPetWndflag = false;			//丢弃宠物视窗显示与否旗标
-short DropI = -1;						//暂存i值
+#ifdef _DROPPETWND					// (可開放) Syu ADD 丟棄寵物確認
+bool DropPetWndflag = false;			//丟棄寵物視窗顯示與否旗標
+short DropI = -1;						//暫存i值
 #endif
 #ifdef _NEW_ITEM_
-int 道具栏页数 = 0;
-int 判断玩家道具数量()
+int 道具欄頁數 = 0;
+int 判斷玩傢道具數量()
 {
 	int ret = MAX_MAXHAVEITEM + MAX_ITEMSTART;
-	if (pc.道具栏状态 & 1 << 1){
+	if (pc.道具欄狀態 & 1 << 1){
 		ret += MAX_MAXHAVEITEM;
-		if (pc.道具栏状态 & 1 << 2){
+		if (pc.道具欄狀態 & 1 << 2){
 			ret += MAX_MAXHAVEITEM;
 		}
 	}
@@ -103,13 +103,13 @@ int 判断玩家道具数量()
 }
 #endif
 #ifdef _DIEJIA_
-//物品是否能堆叠
+//物品是否能堆疊
 BOOL ItemCanPile(int flg)
 {
 	return (flg & 1 << 6);
 }
 #endif
-#ifdef _AniCrossFrame	  // Syu ADD 动画层游过画面生物
+#ifdef _AniCrossFrame	  // Syu ADD 動畫層遊過畫麵生物
 #define RAND(x,y)   ((x-1)+1+ (int)((double)(y-(x-1))*rand()/(RAND_MAX+1.0)))
 int UpDownflag = 0;
 #endif
@@ -120,20 +120,20 @@ unsigned int  systemWndNo;						// ??????
 STR_BUFFER chatRegistryStr[MAX_CHAT_REGISTY_STR];		// ??????????????
 int MouseCursorFlag = FALSE;							// ???????
 
-#ifdef _TRADETALKWND				// (不可开) Syu ADD 交易新增对话框架
-char talkmsg[4][256];					//四行的暂存Buffer
+#ifdef _TRADETALKWND				// (不可開) Syu ADD 交易新增對話框架
+char talkmsg[4][256];					//四行的暫存Buffer
 int talkwndx = 300, talkwndy = 350;   //起始位置
-bool talkwndflag = false;				//是否可以拖曳旗标
-bool tradetalkwndflag = false;			//是否产生对话窗旗标
+bool talkwndflag = false;				//是否可以拖曳旗標
+bool tradetalkwndflag = false;			//是否産生對話窗旗標
 #endif
 
-#ifdef _MONEYINPUT //Syu ADD 手动输入金钱量
+#ifdef _MONEYINPUT //Syu ADD 手動輸入金錢量
 STR_BUFFER MymoneyBuffer;
 bool Moneyflag = false;
 #endif
 STR_BUFFER TradeBuffer;
-bool Tradeflag = false;    //输入位置Focus旗标
-bool TradeBtnflag = false; //金额放置钮显示开关
+bool Tradeflag = false;    //輸入位置Focus旗標
+bool TradeBtnflag = false; //金額放置鈕顯示開關
 // ???
 int mapWndFontNo[MENU_MAP_0]; 	// ????
 static unsigned int  mapWndNo;		// ??????
@@ -176,11 +176,11 @@ struct showitem {
 	char damage[128];
 };
 static int tradePetIndex = -1;
-#ifdef _TRADESYSTEM2	// (不可开) Syu ADD 新交易系统
-//１～１５为我方道具，１６～２０为我方宠物，２１为我方金钱
-//２２～３６为对方道具，３７～４１为对方宠物，４２为对方金钱
+#ifdef _TRADESYSTEM2	// (不可開) Syu ADD 新交易係統
+//１～１５為我方道具，１６～２０為我方寵物，２１為我方金錢
+//２２～３６為對方道具，３７～４１為對方寵物，４２為對方金錢
 
-static showitem opp_item[MAX_MAXHAVEITEM];	//交易道具阵列增为15个
+static showitem opp_item[MAX_MAXHAVEITEM];	//交易道具陣列增為15個
 struct showpet {
 	char opp_petname[128];
 	char opp_petfreename[128];
@@ -204,27 +204,27 @@ struct showpet {
 	char opp_fusion[64];
 #endif
 #ifdef _PET_ITEM
-	PetItemInfo oPetItemInfo[MAX_PET_ITEM];			// 宠物身上的道具
+	PetItemInfo oPetItemInfo[MAX_PET_ITEM];			// 寵物身上的道具
 #endif
-};											//对方交易宠物能力暂存
+};											//對方交易寵物能力暫存
 static showpet opp_pet[5];
 #ifdef _NEW_ITEM_
 int itemflag[MAX_MAXHAVEITEM * 3];
 #else
 int itemflag[MAX_MAXHAVEITEM];
 #endif
-static ACTION *SecondActPet;				//第二视窗宠物Action
-bool MainTradeWndflag = true;				//主视窗显示与否的flag
-bool SecondTradeWndflag = false;			//第二视窗显示与否的flag
-ACTION *SecondTradeWnd;						//第二视窗
-ACTION *TradeTalkWnd = NULL;						//对话视窗
-int ShowPetNum = 0;						//检视正在显示的宠物号
-static int SecondtradeWndFontNo[6];		//第二视窗的按钮
-int mytradelist[51] = { -1 };				//我方卷页内容顺序清单
-int opptradelist[51] = { -1 };				//对方卷页内容顺序清单
-int drag1Y = 67, drag2Y = 257;			//拖曳钮初始位置
-int tmpdrag1Y, tmpdrag2Y;					//拖拽开始位置
-bool dragflag1 = false, dragflag2 = false; //拖曳钮启动与否旗标
+static ACTION *SecondActPet;				//第二視窗寵物Action
+bool MainTradeWndflag = true;				//主視窗顯示與否的flag
+bool SecondTradeWndflag = false;			//第二視窗顯示與否的flag
+ACTION *SecondTradeWnd;						//第二視窗
+ACTION *TradeTalkWnd = NULL;						//對話視窗
+int ShowPetNum = 0;						//檢視正在顯示的寵物號
+static int SecondtradeWndFontNo[6];		//第二視窗的按鈕
+int mytradelist[51] = { -1 };				//我方捲頁內容順序清單
+int opptradelist[51] = { -1 };				//對方捲頁內容順序清單
+int drag1Y = 67, drag2Y = 257;			//拖曳鈕初始位置
+int tmpdrag1Y, tmpdrag2Y;					//拖拽開始位置
+bool dragflag1 = false, dragflag2 = false; //拖曳鈕啓動與否旗標
 int locknum = -1, locknum2 = -1;
 #endif
 static PET tradePet[2];
@@ -233,7 +233,7 @@ static char tradepetindexget[128] = "-1";
 static bool g_bPetItemWndFlag = false;
 #endif
 
-static ACTION *pActPet3 = NULL; //交易时主视窗我方Pet Action
+static ACTION *pActPet3 = NULL; //交易時主視窗我方Pet Action
 static ACTION *pActPet4 = NULL;
 static ACTION *pActPet5 = NULL;
 
@@ -255,7 +255,7 @@ struct tradelist {
 	int itemup;
 #endif
 };
-#ifdef _TRADESYSTEM2	// (不可开) Syu ADD 新交易系统
+#ifdef _TRADESYSTEM2	// (不可開) Syu ADD 新交易係統
 static tradelist tradeList[45];
 #endif
 static int mine_itemindex[2] = { -1, -1 };
@@ -269,7 +269,7 @@ static int totalGold = 0;
 static int bankGoldInc = 0;
 static int bankGoldCnt = 0;
 
-#ifdef _TELLCHANNEL				//ROG ADD 密语频道
+#ifdef _TELLCHANNEL				//ROG ADD 密語頻道
 BOOL MultiTells = FALSE;
 ACTION *pActMsgWnd;
 int CharNum = 0;
@@ -277,11 +277,11 @@ char TellInfo[10][128];
 char name[10][32];
 int index[10];
 char reSendMsg[STR_BUFFER_SIZE];
-int  TalkMode = 0;						//0:一般 1:密语 2: 队伍 3:家族 4:职业 
-char secretName[32] = { "" };				//要密之人的名称
+int  TalkMode = 0;						//0:一般 1:密語 2: 隊伍 3:傢族 4:職業 
+char secretName[32] = { "" };				//要密之人的名稱
 #endif
 
-#ifdef _FRIENDCHANNEL				//ROG ADD 好友频道
+#ifdef _FRIENDCHANNEL				//ROG ADD 好友頻道
 typedef struct{
 	char	roomNo[4];
 	char	chiefName[CHAR_NAME_LEN+1];
@@ -295,36 +295,36 @@ typedef struct{
 }CHATINFO;
 CHATINFO chatInfo;
 
-bool secretFlag = FALSE;				//密语旗标
-bool BtnType = FALSE;					//按钮显示用
+bool secretFlag = FALSE;				//密語旗標
+bool BtnType = FALSE;					//按鈕顯示用
 bool setRoomFlag = FALSE;
-bool assentFlag = FALSE;				//同意视窗旗标
+bool assentFlag = FALSE;				//同意視窗旗標
 bool scrollFlag = FALSE;
-char roomInfo[MAX_ROOM_NUM][64];		//选择聊天室用
+char roomInfo[MAX_ROOM_NUM][64];		//選擇聊天室用
 char memInfo[64];						//member information
 int  scrlBtnIndex = 0;					//scroll位移
-int  BtnNo = 0;							//按钮编号
-int  firMemNo = 0;						//第一个成员
-int  selChar = -1;						//要密之人的编号
-int  closeBtn ,leaveBtn ,delBtn,chaBtn,outBtn,scrlHBtn,scrlLBtn; //按钮图档
+int  BtnNo = 0;							//按鈕編號
+int  firMemNo = 0;						//第一個成員
+int  selChar = -1;						//要密之人的編號
+int  closeBtn ,leaveBtn ,delBtn,chaBtn,outBtn,scrlHBtn,scrlLBtn; //按鈕圖檔
 int  roomIndex[MAX_ROOM_NUM];
 int roomNum = 0;
 int memIndex = 0;						//member index
-static int ChatRoomBtn[ 16 ];			//聊天室按钮
-STR_BUFFER chatRoomName;				//设定聊天室名称用
-ACTION *pSetRoomWnd;					//设定聊天室名称用
-ACTION *pAssentWnd;						//同意视窗用
-ACTION *pChtChanlWnd;					//聊天室视窗用
-ACTION *pSelChanlWnd;					//选择聊天室视窗用
+static int ChatRoomBtn[ 16 ];			//聊天室按鈕
+STR_BUFFER chatRoomName;				//設定聊天室名稱用
+ACTION *pSetRoomWnd;					//設定聊天室名稱用
+ACTION *pAssentWnd;						//同意視窗用
+ACTION *pChtChanlWnd;					//聊天室視窗用
+ACTION *pSelChanlWnd;					//選擇聊天室視窗用
 #endif
 
-#ifdef _TIMEBAR_FUNCTION			//时间bar函式
+#ifdef _TIMEBAR_FUNCTION			//時間bar函式
 ACTION *pTimeBarWnd;
 char   timeBarTitle[32];
 int    timeBarRange;
 int    timeBarCurPos;
 bool   timeBarFlag = FALSE;
-bool   barHolder[2];                //用来切换时间条
+bool   barHolder[2];                //用來切換時間條
 void DrawTimeBar();
 /////////TEST/////////////////
 int StartTime = 0;
@@ -363,7 +363,7 @@ static int  tradeWndDropGoldCnt = 0;			// trade??????????
 static int  tradeWndDropGoldSend = 0;
 static int  tradeWndDropGoldGet = 0;
 #ifdef _PET_ITEM
-static int	nSelectPet;						// 打开道具栏时记录目前作用的宠物
+static int	nSelectPet;						// 打開道具欄時記錄目前作用的寵物
 #endif
 
 ACTION *pActPet2;					// ??????????????
@@ -375,7 +375,7 @@ static unsigned int ItemUseTime = 0;		// ???????????
 ITEM_BUFFER ItemBuffer[MAX_ITEM];
 
 #ifdef _PET_ITEM		
-// 每一项的第一个是能装备时的底图图号,第二个是不能装时的底图图号
+// 每一項的第一個是能裝備時的底圖圖號,第二個是不能裝時的底圖圖號
 int nPetItemEquipBmpNumber[PET_EQUIPNUM][2] = 
 {
 	{26463, 26470}, {26460, 26467}, {26458, 26465}, {26461, 26468}, {26459, 26466},
@@ -385,9 +385,9 @@ int nPetItemEquipBmpNumber[PET_EQUIPNUM][2] =
 // ???
 #define MAIL_HISTORY_FILE_NAME 	"data\\mail.dat" 	// ??????
 #ifdef _TRANS_6
-char *TransmigrationStr[ 7 ] = { "","壹","贰","参","肆","伍","陆" };
+char *TransmigrationStr[ 7 ] = { "","壹","貳","參","肆","伍","陸" };
 #else
-char *TransmigrationStr[6] = { "零", "壹", "贰", "参", "肆", "伍" };
+char *TransmigrationStr[6] = { "零", "壹", "貳", "參", "肆", "伍" };
 
 int Transmigrationcolor[6] = {0,4,5,3,6,2};
 
@@ -482,7 +482,7 @@ int ResultWndTimer;							// ???????????
 #define TASK_BAR_X 320
 #define TASK_BAR_Y 468 + DISPLACEMENT_Y 
 BOOL TaskBarFlag = FALSE;	// ????????
-// Terry add 2003/12/16 for 交易视窗开启时,显示物品说明不显示输入法
+// Terry add 2003/12/16 for 交易視窗開啓時,顯示物品說明不顯示輸入法
 BOOL bShowItemExplain = FALSE;
 // end
 static int taskBarFontNo[TASK_BAR];
@@ -490,23 +490,23 @@ static int taskBarX = TASK_BAR_X, taskBarY = TASK_BAR_Y + 24;
 
 // ??????
 unsigned int MenuToggleFlag;
-#ifdef _NEWREQUESTPROTOCOL			// (不可开) Syu ADD 新增Protocol要求细项
+#ifdef _NEWREQUESTPROTOCOL			// (不可開) Syu ADD 新增Protocol要求細項
 #define CHAR_MAX_DETAIL 8
 char CharDetail[CHAR_MAX_DETAIL][16] ; 
 char DetailDesc[CHAR_MAX_DETAIL][64] = {
 	"地魔法抗性　：" ,
 	"水魔法抗性　：" ,
 	"火魔法抗性　：" ,	
-	"风魔法抗性　：" ,
-	"地魔法熟练度：" ,
-	"水魔法熟练度：" ,
-	"火魔法熟练度：" ,	
-	"风魔法熟练度：" 
+	"風魔法抗性　：" ,
+	"地魔法熟練度：" ,
+	"水魔法熟練度：" ,
+	"火魔法熟練度：" ,	
+	"風魔法熟練度：" 
 };
 #endif
 #ifdef _MAG_MENU
 int DetailDescicon[CHAR_MAX_DETAIL]={26479, 26475, 26477, 26481, 26478, 26474, 26476, 26480};
-char DetailDescchar[4][4]={"地","水","火","风"};
+char DetailDescchar[4][4]={"地","水","火","風"};
 #endif
 
 #ifdef _ALCHEPLUS
@@ -514,17 +514,17 @@ int iCharAlchePlus[25];
 char sAlchePlus_list[25][16] =
 {
 	"石", "木", "骨", "牙", "皮",
-	"贝壳", "壳", "爪", "花", "叶",
-	"线", "黏土", "鳞", "毒", "石化",
-	"混乱", "酒醉", "睡眠", "回复", "复活",
-	"水晶", "地", "水", "火", "风"
+	"貝殼", "殼", "爪", "花", "葉",
+	"綫", "黏土", "鱗", "毒", "石化",
+	"混亂", "酒醉", "睡眠", "迴復", "復活",
+	"水晶", "地", "水", "火", "風"
 };
 
 int iAlchePlusIcon[25] = { 26536, 26529, 26545, 26534, 26535,	/*"石", "木",	"骨", "牙",	"皮"*/
-26540, 26548, 26533, 26541, 26549,	/*"贝壳", "壳", "爪",	"花", "叶"*/
-26551, 26552, 26553, 26542, 26537,	/*"线", "黏土", "鳞", "毒", "石化"*/
-26546, 26544, 26550, 26538, 26547,	/*"混乱",	"酒醉",	"睡眠",	"回复",	"复活"*/
-26531, 26539, 26530, 26532, 26543 };	/*"水晶",	"地", "水",	"火", "风"*/
+26540, 26548, 26533, 26541, 26549,	/*"貝殼", "殼", "爪",	"花", "葉"*/
+26551, 26552, 26553, 26542, 26537,	/*"綫", "黏土", "鱗", "毒", "石化"*/
+26546, 26544, 26550, 26538, 26547,	/*"混亂",	"酒醉",	"睡眠",	"迴復",	"復活"*/
+26531, 26539, 26530, 26532, 26543 };	/*"水晶",	"地", "水",	"火", "風"*/
 #endif
 
 // ??????????????
@@ -546,8 +546,8 @@ int RIDEPET_getRIDEno(int index, int ti);
 int RIDEPET_getPETindex_New(int PetNo, int learnCode);
 #endif
 
-static char *monoStereoStr[] = { "       单声道       ",
-"       立体声       " };
+static char *monoStereoStr[] = { "       單聲道       ",
+"       立體聲       " };
 
 static char *mouseCursor[] = { "     正  常     ",
 "     平  滑     " };
@@ -570,26 +570,26 @@ extern BOOL OnlineGmFlag;
 #endif
 
 #ifdef _PET_ITEM
-/*	0x01:PET_HEAD	// 头
+/*	0x01:PET_HEAD	// 頭
 	0x02:PET_WING	// 翼
 	0x04:PET_TOOTH	// 牙
-	0x08:PET_PLATE	// 身体
+	0x08:PET_PLATE	// 身體
 	0x10:PET_BACK	// 背
 	0x20:PET_CLAW	// 爪
-	0x40:PET_FOOT	// 脚(鳍)
+	0x40:PET_FOOT	// 腳(鰭)
 	*/
-// 不同种的宠物会有能装和不能装的部位
+// 不同種的寵物會有能裝和不能裝的部位
 unsigned char byShowPetItemBackground[MAX_PET_SPECIES + 1] =
 {
-	/*	乌力	布比	拳击手	克克尔	凯比	布克	蝙蝠	乌宝宝	飞天蛙	飞龙*/
+	/*	烏力	布比	拳擊手	剋剋爾	凱比	布剋	蝙蝠	烏寶寶	飛天蛙	飛龍*/
 	0x5d,	0x5d,	0x7d,	0x5d,	0x5d,	0x7d,	0x5f,	0x5d,	0x5f,	0x7f,
-	/*	大舌头	乌龟	鲨鱼	海主人	猪鱼龙	呼拔拔	人龙	三角龙	雷龙	暴龙*/
+	/*	大舌頭	烏龜	鯊魚	海主人	豬魚龍	呼拔拔	人龍	三角龍	雷龍	暴龍*/
 	0x5d,	0x5d,	0x5d,	0x5d,	0x5d,	0x7d,	0x7d,	0x5d,	0x5d,	0x7d,
-	/*	水龙	猩猩	巴克	老虎	长毛象	鸟系	羊系	穿山甲	特殊系	软体系*/
+	/*	水龍	猩猩	巴剋	老虎	長毛象	鳥係	羊係	穿山甲	特殊係	軟體係*/
 	0x5d,	0x7d,	0x7d,	0x5d,	0x5d,	0x5f,	0x5d,	0x5d,	0x09,	0x1d,
-	/*	小鱼	贝壳	棘皮	鱼龙	虾蟹	鲸豚	魟系	海牛系	大鲨鱼	旗鱼系*/
+	/*	小魚	貝殼	棘皮	魚龍	蝦蟹	鯨豚	魟係	海牛係	大鯊魚	旗魚係*/
 	0x5d,	0x79,	0x1d,	0x5d,	0x79,	0x5d,	0x5d,	0x5d,	0x5d,	0x5d,
-	/*	大鱼系	鳄龙系	融合宠*/
+	/*	大魚係	鰐龍係	融閤寵*/
 	0x5d,	0x5d,	0x00
 };
 #endif
@@ -600,7 +600,7 @@ int charDetailPage = 3;
 bool DrawJigsawFlag = false;
 int JigsawIdx = 0;
 int JigsawImg[] = { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 };
-int JigsawOK[][3] = {//道具图号,第一块图号,底图图号
+int JigsawOK[][3] = {//道具圖號,第一塊圖號,底圖圖號
 	{ 25151, 25261, 25241 }, { 25152, 25270, 25242 }, { 25153, 25279, 25243 }, { 25154, 25288, 25244 }, { 25155, 25297, 25245 }, { 25156, 25306, 25246 }, { 25157, 25315, 25247 }, { 25158, 25324, 25248 }, { 25159, 25333, 25249 }, { 25150, 25252, 25250 }
 };
 void SetJigsaw(int img, char *str)
@@ -628,7 +628,7 @@ bool CheckJigsaw(int img)
 }
 #endif
 
-#ifdef _NEWPANEL //Syu ADD 7.0 新人物状态介面
+#ifdef _NEWPANEL //Syu ADD 7.0 新人物狀態介麵
 bool SkillWndflag = false ; 
 short SkillWnd = 0 ; 
 ACTION *pActSkillMenuWnd;
@@ -713,11 +713,11 @@ void SkillWndfunc2() {
 					sprintf_s( msg , "%d％", profession_skill[AssitSkill [ j + i * 4 ]].skill_level ) ; 
 					StockFontBuffer( 440, 310 + DISPLACEMENT_Y, FONT_PRIO_FRONT, use_color, msg, 0 );
 
-					sprintf_s( msg , "(耗费MP:%d)" , profession_skill[AssitSkill [ j + i * 4 ]].costmp );
+					sprintf_s( msg , "(耗費MP:%d)" , profession_skill[AssitSkill [ j + i * 4 ]].costmp );
 					StockFontBuffer( 500, 310 + DISPLACEMENT_Y, FONT_PRIO_FRONT, use_color, msg, 0 );
 
 					sprintf_s( msg , "%s" , profession_skill[AssitSkill [ j + i * 4 ]].memo ) ; 
-#ifdef _OUTOFBATTLESKILL			// (不可开) Syu ADD 非战斗时技能Protocol
+#ifdef _OUTOFBATTLESKILL			// (不可開) Syu ADD 非戰鬥時技能Protocol
 					if ( mouse.onceState & MOUSE_LEFT_CRICK && profession_skill[ AssitSkill [ j + i * 4 ] ].useFlag == 0 ) {
 						if( pc.mp >= profession_skill[AssitSkill [ j + i * 4 ]].costmp && profession_skill[AssitSkill [ j + i * 4 ]].costmp != 0 ) {							
 							lssproto_BATTLESKILL_send ( sockfd , AssitSkill [ j + i * 4 ] ) ; 
@@ -756,11 +756,11 @@ void SkillWndfunc2() {
 					sprintf_s( msg , "%d％", profession_skill[BattleSkill [ j + i * 4 ]].skill_level ) ; 
 					StockFontBuffer( 440, 310 + DISPLACEMENT_Y, FONT_PRIO_FRONT, use_color, msg, 0 );
 
-					sprintf_s( msg , "(耗费MP:%d)" , profession_skill[BattleSkill [ j + i * 4 ]].costmp );
+					sprintf_s( msg , "(耗費MP:%d)" , profession_skill[BattleSkill [ j + i * 4 ]].costmp );
 					StockFontBuffer( 500, 310 + DISPLACEMENT_Y, FONT_PRIO_FRONT, use_color, msg, 0 );
 
 					sprintf_s( msg , "%s" , profession_skill[BattleSkill [ j + i * 4 ]].memo ) ; 
-#ifdef _OUTOFBATTLESKILL			// (不可开) Syu ADD 非战斗时技能Protocol
+#ifdef _OUTOFBATTLESKILL			// (不可開) Syu ADD 非戰鬥時技能Protocol
 					if ( mouse.onceState & MOUSE_LEFT_CRICK && profession_skill[ BattleSkill [ j + i * 4 ]].useFlag == 0 ) {
 						if( pc.mp >= profession_skill[BattleSkill [ j + i * 4 ]].costmp && profession_skill[BattleSkill [ j + i * 4 ]].costmp != 0 ) {
 							lssproto_BATTLESKILL_send ( sockfd , BattleSkill [ j + i * 4 ] ) ; 
@@ -799,11 +799,11 @@ void SkillWndfunc2() {
 					sprintf_s( msg , "%d％", profession_skill[AdvanceSkill [ j + i * 4 ]].skill_level ) ; 
 					StockFontBuffer( 440, 310 + DISPLACEMENT_Y, FONT_PRIO_FRONT, use_color, msg, 0 );
 
-					sprintf_s( msg , "(耗费MP:%d)" , profession_skill[AdvanceSkill [ j + i * 4 ]].costmp );
+					sprintf_s( msg , "(耗費MP:%d)" , profession_skill[AdvanceSkill [ j + i * 4 ]].costmp );
 					StockFontBuffer( 500, 310 + DISPLACEMENT_Y, FONT_PRIO_FRONT, use_color, msg, 0 );
 
 					sprintf_s( msg , "%s" , profession_skill[AdvanceSkill [ j + i * 4 ]].memo ) ; 
-#ifdef _OUTOFBATTLESKILL			// (不可开) Syu ADD 非战斗时技能Protocol
+#ifdef _OUTOFBATTLESKILL			// (不可開) Syu ADD 非戰鬥時技能Protocol
 					if ( mouse.onceState & MOUSE_LEFT_CRICK && profession_skill[AdvanceSkill [ j + i * 4 ]].useFlag == 0 ) {
 						if( pc.mp >= profession_skill[AdvanceSkill [ j + i * 4 ]].costmp && profession_skill[AdvanceSkill [ j + i * 4 ]].costmp != 0 ) {							
 							lssproto_BATTLESKILL_send ( sockfd , AdvanceSkill [ j + i * 4 ] ) ; 
@@ -843,15 +843,15 @@ void SkillWndfunc2() {
 }
 #endif
 
-#ifdef _TRADESYSTEM2	// (不可开) Syu ADD 新交易系统
-#ifdef _TRADETALKWND				// (不可开) Syu ADD 交易新增对话框架
+#ifdef _TRADESYSTEM2	// (不可開) Syu ADD 新交易係統
+#ifdef _TRADETALKWND				// (不可開) Syu ADD 交易新增對話框架
 void TradeTalk(char *msg) {
 	char buf[256];
 	if (pActMenuWnd4 != NULL || SecondTradeWnd != NULL) {
 		sprintf_s(buf, "%s", msg);
-		//判断是否由买卖双方说出
+		//判斷是否由買賣雙方說齣
 		if (strstr(buf, pc.name) || strstr(buf, opp_name)) {
-			//内容转移
+			//內容轉移
 			while (1){
 				if (strlen(msg) > 44) {
 					strncpy_s(buf, msg, 44);
@@ -888,13 +888,13 @@ void LockAndOkfunction()
 	char mypetbuff[1024];
 	char oppitembuff[1024];
 	char opppetbuff[1024];
-	// 双方皆按下确定键状态
+	// 雙方皆按下確定鍵狀態
 	if (pc.trade_confirm == 4) {
-		// 处理按下确定键
+		// 處理按下確定鍵
 		if ((MainTradeWndflag == true && HitDispNo == tradeWndFontNo[0]) ||
 			//andy_reEdit 2003/04/27
 			(SecondTradeWndflag == true && HitDispNo == SecondtradeWndFontNo[2])){
-			// 对双方交易物品做成buffer	
+			// 對雙方交易物品做成buffer	
 			sprintf_s(myitembuff, "T|%s|%s|K|I|%d|I|%d|I|%d|I|%d|I|%d|I|%d|I|%d|I|%d|I|%d|I|%d|I|%d|I|%d|I|%d|I|%d|I|%d|"
 				, opp_sockfd, opp_name
 				, tradeList[1].data, tradeList[2].data
@@ -927,20 +927,20 @@ void LockAndOkfunction()
 			tradeStatus = 2;
 		}
 	}
-	// 对方按下Lock或我方要按下Lock键 
+	// 對方按下Lock或我方要按下Lock鍵 
 	if (pc.trade_confirm == 1 || pc.trade_confirm == 3) {
 		if ((MainTradeWndflag == true && HitDispNo == tradeWndFontNo[0]) ||
 			//andy_reEdit 2003/04/27
 			(SecondTradeWndflag == true && HitDispNo == SecondtradeWndFontNo[2])) {
-			//对方尚未Lock进入状态 2
+			//對方尚未Lock進入狀態 2
 			if (pc.trade_confirm == 1) pc.trade_confirm = 2;
-			//对方已经Lock进入状态 4
+			//對方已經Lock進入狀態 4
 			if (pc.trade_confirm == 3)	pc.trade_confirm = 4;
 			sprintf_s(buffer, "T|%s|%s|C|confirm", opp_sockfd, opp_name);
 			lssproto_TD_send(sockfd, buffer);
 		}
 	}
-	// 处理 Lock 、 确定键 End
+	// 處理 Lock 、 確定鍵 End
 }
 #endif
 
@@ -1740,7 +1740,7 @@ void AnimDisp(ACTION *pAct)
 			ItemMixPetNo = -1;
 		}
 		break;
-#ifdef _AniCrossFrame	  // Syu ADD 动画层游过画面生物
+#ifdef _AniCrossFrame	  // Syu ADD 動畫層遊過畫麵生物
 	case ANIM_DISP_CROSSFRAME:
 	{
 								 extern bool delFlag;
@@ -1748,15 +1748,15 @@ void AnimDisp(ACTION *pAct)
 								 pAct->anim_no = ANIM_WALK;
 								 pAct->anim_ang = 2;
 								 pAct->crs = crs_change_tbl2[pAct->anim_ang];
-								 //移动速度
+								 //移動速度
 								 pAct->spd = 1;
-								 //显示层级
+								 //顯示層級
 								 pAct->dispPrio = DISP_PRIO_JIKI;
 								 if (pAct->dx % 5 == 0){
 									 if (pAct->dy >= 2) pAct->dy--;
 								 }
 								 gemini(pAct);
-								 //各种方向位移
+								 //各種方嚮位移
 								 if (((pAct->anim_chr_no > 101511) && (pAct->anim_chr_no < 101516)) ||
 									 (pAct->anim_chr_no == 101517) || (pAct->anim_chr_no == 101519))
 								 {
@@ -1799,7 +1799,7 @@ void AnimDisp(ACTION *pAct)
 									 pAct->x++;
 									 pAct->y++;
 								 }
-								 //超出荧幕范围消灭
+								 //超齣熒幕範圍消滅
 								 if ((pAct->x <= -100 || pAct->y <= -100 || pAct->x >= 740 || pAct->y >= 580) && delFlag == true && flag22 == true)
 								 {
 									 flag22 = false;
@@ -1810,7 +1810,7 @@ void AnimDisp(ACTION *pAct)
 		break;
 #endif
 #ifdef _THEATER
-	case ANIM_DISP_THEATER_NPC:		// 剧场NPC显示
+	case ANIM_DISP_THEATER_NPC:		// 劇場NPC顯示
 	{
 										float	fX, fY;
 
@@ -1824,13 +1824,13 @@ void AnimDisp(ACTION *pAct)
 											);
 										switch (ATR_CHR_ACT(pAct))
 										{
-										case 0:		// 攻击
-										case 1:		// 受伤
-										case 2:		// 晕倒
+										case 0:		// 攻擊
+										case 1:		// 受傷
+										case 2:		// 暈倒
 										case 5:		// 坐下
-										case 10:	// 防御
-										case 12:	// 投掷
-											pattern(pAct, ANM_NOMAL_SPD, ANM_NO_LOOP);	// 不重覆动作
+										case 10:	// 防禦
+										case 12:	// 投擲
+											pattern(pAct, ANM_NOMAL_SPD, ANM_NO_LOOP);	// 不重覆動作
 											break;
 										default:
 											pattern(pAct, ANM_NOMAL_SPD, ANM_LOOP);
@@ -1913,8 +1913,8 @@ BOOL SaveMailHistory(int no)
 	}
 #ifdef _MORECHARACTERS_
 	// ?????????????????????????
-	extern int 多人物当前页数;
-	fseek(fp, sizeof(MAIL_HISTORY)* MAX_ADR_BOOK * (selectPcNo + 多人物当前页数 * 2), SEEK_SET);
+	extern int 多人物當前頁數;
+	fseek(fp, sizeof(MAIL_HISTORY)* MAX_ADR_BOOK * (selectPcNo + 多人物當前頁數 * 2), SEEK_SET);
 #else
 	fseek(fp, sizeof(MAIL_HISTORY)* MAX_ADR_BOOK * (selectPcNo), SEEK_SET);
 #endif
@@ -1958,7 +1958,7 @@ BOOL LoadMailHistory(void)
 		// ???????
 		if ((fp = fopen(MAIL_HISTORY_FILE_NAME, "wb")) != NULL){
 #ifdef _STONDEBUG_		
-			MessageBoxNew( hWnd, "删除以前的mail资料。", "确定", MB_OK | MB_ICONSTOP );
+			MessageBoxNew( hWnd, "刪除以前的mail資料。", "確定", MB_OK | MB_ICONSTOP );
 #endif
 			// ???????
 			fwrite(MailHistory, sizeof(MAIL_HISTORY), MAX_ADR_BOOK, fp);
@@ -1971,8 +1971,8 @@ BOOL LoadMailHistory(void)
 
 #ifdef _MORECHARACTERS_
 	// ??????????????????
-	extern int 多人物当前页数;
-	fseek(fp, sizeof(MAIL_HISTORY)* MAX_ADR_BOOK * (selectPcNo + 多人物当前页数 * 2), SEEK_SET);
+	extern int 多人物當前頁數;
+	fseek(fp, sizeof(MAIL_HISTORY)* MAX_ADR_BOOK * (selectPcNo + 多人物當前頁數 * 2), SEEK_SET);
 #else
 	fseek(fp, sizeof(MAIL_HISTORY)* MAX_ADR_BOOK * (selectPcNo), SEEK_SET);
 #endif
@@ -1996,7 +1996,7 @@ BOOL SaveChatRegistyStr(void)
 	// ????????????
 	if ((fp = fopen(CAHT_REGISTY_STR_FILE_NAME, "r+b")) == NULL){
 #ifdef _STONDEBUG_		
-		MessageBoxNew( hWnd, "记录聊天的登录文字失败！１", "确定", MB_OK | MB_ICONSTOP );
+		MessageBoxNew( hWnd, "記錄聊天的登錄文字失敗！１", "確定", MB_OK | MB_ICONSTOP );
 #endif
 		return FALSE;
 	}
@@ -2005,7 +2005,7 @@ BOOL SaveChatRegistyStr(void)
 	if (fwrite(chatRegistryStr, sizeof(STR_BUFFER), MAX_CHAT_REGISTY_STR, fp) < MAX_CHAT_REGISTY_STR){
 
 #ifdef _STONDEBUG_		
-		MessageBoxNew( hWnd, "记录聊天的登录文字失败！２", "确定", MB_OK | MB_ICONSTOP );
+		MessageBoxNew( hWnd, "記錄聊天的登錄文字失敗！２", "確定", MB_OK | MB_ICONSTOP );
 #endif
 		fclose(fp);// ????????
 		return FALSE;
@@ -2030,7 +2030,7 @@ BOOL LoadChatRegistyStr(void)
 		// ???????
 		if ((fp = fopen(CAHT_REGISTY_STR_FILE_NAME, "wb")) != NULL){
 #ifdef _STONDEBUG_		
-			MessageBoxNew( hWnd, "建立聊天的登录文字档案！", "确定", MB_OK );
+			MessageBoxNew( hWnd, "建立聊天的登錄文字檔案！", "確定", MB_OK );
 #endif
 			// ??????????????????
 			for (i = 0; i < 8; i++){
@@ -2064,7 +2064,7 @@ BOOL LoadChatRegistyStr(void)
 	if (fread(chatRegistryStr, sizeof(STR_BUFFER), MAX_CHAT_REGISTY_STR, fp) < MAX_CHAT_REGISTY_STR){
 
 #ifdef _STONDEBUG_		
-		MessageBoxNew( hWnd, "载入聊天的登录文字资料失败！１", "确定", MB_OK | MB_ICONSTOP );
+		MessageBoxNew( hWnd, "載入聊天的登錄文字資料失敗！１", "確定", MB_OK | MB_ICONSTOP );
 #endif
 		fclose(fp);	// ????????
 		return FALSE;
@@ -2091,15 +2091,15 @@ BOOL SaveAlbum(int no)
 	if (0 <= no && no < MAX_PET_TBL){
 		if (fp = fopen(ALBUM_FILE_NAME_48, "r+b")){
 			if (0 != fseek(fp, (16 + sizeof(PET_ALBUM)*MAX_PET_KIND)*AlbumIdCnt, SEEK_SET))
-				MessageBoxNew(hWnd, "储存相簿资料失败！１", "确定", MB_OK);
+				MessageBoxNew(hWnd, "儲存相簿資料失敗！１", "確定", MB_OK);
 			if (0 != fseek(fp, 16 + sizeof(PET_ALBUM)*no, SEEK_CUR))
-				MessageBoxNew(hWnd, "储存相簿资料失败！２", "确定", MB_OK);
+				MessageBoxNew(hWnd, "儲存相簿資料失敗！２", "確定", MB_OK);
 			if (fwrite(&PetAlbum[no], sizeof(PET_ALBUM), 1, fp) >= 1)
 				ret = TRUE;
 			fclose(fp);
 		}
 		else
-			MessageBoxNew(hWnd, "储存相簿资料失败！３", "确定", MB_OK);
+			MessageBoxNew(hWnd, "儲存相簿資料失敗！３", "確定", MB_OK);
 	}
 	return ret;
 #elif defined(__ALBUM_46)
@@ -2107,14 +2107,14 @@ BOOL SaveAlbum(int no)
 	if( 0 <= no && no < MAX_PET_TBL ){
 		if(!fopen_s(&fp, ALBUM_FILE_NAME_47, "r+b")){
 			if( 0 != fseek( fp, (16+sizeof(PET_ALBUM)*MAX_PET_KIND)*AlbumIdCnt, SEEK_SET))
-				MessageBoxNew( hWnd, "储存相簿资料失败！１", "确定", MB_OK );
+				MessageBoxNew( hWnd, "儲存相簿資料失敗！１", "確定", MB_OK );
 			if( 0 != fseek( fp, 16+sizeof(PET_ALBUM)*no, SEEK_CUR))
-				MessageBoxNew( hWnd, "储存相簿资料失败！２", "确定", MB_OK );
+				MessageBoxNew( hWnd, "儲存相簿資料失敗！２", "確定", MB_OK );
 			if( fwrite( &PetAlbum[no], sizeof(PET_ALBUM), 1, fp) >= 1)
 				ret = TRUE;
 			fclose( fp );
 		}else
-			MessageBoxNew( hWnd, "储存相簿资料失败！３", "确定", MB_OK );
+			MessageBoxNew( hWnd, "儲存相簿資料失敗！３", "確定", MB_OK );
 	}
 	return ret;
 
@@ -2123,14 +2123,14 @@ BOOL SaveAlbum(int no)
 	if( 0 <= no && no < MAX_PET_TBL ){
 		if(!fopen_s(&fp, ALBUM_FILE_NAME_46, "r+b")){
 			if( 0 != fseek( fp, (16+sizeof(PET_ALBUM)*MAX_PET_KIND)*AlbumIdCnt, SEEK_SET))
-				MessageBoxNew( hWnd, "储存相簿资料失败！１", "确定", MB_OK );
+				MessageBoxNew( hWnd, "儲存相簿資料失敗！１", "確定", MB_OK );
 			if( 0 != fseek( fp, 16+sizeof(PET_ALBUM)*no, SEEK_CUR))
-				MessageBoxNew( hWnd, "储存相簿资料失败！２", "确定", MB_OK );
+				MessageBoxNew( hWnd, "儲存相簿資料失敗！２", "確定", MB_OK );
 			if( fwrite( &PetAlbum[no], sizeof(PET_ALBUM), 1, fp) >= 1)
 				ret = TRUE;
 			fclose( fp );
 		}else
-			MessageBoxNew( hWnd, "储存相簿资料失败！３", "确定", MB_OK );
+			MessageBoxNew( hWnd, "儲存相簿資料失敗！３", "確定", MB_OK );
 	}
 	return ret;
 
@@ -2139,14 +2139,14 @@ BOOL SaveAlbum(int no)
 	if( 0 <= no && no < MAX_PET_TBL ){
 		if( !fopen_s( &fp,ALBUM_FILE_NAME_45, "r+b")){
 			if( 0 != fseek( fp, (16+sizeof(PET_ALBUM)*MAX_PET_KIND)*AlbumIdCnt, SEEK_SET))
-				MessageBoxNew( hWnd, "储存相簿资料失败！１", "确定", MB_OK );
+				MessageBoxNew( hWnd, "儲存相簿資料失敗！１", "確定", MB_OK );
 			if( 0 != fseek( fp, 16+sizeof(PET_ALBUM)*no, SEEK_CUR))
-				MessageBoxNew( hWnd, "储存相簿资料失败！２", "确定", MB_OK );
+				MessageBoxNew( hWnd, "儲存相簿資料失敗！２", "確定", MB_OK );
 			if( fwrite( &PetAlbum[no], sizeof(PET_ALBUM), 1, fp) >= 1)
 				ret = TRUE;
 			fclose( fp );
 		}else
-			MessageBoxNew( hWnd, "储存相簿资料失败！３", "确定", MB_OK );
+			MessageBoxNew( hWnd, "儲存相簿資料失敗！３", "確定", MB_OK );
 	}
 	return ret;
 
@@ -2155,14 +2155,14 @@ BOOL SaveAlbum(int no)
 	if( 0 <= no && no < MAX_PET_TBL ){
 		if(!fopen_s(&fp, ALBUM_FILE_NAME_44, "r+b")){
 			if( 0 != fseek( fp, (16+sizeof(PET_ALBUM)*MAX_PET_KIND)*AlbumIdCnt, SEEK_SET))
-				MessageBoxNew( hWnd, "储存相簿资料失败！１", "确定", MB_OK );
+				MessageBoxNew( hWnd, "儲存相簿資料失敗！１", "確定", MB_OK );
 			if( 0 != fseek( fp, 16+sizeof(PET_ALBUM)*no, SEEK_CUR))
-				MessageBoxNew( hWnd, "储存相簿资料失败！２", "确定", MB_OK );
+				MessageBoxNew( hWnd, "儲存相簿資料失敗！２", "確定", MB_OK );
 			if( fwrite( &PetAlbum[no], sizeof(PET_ALBUM), 1, fp) >= 1)
 				ret = TRUE;
 			fclose( fp );
 		}else
-			MessageBoxNew( hWnd, "储存相簿资料失败！３", "确定", MB_OK );
+			MessageBoxNew( hWnd, "儲存相簿資料失敗！３", "確定", MB_OK );
 	}
 	return ret;
 
@@ -2171,14 +2171,14 @@ BOOL SaveAlbum(int no)
 	if( 0 <= no && no < MAX_PET_TBL ){
 		if(!fopen_s( &fp,ALBUM_FILE_NAME_43, "r+b")){
 			if( 0 != fseek( fp, (16+sizeof(PET_ALBUM)*MAX_PET_KIND)*AlbumIdCnt, SEEK_SET))
-				MessageBoxNew( hWnd, "储存相簿资料失败！１", "确定", MB_OK );
+				MessageBoxNew( hWnd, "儲存相簿資料失敗！１", "確定", MB_OK );
 			if( 0 != fseek( fp, 16+sizeof(PET_ALBUM)*no, SEEK_CUR))
-				MessageBoxNew( hWnd, "储存相簿资料失败！２", "确定", MB_OK );
+				MessageBoxNew( hWnd, "儲存相簿資料失敗！２", "確定", MB_OK );
 			if( fwrite( &PetAlbum[no], sizeof(PET_ALBUM), 1, fp) >= 1)
 				ret = TRUE;
 			fclose( fp );
 		}else
-			MessageBoxNew( hWnd, "储存相簿资料失败！３", "确定", MB_OK );
+			MessageBoxNew( hWnd, "儲存相簿資料失敗！３", "確定", MB_OK );
 	}
 	return ret;
 
@@ -2187,14 +2187,14 @@ BOOL SaveAlbum(int no)
 	if( 0 <= no && no < MAX_PET_TBL ){
 		if(!fopen_s( &fp,ALBUM_FILE_NAME_42, "r+b")){
 			if( 0 != fseek( fp, (16+sizeof(PET_ALBUM)*MAX_PET_KIND)*AlbumIdCnt, SEEK_SET))
-				MessageBoxNew( hWnd, "储存相簿资料失败！１", "确定", MB_OK );
+				MessageBoxNew( hWnd, "儲存相簿資料失敗！１", "確定", MB_OK );
 			if( 0 != fseek( fp, 16+sizeof(PET_ALBUM)*no, SEEK_CUR))
-				MessageBoxNew( hWnd, "储存相簿资料失败！２", "确定", MB_OK );
+				MessageBoxNew( hWnd, "儲存相簿資料失敗！２", "確定", MB_OK );
 			if( fwrite( &PetAlbum[no], sizeof(PET_ALBUM), 1, fp) >= 1)
 				ret = TRUE;
 			fclose( fp );
 		}else
-			MessageBoxNew( hWnd, "储存相簿资料失败！３", "确定", MB_OK );
+			MessageBoxNew( hWnd, "儲存相簿資料失敗！３", "確定", MB_OK );
 	}
 	return ret;
 
@@ -2203,14 +2203,14 @@ BOOL SaveAlbum(int no)
 	if( 0 <= no && no < MAX_PET_TBL ){
 		if(!fopen_s(&fp, ALBUM_FILE_NAME_41, "r+b")){
 			if( 0 != fseek( fp, (16+sizeof(PET_ALBUM)*MAX_PET_KIND)*AlbumIdCnt, SEEK_SET))
-				MessageBoxNew( hWnd, "储存相簿资料失败！１", "确定", MB_OK );
+				MessageBoxNew( hWnd, "儲存相簿資料失敗！１", "確定", MB_OK );
 			if( 0 != fseek( fp, 16+sizeof(PET_ALBUM)*no, SEEK_CUR))
-				MessageBoxNew( hWnd, "储存相簿资料失败！２", "确定", MB_OK );
+				MessageBoxNew( hWnd, "儲存相簿資料失敗！２", "確定", MB_OK );
 			if( fwrite( &PetAlbum[no], sizeof(PET_ALBUM), 1, fp) >= 1)
 				ret = TRUE;
 			fclose( fp );
 		}else
-			MessageBoxNew( hWnd, "储存相簿资料失败！３", "确定", MB_OK );
+			MessageBoxNew( hWnd, "儲存相簿資料失敗！３", "確定", MB_OK );
 	}
 	return ret;
 
@@ -2219,14 +2219,14 @@ BOOL SaveAlbum(int no)
 	if( 0 <= no && no < MAX_PET_TBL ){
 		if( !fopen_s( &fp,ALBUM_FILE_NAME_40, "r+b")){
 			if( 0 != fseek( fp, (16+sizeof(PET_ALBUM)*MAX_PET_KIND)*AlbumIdCnt, SEEK_SET))
-				MessageBoxNew( hWnd, "储存相簿资料失败！１", "确定", MB_OK );
+				MessageBoxNew( hWnd, "儲存相簿資料失敗！１", "確定", MB_OK );
 			if( 0 != fseek( fp, 16+sizeof(PET_ALBUM)*no, SEEK_CUR))
-				MessageBoxNew( hWnd, "储存相簿资料失败！２", "确定", MB_OK );
+				MessageBoxNew( hWnd, "儲存相簿資料失敗！２", "確定", MB_OK );
 			if( fwrite( &PetAlbum[no], sizeof(PET_ALBUM), 1, fp) >= 1)
 				ret = TRUE;
 			fclose( fp );
 		}else
-			MessageBoxNew( hWnd, "储存相簿资料失败！３", "确定", MB_OK );
+			MessageBoxNew( hWnd, "儲存相簿資料失敗！３", "確定", MB_OK );
 	}
 	return ret;
 
@@ -2235,14 +2235,14 @@ BOOL SaveAlbum(int no)
 	if( 0 <= no && no < MAX_PET_TBL ){
 		if(!fopen_s( &fp,ALBUM_FILE_NAME_39, "r+b")){
 			if( 0 != fseek( fp, (16+sizeof(PET_ALBUM)*MAX_PET_KIND)*AlbumIdCnt, SEEK_SET))
-				MessageBoxNew( hWnd, "储存相簿资料失败！１", "确定", MB_OK );
+				MessageBoxNew( hWnd, "儲存相簿資料失敗！１", "確定", MB_OK );
 			if( 0 != fseek( fp, 16+sizeof(PET_ALBUM)*no, SEEK_CUR))
-				MessageBoxNew( hWnd, "储存相簿资料失败！２", "确定", MB_OK );
+				MessageBoxNew( hWnd, "儲存相簿資料失敗！２", "確定", MB_OK );
 			if( fwrite( &PetAlbum[no], sizeof(PET_ALBUM), 1, fp) >= 1)
 				ret = TRUE;
 			fclose( fp );
 		}else
-			MessageBoxNew( hWnd, "储存相簿资料失败！３", "确定", MB_OK );
+			MessageBoxNew( hWnd, "儲存相簿資料失敗！３", "確定", MB_OK );
 	}
 	return ret;
 
@@ -2251,14 +2251,14 @@ BOOL SaveAlbum(int no)
 	if( 0 <= no && no < MAX_PET_TBL ){
 		if(!fopen_s( &fp,ALBUM_FILE_NAME_38, "r+b")){
 			if( 0 != fseek( fp, (16+sizeof(PET_ALBUM)*MAX_PET_KIND)*AlbumIdCnt, SEEK_SET))
-				MessageBoxNew( hWnd, "储存相簿资料失败！１", "确定", MB_OK );
+				MessageBoxNew( hWnd, "儲存相簿資料失敗！１", "確定", MB_OK );
 			if( 0 != fseek( fp, 16+sizeof(PET_ALBUM)*no, SEEK_CUR))
-				MessageBoxNew( hWnd, "储存相簿资料失败！２", "确定", MB_OK );
+				MessageBoxNew( hWnd, "儲存相簿資料失敗！２", "確定", MB_OK );
 			if( fwrite( &PetAlbum[no], sizeof(PET_ALBUM), 1, fp) >= 1)
 				ret = TRUE;
 			fclose( fp );
 		}else
-			MessageBoxNew( hWnd, "储存相簿资料失败！３", "确定", MB_OK );
+			MessageBoxNew( hWnd, "儲存相簿資料失敗！３", "確定", MB_OK );
 	}
 	return ret;
 
@@ -2267,14 +2267,14 @@ BOOL SaveAlbum(int no)
 	if( 0 <= no && no < MAX_PET_TBL ){
 		if(!fopen_s( &fp,ALBUM_FILE_NAME_37, "r+b")){
 			if( 0 != fseek( fp, (16+sizeof(PET_ALBUM)*MAX_PET_KIND)*AlbumIdCnt, SEEK_SET))
-				MessageBoxNew( hWnd, "储存相簿资料失败！１", "确定", MB_OK );
+				MessageBoxNew( hWnd, "儲存相簿資料失敗！１", "確定", MB_OK );
 			if( 0 != fseek( fp, 16+sizeof(PET_ALBUM)*no, SEEK_CUR))
-				MessageBoxNew( hWnd, "储存相簿资料失败！２", "确定", MB_OK );
+				MessageBoxNew( hWnd, "儲存相簿資料失敗！２", "確定", MB_OK );
 			if( fwrite( &PetAlbum[no], sizeof(PET_ALBUM), 1, fp) >= 1)
 				ret = TRUE;
 			fclose( fp );
 		}else
-			MessageBoxNew( hWnd, "储存相簿资料失败！３", "确定", MB_OK );
+			MessageBoxNew( hWnd, "儲存相簿資料失敗！３", "確定", MB_OK );
 	}
 	return ret;
 
@@ -2283,14 +2283,14 @@ BOOL SaveAlbum(int no)
 	if( 0 <= no && no < MAX_PET_TBL ){
 		if( !fopen_s( &fp,ALBUM_FILE_NAME_36, "r+b")){
 			if( 0 != fseek( fp, (16+sizeof(PET_ALBUM)*MAX_PET_KIND)*AlbumIdCnt, SEEK_SET))
-				MessageBoxNew( hWnd, "储存相簿资料失败！１", "确定", MB_OK );
+				MessageBoxNew( hWnd, "儲存相簿資料失敗！１", "確定", MB_OK );
 			if( 0 != fseek( fp, 16+sizeof(PET_ALBUM)*no, SEEK_CUR))
-				MessageBoxNew( hWnd, "储存相簿资料失败！２", "确定", MB_OK );
+				MessageBoxNew( hWnd, "儲存相簿資料失敗！２", "確定", MB_OK );
 			if( fwrite( &PetAlbum[no], sizeof(PET_ALBUM), 1, fp) >= 1)
 				ret = TRUE;
 			fclose( fp );
 		}else
-			MessageBoxNew( hWnd, "储存相簿资料失败！３", "确定", MB_OK );
+			MessageBoxNew( hWnd, "儲存相簿資料失敗！３", "確定", MB_OK );
 	}
 	return ret;
 #elif defined(__ALBUM_34)
@@ -2298,14 +2298,14 @@ BOOL SaveAlbum(int no)
 	if( 0 <= no && no < MAX_PET_TBL ){
 		if(!fopen_s(&fp, ALBUM_FILE_NAME_35, "r+b")){
 			if( 0 != fseek( fp, (16+sizeof(PET_ALBUM)*MAX_PET_KIND)*AlbumIdCnt, SEEK_SET))
-				MessageBoxNew( hWnd, "储存相簿资料失败！１", "确定", MB_OK );
+				MessageBoxNew( hWnd, "儲存相簿資料失敗！１", "確定", MB_OK );
 			if( 0 != fseek( fp, 16+sizeof(PET_ALBUM)*no, SEEK_CUR))
-				MessageBoxNew( hWnd, "储存相簿资料失败！２", "确定", MB_OK );
+				MessageBoxNew( hWnd, "儲存相簿資料失敗！２", "確定", MB_OK );
 			if( fwrite( &PetAlbum[no], sizeof(PET_ALBUM), 1, fp) >= 1)
 				ret = TRUE;
 			fclose( fp );
 		}else
-			MessageBoxNew( hWnd, "储存相簿资料失败！３", "确定", MB_OK );
+			MessageBoxNew( hWnd, "儲存相簿資料失敗！３", "確定", MB_OK );
 	}
 	return ret;
 #elif defined(__ALBUM_33)
@@ -2313,14 +2313,14 @@ BOOL SaveAlbum(int no)
 	if( 0 <= no && no < MAX_PET_TBL ){
 		if( !fopen_s(&fp, ALBUM_FILE_NAME_34, "r+b")){
 			if( 0 != fseek( fp, (16+sizeof(PET_ALBUM)*MAX_PET_KIND)*AlbumIdCnt, SEEK_SET))
-				MessageBoxNew( hWnd, "储存相簿资料失败！１", "确定", MB_OK );
+				MessageBoxNew( hWnd, "儲存相簿資料失敗！１", "確定", MB_OK );
 			if( 0 != fseek( fp, 16+sizeof(PET_ALBUM)*no, SEEK_CUR))
-				MessageBoxNew( hWnd, "储存相簿资料失败！２", "确定", MB_OK );
+				MessageBoxNew( hWnd, "儲存相簿資料失敗！２", "確定", MB_OK );
 			if( fwrite( &PetAlbum[no], sizeof(PET_ALBUM), 1, fp) >= 1)
 				ret = TRUE;
 			fclose( fp );
 		}else
-			MessageBoxNew( hWnd, "储存相簿资料失败！３", "确定", MB_OK );
+			MessageBoxNew( hWnd, "儲存相簿資料失敗！３", "確定", MB_OK );
 	}
 	return ret;
 #elif defined(__ALBUM_32)
@@ -2328,21 +2328,21 @@ BOOL SaveAlbum(int no)
 	if( 0 <= no && no < MAX_PET_TBL ){
 		if(!fopen_s(&fp, ALBUM_FILE_NAME_33, "r+b")){
 			if( 0 != fseek( fp, (16+sizeof(PET_ALBUM)*MAX_PET_KIND)*AlbumIdCnt, SEEK_SET))
-				MessageBoxNew( hWnd, "储存相簿资料失败！１", "确定", MB_OK );
+				MessageBoxNew( hWnd, "儲存相簿資料失敗！１", "確定", MB_OK );
 			if( 0 != fseek( fp, 16+sizeof(PET_ALBUM)*no, SEEK_CUR))
-				MessageBoxNew( hWnd, "储存相簿资料失败！２", "确定", MB_OK );
+				MessageBoxNew( hWnd, "儲存相簿資料失敗！２", "確定", MB_OK );
 			if( fwrite( &PetAlbum[no], sizeof(PET_ALBUM), 1, fp) >= 1)
 				ret = TRUE;
 			fclose( fp );
 		}else
-			MessageBoxNew( hWnd, "储存相簿资料失败！３", "确定", MB_OK );
+			MessageBoxNew( hWnd, "儲存相簿資料失敗！３", "確定", MB_OK );
 	}
 	return ret;
 #else
 	// ????????????
 	if ((fopen_s(&fp, ALBUM_FILE_NAME, "r+b")) != NULL){
 #ifdef _STONDEBUG_		
-		MessageBoxNew( hWnd, "储存相簿资料失败！１", "确定", MB_OK );
+		MessageBoxNew( hWnd, "儲存相簿資料失敗！１", "確定", MB_OK );
 #endif
 		return FALSE;
 	}
@@ -2361,7 +2361,7 @@ BOOL SaveAlbum(int no)
 	if (fwrite(&PetAlbum[no], sizeof(PET_ALBUM), 1, fp) < 1){
 
 #ifdef _STONDEBUG_		
-		MessageBoxNew( hWnd, "储存相簿资料失败！２", "确定", MB_OK );
+		MessageBoxNew( hWnd, "儲存相簿資料失敗！２", "確定", MB_OK );
 #endif
 		fclose(fp);// ????????
 		return FALSE;
@@ -2474,24 +2474,24 @@ BOOL ConvertAlbum1_4(  char *user)
 	if( ( fopen_s( &fp,ALBUM_FILE_NAME, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1 ){
-		//读入ID
+		//讀入ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID解码
+		//ID解碼
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
 			//ID不符
-			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//找下一个
+			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//找下一個
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//读入资料
+			//讀入資料
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), MAX_PET_KIND_1, fp ) < MAX_PET_KIND_1 ){
 				fclose( fp );
 				return FALSE;
@@ -2561,7 +2561,7 @@ BOOL LoadAlbum_47(char *user)
 	}
 	while (1){
 		if (fread(id2, sizeof(id2), 1, fp) < 1){
-			//找不到此帐号的记录
+			//找不到此帳號的記錄
 			id[15] &= 0xf;
 			id[id[15]] = Rnd(1, 100);
 			for (i = 0; i < 16; i++)
@@ -2577,7 +2577,7 @@ BOOL LoadAlbum_47(char *user)
 		id2[15] &= 0xf;
 		id2[id2[15]] = NULL;
 		if (strcmp(id, id2) != 0){
-			//不是此帐号的记录
+			//不是此帳號的記錄
 			if (fseek(fp, sizeof(PET_ALBUM)*MAX_PET_KIND, SEEK_CUR) != 0){
 				fseek(fp, (sizeof(PET_ALBUM)*MAX_PET_KIND + 16)*AlbumIdCnt, SEEK_SET);
 				id[15] &= 0xf;
@@ -2592,7 +2592,7 @@ BOOL LoadAlbum_47(char *user)
 			}
 		}
 		else{
-			//找到此帐号的记录
+			//找到此帳號的記錄
 			if (fread(PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp) < MAX_PET_KIND){
 				fwrite(PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp);
 				fclose(fp);
@@ -2616,31 +2616,31 @@ BOOL ConvertAlbumTo47(char *user, char *oldfile, DWORD num)
 	if ((fp = fopen(oldfile, "r+b")) == NULL)
 		return FALSE;
 	while (1){
-		//读入ID
+		//讀入ID
 		if (fread(id2, 16, 1, fp) < 1){
 			fclose(fp);
 			return FALSE;
 		}
-		//ID解码
+		//ID解碼
 		for (i = 0; i < 16; i++){
 			id2[i] ^= IdEncryptionTbl[i];
 		}
 		id2[id2[15]] = NULL;
 		if (strcmp(user, id2) != 0){
 			//ID不符
-			if (fseek(fp, sizeof(PET_ALBUM)* num, SEEK_CUR) != 0){//下一个
+			if (fseek(fp, sizeof(PET_ALBUM)* num, SEEK_CUR) != 0){//下一個
 				fclose(fp);
 				return FALSE;
 			}
 		}
 		else{
-			//找到ID纪录
+			//找到ID紀錄
 			if (fread(OldAlbum, sizeof(PET_ALBUM), num, fp) < num){
 				fclose(fp);
 				return FALSE;
 			}
 			for (DWORD i = 0; i < num; i++){
-				if (440 <= i && i <= 461) continue;		//修正乌力Q 问题
+				if (440 <= i && i <= 461) continue;		//修正烏力Q 問題
 				CopyMemory(&PetAlbum[i], &OldAlbum[i], sizeof(PET_ALBUM));
 				SaveAlbum(i);
 			}
@@ -2660,25 +2660,25 @@ BOOL ConvertAlbum1_47(char *user)
 	if ((fp = fopen(ALBUM_FILE_NAME, "r+b")) == NULL)
 		return FALSE;
 	while (1){
-		//读入ID
+		//讀入ID
 		if (fread(id2, sizeof(id2), 1, fp) < 1){
 			fclose(fp);
 			return FALSE;
 		}
-		//ID解码
+		//ID解碼
 		for (i = 0; i < 16; i++){
 			id2[i] ^= IdEncryptionTbl[i];
 		}
 		id2[id2[15]] = NULL;
 		if (strcmp(user, id2) != 0){
 			//ID不符
-			if (fseek(fp, sizeof(PET_ALBUM)* MAX_PET_KIND_1, SEEK_CUR) != 0){//找下一个
+			if (fseek(fp, sizeof(PET_ALBUM)* MAX_PET_KIND_1, SEEK_CUR) != 0){//找下一個
 				fclose(fp);
 				return FALSE;
 			}
 		}
 		else{
-			//读入资料
+			//讀入資料
 			if (fread(OldAlbum, sizeof(PET_ALBUM), MAX_PET_KIND_1, fp) < MAX_PET_KIND_1){
 				fclose(fp);
 				return FALSE;
@@ -2747,7 +2747,7 @@ BOOL LoadAlbum_46( char *user)
 	}
 	while( 1 ){
 		if( fread( id2, sizeof(id2), 1, fp) < 1){
-			//找不到此帐号的记录
+			//找不到此帳號的記錄
 			id[15] &= 0xf;
 			id[id[15]] = Rnd( 1, 100);
 			for( i = 0 ; i < 16 ; i++)
@@ -2763,7 +2763,7 @@ BOOL LoadAlbum_46( char *user)
 		id2[15] &= 0xf;
 		id2[id2[15]] = NULL;
 		if( strcmp( id, id2) != 0){
-			//不是此帐号的记录
+			//不是此帳號的記錄
 			if( fseek( fp, sizeof(PET_ALBUM)*MAX_PET_KIND, SEEK_CUR) != 0){
 				fseek( fp, (sizeof(PET_ALBUM)*MAX_PET_KIND+16)*AlbumIdCnt, SEEK_SET);
 				id[15] &= 0xf;
@@ -2777,7 +2777,7 @@ BOOL LoadAlbum_46( char *user)
 				return FALSE;
 			}
 		}else{
-			//找到此帐号的记录
+			//找到此帳號的記錄
 			if( fread( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp) < MAX_PET_KIND){
 				fwrite( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp);
 				fclose( fp);
@@ -2801,30 +2801,30 @@ BOOL ConvertAlbumTo46(  char *user, char *oldfile, DWORD num)
 	if( (  fopen_s(&fp, oldfile, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1){
-		//读入ID
+		//讀入ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID解码
+		//ID解碼
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
 			//ID不符
-			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//下一个
+			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//下一個
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//找到ID纪录
+			//找到ID紀錄
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), num, fp ) < num ){
 				fclose( fp );
 				return FALSE;
 			}
 			for( DWORD i = 0; i < num; i++){
-				if( 440 <= i && i <= 461 ) continue;		//修正乌力Q 问题
+				if( 440 <= i && i <= 461 ) continue;		//修正烏力Q 問題
 				CopyMemory( &PetAlbum[i], &OldAlbum[i], sizeof(PET_ALBUM));
 				SaveAlbum( i);
 			}
@@ -2844,24 +2844,24 @@ BOOL ConvertAlbum1_46(  char *user)
 	if( (  fopen_s( &fp,ALBUM_FILE_NAME, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1 ){
-		//读入ID
+		//讀入ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID解码
+		//ID解碼
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
 			//ID不符
-			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//找下一个
+			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//找下一個
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//读入资料
+			//讀入資料
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), MAX_PET_KIND_1, fp ) < MAX_PET_KIND_1 ){
 				fclose( fp );
 				return FALSE;
@@ -2930,7 +2930,7 @@ BOOL LoadAlbum_45( char *user)
 	}
 	while( 1 ){
 		if( fread( id2, sizeof(id2), 1, fp) < 1){
-			//找不到此帐号的记录
+			//找不到此帳號的記錄
 			id[15] &= 0xf;
 			id[id[15]] = Rnd( 1, 100);
 			for( i = 0 ; i < 16 ; i++)
@@ -2946,7 +2946,7 @@ BOOL LoadAlbum_45( char *user)
 		id2[15] &= 0xf;
 		id2[id2[15]] = NULL;
 		if( strcmp( id, id2) != 0){
-			//不是此帐号的记录
+			//不是此帳號的記錄
 			if( fseek( fp, sizeof(PET_ALBUM)*MAX_PET_KIND, SEEK_CUR) != 0){
 				fseek( fp, (sizeof(PET_ALBUM)*MAX_PET_KIND+16)*AlbumIdCnt, SEEK_SET);
 				id[15] &= 0xf;
@@ -2960,7 +2960,7 @@ BOOL LoadAlbum_45( char *user)
 				return FALSE;
 			}
 		}else{
-			//找到此帐号的记录
+			//找到此帳號的記錄
 			if( fread( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp) < MAX_PET_KIND){
 				fwrite( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp);
 				fclose( fp);
@@ -2984,30 +2984,30 @@ BOOL ConvertAlbumTo45(  char *user, char *oldfile, DWORD num)
 	if( ( fopen_s( &fp,oldfile, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1){
-		//读入ID
+		//讀入ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID解码
+		//ID解碼
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
 			//ID不符
-			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//下一个
+			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//下一個
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//找到ID纪录
+			//找到ID紀錄
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), num, fp ) < num ){
 				fclose( fp );
 				return FALSE;
 			}
 			for( DWORD i = 0; i < num; i++){
-				if( 440 <= i && i <= 461 ) continue;		//修正乌力Q 问题
+				if( 440 <= i && i <= 461 ) continue;		//修正烏力Q 問題
 				CopyMemory( &PetAlbum[i], &OldAlbum[i], sizeof(PET_ALBUM));
 				SaveAlbum( i);
 			}
@@ -3027,24 +3027,24 @@ BOOL ConvertAlbum1_45(  char *user)
 	if( (  fopen_s(&fp, ALBUM_FILE_NAME, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1 ){
-		//读入ID
+		//讀入ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID解码
+		//ID解碼
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
 			//ID不符
-			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//找下一个
+			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//找下一個
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//读入资料
+			//讀入資料
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), MAX_PET_KIND_1, fp ) < MAX_PET_KIND_1 ){
 				fclose( fp );
 				return FALSE;
@@ -3113,7 +3113,7 @@ BOOL LoadAlbum_44( char *user)
 	}
 	while( 1 ){
 		if( fread( id2, sizeof(id2), 1, fp) < 1){
-			//找不到此帐号的记录
+			//找不到此帳號的記錄
 			id[15] &= 0xf;
 			id[id[15]] = Rnd( 1, 100);
 			for( i = 0 ; i < 16 ; i++)
@@ -3129,7 +3129,7 @@ BOOL LoadAlbum_44( char *user)
 		id2[15] &= 0xf;
 		id2[id2[15]] = NULL;
 		if( strcmp( id, id2) != 0){
-			//不是此帐号的记录
+			//不是此帳號的記錄
 			if( fseek( fp, sizeof(PET_ALBUM)*MAX_PET_KIND, SEEK_CUR) != 0){
 				fseek( fp, (sizeof(PET_ALBUM)*MAX_PET_KIND+16)*AlbumIdCnt, SEEK_SET);
 				id[15] &= 0xf;
@@ -3143,7 +3143,7 @@ BOOL LoadAlbum_44( char *user)
 				return FALSE;
 			}
 		}else{
-			//找到此帐号的记录
+			//找到此帳號的記錄
 			if( fread( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp) < MAX_PET_KIND){
 				fwrite( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp);
 				fclose( fp);
@@ -3167,30 +3167,30 @@ BOOL ConvertAlbumTo44(  char *user, char *oldfile, DWORD num)
 	if( ( fopen_s( &fp,oldfile, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1){
-		//读入ID
+		//讀入ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID解码
+		//ID解碼
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
 			//ID不符
-			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//下一个
+			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//下一個
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//找到ID纪录
+			//找到ID紀錄
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), num, fp ) < num ){
 				fclose( fp );
 				return FALSE;
 			}
 			for( DWORD i = 0; i < num; i++){
-				if( 440 <= i && i <= 461 ) continue;		//修正乌力Q 问题
+				if( 440 <= i && i <= 461 ) continue;		//修正烏力Q 問題
 				CopyMemory( &PetAlbum[i], &OldAlbum[i], sizeof(PET_ALBUM));
 				SaveAlbum( i);
 			}
@@ -3210,24 +3210,24 @@ BOOL ConvertAlbum1_44(  char *user)
 	if( ( fopen_s(&fp, ALBUM_FILE_NAME, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1 ){
-		//读入ID
+		//讀入ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID解码
+		//ID解碼
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
 			//ID不符
-			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//找下一个
+			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//找下一個
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//读入资料
+			//讀入資料
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), MAX_PET_KIND_1, fp ) < MAX_PET_KIND_1 ){
 				fclose( fp );
 				return FALSE;
@@ -3296,7 +3296,7 @@ BOOL LoadAlbum_43( char *user)
 	}
 	while( 1 ){
 		if( fread( id2, sizeof(id2), 1, fp) < 1){
-			//找不到此帐号的记录
+			//找不到此帳號的記錄
 			id[15] &= 0xf;
 			id[id[15]] = Rnd( 1, 100);
 			for( i = 0 ; i < 16 ; i++)
@@ -3312,7 +3312,7 @@ BOOL LoadAlbum_43( char *user)
 		id2[15] &= 0xf;
 		id2[id2[15]] = NULL;
 		if( strcmp( id, id2) != 0){
-			//不是此帐号的记录
+			//不是此帳號的記錄
 			if( fseek( fp, sizeof(PET_ALBUM)*MAX_PET_KIND, SEEK_CUR) != 0){
 				fseek( fp, (sizeof(PET_ALBUM)*MAX_PET_KIND+16)*AlbumIdCnt, SEEK_SET);
 				id[15] &= 0xf;
@@ -3326,7 +3326,7 @@ BOOL LoadAlbum_43( char *user)
 				return FALSE;
 			}
 		}else{
-			//找到此帐号的记录
+			//找到此帳號的記錄
 			if( fread( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp) < MAX_PET_KIND){
 				fwrite( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp);
 				fclose( fp);
@@ -3350,30 +3350,30 @@ BOOL ConvertAlbumTo43(  char *user, char *oldfile, DWORD num)
 	if( ( fopen_s( &fp,oldfile, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1){
-		//读入ID
+		//讀入ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID解码
+		//ID解碼
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
 			//ID不符
-			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//下一个
+			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//下一個
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//找到ID纪录
+			//找到ID紀錄
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), num, fp ) < num ){
 				fclose( fp );
 				return FALSE;
 			}
 			for( DWORD i = 0; i < num; i++){
-				if( 440 <= i && i <= 461 ) continue;		//修正乌力Q 问题
+				if( 440 <= i && i <= 461 ) continue;		//修正烏力Q 問題
 				CopyMemory( &PetAlbum[i], &OldAlbum[i], sizeof(PET_ALBUM));
 				SaveAlbum( i);
 			}
@@ -3393,24 +3393,24 @@ BOOL ConvertAlbum1_43(  char *user)
 	if( (  fopen_s(&fp, ALBUM_FILE_NAME, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1 ){
-		//读入ID
+		//讀入ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID解码
+		//ID解碼
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
 			//ID不符
-			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//找下一个
+			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//找下一個
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//读入资料
+			//讀入資料
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), MAX_PET_KIND_1, fp ) < MAX_PET_KIND_1 ){
 				fclose( fp );
 				return FALSE;
@@ -3479,7 +3479,7 @@ BOOL LoadAlbum_42( char *user)
 	}
 	while( 1 ){
 		if( fread( id2, sizeof(id2), 1, fp) < 1){
-			//找不到此帐号的记录
+			//找不到此帳號的記錄
 			id[15] &= 0xf;
 			id[id[15]] = Rnd( 1, 100);
 			for( i = 0 ; i < 16 ; i++)
@@ -3495,7 +3495,7 @@ BOOL LoadAlbum_42( char *user)
 		id2[15] &= 0xf;
 		id2[id2[15]] = NULL;
 		if( strcmp( id, id2) != 0){
-			//不是此帐号的记录
+			//不是此帳號的記錄
 			if( fseek( fp, sizeof(PET_ALBUM)*MAX_PET_KIND, SEEK_CUR) != 0){
 				fseek( fp, (sizeof(PET_ALBUM)*MAX_PET_KIND+16)*AlbumIdCnt, SEEK_SET);
 				id[15] &= 0xf;
@@ -3509,7 +3509,7 @@ BOOL LoadAlbum_42( char *user)
 				return FALSE;
 			}
 		}else{
-			//找到此帐号的记录
+			//找到此帳號的記錄
 			if( fread( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp) < MAX_PET_KIND){
 				fwrite( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp);
 				fclose( fp);
@@ -3533,30 +3533,30 @@ BOOL ConvertAlbumTo42(  char *user, char *oldfile, DWORD num)
 	if( (  fopen_s( &fp,oldfile, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1){
-		//读入ID
+		//讀入ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID解码
+		//ID解碼
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
 			//ID不符
-			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//下一个
+			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//下一個
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//找到ID纪录
+			//找到ID紀錄
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), num, fp ) < num ){
 				fclose( fp );
 				return FALSE;
 			}
 			for( DWORD i = 0; i < num; i++){
-				if( 440 <= i && i <= 461 ) continue;		//修正乌力Q 问题
+				if( 440 <= i && i <= 461 ) continue;		//修正烏力Q 問題
 				CopyMemory( &PetAlbum[i], &OldAlbum[i], sizeof(PET_ALBUM));
 				SaveAlbum( i);
 			}
@@ -3576,24 +3576,24 @@ BOOL ConvertAlbum1_42(  char *user)
 	if( (  fopen_s( &fp,ALBUM_FILE_NAME, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1 ){
-		//读入ID
+		//讀入ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID解码
+		//ID解碼
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
 			//ID不符
-			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//找下一个
+			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//找下一個
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//读入资料
+			//讀入資料
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), MAX_PET_KIND_1, fp ) < MAX_PET_KIND_1 ){
 				fclose( fp );
 				return FALSE;
@@ -3662,7 +3662,7 @@ BOOL LoadAlbum_41( char *user)
 	}
 	while( 1 ){
 		if( fread( id2, sizeof(id2), 1, fp) < 1){
-			//找不到此帐号的记录
+			//找不到此帳號的記錄
 			id[15] &= 0xf;
 			id[id[15]] = Rnd( 1, 100);
 			for( i = 0 ; i < 16 ; i++)
@@ -3678,7 +3678,7 @@ BOOL LoadAlbum_41( char *user)
 		id2[15] &= 0xf;
 		id2[id2[15]] = NULL;
 		if( strcmp( id, id2) != 0){
-			//不是此帐号的记录
+			//不是此帳號的記錄
 			if( fseek( fp, sizeof(PET_ALBUM)*MAX_PET_KIND, SEEK_CUR) != 0){
 				fseek( fp, (sizeof(PET_ALBUM)*MAX_PET_KIND+16)*AlbumIdCnt, SEEK_SET);
 				id[15] &= 0xf;
@@ -3692,7 +3692,7 @@ BOOL LoadAlbum_41( char *user)
 				return FALSE;
 			}
 		}else{
-			//找到此帐号的记录
+			//找到此帳號的記錄
 			if( fread( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp) < MAX_PET_KIND){
 				fwrite( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp);
 				fclose( fp);
@@ -3716,30 +3716,30 @@ BOOL ConvertAlbumTo41(  char *user, char *oldfile, DWORD num)
 	if( ( fopen_s( &fp,oldfile, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1){
-		//读入ID
+		//讀入ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID解码
+		//ID解碼
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
 			//ID不符
-			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//下一个
+			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//下一個
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//找到ID纪录
+			//找到ID紀錄
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), num, fp ) < num ){
 				fclose( fp );
 				return FALSE;
 			}
 			for( DWORD i = 0; i < num; i++){
-				if( 440 <= i && i <= 461 ) continue;		//修正乌力Q 问题
+				if( 440 <= i && i <= 461 ) continue;		//修正烏力Q 問題
 				CopyMemory( &PetAlbum[i], &OldAlbum[i], sizeof(PET_ALBUM));
 				SaveAlbum( i);
 			}
@@ -3759,24 +3759,24 @@ BOOL ConvertAlbum1_41(  char *user)
 	if( ( fopen_s( &fp,ALBUM_FILE_NAME, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1 ){
-		//读入ID
+		//讀入ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID解码
+		//ID解碼
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
 			//ID不符
-			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//找下一个
+			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//找下一個
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//读入资料
+			//讀入資料
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), MAX_PET_KIND_1, fp ) < MAX_PET_KIND_1 ){
 				fclose( fp );
 				return FALSE;
@@ -3845,7 +3845,7 @@ BOOL LoadAlbum_40( char *user)
 	}
 	while( 1 ){
 		if( fread( id2, sizeof(id2), 1, fp) < 1){
-			//找不到此帐号的记录
+			//找不到此帳號的記錄
 			id[15] &= 0xf;
 			id[id[15]] = Rnd( 1, 100);
 			for( i = 0 ; i < 16 ; i++)
@@ -3861,7 +3861,7 @@ BOOL LoadAlbum_40( char *user)
 		id2[15] &= 0xf;
 		id2[id2[15]] = NULL;
 		if( strcmp( id, id2) != 0){
-			//不是此帐号的记录
+			//不是此帳號的記錄
 			if( fseek( fp, sizeof(PET_ALBUM)*MAX_PET_KIND, SEEK_CUR) != 0){
 				fseek( fp, (sizeof(PET_ALBUM)*MAX_PET_KIND+16)*AlbumIdCnt, SEEK_SET);
 				id[15] &= 0xf;
@@ -3875,7 +3875,7 @@ BOOL LoadAlbum_40( char *user)
 				return FALSE;
 			}
 		}else{
-			//找到此帐号的记录
+			//找到此帳號的記錄
 			if( fread( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp) < MAX_PET_KIND){
 				fwrite( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp);
 				fclose( fp);
@@ -3899,30 +3899,30 @@ BOOL ConvertAlbumTo40(  char *user, char *oldfile, DWORD num)
 	if( ( fopen_s( &fp,oldfile, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1){
-		//读入ID
+		//讀入ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID解码
+		//ID解碼
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
 			//ID不符
-			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//下一个
+			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//下一個
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//找到ID纪录
+			//找到ID紀錄
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), num, fp ) < num ){
 				fclose( fp );
 				return FALSE;
 			}
 			for( DWORD i = 0; i < num; i++){
-				if( 440 <= i && i <= 461 ) continue;		//修正乌力Q 问题
+				if( 440 <= i && i <= 461 ) continue;		//修正烏力Q 問題
 				CopyMemory( &PetAlbum[i], &OldAlbum[i], sizeof(PET_ALBUM));
 				SaveAlbum( i);
 			}
@@ -3942,24 +3942,24 @@ BOOL ConvertAlbum1_40(  char *user)
 	if( ( fopen_s(&fp, ALBUM_FILE_NAME, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1 ){
-		//读入ID
+		//讀入ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID解码
+		//ID解碼
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
 			//ID不符
-			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//找下一个
+			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//找下一個
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//读入资料
+			//讀入資料
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), MAX_PET_KIND_1, fp ) < MAX_PET_KIND_1 ){
 				fclose( fp );
 				return FALSE;
@@ -4028,7 +4028,7 @@ BOOL LoadAlbum_39( char *user)
 	}
 	while( 1 ){
 		if( fread( id2, sizeof(id2), 1, fp) < 1){
-			//找不到此帐号的记录
+			//找不到此帳號的記錄
 			id[15] &= 0xf;
 			id[id[15]] = Rnd( 1, 100);
 			for( i = 0 ; i < 16 ; i++)
@@ -4044,7 +4044,7 @@ BOOL LoadAlbum_39( char *user)
 		id2[15] &= 0xf;
 		id2[id2[15]] = NULL;
 		if( strcmp( id, id2) != 0){
-			//不是此帐号的记录
+			//不是此帳號的記錄
 			if( fseek( fp, sizeof(PET_ALBUM)*MAX_PET_KIND, SEEK_CUR) != 0){
 				fseek( fp, (sizeof(PET_ALBUM)*MAX_PET_KIND+16)*AlbumIdCnt, SEEK_SET);
 				id[15] &= 0xf;
@@ -4058,7 +4058,7 @@ BOOL LoadAlbum_39( char *user)
 				return FALSE;
 			}
 		}else{
-			//找到此帐号的记录
+			//找到此帳號的記錄
 			if( fread( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp) < MAX_PET_KIND){
 				fwrite( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp);
 				fclose( fp);
@@ -4082,30 +4082,30 @@ BOOL ConvertAlbumTo39(  char *user, char *oldfile, DWORD num)
 	if( (fopen_s( &fp,oldfile, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1){
-		//读入ID
+		//讀入ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID解码
+		//ID解碼
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
 			//ID不符
-			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//下一个
+			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//下一個
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//找到ID纪录
+			//找到ID紀錄
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), num, fp ) < num ){
 				fclose( fp );
 				return FALSE;
 			}
 			for( DWORD i = 0; i < num; i++){
-				if( 440 <= i && i <= 461 ) continue;		//修正乌力Q 问题
+				if( 440 <= i && i <= 461 ) continue;		//修正烏力Q 問題
 				CopyMemory( &PetAlbum[i], &OldAlbum[i], sizeof(PET_ALBUM));
 				SaveAlbum( i);
 			}
@@ -4125,24 +4125,24 @@ BOOL ConvertAlbum1_39(  char *user)
 	if( (  fopen_s( &fp,ALBUM_FILE_NAME, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1 ){
-		//读入ID
+		//讀入ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID解码
+		//ID解碼
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
 			//ID不符
-			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//找下一个
+			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//找下一個
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//读入资料
+			//讀入資料
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), MAX_PET_KIND_1, fp ) < MAX_PET_KIND_1 ){
 				fclose( fp );
 				return FALSE;
@@ -4211,7 +4211,7 @@ BOOL LoadAlbum_38( char *user)
 	}
 	while( 1 ){
 		if( fread( id2, sizeof(id2), 1, fp) < 1){
-			//找不到此帐号的记录
+			//找不到此帳號的記錄
 			id[15] &= 0xf;
 			id[id[15]] = Rnd( 1, 100);
 			for( i = 0 ; i < 16 ; i++)
@@ -4227,7 +4227,7 @@ BOOL LoadAlbum_38( char *user)
 		id2[15] &= 0xf;
 		id2[id2[15]] = NULL;
 		if( strcmp( id, id2) != 0){
-			//不是此帐号的记录
+			//不是此帳號的記錄
 			if( fseek( fp, sizeof(PET_ALBUM)*MAX_PET_KIND, SEEK_CUR) != 0){
 				fseek( fp, (sizeof(PET_ALBUM)*MAX_PET_KIND+16)*AlbumIdCnt, SEEK_SET);
 				id[15] &= 0xf;
@@ -4241,7 +4241,7 @@ BOOL LoadAlbum_38( char *user)
 				return FALSE;
 			}
 		}else{
-			//找到此帐号的记录
+			//找到此帳號的記錄
 			if( fread( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp) < MAX_PET_KIND){
 				fwrite( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp);
 				fclose( fp);
@@ -4265,30 +4265,30 @@ BOOL ConvertAlbumTo38(  char *user, char *oldfile, DWORD num)
 	if( ( fopen_s(&fp, oldfile, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1){
-		//读入ID
+		//讀入ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID解码
+		//ID解碼
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
 			//ID不符
-			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//下一个
+			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//下一個
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//找到ID纪录
+			//找到ID紀錄
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), num, fp ) < num ){
 				fclose( fp );
 				return FALSE;
 			}
 			for( DWORD i = 0; i < num; i++){
-				if( 440 <= i && i <= 461 ) continue;		//修正乌力Q 问题
+				if( 440 <= i && i <= 461 ) continue;		//修正烏力Q 問題
 				CopyMemory( &PetAlbum[i], &OldAlbum[i], sizeof(PET_ALBUM));
 				SaveAlbum( i);
 			}
@@ -4308,24 +4308,24 @@ BOOL ConvertAlbum1_38(  char *user)
 	if( ( fopen_s( &fp,ALBUM_FILE_NAME, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1 ){
-		//读入ID
+		//讀入ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID解码
+		//ID解碼
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
 			//ID不符
-			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//找下一个
+			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//找下一個
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//读入资料
+			//讀入資料
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), MAX_PET_KIND_1, fp ) < MAX_PET_KIND_1 ){
 				fclose( fp );
 				return FALSE;
@@ -4394,7 +4394,7 @@ BOOL LoadAlbum_37( char *user)
 	}
 	while( 1 ){
 		if( fread( id2, sizeof(id2), 1, fp) < 1){
-			//找不到此帐号的记录
+			//找不到此帳號的記錄
 			id[15] &= 0xf;
 			id[id[15]] = Rnd( 1, 100);
 			for( i = 0 ; i < 16 ; i++)
@@ -4410,7 +4410,7 @@ BOOL LoadAlbum_37( char *user)
 		id2[15] &= 0xf;
 		id2[id2[15]] = NULL;
 		if( strcmp( id, id2) != 0){
-			//不是此帐号的记录
+			//不是此帳號的記錄
 			if( fseek( fp, sizeof(PET_ALBUM)*MAX_PET_KIND, SEEK_CUR) != 0){
 				fseek( fp, (sizeof(PET_ALBUM)*MAX_PET_KIND+16)*AlbumIdCnt, SEEK_SET);
 				id[15] &= 0xf;
@@ -4424,7 +4424,7 @@ BOOL LoadAlbum_37( char *user)
 				return FALSE;
 			}
 		}else{
-			//找到此帐号的记录
+			//找到此帳號的記錄
 			if( fread( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp) < MAX_PET_KIND){
 				fwrite( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp);
 				fclose( fp);
@@ -4448,30 +4448,30 @@ BOOL ConvertAlbumTo37(  char *user, char *oldfile, DWORD num)
 	if( (  fopen_s( &fp,oldfile, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1){
-		//读入ID
+		//讀入ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID解码
+		//ID解碼
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
 			//ID不符
-			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//下一个
+			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//下一個
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//找到ID纪录
+			//找到ID紀錄
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), num, fp ) < num ){
 				fclose( fp );
 				return FALSE;
 			}
 			for( DWORD i = 0; i < num; i++){
-				if( 440 <= i && i <= 461 ) continue;		//修正乌力Q 问题
+				if( 440 <= i && i <= 461 ) continue;		//修正烏力Q 問題
 				CopyMemory( &PetAlbum[i], &OldAlbum[i], sizeof(PET_ALBUM));
 				SaveAlbum( i);
 			}
@@ -4491,24 +4491,24 @@ BOOL ConvertAlbum1_37(  char *user)
 	if( (  fopen_s( &fp,ALBUM_FILE_NAME, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1 ){
-		//读入ID
+		//讀入ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID解码
+		//ID解碼
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
 			//ID不符
-			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//找下一个
+			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//找下一個
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//读入资料
+			//讀入資料
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), MAX_PET_KIND_1, fp ) < MAX_PET_KIND_1 ){
 				fclose( fp );
 				return FALSE;
@@ -4577,7 +4577,7 @@ BOOL LoadAlbum_36( char *user)
 	}
 	while( 1 ){
 		if( fread( id2, sizeof(id2), 1, fp) < 1){
-			//找不到此帐号的记录
+			//找不到此帳號的記錄
 			id[15] &= 0xf;
 			id[id[15]] = Rnd( 1, 100);
 			for( i = 0 ; i < 16 ; i++)
@@ -4593,7 +4593,7 @@ BOOL LoadAlbum_36( char *user)
 		id2[15] &= 0xf;
 		id2[id2[15]] = NULL;
 		if( strcmp( id, id2) != 0){
-			//不是此帐号的记录
+			//不是此帳號的記錄
 			if( fseek( fp, sizeof(PET_ALBUM)*MAX_PET_KIND, SEEK_CUR) != 0){
 				fseek( fp, (sizeof(PET_ALBUM)*MAX_PET_KIND+16)*AlbumIdCnt, SEEK_SET);
 				id[15] &= 0xf;
@@ -4607,7 +4607,7 @@ BOOL LoadAlbum_36( char *user)
 				return FALSE;
 			}
 		}else{
-			//找到此帐号的记录
+			//找到此帳號的記錄
 			if( fread( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp) < MAX_PET_KIND){
 				fwrite( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp);
 				fclose( fp);
@@ -4631,30 +4631,30 @@ BOOL ConvertAlbumTo36(  char *user, char *oldfile, DWORD num)
 	if( ( fopen_s(&fp, oldfile, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1){
-		//读入ID
+		//讀入ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID解码
+		//ID解碼
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
 			//ID不符
-			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//下一个
+			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//下一個
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//找到ID纪录
+			//找到ID紀錄
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), num, fp ) < num ){
 				fclose( fp );
 				return FALSE;
 			}
 			for( DWORD i = 0; i < num; i++){
-				if( 440 <= i && i <= 461 ) continue;		//修正乌力Q 问题
+				if( 440 <= i && i <= 461 ) continue;		//修正烏力Q 問題
 				CopyMemory( &PetAlbum[i], &OldAlbum[i], sizeof(PET_ALBUM));
 				SaveAlbum( i);
 			}
@@ -4674,24 +4674,24 @@ BOOL ConvertAlbum1_36(  char *user)
 	if( ( fopen_s( &fp,ALBUM_FILE_NAME, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1 ){
-		//读入ID
+		//讀入ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID解码
+		//ID解碼
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
 			//ID不符
-			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//找下一个
+			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//找下一個
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//读入资料
+			//讀入資料
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), MAX_PET_KIND_1, fp ) < MAX_PET_KIND_1 ){
 				fclose( fp );
 				return FALSE;
@@ -4760,7 +4760,7 @@ BOOL LoadAlbum_35( char *user)
 	}
 	while( 1 ){
 		if( fread( id2, sizeof(id2), 1, fp) < 1){
-			//找不到此帐号的记录
+			//找不到此帳號的記錄
 			id[15] &= 0xf;
 			id[id[15]] = Rnd( 1, 100);
 			for( i = 0 ; i < 16 ; i++)
@@ -4776,7 +4776,7 @@ BOOL LoadAlbum_35( char *user)
 		id2[15] &= 0xf;
 		id2[id2[15]] = NULL;
 		if( strcmp( id, id2) != 0){
-			//不是此帐号的记录
+			//不是此帳號的記錄
 			if( fseek( fp, sizeof(PET_ALBUM)*MAX_PET_KIND, SEEK_CUR) != 0){
 				fseek( fp, (sizeof(PET_ALBUM)*MAX_PET_KIND+16)*AlbumIdCnt, SEEK_SET);
 				id[15] &= 0xf;
@@ -4790,7 +4790,7 @@ BOOL LoadAlbum_35( char *user)
 				return FALSE;
 			}
 		}else{
-			//找到此帐号的记录
+			//找到此帳號的記錄
 			if( fread( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp) < MAX_PET_KIND){
 				fwrite( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp);
 				fclose( fp);
@@ -4814,24 +4814,24 @@ BOOL ConvertAlbumTo35(  char *user, char *oldfile, DWORD num)
 	if( ( fopen_s(&fp, oldfile, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1){
-		//读入ID
+		//讀入ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID解码
+		//ID解碼
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
 			//ID不符
-			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//下一个
+			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//下一個
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//找到ID纪录
+			//找到ID紀錄
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), num, fp ) < num ){
 				fclose( fp );
 				return FALSE;
@@ -4856,24 +4856,24 @@ BOOL ConvertAlbum1_35(  char *user)
 	if( (  fopen_s(&fp, ALBUM_FILE_NAME, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1 ){
-		//读入ID
+		//讀入ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID解码
+		//ID解碼
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
 			//ID不符
-			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//找下一个
+			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//找下一個
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//读入资料
+			//讀入資料
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), MAX_PET_KIND_1, fp ) < MAX_PET_KIND_1 ){
 				fclose( fp );
 				return FALSE;
@@ -4942,7 +4942,7 @@ BOOL LoadAlbum_34( char *user)
 	}
 	while( 1 ){
 		if( fread( id2, sizeof(id2), 1, fp) < 1){
-			//找不到此帐号的记录
+			//找不到此帳號的記錄
 			id[15] &= 0xf;
 			id[id[15]] = Rnd( 1, 100);
 			for( i = 0 ; i < 16 ; i++)
@@ -4958,7 +4958,7 @@ BOOL LoadAlbum_34( char *user)
 		id2[15] &= 0xf;
 		id2[id2[15]] = NULL;
 		if( strcmp( id, id2) != 0){
-			//不是此帐号的记录
+			//不是此帳號的記錄
 			if( fseek( fp, sizeof(PET_ALBUM)*MAX_PET_KIND, SEEK_CUR) != 0){
 				fseek( fp, (sizeof(PET_ALBUM)*MAX_PET_KIND+16)*AlbumIdCnt, SEEK_SET);
 				id[15] &= 0xf;
@@ -4972,7 +4972,7 @@ BOOL LoadAlbum_34( char *user)
 				return FALSE;
 			}
 		}else{
-			//找到此帐号的记录
+			//找到此帳號的記錄
 			if( fread( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp) < MAX_PET_KIND){
 				fwrite( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp);
 				fclose( fp);
@@ -4996,24 +4996,24 @@ BOOL ConvertAlbumTo34(  char *user, char *oldfile, DWORD num)
 	if( ( fopen_s( &fp,oldfile, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1){
-		//读入ID
+		//讀入ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID解码
+		//ID解碼
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
 			//ID不符
-			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//下一个
+			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//下一個
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//找到ID纪录
+			//找到ID紀錄
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), num, fp ) < num ){
 				fclose( fp );
 				return FALSE;
@@ -5038,24 +5038,24 @@ BOOL ConvertAlbum1_34(  char *user)
 	if( ( fopen_s(&fp, ALBUM_FILE_NAME, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1 ){
-		//读入ID
+		//讀入ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID解码
+		//ID解碼
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
 			//ID不符
-			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//找下一个
+			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//找下一個
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//读入资料
+			//讀入資料
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), MAX_PET_KIND_1, fp ) < MAX_PET_KIND_1 ){
 				fclose( fp );
 				return FALSE;
@@ -5124,7 +5124,7 @@ BOOL LoadAlbum_33( char *user)
 	}
 	while( 1 ){
 		if( fread( id2, sizeof(id2), 1, fp) < 1){
-			//找不到此帐号的记录
+			//找不到此帳號的記錄
 			id[15] &= 0xf;
 			id[id[15]] = Rnd( 1, 100);
 			for( i = 0 ; i < 16 ; i++)
@@ -5140,7 +5140,7 @@ BOOL LoadAlbum_33( char *user)
 		id2[15] &= 0xf;
 		id2[id2[15]] = NULL;
 		if( strcmp( id, id2) != 0){
-			//不是此帐号的记录
+			//不是此帳號的記錄
 			if( fseek( fp, sizeof(PET_ALBUM)*MAX_PET_KIND, SEEK_CUR) != 0){
 				fseek( fp, (sizeof(PET_ALBUM)*MAX_PET_KIND+16)*AlbumIdCnt, SEEK_SET);
 				id[15] &= 0xf;
@@ -5154,7 +5154,7 @@ BOOL LoadAlbum_33( char *user)
 				return FALSE;
 			}
 		}else{
-			//找到此帐号的记录
+			//找到此帳號的記錄
 			if( fread( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp) < MAX_PET_KIND){
 				fwrite( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp);
 				fclose( fp);
@@ -5178,24 +5178,24 @@ BOOL ConvertAlbumTo33(  char *user, char *oldfile, DWORD num)
 	if( (  fopen_s( &fp,oldfile, "r+b" ) ) != NULL )
 		return FALSE;
 	while( 1){
-		//读入ID
+		//讀入ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID解码
+		//ID解碼
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
 			//ID不符
-			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//下一个
+			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//下一個
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//找到ID纪录
+			//找到ID紀錄
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), num, fp ) < num ){
 				fclose( fp );
 				return FALSE;
@@ -5220,24 +5220,24 @@ BOOL ConvertAlbum1_33(  char *user)
 	if( ( fp = fopen( ALBUM_FILE_NAME, "r+b" ) ) == NULL )
 		return FALSE;
 	while( 1 ){
-		//读入ID
+		//讀入ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID解码
+		//ID解碼
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
 			//ID不符
-			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//找下一个
+			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//找下一個
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//读入资料
+			//讀入資料
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), MAX_PET_KIND_1, fp ) < MAX_PET_KIND_1 ){
 				fclose( fp );
 				return FALSE;
@@ -5306,7 +5306,7 @@ BOOL LoadAlbum_32( char *user)
 	}
 	while( 1 ){
 		if( fread( id2, sizeof(id2), 1, fp) < 1){
-			//找不到此帐号的记录
+			//找不到此帳號的記錄
 			id[15] &= 0xf;
 			id[id[15]] = Rnd( 1, 100);
 			for( i = 0 ; i < 16 ; i++)
@@ -5322,7 +5322,7 @@ BOOL LoadAlbum_32( char *user)
 		id2[15] &= 0xf;
 		id2[id2[15]] = NULL;
 		if( strcmp( id, id2) != 0){
-			//不是此帐号的记录
+			//不是此帳號的記錄
 			if( fseek( fp, sizeof(PET_ALBUM)*MAX_PET_KIND, SEEK_CUR) != 0){
 				fseek( fp, (sizeof(PET_ALBUM)*MAX_PET_KIND+16)*AlbumIdCnt, SEEK_SET);
 				id[15] &= 0xf;
@@ -5336,7 +5336,7 @@ BOOL LoadAlbum_32( char *user)
 				return FALSE;
 			}
 		}else{
-			//找到此帐号的记录
+			//找到此帳號的記錄
 			if( fread( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp) < MAX_PET_KIND){
 				fwrite( PetAlbum, sizeof(PET_ALBUM), MAX_PET_KIND, fp);
 				fclose( fp);
@@ -5360,24 +5360,24 @@ BOOL ConvertAlbumTo32(  char *user, char *oldfile, DWORD num)
 	if( ( fp = fopen( oldfile, "r+b" ) ) == NULL )
 		return FALSE;
 	while( 1){
-		//读入ID
+		//讀入ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID解码
+		//ID解碼
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
 			//ID不符
-			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//下一个
+			if( fseek( fp, sizeof( PET_ALBUM ) * num, SEEK_CUR ) != 0 ){//下一個
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//找到ID纪录
+			//找到ID紀錄
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), num, fp ) < num ){
 				fclose( fp );
 				return FALSE;
@@ -5402,24 +5402,24 @@ BOOL ConvertAlbum1_32(  char *user)
 	if( ( fp = fopen( ALBUM_FILE_NAME, "r+b" ) ) == NULL )
 		return FALSE;
 	while( 1 ){
-		//读入ID
+		//讀入ID
 		if( fread( id2, sizeof( id2 ), 1, fp ) < 1 ){
 			fclose( fp );
 			return FALSE;
 		}
-		//ID解码
+		//ID解碼
 		for( i = 0 ; i < 16 ; i++ ){
 			id2[ i ] ^= IdEncryptionTbl[ i ];
 		}
 		id2[ id2[ 15 ] ] = NULL;
 		if( strcmp( user, id2 ) != 0 ){
 			//ID不符
-			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//找下一个
+			if( fseek( fp, sizeof( PET_ALBUM ) * MAX_PET_KIND_1, SEEK_CUR ) != 0 ){//找下一個
 				fclose( fp );
 				return FALSE;
 			}
 		}else{
-			//读入资料
+			//讀入資料
 			if( fread( OldAlbum, sizeof( PET_ALBUM ), MAX_PET_KIND_1, fp ) < MAX_PET_KIND_1 ){
 				fclose( fp );
 				return FALSE;
@@ -6853,40 +6853,40 @@ void CheckNewPet(int sprNo)
 	int albumNo;
 	// ?????
 #if defined(__ALBUM_47)
-	if (tblNo > 1800){					//小恶魔
+	if (tblNo > 1800){					//小惡魔
 		tblNo -= 1208;
 	}
-	else if (tblNo > 1755){					//间隔南瓜魔王后的 狐猴
+	else if (tblNo > 1755){					//間隔南瓜魔王後的 狐猴
 		tblNo -= 1201;
 	}
-	else if (tblNo > 1739){ //1710 ){			//	间隔骑宠后的 飞蛇
+	else if (tblNo > 1739){ //1710 ){			//	間隔騎寵後的 飛蛇
 		tblNo -= 1200;
 	}
-	else if (tblNo > 1686){			//海底融合宠
+	else if (tblNo > 1686){			//海底融閤寵
 		tblNo -= 1175;
 	}
-	else if (tblNo > 1641){			//鸡年兽4 甲虫2	8.0第一次整合测试
+	else if (tblNo > 1641){			//雞年獸4 甲蟲2	8.0第一次整閤測試
 		tblNo -= 1167;
 	}
 	else if (tblNo > 1635){	//麒麟
 		tblNo -= 1148;
 	}
-	else if (tblNo > 1634){	//猫女1 猫女2 
+	else if (tblNo > 1634){	//貓女1 貓女2 
 		tblNo -= 1149;
 	}
-	else if (tblNo > 1616){//布里萨尔  蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑乌力王 狮人1 狮人2 灰人熔 白狼 布伊酷
+	else if (tblNo > 1616){//布裏薩爾  蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑烏力王 獅人1 獅人2 灰人熔 白狼 布伊酷
 		tblNo -= 1146;
 	}
-	else if (tblNo > 1568){//机人龙
+	else if (tblNo > 1568){//機人龍
 		tblNo -= 1103;
 	}
-	else if (tblNo > 1564){//黄色飞龙
+	else if (tblNo > 1564){//黃色飛龍
 		tblNo -= 1101;
 	}
 	else if (tblNo > 1516){
 		tblNo -= 1055;
 	}
-	else if (tblNo == 1516){//修正乌力王
+	else if (tblNo == 1516){//修正烏力王
 		tblNo = 455;
 	}
 	else if (tblNo > 1509){
@@ -6956,29 +6956,29 @@ void CheckNewPet(int sprNo)
 		tblNo -= (333 + 56);
 	}
 #elif defined(__ALBUM_46)
-	if( tblNo > 1800 ){					//小恶魔
+	if( tblNo > 1800 ){					//小惡魔
 		tblNo -= 1208;
-	}else if( tblNo > 1755 ){					//间隔南瓜魔王后的 狐猴
+	}else if( tblNo > 1755 ){					//間隔南瓜魔王後的 狐猴
 		tblNo -= 1201;
-	}else if (tblNo > 1739 ){ //1710 ){			//	间隔骑宠后的 飞蛇
+	}else if (tblNo > 1739 ){ //1710 ){			//	間隔騎寵後的 飛蛇
 		tblNo -= 1200;
-	}else if (tblNo > 1686 ){			//海底融合宠
+	}else if (tblNo > 1686 ){			//海底融閤寵
 		tblNo -= 1175;
-	}else if (tblNo > 1641 ){			//鸡年兽4 甲虫2	8.0第一次整合测试
+	}else if (tblNo > 1641 ){			//雞年獸4 甲蟲2	8.0第一次整閤測試
 		tblNo -= 1167;
 	}else if (tblNo > 1635 ){	//麒麟
 		tblNo -= 1148;
-	}else if ( tblNo > 1634 ){	//猫女1 猫女2 
+	}else if ( tblNo > 1634 ){	//貓女1 貓女2 
 		tblNo -= 1149;
-	}else if ( tblNo > 1616 ){//布里萨尔  蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑乌力王 狮人1 狮人2 灰人熔 白狼 布伊酷
+	}else if ( tblNo > 1616 ){//布裏薩爾  蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑烏力王 獅人1 獅人2 灰人熔 白狼 布伊酷
 		tblNo -= 1146;
-	}else if ( tblNo > 1568 ){//机人龙
+	}else if ( tblNo > 1568 ){//機人龍
 		tblNo -= 1103;
-	}else if( tblNo > 1564 ){//黄色飞龙
+	}else if( tblNo > 1564 ){//黃色飛龍
 		tblNo -= 1101;
 	}else if( tblNo > 1516 ){
 		tblNo -= 1055;
-	}else if ( tblNo == 1516 ){//修正乌力王
+	}else if ( tblNo == 1516 ){//修正烏力王
 		tblNo = 455;
 	}else if ( tblNo > 1509 ){
 		tblNo -= 1054;
@@ -7026,29 +7026,29 @@ void CheckNewPet(int sprNo)
 		tblNo -= (333+56);
 	}
 #elif defined(__ALBUM_45)
-	if( tblNo > 1800 ){					//小恶魔
+	if( tblNo > 1800 ){					//小惡魔
 		tblNo -= 1208;
-	}else if( tblNo > 1755 ){					//间隔南瓜魔王后的 狐猴
+	}else if( tblNo > 1755 ){					//間隔南瓜魔王後的 狐猴
 		tblNo -= 1201;
-	}else if (tblNo > 1739 ){ //1710 ){			//	间隔骑宠后的 飞蛇
+	}else if (tblNo > 1739 ){ //1710 ){			//	間隔騎寵後的 飛蛇
 		tblNo -= 1200;
-	}else if (tblNo > 1686 ){			//海底融合宠
+	}else if (tblNo > 1686 ){			//海底融閤寵
 		tblNo -= 1175;
-	}else if (tblNo > 1641 ){			//鸡年兽4 甲虫2	8.0第一次整合测试
+	}else if (tblNo > 1641 ){			//雞年獸4 甲蟲2	8.0第一次整閤測試
 		tblNo -= 1167;
 	}else if (tblNo > 1635 ){	//麒麟
 		tblNo -= 1148;
-	}else if ( tblNo > 1634 ){	//猫女1 猫女2 
+	}else if ( tblNo > 1634 ){	//貓女1 貓女2 
 		tblNo -= 1149;
-	}else if ( tblNo > 1616 ){//布里萨尔  蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑乌力王 狮人1 狮人2 灰人熔 白狼 布伊酷
+	}else if ( tblNo > 1616 ){//布裏薩爾  蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑烏力王 獅人1 獅人2 灰人熔 白狼 布伊酷
 		tblNo -= 1146;
-	}else if ( tblNo > 1568 ){//机人龙
+	}else if ( tblNo > 1568 ){//機人龍
 		tblNo -= 1103;
-	}else if( tblNo > 1564 ){//黄色飞龙
+	}else if( tblNo > 1564 ){//黃色飛龍
 		tblNo -= 1101;
 	}else if( tblNo > 1516 ){
 		tblNo -= 1055;
-	}else if ( tblNo == 1516 ){//修正乌力王
+	}else if ( tblNo == 1516 ){//修正烏力王
 		tblNo = 455;
 	}else if ( tblNo > 1509 ){
 		tblNo -= 1054;
@@ -7096,29 +7096,29 @@ void CheckNewPet(int sprNo)
 		tblNo -= (333+56);
 	}
 #elif defined(__ALBUM_44)
-	if( tblNo > 1800 ){					//小恶魔
+	if( tblNo > 1800 ){					//小惡魔
 		tblNo -= 1208;
-	}else if( tblNo > 1755 ){					//间隔南瓜魔王后的 狐猴
+	}else if( tblNo > 1755 ){					//間隔南瓜魔王後的 狐猴
 		tblNo -= 1201;
-	}else if (tblNo > 1739 ){ //1710 ){			//	间隔骑宠后的 飞蛇
+	}else if (tblNo > 1739 ){ //1710 ){			//	間隔騎寵後的 飛蛇
 		tblNo -= 1200;
-	}else if (tblNo > 1686 ){			//海底融合宠
+	}else if (tblNo > 1686 ){			//海底融閤寵
 		tblNo -= 1175;
-	}else if (tblNo > 1641 ){			//鸡年兽4 甲虫2	8.0第一次整合测试
+	}else if (tblNo > 1641 ){			//雞年獸4 甲蟲2	8.0第一次整閤測試
 		tblNo -= 1167;
 	}else if (tblNo > 1635 ){	//麒麟
 		tblNo -= 1148;
-	}else if ( tblNo > 1634 ){	//猫女1 猫女2 
+	}else if ( tblNo > 1634 ){	//貓女1 貓女2 
 		tblNo -= 1149;
-	}else if ( tblNo > 1616 ){//布里萨尔  蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑乌力王 狮人1 狮人2 灰人熔 白狼 布伊酷
+	}else if ( tblNo > 1616 ){//布裏薩爾  蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑烏力王 獅人1 獅人2 灰人熔 白狼 布伊酷
 		tblNo -= 1146;
-	}else if ( tblNo > 1568 ){//机人龙
+	}else if ( tblNo > 1568 ){//機人龍
 		tblNo -= 1103;
-	}else if( tblNo > 1564 ){//黄色飞龙
+	}else if( tblNo > 1564 ){//黃色飛龍
 		tblNo -= 1101;
 	}else if( tblNo > 1516 ){
 		tblNo -= 1055;
-	}else if ( tblNo == 1516 ){//修正乌力王
+	}else if ( tblNo == 1516 ){//修正烏力王
 		tblNo = 455;
 	}else if ( tblNo > 1509 ){
 		tblNo -= 1054;
@@ -7166,29 +7166,29 @@ void CheckNewPet(int sprNo)
 		tblNo -= (333+56);
 	}
 #elif defined(__ALBUM_43)
-	if( tblNo > 1800 ){					//小恶魔
+	if( tblNo > 1800 ){					//小惡魔
 		tblNo -= 1208;
-	}else if( tblNo > 1755 ){					//间隔南瓜魔王后的 狐猴
+	}else if( tblNo > 1755 ){					//間隔南瓜魔王後的 狐猴
 		tblNo -= 1201;
-	}else if (tblNo > 1739 ){ //1710 ){			//	间隔骑宠后的 飞蛇
+	}else if (tblNo > 1739 ){ //1710 ){			//	間隔騎寵後的 飛蛇
 		tblNo -= 1200;
-	}else if (tblNo > 1686 ){			//海底融合宠
+	}else if (tblNo > 1686 ){			//海底融閤寵
 		tblNo -= 1175;
-	}else if (tblNo > 1641 ){			//鸡年兽4 甲虫2	8.0第一次整合测试
+	}else if (tblNo > 1641 ){			//雞年獸4 甲蟲2	8.0第一次整閤測試
 		tblNo -= 1167;
 	}else if (tblNo > 1635 ){	//麒麟
 		tblNo -= 1148;
-	}else if ( tblNo > 1634 ){	//猫女1 猫女2 
+	}else if ( tblNo > 1634 ){	//貓女1 貓女2 
 		tblNo -= 1149;
-	}else if ( tblNo > 1616 ){//布里萨尔  蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑乌力王 狮人1 狮人2 灰人熔 白狼 布伊酷
+	}else if ( tblNo > 1616 ){//布裏薩爾  蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑烏力王 獅人1 獅人2 灰人熔 白狼 布伊酷
 		tblNo -= 1146;
-	}else if ( tblNo > 1568 ){//机人龙
+	}else if ( tblNo > 1568 ){//機人龍
 		tblNo -= 1103;
-	}else if( tblNo > 1564 ){//黄色飞龙
+	}else if( tblNo > 1564 ){//黃色飛龍
 		tblNo -= 1101;
 	}else if( tblNo > 1516 ){
 		tblNo -= 1055;
-	}else if ( tblNo == 1516 ){//修正乌力王
+	}else if ( tblNo == 1516 ){//修正烏力王
 		tblNo = 455;
 	}else if ( tblNo > 1509 ){
 		tblNo -= 1054;
@@ -7236,29 +7236,29 @@ void CheckNewPet(int sprNo)
 		tblNo -= (333+56);
 	}
 #elif defined(__ALBUM_42)
-	if( tblNo > 1800 ){					//小恶魔
+	if( tblNo > 1800 ){					//小惡魔
 		tblNo -= 1208;
-	}else if( tblNo > 1755 ){					//间隔南瓜魔王后的 狐猴
+	}else if( tblNo > 1755 ){					//間隔南瓜魔王後的 狐猴
 		tblNo -= 1201;
-	}else if (tblNo > 1739 ){ //1710 ){			//	间隔骑宠后的 飞蛇
+	}else if (tblNo > 1739 ){ //1710 ){			//	間隔騎寵後的 飛蛇
 		tblNo -= 1200;
-	}else if (tblNo > 1686 ){			//海底融合宠
+	}else if (tblNo > 1686 ){			//海底融閤寵
 		tblNo -= 1175;
-	}else if (tblNo > 1641 ){			//鸡年兽4 甲虫2	8.0第一次整合测试
+	}else if (tblNo > 1641 ){			//雞年獸4 甲蟲2	8.0第一次整閤測試
 		tblNo -= 1167;
 	}else if (tblNo > 1635 ){	//麒麟
 		tblNo -= 1148;
-	}else if ( tblNo > 1634 ){	//猫女1 猫女2 
+	}else if ( tblNo > 1634 ){	//貓女1 貓女2 
 		tblNo -= 1149;
-	}else if ( tblNo > 1616 ){//布里萨尔  蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑乌力王 狮人1 狮人2 灰人熔 白狼 布伊酷
+	}else if ( tblNo > 1616 ){//布裏薩爾  蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑烏力王 獅人1 獅人2 灰人熔 白狼 布伊酷
 		tblNo -= 1146;
-	}else if ( tblNo > 1568 ){//机人龙
+	}else if ( tblNo > 1568 ){//機人龍
 		tblNo -= 1103;
-	}else if( tblNo > 1564 ){//黄色飞龙
+	}else if( tblNo > 1564 ){//黃色飛龍
 		tblNo -= 1101;
 	}else if( tblNo > 1516 ){
 		tblNo -= 1055;
-	}else if ( tblNo == 1516 ){//修正乌力王
+	}else if ( tblNo == 1516 ){//修正烏力王
 		tblNo = 455;
 	}else if ( tblNo > 1509 ){
 		tblNo -= 1054;
@@ -7306,29 +7306,29 @@ void CheckNewPet(int sprNo)
 		tblNo -= (333+56);
 	}
 #elif defined(__ALBUM_41)
-	if( tblNo > 1800 ){					//小恶魔
+	if( tblNo > 1800 ){					//小惡魔
 		tblNo -= 1208;
-	}else if( tblNo > 1755 ){					//间隔南瓜魔王后的 狐猴
+	}else if( tblNo > 1755 ){					//間隔南瓜魔王後的 狐猴
 		tblNo -= 1201;
-	}else if (tblNo > 1739 ){ //1710 ){			//	间隔骑宠后的 飞蛇
+	}else if (tblNo > 1739 ){ //1710 ){			//	間隔騎寵後的 飛蛇
 		tblNo -= 1200;
-	}else if (tblNo > 1686 ){			//海底融合宠
+	}else if (tblNo > 1686 ){			//海底融閤寵
 		tblNo -= 1175;
-	}else if (tblNo > 1641 ){			//鸡年兽4 甲虫2	8.0第一次整合测试
+	}else if (tblNo > 1641 ){			//雞年獸4 甲蟲2	8.0第一次整閤測試
 		tblNo -= 1167;
 	}else if (tblNo > 1635 ){	//麒麟
 		tblNo -= 1148;
-	}else if ( tblNo > 1634 ){	//猫女1 猫女2 
+	}else if ( tblNo > 1634 ){	//貓女1 貓女2 
 		tblNo -= 1149;
-	}else if ( tblNo > 1616 ){//布里萨尔  蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑乌力王 狮人1 狮人2 灰人熔 白狼 布伊酷
+	}else if ( tblNo > 1616 ){//布裏薩爾  蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑烏力王 獅人1 獅人2 灰人熔 白狼 布伊酷
 		tblNo -= 1146;
-	}else if ( tblNo > 1568 ){//机人龙
+	}else if ( tblNo > 1568 ){//機人龍
 		tblNo -= 1103;
-	}else if( tblNo > 1564 ){//黄色飞龙
+	}else if( tblNo > 1564 ){//黃色飛龍
 		tblNo -= 1101;
 	}else if( tblNo > 1516 ){
 		tblNo -= 1055;
-	}else if ( tblNo == 1516 ){//修正乌力王
+	}else if ( tblNo == 1516 ){//修正烏力王
 		tblNo = 455;
 	}else if ( tblNo > 1509 ){
 		tblNo -= 1054;
@@ -7376,29 +7376,29 @@ void CheckNewPet(int sprNo)
 		tblNo -= (333+56);
 	}
 #elif defined(__ALBUM_40)
-	if( tblNo > 1800 ){					//小恶魔
+	if( tblNo > 1800 ){					//小惡魔
 		tblNo -= 1208;
-	}else if( tblNo > 1755 ){					//间隔南瓜魔王后的 狐猴
+	}else if( tblNo > 1755 ){					//間隔南瓜魔王後的 狐猴
 		tblNo -= 1201;
-	}else if (tblNo > 1739 ){ //1710 ){			//	间隔骑宠后的 飞蛇
+	}else if (tblNo > 1739 ){ //1710 ){			//	間隔騎寵後的 飛蛇
 		tblNo -= 1200;
-	}else if (tblNo > 1686 ){			//海底融合宠
+	}else if (tblNo > 1686 ){			//海底融閤寵
 		tblNo -= 1175;
-	}else if (tblNo > 1641 ){			//鸡年兽4 甲虫2	8.0第一次整合测试
+	}else if (tblNo > 1641 ){			//雞年獸4 甲蟲2	8.0第一次整閤測試
 		tblNo -= 1167;
 	}else if (tblNo > 1635 ){	//麒麟
 		tblNo -= 1148;
-	}else if ( tblNo > 1634 ){	//猫女1 猫女2 
+	}else if ( tblNo > 1634 ){	//貓女1 貓女2 
 		tblNo -= 1149;
-	}else if ( tblNo > 1616 ){//布里萨尔  蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑乌力王 狮人1 狮人2 灰人熔 白狼 布伊酷
+	}else if ( tblNo > 1616 ){//布裏薩爾  蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑烏力王 獅人1 獅人2 灰人熔 白狼 布伊酷
 		tblNo -= 1146;
-	}else if ( tblNo > 1568 ){//机人龙
+	}else if ( tblNo > 1568 ){//機人龍
 		tblNo -= 1103;
-	}else if( tblNo > 1564 ){//黄色飞龙
+	}else if( tblNo > 1564 ){//黃色飛龍
 		tblNo -= 1101;
 	}else if( tblNo > 1516 ){
 		tblNo -= 1055;
-	}else if ( tblNo == 1516 ){//修正乌力王
+	}else if ( tblNo == 1516 ){//修正烏力王
 		tblNo = 455;
 	}else if ( tblNo > 1509 ){
 		tblNo -= 1054;
@@ -7446,29 +7446,29 @@ void CheckNewPet(int sprNo)
 		tblNo -= (333+56);
 	}
 #elif defined(__ALBUM_39)
-	if( tblNo > 1800 ){					//小恶魔
+	if( tblNo > 1800 ){					//小惡魔
 		tblNo -= 1208;
-	}else if( tblNo > 1755 ){					//间隔南瓜魔王后的 狐猴
+	}else if( tblNo > 1755 ){					//間隔南瓜魔王後的 狐猴
 		tblNo -= 1201;
-	}else if (tblNo > 1739 ){ //1710 ){			//	间隔骑宠后的 飞蛇
+	}else if (tblNo > 1739 ){ //1710 ){			//	間隔騎寵後的 飛蛇
 		tblNo -= 1200;
-	}else if (tblNo > 1686 ){			//海底融合宠
+	}else if (tblNo > 1686 ){			//海底融閤寵
 		tblNo -= 1175;
-	}else if (tblNo > 1641 ){			//鸡年兽4 甲虫2	8.0第一次整合测试
+	}else if (tblNo > 1641 ){			//雞年獸4 甲蟲2	8.0第一次整閤測試
 		tblNo -= 1167;
 	}else if (tblNo > 1635 ){	//麒麟
 		tblNo -= 1148;
-	}else if ( tblNo > 1634 ){	//猫女1 猫女2 
+	}else if ( tblNo > 1634 ){	//貓女1 貓女2 
 		tblNo -= 1149;
-	}else if ( tblNo > 1616 ){//布里萨尔  蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑乌力王 狮人1 狮人2 灰人熔 白狼 布伊酷
+	}else if ( tblNo > 1616 ){//布裏薩爾  蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑烏力王 獅人1 獅人2 灰人熔 白狼 布伊酷
 		tblNo -= 1146;
-	}else if ( tblNo > 1568 ){//机人龙
+	}else if ( tblNo > 1568 ){//機人龍
 		tblNo -= 1103;
-	}else if( tblNo > 1564 ){//黄色飞龙
+	}else if( tblNo > 1564 ){//黃色飛龍
 		tblNo -= 1101;
 	}else if( tblNo > 1516 ){
 		tblNo -= 1055;
-	}else if ( tblNo == 1516 ){//修正乌力王
+	}else if ( tblNo == 1516 ){//修正烏力王
 		tblNo = 455;
 	}else if ( tblNo > 1509 ){
 		tblNo -= 1054;
@@ -7517,27 +7517,27 @@ void CheckNewPet(int sprNo)
 	}
 #elif defined(__ALBUM_38)
 
-	if( tblNo > 1755 ){					//间隔南瓜魔王后的 狐猴
+	if( tblNo > 1755 ){					//間隔南瓜魔王後的 狐猴
 		tblNo -= 1201;
-	}else if (tblNo > 1739 ){ //1710 ){			//	间隔骑宠后的 飞蛇
+	}else if (tblNo > 1739 ){ //1710 ){			//	間隔騎寵後的 飛蛇
 		tblNo -= 1200;
-	}else if (tblNo > 1686 ){			//海底融合宠
+	}else if (tblNo > 1686 ){			//海底融閤寵
 		tblNo -= 1175;
-	}else if (tblNo > 1641 ){			//鸡年兽4 甲虫2	8.0第一次整合测试
+	}else if (tblNo > 1641 ){			//雞年獸4 甲蟲2	8.0第一次整閤測試
 		tblNo -= 1167;
 	}else if (tblNo > 1635 ){	//麒麟
 		tblNo -= 1148;
-	}else if ( tblNo > 1634 ){	//猫女1 猫女2 
+	}else if ( tblNo > 1634 ){	//貓女1 貓女2 
 		tblNo -= 1149;
-	}else if ( tblNo > 1616 ){//布里萨尔  蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑乌力王 狮人1 狮人2 灰人熔 白狼 布伊酷
+	}else if ( tblNo > 1616 ){//布裏薩爾  蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑烏力王 獅人1 獅人2 灰人熔 白狼 布伊酷
 		tblNo -= 1146;
-	}else if ( tblNo > 1568 ){//机人龙
+	}else if ( tblNo > 1568 ){//機人龍
 		tblNo -= 1103;
-	}else if( tblNo > 1564 ){//黄色飞龙
+	}else if( tblNo > 1564 ){//黃色飛龍
 		tblNo -= 1101;
 	}else if( tblNo > 1516 ){
 		tblNo -= 1055;
-	}else if ( tblNo == 1516 ){//修正乌力王
+	}else if ( tblNo == 1516 ){//修正烏力王
 		tblNo = 455;
 	}else if ( tblNo > 1509 ){
 		tblNo -= 1054;
@@ -7586,25 +7586,25 @@ void CheckNewPet(int sprNo)
 	}
 #elif defined(__ALBUM_37)
 
-	if (tblNo > 1710 ){			//	间隔骑宠后的 飞蛇
+	if (tblNo > 1710 ){			//	間隔騎寵後的 飛蛇
 		tblNo -= 1200;
-	}else if (tblNo > 1686 ){			//海底融合宠
+	}else if (tblNo > 1686 ){			//海底融閤寵
 		tblNo -= 1175;
-	}else if (tblNo > 1641 ){			//鸡年兽4 甲虫2	8.0第一次整合测试
+	}else if (tblNo > 1641 ){			//雞年獸4 甲蟲2	8.0第一次整閤測試
 		tblNo -= 1167;
 	}else if (tblNo > 1635 ){	//麒麟
 		tblNo -= 1148;
-	}else if ( tblNo > 1634 ){	//猫女1 猫女2 
+	}else if ( tblNo > 1634 ){	//貓女1 貓女2 
 		tblNo -= 1149;
-	}else if ( tblNo > 1616 ){//布里萨尔  蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑乌力王 狮人1 狮人2 灰人熔 白狼 布伊酷
+	}else if ( tblNo > 1616 ){//布裏薩爾  蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑烏力王 獅人1 獅人2 灰人熔 白狼 布伊酷
 		tblNo -= 1146;
-	}else if ( tblNo > 1568 ){//机人龙
+	}else if ( tblNo > 1568 ){//機人龍
 		tblNo -= 1103;
-	}else if( tblNo > 1564 ){//黄色飞龙
+	}else if( tblNo > 1564 ){//黃色飛龍
 		tblNo -= 1101;
 	}else if( tblNo > 1516 ){
 		tblNo -= 1055;
-	}else if ( tblNo == 1516 ){//修正乌力王
+	}else if ( tblNo == 1516 ){//修正烏力王
 		tblNo = 455;
 	}else if ( tblNo > 1509 ){
 		tblNo -= 1054;
@@ -7653,23 +7653,23 @@ void CheckNewPet(int sprNo)
 	}
 #elif defined(__ALBUM_36)
 
-	if (tblNo > 1686 ){			//鸡年兽4 甲虫2	8.0第一次整合测试
+	if (tblNo > 1686 ){			//雞年獸4 甲蟲2	8.0第一次整閤測試
 		tblNo -= 1175;
-	}else if (tblNo > 1641 ){			//鸡年兽4 甲虫2	8.0第一次整合测试
+	}else if (tblNo > 1641 ){			//雞年獸4 甲蟲2	8.0第一次整閤測試
 		tblNo -= 1167;
 	}else if (tblNo > 1635 ){	//麒麟
 		tblNo -= 1148;
-	}else if ( tblNo > 1634 ){	//猫女1 猫女2 
+	}else if ( tblNo > 1634 ){	//貓女1 貓女2 
 		tblNo -= 1149;
-	}else if ( tblNo > 1616 ){//布里萨尔  蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑乌力王 狮人1 狮人2 灰人熔 白狼 布伊酷
+	}else if ( tblNo > 1616 ){//布裏薩爾  蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑烏力王 獅人1 獅人2 灰人熔 白狼 布伊酷
 		tblNo -= 1146;
-	}else if ( tblNo > 1568 ){//机人龙
+	}else if ( tblNo > 1568 ){//機人龍
 		tblNo -= 1103;
-	}else if( tblNo > 1564 ){//黄色飞龙
+	}else if( tblNo > 1564 ){//黃色飛龍
 		tblNo -= 1101;
 	}else if( tblNo > 1516 ){
 		tblNo -= 1055;
-	}else if ( tblNo == 1516 ){//修正乌力王
+	}else if ( tblNo == 1516 ){//修正烏力王
 		tblNo = 455;
 	}else if ( tblNo > 1509 ){
 		tblNo -= 1054;
@@ -7718,21 +7718,21 @@ void CheckNewPet(int sprNo)
 	}
 #elif defined(__ALBUM_35)
 
-	if (tblNo > 1641 ){			//鸡年兽4 甲虫2 8.0第一次整合测试
+	if (tblNo > 1641 ){			//雞年獸4 甲蟲2 8.0第一次整閤測試
 		tblNo -= 1167;
 	}else if (tblNo > 1635 ){	//麒麟
 		tblNo -= 1148;
-	}else if ( tblNo > 1634 ){	//猫女1 猫女2 
+	}else if ( tblNo > 1634 ){	//貓女1 貓女2 
 		tblNo -= 1149;
-	}else if ( tblNo > 1616 ){//布里萨尔  蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑乌力王 狮人1 狮人2 灰人熔 白狼 布伊酷
+	}else if ( tblNo > 1616 ){//布裏薩爾  蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑烏力王 獅人1 獅人2 灰人熔 白狼 布伊酷
 		tblNo -= 1146;
-	}else if ( tblNo > 1568 ){//机人龙
+	}else if ( tblNo > 1568 ){//機人龍
 		tblNo -= 1103;
-	}else if( tblNo > 1564 ){//黄色飞龙
+	}else if( tblNo > 1564 ){//黃色飛龍
 		tblNo -= 1101;
 	}else if( tblNo > 1516 ){
 		tblNo -= 1055;
-	}else if ( tblNo == 1516 ){//修正乌力王
+	}else if ( tblNo == 1516 ){//修正烏力王
 		tblNo = 455;
 	}else if ( tblNo > 1509 ){
 		tblNo -= 1054;
@@ -7781,21 +7781,21 @@ void CheckNewPet(int sprNo)
 	}
 #elif defined(__ALBUM_34)
 
-	if (tblNo > 1639 ){			//鸡年兽4
+	if (tblNo > 1639 ){			//雞年獸4
 		tblNo -= 1167;
 	}else if (tblNo > 1635 ){	//麒麟
 		tblNo -= 1148;
-	}else if ( tblNo > 1634 ){	//猫女1 猫女2 麒麟
+	}else if ( tblNo > 1634 ){	//貓女1 貓女2 麒麟
 		tblNo -= 1149;
-	}else if ( tblNo > 1616 ){//布里萨尔  蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑乌力王 狮人1 狮人2 灰人熔 白狼 布伊酷
+	}else if ( tblNo > 1616 ){//布裏薩爾  蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑烏力王 獅人1 獅人2 灰人熔 白狼 布伊酷
 		tblNo -= 1146;
-	}else if ( tblNo > 1568 ){//机人龙
+	}else if ( tblNo > 1568 ){//機人龍
 		tblNo -= 1103;
-	}else if( tblNo > 1564 ){//黄色飞龙
+	}else if( tblNo > 1564 ){//黃色飛龍
 		tblNo -= 1101;
 	}else if( tblNo > 1516 ){
 		tblNo -= 1055;
-	}else if ( tblNo == 1516 ){//修正乌力王
+	}else if ( tblNo == 1516 ){//修正烏力王
 		tblNo = 455;
 	}else if ( tblNo > 1509 ){
 		tblNo -= 1054;
@@ -7846,17 +7846,17 @@ void CheckNewPet(int sprNo)
 
 	if (tblNo > 1635 ){
 		tblNo -= 1148;
-	}else if ( tblNo > 1634 ){	//猫女1 猫女2 麒麟
+	}else if ( tblNo > 1634 ){	//貓女1 貓女2 麒麟
 		tblNo -= 1149;
-	}else if ( tblNo > 1616 ){//布里萨尔  蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑乌力王 狮人1 狮人2 灰人熔 白狼 布伊酷
+	}else if ( tblNo > 1616 ){//布裏薩爾  蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑烏力王 獅人1 獅人2 灰人熔 白狼 布伊酷
 		tblNo -= 1146;
-	}else if ( tblNo > 1568 ){//机人龙
+	}else if ( tblNo > 1568 ){//機人龍
 		tblNo -= 1103;
-	}else if( tblNo > 1564 ){//黄色飞龙
+	}else if( tblNo > 1564 ){//黃色飛龍
 		tblNo -= 1101;
 	}else if( tblNo > 1516 ){
 		tblNo -= 1055;
-	}else if ( tblNo == 1516 ){//修正乌力王
+	}else if ( tblNo == 1516 ){//修正烏力王
 		tblNo = 455;
 	}else if ( tblNo > 1509 ){
 		tblNo -= 1054;
@@ -7905,19 +7905,19 @@ void CheckNewPet(int sprNo)
 	}
 #elif defined(__ALBUM_32)
 
-	if ( tblNo > 1634 ){	//猫女1 猫女2
+	if ( tblNo > 1634 ){	//貓女1 貓女2
 		tblNo -= 1149;
-	}else if ( tblNo > 1628 ){	//火蚁1 火蚁2 牛人1 牛人2
+	}else if ( tblNo > 1628 ){	//火蟻1 火蟻2 牛人1 牛人2
 		tblNo -= 1147;
-	}else if ( tblNo > 1616 ){//布里萨尔  蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑乌力王 狮人1 狮人2 灰人熔 白狼 布伊酷
+	}else if ( tblNo > 1616 ){//布裏薩爾  蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑烏力王 獅人1 獅人2 灰人熔 白狼 布伊酷
 		tblNo -= 1146;
-	}else if ( tblNo > 1568 ){//机人龙
+	}else if ( tblNo > 1568 ){//機人龍
 		tblNo -= 1103;
-	}else if( tblNo > 1564 ){//黄色飞龙
+	}else if( tblNo > 1564 ){//黃色飛龍
 		tblNo -= 1101;
 	}else if( tblNo > 1516 ){
 		tblNo -= 1055;
-	}else if ( tblNo == 1516 ){//修正乌力王
+	}else if ( tblNo == 1516 ){//修正烏力王
 		tblNo = 455;
 	}else if ( tblNo > 1509 ){
 		tblNo -= 1054;
@@ -7966,17 +7966,17 @@ void CheckNewPet(int sprNo)
 	}
 #elif defined(__ALBUM_31)
 
-	if ( tblNo > 1628 ){	//火蚁1 火蚁2 牛人1 牛人2
+	if ( tblNo > 1628 ){	//火蟻1 火蟻2 牛人1 牛人2
 		tblNo -= 1147;
-	}else if ( tblNo > 1616 ){//布里萨尔  蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑乌力王 狮人1 狮人2 灰人熔 白狼 布伊酷
+	}else if ( tblNo > 1616 ){//布裏薩爾  蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑烏力王 獅人1 獅人2 灰人熔 白狼 布伊酷
 		tblNo -= 1146;
-	}else if ( tblNo > 1568 ){//机人龙
+	}else if ( tblNo > 1568 ){//機人龍
 		tblNo -= 1103;
-	}else if( tblNo > 1564 ){//黄色飞龙
+	}else if( tblNo > 1564 ){//黃色飛龍
 		tblNo -= 1101;
 	}else if( tblNo > 1516 ){
 		tblNo -= 1055;
-	}else if ( tblNo == 1516 ){//修正乌力王
+	}else if ( tblNo == 1516 ){//修正烏力王
 		tblNo = 455;
 	}else if ( tblNo > 1509 ){
 		tblNo -= 1054;
@@ -8025,15 +8025,15 @@ void CheckNewPet(int sprNo)
 	}
 #elif defined(__ALBUM_30)
 
-	if ( tblNo > 1616 ){//布里萨尔  蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑乌力王 狮人1 狮人2 灰人熔 白狼 布伊酷
+	if ( tblNo > 1616 ){//布裏薩爾  蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑烏力王 獅人1 獅人2 灰人熔 白狼 布伊酷
 		tblNo -= 1146;
-	}else if ( tblNo > 1568 ){//机人龙
+	}else if ( tblNo > 1568 ){//機人龍
 		tblNo -= 1103;
-	}else if( tblNo > 1564 ){//黄色飞龙
+	}else if( tblNo > 1564 ){//黃色飛龍
 		tblNo -= 1101;
 	}else if( tblNo > 1516 ){
 		tblNo -= 1055;
-	}else if ( tblNo == 1516 ){//修正乌力王
+	}else if ( tblNo == 1516 ){//修正烏力王
 		tblNo = 455;
 	}else if ( tblNo > 1509 ){
 		tblNo -= 1054;
@@ -8082,15 +8082,15 @@ void CheckNewPet(int sprNo)
 	}
 #elif defined(__ALBUM_29)
 
-	if ( tblNo > 1616 ){//布里萨尔  蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑乌力王 狮人1 狮人2 灰人熔 白狼
+	if ( tblNo > 1616 ){//布裏薩爾  蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑烏力王 獅人1 獅人2 灰人熔 白狼
 		tblNo -= 1146;
-	}else if ( tblNo > 1568 ){//机人龙
+	}else if ( tblNo > 1568 ){//機人龍
 		tblNo -= 1103;
-	}else if( tblNo > 1564 ){//黄色飞龙
+	}else if( tblNo > 1564 ){//黃色飛龍
 		tblNo -= 1101;
 	}else if( tblNo > 1516 ){
 		tblNo -= 1055;
-	}else if ( tblNo == 1516 ){//修正乌力王
+	}else if ( tblNo == 1516 ){//修正烏力王
 		tblNo = 455;
 	}else if ( tblNo > 1509 ){
 		tblNo -= 1054;
@@ -8139,15 +8139,15 @@ void CheckNewPet(int sprNo)
 	}
 #elif defined(__ALBUM_28)
 
-	if ( tblNo > 1616 ){//布里萨尔  蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑乌力王 狮人1 狮人2 灰人熔
+	if ( tblNo > 1616 ){//布裏薩爾  蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑烏力王 獅人1 獅人2 灰人熔
 		tblNo -= 1146;
-	}else if ( tblNo > 1568 ){//机人龙
+	}else if ( tblNo > 1568 ){//機人龍
 		tblNo -= 1103;
-	}else if( tblNo > 1564 ){//黄色飞龙
+	}else if( tblNo > 1564 ){//黃色飛龍
 		tblNo -= 1101;
 	}else if( tblNo > 1516 ){
 		tblNo -= 1055;
-	}else if ( tblNo == 1516 ){//修正乌力王
+	}else if ( tblNo == 1516 ){//修正烏力王
 		tblNo = 455;
 	}else if ( tblNo > 1509 ){
 		tblNo -= 1054;
@@ -8197,15 +8197,15 @@ void CheckNewPet(int sprNo)
 
 #elif defined(__ALBUM_27)
 
-	if ( tblNo > 1616 ){//布里萨尔  蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑乌力王 狮人1 狮人2
+	if ( tblNo > 1616 ){//布裏薩爾  蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑烏力王 獅人1 獅人2
 		tblNo -= 1146;
-	}else if ( tblNo > 1568 ){//机人龙
+	}else if ( tblNo > 1568 ){//機人龍
 		tblNo -= 1103;
-	}else if( tblNo > 1564 ){//黄色飞龙
+	}else if( tblNo > 1564 ){//黃色飛龍
 		tblNo -= 1101;
 	}else if( tblNo > 1516 ){
 		tblNo -= 1055;
-	}else if ( tblNo == 1516 ){//修正乌力王
+	}else if ( tblNo == 1516 ){//修正烏力王
 		tblNo = 455;
 	}else if ( tblNo > 1509 ){
 		tblNo -= 1054;
@@ -8255,15 +8255,15 @@ void CheckNewPet(int sprNo)
 
 #elif defined(__ALBUM_26)
 
-	if ( tblNo > 1616 ){//布里萨尔  蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑乌力王
+	if ( tblNo > 1616 ){//布裏薩爾  蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑烏力王
 		tblNo -= 1146;
-	}else if ( tblNo > 1568 ){//机人龙
+	}else if ( tblNo > 1568 ){//機人龍
 		tblNo -= 1103;
-	}else if( tblNo > 1564 ){//黄色飞龙
+	}else if( tblNo > 1564 ){//黃色飛龍
 		tblNo -= 1101;
 	}else if( tblNo > 1516 ){
 		tblNo -= 1055;
-	}else if ( tblNo == 1516 ){//修正乌力王
+	}else if ( tblNo == 1516 ){//修正烏力王
 		tblNo = 455;
 	}else if ( tblNo > 1509 ){
 		tblNo -= 1054;
@@ -8312,15 +8312,15 @@ void CheckNewPet(int sprNo)
 	}
 
 #elif defined(__ALBUM_25)
-	if( tblNo > 1616 ){//布里萨尔
+	if( tblNo > 1616 ){//布裏薩爾
 		tblNo -= 1146;
-	}else if ( tblNo > 1568 ){//机人龙
+	}else if ( tblNo > 1568 ){//機人龍
 		tblNo -= 1103;
-	}else if( tblNo > 1564 ){//黄色飞龙
+	}else if( tblNo > 1564 ){//黃色飛龍
 		tblNo -= 1101;
 	}else if( tblNo > 1516 ){
 		tblNo -= 1055;
-	}else if ( tblNo == 1516 ){//修正乌力王
+	}else if ( tblNo == 1516 ){//修正烏力王
 		tblNo = 455;
 	}else if ( tblNo > 1509 ){
 		tblNo -= 1054;
@@ -8369,13 +8369,13 @@ void CheckNewPet(int sprNo)
 	}
 
 #elif defined(__ALBUM_24)
-	if( tblNo > 1568 ){//机人龙
+	if( tblNo > 1568 ){//機人龍
 		tblNo -= 1103;
-	}else if( tblNo > 1564 ){//黄色飞龙
+	}else if( tblNo > 1564 ){//黃色飛龍
 		tblNo -= 1101;
 	}else if( tblNo > 1516 ){
 		tblNo -= 1055;
-	}else if ( tblNo == 1516 ){//修正乌力王
+	}else if ( tblNo == 1516 ){//修正烏力王
 		tblNo = 455;
 	}else if ( tblNo > 1509 ){
 		tblNo -= 1054;
@@ -8426,7 +8426,7 @@ void CheckNewPet(int sprNo)
 #elif defined(__ALBUM_23)
 	if( tblNo > 1516 ){
 		tblNo -= 1055;
-	}else if ( tblNo == 1516 ){//修正乌力王
+	}else if ( tblNo == 1516 ){//修正烏力王
 		tblNo = 455;
 	}else if ( tblNo > 1509 ){
 		tblNo -= 1054;
@@ -8475,7 +8475,7 @@ void CheckNewPet(int sprNo)
 	}
 
 #elif defined(__ALBUM_22)
-	if ( tblNo == 1516 ){//修正乌力王
+	if ( tblNo == 1516 ){//修正烏力王
 		tblNo = 455;
 	}else if ( tblNo > 1509 ){
 		tblNo -= 1054;
@@ -8913,7 +8913,7 @@ void InitItem(int x, int y, BOOL bPetItemFlag)
 	};
 #endif
 #ifdef _PET_ITEM
-	if (bPetItemFlag)		// 目前显示的是宠物道具栏
+	if (bPetItemFlag)		// 目前顯示的是寵物道具欄
 	{
 		// seting x
 		InitXY[0].x = InitXY[5].x = x + 63;
@@ -9073,13 +9073,13 @@ void DeathMenuAction(void)
 {
 
 #ifdef _MAGIC_ITEM_
-	if(道具光环Act) DeathAction(道具光环Act);
-	道具光环Act=NULL;
+	if(道具光環Act) DeathAction(道具光環Act);
+	道具光環Act=NULL;
 #endif
 	if(pActMenuWnd)
 		DeathAction(pActMenuWnd);
 	pActMenuWnd = NULL;
-#ifdef _FRIENDCHANNEL			//ROG ADD 好友频道
+#ifdef _FRIENDCHANNEL			//ROG ADD 好友頻道
 	chatRoomBtn = 0;
 	assentFlag = FALSE;
 	DeathAction( pAssentWnd );
@@ -9088,7 +9088,7 @@ void DeathMenuAction(void)
 	DeathAction( pSetRoomWnd );
 	pSetRoomWnd = NULL;
 #endif
-	//新增 动作表情切换地图BUG
+	//新增 動作錶情切換地圖BUG
 	extern ACTION * ptActMenuWin1;
 	if (ptActMenuWin1){
 		DeathAction(ptActMenuWin1);
@@ -9116,7 +9116,7 @@ void DeathMenuAction(void)
 		DeathAction(pActMenuWnd4);
 		pActMenuWnd4 = NULL;
 	}
-#ifdef _TRADESYSTEM2	// (不可开) Syu ADD 新交易系统
+#ifdef _TRADESYSTEM2	// (不可開) Syu ADD 新交易係統
 	//清除所使用Action
 	if (SecondTradeWnd){
 		DeathAction(SecondTradeWnd);
@@ -9157,13 +9157,13 @@ void DeathMenuAction(void)
 void DeathMenuAction2(void)
 {
 #ifdef _MAGIC_ITEM_
-	if(道具光环Act) DeathAction(道具光环Act);
-	道具光环Act=NULL;
+	if(道具光環Act) DeathAction(道具光環Act);
+	道具光環Act=NULL;
 	extern void ClearMagicItemWin();
 	ClearMagicItemWin();
 #endif
 	DeathAction(pActMenuWnd2);
-#ifdef _MONEYINPUT //Syu ADD 手动输入金钱量
+#ifdef _MONEYINPUT //Syu ADD 手動輸入金錢量
 	GetKeyInputFocus(&MyChatBuffer);
 	Moneyflag = false;
 #endif
@@ -9176,7 +9176,7 @@ void DeathMenuAction2(void)
 
 	// Robin 04/14 trade
 	DeathAction(pActMenuWnd4);
-#ifdef _FRIENDCHANNEL			//ROG ADD 好友频道
+#ifdef _FRIENDCHANNEL			//ROG ADD 好友頻道
 	chatRoomBtn = 0;
 	assentFlag = FALSE;
 	DeathAction( pAssentWnd );
@@ -9186,7 +9186,7 @@ void DeathMenuAction2(void)
 	pSetRoomWnd = NULL;
 #endif
 
-#ifdef _TRADESYSTEM2	// (不可开) Syu ADD 新交易系统
+#ifdef _TRADESYSTEM2	// (不可開) Syu ADD 新交易係統
 	//清除所使用Action
 	DeathAction(SecondTradeWnd);
 	SecondTradeWnd = NULL;
@@ -9195,7 +9195,7 @@ void DeathMenuAction2(void)
 	DeathAction(TradeTalkWnd);
 	TradeTalkWnd = NULL;
 #endif
-	//视窗消灭时还原设定
+	//視窗消滅時還原設定
 	Tradeflag = false;
 	pActMenuWnd4 = NULL;
 	DeathAction(pActPet3);
@@ -9251,7 +9251,7 @@ void InitMenu(void)
 #ifdef _ITEM_JIGSAW 
 	JigsawIdx = 0;
 #endif
-#ifdef _TELLCHANNEL				//ROG ADD 密语频道
+#ifdef _TELLCHANNEL				//ROG ADD 密語頻道
 	MultiTells = FALSE;
 #endif
 
@@ -9328,22 +9328,22 @@ void CleanSMS()
 
 
 #ifdef _AIDENGLU_
-BOOL 自动登陆窗口 = FALSE;
-ACTION *p自动登陆窗口 = NULL;
-ACTION * 方向动作;
-ACTION * 人物动作;
+BOOL 自動登陸窗口 = FALSE;
+ACTION *p自動登陸窗口 = NULL;
+ACTION * 方嚮動作;
+ACTION * 人物動作;
 extern struct gameserver gmsv[];
 extern struct gamegroup  gmgroup[];
-void 自动登陆窗口回调()
+void 自動登陸窗口迴調()
 {
-	static int 方向窗口是否打开;
+	static int 方嚮窗口是否打開;
 	static int btnId[15], btnState[15];
 	static int x = 0, y = 0;
 	static DWORD dwPressTime;
 	static char msg[][8] = {
-		"队长",
-		"队员",
-		"单人"
+		"隊長",
+		"隊員",
+		"單人"
 	};
 	static char  chardir[][8] = {
 		"下",
@@ -9355,15 +9355,15 @@ void 自动登陆窗口回调()
 		"右",
 		"右下"
 	};
-	if (p自动登陆窗口 == NULL){
-		方向窗口是否打开 = FALSE;
-		方向动作 = NULL;
-		人物动作 = NULL;
+	if (p自動登陸窗口 == NULL){
+		方嚮窗口是否打開 = FALSE;
+		方嚮動作 = NULL;
+		人物動作 = NULL;
 		int w = 412;
 		int h = 301;
 		x = (lpDraw->xSize - w) / 2;
 		y = (lpDraw->ySize - h) / 2;
-		p自动登陆窗口 = MakeWindowDisp(x, y, w, h, 55241, -1, FALSE);
+		p自動登陸窗口 = MakeWindowDisp(x, y, w, h, 55241, -1, FALSE);
 		for (int i = 0; i < 14; i++){
 			btnId[i] = -2;
 			if (i < 10)
@@ -9372,110 +9372,110 @@ void 自动登陆窗口回调()
 		dwPressTime = 0;
 	}
 	else{
-		if (p自动登陆窗口->hp >= 1){
+		if (p自動登陸窗口->hp >= 1){
 			if (joy_trg[0] & JOY_ESC){
-				自动登陆窗口 = FALSE;
-				DeathAction(p自动登陆窗口);
-				DeathAction(方向动作);
-				DeathAction(人物动作);
-				人物动作 = NULL;
-				方向窗口是否打开 = FALSE;
-				方向动作 = NULL;
-				p自动登陆窗口 = NULL;
+				自動登陸窗口 = FALSE;
+				DeathAction(p自動登陸窗口);
+				DeathAction(方嚮動作);
+				DeathAction(人物動作);
+				人物動作 = NULL;
+				方嚮窗口是否打開 = FALSE;
+				方嚮動作 = NULL;
+				p自動登陸窗口 = NULL;
 				actBtn = 0;
 				return;
 			}
 			if (dwPressTime){
 				if (TimeGetTime() > (dwPressTime + 100)){
 					dwPressTime = 0;
-					if (btnState[0] == 1){//大区减
+					if (btnState[0] == 1){//大區減
 						btnState[0] = 0;
 						play_se(217, 320, 240);
 						while (TRUE){
-							PcLanded.大区--;
-							if (PcLanded.大区 < 0){
-								PcLanded.大区 = 18;
+							PcLanded.大區--;
+							if (PcLanded.大區 < 0){
+								PcLanded.大區 = 18;
 							}
-							if (gmgroup[PcLanded.大区].used){
+							if (gmgroup[PcLanded.大區].used){
 								break;
 							}
 						}
 					}
-					if (btnState[1] == 1){//大区加
+					if (btnState[1] == 1){//大區加
 						btnState[1] = 0;
 						play_se(217, 320, 240);
 						while (TRUE){
-							PcLanded.大区++;
-							if (PcLanded.大区 > 18){
-								PcLanded.大区 = 0;
+							PcLanded.大區++;
+							if (PcLanded.大區 > 18){
+								PcLanded.大區 = 0;
 							}
-							if (gmgroup[PcLanded.大区].used){
+							if (gmgroup[PcLanded.大區].used){
 								break;
 							}
 						}
 					}
 
-					if (btnState[2] == 1){//小区减
+					if (btnState[2] == 1){//小區減
 						btnState[2] = 0;
 						play_se(217, 320, 240);
-						if (PcLanded.大区 != -1)
+						if (PcLanded.大區 != -1)
 						{
 							while (TRUE){
-								PcLanded.小区--;
-								if (PcLanded.小区 < 0){
-									PcLanded.小区 = gmgroup[PcLanded.大区].num - 1;
+								PcLanded.小區--;
+								if (PcLanded.小區 < 0){
+									PcLanded.小區 = gmgroup[PcLanded.大區].num - 1;
 								}
-								if (gmsv[gmgroup[PcLanded.大区].startindex + PcLanded.小区].used){
+								if (gmsv[gmgroup[PcLanded.大區].startindex + PcLanded.小區].used){
 									break;
 								}
 							}
 						}
 					}
-					if (btnState[3] == 1){//小区加
+					if (btnState[3] == 1){//小區加
 						btnState[3] = 0;
 						play_se(217, 320, 240);
-						if (PcLanded.大区 != -1)
+						if (PcLanded.大區 != -1)
 						{
 							while (TRUE){
-								PcLanded.小区++;
-								if (PcLanded.小区 >= gmgroup[PcLanded.大区].num){
-									PcLanded.小区 = 0;
+								PcLanded.小區++;
+								if (PcLanded.小區 >= gmgroup[PcLanded.大區].num){
+									PcLanded.小區 = 0;
 								}
-								if (gmsv[gmgroup[PcLanded.大区].startindex + PcLanded.小区].used){
+								if (gmsv[gmgroup[PcLanded.大區].startindex + PcLanded.小區].used){
 									break;
 								}
 							}
 						}
 					}
-					if (btnState[4] == 1){//队模减
+					if (btnState[4] == 1){//隊模減
 						btnState[4] = 0;
 						play_se(217, 320, 240);
-						PcLanded.队模--;
-						if (PcLanded.队模 < 0){
-							PcLanded.队模 = 2;
+						PcLanded.隊模--;
+						if (PcLanded.隊模 < 0){
+							PcLanded.隊模 = 2;
 						}
-						if (PcLanded.队模 == 0 || PcLanded.队模 == 2){
-							PcLanded.是否自动喊话 = FALSE;
+						if (PcLanded.隊模 == 0 || PcLanded.隊模 == 2){
+							PcLanded.是否自動喊話 = FALSE;
 						}
-						if (PcLanded.队模 == 1){
-							PcLanded.是否自动遇敌 = FALSE;
+						if (PcLanded.隊模 == 1){
+							PcLanded.是否自動遇敵 = FALSE;
 						}
 					}
-					if (btnState[5] == 1){//队模加
+					if (btnState[5] == 1){//隊模加
 						btnState[5] = 0;
 						play_se(217, 320, 240);
-						PcLanded.队模++;
-						if (PcLanded.队模 > 2){
-							PcLanded.队模 = 0;
+						PcLanded.隊模++;
+						if (PcLanded.隊模 > 2){
+							PcLanded.隊模 = 0;
 						}
-						if (PcLanded.队模 == 0 || PcLanded.队模 == 2){
-							PcLanded.是否自动喊话 = FALSE;
+						if (PcLanded.隊模 == 0 || PcLanded.隊模 == 2){
+							PcLanded.是否自動喊話 = FALSE;
 						}
-						if (PcLanded.队模 == 1){
-							PcLanded.是否自动遇敌 = FALSE;
+						if (PcLanded.隊模 == 1){
+							PcLanded.是否自動遇敵 = FALSE;
 						}
 					}
-					if (btnState[6] == 1){//角色减
+					if (btnState[6] == 1){//角色減
 						btnState[6] = 0;
 						play_se(217, 320, 240);
 						while (TRUE){
@@ -9483,7 +9483,7 @@ void 自动登陆窗口回调()
 							if (PcLanded.人物 < 0){
 								PcLanded.人物 = 3;
 							}
-							if (PcLanded.登陆人物名称[PcLanded.人物][0]) break;
+							if (PcLanded.登陸人物名稱[PcLanded.人物][0]) break;
 						}
 					}
 					if (btnState[7] == 1){//角色加
@@ -9494,20 +9494,20 @@ void 自动登陆窗口回调()
 							if (PcLanded.人物 > 3){
 								PcLanded.人物 = 0;
 							}
-							if (PcLanded.登陆人物名称[PcLanded.人物][0]) break;
+							if (PcLanded.登陸人物名稱[PcLanded.人物][0]) break;
 						}
 					}
-					if (btnState[8] == 1){//确定
+					if (btnState[8] == 1){//確定
 						btnState[8] = 0;
 						play_se(217, 320, 240);
-						DeathAction(p自动登陆窗口);
-						p自动登陆窗口 = NULL;
-						自动登陆窗口 = FALSE;
-						if (方向动作){
-							DeathAction(方向动作);
-							方向动作 = NULL;
-							DeathAction(人物动作);
-							人物动作 = NULL;
+						DeathAction(p自動登陸窗口);
+						p自動登陸窗口 = NULL;
+						自動登陸窗口 = FALSE;
+						if (方嚮動作){
+							DeathAction(方嚮動作);
+							方嚮動作 = NULL;
+							DeathAction(人物動作);
+							人物動作 = NULL;
 						}
 						extern short actBtn;
 						actBtn = 0;
@@ -9516,37 +9516,37 @@ void 自动登陆窗口回调()
 					if (btnState[9] == 1){//取消
 						btnState[9] = 0;
 						play_se(217, 320, 240);
-						DeathAction(p自动登陆窗口);
-						p自动登陆窗口 = NULL;
-						自动登陆窗口 = FALSE;
-						if (方向动作){
-							DeathAction(方向动作);
-							方向动作 = NULL;
-							DeathAction(人物动作);
-							人物动作 = NULL;
+						DeathAction(p自動登陸窗口);
+						p自動登陸窗口 = NULL;
+						自動登陸窗口 = FALSE;
+						if (方嚮動作){
+							DeathAction(方嚮動作);
+							方嚮動作 = NULL;
+							DeathAction(人物動作);
+							人物動作 = NULL;
 						}
 						extern short actBtn;
 						actBtn = 0;
 						return;
 					}
-					if (btnState[10] == 1){//方向
+					if (btnState[10] == 1){//方嚮
 						btnState[10] = 0;
 						play_se(217, 320, 240);
-						DeathAction(方向动作);
-						方向动作 = NULL;
-						DeathAction(人物动作);
-						人物动作 = NULL;
-						方向窗口是否打开 = FALSE;
+						DeathAction(方嚮動作);
+						方嚮動作 = NULL;
+						DeathAction(人物動作);
+						人物動作 = NULL;
+						方嚮窗口是否打開 = FALSE;
 					}
 				}
 			}
 			else{
 				for (int i = 0; i < 10; i++){
 					if (HitDispNo == btnId[i]){
-						if (i == 0 || i == 1) ShowBottomLineString(FONT_PAL_WHITE, "设置大区。");
-						if (i == 2 || i == 3) ShowBottomLineString(FONT_PAL_WHITE, "设置线路,需设置大区方可设置。");
-						if (i == 4 || i == 5) ShowBottomLineString(FONT_PAL_WHITE, "队长：可设自动遇敌 队员：可设喊话和自动组队 单人：可设自动遇敌 ps：人物掉线重登自动开启AI模式。");
-						if (i == 6 || i == 7) ShowBottomLineString(FONT_PAL_WHITE, "设置登陆人物。");
+						if (i == 0 || i == 1) ShowBottomLineString(FONT_PAL_WHITE, "設置大區。");
+						if (i == 2 || i == 3) ShowBottomLineString(FONT_PAL_WHITE, "設置綫路,需設置大區方可設置。");
+						if (i == 4 || i == 5) ShowBottomLineString(FONT_PAL_WHITE, "隊長：可設自動遇敵 隊員：可設喊話和自動組隊 單人：可設自動遇敵 ps：人物掉綫重登自動開啓AI模式。");
+						if (i == 6 || i == 7) ShowBottomLineString(FONT_PAL_WHITE, "設置登陸人物。");
 						if (mouse.onceState & MOUSE_LEFT_CRICK){
 							dwPressTime = TimeGetTime();
 							btnState[i] = 1;
@@ -9562,123 +9562,123 @@ void 自动登陆窗口回调()
 				}
 			}
 
-			extern int 自动登陆是否开启;
+			extern int 自動登陸是否開啓;
 			if (HitFontNo == btnId[10]){
-				ShowBottomLineString(FONT_PAL_WHITE, "登陆游戏中可按F9开启和关闭,队员模式登陆游戏后喊话可关闭该功能停止喊话。");
+				ShowBottomLineString(FONT_PAL_WHITE, "登陸遊戲中可按F9開啓和關閉,隊員模式登陸遊戲後喊話可關閉該功能停止喊話。");
 				if (mouse.onceState & MOUSE_LEFT_CRICK){
-					if (PcLanded.大区 != -1 && PcLanded.小区 != -1 && PcLanded.人物 != -1){
-						自动登陆是否开启 = !自动登陆是否开启;
-						if (!自动登陆是否开启){
-							extern int 是否重登组队, 是否重登喊话, 是否重开登组队_1;
-							是否重登组队 = FALSE;
-							是否重登喊话 = FALSE;
-							是否重开登组队_1 = FALSE;
+					if (PcLanded.大區 != -1 && PcLanded.小區 != -1 && PcLanded.人物 != -1){
+						自動登陸是否開啓 = !自動登陸是否開啓;
+						if (!自動登陸是否開啓){
+							extern int 是否重登組隊, 是否重登喊話, 是否重開登組隊_1;
+							是否重登組隊 = FALSE;
+							是否重登喊話 = FALSE;
+							是否重開登組隊_1 = FALSE;
 						}
 					}
 					else{
-						StockChatBufferLine("请把大区、线路和角色选择后才能操作！", FONT_PAL_RED);
+						StockChatBufferLine("請把大區、綫路和角色選擇後纔能操作！", FONT_PAL_RED);
 					}
 				}
 			}
 			if (HitFontNo == btnId[12]){
 				if (mouse.onceState & MOUSE_LEFT_CRICK){
-					ShowBottomLineString(FONT_PAL_WHITE, "队长和单人可设置该功能。");
-					if (PcLanded.队模 == 0 || PcLanded.队模 == 2)
-						PcLanded.是否自动遇敌 = !PcLanded.是否自动遇敌;
+					ShowBottomLineString(FONT_PAL_WHITE, "隊長和單人可設置該功能。");
+					if (PcLanded.隊模 == 0 || PcLanded.隊模 == 2)
+						PcLanded.是否自動遇敵 = !PcLanded.是否自動遇敵;
 					else{
-						PcLanded.是否自动遇敌 = FALSE;
-						StockChatBufferLine("遇敌模式只有队长和单人可开启！", FONT_PAL_RED);
+						PcLanded.是否自動遇敵 = FALSE;
+						StockChatBufferLine("遇敵模式隻有隊長和單人可開啓！", FONT_PAL_RED);
 					}
 				}
 			}
 			if (HitFontNo == btnId[13]){
 				if (mouse.onceState & MOUSE_LEFT_CRICK){
-					ShowBottomLineString(FONT_PAL_WHITE, "只有队员可设置该功能。");
-					if (PcLanded.队模 == 1)
-						PcLanded.是否自动喊话 = !PcLanded.是否自动喊话;
+					ShowBottomLineString(FONT_PAL_WHITE, "隻有隊員可設置該功能。");
+					if (PcLanded.隊模 == 1)
+						PcLanded.是否自動喊話 = !PcLanded.是否自動喊話;
 					else{
-						PcLanded.是否自动喊话 = FALSE;
-						StockChatBufferLine("自动喊话只有队员模式可开启！", FONT_PAL_RED);
+						PcLanded.是否自動喊話 = FALSE;
+						StockChatBufferLine("自動喊話隻有隊員模式可開啓！", FONT_PAL_RED);
 					}
 				}
 			}
 			if (HitFontNo == btnId[11]){
-				ShowBottomLineString(FONT_PAL_WHITE, "掉线人物登陆后人物的方向。");
+				ShowBottomLineString(FONT_PAL_WHITE, "掉綫人物登陸後人物的方嚮。");
 				if (mouse.onceState & MOUSE_LEFT_CRICK){
-					if (方向窗口是否打开){
-						方向窗口是否打开 = FALSE;
-						if (方向动作){
-							DeathAction(方向动作);
-							方向动作 = NULL;
-							DeathAction(人物动作);
-							人物动作 = NULL;
+					if (方嚮窗口是否打開){
+						方嚮窗口是否打開 = FALSE;
+						if (方嚮動作){
+							DeathAction(方嚮動作);
+							方嚮動作 = NULL;
+							DeathAction(人物動作);
+							人物動作 = NULL;
 						}
 					}
-					else 方向窗口是否打开 = TRUE;
+					else 方嚮窗口是否打開 = TRUE;
 				}
 			}
-			int 方向偏移X = 0;
-			if (方向窗口是否打开) 方向偏移X = -90;
-			if (方向窗口是否打开){
-				if (!方向动作){
-					方向动作 = MakeWindowDisp(607 + 方向偏移X, 147, 192, 148, 55242, -1, FALSE);
-					人物动作 = MakeAnimDisp(660 + 方向偏移X, 240, pc.graNo, 0);
-					人物动作->anim_ang = PcLanded.人物方向;
-					pattern(人物动作, ANM_NOMAL_SPD, ANM_LOOP);
+			int 方嚮偏移X = 0;
+			if (方嚮窗口是否打開) 方嚮偏移X = -90;
+			if (方嚮窗口是否打開){
+				if (!方嚮動作){
+					方嚮動作 = MakeWindowDisp(607 + 方嚮偏移X, 147, 192, 148, 55242, -1, FALSE);
+					人物動作 = MakeAnimDisp(660 + 方嚮偏移X, 240, pc.graNo, 0);
+					人物動作->anim_ang = PcLanded.人物方嚮;
+					pattern(人物動作, ANM_NOMAL_SPD, ANM_LOOP);
 					btnId[14] = -2;
 					btnState[10] = 0;
 				}
-				else if (方向动作->hp >= 1){
-					StockDispBuffer(((WINDOW_DISP *)方向动作->pYobi)->mx, ((WINDOW_DISP *)方向动作->pYobi)->my, DISP_PRIO_MENU, 55242, 1);
-					PcLanded.人物方向 = 人物动作->anim_ang;
-					btnId[14] = StockDispBuffer(((WINDOW_DISP *)方向动作->pYobi)->mx - 55, ((WINDOW_DISP *)方向动作->pYobi)->my - 90, DISP_PRIO_IME3, 26262 + btnState[10], 2);
+				else if (方嚮動作->hp >= 1){
+					StockDispBuffer(((WINDOW_DISP *)方嚮動作->pYobi)->mx, ((WINDOW_DISP *)方嚮動作->pYobi)->my, DISP_PRIO_MENU, 55242, 1);
+					PcLanded.人物方嚮 = 人物動作->anim_ang;
+					btnId[14] = StockDispBuffer(((WINDOW_DISP *)方嚮動作->pYobi)->mx - 55, ((WINDOW_DISP *)方嚮動作->pYobi)->my - 90, DISP_PRIO_IME3, 26262 + btnState[10], 2);
 				}
 			}
-			StockDispBuffer(((WINDOW_DISP *)p自动登陆窗口->pYobi)->mx + 方向偏移X, ((WINDOW_DISP *)p自动登陆窗口->pYobi)->my, DISP_PRIO_MENU, 55241, 1);
-			btnId[0] = StockDispBuffer(x + 128 + 方向偏移X, y + 92 + 70, DISP_PRIO_IME3, 26064 + btnState[0], 2);
-			btnId[1] = StockDispBuffer(x + 109 + 方向偏移X, y + 107 + 71, DISP_PRIO_IME3, 26066 + btnState[1], 2);
+			StockDispBuffer(((WINDOW_DISP *)p自動登陸窗口->pYobi)->mx + 方嚮偏移X, ((WINDOW_DISP *)p自動登陸窗口->pYobi)->my, DISP_PRIO_MENU, 55241, 1);
+			btnId[0] = StockDispBuffer(x + 128 + 方嚮偏移X, y + 92 + 70, DISP_PRIO_IME3, 26064 + btnState[0], 2);
+			btnId[1] = StockDispBuffer(x + 109 + 方嚮偏移X, y + 107 + 71, DISP_PRIO_IME3, 26066 + btnState[1], 2);
 
-			btnId[2] = StockDispBuffer(x + 273 + 方向偏移X, y + 92 + 70, DISP_PRIO_IME3, 26064 + btnState[2], 2);
-			btnId[3] = StockDispBuffer(x + 254 + 方向偏移X, y + 107 + 71, DISP_PRIO_IME3, 26066 + btnState[3], 2);
+			btnId[2] = StockDispBuffer(x + 273 + 方嚮偏移X, y + 92 + 70, DISP_PRIO_IME3, 26064 + btnState[2], 2);
+			btnId[3] = StockDispBuffer(x + 254 + 方嚮偏移X, y + 107 + 71, DISP_PRIO_IME3, 26066 + btnState[3], 2);
 
-			btnId[4] = StockDispBuffer(x + 128 + 方向偏移X, y + 92 + 106, DISP_PRIO_IME3, 26064 + btnState[4], 2);
-			btnId[5] = StockDispBuffer(x + 109 + 方向偏移X, y + 107 + 107, DISP_PRIO_IME3, 26066 + btnState[5], 2);
+			btnId[4] = StockDispBuffer(x + 128 + 方嚮偏移X, y + 92 + 106, DISP_PRIO_IME3, 26064 + btnState[4], 2);
+			btnId[5] = StockDispBuffer(x + 109 + 方嚮偏移X, y + 107 + 107, DISP_PRIO_IME3, 26066 + btnState[5], 2);
 
-			btnId[6] = StockDispBuffer(x + 128 + 方向偏移X, y + 92 + 142, DISP_PRIO_IME3, 26064 + btnState[6], 2);
-			btnId[7] = StockDispBuffer(x + 109 + 方向偏移X, y + 107 + 143, DISP_PRIO_IME3, 26066 + btnState[7], 2);
+			btnId[6] = StockDispBuffer(x + 128 + 方嚮偏移X, y + 92 + 142, DISP_PRIO_IME3, 26064 + btnState[6], 2);
+			btnId[7] = StockDispBuffer(x + 109 + 方嚮偏移X, y + 107 + 143, DISP_PRIO_IME3, 26066 + btnState[7], 2);
 
-			btnId[8] = StockDispBuffer(x + 207 + 方向偏移X, y + 152, DISP_PRIO_IME3, 26262 + btnState[8], 2);
-			btnId[9] = StockDispBuffer(x + 207 + 方向偏移X, y + 152, DISP_PRIO_IME3, 26264 + btnState[9], 2);
+			btnId[8] = StockDispBuffer(x + 207 + 方嚮偏移X, y + 152, DISP_PRIO_IME3, 26262 + btnState[8], 2);
+			btnId[9] = StockDispBuffer(x + 207 + 方嚮偏移X, y + 152, DISP_PRIO_IME3, 26264 + btnState[9], 2);
 
 			char moji[256];
-			if (PcLanded.大区 != -1){
-				CenteringStr(gmgroup[PcLanded.大区].name, moji, CHAR_NAME_LEN);
-				StockFontBuffer(x + 105 + 方向偏移X, y + 64, FONT_PRIO_FRONT, FONT_PAL_YELLOW, moji, 0);
+			if (PcLanded.大區 != -1){
+				CenteringStr(gmgroup[PcLanded.大區].name, moji, CHAR_NAME_LEN);
+				StockFontBuffer(x + 105 + 方嚮偏移X, y + 64, FONT_PRIO_FRONT, FONT_PAL_YELLOW, moji, 0);
 			}
-			if (PcLanded.队模 != -1){
-				StockFontBuffer(x + 150 + 方向偏移X, y + 100, FONT_PRIO_FRONT, FONT_PAL_YELLOW, msg[PcLanded.队模], 0);
+			if (PcLanded.隊模 != -1){
+				StockFontBuffer(x + 150 + 方嚮偏移X, y + 100, FONT_PRIO_FRONT, FONT_PAL_YELLOW, msg[PcLanded.隊模], 0);
 			}
 			if (PcLanded.人物 != -1){
-				CenteringStr(PcLanded.登陆人物名称[PcLanded.人物], moji, CHAR_NAME_LEN);
-				StockFontBuffer(x + 105 + 方向偏移X, y + 136, FONT_PRIO_FRONT, FONT_PAL_YELLOW, moji, 0);
+				CenteringStr(PcLanded.登陸人物名稱[PcLanded.人物], moji, CHAR_NAME_LEN);
+				StockFontBuffer(x + 105 + 方嚮偏移X, y + 136, FONT_PRIO_FRONT, FONT_PAL_YELLOW, moji, 0);
 			}
 
-			if (自动登陆是否开启)
-				btnId[10] = StockFontBuffer(x + 150 + 方向偏移X, y + 171, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "开启", 2);
+			if (自動登陸是否開啓)
+				btnId[10] = StockFontBuffer(x + 150 + 方嚮偏移X, y + 171, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "開啓", 2);
 			else
-				btnId[10] = StockFontBuffer(x + 150 + 方向偏移X, y + 171, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "关闭", 2);
-			if (PcLanded.小区 != -1){
-				StockFontBuffer(x + 305 + 方向偏移X, y + 64, FONT_PRIO_FRONT, FONT_PAL_YELLOW, gmsv[gmgroup[PcLanded.大区].startindex + PcLanded.小区].name, 0);
+				btnId[10] = StockFontBuffer(x + 150 + 方嚮偏移X, y + 171, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "關閉", 2);
+			if (PcLanded.小區 != -1){
+				StockFontBuffer(x + 305 + 方嚮偏移X, y + 64, FONT_PRIO_FRONT, FONT_PAL_YELLOW, gmsv[gmgroup[PcLanded.大區].startindex + PcLanded.小區].name, 0);
 			}
-			btnId[11] = StockFontBuffer(x + 320 + 方向偏移X, y + 100, FONT_PRIO_FRONT, FONT_PAL_YELLOW, chardir[PcLanded.人物方向], 2);
-			if (PcLanded.是否自动遇敌)
-				btnId[12] = StockFontBuffer(x + 320 + 方向偏移X, y + 136, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "开启", 2);
+			btnId[11] = StockFontBuffer(x + 320 + 方嚮偏移X, y + 100, FONT_PRIO_FRONT, FONT_PAL_YELLOW, chardir[PcLanded.人物方嚮], 2);
+			if (PcLanded.是否自動遇敵)
+				btnId[12] = StockFontBuffer(x + 320 + 方嚮偏移X, y + 136, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "開啓", 2);
 			else
-				btnId[12] = StockFontBuffer(x + 320 + 方向偏移X, y + 136, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "关闭", 2);
-			if (PcLanded.是否自动喊话)
-				btnId[13] = StockFontBuffer(x + 320 + 方向偏移X, y + 171, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "开启", 2);
+				btnId[12] = StockFontBuffer(x + 320 + 方嚮偏移X, y + 136, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "關閉", 2);
+			if (PcLanded.是否自動喊話)
+				btnId[13] = StockFontBuffer(x + 320 + 方嚮偏移X, y + 171, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "開啓", 2);
 			else
-				btnId[13] = StockFontBuffer(x + 320 + 方向偏移X, y + 171, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "关闭", 2);
+				btnId[13] = StockFontBuffer(x + 320 + 方嚮偏移X, y + 171, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "關閉", 2);
 		}
 	}
 }
@@ -9712,15 +9712,15 @@ void MenuProc(void)
 	}
 #endif
 #ifdef _AIDENGLU_
-	if (自动登陆窗口){
-		自动登陆窗口回调();
+	if (自動登陸窗口){
+		自動登陸窗口迴調();
 	}
 #endif
 #ifdef _AI_OTHER
 	if (AI_Other_State) AI_OtherProc();
 #endif
 
-#ifdef _TELLCHANNEL				//ROG ADD 密语频道
+#ifdef _TELLCHANNEL				//ROG ADD 密語頻道
 	if (MultiTells == TRUE)
 	{
 		SelectChar();
@@ -9750,7 +9750,7 @@ void MenuProc(void)
 
 	// ??????????????
 #ifdef __AI
-	if (joy_trg[0] & JOY_ESC && checkFieldMenuFlag() == FALSE && !AI_State&&!自动登陆窗口
+	if (joy_trg[0] & JOY_ESC && checkFieldMenuFlag() == FALSE && !AI_State&&!自動登陸窗口
 
 
 		){
@@ -9810,7 +9810,7 @@ void MenuProc(void)
 	}
 	// ??????????????
 #ifdef __AI
-	if (TaskBarFlag == TRUE && mouse.onceState & MOUSE_LEFT_CRICK && HitDispNo == taskBarFontNo[3] && !AI_State&&!自动登陆窗口
+	if (TaskBarFlag == TRUE && mouse.onceState & MOUSE_LEFT_CRICK && HitDispNo == taskBarFontNo[3] && !AI_State&&!自動登陸窗口
 			
 		){
 #else
@@ -9851,7 +9851,7 @@ void MenuProc(void)
 
 	// ??????????
 #ifdef __AI
-	if (!AI_State&&!自动登陆窗口 && ((joy_trg[0] & JOY_CTRL_S && GetImeString() == NULL)
+	if (!AI_State&&!自動登陸窗口 && ((joy_trg[0] & JOY_CTRL_S && GetImeString() == NULL)
 		|| (TaskBarFlag == TRUE && mouse.onceState & MOUSE_LEFT_CRICK && HitDispNo == taskBarFontNo[1]))
 		
 
@@ -9895,7 +9895,7 @@ void MenuProc(void)
 
 	// Nuke 0413: Trade
 #ifdef __AI
-	if (!AI_State&&!自动登陆窗口 && joy_trg[0] & JOY_CTRL_T && GetImeString() == NULL) {
+	if (!AI_State&&!自動登陸窗口 && joy_trg[0] & JOY_CTRL_T && GetImeString() == NULL) {
 #else
 	if ( joy_trg[ 0 ] & JOY_CTRL_T && GetImeString() == NULL ) {
 #endif
@@ -9965,11 +9965,11 @@ void MenuProc(void)
 			}
 #ifdef _STREET_VENDOR
 			if (pc.iOnStreetVendor == 1)
-				StockChatBufferLine("摆摊中不得进行交易", FONT_PAL_RED);
+				StockChatBufferLine("擺攤中不得進行交易", FONT_PAL_RED);
 #endif
 #ifdef _THEATER
 			if (pc.iTheaterMode > 0)
-				StockChatBufferLine("请专心表演", FONT_PAL_RED);
+				StockChatBufferLine("請專心錶演", FONT_PAL_RED);
 #endif
 			play_se(217, 320, 240);	// ?????
 
@@ -9980,7 +9980,7 @@ void MenuProc(void)
 
 	// ????????
 #ifdef __AI
-	if (!AI_State&&!自动登陆窗口 && ((joy_trg[0] & JOY_CTRL_P && GetImeString() == NULL)
+	if (!AI_State&&!自動登陸窗口 && ((joy_trg[0] & JOY_CTRL_P && GetImeString() == NULL)
 		|| (TaskBarFlag == TRUE && mouse.onceState & MOUSE_LEFT_CRICK && HitDispNo == taskBarFontNo[2]))
 			
 
@@ -10024,7 +10024,7 @@ void MenuProc(void)
 	}
 	// ?????????
 #ifdef __AI
-	if (!AI_State&&!自动登陆窗口 && ((joy_trg[0] & JOY_CTRL_I && GetImeString() == NULL)
+	if (!AI_State&&!自動登陸窗口 && ((joy_trg[0] & JOY_CTRL_I && GetImeString() == NULL)
 		|| (TaskBarFlag == TRUE && mouse.onceState & MOUSE_LEFT_CRICK && HitDispNo == taskBarFontNo[4]))
 				
 		){
@@ -10039,14 +10039,14 @@ void MenuProc(void)
 		}
 		else{
 #ifdef _STREET_VENDOR
-			if (pc.iOnStreetVendor == 1 || sStreetVendorBuyBtn == 2) StockChatBufferLine("摆摊中不得使用道具", FONT_PAL_RED);
+			if (pc.iOnStreetVendor == 1 || sStreetVendorBuyBtn == 2) StockChatBufferLine("擺攤中不得使用道具", FONT_PAL_RED);
 			else
 #endif
 #ifdef _THEATER
 			if (pc.iTheaterMode & 0x00000002)
-				StockChatBufferLine("请专心表演", FONT_PAL_RED);
+				StockChatBufferLine("請專心錶演", FONT_PAL_RED);
 			else if (pc.iTheaterMode & 0x00000001)
-				StockChatBufferLine("请专心看表演", FONT_PAL_RED);
+				StockChatBufferLine("請專心看錶演", FONT_PAL_RED);
 			else
 #endif
 			{
@@ -10088,7 +10088,7 @@ void MenuProc(void)
 
 	// ????????
 #ifdef __AI
-	if (!AI_State&&!自动登陆窗口 && ((joy_trg[0] & JOY_CTRL_M && GetImeString() == NULL)
+	if (!AI_State&&!自動登陸窗口 && ((joy_trg[0] & JOY_CTRL_M && GetImeString() == NULL)
 		|| (TaskBarFlag == TRUE && mouse.onceState & MOUSE_LEFT_CRICK && HitDispNo == taskBarFontNo[0])
 		|| (MapWmdFlagBak == TRUE && BattleResultWndFlag == FALSE && EncountFlag == FALSE && ProcNo == PROC_GAME && SubProcNo == 3				
 
@@ -10138,7 +10138,7 @@ void MenuProc(void)
 
 	// ????????
 #ifdef __AI
-	if (!AI_State&&!自动登陆窗口 && ((joy_trg[0] & JOY_CTRL_E && GetImeString() == NULL)
+	if (!AI_State&&!自動登陸窗口 && ((joy_trg[0] & JOY_CTRL_E && GetImeString() == NULL)
 		|| (TaskBarFlag == TRUE && mouse.onceState & MOUSE_LEFT_CRICK && HitDispNo == taskBarFontNo[5]))
 			
 		){
@@ -10185,7 +10185,7 @@ void MenuProc(void)
 
 	// ?????????
 #ifdef __AI
-	if (!AI_State&&!自动登陆窗口 && ((joy_trg[0] & JOY_CTRL_A && GetImeString() == NULL)
+	if (!AI_State&&!自動登陸窗口 && ((joy_trg[0] & JOY_CTRL_A && GetImeString() == NULL)
 		|| (TaskBarFlag == TRUE && mouse.onceState & MOUSE_LEFT_CRICK && HitDispNo == taskBarFontNo[6]))
 	
 
@@ -10230,16 +10230,16 @@ void MenuProc(void)
 	}
 
 #ifdef _SA_LIAOTIAN_
-	static int 聊天状态1=0;
-	static int 聊天状态2=0;
-	static int 聊天状态3=0;
+	static int 聊天狀態1=0;
+	static int 聊天狀態2=0;
+	static int 聊天狀態3=0;
 	char 聊天提示[128];
-	StockDispBuffer(785, 505, DISP_PRIO_IME3, 55260+聊天状态1, 1);
+	StockDispBuffer(785, 505, DISP_PRIO_IME3, 55260+聊天狀態1, 1);
 	if( MakeHitBox(785-10, 505-10,785+10,505+10, DISP_PRIO_IME4 ) == TRUE ){
-		sprintf(聊天提示,"聊天信息上拉,当前聊天信息位置%d！",NowChatLine);
+		sprintf(聊天提示,"聊天信息上拉,當前聊天信息位置%d！",NowChatLine);
 		ShowBottomLineString(FONT_PAL_WHITE, 聊天提示);	
 		if(mouse.state & MOUSE_LEFT_CRICK){
-			聊天状态1 = 1;
+			聊天狀態1 = 1;
 			if(mouse.onceState & MOUSE_LEFT_CRICK){
 				if(NowChatLine > NowMaxChatLine){
 					NowChatLine--;
@@ -10249,14 +10249,14 @@ void MenuProc(void)
 				}
 				play_se(203, 320, 240);
 			}
-		}else 聊天状态1=0;
-	}else 聊天状态1=0;
-	StockDispBuffer(785, 530, DISP_PRIO_IME3, 55262+聊天状态2, 1);
+		}else 聊天狀態1=0;
+	}else 聊天狀態1=0;
+	StockDispBuffer(785, 530, DISP_PRIO_IME3, 55262+聊天狀態2, 1);
 	if( MakeHitBox(785-10, 530-10,785+10,530+10, DISP_PRIO_IME4 ) == TRUE ){
-		sprintf(聊天提示,"聊天信息下拉,当前聊天信息位置%d！",NowChatLine);
+		sprintf(聊天提示,"聊天信息下拉,當前聊天信息位置%d！",NowChatLine);
 		ShowBottomLineString(FONT_PAL_WHITE, 聊天提示);	
 		if( (mouse.state & MOUSE_LEFT_CRICK)){
-			聊天状态2 = 1;
+			聊天狀態2 = 1;
 			if(mouse.onceState & MOUSE_LEFT_CRICK){
 				if(*ChatBuffer[ NowChatLine].buffer){
 					NowChatLine++;
@@ -10265,21 +10265,21 @@ void MenuProc(void)
 				}
 				play_se(203, 320, 240);
 			}
-		}else 聊天状态2=0;
-	}else 聊天状态2=0;
-	StockDispBuffer(785, 555, DISP_PRIO_IME3, 55264+聊天状态3, 1);
+		}else 聊天狀態2=0;
+	}else 聊天狀態2=0;
+	StockDispBuffer(785, 555, DISP_PRIO_IME3, 55264+聊天狀態3, 1);
 	if( MakeHitBox(785-10, 555-10,785+10,555+10, DISP_PRIO_IME4 ) == TRUE ){
-		sprintf(聊天提示,"聊天信息正常显示,当前聊天信息位置%d！",NowChatLine);
+		sprintf(聊天提示,"聊天信息正常顯示,當前聊天信息位置%d！",NowChatLine);
 		ShowBottomLineString(FONT_PAL_WHITE, 聊天提示);	
 		if( (mouse.state & MOUSE_LEFT_CRICK)){
-			聊天状态3 = 1;
+			聊天狀態3 = 1;
 			if(mouse.onceState & MOUSE_LEFT_CRICK){
 				extern int NowChatLine_Bak;
 				NowChatLine=NowChatLine_Bak;
 				play_se(203, 320, 240);
 			}
-		}else 聊天状态3=0;
-	}else 聊天状态3=0;
+		}else 聊天狀態3=0;
+	}else 聊天狀態3=0;
 #endif
 #ifdef _EFFECT_MAP_
 	if(ProcNo==PROC_GAME){
@@ -10403,7 +10403,7 @@ void MenuProc(void)
 					play_se(202, 320, 240);
 					break;
 				}
-				//原地登出
+				//原地登齣
 				if (HitFontNo == systemWndFontNo[6]){
 					// ??????
 #ifdef __PHONEMESSAGE
@@ -10429,7 +10429,7 @@ void MenuProc(void)
 					break;
 				}
 #ifdef __AI
-				//自动战斗设定
+				//自動戰鬥設定
 				if (HitFontNo == systemWndFontNo[7]){
 					// ??????
 					extern int AI_State;
@@ -10448,13 +10448,13 @@ void MenuProc(void)
 				if (HitFontNo == systemWndFontNo[24]){
 					if (AI == AI_SELECT){
 						AI = AI_NONE;
-						StockChatBufferLine("关闭ＡＩ模式！", FONT_PAL_RED);
+						StockChatBufferLine("關閉ＡＩ模式！", FONT_PAL_RED);
 						pc.etcFlag &= (~PC_AI_MOD);
 						lssproto_FS_send(sockfd, pc.etcFlag);
 					}
 					else {
 						AI = AI_SELECT;
-						StockChatBufferLine("开启ＡＩ模式！", FONT_PAL_RED);
+						StockChatBufferLine("開啓ＡＩ模式！", FONT_PAL_RED);
 						pc.etcFlag |= PC_AI_MOD;
 						lssproto_FS_send(sockfd, pc.etcFlag);
 					}
@@ -10465,7 +10465,7 @@ void MenuProc(void)
 				static BOOL stopBGMClicked = FALSE;
 				if (HitFontNo == systemWndFontNo[8]){
 					if (MuteFlag){
-						StockChatBufferLine("开启声音！", FONT_PAL_RED);
+						StockChatBufferLine("開啓聲音！", FONT_PAL_RED);
 						MuteFlag = FALSE;
 						if (stopBGMClicked)
 						{
@@ -10474,7 +10474,7 @@ void MenuProc(void)
 					}
 					else{
 						stopBGMClicked = TRUE;
-						StockChatBufferLine("关闭声音！", FONT_PAL_RED);
+						StockChatBufferLine("關閉聲音！", FONT_PAL_RED);
 						play_se(202, 320, 240);
 						stop_bgm();
 						MuteFlag = TRUE;				
@@ -10492,7 +10492,7 @@ void MenuProc(void)
 					MenuToggleFlag = 0;
 					DeathMenuAction2();
 					DeathMenuAction();
-					自动登陆窗口 = TRUE;
+					自動登陸窗口 = TRUE;
 					extern short actBtn;
 					actBtn = 1;
 					break;
@@ -10503,17 +10503,17 @@ void MenuProc(void)
 					pActMenuWnd = NULL;
 					MenuToggleFlag ^= JOY_ESC;
 #ifdef _CANCEL_FANTI
-					StockChatBufferLine("功能开发中！", FONT_PAL_RED);
+					StockChatBufferLine("功能開發中！", FONT_PAL_RED);
 					play_se(202, 320, 240);
 #else
-					if (繁体开关)
+					if (繁體開關)
 					{
-						繁体开关 = FALSE;
-						StockChatBufferLine("切换简体！", FONT_PAL_RED);
+						繁體開關 = FALSE;
+						StockChatBufferLine("切換簡體！", FONT_PAL_RED);
 					}
 					else{
-						繁体开关 = TRUE;
-						StockChatBufferLine("切换繁体！", FONT_PAL_RED);
+						繁體開關 = TRUE;
+						StockChatBufferLine("切換繁體！", FONT_PAL_RED);
 					}
 					play_se(202, 320, 240);
 					break;
@@ -10524,11 +10524,11 @@ void MenuProc(void)
 					DeathAction(pActMenuWnd);
 					pActMenuWnd = NULL;
 					MenuToggleFlag ^= JOY_ESC;
-					右键攻击 = !右键攻击;
-					if (右键攻击)
-						StockChatBufferLine("开启右键攻击！", FONT_PAL_RED);
+					右鍵攻擊 = !右鍵攻擊;
+					if (右鍵攻擊)
+						StockChatBufferLine("開啓右鍵攻擊！", FONT_PAL_RED);
 					else
-						StockChatBufferLine("关闭右键攻击！", FONT_PAL_RED);
+						StockChatBufferLine("關閉右鍵攻擊！", FONT_PAL_RED);
 
 					play_se(202, 320, 240);
 					break;
@@ -10536,23 +10536,23 @@ void MenuProc(void)
 
 				if (HitFontNo == systemWndFontNo[23]){
 					play_se(202, 320, 240);
-					经验开关 = !经验开关;
-					if (经验开关)
-						StockChatBufferLine("开启经验显示！", FONT_PAL_RED);
+					經驗開關 = !經驗開關;
+					if (經驗開關)
+						StockChatBufferLine("開啓經驗顯示！", FONT_PAL_RED);
 					else
-						StockChatBufferLine("关闭经验显示！", FONT_PAL_RED);
+						StockChatBufferLine("關閉經驗顯示！", FONT_PAL_RED);
 
 					break;
 				}
 				if (HitFontNo == systemWndFontNo[22]){
 					play_se(202, 320, 240);
-					人物屏蔽开关 = !人物屏蔽开关;
-					if (人物屏蔽开关)
-						StockChatBufferLine("屏蔽周边人物！", FONT_PAL_RED);
+					人物屏蔽開關 = !人物屏蔽開關;
+					if (人物屏蔽開關)
+						StockChatBufferLine("屏蔽周邊人物！", FONT_PAL_RED);
 					else{
-						//extern void 设置静止的动作为站立( void );
-						//设置静止的动作为站立();
-						StockChatBufferLine("显示周边人物！", FONT_PAL_RED);
+						//extern void 設置靜止的動作為站立( void );
+						//設置靜止的動作為站立();
+						StockChatBufferLine("顯示周邊人物！", FONT_PAL_RED);
 					}
 
 
@@ -10566,7 +10566,7 @@ void MenuProc(void)
 						InitMenu2();
 					extern short HelpProcNo;
 					HelpProcNo = 0;
-					任务查询开关=TRUE;
+					任務查詢開關=TRUE;
 
 					break;
 				}
@@ -10613,70 +10613,70 @@ void MenuProc(void)
 			// ?????????
 			y = pActMenuWnd->y + 54;
 #ifdef _CHAR_NEWLOGOUT
-			systemWndFontNo[0] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "    回记录点    ", 2);	y += 34;//y += 40;
+			systemWndFontNo[0] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "    迴記錄點    ", 2);	y += 34;//y += 40;
 #else
-			systemWndFontNo[ 0 ] = StockFontBuffer( x, y, FONT_PRIO_FRONT, 0, 	"    登    出    ", 2 );	y += 34;//y += 40;
+			systemWndFontNo[ 0 ] = StockFontBuffer( x, y, FONT_PRIO_FRONT, 0, 	"    登    齣    ", 2 );	y += 34;//y += 40;
 #endif
-			systemWndFontNo[6] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "    原地登出    ", 2);	y += 34;//y += 40;
-			systemWndFontNo[1] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "    聊天设定    ", 2);	y += 34;//y += 40;
-			systemWndFontNo[4] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "    背景音乐  ", 2);	y += 34;//y += 40;
-			systemWndFontNo[3] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "    音效设定    ", 2);	y += 34;//y += 40;
-			systemWndFontNo[5] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "    滑鼠设定    ", 2);	y += 34;//y += 52;
-			systemWndFontNo[7] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "    战斗设定  ", 2);	y += 34;//y += 40;
+			systemWndFontNo[6] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "    原地登齣    ", 2);	y += 34;//y += 40;
+			systemWndFontNo[1] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "    聊天設定    ", 2);	y += 34;//y += 40;
+			systemWndFontNo[4] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "    背景音樂  ", 2);	y += 34;//y += 40;
+			systemWndFontNo[3] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "    音效設定    ", 2);	y += 34;//y += 40;
+			systemWndFontNo[5] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "    滑鼠設定    ", 2);	y += 34;//y += 52;
+			systemWndFontNo[7] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "    戰鬥設定  ", 2);	y += 34;//y += 40;
 			if (MuteFlag){
-				systemWndFontNo[8] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "    开启声音  ", 2);	y += 34;//y += 40;
+				systemWndFontNo[8] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "    開啓聲音  ", 2);	y += 34;//y += 40;
 			}
 			else{	
-				systemWndFontNo[8] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "    关闭声音  ", 2);	y += 34;//y += 40;
+				systemWndFontNo[8] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "    關閉聲音  ", 2);	y += 34;//y += 40;
 			}
 #ifdef _NEW_SYSTEM_MENU
 			y = pActMenuWnd->y + 54;
-			systemWndFontNo[17] = StockFontBuffer(x + 140, y, FONT_PRIO_FRONT, 0, "    官方主页    ", 2);	y += 34;//y += 40;
-			systemWndFontNo[18] = StockFontBuffer(x + 140, y, FONT_PRIO_FRONT, 0, "    我的邮箱    ", 2);	y += 34;//y += 40;
+			systemWndFontNo[17] = StockFontBuffer(x + 140, y, FONT_PRIO_FRONT, 0, "    官方主頁    ", 2);	y += 34;//y += 40;
+			systemWndFontNo[18] = StockFontBuffer(x + 140, y, FONT_PRIO_FRONT, 0, "    我的郵箱    ", 2);	y += 34;//y += 40;
 
-			systemWndFontNo[11] = StockFontBuffer(x + 140, y, FONT_PRIO_FRONT, 0, "    原地遇敌    ", 2);	y += 34;//y += 40;
+			systemWndFontNo[11] = StockFontBuffer(x + 140, y, FONT_PRIO_FRONT, 0, "    原地遇敵    ", 2);	y += 34;//y += 40;
 			systemWndFontNo[12] = StockFontBuffer(x + 140, y, FONT_PRIO_FRONT, 0, "    取消原地    ", 2);	y += 34;//y += 40;
-			systemWndFontNo[13] = StockFontBuffer(x + 140, y, FONT_PRIO_FRONT, 0, "    支票制作    ", 2);	y += 34;//y += 40;
-			systemWndFontNo[14] = StockFontBuffer(x + 140, y, FONT_PRIO_FRONT, 0, "    任务查询    ", 2);	y += 34;//y += 40;
-			systemWndFontNo[15] = StockFontBuffer(x + 140, y, FONT_PRIO_FRONT, 0, "    右键攻击    ", 2);	y += 34;//y += 40;
-			systemWndFontNo[16] = StockFontBuffer(x + 140, y, FONT_PRIO_FRONT, 0, "    个人信息    ", 2);	y += 34;//y += 40;
+			systemWndFontNo[13] = StockFontBuffer(x + 140, y, FONT_PRIO_FRONT, 0, "    支票製作    ", 2);	y += 34;//y += 40;
+			systemWndFontNo[14] = StockFontBuffer(x + 140, y, FONT_PRIO_FRONT, 0, "    任務查詢    ", 2);	y += 34;//y += 40;
+			systemWndFontNo[15] = StockFontBuffer(x + 140, y, FONT_PRIO_FRONT, 0, "    右鍵攻擊    ", 2);	y += 34;//y += 40;
+			systemWndFontNo[16] = StockFontBuffer(x + 140, y, FONT_PRIO_FRONT, 0, "    個人信息    ", 2);	y += 34;//y += 40;
 			y = pActMenuWnd->y + 54;
-			systemWndFontNo[19] = StockFontBuffer(x + 280, y, FONT_PRIO_FRONT, 0, "    在线充值    ", 2);	y += 34;//y += 40;
+			systemWndFontNo[19] = StockFontBuffer(x + 280, y, FONT_PRIO_FRONT, 0, "    在綫充值    ", 2);	y += 34;//y += 40;
 			systemWndFontNo[20] = StockFontBuffer(x + 280, y, FONT_PRIO_FRONT, 0, "    卡密使用    ", 2);	y += 34;//y += 40;
-			systemWndFontNo[21] = StockFontBuffer(x + 280, y, FONT_PRIO_FRONT, 0, "    快捷传送    ", 2);	y += 34;//y += 40;
-			systemWndFontNo[9] = StockFontBuffer(x + 280, y, FONT_PRIO_FRONT, 0, "    掉线重连    ", 2);	y += 34;//y += 40;
-			if (繁体开关){
-				systemWndFontNo[10] = StockFontBuffer(x + 280, y, FONT_PRIO_FRONT, 0, "    切换简体    ", 2);	y += 34;//y += 40;
+			systemWndFontNo[21] = StockFontBuffer(x + 280, y, FONT_PRIO_FRONT, 0, "    快捷傳送    ", 2);	y += 34;//y += 40;
+			systemWndFontNo[9] = StockFontBuffer(x + 280, y, FONT_PRIO_FRONT, 0, "    掉綫重連    ", 2);	y += 34;//y += 40;
+			if (繁體開關){
+				systemWndFontNo[10] = StockFontBuffer(x + 280, y, FONT_PRIO_FRONT, 0, "    切換簡體    ", 2);	y += 34;//y += 40;
 			}
 			else{
-				systemWndFontNo[10] = StockFontBuffer(x + 280, y, FONT_PRIO_FRONT, 0, "    切换繁体    ", 2);	y += 34;//y += 40;
+				systemWndFontNo[10] = StockFontBuffer(x + 280, y, FONT_PRIO_FRONT, 0, "    切換繁體    ", 2);	y += 34;//y += 40;
 			}
-			if (人物屏蔽开关){
-				systemWndFontNo[22] = StockFontBuffer(x + 280, y, FONT_PRIO_FRONT, 0, "    人物显示    ", 2);	y += 34;//y += 40;
+			if (人物屏蔽開關){
+				systemWndFontNo[22] = StockFontBuffer(x + 280, y, FONT_PRIO_FRONT, 0, "    人物顯示    ", 2);	y += 34;//y += 40;
 			}
 			else{
 				systemWndFontNo[22] = StockFontBuffer(x + 280, y, FONT_PRIO_FRONT, 0, "    人物屏蔽    ", 2);	y += 34;//y += 40;
 			}
-			if (经验开关){
-				systemWndFontNo[23] = StockFontBuffer(x + 280, y, FONT_PRIO_FRONT, 0, "    经验关闭  ", 2);	y += 34;//y += 40;
+			if (經驗開關){
+				systemWndFontNo[23] = StockFontBuffer(x + 280, y, FONT_PRIO_FRONT, 0, "    經驗關閉  ", 2);	y += 34;//y += 40;
 			}
 			else{
-				systemWndFontNo[23] = StockFontBuffer(x + 280, y, FONT_PRIO_FRONT, 0, "    经验显示  ", 2);	y += 34;//y += 40;
+				systemWndFontNo[23] = StockFontBuffer(x + 280, y, FONT_PRIO_FRONT, 0, "    經驗顯示  ", 2);	y += 34;//y += 40;
 			}
 			if (AI == AI_SELECT){
-				systemWndFontNo[24] = StockFontBuffer(x + 280, y, FONT_PRIO_FRONT, 0, "    关闭战斗    ", 2);	y += 34;//y += 40;
+				systemWndFontNo[24] = StockFontBuffer(x + 280, y, FONT_PRIO_FRONT, 0, "    關閉戰鬥    ", 2);	y += 34;//y += 40;
 			}
 			else{
-				systemWndFontNo[24] = StockFontBuffer(x + 280, y, FONT_PRIO_FRONT, 0, "    自动战斗    ", 2);	y += 34;//y += 40;
+				systemWndFontNo[24] = StockFontBuffer(x + 280, y, FONT_PRIO_FRONT, 0, "    自動戰鬥    ", 2);	y += 34;//y += 40;
 			}
 
-			systemWndFontNo[25] = StockFontBuffer(x + 0  , y, FONT_PRIO_FRONT, 0, "    战力详情    ", 2);	//y += 40;
-			systemWndFontNo[26] = StockFontBuffer(x + 140, y, FONT_PRIO_FRONT, 0, "    捕鱼达人    ", 2);	//y += 40;
+			systemWndFontNo[25] = StockFontBuffer(x + 0  , y, FONT_PRIO_FRONT, 0, "    戰力詳情    ", 2);	//y += 40;
+			systemWndFontNo[26] = StockFontBuffer(x + 140, y, FONT_PRIO_FRONT, 0, "    捕魚達人    ", 2);	//y += 40;
 			systemWndFontNo[27] = StockFontBuffer(x + 280, y, FONT_PRIO_FRONT, 0, "    成就排行    ", 2);	y += 34;//y += 40;
 
-			systemWndFontNo[2] = StockFontBuffer(x + 140, y, FONT_PRIO_FRONT, FONT_PAL_AQUA, "    关    闭    ", 2);
+			systemWndFontNo[2] = StockFontBuffer(x + 140, y, FONT_PRIO_FRONT, FONT_PAL_AQUA, "    關    閉    ", 2);
 #else
-			systemWndFontNo[ 2 ] = StockFontBuffer( x, y, FONT_PRIO_FRONT, FONT_PAL_AQUA, 	"    关    闭    ", 2 );
+			systemWndFontNo[ 2 ] = StockFontBuffer( x, y, FONT_PRIO_FRONT, FONT_PAL_AQUA, 	"    關    閉    ", 2 );
 #endif
 			break;
 
@@ -10726,10 +10726,10 @@ void MenuProc(void)
 			y = pActMenuWnd->y + 56;
 
 #ifdef _NEWFONT_
-			systemWndFontNo[0] = StockFontBuffer(x+20, y, FONT_PRIO_FRONT, 0, "     确  定     ", 2);	y += 40;
+			systemWndFontNo[0] = StockFontBuffer(x+20, y, FONT_PRIO_FRONT, 0, "     確  定     ", 2);	y += 40;
 			systemWndFontNo[1] = StockFontBuffer(x+20, y, FONT_PRIO_FRONT, 0, "     不  要     ", 2);	y += 40;
 #else
-			systemWndFontNo[0] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "     确  定     ", 2);	y += 40;
+			systemWndFontNo[0] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "     確  定     ", 2);	y += 40;
 			systemWndFontNo[1] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "     不  要     ", 2);	y += 40;
 #endif
 			break;
@@ -10838,7 +10838,7 @@ void MenuProc(void)
 				if(HitFontNo == systemWndFontNo[7]){
 					g_bTalkWindow = !g_bTalkWindow;
 					if(!WindowMode && g_bTalkWindow){
-						StockChatBufferLine("全荧幕模式下无法使用本功能",FONT_PAL_RED);
+						StockChatBufferLine("全熒幕模式下無法使用本功能",FONT_PAL_RED);
 						g_bTalkWindow = FALSE;
 					}
 					play_se(217,320,240);
@@ -10866,24 +10866,24 @@ void MenuProc(void)
 			// ?
 			x = pActMenuWnd->x + 56;
 			y = pActMenuWnd->y + 56;
-			sprintf_s(moji, "◆目前显示的行数%3d 行◆", NowMaxChatLine);
+			sprintf_s(moji, "◆目前顯示的行數%3d 行◆", NowMaxChatLine);
 			StockFontBuffer(x - 16, y, FONT_PRIO_FRONT, FONT_PAL_YELLOW, moji, 0);				y += 32;
 			systemWndFontNo[0] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "      增    加      ", 2);	y += 32;
-			systemWndFontNo[1] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "      减    少      ", 2);	y += 32;
-			systemWndFontNo[2] = StockFontBuffer(x, y, FONT_PRIO_FRONT, MyChatBuffer.color, "    改变文字颜色    ", 2);	y += 32;
-			systemWndFontNo[4] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "      记录文字      ", 2);	y += 44;
+			systemWndFontNo[1] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "      減    少      ", 2);	y += 32;
+			systemWndFontNo[2] = StockFontBuffer(x, y, FONT_PRIO_FRONT, MyChatBuffer.color, "    改變文字顔色    ", 2);	y += 32;
+			systemWndFontNo[4] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "      記錄文字      ", 2);	y += 44;
 
 			sprintf_s(moji, "◆目前的音量%3d ◆", NowMaxVoice);
 			StockFontBuffer(x - 16, y, FONT_PRIO_FRONT, FONT_PAL_YELLOW, moji, 0);				y += 32;
 			systemWndFontNo[5] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "     增    加     ", 2);	y += 32;
-			systemWndFontNo[6] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "     减    少     ", 2);	y += 44;
+			systemWndFontNo[6] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "     減    少     ", 2);	y += 44;
 
 #ifdef _TALK_WINDOW
-			StockFontBuffer(x - 16,y,FONT_PRIO_FRONT,FONT_PAL_YELLOW,"◆聊天视窗设定◆",0);y += 32;
-			systemWndFontNo[7] = StockFontBuffer(x + 20,y,FONT_PRIO_FRONT,0,g_bTalkWindow ? "关闭聊天视窗":"打开聊天视窗",2);y += 32;
+			StockFontBuffer(x - 16,y,FONT_PRIO_FRONT,FONT_PAL_YELLOW,"◆聊天視窗設定◆",0);y += 32;
+			systemWndFontNo[7] = StockFontBuffer(x + 20,y,FONT_PRIO_FRONT,0,g_bTalkWindow ? "關閉聊天視窗":"打開聊天視窗",2);y += 32;
 #endif																																						
 
-			systemWndFontNo[3] = StockFontBuffer(x, y, FONT_PRIO_FRONT, FONT_PAL_AQUA, "     回上一页     ", 2);	y += 40;
+			systemWndFontNo[3] = StockFontBuffer(x, y, FONT_PRIO_FRONT, FONT_PAL_AQUA, "     迴上一頁     ", 2);	y += 40;
 
 			break;
 
@@ -10960,9 +10960,9 @@ void MenuProc(void)
 			sprintf_s(moji, "◆  目前的音量%3d   ◆", t_music_se_volume);
 			StockFontBuffer(x - 8, y, FONT_PRIO_FRONT, FONT_PAL_YELLOW, moji, 0);				y += 40;
 			systemWndFontNo[0] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "     增     加     ", 2);	y += 40;
-			systemWndFontNo[1] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "     减     少     ", 2);	y += 40;
+			systemWndFontNo[1] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "     減     少     ", 2);	y += 40;
 			systemWndFontNo[2] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, monoStereoStr[stereo_flg], 2);	y += 52;
-			systemWndFontNo[3] = StockFontBuffer(x, y, FONT_PRIO_FRONT, FONT_PAL_AQUA, "      回上一页      ", 2);	y += 40;
+			systemWndFontNo[3] = StockFontBuffer(x, y, FONT_PRIO_FRONT, FONT_PAL_AQUA, "      迴上一頁      ", 2);	y += 40;
 
 			break;
 
@@ -11066,16 +11066,16 @@ void MenuProc(void)
 			sprintf_s(moji, "◆  目前的音量 %3d  ◆", t_music_bgm_volume);
 			StockFontBuffer(x - 8, y, FONT_PRIO_FRONT, FONT_PAL_YELLOW, moji, 0);				y += 40;
 			systemWndFontNo[0] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "     增      加     ", 2);	y += 40;
-			systemWndFontNo[1] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "     减      少     ", 2);	y += 48;
+			systemWndFontNo[1] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "     減      少     ", 2);	y += 48;
 			if (t_music_bgm_pitch[t_music_bgm_no] == 0){
-				sprintf_s(moji, "◆ 目前的节奏   0 ◆");
+				sprintf_s(moji, "◆ 目前的節奏   0 ◆");
 			}
 			else
-				sprintf_s(moji, "◆ 目前的节奏 %+3d ◆", t_music_bgm_pitch[t_music_bgm_no]);
+				sprintf_s(moji, "◆ 目前的節奏 %+3d ◆", t_music_bgm_pitch[t_music_bgm_no]);
 			StockFontBuffer(x - 8, y, FONT_PRIO_FRONT, FONT_PAL_YELLOW, moji, 0);				y += 40;
 			systemWndFontNo[3] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "      加    快      ", 2);	y += 40;
-			systemWndFontNo[4] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "      减    慢      ", 2);	y += 52;
-			systemWndFontNo[2] = StockFontBuffer(x, y, FONT_PRIO_FRONT, FONT_PAL_AQUA, "      回上一页      ", 2);	y += 40;
+			systemWndFontNo[4] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "      減    慢      ", 2);	y += 52;
+			systemWndFontNo[2] = StockFontBuffer(x, y, FONT_PRIO_FRONT, FONT_PAL_AQUA, "      迴上一頁      ", 2);	y += 40;
 
 			break;
 
@@ -11165,7 +11165,7 @@ void MenuProc(void)
 				// ???
 				if (MouseCursorFlag == TRUE){
 					// ??????
-					strcpy(OneLineInfoStr, "两色的滑鼠游标，反应较快。");
+					strcpy(OneLineInfoStr, "兩色的滑鼠遊標，反應較快。");
 
 					// ????????
 					if (mouse.onceState & MOUSE_LEFT_CRICK){
@@ -11181,7 +11181,7 @@ void MenuProc(void)
 				}
 				else{
 					// ??????
-					strcpy(OneLineInfoStr, "普通的滑鼠游标。");
+					strcpy(OneLineInfoStr, "普通的滑鼠遊標。");
 					// ????????
 					if (mouse.onceState & MOUSE_LEFT_CRICK){
 						// ??????????
@@ -11217,9 +11217,9 @@ void MenuProc(void)
 			y = pActMenuWnd->y + 56;
 
 			// ?????????
-			StockFontBuffer(x, y, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "◆  游标设定  ◆", 0);	y += 40;
+			StockFontBuffer(x, y, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "◆  遊標設定  ◆", 0);	y += 40;
 			systemWndFontNo[0] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, mouseCursor[MouseCursorFlag], 2);	y += 40;
-			systemWndFontNo[1] = StockFontBuffer(x, y, FONT_PRIO_FRONT, FONT_PAL_AQUA, "    回上一页    ", 2);	y += 40;
+			systemWndFontNo[1] = StockFontBuffer(x, y, FONT_PRIO_FRONT, FONT_PAL_AQUA, "    迴上一頁    ", 2);	y += 40;
 			break;
 
 		case 7:	// ????? ??????
@@ -11268,11 +11268,11 @@ void MenuProc(void)
 
 #ifdef _NEWFONT_
 
-			systemWndFontNo[0] = StockFontBuffer(x+20, y, FONT_PRIO_FRONT, 0, "     确  定     ", 2);	y += 40;
+			systemWndFontNo[0] = StockFontBuffer(x+20, y, FONT_PRIO_FRONT, 0, "     確  定     ", 2);	y += 40;
 			systemWndFontNo[1] = StockFontBuffer(x+20, y, FONT_PRIO_FRONT, 0, "     不  要     ", 2);	y += 40;
 #else
 
-			systemWndFontNo[0] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "     确  定     ", 2);	y += 40;
+			systemWndFontNo[0] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "     確  定     ", 2);	y += 40;
 			systemWndFontNo[1] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "     不  要     ", 2);	y += 40;
 #endif
 			break;
@@ -11280,7 +11280,7 @@ void MenuProc(void)
 	}
 
 	//? ???????????? *****************************************************/
-#ifdef _FRIENDCHANNEL				//ROG ADD 好友频道
+#ifdef _FRIENDCHANNEL				//ROG ADD 好友頻道
 	if(setRoomFlag == TRUE)
 	{
 		setRoomName();
@@ -11306,14 +11306,14 @@ void MenuProc(void)
 
 				pActMenuWnd = MakeWindowDisp(4, 4, 272, 360, 0, -1);
 #ifdef _CHARTITLE_STR_
-				extern void 设置称号取消窗口();
-				extern BOOL 获取称号取消窗口();
-				if(获取称号取消窗口()) 设置称号取消窗口();
+				extern void 設置稱號取消窗口();
+				extern BOOL 獲取稱號取消窗口();
+				if(獲取稱號取消窗口()) 設置稱號取消窗口();
 #endif
 				// ??????
 				for (i = 0; i < MENU_STATUS_0; i++) statusWndFontNo[i] = -2;
 				for (i = 0; i < MENU_STATUS_0; i++) statusWndBtnFlag[i] = 0;
-#ifdef _NEWPANEL //Syu ADD 7.0 新人物状态介面
+#ifdef _NEWPANEL //Syu ADD 7.0 新人物狀態介麵
 				SkillWndflag = false ; 
 #endif
 			}
@@ -11321,7 +11321,7 @@ void MenuProc(void)
 				// ??????????????
 				if (pActMenuWnd->hp > 0){
 					// ???????????????
-#ifdef _NEWPANEL //Syu ADD 7.0 新人物状态介面
+#ifdef _NEWPANEL //Syu ADD 7.0 新人物狀態介麵
 					if ( SkillWndflag == true ) {
 						SkillWndfunc2();
 					}
@@ -11341,27 +11341,27 @@ void MenuProc(void)
 #endif
 					// ????????
 					if (mouse.onceState & MOUSE_LEFT_CRICK){
-						// 队伍
+						// 隊伍
 						if (HitDispNo == statusWndFontNo[0]){
 							DeathAction(pActMenuWnd);
 							pActMenuWnd = NULL;
 							statusWndNo = 1;
 							play_se(202, 320, 240);
 						}
-						// 关闭
+						// 關閉
 						if (HitDispNo == statusWndFontNo[1]){
 							DeathAction(pActMenuWnd);
 							pActMenuWnd = NULL;
 							MenuToggleFlag ^= JOY_CTRL_S;
 							play_se(203, 320, 240);
 						}
-#ifdef _NEWPANEL //Syu ADD 7.0 新人物状态介面
+#ifdef _NEWPANEL //Syu ADD 7.0 新人物狀態介麵
 						if( HitDispNo == statusWndFontNo[ 12 ] ){
 							DeathAction( pActMenuWnd);
 							pActMenuWnd = NULL;
 							statusWndNo = 3;
 							play_se( 202, 320, 240);
-#ifdef _NEWREQUESTPROTOCOL			// (不可开) Syu ADD 新增Protocol要求细项
+#ifdef _NEWREQUESTPROTOCOL			// (不可開) Syu ADD 新增Protocol要求細項
 							lssproto_RESIST_send ( sockfd , "" ) ; 
 #endif
 #ifdef _ALCHEPLUS
@@ -11382,14 +11382,14 @@ void MenuProc(void)
 #endif
 
 					}
-					// 改变称号
+					// 改變稱號
 					if (HitDispNo == statusWndFontNo[6]){
 						// ????????
 						if (mouse.onceState & MOUSE_LEFT_CRICK){
 #ifdef _CHARTITLE_
 							statusWndBtnFlag[6] = TRUE;
-							extern void 打开称号窗口初始化();
-							打开称号窗口初始化();
+							extern void 打開稱號窗口初始化();
+							打開稱號窗口初始化();
 							if (pActMenuWnd3 == NULL){
 								pActMenuWnd3 = MakeWindowDisp(363, 105, 0, 0, 55249, -1, 0);
 								play_se(202, 320, 240);
@@ -11402,8 +11402,8 @@ void MenuProc(void)
 #else
 #ifdef _CHARTITLE_STR_
 							statusWndBtnFlag[6] = TRUE;
-							extern void 打开称号窗口初始化();
-							打开称号窗口初始化();
+							extern void 打開稱號窗口初始化();
+							打開稱號窗口初始化();
 							if (pActMenuWnd3 == NULL){
 								pActMenuWnd3 = MakeWindowDisp(363, 105, 0, 0, 55249, -1, 0);
 								play_se(202, 320, 240);
@@ -11414,7 +11414,7 @@ void MenuProc(void)
 								play_se(203, 320, 240);
 							}
 #else
-#ifdef _NEWPANEL //Syu ADD 7.0 新人物状态介面
+#ifdef _NEWPANEL //Syu ADD 7.0 新人物狀態介麵
 							SkillWndflag = false ; 
 							MenuToggleFlag &= ~JOY_CTRL_I;
 							//MenuToggleFlag &= ~JOY_CTRL_M;
@@ -11423,13 +11423,13 @@ void MenuProc(void)
 							// ???
 							play_se( 220, 320, 240 );
 							// ???????
-							sprintf_s( moji,"体验版不能选择！" );
+							sprintf_s( moji,"體驗版不能選擇！" );
 							// ??????????????????
 							StockChatBufferLine( moji, FONT_PAL_WHITE );
 #else
 							if (pActMenuWnd3 == NULL){
 								// ?????????
-#ifdef _NEWPANEL //Syu ADD 7.0 新人物状态介面
+#ifdef _NEWPANEL //Syu ADD 7.0 新人物狀態介麵
 								pActMenuWnd3 = MakeWindowDisp( 304, 16 + 280 + 48, 272, 88, 0, -1 );
 #else
 #ifdef _NEW_CHARDATA_
@@ -11500,7 +11500,7 @@ void MenuProc(void)
 										old_lssproto_SKUP_send(sockfd, i - 2);
 
 
-#ifndef _CHAR_PROFESSION			// WON ADD 人物职业
+#ifndef _CHAR_PROFESSION			// WON ADD 人物職業
 									StatusUpPoint--;
 #endif
 
@@ -11541,23 +11541,23 @@ void MenuProc(void)
 						CenteringStr(pc.freeName, moji, 32);	// ????
 #endif
 #endif
-#ifdef _NEWPANEL //Syu ADD 7.0 新人物状态介面
-						//位移称号
+#ifdef _NEWPANEL //Syu ADD 7.0 新人物狀態介麵
+						//位移稱號
 						StockFontBuffer( x + 77, y + 2 , FONT_PRIO_FRONT, 0, moji, 0 );
-#ifdef _ALLDOMAN // (不可开) Syu ADD 排行榜NPC
-						//英雄战场称号
-						if ( pc.herofloor == 132 )		sprintf_s( moji , "%s" , "尼斯大陆英雄" ) ;
-						else if ( pc.herofloor >= 130 )	sprintf_s( moji , "%s" , "尼斯大陆战士" ) ; 
-						else if ( pc.herofloor >= 125 )	sprintf_s( moji , "%s" , "尼斯大陆勇士" ) ; 
-						else if ( pc.herofloor >= 120 )	sprintf_s( moji , "%s" , "萨伊那斯英雄" ) ; 
-						else if ( pc.herofloor >= 115 )	sprintf_s( moji , "%s" , "斯巴达战士" ) ; 
-						else if ( pc.herofloor >= 110 )	sprintf_s( moji , "%s" , "萨姆吉尔战士" ) ; 
-						else if ( pc.herofloor >= 100 )	sprintf_s( moji , "%s" , "玛丽那丝战士" ) ; 
-						else if ( pc.herofloor >=  80 )	sprintf_s( moji , "%s" , "卡坦战士" ) ; 
-						else if ( pc.herofloor >=  60 )	sprintf_s( moji , "%s" , "霍特尔战士" ) ; 
+#ifdef _ALLDOMAN // (不可開) Syu ADD 排行榜NPC
+						//英雄戰場稱號
+						if ( pc.herofloor == 132 )		sprintf_s( moji , "%s" , "尼斯大陸英雄" ) ;
+						else if ( pc.herofloor >= 130 )	sprintf_s( moji , "%s" , "尼斯大陸戰士" ) ; 
+						else if ( pc.herofloor >= 125 )	sprintf_s( moji , "%s" , "尼斯大陸勇士" ) ; 
+						else if ( pc.herofloor >= 120 )	sprintf_s( moji , "%s" , "薩伊那斯英雄" ) ; 
+						else if ( pc.herofloor >= 115 )	sprintf_s( moji , "%s" , "斯巴達戰士" ) ; 
+						else if ( pc.herofloor >= 110 )	sprintf_s( moji , "%s" , "薩姆吉爾戰士" ) ; 
+						else if ( pc.herofloor >= 100 )	sprintf_s( moji , "%s" , "瑪麗那絲戰士" ) ; 
+						else if ( pc.herofloor >=  80 )	sprintf_s( moji , "%s" , "卡坦戰士" ) ; 
+						else if ( pc.herofloor >=  60 )	sprintf_s( moji , "%s" , "霍特爾戰士" ) ; 
 						else if ( pc.herofloor >=  40 )	sprintf_s( moji , "%s" , "降魔勇士" ) ; 
-						else if ( pc.herofloor >=  20 )	sprintf_s( moji , "%s" , "圣灵勇士" ) ; 
-						else if ( pc.herofloor >=   1 )	sprintf_s( moji , "%s" , "初犊勇士" ) ; 
+						else if ( pc.herofloor >=  20 )	sprintf_s( moji , "%s" , "聖靈勇士" ) ; 
+						else if ( pc.herofloor >=   1 )	sprintf_s( moji , "%s" , "初犢勇士" ) ; 
 						else							sprintf_s( moji , " " );
 						StockFontBuffer( x + 72, y + 28 , FONT_PRIO_FRONT, 5, moji, 0 ); 
 						sprintf_s( moji , "%d" , pc.profession_level);
@@ -11580,7 +11580,7 @@ void MenuProc(void)
 						if (pc.transmigration >= 1 && pc.transmigration <= 5){
 #endif
 #ifndef _NEW_CHARDATA_
-							sprintf_s(moji, "转生%s", TransmigrationStr[pc.transmigration]);
+							sprintf_s(moji, "轉生%s", TransmigrationStr[pc.transmigration]);
 							StockFontBuffer(x + 178 + 12, y + 2, FONT_PRIO_FRONT, FONT_PAL_AQUA, moji, 0);
 #else
 							;
@@ -11597,7 +11597,7 @@ void MenuProc(void)
 #endif
 #endif
 						sprintf_s(moji, "%3d", pc.level);
-#ifdef _NEWPANEL //Syu ADD 7.0 新人物状态介面
+#ifdef _NEWPANEL //Syu ADD 7.0 新人物狀態介麵
 						y += 35;
 						StockFontBuffer( x + 38, y - 2, FONT_PRIO_FRONT, 0, moji, 0 ); y += 21;
 						sprintf_s( moji, "%8d", pc.exp );
@@ -11631,30 +11631,30 @@ void MenuProc(void)
 #ifdef _NEW_CHARDATA_
 
 						/*
-						static int 人物头像左状态=0,人物头像右状态=0;
+						static int 人物頭像左狀態=0,人物頭像右狀態=0;
 
-						StockDispBuffer( pActMenuWnd->x + 187, pActMenuWnd->y + 118+72, DISP_PRIO_IME3,CG_PREV_BTN+人物头像左状态, 1 );
+						StockDispBuffer( pActMenuWnd->x + 187, pActMenuWnd->y + 118+72, DISP_PRIO_IME3,CG_PREV_BTN+人物頭像左狀態, 1 );
 						if( MakeHitBox( pActMenuWnd->x + 187-18, pActMenuWnd->y + 118+72-10, pActMenuWnd->x + 187+18,pActMenuWnd->y + 118+72+10, DISP_PRIO_IME4 ) == TRUE ){
-						ShowBottomLineString(FONT_PAL_WHITE, "修改人物头像");
+						ShowBottomLineString(FONT_PAL_WHITE, "修改人物頭像");
 						if(mouse.state & MOUSE_LEFT_CRICK){
-						人物头像左状态 = 1;
+						人物頭像左狀態 = 1;
 						if(mouse.onceState & MOUSE_LEFT_CRICK){
 						play_se(203, 320, 240);
-						//人物头像封包
+						//人物頭像封包
 						}
-						}else 人物头像左状态=0;
-						}else 人物头像左状态=0;
-						StockDispBuffer( pActMenuWnd->x + 232, pActMenuWnd->y + 118+72, DISP_PRIO_IME3,CG_NEXT_BTN+人物头像右状态, 1 );
+						}else 人物頭像左狀態=0;
+						}else 人物頭像左狀態=0;
+						StockDispBuffer( pActMenuWnd->x + 232, pActMenuWnd->y + 118+72, DISP_PRIO_IME3,CG_NEXT_BTN+人物頭像右狀態, 1 );
 						if( MakeHitBox( pActMenuWnd->x + 232-18, pActMenuWnd->y + 118+72-10, pActMenuWnd->x + 232+18,pActMenuWnd->y + 118+72+10, DISP_PRIO_IME4 ) == TRUE ){
-						ShowBottomLineString(FONT_PAL_WHITE, "修改人物头像");
+						ShowBottomLineString(FONT_PAL_WHITE, "修改人物頭像");
 						if(mouse.state & MOUSE_LEFT_CRICK){
-						人物头像右状态 = 1;
+						人物頭像右狀態 = 1;
 						if(mouse.onceState & MOUSE_LEFT_CRICK){
 						play_se(203, 320, 240);
-						//人物头像封包
+						//人物頭像封包
 						}
-						}else 人物头像右状态=0;
-						}else 人物头像右状态=0;
+						}else 人物頭像右狀態=0;
+						}else 人物頭像右狀態=0;
 
 						*/
 
@@ -11724,7 +11724,7 @@ void MenuProc(void)
 #endif
 #endif
 
-#ifdef _NEWPANEL //Syu ADD 7.0 新人物状态介面
+#ifdef _NEWPANEL //Syu ADD 7.0 新人物狀態介麵
 						y += 50;
 #else
 						y += 17;
@@ -11732,11 +11732,11 @@ void MenuProc(void)
 						statusWndFontNo[0] = StockDispBuffer(x + 59, y, DISP_PRIO_IME3, CG_STATUS_WND_GROUP_BTN, 2);
 						statusWndFontNo[1] = StockDispBuffer(x + 173, y, DISP_PRIO_IME3, CG_CLOSE_BTN, 2);
 						// ???????
-#ifdef _NEWPANEL //Syu ADD 7.0 新人物状态介面
+#ifdef _NEWPANEL //Syu ADD 7.0 新人物狀態介麵
 						statusWndFontNo[ 12 ] = StockDispBuffer( x + 164 , y - 102, DISP_PRIO_IME3, CG_STATUS_DETAIL, 2 );
 						if ( pc.profession_class != 0 )
 							statusWndFontNo[ 14 ] = StockDispBuffer( x + 213 , y - 318 , DISP_PRIO_IME3, CG_WAR_ICON_BIG + pc.profession_class - 1, 2 );
-						//else //找时间放空图
+						//else //找時間放空圖
 						//	statusWndFontNo[ 14 ] = StockDispBuffer( x + 213 , y - 318 , DISP_PRIO_IME3, CG_WAR_ICON_BIG + pc.profession_class - 1, 2 );
 
 
@@ -11758,7 +11758,7 @@ void MenuProc(void)
 #endif					
 						if (StatusUpPoint != 0){
 							// ??????????
-#ifdef _NEWPANEL //Syu ADD 7.0 新人物状态介面
+#ifdef _NEWPANEL //Syu ADD 7.0 新人物狀態介麵
 							StockDispBuffer( ( ( WINDOW_DISP *)pActMenuWnd->pYobi )->mx + 14 , ( ( WINDOW_DISP *)pActMenuWnd->pYobi )->my + 67 , DISP_PRIO_IME3, CG_STATUS_WND_LV_UP_POINT, 0 );
 							sprintf_s( moji, "%2d", StatusUpPoint );
 							StockFontBuffer( ( ( WINDOW_DISP *)pActMenuWnd->pYobi )->mx + 70, ( ( WINDOW_DISP *)pActMenuWnd->pYobi )->my + 156, FONT_PRIO_FRONT, FONT_PAL_YELLOW, moji, 0 );
@@ -11812,29 +11812,29 @@ void MenuProc(void)
 #endif
 						}
 						// ??
-#ifdef _NEWPANEL //Syu ADD 7.0 新人物状态介面
-						//位移改变称号钮
+#ifdef _NEWPANEL //Syu ADD 7.0 新人物狀態介麵
+						//位移改變稱號鈕
 						statusWndFontNo[ 6 ] = StockDispBuffer( ( ( WINDOW_DISP *)pActMenuWnd->pYobi )->mx - 124 , ( ( WINDOW_DISP *)pActMenuWnd->pYobi )->my, DISP_PRIO_IME3, CG_STATUS_WND_SHOUGOU_BTN_UP + statusWndBtnFlag[ 6 ], 2 );
 #else
 #ifdef _CHARTITLE_
-						extern void 称号展示();
-						称号展示();
+						extern void 稱號展示();
+						稱號展示();
 						statusWndFontNo[6] = StockDispBuffer(((WINDOW_DISP *)pActMenuWnd->pYobi)->mx - 125, ((WINDOW_DISP *)pActMenuWnd->pYobi)->my + 3, DISP_PRIO_IME3, CG_STATUS_WND_SHOUGOU_BTN_UP + statusWndBtnFlag[6], 2);
 #else
 #ifdef _CHARTITLE_STR_
-						extern void 称号展示();
-						extern BOOL 获取当前称号是否存在();
-						extern BOOL 获取称号取消窗口();
-						extern void 设置称号取消窗口();
-						if(获取称号取消窗口()){
-							StockDispBuffer(138,450,DISP_PRIO_MENU,55259,1);//确定窗口底图
+						extern void 稱號展示();
+						extern BOOL 獲取當前稱號是否存在();
+						extern BOOL 獲取稱號取消窗口();
+						extern void 設置稱號取消窗口();
+						if(獲取稱號取消窗口()){
+							StockDispBuffer(138,450,DISP_PRIO_MENU,55259,1);//確定窗口底圖
 							int bnt;
-							StockFontBuffer(70,425,1,0,"是否取消称号显示？",0);
-							bnt = StockFontBuffer(90,462,1,FONT_PAL_YELLOW,"确定",2);
+							StockFontBuffer(70,425,1,0,"是否取消稱號顯示？",0);
+							bnt = StockFontBuffer(90,462,1,FONT_PAL_YELLOW,"確定",2);
 							if(mouse.onceState & MOUSE_LEFT_CRICK>0){
 								if(HitFontNo == bnt){
-									设置称号取消窗口();
-									if(获取当前称号是否存在()){
+									設置稱號取消窗口();
+									if(獲取當前稱號是否存在()){
 										int checksum=0;
 										char buf[1024*4];
 										memset(buf,0,1024*4);
@@ -11848,12 +11848,12 @@ void MenuProc(void)
 							bnt = StockFontBuffer(155,462,1,FONT_PAL_YELLOW,"取消",2);
 							if(mouse.onceState & MOUSE_LEFT_CRICK>0){
 								if(HitFontNo == bnt){
-									设置称号取消窗口();
+									設置稱號取消窗口();
 									play_se(203, 320, 240);
 								}
 							}
 						}
-						称号展示();
+						稱號展示();
 						statusWndFontNo[6] = StockDispBuffer(((WINDOW_DISP *)pActMenuWnd->pYobi)->mx, ((WINDOW_DISP *)pActMenuWnd->pYobi)->my, DISP_PRIO_IME3, CG_STATUS_WND_SHOUGOU_BTN_UP + statusWndBtnFlag[6], 2);
 #else
 						statusWndFontNo[6] = StockDispBuffer(((WINDOW_DISP *)pActMenuWnd->pYobi)->mx, ((WINDOW_DISP *)pActMenuWnd->pYobi)->my, DISP_PRIO_IME3, CG_STATUS_WND_SHOUGOU_BTN_UP + statusWndBtnFlag[6], 2);
@@ -11864,7 +11864,7 @@ void MenuProc(void)
 						// ?
 						x = pActMenuWnd->x + 19;
 						y = pActMenuWnd->y + 174;
-#ifdef _NEWPANEL //Syu ADD 7.0 新人物状态介面
+#ifdef _NEWPANEL //Syu ADD 7.0 新人物狀態介麵
 						x -= 4;
 						y += 43;
 #endif
@@ -11917,7 +11917,7 @@ void MenuProc(void)
 				// ??????????????
 				if (pActMenuWnd3->hp > 0){
 					// ?????????
-#ifdef _NEWPANEL //Syu ADD 7.0 新人物状态介面
+#ifdef _NEWPANEL //Syu ADD 7.0 新人物狀態介麵
 					StockDispBuffer( ( ( WINDOW_DISP *)pActMenuWnd3->pYobi )->mx, ( ( WINDOW_DISP *)pActMenuWnd3->pYobi )->my, DISP_PRIO_MENU, CG_NAME_CHANGE_WND, 1 );
 #else
 #ifdef _CHARTITLE_
@@ -11931,15 +11931,15 @@ void MenuProc(void)
 #endif
 #endif
 #ifdef _CHARTITLE_
-					extern BOOL 人物称号处理(ACTION * pct);
-					if (人物称号处理(pActMenuWnd3)){
+					extern BOOL 人物稱號處理(ACTION * pct);
+					if (人物稱號處理(pActMenuWnd3)){
 						pActMenuWnd3 = NULL;
 
 					}
 #else
 #ifdef _CHARTITLE_STR_
-					extern BOOL 人物称号处理(ACTION * pct);
-					if (人物称号处理(pActMenuWnd3)){
+					extern BOOL 人物稱號處理(ACTION * pct);
+					if (人物稱號處理(pActMenuWnd3)){
 						pActMenuWnd3 = NULL;
 
 					}
@@ -12065,7 +12065,7 @@ void MenuProc(void)
 								CenteringStr(party[i].name, moji, CHAR_NAME_LEN);
 								statusWndFontNo[i + 6] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, moji, selectFlag); y += 20;
 #ifdef _TEAM_KICKPARTY
-								//andy_add 队长踢人
+								//andy_add 隊長踢人
 								statusWndFontNo[i + 12] = StockDispBuffer(x + 187, y - 10, DISP_PRIO_IME3, CG_MAIL_WND_DELETE_BTN, 2);
 #endif
 								sprintf_s(moji, "%4d", party[i].mp);
@@ -12127,14 +12127,14 @@ void MenuProc(void)
 								if( index >= 25 ) break;
 								if( iCharAlchePlus[index] <= 0 ) continue;
 								if( HitDispNo == StockDispBuffer( x + 45 + j * 60 , y + 96 + i * 57 , DISP_PRIO_IME3 + 1, iAlchePlusIcon[index], 2 ) ) {
-									sprintf_s( moji , "%s 的材料鉴定熟度", sAlchePlus_list[index]); 
+									sprintf_s( moji , "%s 的材料鑒定熟度", sAlchePlus_list[index]); 
 									StockFontBuffer( 25, 311, FONT_PRIO_FRONT, FONT_PAL_WHITE, moji, 0 );
 									sprintf_s( moji , "%d %%", iCharAlchePlus[index] / 1000 ); 
 									StockFontBuffer( 220, 311, FONT_PRIO_FRONT, FONT_PAL_WHITE, moji, 0 );
 
-									sprintf_s( moji , "对于 %s 材料的鉴定熟度，可提高", sAlchePlus_list[index] ); 
+									sprintf_s( moji , "對於 %s 材料的鑒定熟度，可提高", sAlchePlus_list[index] ); 
 									StockFontBuffer( 25, 340, FONT_PRIO_FRONT, FONT_PAL_WHITE, moji, 0 );
-									sprintf_s( moji , "素材合成成功率。"); 	
+									sprintf_s( moji , "素材閤成成功率。"); 	
 									StockFontBuffer( 25, 360, FONT_PRIO_FRONT, FONT_PAL_WHITE, moji, 0 );
 
 								}
@@ -12159,15 +12159,15 @@ void MenuProc(void)
 									sprintf_s( moji , "%s%d" , DetailDesc[j + i * 4] , atoi ( CharDetail[j + i * 4] ) ) ; 
 									StockFontBuffer( 25, 310, FONT_PRIO_FRONT, FONT_PAL_WHITE, moji, 0 );
 									if( i == 0 ){
-										sprintf_s( moji , "对于%s精灵魔法的抗性，可减少受到", DetailDescchar[j] ); 
+										sprintf_s( moji , "對於%s精靈魔法的抗性，可減少受到", DetailDescchar[j] ); 
 										StockFontBuffer( 25, 330, FONT_PRIO_FRONT, FONT_PAL_WHITE, moji, 0 );
-										sprintf_s( moji , "%s精灵魔法的伤害。", DetailDescchar[j] ); 	
+										sprintf_s( moji , "%s精靈魔法的傷害。", DetailDescchar[j] ); 	
 										StockFontBuffer( 25, 350, FONT_PRIO_FRONT, FONT_PAL_WHITE, moji, 0 );
 									}
 									else if( i == 1 ){
-										sprintf_s( moji , "使用%s精灵魔法的熟练度，可增加使用", DetailDescchar[j] ); 
+										sprintf_s( moji , "使用%s精靈魔法的熟練度，可增加使用", DetailDescchar[j] ); 
 										StockFontBuffer( 25, 330, FONT_PRIO_FRONT, FONT_PAL_WHITE, moji, 0 );
-										sprintf_s( moji , "%s精灵魔法时的威力。", DetailDescchar[j] ) ; 
+										sprintf_s( moji , "%s精靈魔法時的威力。", DetailDescchar[j] ) ; 
 										StockFontBuffer( 25, 350, FONT_PRIO_FRONT, FONT_PAL_WHITE, moji, 0 );
 									}
 
@@ -12257,9 +12257,9 @@ void MenuProc(void)
 	if (MenuToggleFlag & JOY_CTRL_P){
 #ifdef _STREET_VENDOR
 		if (pc.iOnStreetVendor == 1 || sStreetVendorBuyBtn == 2){
-			StockChatBufferLine("摆摊中不得更换宠物状态", FONT_PAL_RED);
+			StockChatBufferLine("擺攤中不得更換寵物狀態", FONT_PAL_RED);
 			MenuToggleFlag ^= JOY_CTRL_P;
-			// 为了不执行宠物视窗所以设定为 3,不作事
+			// 為瞭不執行寵物視窗所以設定為 3,不作事
 			petWndNo = 3;
 		}
 #endif
@@ -12267,18 +12267,18 @@ void MenuProc(void)
 		if (pc.iTheaterMode > 0)
 		{
 			if (pc.iTheaterMode & 0x00000002)
-				StockChatBufferLine("请专心表演", FONT_PAL_RED);
+				StockChatBufferLine("請專心錶演", FONT_PAL_RED);
 			else if (pc.iTheaterMode & 0x00000001)
-				StockChatBufferLine("请专心看表演", FONT_PAL_RED);
+				StockChatBufferLine("請專心看錶演", FONT_PAL_RED);
 			MenuToggleFlag ^= JOY_CTRL_P;
-			// 为了不执行宠物视窗所以设定为 3,不作事
+			// 為瞭不執行寵物視窗所以設定為 3,不作事
 			petWndNo = 3;
 		}
 #endif
 #ifdef _NPC_DANCE
 		if (pc.iDanceMode)
 		{
-			StockChatBufferLine("特殊状态无法查看宠物", FONT_PAL_RED);
+			StockChatBufferLine("特殊狀態無法查看寵物", FONT_PAL_RED);
 			MenuToggleFlag ^= JOY_CTRL_P;
 			petWndNo = 3;
 		}
@@ -12297,7 +12297,7 @@ void MenuProc(void)
 				for (i = 0; i < MENU_PET_0; i++) petWndFontNo[i] = -2;
 				// ????
 				BattlePetReceivePetNo = -1;
-#ifdef _DROPPETWND					// (可开放) Syu ADD 丢弃宠物确认
+#ifdef _DROPPETWND					// (可開放) Syu ADD 丟棄寵物確認
 				DropPetWndflag = false;
 				DropI = -1;
 #endif
@@ -12352,7 +12352,7 @@ void MenuProc(void)
 									else
 										// when ride Pet
 									if (i == pc.ridePetNo && pc.graNo != SPR_pet021
-										&& pc.graNo != 100362){//金飞
+										&& pc.graNo != 100362){//金飛
 										char buf[64];
 										sprintf_s(buf, "R|P|-1");
 										if (bNewServer)
@@ -12522,7 +12522,7 @@ void MenuProc(void)
 							// ????????
 							play_se(202, 320, 240);
 						}
-#ifdef _DROPPETWND					// (可开放) Syu ADD 丢弃宠物确认
+#ifdef _DROPPETWND					// (可開放) Syu ADD 丟棄寵物確認
 						if (HitDispNo == petWndFontNo[21]) {
 							i = DropI;
 							DropI = -1;
@@ -12558,7 +12558,7 @@ void MenuProc(void)
 									if (ItemMixPetNo != i
 										&& pc.ridePetNo != i)
 									{
-#ifdef _DROPPETWND					// (可开放) Syu ADD 丢弃宠物确认
+#ifdef _DROPPETWND					// (可開放) Syu ADD 丟棄寵物確認
 										DropPetWndflag = true;
 										DropI = i;
 #else
@@ -12598,9 +12598,9 @@ void MenuProc(void)
 							}
 						}
 					}
-#ifdef _DROPPETWND					// (可开放) Syu ADD 丢弃宠物确认
+#ifdef _DROPPETWND					// (可開放) Syu ADD 丟棄寵物確認
 					if (DropPetWndflag == true) {
-						StockFontBuffer(245, 220, FONT_PRIO_AFRONT, 3, "确定要丢出你的宠物吗？", 0); y += 40;
+						StockFontBuffer(245, 220, FONT_PRIO_AFRONT, 3, "確定要丟齣你的寵物嗎？", 0); y += 40;
 						StockDispBuffer(320, 240, DISP_PRIO_YES_NO_WND, CG_DROPWND, 0);
 						petWndFontNo[21] = StockDispBuffer(320, 240, DISP_PRIO_YES_NO_BTN, CG_COMMON_YES_BTN, 2);
 						petWndFontNo[22] = StockDispBuffer(320, 240, DISP_PRIO_YES_NO_BTN, CG_COMMON_NO_BTN, 2);
@@ -12662,7 +12662,7 @@ void MenuProc(void)
 								}
 								petWndFontNo[i + 5] = StockFontBuffer(x + 3, y, FONT_PRIO_FRONT, color, moji, 2); y += 24;
 #ifdef _SHOWPETTRN_
-								sprintf(moji, "%d转", pet[i].trn);
+								sprintf(moji, "%d轉", pet[i].trn);
 								StockFontBuffer(x + 122, y - 24, FONT_PRIO_FRONT, color, moji, 2);
 #endif
 								atrFlag = FALSE;
@@ -12734,7 +12734,7 @@ void MenuProc(void)
 						if (flag != TRUE){
 							// ??
 							petWndFontNo[10] = StockDispBuffer(((WINDOW_DISP *)pActMenuWnd->pYobi)->mx, pActMenuWnd->y + 299, DISP_PRIO_IME3, CG_CLOSE_BTN, 2);
-							StockFontBuffer(x + 10, y, FONT_PRIO_FRONT, 0, "你没有宠物", 0); y += 40;
+							StockFontBuffer(x + 10, y, FONT_PRIO_FRONT, 0, "你沒有寵物", 0); y += 40;
 						}
 						else{
 							// ??
@@ -12752,8 +12752,8 @@ void MenuProc(void)
 
 				pActMenuWnd = MakeWindowDisp(4, 4, 272, 332, 0, -1);
 #ifdef _PETBLESS_
-				祝福窗口开关 = 0;
-				memset(祝福窗口内容, 0, 128);
+				祝福窗口開關 = 0;
+				memset(祝福窗口內容, 0, 128);
 #endif
 				// ??????
 				for (i = 0; i < MENU_PET_0; i++) petWndFontNo[i] = -2;
@@ -12767,7 +12767,7 @@ void MenuProc(void)
 					// ????????????????
 					if (pActPet == NULL)
 					{
-#ifdef _LIZARDPOSITION			   // (可开放) Syu ADD 修正龙蜥显示位置过低
+#ifdef _LIZARDPOSITION			   // (可開放) Syu ADD 修正龍蜥顯示位置過低
 						if ((pet[petStatusNo].graNo == 101493) || (pet[petStatusNo].graNo == 101494) ||
 							(pet[petStatusNo].graNo == 101495) || (pet[petStatusNo].graNo == 101496))
 						{
@@ -12843,7 +12843,7 @@ void MenuProc(void)
 								if (pet[petStatusNo].useFlag == TRUE) break;
 							}
 							// ?????????
-#ifdef _LIZARDPOSITION			   // (可开放) Syu ADD 修正龙蜥显示位置过低
+#ifdef _LIZARDPOSITION			   // (可開放) Syu ADD 修正龍蜥顯示位置過低
 							if ((pet[petStatusNo].graNo == 101493) || (pet[petStatusNo].graNo == 101494) ||
 								(pet[petStatusNo].graNo == 101495) || (pet[petStatusNo].graNo == 101496))
 							{
@@ -12899,7 +12899,7 @@ void MenuProc(void)
 								if (pet[petStatusNo].useFlag == TRUE) break;
 							}
 							// ????????
-#ifdef _LIZARDPOSITION			   // (可开放) Syu ADD 修正龙蜥显示位置过低
+#ifdef _LIZARDPOSITION			   // (可開放) Syu ADD 修正龍蜥顯示位置過低
 							if ((pet[petStatusNo].graNo == 101493) || (pet[petStatusNo].graNo == 101494) ||
 								(pet[petStatusNo].graNo == 101495) || (pet[petStatusNo].graNo == 101496))
 							{
@@ -12999,55 +12999,55 @@ void MenuProc(void)
 							pet[petStatusNo].graNo != 101279 && pet[petStatusNo].graNo != 100401 &&
 							pet[petStatusNo].graNo != 101414 && pet[petStatusNo].graNo != 101167 &&
 							pet[petStatusNo].graNo != 101172 && pet[petStatusNo].graNo != 102011 &&
-							pet[petStatusNo].graNo != 102012)	// fix 哪些宠物不能照宠照
+							pet[petStatusNo].graNo != 102012)	// fix 哪些寵物不能照寵照
 						if (mouse.onceState & MOUSE_LEFT_CRICK){
 #ifdef _TAIKEN			
 							// ???
 							play_se( 220, 320, 240 );
 							// ???????
-							sprintf_s( moji,"体验版不能选择！" );
+							sprintf_s( moji,"體驗版不能選擇！" );
 							// ??????????????????
 							StockChatBufferLine( moji, FONT_PAL_WHITE );
 #else
 							int tblNo = pet[petStatusNo].graNo - 100250; // ??????
 #if defined(__ALBUM_47)
-							if (tblNo > 1800){					//小恶魔
+							if (tblNo > 1800){					//小惡魔
 								tblNo -= 1208;
 							}
-							else if (tblNo > 1755){					//间隔南瓜魔王后的 狐猴
+							else if (tblNo > 1755){					//間隔南瓜魔王後的 狐猴
 								tblNo -= 1201;
 							}
-							else if (tblNo > 1739){			//飞蛇
+							else if (tblNo > 1739){			//飛蛇
 								tblNo -= 1200;
 							}
-							else if (tblNo > 1686){			//8.0宠物
+							else if (tblNo > 1686){			//8.0寵物
 								tblNo -= 1175;
 							}
-							else if (tblNo > 1641){			//鸡年兽4 甲虫2	8.0第一次整合测试
+							else if (tblNo > 1641){			//雞年獸4 甲蟲2	8.0第一次整閤測試
 								tblNo -= 1167;
 							}
 							else if (tblNo > 1635){   //麒麟
 								tblNo -= 1148;
 							}
-							else if (tblNo > 1634){	//猫女1 猫女2
+							else if (tblNo > 1634){	//貓女1 貓女2
 								tblNo -= 1149;
 							}
-							else if (tblNo > 1628){	//火蚁1 火蚁2 牛人1 牛人2
+							else if (tblNo > 1628){	//火蟻1 火蟻2 牛人1 牛人2
 								tblNo -= 1147;
 							}
-							else if (tblNo > 1615){//布里萨尔 蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑乌力王 狮人1 狮人2 灰人熔 白狼 布伊酷
+							else if (tblNo > 1615){//布裏薩爾 蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑烏力王 獅人1 獅人2 灰人熔 白狼 布伊酷
 								tblNo -= 1145;
 							}
-							else if (tblNo > 1568){//机人龙
+							else if (tblNo > 1568){//機人龍
 								tblNo -= 1103;
 							}
-							else if (tblNo > 1564){//黄色飞龙
+							else if (tblNo > 1564){//黃色飛龍
 								tblNo -= 1101;
 							}
 							else if (tblNo > 1516){
 								tblNo -= 1055;
 							}
-							else if (tblNo == 1516){//修正乌力王
+							else if (tblNo == 1516){//修正烏力王
 								tblNo = 455;
 							}
 							else if (tblNo > 1509){
@@ -13117,31 +13117,31 @@ void MenuProc(void)
 								tblNo -= (333 + 56);
 							}
 #elif defined(__ALBUM_46)
-							if( tblNo > 1800 ){					//小恶魔
+							if( tblNo > 1800 ){					//小惡魔
 								tblNo -= 1208;
-							}else if( tblNo > 1755 ){					//间隔南瓜魔王后的 狐猴
+							}else if( tblNo > 1755 ){					//間隔南瓜魔王後的 狐猴
 								tblNo -= 1201 ;
-							}else if (tblNo > 1739 ){			//飞蛇
+							}else if (tblNo > 1739 ){			//飛蛇
 								tblNo -= 1200;
-							}else if (tblNo > 1686 ){			//8.0宠物
+							}else if (tblNo > 1686 ){			//8.0寵物
 								tblNo -= 1175;
-							}else if (tblNo > 1641 ){			//鸡年兽4 甲虫2	8.0第一次整合测试
+							}else if (tblNo > 1641 ){			//雞年獸4 甲蟲2	8.0第一次整閤測試
 								tblNo -= 1167;
 							}else if (tblNo > 1635 ){   //麒麟
 								tblNo -= 1148;
-							}else if ( tblNo > 1634 ){	//猫女1 猫女2
+							}else if ( tblNo > 1634 ){	//貓女1 貓女2
 								tblNo -= 1149;
-							}else if ( tblNo > 1628 ){	//火蚁1 火蚁2 牛人1 牛人2
+							}else if ( tblNo > 1628 ){	//火蟻1 火蟻2 牛人1 牛人2
 								tblNo -= 1147;
-							}else if( tblNo > 1615 ){//布里萨尔 蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑乌力王 狮人1 狮人2 灰人熔 白狼 布伊酷
+							}else if( tblNo > 1615 ){//布裏薩爾 蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑烏力王 獅人1 獅人2 灰人熔 白狼 布伊酷
 								tblNo -= 1145;
-							}else if( tblNo > 1568 ){//机人龙
+							}else if( tblNo > 1568 ){//機人龍
 								tblNo -= 1103;
-							}else if( tblNo > 1564 ){//黄色飞龙
+							}else if( tblNo > 1564 ){//黃色飛龍
 								tblNo -= 1101;
 							}else if( tblNo > 1516 ){
 								tblNo -= 1055;
-							}else if ( tblNo == 1516 ){//修正乌力王
+							}else if ( tblNo == 1516 ){//修正烏力王
 								tblNo = 455 ;
 							}else if ( tblNo > 1509 ){
 								tblNo -= 1054;
@@ -13189,31 +13189,31 @@ void MenuProc(void)
 								tblNo -= (333+56);
 							}
 #elif defined(__ALBUM_45)
-							if( tblNo > 1800 ){					//小恶魔
+							if( tblNo > 1800 ){					//小惡魔
 								tblNo -= 1208;
-							}else if( tblNo > 1755 ){					//间隔南瓜魔王后的 狐猴
+							}else if( tblNo > 1755 ){					//間隔南瓜魔王後的 狐猴
 								tblNo -= 1201 ;
-							}else if (tblNo > 1739 ){			//飞蛇
+							}else if (tblNo > 1739 ){			//飛蛇
 								tblNo -= 1200;
-							}else if (tblNo > 1686 ){			//8.0宠物
+							}else if (tblNo > 1686 ){			//8.0寵物
 								tblNo -= 1175;
-							}else if (tblNo > 1641 ){			//鸡年兽4 甲虫2	8.0第一次整合测试
+							}else if (tblNo > 1641 ){			//雞年獸4 甲蟲2	8.0第一次整閤測試
 								tblNo -= 1167;
 							}else if (tblNo > 1635 ){   //麒麟
 								tblNo -= 1148;
-							}else if ( tblNo > 1634 ){	//猫女1 猫女2
+							}else if ( tblNo > 1634 ){	//貓女1 貓女2
 								tblNo -= 1149;
-							}else if ( tblNo > 1628 ){	//火蚁1 火蚁2 牛人1 牛人2
+							}else if ( tblNo > 1628 ){	//火蟻1 火蟻2 牛人1 牛人2
 								tblNo -= 1147;
-							}else if( tblNo > 1615 ){//布里萨尔 蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑乌力王 狮人1 狮人2 灰人熔 白狼 布伊酷
+							}else if( tblNo > 1615 ){//布裏薩爾 蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑烏力王 獅人1 獅人2 灰人熔 白狼 布伊酷
 								tblNo -= 1145;
-							}else if( tblNo > 1568 ){//机人龙
+							}else if( tblNo > 1568 ){//機人龍
 								tblNo -= 1103;
-							}else if( tblNo > 1564 ){//黄色飞龙
+							}else if( tblNo > 1564 ){//黃色飛龍
 								tblNo -= 1101;
 							}else if( tblNo > 1516 ){
 								tblNo -= 1055;
-							}else if ( tblNo == 1516 ){//修正乌力王
+							}else if ( tblNo == 1516 ){//修正烏力王
 								tblNo = 455 ;
 							}else if ( tblNo > 1509 ){
 								tblNo -= 1054;
@@ -13261,31 +13261,31 @@ void MenuProc(void)
 								tblNo -= (333+56);
 							}
 #elif defined(__ALBUM_44)
-							if( tblNo > 1800 ){					//小恶魔
+							if( tblNo > 1800 ){					//小惡魔
 								tblNo -= 1208;
-							}else if( tblNo > 1755 ){					//间隔南瓜魔王后的 狐猴
+							}else if( tblNo > 1755 ){					//間隔南瓜魔王後的 狐猴
 								tblNo -= 1201 ;
-							}else if (tblNo > 1739 ){			//飞蛇
+							}else if (tblNo > 1739 ){			//飛蛇
 								tblNo -= 1200;
-							}else if (tblNo > 1686 ){			//8.0宠物
+							}else if (tblNo > 1686 ){			//8.0寵物
 								tblNo -= 1175;
-							}else if (tblNo > 1641 ){			//鸡年兽4 甲虫2	8.0第一次整合测试
+							}else if (tblNo > 1641 ){			//雞年獸4 甲蟲2	8.0第一次整閤測試
 								tblNo -= 1167;
 							}else if (tblNo > 1635 ){   //麒麟
 								tblNo -= 1148;
-							}else if ( tblNo > 1634 ){	//猫女1 猫女2
+							}else if ( tblNo > 1634 ){	//貓女1 貓女2
 								tblNo -= 1149;
-							}else if ( tblNo > 1628 ){	//火蚁1 火蚁2 牛人1 牛人2
+							}else if ( tblNo > 1628 ){	//火蟻1 火蟻2 牛人1 牛人2
 								tblNo -= 1147;
-							}else if( tblNo > 1615 ){//布里萨尔 蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑乌力王 狮人1 狮人2 灰人熔 白狼 布伊酷
+							}else if( tblNo > 1615 ){//布裏薩爾 蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑烏力王 獅人1 獅人2 灰人熔 白狼 布伊酷
 								tblNo -= 1145;
-							}else if( tblNo > 1568 ){//机人龙
+							}else if( tblNo > 1568 ){//機人龍
 								tblNo -= 1103;
-							}else if( tblNo > 1564 ){//黄色飞龙
+							}else if( tblNo > 1564 ){//黃色飛龍
 								tblNo -= 1101;
 							}else if( tblNo > 1516 ){
 								tblNo -= 1055;
-							}else if ( tblNo == 1516 ){//修正乌力王
+							}else if ( tblNo == 1516 ){//修正烏力王
 								tblNo = 455 ;
 							}else if ( tblNo > 1509 ){
 								tblNo -= 1054;
@@ -13333,31 +13333,31 @@ void MenuProc(void)
 								tblNo -= (333+56);
 							}
 #elif defined(__ALBUM_43)
-							if( tblNo > 1800 ){					//小恶魔
+							if( tblNo > 1800 ){					//小惡魔
 								tblNo -= 1208;
-							}else if( tblNo > 1755 ){					//间隔南瓜魔王后的 狐猴
+							}else if( tblNo > 1755 ){					//間隔南瓜魔王後的 狐猴
 								tblNo -= 1201 ;
-							}else if (tblNo > 1739 ){			//飞蛇
+							}else if (tblNo > 1739 ){			//飛蛇
 								tblNo -= 1200;
-							}else if (tblNo > 1686 ){			//8.0宠物
+							}else if (tblNo > 1686 ){			//8.0寵物
 								tblNo -= 1175;
-							}else if (tblNo > 1641 ){			//鸡年兽4 甲虫2	8.0第一次整合测试
+							}else if (tblNo > 1641 ){			//雞年獸4 甲蟲2	8.0第一次整閤測試
 								tblNo -= 1167;
 							}else if (tblNo > 1635 ){   //麒麟
 								tblNo -= 1148;
-							}else if ( tblNo > 1634 ){	//猫女1 猫女2
+							}else if ( tblNo > 1634 ){	//貓女1 貓女2
 								tblNo -= 1149;
-							}else if ( tblNo > 1628 ){	//火蚁1 火蚁2 牛人1 牛人2
+							}else if ( tblNo > 1628 ){	//火蟻1 火蟻2 牛人1 牛人2
 								tblNo -= 1147;
-							}else if( tblNo > 1615 ){//布里萨尔 蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑乌力王 狮人1 狮人2 灰人熔 白狼 布伊酷
+							}else if( tblNo > 1615 ){//布裏薩爾 蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑烏力王 獅人1 獅人2 灰人熔 白狼 布伊酷
 								tblNo -= 1145;
-							}else if( tblNo > 1568 ){//机人龙
+							}else if( tblNo > 1568 ){//機人龍
 								tblNo -= 1103;
-							}else if( tblNo > 1564 ){//黄色飞龙
+							}else if( tblNo > 1564 ){//黃色飛龍
 								tblNo -= 1101;
 							}else if( tblNo > 1516 ){
 								tblNo -= 1055;
-							}else if ( tblNo == 1516 ){//修正乌力王
+							}else if ( tblNo == 1516 ){//修正烏力王
 								tblNo = 455 ;
 							}else if ( tblNo > 1509 ){
 								tblNo -= 1054;
@@ -13405,31 +13405,31 @@ void MenuProc(void)
 								tblNo -= (333+56);
 							}
 #elif defined(__ALBUM_42)
-							if( tblNo > 1800 ){					//小恶魔
+							if( tblNo > 1800 ){					//小惡魔
 								tblNo -= 1208;
-							}else if( tblNo > 1755 ){					//间隔南瓜魔王后的 狐猴
+							}else if( tblNo > 1755 ){					//間隔南瓜魔王後的 狐猴
 								tblNo -= 1201 ;
-							}else if (tblNo > 1739 ){			//飞蛇
+							}else if (tblNo > 1739 ){			//飛蛇
 								tblNo -= 1200;
-							}else if (tblNo > 1686 ){			//8.0宠物
+							}else if (tblNo > 1686 ){			//8.0寵物
 								tblNo -= 1175;
-							}else if (tblNo > 1641 ){			//鸡年兽4 甲虫2	8.0第一次整合测试
+							}else if (tblNo > 1641 ){			//雞年獸4 甲蟲2	8.0第一次整閤測試
 								tblNo -= 1167;
 							}else if (tblNo > 1635 ){   //麒麟
 								tblNo -= 1148;
-							}else if ( tblNo > 1634 ){	//猫女1 猫女2
+							}else if ( tblNo > 1634 ){	//貓女1 貓女2
 								tblNo -= 1149;
-							}else if ( tblNo > 1628 ){	//火蚁1 火蚁2 牛人1 牛人2
+							}else if ( tblNo > 1628 ){	//火蟻1 火蟻2 牛人1 牛人2
 								tblNo -= 1147;
-							}else if( tblNo > 1615 ){//布里萨尔 蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑乌力王 狮人1 狮人2 灰人熔 白狼 布伊酷
+							}else if( tblNo > 1615 ){//布裏薩爾 蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑烏力王 獅人1 獅人2 灰人熔 白狼 布伊酷
 								tblNo -= 1145;
-							}else if( tblNo > 1568 ){//机人龙
+							}else if( tblNo > 1568 ){//機人龍
 								tblNo -= 1103;
-							}else if( tblNo > 1564 ){//黄色飞龙
+							}else if( tblNo > 1564 ){//黃色飛龍
 								tblNo -= 1101;
 							}else if( tblNo > 1516 ){
 								tblNo -= 1055;
-							}else if ( tblNo == 1516 ){//修正乌力王
+							}else if ( tblNo == 1516 ){//修正烏力王
 								tblNo = 455 ;
 							}else if ( tblNo > 1509 ){
 								tblNo -= 1054;
@@ -13477,31 +13477,31 @@ void MenuProc(void)
 								tblNo -= (333+56);
 							}
 #elif defined(__ALBUM_41)
-							if( tblNo > 1800 ){					//小恶魔
+							if( tblNo > 1800 ){					//小惡魔
 								tblNo -= 1208;
-							}else if( tblNo > 1755 ){					//间隔南瓜魔王后的 狐猴
+							}else if( tblNo > 1755 ){					//間隔南瓜魔王後的 狐猴
 								tblNo -= 1201 ;
-							}else if (tblNo > 1739 ){			//飞蛇
+							}else if (tblNo > 1739 ){			//飛蛇
 								tblNo -= 1200;
-							}else if (tblNo > 1686 ){			//8.0宠物
+							}else if (tblNo > 1686 ){			//8.0寵物
 								tblNo -= 1175;
-							}else if (tblNo > 1641 ){			//鸡年兽4 甲虫2	8.0第一次整合测试
+							}else if (tblNo > 1641 ){			//雞年獸4 甲蟲2	8.0第一次整閤測試
 								tblNo -= 1167;
 							}else if (tblNo > 1635 ){   //麒麟
 								tblNo -= 1148;
-							}else if ( tblNo > 1634 ){	//猫女1 猫女2
+							}else if ( tblNo > 1634 ){	//貓女1 貓女2
 								tblNo -= 1149;
-							}else if ( tblNo > 1628 ){	//火蚁1 火蚁2 牛人1 牛人2
+							}else if ( tblNo > 1628 ){	//火蟻1 火蟻2 牛人1 牛人2
 								tblNo -= 1147;
-							}else if( tblNo > 1615 ){//布里萨尔 蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑乌力王 狮人1 狮人2 灰人熔 白狼 布伊酷
+							}else if( tblNo > 1615 ){//布裏薩爾 蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑烏力王 獅人1 獅人2 灰人熔 白狼 布伊酷
 								tblNo -= 1145;
-							}else if( tblNo > 1568 ){//机人龙
+							}else if( tblNo > 1568 ){//機人龍
 								tblNo -= 1103;
-							}else if( tblNo > 1564 ){//黄色飞龙
+							}else if( tblNo > 1564 ){//黃色飛龍
 								tblNo -= 1101;
 							}else if( tblNo > 1516 ){
 								tblNo -= 1055;
-							}else if ( tblNo == 1516 ){//修正乌力王
+							}else if ( tblNo == 1516 ){//修正烏力王
 								tblNo = 455 ;
 							}else if ( tblNo > 1509 ){
 								tblNo -= 1054;
@@ -13549,31 +13549,31 @@ void MenuProc(void)
 								tblNo -= (333+56);
 							}
 #elif defined(__ALBUM_40)
-							if( tblNo > 1800 ){					//小恶魔
+							if( tblNo > 1800 ){					//小惡魔
 								tblNo -= 1208;
-							}else if( tblNo > 1755 ){					//间隔南瓜魔王后的 狐猴
+							}else if( tblNo > 1755 ){					//間隔南瓜魔王後的 狐猴
 								tblNo -= 1201 ;
-							}else if (tblNo > 1739 ){			//飞蛇
+							}else if (tblNo > 1739 ){			//飛蛇
 								tblNo -= 1200;
-							}else if (tblNo > 1686 ){			//8.0宠物
+							}else if (tblNo > 1686 ){			//8.0寵物
 								tblNo -= 1175;
-							}else if (tblNo > 1641 ){			//鸡年兽4 甲虫2	8.0第一次整合测试
+							}else if (tblNo > 1641 ){			//雞年獸4 甲蟲2	8.0第一次整閤測試
 								tblNo -= 1167;
 							}else if (tblNo > 1635 ){   //麒麟
 								tblNo -= 1148;
-							}else if ( tblNo > 1634 ){	//猫女1 猫女2
+							}else if ( tblNo > 1634 ){	//貓女1 貓女2
 								tblNo -= 1149;
-							}else if ( tblNo > 1628 ){	//火蚁1 火蚁2 牛人1 牛人2
+							}else if ( tblNo > 1628 ){	//火蟻1 火蟻2 牛人1 牛人2
 								tblNo -= 1147;
-							}else if( tblNo > 1615 ){//布里萨尔 蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑乌力王 狮人1 狮人2 灰人熔 白狼 布伊酷
+							}else if( tblNo > 1615 ){//布裏薩爾 蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑烏力王 獅人1 獅人2 灰人熔 白狼 布伊酷
 								tblNo -= 1145;
-							}else if( tblNo > 1568 ){//机人龙
+							}else if( tblNo > 1568 ){//機人龍
 								tblNo -= 1103;
-							}else if( tblNo > 1564 ){//黄色飞龙
+							}else if( tblNo > 1564 ){//黃色飛龍
 								tblNo -= 1101;
 							}else if( tblNo > 1516 ){
 								tblNo -= 1055;
-							}else if ( tblNo == 1516 ){//修正乌力王
+							}else if ( tblNo == 1516 ){//修正烏力王
 								tblNo = 455 ;
 							}else if ( tblNo > 1509 ){
 								tblNo -= 1054;
@@ -13621,31 +13621,31 @@ void MenuProc(void)
 								tblNo -= (333+56);
 							}
 #elif defined(__ALBUM_39)
-							if( tblNo > 1800 ){					//小恶魔
+							if( tblNo > 1800 ){					//小惡魔
 								tblNo -= 1208;
-							}else if( tblNo > 1755 ){					//间隔南瓜魔王后的 狐猴
+							}else if( tblNo > 1755 ){					//間隔南瓜魔王後的 狐猴
 								tblNo -= 1201 ;
-							}else if (tblNo > 1739 ){			//飞蛇
+							}else if (tblNo > 1739 ){			//飛蛇
 								tblNo -= 1200;
-							}else if (tblNo > 1686 ){			//8.0宠物
+							}else if (tblNo > 1686 ){			//8.0寵物
 								tblNo -= 1175;
-							}else if (tblNo > 1641 ){			//鸡年兽4 甲虫2	8.0第一次整合测试
+							}else if (tblNo > 1641 ){			//雞年獸4 甲蟲2	8.0第一次整閤測試
 								tblNo -= 1167;
 							}else if (tblNo > 1635 ){   //麒麟
 								tblNo -= 1148;
-							}else if ( tblNo > 1634 ){	//猫女1 猫女2
+							}else if ( tblNo > 1634 ){	//貓女1 貓女2
 								tblNo -= 1149;
-							}else if ( tblNo > 1628 ){	//火蚁1 火蚁2 牛人1 牛人2
+							}else if ( tblNo > 1628 ){	//火蟻1 火蟻2 牛人1 牛人2
 								tblNo -= 1147;
-							}else if( tblNo > 1615 ){//布里萨尔 蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑乌力王 狮人1 狮人2 灰人熔 白狼 布伊酷
+							}else if( tblNo > 1615 ){//布裏薩爾 蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑烏力王 獅人1 獅人2 灰人熔 白狼 布伊酷
 								tblNo -= 1145;
-							}else if( tblNo > 1568 ){//机人龙
+							}else if( tblNo > 1568 ){//機人龍
 								tblNo -= 1103;
-							}else if( tblNo > 1564 ){//黄色飞龙
+							}else if( tblNo > 1564 ){//黃色飛龍
 								tblNo -= 1101;
 							}else if( tblNo > 1516 ){
 								tblNo -= 1055;
-							}else if ( tblNo == 1516 ){//修正乌力王
+							}else if ( tblNo == 1516 ){//修正烏力王
 								tblNo = 455 ;
 							}else if ( tblNo > 1509 ){
 								tblNo -= 1054;
@@ -13693,29 +13693,29 @@ void MenuProc(void)
 								tblNo -= (333+56);
 							}
 #elif defined(__ALBUM_38)
-							if( tblNo > 1755 ){					//间隔南瓜魔王后的 狐猴
+							if( tblNo > 1755 ){					//間隔南瓜魔王後的 狐猴
 								tblNo -= 1201 ;
-							}else if (tblNo > 1739 ){			//飞蛇
+							}else if (tblNo > 1739 ){			//飛蛇
 								tblNo -= 1200;
-							}else if (tblNo > 1686 ){			//8.0宠物
+							}else if (tblNo > 1686 ){			//8.0寵物
 								tblNo -= 1175;
-							}else if (tblNo > 1641 ){			//鸡年兽4 甲虫2	8.0第一次整合测试
+							}else if (tblNo > 1641 ){			//雞年獸4 甲蟲2	8.0第一次整閤測試
 								tblNo -= 1167;
 							}else if (tblNo > 1635 ){   //麒麟
 								tblNo -= 1148;
-							}else if ( tblNo > 1634 ){	//猫女1 猫女2
+							}else if ( tblNo > 1634 ){	//貓女1 貓女2
 								tblNo -= 1149;
-							}else if ( tblNo > 1628 ){	//火蚁1 火蚁2 牛人1 牛人2
+							}else if ( tblNo > 1628 ){	//火蟻1 火蟻2 牛人1 牛人2
 								tblNo -= 1147;
-							}else if( tblNo > 1615 ){//布里萨尔 蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑乌力王 狮人1 狮人2 灰人熔 白狼 布伊酷
+							}else if( tblNo > 1615 ){//布裏薩爾 蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑烏力王 獅人1 獅人2 灰人熔 白狼 布伊酷
 								tblNo -= 1145;
-							}else if( tblNo > 1568 ){//机人龙
+							}else if( tblNo > 1568 ){//機人龍
 								tblNo -= 1103;
-							}else if( tblNo > 1564 ){//黄色飞龙
+							}else if( tblNo > 1564 ){//黃色飛龍
 								tblNo -= 1101;
 							}else if( tblNo > 1516 ){
 								tblNo -= 1055;
-							}else if ( tblNo == 1516 ){//修正乌力王
+							}else if ( tblNo == 1516 ){//修正烏力王
 								tblNo = 455 ;
 							}else if ( tblNo > 1509 ){
 								tblNo -= 1054;
@@ -13763,27 +13763,27 @@ void MenuProc(void)
 								tblNo -= (333+56);
 							}
 #elif defined(__ALBUM_37)
-							if (tblNo > 1739 ){			//飞蛇
+							if (tblNo > 1739 ){			//飛蛇
 								tblNo -= 1200;
-							}else if (tblNo > 1686 ){			//8.0宠物
+							}else if (tblNo > 1686 ){			//8.0寵物
 								tblNo -= 1175;
-							}else if (tblNo > 1641 ){			//鸡年兽4 甲虫2	8.0第一次整合测试
+							}else if (tblNo > 1641 ){			//雞年獸4 甲蟲2	8.0第一次整閤測試
 								tblNo -= 1167;
 							}else if (tblNo > 1635 ){   //麒麟
 								tblNo -= 1148;
-							}else if ( tblNo > 1634 ){	//猫女1 猫女2
+							}else if ( tblNo > 1634 ){	//貓女1 貓女2
 								tblNo -= 1149;
-							}else if ( tblNo > 1628 ){	//火蚁1 火蚁2 牛人1 牛人2
+							}else if ( tblNo > 1628 ){	//火蟻1 火蟻2 牛人1 牛人2
 								tblNo -= 1147;
-							}else if( tblNo > 1615 ){//布里萨尔 蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑乌力王 狮人1 狮人2 灰人熔 白狼 布伊酷
+							}else if( tblNo > 1615 ){//布裏薩爾 蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑烏力王 獅人1 獅人2 灰人熔 白狼 布伊酷
 								tblNo -= 1145;
-							}else if( tblNo > 1568 ){//机人龙
+							}else if( tblNo > 1568 ){//機人龍
 								tblNo -= 1103;
-							}else if( tblNo > 1564 ){//黄色飞龙
+							}else if( tblNo > 1564 ){//黃色飛龍
 								tblNo -= 1101;
 							}else if( tblNo > 1516 ){
 								tblNo -= 1055;
-							}else if ( tblNo == 1516 ){//修正乌力王
+							}else if ( tblNo == 1516 ){//修正烏力王
 								tblNo = 455 ;
 							}else if ( tblNo > 1509 ){
 								tblNo -= 1054;
@@ -13831,25 +13831,25 @@ void MenuProc(void)
 								tblNo -= (333+56);
 							}
 #elif defined(__ALBUM_36)
-							if (tblNo > 1686 ){			//鸡年兽4 甲虫2	8.0第一次整合测试
+							if (tblNo > 1686 ){			//雞年獸4 甲蟲2	8.0第一次整閤測試
 								tblNo -= 1175;
-							}else if (tblNo > 1641 ){			//鸡年兽4 甲虫2	8.0第一次整合测试
+							}else if (tblNo > 1641 ){			//雞年獸4 甲蟲2	8.0第一次整閤測試
 								tblNo -= 1167;
 							}else if (tblNo > 1635 ){   //麒麟
 								tblNo -= 1148;
-							}else if ( tblNo > 1634 ){	//猫女1 猫女2
+							}else if ( tblNo > 1634 ){	//貓女1 貓女2
 								tblNo -= 1149;
-							}else if ( tblNo > 1628 ){	//火蚁1 火蚁2 牛人1 牛人2
+							}else if ( tblNo > 1628 ){	//火蟻1 火蟻2 牛人1 牛人2
 								tblNo -= 1147;
-							}else if( tblNo > 1615 ){//布里萨尔 蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑乌力王 狮人1 狮人2 灰人熔 白狼 布伊酷
+							}else if( tblNo > 1615 ){//布裏薩爾 蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑烏力王 獅人1 獅人2 灰人熔 白狼 布伊酷
 								tblNo -= 1145;
-							}else if( tblNo > 1568 ){//机人龙
+							}else if( tblNo > 1568 ){//機人龍
 								tblNo -= 1103;
-							}else if( tblNo > 1564 ){//黄色飞龙
+							}else if( tblNo > 1564 ){//黃色飛龍
 								tblNo -= 1101;
 							}else if( tblNo > 1516 ){
 								tblNo -= 1055;
-							}else if ( tblNo == 1516 ){//修正乌力王
+							}else if ( tblNo == 1516 ){//修正烏力王
 								tblNo = 455 ;
 							}else if ( tblNo > 1509 ){
 								tblNo -= 1054;
@@ -13897,23 +13897,23 @@ void MenuProc(void)
 								tblNo -= (333+56);
 							}
 #elif defined(__ALBUM_35)
-							if (tblNo > 1641 ){			//鸡年兽4 甲虫2	8.0第一次整合测试
+							if (tblNo > 1641 ){			//雞年獸4 甲蟲2	8.0第一次整閤測試
 								tblNo -= 1167;
 							}else if (tblNo > 1635 ){   //麒麟
 								tblNo -= 1148;
-							}else if ( tblNo > 1634 ){	//猫女1 猫女2
+							}else if ( tblNo > 1634 ){	//貓女1 貓女2
 								tblNo -= 1149;
-							}else if ( tblNo > 1628 ){	//火蚁1 火蚁2 牛人1 牛人2
+							}else if ( tblNo > 1628 ){	//火蟻1 火蟻2 牛人1 牛人2
 								tblNo -= 1147;
-							}else if( tblNo > 1615 ){//布里萨尔 蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑乌力王 狮人1 狮人2 灰人熔 白狼 布伊酷
+							}else if( tblNo > 1615 ){//布裏薩爾 蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑烏力王 獅人1 獅人2 灰人熔 白狼 布伊酷
 								tblNo -= 1145;
-							}else if( tblNo > 1568 ){//机人龙
+							}else if( tblNo > 1568 ){//機人龍
 								tblNo -= 1103;
-							}else if( tblNo > 1564 ){//黄色飞龙
+							}else if( tblNo > 1564 ){//黃色飛龍
 								tblNo -= 1101;
 							}else if( tblNo > 1516 ){
 								tblNo -= 1055;
-							}else if ( tblNo == 1516 ){//修正乌力王
+							}else if ( tblNo == 1516 ){//修正烏力王
 								tblNo = 455 ;
 							}else if ( tblNo > 1509 ){
 								tblNo -= 1054;
@@ -13962,23 +13962,23 @@ void MenuProc(void)
 							}
 
 #elif defined(__ALBUM_34)
-							if (tblNo > 1639 ){			//鸡年兽4
+							if (tblNo > 1639 ){			//雞年獸4
 								tblNo -= 1167;
 							}else if (tblNo > 1635 ){   //麒麟
 								tblNo -= 1148;
-							}else if ( tblNo > 1634 ){	//猫女1 猫女2
+							}else if ( tblNo > 1634 ){	//貓女1 貓女2
 								tblNo -= 1149;
-							}else if ( tblNo > 1628 ){	//火蚁1 火蚁2 牛人1 牛人2
+							}else if ( tblNo > 1628 ){	//火蟻1 火蟻2 牛人1 牛人2
 								tblNo -= 1147;
-							}else if( tblNo > 1615 ){//布里萨尔 蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑乌力王 狮人1 狮人2 灰人熔 白狼 布伊酷
+							}else if( tblNo > 1615 ){//布裏薩爾 蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑烏力王 獅人1 獅人2 灰人熔 白狼 布伊酷
 								tblNo -= 1145;
-							}else if( tblNo > 1568 ){//机人龙
+							}else if( tblNo > 1568 ){//機人龍
 								tblNo -= 1103;
-							}else if( tblNo > 1564 ){//黄色飞龙
+							}else if( tblNo > 1564 ){//黃色飛龍
 								tblNo -= 1101;
 							}else if( tblNo > 1516 ){
 								tblNo -= 1055;
-							}else if ( tblNo == 1516 ){//修正乌力王
+							}else if ( tblNo == 1516 ){//修正烏力王
 								tblNo = 455 ;
 							}else if ( tblNo > 1509 ){
 								tblNo -= 1054;
@@ -14028,19 +14028,19 @@ void MenuProc(void)
 #elif defined(__ALBUM_33)
 							if (tblNo > 1635 ){
 								tblNo -= 1148;
-							}else if ( tblNo > 1634 ){	//猫女1 猫女2 麒麟
+							}else if ( tblNo > 1634 ){	//貓女1 貓女2 麒麟
 								tblNo -= 1149;
-							}else if ( tblNo > 1628 ){	//火蚁1 火蚁2 牛人1 牛人2
+							}else if ( tblNo > 1628 ){	//火蟻1 火蟻2 牛人1 牛人2
 								tblNo -= 1147;
-							}else if( tblNo > 1615 ){//布里萨尔 蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑乌力王 狮人1 狮人2 灰人熔 白狼 布伊酷
+							}else if( tblNo > 1615 ){//布裏薩爾 蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑烏力王 獅人1 獅人2 灰人熔 白狼 布伊酷
 								tblNo -= 1145;
-							}else if( tblNo > 1568 ){//机人龙
+							}else if( tblNo > 1568 ){//機人龍
 								tblNo -= 1103;
-							}else if( tblNo > 1564 ){//黄色飞龙
+							}else if( tblNo > 1564 ){//黃色飛龍
 								tblNo -= 1101;
 							}else if( tblNo > 1516 ){
 								tblNo -= 1055;
-							}else if ( tblNo == 1516 ){//修正乌力王
+							}else if ( tblNo == 1516 ){//修正烏力王
 								tblNo = 455 ;
 							}else if ( tblNo > 1509 ){
 								tblNo -= 1054;
@@ -14088,19 +14088,19 @@ void MenuProc(void)
 								tblNo -= (333+56);
 							}
 #elif defined(__ALBUM_32)
-							if ( tblNo > 1634 ){	//猫女1 猫女2
+							if ( tblNo > 1634 ){	//貓女1 貓女2
 								tblNo -= 1149;
-							}else if ( tblNo > 1628 ){	//火蚁1 火蚁2 牛人1 牛人2
+							}else if ( tblNo > 1628 ){	//火蟻1 火蟻2 牛人1 牛人2
 								tblNo -= 1147;
-							}else if( tblNo > 1615 ){//布里萨尔 蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑乌力王 狮人1 狮人2 灰人熔 白狼 布伊酷
+							}else if( tblNo > 1615 ){//布裏薩爾 蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑烏力王 獅人1 獅人2 灰人熔 白狼 布伊酷
 								tblNo -= 1145;
-							}else if( tblNo > 1568 ){//机人龙
+							}else if( tblNo > 1568 ){//機人龍
 								tblNo -= 1103;
-							}else if( tblNo > 1564 ){//黄色飞龙
+							}else if( tblNo > 1564 ){//黃色飛龍
 								tblNo -= 1101;
 							}else if( tblNo > 1516 ){
 								tblNo -= 1055;
-							}else if ( tblNo == 1516 ){//修正乌力王
+							}else if ( tblNo == 1516 ){//修正烏力王
 								tblNo = 455 ;
 							}else if ( tblNo > 1509 ){
 								tblNo -= 1054;
@@ -14148,17 +14148,17 @@ void MenuProc(void)
 								tblNo -= (333+56);
 							}
 #elif defined(__ALBUM_31)
-							if ( tblNo > 1628 ){	//火蚁1 火蚁2 牛人1 牛人2
+							if ( tblNo > 1628 ){	//火蟻1 火蟻2 牛人1 牛人2
 								tblNo -= 1147;
-							}else if( tblNo > 1615 ){//布里萨尔 蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑乌力王 狮人1 狮人2 灰人熔 白狼 布伊酷
+							}else if( tblNo > 1615 ){//布裏薩爾 蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑烏力王 獅人1 獅人2 灰人熔 白狼 布伊酷
 								tblNo -= 1145;
-							}else if( tblNo > 1568 ){//机人龙
+							}else if( tblNo > 1568 ){//機人龍
 								tblNo -= 1103;
-							}else if( tblNo > 1564 ){//黄色飞龙
+							}else if( tblNo > 1564 ){//黃色飛龍
 								tblNo -= 1101;
 							}else if( tblNo > 1516 ){
 								tblNo -= 1055;
-							}else if ( tblNo == 1516 ){//修正乌力王
+							}else if ( tblNo == 1516 ){//修正烏力王
 								tblNo = 455 ;
 							}else if ( tblNo > 1509 ){
 								tblNo -= 1054;
@@ -14206,15 +14206,15 @@ void MenuProc(void)
 								tblNo -= (333+56);
 							}
 #elif defined(__ALBUM_30)
-							if( tblNo > 1615 ){//布里萨尔 蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑乌力王 狮人1 狮人2 灰人熔 白狼 布伊酷
+							if( tblNo > 1615 ){//布裏薩爾 蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑烏力王 獅人1 獅人2 灰人熔 白狼 布伊酷
 								tblNo -= 1145;
-							}else if( tblNo > 1568 ){//机人龙
+							}else if( tblNo > 1568 ){//機人龍
 								tblNo -= 1103;
-							}else if( tblNo > 1564 ){//黄色飞龙
+							}else if( tblNo > 1564 ){//黃色飛龍
 								tblNo -= 1101;
 							}else if( tblNo > 1516 ){
 								tblNo -= 1055;
-							}else if ( tblNo == 1516 ){//修正乌力王
+							}else if ( tblNo == 1516 ){//修正烏力王
 								tblNo = 455 ;
 							}else if ( tblNo > 1509 ){
 								tblNo -= 1054;
@@ -14262,15 +14262,15 @@ void MenuProc(void)
 								tblNo -= (333+56);
 							}
 #elif defined(__ALBUM_29)
-							if( tblNo > 1615 ){//布里萨尔 蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑乌力王 狮人1 狮人2 灰人熔 白狼
+							if( tblNo > 1615 ){//布裏薩爾 蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑烏力王 獅人1 獅人2 灰人熔 白狼
 								tblNo -= 1145;
-							}else if( tblNo > 1568 ){//机人龙
+							}else if( tblNo > 1568 ){//機人龍
 								tblNo -= 1103;
-							}else if( tblNo > 1564 ){//黄色飞龙
+							}else if( tblNo > 1564 ){//黃色飛龍
 								tblNo -= 1101;
 							}else if( tblNo > 1516 ){
 								tblNo -= 1055;
-							}else if ( tblNo == 1516 ){//修正乌力王
+							}else if ( tblNo == 1516 ){//修正烏力王
 								tblNo = 455 ;
 							}else if ( tblNo > 1509 ){
 								tblNo -= 1054;
@@ -14319,15 +14319,15 @@ void MenuProc(void)
 							}
 
 #elif defined(__ALBUM_28)
-							if( tblNo > 1615 ){//布里萨尔 蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑乌力王 狮人1 狮人2 灰人熔
+							if( tblNo > 1615 ){//布裏薩爾 蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑烏力王 獅人1 獅人2 灰人熔
 								tblNo -= 1145;
-							}else if( tblNo > 1568 ){//机人龙
+							}else if( tblNo > 1568 ){//機人龍
 								tblNo -= 1103;
-							}else if( tblNo > 1564 ){//黄色飞龙
+							}else if( tblNo > 1564 ){//黃色飛龍
 								tblNo -= 1101;
 							}else if( tblNo > 1516 ){
 								tblNo -= 1055;
-							}else if ( tblNo == 1516 ){//修正乌力王
+							}else if ( tblNo == 1516 ){//修正烏力王
 								tblNo = 455 ;
 							}else if ( tblNo > 1509 ){
 								tblNo -= 1054;
@@ -14376,15 +14376,15 @@ void MenuProc(void)
 							}
 
 #elif defined(__ALBUM_27)
-							if( tblNo > 1615 ){//布里萨尔 蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑乌力王 狮人1 狮人2
+							if( tblNo > 1615 ){//布裏薩爾 蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑烏力王 獅人1 獅人2
 								tblNo -= 1145;
-							}else if( tblNo > 1568 ){//机人龙
+							}else if( tblNo > 1568 ){//機人龍
 								tblNo -= 1103;
-							}else if( tblNo > 1564 ){//黄色飞龙
+							}else if( tblNo > 1564 ){//黃色飛龍
 								tblNo -= 1101;
 							}else if( tblNo > 1516 ){
 								tblNo -= 1055;
-							}else if ( tblNo == 1516 ){//修正乌力王
+							}else if ( tblNo == 1516 ){//修正烏力王
 								tblNo = 455 ;
 							}else if ( tblNo > 1509 ){
 								tblNo -= 1054;
@@ -14433,15 +14433,15 @@ void MenuProc(void)
 							}
 
 #elif defined(__ALBUM_26)
-							if( tblNo > 1615 ){//布里萨尔 蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑乌力王
+							if( tblNo > 1615 ){//布裏薩爾 蜜蜂1 蜜蜂2 蝴蝶1 蝴蝶2 暗黑烏力王
 								tblNo -= 1145;
-							}else if( tblNo > 1568 ){//机人龙
+							}else if( tblNo > 1568 ){//機人龍
 								tblNo -= 1103;
-							}else if( tblNo > 1564 ){//黄色飞龙
+							}else if( tblNo > 1564 ){//黃色飛龍
 								tblNo -= 1101;
 							}else if( tblNo > 1516 ){
 								tblNo -= 1055;
-							}else if ( tblNo == 1516 ){//修正乌力王
+							}else if ( tblNo == 1516 ){//修正烏力王
 								tblNo = 455 ;
 							}else if ( tblNo > 1509 ){
 								tblNo -= 1054;
@@ -14490,15 +14490,15 @@ void MenuProc(void)
 							}
 
 #elif defined(__ALBUM_25)
-							if( tblNo > 1615 ){//布里萨尔
+							if( tblNo > 1615 ){//布裏薩爾
 								tblNo -= 1145;
-							}else if( tblNo > 1568 ){//机人龙
+							}else if( tblNo > 1568 ){//機人龍
 								tblNo -= 1103;
-							}else if( tblNo > 1564 ){//黄色飞龙
+							}else if( tblNo > 1564 ){//黃色飛龍
 								tblNo -= 1101;
 							}else if( tblNo > 1516 ){
 								tblNo -= 1055;
-							}else if ( tblNo == 1516 ){//修正乌力王
+							}else if ( tblNo == 1516 ){//修正烏力王
 								tblNo = 455 ;
 							}else if ( tblNo > 1509 ){
 								tblNo -= 1054;
@@ -14547,13 +14547,13 @@ void MenuProc(void)
 							}
 
 #elif defined(__ALBUM_24)
-							if( tblNo > 1568 ){//机人龙
+							if( tblNo > 1568 ){//機人龍
 								tblNo -= 1103;
-							}else if( tblNo > 1564 ){//黄色飞龙
+							}else if( tblNo > 1564 ){//黃色飛龍
 								tblNo -= 1101;
 							}else if( tblNo > 1516 ){
 								tblNo -= 1055;
-							}else if ( tblNo == 1516 ){//修正乌力王
+							}else if ( tblNo == 1516 ){//修正烏力王
 								tblNo = 455 ;
 							}else if ( tblNo > 1509 ){
 								tblNo -= 1054;
@@ -14605,7 +14605,7 @@ void MenuProc(void)
 								tblNo -= 1057;
 							}else if( tblNo > 1516 ){
 								tblNo -= 1055;
-							}else if ( tblNo == 1516 ){//修正乌力王
+							}else if ( tblNo == 1516 ){//修正烏力王
 								tblNo = 455 ;
 							}else if ( tblNo > 1509 ){
 								tblNo -= 1054;
@@ -14654,7 +14654,7 @@ void MenuProc(void)
 							}
 
 #elif defined(__ALBUM_22)
-							if ( tblNo == 1516 ){//修正乌力王
+							if ( tblNo == 1516 ){//修正烏力王
 								tblNo = 455 ;
 							}else if ( tblNo > 1509 ){
 								tblNo -= 1054;
@@ -15039,8 +15039,8 @@ void MenuProc(void)
 									// ???
 									play_se(220, 320, 240);
 #ifdef _STONDEBUG_		
-									sprintf_s( moji,"图形编号很奇怪 %d",pet[ petStatusNo ].graNo );
-									MessageBoxNew( hWnd, moji, "确定", MB_OK | MB_ICONSTOP );
+									sprintf_s( moji,"圖形編號很奇怪 %d",pet[ petStatusNo ].graNo );
+									MessageBoxNew( hWnd, moji, "確定", MB_OK | MB_ICONSTOP );
 #endif
 									//	}
 								}
@@ -15049,8 +15049,8 @@ void MenuProc(void)
 								// ???
 								play_se(220, 320, 240);
 #ifdef _STONDEBUG_		
-								sprintf_s( moji,"宠物的table编号很奇怪 %d",tblNo );
-								MessageBoxNew( hWnd, moji, "确定", MB_OK | MB_ICONSTOP );
+								sprintf_s( moji,"寵物的table編號很奇怪 %d",tblNo );
+								MessageBoxNew( hWnd, moji, "確定", MB_OK | MB_ICONSTOP );
 #endif
 							}
 #endif
@@ -15084,60 +15084,60 @@ void MenuProc(void)
 							int blessNoid;
 							if (pet[petStatusNo].blesshp != 2){
 								blessNoid = StockDispBuffer(x + 140, y + 128, DISP_PRIO_IME3, 55258, 2);
-								if (HitDispNo == blessNoid) ShowBottomLineString(FONT_PAL_WHITE, "宠物祝福。");
+								if (HitDispNo == blessNoid) ShowBottomLineString(FONT_PAL_WHITE, "寵物祝福。");
 								if ((mouse.state & MOUSE_LEFT_CRICK && HitDispNo == blessNoid)){
-									祝福窗口选中 = 1;
-									if (!祝福窗口开关)
+									祝福窗口選中 = 1;
+									if (!祝福窗口開關)
 										lssproto_petbless_send(sockfd, petStatusNo, -1);
-									祝福窗口开关 = TRUE;
+									祝福窗口開關 = TRUE;
 								}
 							}
 							if (pet[petStatusNo].blessatk != 2){
 								blessNoid = StockDispBuffer(x + 92, y + 150, DISP_PRIO_IME3, 55258, 2);
-								if (HitDispNo == blessNoid) ShowBottomLineString(FONT_PAL_WHITE, "宠物祝福。");
+								if (HitDispNo == blessNoid) ShowBottomLineString(FONT_PAL_WHITE, "寵物祝福。");
 								if ((mouse.state & MOUSE_LEFT_CRICK && HitDispNo == blessNoid)){
 
-									祝福窗口选中 = 2;
-									if (!祝福窗口开关)
+									祝福窗口選中 = 2;
+									if (!祝福窗口開關)
 										lssproto_petbless_send(sockfd, petStatusNo, -2);
-									祝福窗口开关 = TRUE;
+									祝福窗口開關 = TRUE;
 
 								}
 							}
 							if (pet[petStatusNo].blessdef != 2){
 								blessNoid = StockDispBuffer(x + 92, y + 175, DISP_PRIO_IME3, 55258, 2);
-								if (HitDispNo == blessNoid) ShowBottomLineString(FONT_PAL_WHITE, "宠物祝福。");
+								if (HitDispNo == blessNoid) ShowBottomLineString(FONT_PAL_WHITE, "寵物祝福。");
 								if ((mouse.state & MOUSE_LEFT_CRICK && HitDispNo == blessNoid)){
 
-									祝福窗口选中 = 3;
-									if (!祝福窗口开关)
+									祝福窗口選中 = 3;
+									if (!祝福窗口開關)
 										lssproto_petbless_send(sockfd, petStatusNo, -3);
-									祝福窗口开关 = TRUE;
+									祝福窗口開關 = TRUE;
 								}
 							}
 							if (pet[petStatusNo].blessquick != 2){
 								blessNoid = StockDispBuffer(x + 92, y + 200, DISP_PRIO_IME3, 55258, 2);
-								if (HitDispNo == blessNoid) ShowBottomLineString(FONT_PAL_WHITE, "宠物祝福。");
+								if (HitDispNo == blessNoid) ShowBottomLineString(FONT_PAL_WHITE, "寵物祝福。");
 								if ((mouse.state & MOUSE_LEFT_CRICK && HitDispNo == blessNoid)){
 
-									祝福窗口选中 = 4;
-									if (!祝福窗口开关)
+									祝福窗口選中 = 4;
+									if (!祝福窗口開關)
 										lssproto_petbless_send(sockfd, petStatusNo, -4);
-									祝福窗口开关 = TRUE;
+									祝福窗口開關 = TRUE;
 								}
 							}
-							if (祝福窗口开关){
+							if (祝福窗口開關){
 								StockDispBuffer(x + 115, y + 345, DISP_PRIO_MENU, 55259, 1);
-								StockFontBuffer(x - 10, y + 325, FONT_PRIO_FRONT, 0, 祝福窗口内容, 0);
+								StockFontBuffer(x - 10, y + 325, FONT_PRIO_FRONT, 0, 祝福窗口內容, 0);
 								blessNoid = StockDispBuffer(x + 65, y + 367, DISP_PRIO_IME3, 55233, 2);
 								if ((mouse.state & MOUSE_LEFT_CRICK && HitDispNo == blessNoid)){
-									if (祝福窗口开关) lssproto_petbless_send(sockfd, petStatusNo, 祝福窗口选中);
-									祝福窗口开关 = FALSE;
+									if (祝福窗口開關) lssproto_petbless_send(sockfd, petStatusNo, 祝福窗口選中);
+									祝福窗口開關 = FALSE;
 
 								}
 								blessNoid = StockDispBuffer(x + 165, y + 367, DISP_PRIO_IME3, 55235, 2);
 								if ((mouse.state & MOUSE_LEFT_CRICK && HitDispNo == blessNoid)){
-									祝福窗口开关 = FALSE;
+									祝福窗口開關 = FALSE;
 								}
 							}
 						}
@@ -15145,13 +15145,13 @@ void MenuProc(void)
 #endif
 #ifdef _PETCOM_
 						extern void ShowBottomLineString(int iColor, LPSTR lpstr);
-						static int 宠算图片索引 = 0;
-						static int 宠算窗口按钮ID = 0;
-						宠算窗口按钮ID = StockDispBuffer(x + 193, y + 5, DISP_PRIO_IME3, CG_PETCOM_CHANGE_BTN + 宠算图片索引, 2);
-						if (HitDispNo == 宠算窗口按钮ID)
-							ShowBottomLineString(FONT_PAL_WHITE, "宠物成长计算。");
-						if ((mouse.state & MOUSE_LEFT_CRICK && HitDispNo == 宠算窗口按钮ID)){
-							宠算图片索引 = 1;
+						static int 寵算圖片索引 = 0;
+						static int 寵算窗口按鈕ID = 0;
+						寵算窗口按鈕ID = StockDispBuffer(x + 193, y + 5, DISP_PRIO_IME3, CG_PETCOM_CHANGE_BTN + 寵算圖片索引, 2);
+						if (HitDispNo == 寵算窗口按鈕ID)
+							ShowBottomLineString(FONT_PAL_WHITE, "寵物成長計算。");
+						if ((mouse.state & MOUSE_LEFT_CRICK && HitDispNo == 寵算窗口按鈕ID)){
+							寵算圖片索引 = 1;
 							if (mouse.onceState & MOUSE_LEFT_CRICK){
 								petWndNo = 4;
 								DeathAction(pActMenuWnd);
@@ -15165,7 +15165,7 @@ void MenuProc(void)
 							}
 						}
 						else{
-							宠算图片索引 = 0;
+							寵算圖片索引 = 0;
 						}
 #endif
 
@@ -15175,7 +15175,7 @@ void MenuProc(void)
 							CenteringStr(pet[petStatusNo].name, moji, PET_NAME_LEN);
 						StockFontBuffer(x - 7, y, FONT_PRIO_FRONT, 0, moji, 0); y += 24;
 #ifdef _SHOWPETTRN_
-						sprintf(moji, "[%d转]", pet[petStatusNo].trn);
+						sprintf(moji, "[%d轉]", pet[petStatusNo].trn);
 						StockFontBuffer(x + 108, y - 24, FONT_PRIO_FRONT, 5, moji, 0);
 #endif
 						petWndFontNo[3] = StockDispBuffer(x + 66, y + 7, DISP_PRIO_IME3, CG_NAME_CHANGE_BTN + petWndBtnFlag[3], 2);
@@ -15715,19 +15715,19 @@ void MenuProc(void)
 			else{
 				if (pActMenuWnd->hp > 0){
 					StockDispBuffer(((WINDOW_DISP *)pActMenuWnd->pYobi)->mx, ((WINDOW_DISP *)pActMenuWnd->pYobi)->my, DISP_PRIO_MENU, CG_PETCOM_WND, 1);
-					int 按钮ID = StockDispBuffer(pActMenuWnd->x + 190, pActMenuWnd->y + 300, DISP_PRIO_IME3, CG_RETURN_BTN, 2);
-					if ((mouse.onceState & MOUSE_LEFT_CRICK) && (HitDispNo == 按钮ID)){
+					int 按鈕ID = StockDispBuffer(pActMenuWnd->x + 190, pActMenuWnd->y + 300, DISP_PRIO_IME3, CG_RETURN_BTN, 2);
+					if ((mouse.onceState & MOUSE_LEFT_CRICK) && (HitDispNo == 按鈕ID)){
 						DeathAction(pActMenuWnd);
 						pActMenuWnd = NULL;
 						petWndNo = 1;
 						play_se(203, 320, 240);
 						break;
 					}
-					static int 宠算左按钮索引 = 0;
-					static int 宠算右按钮索引 = 0;
-					按钮ID = StockDispBuffer(pActMenuWnd->x + 60, pActMenuWnd->y + 300, DISP_PRIO_IME3, CG_PREV_BTN + 宠算左按钮索引, 2);
-					if ((mouse.state & MOUSE_LEFT_CRICK && HitDispNo == 按钮ID)){
-						宠算左按钮索引 = 1;
+					static int 寵算左按鈕索引 = 0;
+					static int 寵算右按鈕索引 = 0;
+					按鈕ID = StockDispBuffer(pActMenuWnd->x + 60, pActMenuWnd->y + 300, DISP_PRIO_IME3, CG_PREV_BTN + 寵算左按鈕索引, 2);
+					if ((mouse.state & MOUSE_LEFT_CRICK && HitDispNo == 按鈕ID)){
+						寵算左按鈕索引 = 1;
 						if (mouse.onceState & MOUSE_LEFT_CRICK){
 							while (1){
 								petStatusNo--;
@@ -15738,11 +15738,11 @@ void MenuProc(void)
 						}
 					}
 					else{
-						宠算左按钮索引 = 0;
+						寵算左按鈕索引 = 0;
 					}
-					按钮ID = StockDispBuffer(pActMenuWnd->x + 104, pActMenuWnd->y + 300, DISP_PRIO_IME3, CG_NEXT_BTN + 宠算右按钮索引, 2);
-					if ((mouse.state & MOUSE_LEFT_CRICK && HitDispNo == 按钮ID)){
-						宠算右按钮索引 = 1;
+					按鈕ID = StockDispBuffer(pActMenuWnd->x + 104, pActMenuWnd->y + 300, DISP_PRIO_IME3, CG_NEXT_BTN + 寵算右按鈕索引, 2);
+					if ((mouse.state & MOUSE_LEFT_CRICK && HitDispNo == 按鈕ID)){
+						寵算右按鈕索引 = 1;
 						if (mouse.onceState & MOUSE_LEFT_CRICK){
 							while (1){
 								petStatusNo++;
@@ -15754,7 +15754,7 @@ void MenuProc(void)
 						}
 					}
 					else{
-						宠算右按钮索引 = 0;
+						寵算右按鈕索引 = 0;
 					}
 #define _PETCMOX 10
 					if (pet[petStatusNo].freeName[0] != NULL)
@@ -15860,7 +15860,7 @@ void MenuProc(void)
 	//? ??????????? *******************************************************/
 	if (MenuToggleFlag & JOY_CTRL_I){
 		int x1 = 0, y1 = 0;
-#ifdef _NEWPANEL //Syu ADD 7.0 新人物状态介面
+#ifdef _NEWPANEL //Syu ADD 7.0 新人物狀態介麵
 		SkillWndflag = false ; 
 		/*		if( pActMenuWnd3 != NULL ) {
 					DeathAction ( pActMenuWnd3 ) ; 
@@ -15872,7 +15872,7 @@ void MenuProc(void)
 #ifdef _NPC_DANCE
 		if (pc.iDanceMode)
 		{
-			StockChatBufferLine("特殊状态无法使用道具", FONT_PAL_RED);
+			StockChatBufferLine("特殊狀態無法使用道具", FONT_PAL_RED);
 			MenuToggleFlag ^= JOY_CTRL_I;
 			itemWndNo = 3;
 		}
@@ -15886,16 +15886,16 @@ void MenuProc(void)
 #ifndef _PET_ITEM
 				pActMenuWnd2 = MakeWindowDisp(365, 4, 271, 440, 0, -1);
 #ifdef _NEW_ITEM_
-				道具栏页数 = 0;
+				道具欄頁數 = 0;
 #endif
 #ifdef _MAGIC_ITEM_
-				道具光环Act=NULL;
+				道具光環Act=NULL;
 #endif
 				InitItem(pActMenuWnd2->x, pActMenuWnd2->y, 0);
 #else
 				pActMenuWnd2 = MakeWindowDisp(351, 4, 271, 440, 0, -1);
 #ifdef _NEW_ITEM_
-				道具栏页数 = 0;
+				道具欄頁數 = 0;
 #endif
 				pActMenuWnd2->x += 14;
 				((WINDOW_DISP*)pActMenuWnd2->pYobi)->mx = 271 / 2 + pActMenuWnd2->x;
@@ -15911,7 +15911,7 @@ void MenuProc(void)
 					MenuToggleFlag &= ~JOY_CTRL_E;
 					DeathMenuAction();
 				}
-#ifdef _MONEYINPUT //Syu ADD 手动输入金钱量
+#ifdef _MONEYINPUT //Syu ADD 手動輸入金錢量
 				MymoneyBuffer.buffer[0] = NULL;
 				MymoneyBuffer.cnt = 0;
 				MymoneyBuffer.cursor = 0;
@@ -15928,7 +15928,7 @@ void MenuProc(void)
 
 				for (i = 0; i < MAX_PET; i++)
 				{
-					// 有这只宠
+					// 有這隻寵
 					if (pet[i].useFlag)
 					{
 						nSelectPet = i;
@@ -15939,16 +15939,16 @@ void MenuProc(void)
 			}
 			else
 			{
-				//andy_log 装备栏位修改处
+				//andy_log 裝備欄位修改處
 				if (pActMenuWnd2->hp > 0)
 				{
 #ifdef _PET_ITEM
-					// 检查是否按下了道具视窗左边的标签
+					// 檢查是否按下瞭道具視窗左邊的標簽
 					x1 = pActMenuWnd2->x - 21;
 					y1 = pActMenuWnd2->y + 12;
 					if (g_bPetItemWndFlag)
 					{
-						if (MakeHitBox(x1, y1, x1 + 23, y1 + 60, DISP_PRIO_IME3) == TRUE)	// 按下了人物装备
+						if (MakeHitBox(x1, y1, x1 + 23, y1 + 60, DISP_PRIO_IME3) == TRUE)	// 按下瞭人物裝備
 						if (mouse.onceState & MOUSE_LEFT_CRICK)
 						{
 							g_bPetItemWndFlag = false;
@@ -15957,7 +15957,7 @@ void MenuProc(void)
 					}
 					else
 					{
-						if (MakeHitBox(x1, y1 + 78, x1 + 23, y1 + 142, DISP_PRIO_IME3) == TRUE)	// 按下了宠物装备
+						if (MakeHitBox(x1, y1 + 78, x1 + 23, y1 + 142, DISP_PRIO_IME3) == TRUE)	// 按下瞭寵物裝備
 						if (mouse.onceState & MOUSE_LEFT_CRICK)
 						{
 							g_bPetItemWndFlag = true;
@@ -15978,9 +15978,9 @@ void MenuProc(void)
 #endif
 #endif
 
-#ifdef _MONEYINPUT //Syu ADD 手动输入金钱量
+#ifdef _MONEYINPUT //Syu ADD 手動輸入金錢量
 #ifdef _PET_ITEM
-					if (!g_bPetItemWndFlag)	// 人物装备栏才要显示以下的东西
+					if (!g_bPetItemWndFlag)	// 人物裝備欄纔要顯示以下的東西
 #endif
 					{
 						x1 = pActMenuWnd2->x + 175;
@@ -16014,11 +16014,11 @@ void MenuProc(void)
 					// ????????
 					if (mouse.onceState & MOUSE_LEFT_CRICK)
 					{
-						// 按下关闭钮
+						// 按下關閉鈕
 						if (HitDispNo == itemWndFontNo[0]){
 #ifdef _MAGIC_ITEM_
-							if(道具光环Act) DeathAction(道具光环Act);
-							道具光环Act=NULL;
+							if(道具光環Act) DeathAction(道具光環Act);
+							道具光環Act=NULL;
 							extern void ClearMagicItemWin();
 							ClearMagicItemWin();
 #endif
@@ -16042,16 +16042,16 @@ void MenuProc(void)
 							// ????????
 							play_se(203, 320, 240);
 							itemNo = -1;
-#ifdef _MONEYINPUT //Syu ADD 手动输入金钱量
+#ifdef _MONEYINPUT //Syu ADD 手動輸入金錢量
 							GetKeyInputFocus(&MyChatBuffer);
 							Moneyflag = false;
 #endif
 						}
-						// 按了咒术
+						// 按瞭咒術
 						if (HitDispNo == itemWndFontNo[1]){
 							itemWndNo = 1;
 							DeathAction(pActMenuWnd2);
-#ifdef _MONEYINPUT //Syu ADD 手动输入金钱量
+#ifdef _MONEYINPUT //Syu ADD 手動輸入金錢量
 							GetKeyInputFocus(&MyChatBuffer);
 							Moneyflag = false;
 #endif
@@ -16092,10 +16092,10 @@ void MenuProc(void)
 							}
 						}
 #ifdef _PET_ITEM
-						// 目前处在宠物装备视窗
+						// 目前處在寵物裝備視窗
 						if (g_bPetItemWndFlag)
 						{
-							// 按下了左箭头
+							// 按下瞭左箭頭
 							if (HitDispNo == itemWndFontNo[5])
 							{
 								if (nSelectPet != -1)
@@ -16111,7 +16111,7 @@ void MenuProc(void)
 									while (!pet[nSelectPet].useFlag);
 								}
 							}
-							// 按下了右箭头
+							// 按下瞭右箭頭
 							if (HitDispNo == itemWndFontNo[6])
 							{
 								if (nSelectPet != -1)
@@ -16149,7 +16149,7 @@ void MenuProc(void)
 							else
 								old_lssproto_DG_send(sockfd, nowGx, nowGy, itemWndDropGold);
 							itemWndDropGold = 0;
-#ifdef _MONEYINPUT //Syu ADD 手动输入金钱量
+#ifdef _MONEYINPUT //Syu ADD 手動輸入金錢量
 							Moneyflag = false;
 #endif
 
@@ -16166,7 +16166,7 @@ void MenuProc(void)
 						}
 						// ??????
 						if (itemWndBtnFlag[3] == TRUE){
-#ifdef _MONEYINPUT //Syu ADD 手动输入金钱量
+#ifdef _MONEYINPUT //Syu ADD 手動輸入金錢量
 							GetKeyInputFocus(&MyChatBuffer);
 							Moneyflag = false;
 #endif
@@ -16231,7 +16231,7 @@ void MenuProc(void)
 						// ??????
 						if (itemWndBtnFlag[4] == TRUE){
 							// ????
-#ifdef _MONEYINPUT //Syu ADD 手动输入金钱量
+#ifdef _MONEYINPUT //Syu ADD 手動輸入金錢量
 							GetKeyInputFocus(&MyChatBuffer);
 							Moneyflag = false;
 #endif
@@ -16287,15 +16287,15 @@ void MenuProc(void)
 					if (pActMenuWnd2 != NULL)
 					{
 #ifdef _NEW_ITEM_
-						//道具栏页数
+						//道具欄頁數
 						for (i = 0; i < 3; i++){
-							if (i == 道具栏页数){
+							if (i == 道具欄頁數){
 								StockDispBuffer(513, 188 + i * 56, DISP_PRIO_IME3, 55113 + i, 1);
 							}
 							else{
 								BOOL flg = FALSE;
 								if (i){
-									if (pc.道具栏状态 & 1 << i){
+									if (pc.道具欄狀態 & 1 << i){
 										flg = TRUE;
 									}
 								}
@@ -16304,9 +16304,9 @@ void MenuProc(void)
 									StockDispBuffer(518, 188 + i * 56, DISP_PRIO_IME3, 55110 + i, 1);
 									if (MakeHitBox(508, 160 + i * 56, 508 + 20, 157 + i * 56 + 60, DISP_PRIO_IME4)){
 										if (mouse.onceState & MOUSE_LEFT_CRICK){
-											道具栏页数 = i;
+											道具欄頁數 = i;
 										}
-										if (mouse.itemNo != -1) 道具栏页数 = i;
+										if (mouse.itemNo != -1) 道具欄頁數 = i;
 									}
 								}
 								else StockDispBuffer(518, 188 + i * 56, DISP_PRIO_IME3, 55107 + i, 1);
@@ -16325,21 +16325,21 @@ void MenuProc(void)
 						for (i = MAX_ITEM - 1; i >= 0; i--)
 						{
 #ifdef _NEW_ITEM_
-							int 道具起始 = MAX_ITEMSTART + MAX_MAXHAVEITEM*道具栏页数;
-							int 道具结束 = 道具起始 + MAX_MAXHAVEITEM;
+							int 道具起始 = MAX_ITEMSTART + MAX_MAXHAVEITEM*道具欄頁數;
+							int 道具結束 = 道具起始 + MAX_MAXHAVEITEM;
 							if (i >= MAX_ITEMSTART){
-								if (i < 道具起始 || i >= 道具结束) continue;
+								if (i < 道具起始 || i >= 道具結束) continue;
 							}
 #endif
 #ifdef _MAGIC_ITEM_
-							if(pc.道具光环效果 > 100000){
-								if(道具光环Act==NULL){
-									道具光环Act = MakeAnimDisp(ItemBuffer[i].defX, ItemBuffer[i].defY,pc.道具光环效果, 0);
+							if(pc.道具光環效果 > 100000){
+								if(道具光環Act==NULL){
+									道具光環Act = MakeAnimDisp(ItemBuffer[i].defX, ItemBuffer[i].defY,pc.道具光環效果, 0);
 								}
 							}
 #endif
 #ifdef _PET_ITEM
-							// 当显示宠物道具栏时,宠物身上的装备只显示七个,多的就跳过不处理
+							// 當顯示寵物道具欄時,寵物身上的裝備隻顯示七個,多的就跳過不處理
 							if (g_bPetItemWndFlag && (i >= PET_EQUIPNUM && i < MAX_ITEMSTART))
 								continue;
 #endif
@@ -16359,7 +16359,7 @@ void MenuProc(void)
 								ItemBuffer[i].defX + 26, ItemBuffer[i].defY + 23, DISP_PRIO_IME3) == TRUE)
 							{
 #ifdef _PET_ITEM
-								// 处理显示宠物装备
+								// 處理顯示寵物裝備
 								if (g_bPetItemWndFlag && (i >= PET_HEAD && i < PET_EQUIPNUM) && nSelectPet > -1)
 								{
 									if (pet[nSelectPet].item[i].useFlag == TRUE && (ItemBuffer[i].mixFlag <= 2 || ItemBuffer[i].mixFlag == 10))
@@ -16370,15 +16370,15 @@ void MenuProc(void)
 
 										StockFontBuffer(pActMenuWnd2->x + 16, pActMenuWnd2->y + 331, FONT_PRIO_FRONT, color, pet[nSelectPet].item[i].name, 0);
 
-										// 显示物品耐久度
+										// 顯示物品耐久度
 										sprintf_s(damage_msg, "耐久度(%s)", pet[nSelectPet].item[i].damage);
 										StockFontBuffer(pActMenuWnd2->x + 150, pActMenuWnd2->y + 331, FONT_PRIO_FRONT, color, damage_msg, 0);
 
 #ifdef	_NPC_ITEMUP
-										ShowItemup(pet[nSelectPet].item[i].itemup,mouse.nowPoint.x,mouse.nowPoint.y);// 显示物品升级状态	
+										ShowItemup(pet[nSelectPet].item[i].itemup,mouse.nowPoint.x,mouse.nowPoint.y);// 顯示物品升級狀態	
 #endif									
 #ifdef _ITEM_COUNTDOWN
-										ShowCounttime(pet[nSelectPet].item[i].counttime,mouse.nowPoint.x,mouse.nowPoint.y);// 显示物品倒数计时状态	
+										ShowCounttime(pet[nSelectPet].item[i].counttime,mouse.nowPoint.x,mouse.nowPoint.y);// 顯示物品倒數計時狀態	
 #endif
 										while (1)
 										{
@@ -16409,7 +16409,7 @@ void MenuProc(void)
 									}
 								}
 								else
-									// 人物装备
+									// 人物裝備
 #endif
 								{
 #ifdef _ALCHEMIST
@@ -16424,16 +16424,16 @@ void MenuProc(void)
 										StockFontBuffer(pActMenuWnd2->x + 16, pActMenuWnd2->y + 331, FONT_PRIO_FRONT, color, pc.item[i].name, 0);
 										{
 
-											// 显示物品耐久度
+											// 顯示物品耐久度
 											char damage_msg[256];
 											sprintf_s(damage_msg, "耐久度(%s)", pc.item[i].damage);
 											StockFontBuffer(pActMenuWnd2->x + 150, pActMenuWnd2->y + 331, FONT_PRIO_FRONT, color, damage_msg, 0);
 										}
 #ifdef	_NPC_ITEMUP
-										ShowItemup(pc.item[i].itemup, mouse.nowPoint.x, mouse.nowPoint.y);// 显示物品升级状态	
+										ShowItemup(pc.item[i].itemup, mouse.nowPoint.x, mouse.nowPoint.y);// 顯示物品升級狀態	
 #endif
 #ifdef _ITEM_COUNTDOWN
-										ShowCounttime(pc.item[i].counttime, mouse.nowPoint.x, mouse.nowPoint.y);// 显示物品倒数计时状态	
+										ShowCounttime(pc.item[i].counttime, mouse.nowPoint.x, mouse.nowPoint.y);// 顯示物品倒數計時狀態	
 #endif
 										while (1){
 											if (strlen(splitPoint) > 28){
@@ -16497,8 +16497,8 @@ void MenuProc(void)
 												{
 													if (nSelectPet > -1 && !(mouse.itemNo >= CHAR_EQUIPPLACENUM && i >= CHAR_EQUIPPLACENUM))
 													{
-														if (i < CHAR_EQUIPPLACENUM && nSelectPet == pc.ridePetNo)	// 若是要装上去,检查是不是骑宠
-															StockChatBufferLine("骑宠不可装装备！", FONT_PAL_YELLOW);
+														if (i < CHAR_EQUIPPLACENUM && nSelectPet == pc.ridePetNo)	// 若是要裝上去,檢查是不是騎寵
+															StockChatBufferLine("騎寵不可裝裝備！", FONT_PAL_YELLOW);
 														else
 															lssproto_PetItemEquip_send(sockfd, nowGx, nowGy, nSelectPet, mouse.itemNo, i);
 													}
@@ -16528,7 +16528,7 @@ void MenuProc(void)
 									{
 										ItemUseTime = TimeGetTime();
 #ifdef _PET_ITEM
-										// 若目前是在人物装备栏且想装备宠物装备时,自动切到宠物装备栏
+										// 若目前是在人物裝備欄且想裝備寵物裝備時,自動切到寵物裝備欄
 										if (!g_bPetItemWndFlag)
 										{
 											if (pc.item[i].useFlag && pc.item[i].type >= ITEM_PET_HEAD && pc.item[i].type < ITEM_CATEGORYNUM)
@@ -16538,7 +16538,7 @@ void MenuProc(void)
 												break;
 											}
 										}
-										// 若目前是在宠物装备栏且想装备人物装备时,自动切到人物装备栏
+										// 若目前是在寵物裝備欄且想裝備人物裝備時,自動切到人物裝備欄
 										else
 										{
 											if (pc.item[i].useFlag && pc.item[i].type < ITEM_PET_HEAD && i >= MAX_ITEMSTART)
@@ -16559,7 +16559,7 @@ void MenuProc(void)
 												if (eventWarpSendFlag == FALSE){
 #ifdef _ITEM_JIGSAW
 													if (strlen(pc.item[i].jigsaw)){
-														if (pc.item[i].graNo >= 25151 && pc.item[i].graNo <= 25159 //底版道具图
+														if (pc.item[i].graNo >= 25151 && pc.item[i].graNo <= 25159 //底版道具圖
 															&& strcmp(pc.item[i].jigsaw, "111111111")
 															|| pc.item[i].graNo == 25150){
 															SetJigsaw(pc.item[i].graNo, pc.item[i].jigsaw);
@@ -16589,9 +16589,9 @@ void MenuProc(void)
 														else{
 															if (!DrawJigsawFlag){
 																if (pc.item[i].graNo >= 25151 && pc.item[i].graNo <= 25159)
-																	StockChatBufferLine("请先开启大拼图底版", FONT_PAL_YELLOW);
+																	StockChatBufferLine("請先開啓大拼圖底版", FONT_PAL_YELLOW);
 																else
-																	StockChatBufferLine("请先开启小拼图底版", FONT_PAL_YELLOW);
+																	StockChatBufferLine("請先開啓小拼圖底版", FONT_PAL_YELLOW);
 																break;
 															}
 															if (statusWndNo == 4 && CheckJigsaw(pc.item[i].graNo))
@@ -16602,10 +16602,10 @@ void MenuProc(void)
 													if (CheckJigsaw(pc.item[i].graNo)){
 														if (!DrawJigsawFlag){
 															if (pc.item[i].graNo >= 25151 && pc.item[i].graNo <= 25159){
-																StockChatBufferLine("请先开启大拼图底版", FONT_PAL_YELLOW);
+																StockChatBufferLine("請先開啓大拼圖底版", FONT_PAL_YELLOW);
 															}
 															else{
-																StockChatBufferLine("请先开启小拼图底版", FONT_PAL_YELLOW);
+																StockChatBufferLine("請先開啓小拼圖底版", FONT_PAL_YELLOW);
 															}
 															break;
 														}
@@ -16649,11 +16649,11 @@ void MenuProc(void)
 											case ITEM_TARGET_PET:
 												if (eventWarpSendFlag == FALSE)
 												{
-													// 若是在已装备的装备上连点二下则不动作
+													// 若是在已裝備的裝備上連點二下則不動作
 													if (i >= PET_HEAD && i < PET_EQUIPNUM)
 														break;
-													if (pc.ridePetNo != -1 && nSelectPet == pc.ridePetNo)	// 检查是不是骑宠
-														StockChatBufferLine("骑宠不可装装备！", FONT_PAL_YELLOW);
+													if (pc.ridePetNo != -1 && nSelectPet == pc.ridePetNo)	// 檢查是不是騎寵
+														StockChatBufferLine("騎寵不可裝裝備！", FONT_PAL_YELLOW);
 													else
 														lssproto_PetItemEquip_send(sockfd, nowGx, nowGy, nSelectPet, i, -1);
 													play_se(212, 320, 240);
@@ -16746,10 +16746,10 @@ void MenuProc(void)
 													}
 #endif
 													else{
-#ifdef _ALCHEMIST // 第一个是否精炼物
+#ifdef _ALCHEMIST // 第一個是否精煉物
 														if (CheckPetSkill(PETSKILL_ALCHEMIST) == TRUE &&
 															pc.item[i].sendFlag & ITEM_FLAG_MIX &&
-															strcmp(pc.item[i].alch, "杂") != NULL){
+															strcmp(pc.item[i].alch, "雜") != NULL){
 															ItemBuffer[i].mixFlag = 9;
 														}
 														else
@@ -16788,7 +16788,7 @@ void MenuProc(void)
 															// ?????
 															play_se(217, 320, 240);
 														}
-#ifdef _ALCHEMIST // 第一个之后的精炼物
+#ifdef _ALCHEMIST // 第一個之後的精煉物
 														else if (flag == 9){
 															if (strcmp(pc.item[i].alch, pc.item[j].alch) == FALSE) {
 																ItemBuffer[i].mixFlag = 9;
@@ -16827,7 +16827,7 @@ void MenuProc(void)
 											}
 											else
 											{
-#ifdef _ALCHEMIST // 取消一个合成物时...
+#ifdef _ALCHEMIST // 取消一個閤成物時...
 												if (ItemBuffer[i].mixFlag == 9) {
 													int k;
 													ItemBuffer[i].mixFlag = 1;
@@ -16968,47 +16968,47 @@ void MenuProc(void)
 
 								}
 							}
-							// 显示合成文字
+							// 顯示閤成文字
 							if (ItemBuffer[i].mixFlag >= TRUE)
 							{
 								// ?????????????
 								if (pc.item[i].useFlag == TRUE){
-									// 普通合成的时候
+									// 普通閤成的時候
 									if (ItemBuffer[i].mixFlag == 1){
-										StockFontBuffer(ItemBuffer[i].defX - 17, ItemBuffer[i].defY, FONT_PRIO_FRONT, 0, "合成", 0);
+										StockFontBuffer(ItemBuffer[i].defX - 17, ItemBuffer[i].defY, FONT_PRIO_FRONT, 0, "閤成", 0);
 									}
 									else
-										// 料理合成的时候
+										// 料理閤成的時候
 									if (ItemBuffer[i].mixFlag == 2){
 										StockFontBuffer(ItemBuffer[i].defX - 17, ItemBuffer[i].defY, FONT_PRIO_FRONT, 0, "料理", 0);
 									}
 #ifdef _ALCHEMIST
 									if (ItemBuffer[i].mixFlag == 9){
-										StockFontBuffer(ItemBuffer[i].defX - 17, ItemBuffer[i].defY, FONT_PRIO_FRONT, 0, "精炼", 0);
+										StockFontBuffer(ItemBuffer[i].defX - 17, ItemBuffer[i].defY, FONT_PRIO_FRONT, 0, "精煉", 0);
 									}
 #endif
 									if (ItemBuffer[i].mixFlag == 10){// PETSKILL_INSLAY ANDY_ADD
 										StockFontBuffer(ItemBuffer[i].defX - 17, ItemBuffer[i].defY, FONT_PRIO_FRONT, 0, "精工", 0);
 									}
 									if (ItemBuffer[i].mixFlag == 11){// PETSKILL_FIXITEM ANDY_ADD
-										StockFontBuffer(ItemBuffer[i].defX - 17, ItemBuffer[i].defY, FONT_PRIO_FRONT, 0, "修复", 0);
+										StockFontBuffer(ItemBuffer[i].defX - 17, ItemBuffer[i].defY, FONT_PRIO_FRONT, 0, "修復", 0);
 									}
 #ifdef _ITEM_INTENSIFY
 									if (ItemBuffer[i].mixFlag == 12){
-										StockFontBuffer(ItemBuffer[i].defX - 17, ItemBuffer[i].defY, FONT_PRIO_FRONT, 0, "强化", 0);
+										StockFontBuffer(ItemBuffer[i].defX - 17, ItemBuffer[i].defY, FONT_PRIO_FRONT, 0, "強化", 0);
 									}
 #endif
 #ifdef _ITEM_UPINSLAY
 									if (ItemBuffer[i].mixFlag == 13){
-										StockFontBuffer(ItemBuffer[i].defX - 17, ItemBuffer[i].defY, FONT_PRIO_FRONT, 0, "凿孔", 0);
+										StockFontBuffer(ItemBuffer[i].defX - 17, ItemBuffer[i].defY, FONT_PRIO_FRONT, 0, "鑿孔", 0);
 									}
 #endif
 #ifdef _MAGIC_ITEM_
 									if (ItemBuffer[i].mixFlag == 14){
-										StockFontBuffer(ItemBuffer[i].defX - 17, ItemBuffer[i].defY, FONT_PRIO_FRONT, 0, "主体", 0);
+										StockFontBuffer(ItemBuffer[i].defX - 17, ItemBuffer[i].defY, FONT_PRIO_FRONT, 0, "主體", 0);
 									}
 									if (ItemBuffer[i].mixFlag == 15){
-										StockFontBuffer(ItemBuffer[i].defX - 17, ItemBuffer[i].defY, FONT_PRIO_FRONT, 0, "宝石", 0);
+										StockFontBuffer(ItemBuffer[i].defX - 17, ItemBuffer[i].defY, FONT_PRIO_FRONT, 0, "寶石", 0);
 									}
 									if (ItemBuffer[i].mixFlag == 16){
 										StockFontBuffer(ItemBuffer[i].defX - 17, ItemBuffer[i].defY, FONT_PRIO_FRONT, 0, "祝福", 0);
@@ -17031,8 +17031,8 @@ void MenuProc(void)
 							if(MagicItemActAddr){
 								if(MagicItemPosState[0]){
 									if(MagicItemCombinData[0]) ItemBuffer[MagicItemCombinData[0]].mixFlag= 0;
-							//		if(mouse.itemNo!=-1 && pc.item[mouse.itemNo].道具类型==25) {
-									if(mouse.itemNo!=-1 && pc.item[mouse.itemNo].道具类型>=0&&pc.item[mouse.itemNo].道具类型<20 && pc.item[mouse.itemNo].道具类型!=16) {
+							//		if(mouse.itemNo!=-1 && pc.item[mouse.itemNo].道具類型==25) {
+									if(mouse.itemNo!=-1 && pc.item[mouse.itemNo].道具類型>=0&&pc.item[mouse.itemNo].道具類型<20 && pc.item[mouse.itemNo].道具類型!=16) {
 										MagicItemCombinData[0] = mouse.itemNo;
 										ItemBuffer[mouse.itemNo].mixFlag=14;
 									}
@@ -17040,7 +17040,7 @@ void MenuProc(void)
 								}
 								else if(MagicItemPosState[1]){
 									if(MagicItemCombinData[1]) ItemBuffer[MagicItemCombinData[1]].mixFlag= 0;
-									if(mouse.itemNo!=-1 && pc.item[mouse.itemNo].道具类型==38){
+									if(mouse.itemNo!=-1 && pc.item[mouse.itemNo].道具類型==38){
 										ItemBuffer[mouse.itemNo].mixFlag=15;
 										MagicItemCombinData[1] = mouse.itemNo;
 									}else MagicItemCombinData[1]=-1;
@@ -17048,7 +17048,7 @@ void MenuProc(void)
 								}
 								else if(MagicItemPosState[2]){
 									if(MagicItemCombinData[2]) ItemBuffer[MagicItemCombinData[2]].mixFlag= 0;
-									if(mouse.itemNo!=-1  && pc.item[mouse.itemNo].道具类型==39) {
+									if(mouse.itemNo!=-1  && pc.item[mouse.itemNo].道具類型==39) {
 										ItemBuffer[mouse.itemNo].mixFlag=16;
 										MagicItemCombinData[2] = mouse.itemNo;
 									}else MagicItemCombinData[2]=-1;
@@ -17109,25 +17109,25 @@ void MenuProc(void)
 						if (pActMenuWnd2 != NULL)
 						{
 #ifdef _DIEJIA_
-							static int 叠加时间 = 0;
-							int 按钮ID = StockDispBuffer(((WINDOW_DISP *)pActMenuWnd2->pYobi)->mx - 60, pActMenuWnd2->y + 422, DISP_PRIO_IME3, 55246, 2);
+							static int 疊加時間 = 0;
+							int 按鈕ID = StockDispBuffer(((WINDOW_DISP *)pActMenuWnd2->pYobi)->mx - 60, pActMenuWnd2->y + 422, DISP_PRIO_IME3, 55246, 2);
 							if (mouse.onceState & MOUSE_LEFT_CRICK){
-								if (HitDispNo == 按钮ID){
-									if (TimeGetTime() > 叠加时间){
-										叠加时间 = TimeGetTime() + 4000;
+								if (HitDispNo == 按鈕ID){
+									if (TimeGetTime() > 疊加時間){
+										疊加時間 = TimeGetTime() + 4000;
 										int itemMax = CHAR_EQUIPPLACENUM + MAX_MAXHAVEITEM;
 #ifdef _NEW_ITEM_
-										if (pc.道具栏状态 & 1 << 1){
+										if (pc.道具欄狀態 & 1 << 1){
 											itemMax += MAX_MAXHAVEITEM;
 										}
-										if (pc.道具栏状态 & 1 << 2){
+										if (pc.道具欄狀態 & 1 << 2){
 											itemMax += MAX_MAXHAVEITEM;
 										}
 #endif
-										chatStrSendForServer("/叠加",0);
+										chatStrSendForServer("/疊加",0);
 									}
 									else{
-										StockChatBufferLine("你点击的太频繁啦！", FONT_PAL_YELLOW);
+										StockChatBufferLine("你點擊的太頻繁啦！", FONT_PAL_YELLOW);
 									}
 								}
 							}
@@ -17142,12 +17142,12 @@ void MenuProc(void)
 							if (g_bPetItemWndFlag)
 							{
 								itemWndFontNo[1] = -2;
-								// 显示左箭头
+								// 顯示左箭頭
 								itemWndFontNo[5] = StockDispBuffer(pActMenuWnd2->x + 188, pActMenuWnd2->y + 142, DISP_PRIO_IME3, 26047, 2);
-								// 显示右箭头
+								// 顯示右箭頭
 								itemWndFontNo[6] = StockDispBuffer(pActMenuWnd2->x + 236, pActMenuWnd2->y + 142, DISP_PRIO_IME3, 26048, 2);
 
-								// 显示宠物资料
+								// 顯示寵物資料
 								if (nSelectPet > -1 && pet[nSelectPet].useFlag)
 								{
 									char szTemp[16];
@@ -17155,7 +17155,7 @@ void MenuProc(void)
 
 									if (wSpecies < 0 || wSpecies >= MAX_PET_SPECIES)
 										wSpecies = MAX_PET_SPECIES;
-									// 显示宠物装备栏的底图
+									// 顯示寵物裝備欄的底圖
 									for (i = 0; i < PET_EQUIPNUM; i++)
 									{
 										if (byShowPetItemBackground[wSpecies] & (1 << i))
@@ -17164,12 +17164,12 @@ void MenuProc(void)
 											StockDispBuffer(ItemBuffer[i].defX, ItemBuffer[i].defY, DISP_PRIO_IME3, nPetItemEquipBmpNumber[i][1], 0);
 									}
 
-									// 显示宠物名称
+									// 顯示寵物名稱
 									if (strlen(pet[nSelectPet].freeName) > 0)
 										StockFontBuffer(pActMenuWnd2->x + 148, pActMenuWnd2->y + 17, FONT_PRIO_FRONT, 0, pet[nSelectPet].freeName, 0);
 									else
 										StockFontBuffer(pActMenuWnd2->x + 148, pActMenuWnd2->y + 17, FONT_PRIO_FRONT, 0, pet[nSelectPet].name, 0);
-									// 显示宠物的属性
+									// 顯示寵物的屬性
 									_itoa_s(pet[nSelectPet].maxHp, szTemp, 10);
 									StockFontBuffer(pActMenuWnd2->x + 222, pActMenuWnd2->y + 40, FONT_PRIO_FRONT, FONT_PAL_WHITE, szTemp, 0);
 									_itoa_s(pet[nSelectPet].atk, szTemp, 10);
@@ -17184,7 +17184,7 @@ void MenuProc(void)
 									nSelectPet = -1;
 									for (i = 0; i < MAX_PET; i++)
 									{
-										// 有这只宠
+										// 有這隻寵
 										if (pet[i].useFlag)
 										{
 											nSelectPet = i;
@@ -17202,7 +17202,7 @@ void MenuProc(void)
 								StockFontBuffer(pActMenuWnd2->x + 32 + 48 * 3 + 16, pActMenuWnd2->y + 87, FONT_PRIO_FRONT, 0, moji, 0);
 								// ?????
 								sprintf_s(moji, "%7d", itemWndDropGold);
-#ifdef _MONEYINPUT //Syu ADD 手动输入金钱量
+#ifdef _MONEYINPUT //Syu ADD 手動輸入金錢量
 								if (Moneyflag == false)
 									StockFontBuffer(pActMenuWnd2->x + 32 + 48 * 3 + 16, pActMenuWnd2->y + 138, FONT_PRIO_FRONT, 0, moji, 0);
 #else
@@ -17364,7 +17364,7 @@ void MenuProc(void)
 						if (HitDispNo == itemWndFontNo[12]){
 							// ??????
 							DeathAction(pActMenuWnd2);
-#ifdef _MONEYINPUT //Syu ADD 手动输入金钱量
+#ifdef _MONEYINPUT //Syu ADD 手動輸入金錢量
 							GetKeyInputFocus(&MyChatBuffer);
 							Moneyflag = false;
 #endif
@@ -17430,7 +17430,7 @@ void MenuProc(void)
 								flag = TRUE;
 							}
 						}
-						if (flag == FALSE) StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "没有咒术", 0);
+						if (flag == FALSE) StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "沒有咒術", 0);
 						// ?????????
 						itemWndFontNo[12] = StockDispBuffer(((WINDOW_DISP *)pActMenuWnd2->pYobi)->mx, pActMenuWnd2->y + 262 + 10, DISP_PRIO_IME3, CG_RETURN_BTN, 2);
 					}
@@ -17471,7 +17471,7 @@ void MenuProc(void)
 									if (magic[jujutuNo].mp > pc.mp - magic[jujutuNo].mp){
 										// ??????
 										DeathAction(pActMenuWnd2);
-#ifdef _MONEYINPUT //Syu ADD 手动输入金钱量
+#ifdef _MONEYINPUT //Syu ADD 手動輸入金錢量
 										GetKeyInputFocus(&MyChatBuffer);
 										Moneyflag = false;
 #endif
@@ -17491,7 +17491,7 @@ void MenuProc(void)
 									play_se(212, 320, 240);
 									// ??????
 									DeathAction(pActMenuWnd2);
-#ifdef _MONEYINPUT //Syu ADD 手动输入金钱量
+#ifdef _MONEYINPUT //Syu ADD 手動輸入金錢量
 									GetKeyInputFocus(&MyChatBuffer);
 									Moneyflag = false;
 #endif
@@ -17513,7 +17513,7 @@ void MenuProc(void)
 						if (HitDispNo == itemWndFontNo[11]){
 							// ??????
 							DeathAction(pActMenuWnd2);
-#ifdef _MONEYINPUT //Syu ADD 手动输入金钱量
+#ifdef _MONEYINPUT //Syu ADD 手動輸入金錢量
 							GetKeyInputFocus(&MyChatBuffer);
 							Moneyflag = false;
 #endif
@@ -17578,7 +17578,7 @@ void MenuProc(void)
 	//? ?????????? *******************************************************/
 
 	if (MenuToggleFlag & JOY_CTRL_M){
-#ifdef _NEWPANEL //Syu ADD 7.0 新人物状态介面
+#ifdef _NEWPANEL //Syu ADD 7.0 新人物狀態介麵
 		SkillWndflag = false;
 #endif
 		// ????????
@@ -17603,7 +17603,7 @@ void MenuProc(void)
 						if (HitDispNo == mapWndFontNo[0]){
 							// ??????
 							DeathAction(pActMenuWnd2);
-#ifdef _MONEYINPUT //Syu ADD 手动输入金钱量
+#ifdef _MONEYINPUT //Syu ADD 手動輸入金錢量
 							GetKeyInputFocus(&MyChatBuffer);
 							Moneyflag = false;
 #endif
@@ -17625,7 +17625,7 @@ void MenuProc(void)
 						StockFontBuffer(pActMenuWnd2->x + 22, pActMenuWnd2->y + 31, FONT_PRIO_FRONT, 0, nowFloorName, 0);
 
 						// ?????????
-						sprintf_s(moji, "东 %3d", nowGx);
+						sprintf_s(moji, "東 %3d", nowGx);
 						StockFontBuffer(x, y, FONT_PRIO_FRONT, FONT_PAL_YELLOW, moji, 0);
 						sprintf_s(moji, "南 %3d", nowGy);
 						StockFontBuffer(x + 73, y, FONT_PRIO_FRONT, FONT_PAL_YELLOW, moji, 0); y += 36;
@@ -17854,16 +17854,16 @@ void MenuProc(void)
 								// ?
 #ifdef _EXTEND_AB
 								if (addressBook[nowNo].useFlag == 2)
-									StockFontBuffer(x + 15, y + 85, FONT_PRIO_FRONT, 5, "精灵使者", 0);
+									StockFontBuffer(x + 15, y + 85, FONT_PRIO_FRONT, 5, "精靈使者", 0);
 								if (addressBook[nowNo].useFlag == 3)
-									StockFontBuffer(x + 15, y + 85, FONT_PRIO_FRONT, 5, "精灵勇者", 0);
+									StockFontBuffer(x + 15, y + 85, FONT_PRIO_FRONT, 5, "精靈勇者", 0);
 #endif
 								StockDispBuffer(x + 44, y + 68, DISP_PRIO_IME3, addressBook[nowNo].graNo, 0);
 								CenteringStr(addressBook[nowNo].name, moji, CHAR_NAME_LEN);
 								mailWndFontNo[i] = StockFontBuffer(x + 80, y + 30, FONT_PRIO_FRONT, 0, moji, 2);
 								sprintf_s(moji, "%3d", addressBook[nowNo].level);
 								StockFontBuffer(x + 104, y + 60, FONT_PRIO_FRONT, 0, moji, 0);
-#ifdef _MAILSHOWPLANET				// (可开放) Syu ADD 显示名片星球
+#ifdef _MAILSHOWPLANET				// (可開放) Syu ADD 顯示名片星球
 								sprintf_s(moji, "%8s", addressBook[nowNo].planetname);
 								StockFontBuffer(x + 198, y + 30, FONT_PRIO_FRONT, 5, moji, 0);
 #endif
@@ -17885,7 +17885,7 @@ void MenuProc(void)
 							else{
 								if (nowNo == MAX_ADR_BOOK - 1)
 								{
-									StockFontBuffer(x + 100, y + 30, FONT_PRIO_FRONT, FONT_PAL_RED, "精灵召唤用", 0);
+									StockFontBuffer(x + 100, y + 30, FONT_PRIO_FRONT, FONT_PAL_RED, "精靈召喚用", 0);
 								}
 							}
 #endif
@@ -17973,22 +17973,22 @@ void MenuProc(void)
 							// ???
 							play_se(220, 320, 240);
 							// ???????
-							sprintf_s(moji, "体验版不能选择！");
+							sprintf_s(moji, "體驗版不能選擇！");
 							// ??????????????????
 							StockChatBufferLine( moji, FONT_PAL_WHITE );
 #else
 #ifdef _STREET_VENDOR
 							if (pc.iOnStreetVendor == 1){
 								play_se(220, 320, 240);
-								StockChatBufferLine("摆摊中不得使用宠物邮件", FONT_PAL_RED);
+								StockChatBufferLine("擺攤中不得使用寵物郵件", FONT_PAL_RED);
 							}
 							else
 #endif
 #ifdef _THEATER
 							if (pc.iTheaterMode & 0x00000002)
-								StockChatBufferLine("请专心表演", FONT_PAL_RED);
+								StockChatBufferLine("請專心錶演", FONT_PAL_RED);
 							else if (pc.iTheaterMode & 0x00000001)
-								StockChatBufferLine("请专心看表演", FONT_PAL_RED);
+								StockChatBufferLine("請專心看錶演", FONT_PAL_RED);
 							else
 #endif
 								// ???????????
@@ -18032,8 +18032,8 @@ void MenuProc(void)
 						y = pActMenuWnd->y + 32;
 
 						// ?????????
-						mailWndFontNo[0] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "  普 通 邮 件   ", 2);	y += 32;
-						mailWndFontNo[1] = StockFontBuffer(x, y, FONT_PRIO_FRONT, color, "  宠 物 邮 件   ", 2);	y += 48;
+						mailWndFontNo[0] = StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, "  普 通 郵 件   ", 2);	y += 32;
+						mailWndFontNo[1] = StockFontBuffer(x, y, FONT_PRIO_FRONT, color, "  寵 物 郵 件   ", 2);	y += 48;
 						mailWndFontNo[2] = StockDispBuffer(((WINDOW_DISP *)pActMenuWnd->pYobi)->mx, y, DISP_PRIO_IME3, CG_RETURN_BTN, 2);
 					}
 				}
@@ -18457,7 +18457,7 @@ void MenuProc(void)
 									// ????????
 									if (mailWndSendFlag[i] == TRUE){
 										// Terry add fix can send mail to offline character 2004/2/5
-										if (addressBook[i].onlineFlag == 0) StockChatBufferLine("该玩家不在线上！", FONT_PAL_RED);
+										if (addressBook[i].onlineFlag == 0) StockChatBufferLine("該玩傢不在綫上！", FONT_PAL_RED);
 										else
 											// end
 										{
@@ -18653,7 +18653,7 @@ void MenuProc(void)
 			// ?????????
 			if (pActMenuWnd == NULL){
 #ifdef _NEW_ITEM_
-				道具栏页数 = 0;
+				道具欄頁數 = 0;
 #endif
 				pActMenuWnd = MakeWindowDisp(4, 30, 271, 281, 0, -1);
 				// ??????
@@ -18692,13 +18692,13 @@ void MenuProc(void)
 						y = pActMenuWnd->y + 191 + 6;
 #ifdef _NEW_ITEM_
 						for (i = 0; i < 3; i++){
-							if (i == 道具栏页数){
+							if (i == 道具欄頁數){
 								StockDispBuffer(287, 39 + i * 56, DISP_PRIO_BOX2, 55223 + i, 1);
 							}
 							else{
 								BOOL flg = FALSE;
 								if (i){
-									if (pc.道具栏状态 & 1 << i){
+									if (pc.道具欄狀態 & 1 << i){
 										flg = TRUE;
 									}
 								}
@@ -18707,7 +18707,7 @@ void MenuProc(void)
 									StockDispBuffer(271 + 10, 39 + i * 56, DISP_PRIO_IME3, 55226 + i, 1);
 									if (MakeHitBox(261 + 10, 11 + i * 56, 281 + 10, 8 + i * 56 + 60, DISP_PRIO_IME3)){
 										if (mouse.onceState & MOUSE_LEFT_CRICK){
-											道具栏页数 = i;
+											道具欄頁數 = i;
 										}
 									}
 								}
@@ -18717,11 +18717,11 @@ void MenuProc(void)
 #endif
 						for (i = MAX_ITEM - 1; i >= MAX_ITEMSTART; i--){
 #ifdef _NEW_ITEM_
-							//这里是邮件
-							int 道具起始 = MAX_ITEMSTART + MAX_MAXHAVEITEM*道具栏页数;
-							int 道具结束 = 道具起始 + MAX_MAXHAVEITEM;
+							//這裏是郵件
+							int 道具起始 = MAX_ITEMSTART + MAX_MAXHAVEITEM*道具欄頁數;
+							int 道具結束 = 道具起始 + MAX_MAXHAVEITEM;
 							if (i >= MAX_ITEMSTART){
-								if (i < 道具起始 || i >= 道具结束) continue;
+								if (i < 道具起始 || i >= 道具結束) continue;
 							}
 #endif
 							if (MakeHitBox(ItemBuffer[i].defX - 24, ItemBuffer[i].defY - 24 - 160,
@@ -18822,7 +18822,7 @@ void MenuProc(void)
 					pActPet->atr |= ACT_ATR_INFO;
 					pActPet->atr |= ACT_ATR_TYPE_PET;
 					pActPet->level = 32;
-					strcpy( pActPet->name, "测试宠物" );
+					strcpy( pActPet->name, "測試寵物" );
 				}
 				// ?????????????????????????
 				if (pActMailItem == NULL && MailHistory[mailHistoryWndSelectNo].itemGraNo[mailHistoryWndNowPageNo] != -1){
@@ -19313,12 +19313,12 @@ void MenuProc(void)
 			}
 		}
 
-		static int 宠物经验判断 = FALSE;
+		static int 寵物經驗判斷 = FALSE;
 		switch (BattleResultWndFlag){
 
 		case 1:	// ?????????
 			if (pActMenuWnd == NULL){
-				宠物经验判断 = FALSE;
+				寵物經驗判斷 = FALSE;
 				int flag = 0;
 				// ?????????
 				pActMenuWnd = MakeWindowDisp(320 - 160, 240 - 120, 5, 6, CG_WND_TITLE_RESULT, 2);
@@ -19433,11 +19433,11 @@ void MenuProc(void)
 							}
 						}
 						if( flag == FALSE ){
-							StockFontBuffer( x + 85, y+30, FONT_PRIO_FRONT, 0, "没有得到任何道具。", 0 ); 
+							StockFontBuffer( x + 85, y+30, FONT_PRIO_FRONT, 0, "沒有得到任何道具。", 0 ); 
 						}
 						resultWndFontNo[ 0 ] = StockDispBuffer( ( ( WINDOW_DISP *)pActMenuWnd->pYobi )->mx, pActMenuWnd->y + 216+30, DISP_PRIO_IME3, CG_CLOSE_BTN, 2 );
 
-						if (!宠物经验判断&&经验开关){
+						if (!寵物經驗判斷&&經驗開關){
 							int petexp[2];
 							int petlevel[2];
 							int petindex[2];
@@ -19461,12 +19461,12 @@ void MenuProc(void)
 									}
 								}
 							}
-							宠物经验判断 = !宠物经验判断;
+							寵物經驗判斷 = !寵物經驗判斷;
 							char token[256];
 							if(battleResultMsg.resChr[0].levelUp)
-								sprintf_s(token, "得到经验：[自己：%d UpLv!] ", battleResultMsg.resChr[0].exp);
+								sprintf_s(token, "得到經驗：[自己：%d UpLv!] ", battleResultMsg.resChr[0].exp);
 							else
-								sprintf_s(token, "得到经验：[自己：%d] ", battleResultMsg.resChr[0].exp);
+								sprintf_s(token, "得到經驗：[自己：%d] ", battleResultMsg.resChr[0].exp);
 							if(petindex[0]>=0){
 								if (petlevel[0])
 									sprintf_s(token + strlen(token), sizeof(token)-strlen(token), "[%s：%d UpLv!] ",pet[ petindex[0] ].name , petexp[0]);
@@ -19530,7 +19530,7 @@ void MenuProc(void)
 						StockFontBuffer(x, y, FONT_PRIO_FRONT, color, moji, 0);
 						y += 28;
 						// ??
-						sprintf_s(moji, " 合  计  %8d", battleResultMsg.resChr[1].exp);
+						sprintf_s(moji, " 閤  計  %8d", battleResultMsg.resChr[1].exp);
 						StockFontBuffer(x, y, FONT_PRIO_FRONT, 0, moji, 0);
 
 						// ?????????
@@ -19542,11 +19542,11 @@ void MenuProc(void)
 		}
 	}
 
-	//以下开始为交易视窗部分
+	//以下開始為交易視窗部分
 	if (MenuToggleFlag & JOY_CTRL_T)
 	{
 		char buffer[1024];
-#ifdef _TRADESYSTEM2	// Syu ADD 新交易系统
+#ifdef _TRADESYSTEM2	// Syu ADD 新交易係統
 		char buffer2[1024];
 		int j;
 #endif
@@ -19559,7 +19559,7 @@ void MenuProc(void)
 		{
 			static int btnYes = -1, btnNo = -1;
 			char questStr[200];
-			sprintf(questStr, "确定接受玩家[style c=5]%s[/style]的交易请求吗？", opp_name);
+			sprintf(questStr, "確定接受玩傢[style c=5]%s[/style]的交易請求嗎？", opp_name);
 			StockFontBuffer(245, 220, FONT_PRIO_AFRONT, 3, questStr, 0); 
 			StockDispBuffer(320, 240, DISP_PRIO_YES_NO_WND, CG_DROPWND, 0);
 			btnYes = StockDispBuffer(320, 240, DISP_PRIO_YES_NO_BTN, CG_COMMON_YES_BTN, 2);
@@ -19570,7 +19570,7 @@ void MenuProc(void)
 				if (btnYes == HitDispNo)
 				{
 					sprintf_s(buffer, "C|%s|%s|1", opp_sockfd, opp_name);
-					//送出取消讯息给Server通知对方
+					//送齣取消訊息給Server通知對方
 					lssproto_TD_send(sockfd, buffer);
 					play_se(203, 320, 240);
 					btnYes = -1;
@@ -19580,7 +19580,7 @@ void MenuProc(void)
 				else if (btnNo == HitDispNo)
 				{
 					sprintf_s(buffer, "C|%s|%s|0", opp_sockfd, opp_name);
-					//送出取消讯息给Server通知对方
+					//送齣取消訊息給Server通知對方
 					lssproto_TD_send(sockfd, buffer);
 					play_se(203, 320, 240);
 					btnYes = -1;
@@ -19592,12 +19592,12 @@ void MenuProc(void)
 		}
 #endif
 		default:
-			//视窗为产生时初始化
+			//視窗為産生時初始化
 			if (pActMenuWnd4 == NULL)
 			{
 				DeathMenuAction();
 				DeathMenuAction2();
-				//手动输入金额buff初始化
+				//手動輸入金額buff初始化
 				TradeBuffer.buffer[0] = NULL;
 				TradeBuffer.cnt = 0;
 				TradeBuffer.cursor = 0;
@@ -19611,15 +19611,15 @@ void MenuProc(void)
 				y = (lpDraw->ySize - 456) / 2;
 				pActMenuWnd4 = MakeWindowDisp(x, y, 620, 456, 0, -1, FALSE);
 #ifdef _NEW_ITEM_
-				道具栏页数 = 0;
+				道具欄頁數 = 0;
 #endif
-#ifdef _CHANGETRADERULE		   // (不可开) Syu ADD 交易规则修订
+#ifdef _CHANGETRADERULE		   // (不可開) Syu ADD 交易規則修訂
 				TradeBtnflag = false;
 #endif
 
 
-#ifdef _TRADESYSTEM2	// (不可开) Syu ADD 新交易系统
-				//状态初始化
+#ifdef _TRADESYSTEM2	// (不可開) Syu ADD 新交易係統
+				//狀態初始化
 				locknum = -1;
 				locknum2 = -1;
 				MainTradeWndflag = true;
@@ -19631,8 +19631,8 @@ void MenuProc(void)
 
 				for (i = 0; i < 43; i++)
 					tradeList[i].data = -1;
-#ifdef _TRADETALKWND				// (不可开) Syu ADD 交易新增对话框架
-				//视窗开启清空内容
+#ifdef _TRADETALKWND				// (不可開) Syu ADD 交易新增對話框架
+				//視窗開啓清空內容
 				tradetalkwndflag = false;
 				for (i = 0; i < 4; i++)
 					sprintf_s(talkmsg[i], "");
@@ -19643,11 +19643,11 @@ void MenuProc(void)
 				x = (lpDraw->xSize - 620) / 2;
 				y = (lpDraw->ySize - 456) / 2;
 				SecondTradeWnd = MakeWindowDisp(x, y, 620, 456, 0, -1, FALSE);
-				for (i = 0; i < 43; i++) {   //清理交易列表
+				for (i = 0; i < 43; i++) {   //清理交易列錶
 					tradeList[i].data = -1;
 					tradeList[i].kind = 'S';
 				}
-				for (i = 0; i < 21; i++){	//清理交易列表
+				for (i = 0; i < 21; i++){	//清理交易列錶
 					mytradelist[i] = -1;
 					opptradelist[i] = -1;
 				}
@@ -19692,8 +19692,8 @@ void MenuProc(void)
 			else
 			{
 
-#ifdef _TRADESYSTEM2	// (不可开) Syu ADD 新交易系统
-				// 主视窗内容
+#ifdef _TRADESYSTEM2	// (不可開) Syu ADD 新交易係統
+				// 主視窗內容
 				if (MainTradeWndflag == true)
 				{
 					SecondTradeWndflag = false;
@@ -19703,9 +19703,9 @@ void MenuProc(void)
 					{
 
 
-						//产生交易主视窗
-#ifdef _TRADESYSTEM2	// (不可开) Syu ADD 新交易系统
-						//回主视窗时清除检视视窗PetAction
+						//産生交易主視窗
+#ifdef _TRADESYSTEM2	// (不可開) Syu ADD 新交易係統
+						//迴主視窗時清除檢視視窗PetAction
 						if (SecondActPet != NULL)
 						{
 							DeathAction(SecondActPet);
@@ -19717,35 +19717,35 @@ void MenuProc(void)
 #endif
 
 
-						// 以下为滑鼠左键被按下时 Start
+						// 以下為滑鼠左鍵被按下時 Start
 						if (mouse.onceState & MOUSE_LEFT_CRICK)
 						{
-							// 处理取消键 Start
-							//处理按下取消键
+							// 處理取消鍵 Start
+							//處理按下取消鍵
 							if (HitDispNo == tradeWndFontNo[1])
 							{
-								//关闭交易视窗
+								//關閉交易視窗
 								MenuToggleFlag &= ~JOY_CTRL_T;
 
-								//视窗关闭音效
+								//視窗關閉音效
 								play_se(203, 320, 240);
 								sprintf_s(buffer, "W|%s|%s", opp_sockfd, opp_name);
-								//送出取消讯息给Server通知对方
+								//送齣取消訊息給Server通知對方
 								lssproto_TD_send(sockfd, buffer);
 								tradeStatus = 0;
 								tradeInit();
 								pc.trade_confirm = 1;
 							}
-							// 处理取消键 End						
+							// 處理取消鍵 End						
 
 
-							// 处理 Lock 、 确定键 Start
-#ifdef _TRADESYSTEM2	// (不可开) Syu ADD 新交易系统
-							//主视窗与检视视窗共用Lock跟确定function
+							// 處理 Lock 、 確定鍵 Start
+#ifdef _TRADESYSTEM2	// (不可開) Syu ADD 新交易係統
+							//主視窗與檢視視窗共用Lock跟確定function
 							LockAndOkfunction();
-							// 处理 Lock 、 确定键 End
+							// 處理 Lock 、 確定鍵 End
 
-							//主副视窗切换钮
+							//主副視窗切換鈕
 							if (HitDispNo == tradeWndFontNo[21])
 							{
 								MainTradeWndflag = false;
@@ -19755,7 +19755,7 @@ void MenuProc(void)
 								for (i = 0; i < 6; i++) SecondtradeWndFontNo[i] = -2;
 
 							}
-							//对方物品向上卷动钮
+							//對方物品嚮上捲動鈕
 							if (HitDispNo == tradeWndFontNo[18])
 							{
 								if (drag1Y >= 67)
@@ -19763,7 +19763,7 @@ void MenuProc(void)
 								if (drag1Y < 67)
 									drag1Y = 67;
 							}
-							//对方物品向下卷动钮
+							//對方物品嚮下捲動鈕
 							if (HitDispNo == tradeWndFontNo[19])
 							{
 								if (drag1Y <= 151)
@@ -19771,7 +19771,7 @@ void MenuProc(void)
 								if (drag1Y > 151)
 									drag1Y = 151;
 							}
-							//我方物品向上卷动钮
+							//我方物品嚮上捲動鈕
 							if (HitDispNo == tradeWndFontNo[15])
 							{
 								if (drag2Y >= 257)
@@ -19779,7 +19779,7 @@ void MenuProc(void)
 								if (drag2Y < 257)
 									drag2Y = 257;
 							}
-							//我方物品向下卷动钮
+							//我方物品嚮下捲動鈕
 							if (HitDispNo == tradeWndFontNo[16])
 							{
 								if (drag2Y <= 341)
@@ -19787,7 +19787,7 @@ void MenuProc(void)
 								if (drag2Y > 341)
 									drag2Y = 341;
 							}
-							//我方物品拖曳启动
+							//我方物品拖曳啓動
 							if (HitDispNo == tradeWndFontNo[20])
 							{
 								if (!dragflag1)
@@ -19796,7 +19796,7 @@ void MenuProc(void)
 									dragflag1 = true;
 								}
 							}
-							//对方物品拖曳启动
+							//對方物品拖曳啓動
 							if (HitDispNo == tradeWndFontNo[17])
 							{
 								if (!dragflag2)
@@ -19805,35 +19805,35 @@ void MenuProc(void)
 									dragflag2 = true;
 								}
 							}
-#ifdef _TRADETALKWND				// (不可开) Syu ADD 交易新增对话框架
-							//拖曳钮
+#ifdef _TRADETALKWND				// (不可開) Syu ADD 交易新增對話框架
+							//拖曳鈕
 							if (HitDispNo == tradeWndFontNo[14])
 								talkwndflag = true;
-							//关闭钮
+							//關閉鈕
 
 #endif
 #endif						
 
 						}
-						// 以上为滑鼠左键被按下时 End
+						// 以上為滑鼠左鍵被按下時 End
 
 
-#ifdef _TRADESYSTEM2	// (不可开) Syu ADD 新交易系统
-						//我方拖曳钮界线限制
+#ifdef _TRADESYSTEM2	// (不可開) Syu ADD 新交易係統
+						//我方拖曳鈕界綫限製
 						if (dragflag1 == true &&
 							(tmpdrag1Y - mouse.crickLeftDownPoint.y + mouse.nowPoint.y) <= 151 &&
 							(tmpdrag1Y - mouse.crickLeftDownPoint.y + mouse.nowPoint.y) >= 67){
 							drag1Y = tmpdrag1Y - mouse.crickLeftDownPoint.y + mouse.nowPoint.y;
 						}
 
-						//对方拖曳钮界线限制
+						//對方拖曳鈕界綫限製
 						if (dragflag2 == true &&
 							(tmpdrag2Y - mouse.crickLeftDownPoint.y + mouse.nowPoint.y) <= 341 &&
 							(tmpdrag2Y - mouse.crickLeftDownPoint.y + mouse.nowPoint.y) >= 257){
 							drag2Y = tmpdrag2Y - mouse.crickLeftDownPoint.y + mouse.nowPoint.y;
 						}
-#ifdef _TRADETALKWND				// (不可开) Syu ADD 交易新增对话框架
-						//对话方框拖曳位移
+#ifdef _TRADETALKWND				// (不可開) Syu ADD 交易新增對話框架
+						//對話方框拖曳位移
 						if (talkwndflag == true)
 						{
 							talkwndx = mouse.nowPoint.x;
@@ -19844,8 +19844,8 @@ void MenuProc(void)
 #endif
 #endif
 
-						// 处理宠物选取左键 Start
-						// 处理宠物选取左键
+						// 處理寵物選取左鍵 Start
+						// 處理寵物選取左鍵
 						if (HitDispNo == tradeWndFontNo[2])
 						{
 							if (mouse.onceState & MOUSE_LEFT_CRICK)
@@ -19873,10 +19873,10 @@ void MenuProc(void)
 
 							}
 						}
-						// 处理宠物选取左键 End
+						// 處理寵物選取左鍵 End
 
-						// 处理宠物选取右键 Start
-						// 处理宠物选取右键
+						// 處理寵物選取右鍵 Start
+						// 處理寵物選取右鍵
 						if (HitDispNo == tradeWndFontNo[3])
 						{
 							if (mouse.onceState & MOUSE_LEFT_CRICK)
@@ -19905,18 +19905,18 @@ void MenuProc(void)
 							}
 						}
 
-						// 处理宠物选取右键 End
+						// 處理寵物選取右鍵 End
 
-						// 处理金额增加键 Start
+						// 處理金額增加鍵 Start
 						if (HitDispNo == tradeWndFontNo[4])
 						{
 							if (mouse.onceState & MOUSE_LEFT_CRICK_UP && tradeWndBtnFlag[4] == TRUE)
 								tradeWndBtnFlag[4] = FALSE;
 							if (tradeWndBtnFlag[4] == TRUE)
 							{
-								// 按下增加时将Focus还给ChatBuffer
+								// 按下增加時將Focus還給ChatBuffer
 								GetKeyInputFocus(&MyChatBuffer);
-								// 视窗消灭时还原设定
+								// 視窗消滅時還原設定
 								Tradeflag = false;
 								tradeWndDropGold += tradeWndDropGoldInc;
 								tradeWndDropGoldCnt++;
@@ -19930,7 +19930,7 @@ void MenuProc(void)
 											tradeWndDropGoldInc = 10000;
 									}
 								}
-								//金额上限确认
+								//金額上限確認
 								if (tradeWndDropGold >= pc.gold)
 								{
 									tradeWndDropGold = pc.gold;
@@ -19956,18 +19956,18 @@ void MenuProc(void)
 						}
 						else
 							tradeWndBtnFlag[4] = FALSE;
-						// 处理金额增加键 End
+						// 處理金額增加鍵 End
 
-						// 处理金额减少键 Start
+						// 處理金額減少鍵 Start
 						if (HitDispNo == tradeWndFontNo[5])
 						{
 							if (mouse.onceState & MOUSE_LEFT_CRICK_UP && tradeWndBtnFlag[5] == TRUE)
 								tradeWndBtnFlag[5] = FALSE;
 							if (tradeWndBtnFlag[5] == TRUE)
 							{
-								// 按下减少时将Focus还给ChatBuffer
+								// 按下減少時將Focus還給ChatBuffer
 								GetKeyInputFocus(&MyChatBuffer);
-								// 视窗消灭时还原设定
+								// 視窗消滅時還原設定
 								Tradeflag = false;
 								tradeWndDropGold -= tradeWndDropGoldInc;
 								tradeWndDropGoldCnt++;
@@ -20009,16 +20009,16 @@ void MenuProc(void)
 						}
 						else
 							tradeWndBtnFlag[5] = FALSE;
-						// 处理金额减少键 End
+						// 處理金額減少鍵 End
 
-						// 处理金额放置键 Start
+						// 處理金額放置鍵 Start
 						if (HitDispNo == tradeWndFontNo[6])
 						{
 							if (mouse.onceState & MOUSE_LEFT_CRICK)
 							{
-								// 按下放置时将Focus还给ChatBuffer
+								// 按下放置時將Focus還給ChatBuffer
 								GetKeyInputFocus(&MyChatBuffer);
-								// 视窗消灭时还原设定
+								// 視窗消滅時還原設定
 								Tradeflag = false;
 								if (tradeWndDropGold > 0 && eventWarpSendFlag == FALSE)
 								{
@@ -20035,7 +20035,7 @@ void MenuProc(void)
 								tradeWndBtnFlag[6] = FALSE;
 								int TradeGoldIndex = 0;
 
-#ifdef _TRADESYSTEM2	// (不可开) Syu ADD 新交易系统
+#ifdef _TRADESYSTEM2	// (不可開) Syu ADD 新交易係統
 								if ((tradeList[21].data == -1))
 								{
 									tradeList[21].data = tradeWndDropGold;
@@ -20046,7 +20046,7 @@ void MenuProc(void)
 
 								if (TradeGoldIndex != 0)
 								{
-#ifdef _CHANGETRADERULE		   // (不可开) Syu ADD 交易规则修订
+#ifdef _CHANGETRADERULE		   // (不可開) Syu ADD 交易規則修訂
 									TradeBtnflag = true;
 #endif
 									play_se(212, 320, 240);
@@ -20059,12 +20059,12 @@ void MenuProc(void)
 						}
 						else
 							tradeWndBtnFlag[6] = FALSE;
-						// 处理金额放置键 End
+						// 處理金額放置鍵 End
 
-						// 处理宠物放置键 Start		
+						// 處理寵物放置鍵 Start		
 						if (HitDispNo == tradeWndFontNo[7])
 						{
-#ifdef _TRADESYSTEM2	// (不可开) Syu ADD 新交易系统
+#ifdef _TRADESYSTEM2	// (不可開) Syu ADD 新交易係統
 							tradeWndBtnFlag[7] = TRUE;
 #endif
 							if (mouse.onceState & MOUSE_LEFT_CRICK_UP)
@@ -20089,7 +20089,7 @@ void MenuProc(void)
 									tradePet[0].maxHp = pet[tradePetIndex].maxHp;
 
 									tradePet[0].index = tradePetIndex;
-#ifdef _TRADESYSTEM2	// (不可开) Syu ADD 新交易系统
+#ifdef _TRADESYSTEM2	// (不可開) Syu ADD 新交易係統
 									pet[tradePetIndex].useFlag = NULL;
 									if (pActPet3)
 									{
@@ -20101,7 +20101,7 @@ void MenuProc(void)
 
 									DeathAction(pActPet4);
 									pActPet4 = NULL;
-#ifdef _TRADESYSTEM2	// (不可开) Syu ADD 新交易系统
+#ifdef _TRADESYSTEM2	// (不可開) Syu ADD 新交易係統
 									tradeList[tradePetIndex + 16].data = tradePetIndex;
 									tradeList[tradePetIndex + 16].kind = 'P';
 									strcpy(tradeList[tradePetIndex + 16].name, pet[tradePetIndex].name);
@@ -20114,13 +20114,13 @@ void MenuProc(void)
 									if (pet[tradePetIndex].freeName[0] != NULL)
 										strcpy(tradeList[tradePetIndex + 16].freename, pet[tradePetIndex].freeName);
 									else
-										strcpy(tradeList[tradePetIndex + 16].freename, "");// change fix 防止未改名的宠物显示出上一个丢掉宠物的改名bug
+										strcpy(tradeList[tradePetIndex + 16].freename, "");// change fix 防止未改名的寵物顯示齣上一個丟掉寵物的改名bug
 #endif
 
 									if (tradeStatus)
 									{
-#ifdef _TRADESYSTEM2	// (不可开) Syu ADD 新交易系统
-										//增加送出欲交易宠物的技能、原名、更改名
+#ifdef _TRADESYSTEM2	// (不可開) Syu ADD 新交易係統
+										//增加送齣欲交易寵物的技能、原名、更改名
 										sprintf_s(buffer2, "%s|%s|%s|%s|%s|%s|%s|%s|%s",
 											petSkill[tradePetIndex][0].name,
 											petSkill[tradePetIndex][1].name,
@@ -20139,20 +20139,20 @@ void MenuProc(void)
 								}
 							}
 						}
-						// 处理宠物放置键 End
+						// 處理寵物放置鍵 End
 
-#ifdef _TRADESYSTEM2	// (不可开) Syu ADD 新交易系统
-						//滑鼠左键放掉取消所有拖曳旗标
+#ifdef _TRADESYSTEM2	// (不可開) Syu ADD 新交易係統
+						//滑鼠左鍵放掉取消所有拖曳旗標
 						if (mouse.onceState & MOUSE_LEFT_CRICK_UP)
 						{
 							dragflag1 = false;
 							dragflag2 = false;
-#ifdef _TRADETALKWND				// (不可开) Syu ADD 交易新增对话框架
+#ifdef _TRADETALKWND				// (不可開) Syu ADD 交易新增對話框架
 							talkwndflag = false;
 #endif
 						}
 #endif
-						//未被按下的钮全部还原
+						//未被按下的鈕全部還原
 						for (i = 2; i <= 8; i++)
 						{
 							if (mouse.state & MOUSE_LEFT_CRICK && tradeWndBtnFlag[i] == TRUE)
@@ -20160,17 +20160,17 @@ void MenuProc(void)
 							else
 								tradeWndBtnFlag[i] = FALSE;
 						}
-						// 产生主视窗各零件
+						// 産生主視窗各零件
 						if (pActMenuWnd4 != NULL)
 						{
-							// 取得视窗基准X , Y座标
+							// 取得視窗基準X , Y座標
 							x = pActMenuWnd4->x;
 							y = pActMenuWnd4->y;
-							// 个人金额最大值显示
+							// 個人金額最大值顯示
 
-#ifdef _TRADESYSTEM2	// (不可开) Syu ADD 新交易系统
-#ifdef _TRADETALKWND				// (不可开) Syu ADD 交易新增对话框架
-							//对话框内容
+#ifdef _TRADESYSTEM2	// (不可開) Syu ADD 新交易係統
+#ifdef _TRADETALKWND				// (不可開) Syu ADD 交易新增對話框架
+							//對話框內容
 							if (tradetalkwndflag != false)
 							{
 								for (i = 3; i >= 0; i--)
@@ -20183,10 +20183,10 @@ void MenuProc(void)
 #endif						
 							int ShowPoint;
 							int j = 0;
-							//对方的交易清单呈现开始位置  
+							//對方的交易清單呈現開始位置  
 							ShowPoint = (drag2Y - 257) / 4;
-							//建立我方List清单    
-							for (i = 0; i < 21; i++)				//修正交易列表  xiezi
+							//建立我方List清單    
+							for (i = 0; i < 21; i++)				//修正交易列錶  xiezi
 							{
 								if (tradeList[i + 1].data != -1)
 								{
@@ -20195,8 +20195,8 @@ void MenuProc(void)
 								}
 							}
 							j = 0;
-							//建立对方List清单
-							for (i = 21; i < 42; i++)				//修正交易列表  xiezi
+							//建立對方List清單
+							for (i = 21; i < 42; i++)				//修正交易列錶  xiezi
 							{
 								if (tradeList[i + 1].data != -1)
 								{
@@ -20205,15 +20205,15 @@ void MenuProc(void)
 								}
 							}
 							j = 0;
-							//显示我方交易清单      
-							for (i = ShowPoint; i < ShowPoint + 5 && i < 21; i++)   //交易清单修正 xiezi
+							//顯示我方交易清單      
+							for (i = ShowPoint; i < ShowPoint + 5 && i < 21; i++)   //交易清單修正 xiezi
 							{
 								if (mytradelist[i] == -1) break;
-								//说明框用的HitBox暂时不做
+								//說明框用的HitBox暫時不做
 								//								if( MakeHitBox( x + 10 , y + 226 + j * 29, x + 280  , y + 244 + j * 29 , DISP_PRIO_IME3 ) == TRUE ){
 								//								}
 								sprintf_s(moji, "%c", tradeList[mytradelist[i]].kind);
-								//显示道具
+								//顯示道具
 								if (strcmp(moji, "I") == 0)
 								{
 									sprintf_s(moji, "%s", tradeList[mytradelist[i]].name);
@@ -20231,7 +20231,7 @@ void MenuProc(void)
 									StockFontBuffer(x + 220, y + 228 + j * 29, FONT_PRIO_FRONT, 0, moji, 0);
 									j++;
 								}
-								//显示宠物
+								//顯示寵物
 								else if (strcmp(moji, "P") == 0)
 								{
 									int colors = 0;
@@ -20248,24 +20248,24 @@ void MenuProc(void)
 #ifdef _PET_2TRANS
 									sprintf_s( moji , "Lv:%d%s" , tradeList[mylist].level, "");
 									if (tradeList[mylist].trns == 1)
-										sprintf_s(moji, "Lv:%d%s", tradeList[mylist].level, "一转");
+										sprintf_s(moji, "Lv:%d%s", tradeList[mylist].level, "一轉");
 									else if (tradeList[mylist].trns == 2)
-										sprintf_s(moji, "Lv:%d%s", tradeList[mylist].level, "二转");
+										sprintf_s(moji, "Lv:%d%s", tradeList[mylist].level, "二轉");
 #ifdef _SHOW_FUSION
 									if (LOWORD(tradeList[mylist].fusion) == 1)
-										sprintf_s(moji, "Lv:%d%s", tradeList[mylist].level, "融合");
+										sprintf_s(moji, "Lv:%d%s", tradeList[mylist].level, "融閤");
 #endif
 #else
-									sprintf_s(moji, "Lv:%d%s", tradeList[mylist].level, (tradeList[mylist].trns == 0) ? "" : "转");
+									sprintf_s(moji, "Lv:%d%s", tradeList[mylist].level, (tradeList[mylist].trns == 0) ? "" : "轉");
 #endif
 									StockFontBuffer(x + 220, y + 228 + j * 29, FONT_PRIO_FRONT, 0, moji, 0);
 
 									j++;
 								}
-								//显示金钱
+								//顯示金錢
 								else if (strcmp(moji, "G") == 0)
 								{
-									StockFontBuffer(x + 12, y + 228 + j * 29, FONT_PRIO_FRONT, 0, "石币", 0);
+									StockFontBuffer(x + 12, y + 228 + j * 29, FONT_PRIO_FRONT, 0, "石幣", 0);
 									sprintf_s(moji, "%d", tradeList[mytradelist[i]].data);
 									StockFontBuffer(x + 102, y + 228 + j * 29, FONT_PRIO_FRONT, 0, moji, 0);
 									sprintf_s(moji, "%s", "Gold");
@@ -20276,17 +20276,17 @@ void MenuProc(void)
 									break;
 							}
 							j = 0;
-							//对方的交易清单呈现开始位置       
+							//對方的交易清單呈現開始位置       
 							ShowPoint = (drag1Y - 67) / 4;
-							//显示对方交易清单
-							for (i = ShowPoint; i < ShowPoint + 5 && i < 21; i++)   //交易清单修正 xiezi
+							//顯示對方交易清單
+							for (i = ShowPoint; i < ShowPoint + 5 && i < 21; i++)   //交易清單修正 xiezi
 							{
 								if (opptradelist[i] == -1) break;
-								//说明框用的HitBox暂时不做
+								//說明框用的HitBox暫時不做
 								//								if( MakeHitBox( x + 10 , y + 37 + j * 29, x + 280  , y + 55 + j * 29 , DISP_PRIO_IME3 ) == TRUE ){
 								//								}
 								sprintf_s(moji, "%c", tradeList[opptradelist[i]].kind);
-								//显示道具
+								//顯示道具
 								if (strcmp(moji, "I") == 0)
 								{
 									int colors = 0;
@@ -20313,13 +20313,13 @@ void MenuProc(void)
 									j++;
 								}
 								else if (strcmp(moji, "P") == 0)
-								{//显示宠物
+								{//顯示寵物
 									int colors = 0; //FONT_PAL_RED
 									int opplist = opptradelist[i];
 									sprintf_s(moji, "%s", tradeList[opplist].name);
 									StockFontBuffer(x + 12, y + 40 + j * 29, FONT_PRIO_FRONT, 0, moji, 0);
 #ifdef _SHOW_FUSION									
-									// change fix 只为了颢示-----> []
+									// change fix 隻為瞭顥示-----> []
 									if (strcmp(tradeList[opplist].freename, tradeList[opplist].name) == 0)
 									{
 										sprintf_s(moji, "[]");
@@ -20336,23 +20336,23 @@ void MenuProc(void)
 #ifdef _PET_2TRANS
 									sprintf_s( moji , "Lv:%d%s" , tradeList[opplist].level, (tradeList[opplist].trns==0)?"":"");
 									if (tradeList[opplist].trns == 1)
-										sprintf_s(moji, "Lv:%d%s", tradeList[opplist].level, "一转");
+										sprintf_s(moji, "Lv:%d%s", tradeList[opplist].level, "一轉");
 									else if (tradeList[opplist].trns == 2)
-										sprintf_s(moji, "Lv:%d%s", tradeList[opplist].level, "二转");
+										sprintf_s(moji, "Lv:%d%s", tradeList[opplist].level, "二轉");
 #ifdef _SHOW_FUSION
 									if (LOWORD(tradeList[opplist].fusion) == 1)
-										sprintf_s(moji, "Lv:%d%s", tradeList[opplist].level, "融合");
+										sprintf_s(moji, "Lv:%d%s", tradeList[opplist].level, "融閤");
 #endif
 #else
-									sprintf_s(moji, "Lv:%d%s", tradeList[opplist].level, (tradeList[opplist].trns == 0) ? "" : "转");
+									sprintf_s(moji, "Lv:%d%s", tradeList[opplist].level, (tradeList[opplist].trns == 0) ? "" : "轉");
 #endif
 									StockFontBuffer(x + 220, y + 40 + j * 29, FONT_PRIO_FRONT, 0, moji, 0);
 									j++;
 								}
-								//显示金钱
+								//顯示金錢
 								else if (strcmp(moji, "G") == 0)
 								{
-									StockFontBuffer(x + 12, y + 40 + j * 29, FONT_PRIO_FRONT, 0, "石币", 0);
+									StockFontBuffer(x + 12, y + 40 + j * 29, FONT_PRIO_FRONT, 0, "石幣", 0);
 									sprintf_s(moji, "%d", tradeList[opptradelist[i]].data);
 									StockFontBuffer(x + 102, y + 40 + j * 29, FONT_PRIO_FRONT, 0, moji, 0);
 									sprintf_s(moji, "%s", "Gold");
@@ -20366,7 +20366,7 @@ void MenuProc(void)
 #endif
 							sprintf_s(moji, "%7d", pc.gold);
 							StockFontBuffer(x + 550, y + 65, FONT_PRIO_FRONT, 0, moji, 0);
-							// Focus不在手动输入时显示原数值
+							// Focus不在手動輸入時顯示原數值
 							if (Tradeflag == false)
 							{
 								sprintf_s(moji, "%7d", tradeWndDropGold);
@@ -20377,7 +20377,7 @@ void MenuProc(void)
 							{
 								if (pActPet3 == NULL)
 								{
-#ifdef _LIZARDPOSITION			   // (可开放) Syu ADD 修正龙蜥显示位置过低
+#ifdef _LIZARDPOSITION			   // (可開放) Syu ADD 修正龍蜥顯示位置過低
 									if ((pet[tradePetIndex].graNo == 101493) || (pet[tradePetIndex].graNo == 101494) ||
 										(pet[tradePetIndex].graNo == 101495) || (pet[tradePetIndex].graNo == 101496))
 									{
@@ -20395,9 +20395,9 @@ void MenuProc(void)
 								else
 									CenteringStr(pet[tradePetIndex].name, moji, PET_NAME_LEN);
 
-								//有转生时颜色显示蓝色
-#ifdef _TRADESYSTEM2			// (不可开) Syu ADD 新交易系统
-								//新系统位置偏移修正
+								//有轉生時顔色顯示藍色
+#ifdef _TRADESYSTEM2			// (不可開) Syu ADD 新交易係統
+								//新係統位置偏移修正
 								if (pet[tradePetIndex].trn == 1)
 									StockFontBuffer(x + 330, y + 33, FONT_PRIO_FRONT, 1, moji, 0);
 								else
@@ -20417,8 +20417,8 @@ void MenuProc(void)
 							}
 
 
-#ifdef _TRADESYSTEM2	// (不可开) Syu ADD 新交易系统
-							// 以交易进行到的状态决定Button样式
+#ifdef _TRADESYSTEM2	// (不可開) Syu ADD 新交易係統
+							// 以交易進行到的狀態決定Button樣式
 							if (pc.trade_confirm == 1 || pc.trade_confirm == 3)
 								tradeWndFontNo[0] = StockDispBuffer(x + 59, y + 390, DISP_PRIO_IME3, CG_TRADE_LOCK_BTN, 2);
 							if (pc.trade_confirm == 4)
@@ -20431,42 +20431,42 @@ void MenuProc(void)
 							tradeWndFontNo[3] = StockDispBuffer(x + 486 + 20, y + 63 + 8, DISP_PRIO_IME3, CG_TRADE_RIGHT_BTN_UP + tradeWndBtnFlag[3], 2);
 							tradeWndFontNo[4] = StockDispBuffer(x + 554 - 94, y + 93 + 106, DISP_PRIO_IME3, CG_TRADE_UP_BTN_UP + tradeWndBtnFlag[4], 2);
 							tradeWndFontNo[5] = StockDispBuffer(x + 560 - 94, y + 93 + 106, DISP_PRIO_IME3, CG_TRADE_DOWN_BTN_UP + tradeWndBtnFlag[5], 2);
-#ifdef _CHANGETRADERULE		   // (不可开) Syu ADD 交易规则修订
+#ifdef _CHANGETRADERULE		   // (不可開) Syu ADD 交易規則修訂
 							if (TradeBtnflag == false)
 								tradeWndFontNo[6] = StockDispBuffer(x + 562 - 62 + 25, y + 148 + 108 + 8, DISP_PRIO_IME3, CG_TRADE_PUT_BTN_UP + tradeWndBtnFlag[6], 2);
 #else
 							tradeWndFontNo[6] = StockDispBuffer(x + 562 - 62 + 25, y + 148 + 108 + 8, DISP_PRIO_IME3, CG_TRADE_PUT_BTN_UP + tradeWndBtnFlag[6], 2);
 #endif
-#ifdef _TRADESYSTEM2	// (不可开) Syu ADD 新交易系统
+#ifdef _TRADESYSTEM2	// (不可開) Syu ADD 新交易係統
 							//偏移
 							tradeWndFontNo[7] = StockDispBuffer(x + 365 - 62 + 25, y + 190 + 108 + 8, DISP_PRIO_IME3, CG_TRADE_PUT_BTN_UP + tradeWndBtnFlag[7], 2);
 #endif
-#ifndef _CHANGETRADERULE		   // (不可开) Syu ADD 交易规则修订
+#ifndef _CHANGETRADERULE		   // (不可開) Syu ADD 交易規則修訂
 							tradeWndFontNo[8] = StockDispBuffer(x + 55 + 25, y + 190 + 18, DISP_PRIO_IME3, CG_MAIL_WND_CLEAR_BTN_UP + tradeWndBtnFlag[8], 2);
 #endif
 
-#ifdef _TRADESYSTEM2	// (不可开) Syu ADD 新交易系统
+#ifdef _TRADESYSTEM2	// (不可開) Syu ADD 新交易係統
 							//偏移
-							//交易显示双方名称
+							//交易顯示雙方名稱
 							StockFontBuffer(x + 5, y + 193, FONT_PRIO_FRONT, FONT_PAL_PURPLE, pc.name, 0);
 							StockFontBuffer(x + 5, y + 6, FONT_PRIO_FRONT, FONT_PAL_PURPLE, opp_name, 0);
-							//检视视窗钮
+							//檢視視窗鈕
 							tradeWndFontNo[21] = StockDispBuffer(x + 150, y + 390, DISP_PRIO_IME3, CG_TRADE_VIEW_BTN, 2);
-							//我方卷轴拖曳钮
+							//我方捲軸拖曳鈕
 							tradeWndFontNo[18] = StockDispBuffer(x + 302, y + 42, DISP_PRIO_IME3, CG_TRADE_SCROLL_UP, 2);
-							//我方卷轴上移钮
+							//我方捲軸上移鈕
 							tradeWndFontNo[19] = StockDispBuffer(x + 302, y + 176, DISP_PRIO_IME3, CG_TRADE_SCROLL_DOWN, 2);
-							//我方卷轴下移钮
+							//我方捲軸下移鈕
 							tradeWndFontNo[20] = StockDispBuffer(x + 302, y + drag1Y, DISP_PRIO_IME3, CG_TRADE_SCROLL_BTN, 2);
-							//对方卷轴拖曳钮
+							//對方捲軸拖曳鈕
 							tradeWndFontNo[15] = StockDispBuffer(x + 302, y + 232, DISP_PRIO_IME3, CG_TRADE_SCROLL_UP, 2);
-							//对方卷轴上移钮
+							//對方捲軸上移鈕
 							tradeWndFontNo[16] = StockDispBuffer(x + 302, y + 366, DISP_PRIO_IME3, CG_TRADE_SCROLL_DOWN, 2);
-							//对方卷轴下移钮
+							//對方捲軸下移鈕
 							tradeWndFontNo[17] = StockDispBuffer(x + 302, y + drag2Y, DISP_PRIO_IME3, CG_TRADE_SCROLL_BTN, 2);
 #endif
 
-							// 假设游标在金额位置时
+							// 假設遊標在金額位置時
 							if (MakeHitBox(x + 530, y + 115, x + +530 + 86, y + 115 + 25, DISP_PRIO_IME3) == TRUE)
 							{
 								// 按下滑鼠取得focus及初始化
@@ -20481,7 +20481,7 @@ void MenuProc(void)
 									play_se(217, 320, 240);
 								}
 							}
-							// focus在手动输入时显示buffer
+							// focus在手動輸入時顯示buffer
 							if (Tradeflag == true)
 							{
 								TradeBuffer.x = pActMenuWnd4->x + 600 - strlen(TradeBuffer.buffer) * 7;
@@ -20497,32 +20497,32 @@ void MenuProc(void)
 
 							if (pc.trade_confirm == 2)
 							{
-#ifdef _TRADESYSTEM2	// (不可开) Syu ADD 新交易系统
+#ifdef _TRADESYSTEM2	// (不可開) Syu ADD 新交易係統
 								//偏移
-								StockFontBuffer(x + 220, y + 194, FONT_PRIO_FRONT, FONT_PAL_RED, "锁定交易", 0);
+								StockFontBuffer(x + 220, y + 194, FONT_PRIO_FRONT, FONT_PAL_RED, "鎖定交易", 0);
 							}
 							if (pc.trade_confirm == 3)
 							{
-								StockFontBuffer(x + 210, y + 194, FONT_PRIO_FRONT, FONT_PAL_RED, "对方锁定交易", 0);
+								StockFontBuffer(x + 210, y + 194, FONT_PRIO_FRONT, FONT_PAL_RED, "對方鎖定交易", 0);
 							}
 							if (pc.trade_confirm == 4)
 							{
 								if (tradeStatus == 2)
-									StockFontBuffer(x + 220, y + 194, FONT_PRIO_FRONT, FONT_PAL_RED, "交易确认", 0);
+									StockFontBuffer(x + 220, y + 194, FONT_PRIO_FRONT, FONT_PAL_RED, "交易確認", 0);
 								else
-									StockFontBuffer(x + 210, y + 194, FONT_PRIO_FRONT, FONT_PAL_RED, "最后交易确认", 0);
+									StockFontBuffer(x + 210, y + 194, FONT_PRIO_FRONT, FONT_PAL_RED, "最後交易確認", 0);
 							}
 #endif
 						}
 #ifdef _NEW_ITEM_
 						for (i = 0; i < 3; i++){
-							if (i == 道具栏页数){
+							if (i == 道具欄頁數){
 								StockDispBuffer(722, 335 + i * 56, DISP_PRIO_IME2, 55223 + i, 1);
 							}
 							else{
 								BOOL flg = FALSE;
 								if (i){
-									if (pc.道具栏状态 & 1 << i){
+									if (pc.道具欄狀態 & 1 << i){
 										flg = TRUE;
 									}
 								}
@@ -20531,7 +20531,7 @@ void MenuProc(void)
 									StockDispBuffer(727 - 11, 335 + i * 56, DISP_PRIO_IME2, 55226 + i, 1);
 									if (MakeHitBox(717 - 11, 307 + i * 56, 717 + 20 - 11, 304 + i * 56 + 60, DISP_PRIO_IME4)){
 										if (mouse.onceState & MOUSE_LEFT_CRICK){
-											道具栏页数 = i;
+											道具欄頁數 = i;
 										}
 									}
 								}
@@ -20542,14 +20542,14 @@ void MenuProc(void)
 						for (i = MAX_ITEM - 1; i >= MAX_ITEMSTART; i--)
 						{
 #ifdef _NEW_ITEM_
-							int 道具起始 = MAX_ITEMSTART + MAX_MAXHAVEITEM*道具栏页数;
-							int 道具结束 = 道具起始 + MAX_MAXHAVEITEM;
+							int 道具起始 = MAX_ITEMSTART + MAX_MAXHAVEITEM*道具欄頁數;
+							int 道具結束 = 道具起始 + MAX_MAXHAVEITEM;
 							if (i >= MAX_ITEMSTART){
-								if (i < 道具起始 || i >= 道具结束) continue;
+								if (i < 道具起始 || i >= 道具結束) continue;
 							}
 #endif
-#ifdef _TRADESYSTEM2	// (不可开) Syu ADD 新交易系统
-							//已选取交易的盖杖印章
+#ifdef _TRADESYSTEM2	// (不可開) Syu ADD 新交易係統
+							//已選取交易的蓋杖印章
 #ifdef _ITEM_PILENUMS
 							if (itemflag[i - MAX_ITEMSTART] <= 0)
 							{
@@ -20557,9 +20557,9 @@ void MenuProc(void)
 							if (itemflag[i - MAX_ITEMSTART] == 1)
 							{
 #endif
-								//原本为显示原道具并盖上章
+								//原本為顯示原道具並蓋上章
 								//StockDispBuffer( ItemBuffer[ i ].defX, ItemBuffer[ i ].defY, ItemBuffer[ i ].dispPrio, CG_TRADE_SEAL , 0 );
-								//修正为道具隐藏，直接跳过不做后续显示
+								//修正為道具隱藏，直接跳過不做後續顯示
 
 								continue;
 
@@ -20570,12 +20570,12 @@ void MenuProc(void)
 								x + ItemBuffer[i].defX + 15, y + ItemBuffer[i].defY + 28, DISP_PRIO_IME3) == TRUE)
 							{
 #ifdef _TELLCHANNEL
-								// Terry fix 2003/12/16 for 交易视窗开启时,显示物品说明不显示输入法
-								//TaskBarFlag = TRUE;这行不要
-								bShowItemExplain = TRUE; // 新增这行
+								// Terry fix 2003/12/16 for 交易視窗開啓時,顯示物品說明不顯示輸入法
+								//TaskBarFlag = TRUE;這行不要
+								bShowItemExplain = TRUE; // 新增這行
 								// end
 #endif
-								// 该栏位有道具的情况
+								// 該欄位有道具的情況
 								if (pc.item[i].useFlag == TRUE && ItemBuffer[i].mixFlag <= 2)
 								{
 									char *splitPoint = pc.item[i].memo;
@@ -20583,36 +20583,36 @@ void MenuProc(void)
 									// 交易物品能否使用Check
 									if (pc.transmigration == 0 && pc.level < pc.item[i].level)
 										color = FONT_PAL_RED;
-									// 道具名称显示
+									// 道具名稱顯示
 									StockFontBuffer(0, 460 + DISPLACEMENT_Y, FONT_PRIO_FRONT, color, pc.item[i].name, 0);
-									// 道具说明
+									// 道具說明
 									StockFontBuffer(160, 460 + DISPLACEMENT_Y, FONT_PRIO_FRONT, 0, splitPoint, 0);
 #ifdef _NPC_ITEMUP
 									ShowItemup(pc.item[i].itemup, mouse.nowPoint.x, mouse.nowPoint.y);
 #endif
 								}
-								// 在道具上点两下的情况
+								// 在道具上點兩下的情況
 								if (mouse.onceState & MOUSE_LEFT_DBL_CRICK)
 								{
 									if (tradeStatus != 1)	return;
 									if (pc.trade_confirm == 2 || pc.trade_confirm == 4) return;
-									// 合成旗标关闭
+									// 閤成旗標關閉
 									ItemBuffer[i].mixFlag = FALSE;
-									// 确认该位置有道具
+									// 確認該位置有道具
 									if (pc.item[i].useFlag == TRUE){
 										ItemBuffer[i].dragFlag = TRUE;
 										mouse.itemNo = i;
-										// 道具选择初期化
+										// 道具選擇初期化
 										itemNo = -1;
 									}
-#ifdef _TRADESYSTEM2	// (不可开) Syu ADD 新交易系统
+#ifdef _TRADESYSTEM2	// (不可開) Syu ADD 新交易係統
 									if (mouse.itemNo != -1)
 									{
-										//道具栏页数
+										//道具欄頁數
 										char buf[1024];
 
 										int chkindex = 0, frontempIndex = 0;
-										//检查道具tradeList空间是否已满  修正  xiezi
+										//檢查道具tradeList空間是否已滿  修正  xiezi
 										for (int scanindex = 1; scanindex < 16; scanindex++)
 										{
 											if (tradeList[chkindex].data == i)
@@ -20654,10 +20654,10 @@ void MenuProc(void)
 							}
 							if (pc.item[i].useFlag == TRUE)
 							{
-								// 非合成物品的情况
+								// 非閤成物品的情況
 								if (ItemBuffer[i].mixFlag <= 2) {
 									char buf[256];
-									// 道具显示
+									// 道具顯示
 									StockDispBuffer(x + ItemBuffer[i].defX - 8, y + ItemBuffer[i].defY, ItemBuffer[i].dispPrio, pc.item[i].graNo, 0);
 
 
@@ -20680,9 +20680,9 @@ void MenuProc(void)
 
 						}
 					}
-#ifdef _TRADESYSTEM2	// (不可开) Syu ADD 新交易系统
+#ifdef _TRADESYSTEM2	// (不可開) Syu ADD 新交易係統
 				}
-				// 检视视窗内容
+				// 檢視視窗內容
 				else  if (SecondTradeWndflag == true)
 				{
 					MainTradeWndflag = false;
@@ -20690,8 +20690,8 @@ void MenuProc(void)
 					{
 						x = SecondTradeWnd->x;
 						y = SecondTradeWnd->y;
-#ifdef _TRADETALKWND				// (不可开) Syu ADD 交易新增对话框架
-						//对话框内容
+#ifdef _TRADETALKWND				// (不可開) Syu ADD 交易新增對話框架
+						//對話框內容
 						if (tradetalkwndflag != false)
 						{
 							for (i = 3; i >= 0; i--)
@@ -20704,7 +20704,7 @@ void MenuProc(void)
 #endif						
 						SecondtradeWndFontNo[0] = StockDispBuffer(x + 254, y + 380, DISP_PRIO_IME3, CG_TRADE_CANCEL_BTN, 2);
 						SecondtradeWndFontNo[1] = StockDispBuffer(x + 159, y + 380, DISP_PRIO_IME3, CG_TRADE_BACK_BTN, 2);
-						//交易进行状态
+						//交易進行狀態
 						if (pc.trade_confirm == 1 || pc.trade_confirm == 3)
 							SecondtradeWndFontNo[2] = StockDispBuffer(x + 63, y + 380, DISP_PRIO_IME3, CG_TRADE_LOCK_BTN, 2);
 						if (pc.trade_confirm == 4)
@@ -20713,7 +20713,7 @@ void MenuProc(void)
 						sprintf_s(moji, "%7d", tradeWndDropGoldGet);
 
 #ifdef _PET_ITEM
-						// 显示宠物装备资料
+						// 顯示寵物裝備資料
 						if (locknum != -1 && tradeList[locknum + 37].data != -1)
 						{
 							if (bViewPetEquip)
@@ -20723,14 +20723,14 @@ void MenuProc(void)
 						}
 #endif
 
-						//显示金钱
+						//顯示金錢
 						if (tradeWndDropGoldGet > 0)
 							StockFontBuffer(x + 95, y + 336, FONT_PRIO_FRONT, 0, moji, 0);
 						for (i = 0; i < 5; i++)
 						{
 							if (MakeHitBox(x + 320, y + 12 + i * 42, x + 600, y + 51 + i * 42, DISP_PRIO_IME3) == TRUE)
 							{
-#ifdef _TRADELOCKBTN				// (不可开) Syu ADD 增加锁定键
+#ifdef _TRADELOCKBTN				// (不可開) Syu ADD 增加鎖定鍵
 								if (mouse.onceState & MOUSE_LEFT_CRICK)
 								{
 #ifdef _PET_ITEM
@@ -20756,7 +20756,7 @@ void MenuProc(void)
 										int		iY = 251, iColor;
 										char	*splitPoint;
 
-										// 显示宠物装备栏的底图及装备
+										// 顯示寵物裝備欄的底圖及裝備
 										for (int iCount = 0; iCount < PET_EQUIPNUM; iCount++)
 										{	
 											StockDispBuffer(ItemBuffer[iCount].defX, ItemBuffer[iCount].defY, DISP_PRIO_IME3, nPetItemEquipBmpNumber[iCount][0], 0);
@@ -20765,7 +20765,7 @@ void MenuProc(void)
 										}
 										for (int iCount = 0; iCount < PET_EQUIPNUM; iCount++)
 										{
-											// 显示装备内容
+											// 顯示裝備內容
 											if (MakeHitBox( ItemBuffer[iCount].defX - 26, ItemBuffer[iCount].defY - 26,
 												ItemBuffer[iCount].defX + 26, ItemBuffer[iCount].defY + 23, DISP_PRIO_IME3) == TRUE)
 											{
@@ -20773,13 +20773,13 @@ void MenuProc(void)
 												{
 													iColor = opp_pet[locknum].oPetItemInfo[iCount].color;
 													splitPoint = opp_pet[locknum].oPetItemInfo[iCount].memo;
-													// 装备名称
+													// 裝備名稱
 													StockFontBuffer(x + 25, y + 195, FONT_PRIO_FRONT, iColor, opp_pet[locknum].oPetItemInfo[iCount].name,0);
 													// 耐久度
 													sprintf_s(moji, "耐久度(%s)", opp_pet[locknum].oPetItemInfo[iCount].damage);
 													StockFontBuffer(x + 25, y + 215, FONT_PRIO_FRONT, iColor, moji, 0);
 
-													// 显示道具叙述
+													// 顯示道具敘述
 													while (1)
 													{
 														if (strlen(splitPoint) > 28)
@@ -20813,12 +20813,12 @@ void MenuProc(void)
 									else
 #endif
 									{
-										//产生宠物Action
+										//産生寵物Action
 										if (SecondActPet == NULL) {
 											ShowPetNum = atoi(opp_pet[locknum].opp_petgrano);
 											SecondActPet = MakeAnimDisp(x + 215, y + 130, ShowPetNum, ANIM_DISP_PET);
 										}
-										//已存在显示的宠物
+										//已存在顯示的寵物
 										else if (SecondActPet != NULL && ShowPetNum != atoi(opp_pet[locknum].opp_petgrano)) {
 											DeathAction(SecondActPet);
 											SecondActPet = NULL;
@@ -20827,7 +20827,7 @@ void MenuProc(void)
 										}
 
 										//opp_petfreename
-										//显示数值、技能 ( 左方 )
+										//顯示數值、技能 ( 左方 )
 										StockDispBuffer(x + 95, y + 40, DISP_PRIO_IME3, CG_TRADE_LINE, 0);
 										sprintf_s(moji, "%s", opp_pet[locknum].opp_petname);
 										StockFontBuffer(x + 55, y + 30, FONT_PRIO_FRONT, 0, moji, 0);
@@ -20845,15 +20845,15 @@ void MenuProc(void)
 #ifdef _PET_2TRANS
 										sprintf_s( moji,"%s", "" );
 										if (atoi(opp_pet[locknum].opp_pettrans) == 1)
-											sprintf_s(moji, "%s", "一转");
+											sprintf_s(moji, "%s", "一轉");
 										else if (atoi(opp_pet[locknum].opp_pettrans) == 2)
-											sprintf_s(moji, "%s", "二转");
+											sprintf_s(moji, "%s", "二轉");
 #ifdef _SHOW_FUSION
 										if (LOWORD(atoi(opp_pet[locknum].opp_fusion)) == 1)
-											sprintf_s(moji, "%s", "融合");
+											sprintf_s(moji, "%s", "融閤");
 #endif
 #else
-										sprintf_s(moji, "%s", (atoi(opp_pet[locknum].opp_pettrans) == 0) ? "" : "转");
+										sprintf_s(moji, "%s", (atoi(opp_pet[locknum].opp_pettrans) == 0) ? "" : "轉");
 #endif
 										StockFontBuffer(x + 90, y + 62, FONT_PRIO_FRONT, 2, moji, 0);
 
@@ -20937,7 +20937,7 @@ void MenuProc(void)
 								}
 #endif
 							}
-							//显示数值、技能 ( 右方 )
+							//顯示數值、技能 ( 右方 )
 							if (tradeList[i + 37].data != -1)
 							{
 								sprintf_s(moji, "%s", opp_pet[i].opp_petname);
@@ -20952,15 +20952,15 @@ void MenuProc(void)
 #ifdef _PET_2TRANS
 								sprintf_s( moji,"%s", "" );
 								if (atoi(opp_pet[i].opp_pettrans) == 1)
-									sprintf_s(moji, "%s", "一转");
+									sprintf_s(moji, "%s", "一轉");
 								else if (atoi(opp_pet[i].opp_pettrans) == 2)
-									sprintf_s(moji, "%s", "二转");
+									sprintf_s(moji, "%s", "二轉");
 #ifdef _SHOW_FUSION
 								if (LOWORD(atoi(opp_pet[i].opp_fusion)) == 1)
-									sprintf_s(moji, "%s", "融合");
+									sprintf_s(moji, "%s", "融閤");
 #endif
 #else
-								sprintf_s(moji, "%s", (atoi(opp_pet[i].opp_pettrans) == 0) ? "" : "转");
+								sprintf_s(moji, "%s", (atoi(opp_pet[i].opp_pettrans) == 0) ? "" : "轉");
 #endif
 								StockFontBuffer(x + 590, y + 13 + i * 42, FONT_PRIO_FRONT, 2, moji, 0);
 
@@ -20976,7 +20976,7 @@ void MenuProc(void)
 								StockFontBuffer(x + 451, y + 33 + i * 42, FONT_PRIO_FRONT, atoi(opp_pet[i].opp_pettrans), moji, 0);
 							}
 						}
-						//显示道具
+						//顯示道具
 						for (i = 0; i < 3; i++)
 						{
 							for (j = 0; j < 5; j++)
@@ -20984,7 +20984,7 @@ void MenuProc(void)
 								if (MakeHitBox(x + 368 + 51 * j - 35, y + 265 + 47 * i - 23,
 									x + 368 + 51 * j + 18, y + 265 + 47 * i + 23, DISP_PRIO_IME3) == TRUE)
 								{
-#ifdef _TRADELOCKBTN				// (不可开) Syu ADD 增加锁定键
+#ifdef _TRADELOCKBTN				// (不可開) Syu ADD 增加鎖定鍵
 									if (mouse.onceState & MOUSE_LEFT_CRICK) {
 										locknum2 = i * 5 + j;
 										locknum = -1;
@@ -21007,7 +21007,7 @@ void MenuProc(void)
 									y = SecondTradeWnd->y;
 									if (tradeList[locknum2 + 22].data != -1)
 									{
-										//说明过长换行
+										//說明過長換行
 										char *splitPoint = opp_item[locknum2].effect;
 										while (1)
 										{
@@ -21081,7 +21081,7 @@ void MenuProc(void)
 
 						if (SecondTradeWnd->hp > 0)
 						{
-							//产生交易第二视窗
+							//産生交易第二視窗
 							if (pActPet3 != NULL)
 							{
 								DeathAction(pActPet3);
@@ -21092,12 +21092,12 @@ void MenuProc(void)
 							if (mouse.onceState & MOUSE_LEFT_CRICK)
 							{
 								if (HitDispNo == SecondtradeWndFontNo[0]) {
-									//关闭交易视窗
+									//關閉交易視窗
 									MenuToggleFlag &= ~JOY_CTRL_T;
-									//视窗关闭音效
+									//視窗關閉音效
 									play_se(203, 320, 240);
 									sprintf_s(buffer, "W|%s|%s", opp_sockfd, opp_name);
-									//送出取消讯息给Server通知对方
+									//送齣取消訊息給Server通知對方
 									lssproto_TD_send(sockfd, buffer);
 									tradeStatus = 0;
 									tradeInit();
@@ -21115,7 +21115,7 @@ void MenuProc(void)
 									bViewPetEquip = FALSE;
 #endif
 								}
-#ifdef _TRADETALKWND				// (不可开) Syu ADD 交易新增对话框架
+#ifdef _TRADETALKWND				// (不可開) Syu ADD 交易新增對話框架
 								else if (HitDispNo == SecondtradeWndFontNo[4])
 									talkwndflag = true;
 #endif
@@ -21129,7 +21129,7 @@ void MenuProc(void)
 								else
 									LockAndOkfunction();
 							}
-#ifdef _TRADETALKWND				// (不可开) Syu ADD 交易新增对话框架
+#ifdef _TRADETALKWND				// (不可開) Syu ADD 交易新增對話框架
 							if (talkwndflag == true)
 							{
 								talkwndx = mouse.nowPoint.x;
@@ -21160,7 +21160,7 @@ void MenuProc(void)
 		pc.trade_confirm = 1;
 	}
 
-	// 交易视窗部分到此结束
+	// 交易視窗部分到此結束
 
 
 	// show Bank Window
@@ -21418,7 +21418,7 @@ void MenuProc(void)
 
 
 }
-#ifdef _NEWREQUESTPROTOCOL			// (不可开) Syu ADD 新增Protocol要求细项
+#ifdef _NEWREQUESTPROTOCOL			// (不可開) Syu ADD 新增Protocol要求細項
 void lssproto_RESIST_recv ( int fd, char *data)
 {
 	for ( int  i = 0 ; i < CHAR_MAX_DETAIL ; i ++ ) 
@@ -21438,7 +21438,7 @@ void lssproto_ALCHEPLUS_recv(int fd, char *data)
 }
 #endif
 
-#ifdef _OUTOFBATTLESKILL			// (不可开) Syu ADD 非战斗时技能Protocol
+#ifdef _OUTOFBATTLESKILL			// (不可開) Syu ADD 非戰鬥時技能Protocol
 void lssproto_BATTLESKILL_recv(int fd, char *data) {
 	setCharMind(pc.ptAct, atoi(data));
 }
@@ -21473,7 +21473,7 @@ void lssproto_TD_recv(int fd, char *data)
 	char buf_sockfd[128] = "";
 	char buf_name[128] = "";
 	char buf[128] = "";
-#ifdef _TRADESYSTEM2	// (不可开) Syu ADD 新交易系统
+#ifdef _TRADESYSTEM2	// (不可開) Syu ADD 新交易係統
 	char opp_index[128];
 	int  index;
 	char realname[256];
@@ -21483,7 +21483,7 @@ void lssproto_TD_recv(int fd, char *data)
 
 	getStringToken(data, '|', 1, sizeof(char), Head);
 
-	// 交易开启资料初始化	
+	// 交易開啓資料初始化	
 	if (strcmp(Head, "C") == 0) {
 
 #ifdef _TRADE_BUG_LOG
@@ -21517,7 +21517,7 @@ void lssproto_TD_recv(int fd, char *data)
 #endif
 
 	}
-	//处理物品交易资讯传递
+	//處理物品交易資訊傳遞
 	else if (strcmp(Head, "T") == 0) {
 
 		if (tradeStatus == 0)	return;
@@ -21538,7 +21538,7 @@ void lssproto_TD_recv(int fd, char *data)
 
 				pActMenuWnd4 = MakeWindowDisp(x, y, w, h, NULL, -1, FALSE);
 				InitItem3(325, 230);
-#ifdef _TRADESYSTEM2	// (不可开) Syu ADD 新交易系统
+#ifdef _TRADESYSTEM2	// (不可開) Syu ADD 新交易係統
 				if (SecondTradeWnd == NULL)
 					SecondTradeWnd = MakeWindowDisp(10, 0, 620, 456, 0, -1);
 #endif
@@ -21596,7 +21596,7 @@ void lssproto_TD_recv(int fd, char *data)
 
 			getStringToken(data, '|', 6, sizeof(opp_goldmount)-1, opp_goldmount);
 			int mount = atoi(opp_goldmount);
-#ifdef _CHANGETRADERULE		   // (不可开) Syu ADD 交易规则修订
+#ifdef _CHANGETRADERULE		   // (不可開) Syu ADD 交易規則修訂
 			if (tradeWndDropGoldGet != 0) {
 				MenuToggleFlag ^= JOY_CTRL_T;
 				play_se(203, 320, 240);
@@ -21605,13 +21605,13 @@ void lssproto_TD_recv(int fd, char *data)
 					lssproto_TD_send(sockfd, buf);
 				else
 					old_lssproto_TD_send(sockfd, buf);
-				sprintf_s(buf, "%s以不正常方式修改交易金钱，系统强制关闭交易视窗！", opp_name);
+				sprintf_s(buf, "%s以不正常方式修改交易金錢，係統強製關閉交易視窗！", opp_name);
 				StockChatBufferLine(buf, FONT_PAL_RED);
 				return;
 			}
 #endif
 
-#ifdef _TRADESYSTEM2	// (不可开) Syu ADD 新交易系统
+#ifdef _TRADESYSTEM2	// (不可開) Syu ADD 新交易係統
 			//andy_reEdit
 			if (mount != -1) {
 				tradeList[42].kind = 'G';
@@ -21670,7 +21670,7 @@ void lssproto_TD_recv(int fd, char *data)
 
 			getStringToken(data, '|', 9, sizeof(opp_itemeffect)-1, opp_itemeffect);
 			getStringToken(data, '|', 10, sizeof(opp_itemindex)-1, opp_itemindex);
-			getStringToken(data, '|', 11, sizeof(opp_itemdamage)-1, opp_itemdamage);// 显示物品耐久度
+			getStringToken(data, '|', 11, sizeof(opp_itemdamage)-1, opp_itemdamage);// 顯示物品耐久度
 
 #ifdef _ITEM_PILENUMS
 			getStringToken(data, '|', 12, sizeof(pilenum)-1, pilenum);//pilenum
@@ -21679,7 +21679,7 @@ void lssproto_TD_recv(int fd, char *data)
 			getStringToken(data, '|', 13, sizeof(itemup)-1, itemup);
 #endif
 
-#ifdef _TRADESYSTEM2	// (不可开) Syu ADD 新交易系统
+#ifdef _TRADESYSTEM2	// (不可開) Syu ADD 新交易係統
 			if (strcmp(opp_itemgraph, "-1") == 0)
 				return;
 
@@ -21687,7 +21687,7 @@ void lssproto_TD_recv(int fd, char *data)
 
 
 			int chkindex = -1, frontempIndex = -1;
-			//检查道具opp_item空间是否已满  修正  xiezi
+			//檢查道具opp_item空間是否已滿  修正  xiezi
 			for (int scanindex = 0; scanindex < 15; scanindex++)
 			{
 				if (strcmp(opp_item[chkindex].itemindex, opp_itemindex) == 0)
@@ -21711,7 +21711,7 @@ void lssproto_TD_recv(int fd, char *data)
 				strcpy(opp_item[chkindex].damage, makeStringFromEscaped(opp_itemdamage));
 
 				chkindex = 0, frontempIndex = 0;
-				//检查道具tradeList空间是否已满  修正  xiezi
+				//檢查道具tradeList空間是否已滿  修正  xiezi
 				for (int scanindex = 22; scanindex < 37; scanindex++)
 				{
 					if (tradeList[chkindex].data == i)
@@ -21752,11 +21752,11 @@ void lssproto_TD_recv(int fd, char *data)
 			char	szData[256];
 #endif
 
-#ifdef _TRADESYSTEM2	// (不可开) Syu ADD 新交易系统
+#ifdef _TRADESYSTEM2	// (不可開) Syu ADD 新交易係統
 			getStringToken(data, '|', 12, sizeof(opp_index)-1, opp_index);
 			index = -1;
 
-			//检查道具opp_item空间是否已满  修正  xiezi
+			//檢查道具opp_item空間是否已滿  修正  xiezi
 			for (int scanindex = 0; scanindex < 5; scanindex++)
 			{
 				if (opp_pet[scanindex].opp_petindex[0] == NULL || strcmp(opp_pet[scanindex].opp_petindex, "-1") == 0)
@@ -21809,7 +21809,7 @@ void lssproto_TD_recv(int fd, char *data)
 				}
 #endif
 
-#ifdef _TRADESYSTEM2	// (不可开) Syu ADD 新交易系统
+#ifdef _TRADESYSTEM2	// (不可開) Syu ADD 新交易係統
 				tradeList[index + 37].data = atoi(opp_pet[index].opp_petindex);
 				tradeList[index + 37].kind = 'P';
 				strcpy(tradeList[index + 37].freename, freename);
@@ -21822,7 +21822,7 @@ void lssproto_TD_recv(int fd, char *data)
 #endif
 
 				if (opp_showindex == 3) {
-#ifdef _TRADESYSTEM2	// (不可开) Syu ADD 新交易系统
+#ifdef _TRADESYSTEM2	// (不可開) Syu ADD 新交易係統
 					if (strcmp(opp_pet[index].opp_petgrano, "-1") == 0) {
 #endif
 						showindex[6] = 0;
@@ -21863,8 +21863,8 @@ void lssproto_TD_recv(int fd, char *data)
 
 void tradeInit(void)
 {
-#ifdef _TRADESYSTEM2	// (不可开) Syu ADD 新交易系统
-	//初始化时清空Action
+#ifdef _TRADESYSTEM2	// (不可開) Syu ADD 新交易係統
+	//初始化時清空Action
 	DeathAction(SecondTradeWnd);
 	SecondTradeWnd = NULL;
 	DeathAction(SecondActPet);
@@ -21876,7 +21876,7 @@ void tradeInit(void)
 	//end
 #endif
 	DeathAction(pActMenuWnd4);
-	// 交易视窗初始化时将focus还给chat
+	// 交易視窗初始化時將focus還給chat
 	GetKeyInputFocus(&MyChatBuffer);
 	Tradeflag = false;
 	pActMenuWnd4 = NULL;
@@ -21954,25 +21954,25 @@ void checkRidePet(int pindex)
 		return;
 
 #ifdef _PET_ITEM
-	// 宠身上有装备不可骑
+	// 寵身上有裝備不可騎
 	for (j = 0; j < MAX_PET_ITEM; ++j){
-		if (pet[pindex].item[j].useFlag){	// 身上有装装备
+		if (pet[pindex].item[j].useFlag){	// 身上有裝裝備
 			bHavePetItem = TRUE;
 			break;
 		}
 	}
 #endif
 	if( pc.ridePetNo < 0 
-		&& pc.learnride >= pet[pindex].level //Change fix 这里被注解掉了 20050801打开
+		&& pc.learnride >= pet[pindex].level //Change fix 這裏被注解掉瞭 20050801打開
 		&& (pc.level + 5) > pet[pindex].level
 		&& pet[pindex].ai >= 100 
 		&& pc.graNo != SPR_pet021 
-		&& pc.graNo != 100362 //金飞
-#ifdef _PETSKILL_BECOMEPIG // 乌力化中不可骑
+		&& pc.graNo != 100362 //金飛
+#ifdef _PETSKILL_BECOMEPIG // 烏力化中不可騎
 		&& pc.graNo != 100250
 #endif
 #ifdef _THEATER
-		&& pc.graNo != 101989	// 穿布偶装时不能骑宠
+		&& pc.graNo != 101989	// 穿布偶裝時不能騎寵
 #endif
 		)
 	{
@@ -21984,8 +21984,8 @@ void checkRidePet(int pindex)
 //			if (((ridePetTable[j].charNo == pc.graNo) || (ridePetTable[j].charNo == pc.baseGraNo)) /*&& ridePetTable[j].petNo == pet[pindex].graNo*/){
 //				char buf[64];
 //#ifdef _PET_ITEM
-//				if (bHavePetItem){	// 有装备不可骑
-//					StockChatBufferLine("宠物身上有装备不可骑乘！", FONT_PAL_YELLOW);
+//				if (bHavePetItem){	// 有裝備不可騎
+//					StockChatBufferLine("寵物身上有裝備不可騎乘！", FONT_PAL_YELLOW);
 //					pc.selectPetNo[pindex] = 0;
 //					return;
 //				}
@@ -22012,8 +22012,8 @@ void checkRidePet(int pindex)
 				pc.big4fm != 0 && pc.familyleader != FMMEMBER_APPLY && pc.familyleader != FMMEMBER_NONE){	
 				char buf[64];
 #ifdef _PET_ITEM
-				if (bHavePetItem){	// 有装备不可骑
-					StockChatBufferLine("宠物身上有装备不可骑乘！", FONT_PAL_YELLOW);
+				if (bHavePetItem){	// 有裝備不可騎
+					StockChatBufferLine("寵物身上有裝備不可騎乘！", FONT_PAL_YELLOW);
 					pc.selectPetNo[pindex] = 0;
 					return;
 				}
@@ -22028,7 +22028,7 @@ void checkRidePet(int pindex)
 			}
 #endif
 		}
-		{//andy_add 新骑宠
+		{//andy_add 新騎寵
 			int ti = -1, index;
 			unsigned int LRCode = 1<<30;
 			if ((ti = RIDEPET_getPETindex(pet[pindex].graNo, pc.lowsride)) < 0)
@@ -22051,8 +22051,8 @@ void checkRidePet(int pindex)
 				char buf[64];	
 				if (RIDEPET_getRIDEno(index, ti) >= 0){
 #ifdef _PET_ITEM
-					if (bHavePetItem){	// 有装备不可骑
-						StockChatBufferLine("宠物身上有装备不可骑乘！", FONT_PAL_YELLOW);
+					if (bHavePetItem){	// 有裝備不可騎
+						StockChatBufferLine("寵物身上有裝備不可騎乘！", FONT_PAL_YELLOW);
 						pc.selectPetNo[pindex] = 0;
 						return;
 					}
@@ -22116,7 +22116,7 @@ int RIDEPET_getRIDEno(int index, int ti)
 	return RideNoList[index].RideNo[ti];
 }
 
-#ifdef _TELLCHANNEL				//ROG ADD 密语频道
+#ifdef _TELLCHANNEL				//ROG ADD 密語頻道
 void InitSelectChar(char *msg, BOOL endFlag)
 {
 	int turn, level;
@@ -22167,7 +22167,7 @@ void SelectChar(void)
 	else if (pActMsgWnd->hp > 0){
 		x = pActMsgWnd->x;
 		y = pActMsgWnd->y;
-		char title[] = { "           名 字           昵 称  转 生  等 级 " };
+		char title[] = { "           名 字           昵 稱  轉 生  等 級 " };
 		StockFontBuffer(x + 10, y + 15, FONT_PRIO_FRONT, 4, title, 0);
 		for (int i = 0; i < CharNum; i++){
 			StockFontBuffer(x + 10, y + 40 + i * 20, FONT_PRIO_FRONT, 5, TellInfo[i], 0);
@@ -22208,7 +22208,7 @@ void DeathTellChannel(void)
 
 #endif
 
-#ifdef _FRIENDCHANNEL				//ROG ADD 好友频道
+#ifdef _FRIENDCHANNEL				//ROG ADD 好友頻道
 
 void initSetRoomName()
 {
@@ -22223,7 +22223,7 @@ void initSetRoomName()
 
 void setRoomName(void)
 {
-	static int setRoomBtn[2];				//设定聊天室名称用
+	static int setRoomBtn[2];				//設定聊天室名稱用
 
 	if(pSetRoomWnd == NULL){
 		pSetRoomWnd = MakeWindowDisp( 270, 0, 3, 2, NULL, 0 );
@@ -22244,7 +22244,7 @@ void setRoomName(void)
 		setRoomBtn[0] = StockDispBuffer( pSetRoomWnd->x + 53, pSetRoomWnd->y + 70, DISP_PRIO_IME3, CG_OK_BTN, 2 );
 		setRoomBtn[1] = StockDispBuffer( pSetRoomWnd->x + 140, pSetRoomWnd->y + 70, DISP_PRIO_IME3, CG_CANCEL_BTN, 2 );
 
-		char title[] = {"请输入频道名称"};
+		char title[] = {"請輸入頻道名稱"};
 		StockFontBuffer( x + 22, y + 10, FONT_PRIO_FRONT,4 , title, 0 );
 		GetKeyInputFocus( &chatRoomName );
 		StockFontBuffer2( &chatRoomName );
@@ -22310,7 +22310,7 @@ void SelectChatRoom(void)
 	else if(pSelChanlWnd->hp > 0 ){
 		int x = pSelChanlWnd->x;
 		int y = pSelChanlWnd->y;
-		char title[] = {"          频道名称          队长名称  人数 "};
+		char title[] = {"          頻道名稱          隊長名稱  人數 "};
 		StockFontBuffer( x + 10, y + 15, FONT_PRIO_FRONT,4 , title, 0 );
 		int i;
 		for(i = 0 ; i < roomNum ; i++ ){
@@ -22319,7 +22319,7 @@ void SelectChatRoom(void)
 				if( mouse.onceState & MOUSE_LEFT_CRICK ){
 					sprintf_s(tmpMsg,"J|%d",roomIndex[i]);
 					lssproto_CHATROOM_send ( sockfd , tmpMsg ) ; 
-					SelRoomBtn = 0;         //关闭选择频道视窗
+					SelRoomBtn = 0;         //關閉選擇頻道視窗
 				}
 			}
 		}
@@ -22365,11 +22365,11 @@ void InitRoomInfo()
 	firMemNo = 0;
 }
 
-void InitCreateChatRoom(char *msg)		//初始化聊天室视窗
+void InitCreateChatRoom(char *msg)		//初始化聊天室視窗
 {
 	char temp[64],*temp1;
 	chatInfo.chiefFlag = 0;
-	InitRoomInfo();					    //初始化参数
+	InitRoomInfo();					    //初始化參數
 	chatRoomBtn = 1;
 	getStringToken( msg, '|', 2 , sizeof(temp) -1 ,temp );
 	char *sss;
@@ -22401,7 +22401,7 @@ void InitCreateChatRoom(char *msg)		//初始化聊天室视窗
 			getStringToken( msg, '|', 9+i*3, sizeof(chatInfo.nickName[i]) -1 
 				,chatInfo.nickName[i] );
 			if(i > 0 && chatInfo.memberIndex[i] == chatInfo.chiefIndex)
-				SwapOrder(i, 0);                 //室长排序
+				SwapOrder(i, 0);                 //室長排序
 			secretFlag = FALSE;			  
 			selChar = -1;
 		}
@@ -22413,7 +22413,7 @@ void InitCreateChatRoom(char *msg)		//初始化聊天室视窗
 }
 
 #ifdef _CHATROOMPROTOCOL
-void ChatRoomWnd( void )			//聊天室视窗
+void ChatRoomWnd( void )			//聊天室視窗
 {
 	char tmpMsg[STR_BUFFER_SIZE];
 	int nameColor;
@@ -22441,7 +22441,7 @@ void ChatRoomWnd( void )			//聊天室视窗
 			scrlHBtn = CG_FIELD_SCROLL_HUP;
 			scrlLBtn = CG_FIELD_SCROLL_LUP;
 
-			if(chatInfo.chiefFlag == 1){									//队长专有按钮
+			if(chatInfo.chiefFlag == 1){									//隊長專有按鈕
 				delBtn = CG_FIELD_DELETE_BTN_UP;
 				if(secretFlag && chatInfo.chiefIndex != chatInfo.memberIndex[selChar]){
 					outBtn = CG_FIELD_OUTMEMBER_BTN_UP;
@@ -22469,7 +22469,7 @@ void ChatRoomWnd( void )			//聊天室视窗
 		for(int i = 0 ; i < 10 ; i++ ){	
 			if(chatInfo.memberNum - 1 < i + firMemNo )
 				break;
-			//人名变色
+			//人名變色
 			if( MakeHitBox(x + 20 ,y + 77 + i * 20 , x + 250 , y + 96+ i * 20, DISP_PRIO_BOX2 )){
 				if( mouse.onceState & MOUSE_LEFT_CRICK ){
 					if(strcmp(chatInfo.memberName[i + firMemNo], pc.name) != 0 || strcmp(chatInfo.nickName[i + firMemNo], pc.freeName) != 0){
@@ -22507,9 +22507,9 @@ void ChatRoomWnd( void )			//聊天室视窗
 		}
 
 		for( int i = 0; i < 8; i++){
-			if( i == 2 &&  chatInfo.chiefFlag == 0 )		//不是队长则跳过三个按钮
+			if( i == 2 &&  chatInfo.chiefFlag == 0 )		//不是隊長則跳過三個按鈕
 				i = 5;
-			else if( i == 2 && chatInfo.chiefFlag == 1 && selChar == -1)			//是队长未选人
+			else if( i == 2 && chatInfo.chiefFlag == 1 && selChar == -1)			//是隊長未選人
 				i = 4;
 
 			if( HitDispNo == ChatRoomBtn[ i ] ) {
@@ -22555,18 +22555,18 @@ void ChatRoomWnd( void )			//聊天室视窗
 
 				}else if(mouse.onceState & MOUSE_LEFT_CRICK_UP){
 					switch(i){
-					case 0:						//关闭视窗
+					case 0:						//關閉視窗
 						DeathMenuAction();
 						break;
 
-					case 1:						//离开频道
+					case 1:						//離開頻道
 						if(chatInfo.chiefFlag == 1)
-							StockChatBufferLine(  "室长不得离开聊天室,如欲离开请换别人当室长！" , FONT_PAL_RED);
+							StockChatBufferLine(  "室長不得離開聊天室,如欲離開請換彆人當室長！" , FONT_PAL_RED);
 						else{
 							lssproto_CHATROOM_send ( sockfd , "L|" ) ;
 							strcpy(pc.chatRoomNum,""); 
 							DeathMenuAction();
-							StockChatBufferLine(  "你已离开聊天室" , FONT_PAL_BLUE);
+							StockChatBufferLine(  "你已離開聊天室" , FONT_PAL_BLUE);
 							TalkMode = 0;
 #ifdef _CHANNEL_MODIFY
 							pc.etcFlag &= ~PC_ETCFLAG_CHAT_CHAT;
@@ -22579,13 +22579,13 @@ void ChatRoomWnd( void )			//聊天室视窗
 						lssproto_CHATROOM_send ( sockfd , tmpMsg ) ;
 						break;
 
-					case 3:					//换队长
+					case 3:					//換隊長
 						sprintf_s(tmpMsg,"M|%d", chatInfo.memberIndex[selChar]);
 						lssproto_CHATROOM_send ( sockfd , tmpMsg );
 						TalkMode = 0;
 						break;
 
-					case 4:					//删除频道
+					case 4:					//刪除頻道
 						lssproto_CHATROOM_send ( sockfd ,"D|") ;
 						strcpy(pc.chatRoomNum,"");
 						TalkMode = 0;
@@ -22620,17 +22620,17 @@ void ChatRoomWnd( void )			//聊天室视窗
 }
 #endif
 
-void initAssentWnd(char *data)			//要求加入视窗
+void initAssentWnd(char *data)			//要求加入視窗
 {
 	assentFlag = TRUE;
 	char temp[64];
 	getStringToken( data, '|', 2 , sizeof(temp) -1 ,temp );
-	sprintf_s(memInfo,"%s 申请加入",temp);
+	sprintf_s(memInfo,"%s 申請加入",temp);
 	memIndex = getIntegerToken( data, '|', 3);
 }
 
 #ifdef _CHATROOMPROTOCOL
-void AssentWnd(void)                    //要求加入视窗
+void AssentWnd(void)                    //要求加入視窗
 {
 	int i = 0;
 	char tmpMsg[128] = {""};
@@ -22678,7 +22678,7 @@ void InitRecvMsg(char *data)
 	char msg[STR_BUFFER_SIZE];
 	getStringToken( data, '|', 2 , sizeof(temp) -1 ,temp );
 #ifndef _CHANNEL_MODIFY
-	sprintf_s(msg,"[频道]%s",temp);
+	sprintf_s(msg,"[頻道]%s",temp);
 #else
 	sprintf_s(msg,"[聊]%s",temp);
 	TradeTalk(msg);
@@ -22687,7 +22687,7 @@ void InitRecvMsg(char *data)
 	StockChatBufferLine( msg, 2);
 }
 
-#ifdef _CHATROOMPROTOCOL			// (不可开) Syu ADD 聊天室频道
+#ifdef _CHATROOMPROTOCOL			// (不可開) Syu ADD 聊天室頻道
 void lssproto_CHATROOM_recv ( int fd, char *data)
 {
 	char type[3] = {""};
@@ -22700,23 +22700,23 @@ void lssproto_CHATROOM_recv ( int fd, char *data)
 	case 'D':						//Delete
 		chatRoomBtn = 0;
 		strcpy(pc.chatRoomNum,"");
-		StockChatBufferLine(  "聊天室已被删除！" , FONT_PAL_RED);
+		StockChatBufferLine(  "聊天室已被刪除！" , FONT_PAL_RED);
 #ifdef _CHANNEL_MODIFY
 		pc.etcFlag &= ~PC_ETCFLAG_CHAT_CHAT;
 #endif
 		break;
 	case 'T':
-		InitRecvMsg(data);    //处理讯息
+		InitRecvMsg(data);    //處理訊息
 		break;
 	case 'K'://剔除
 		chatRoomBtn = 0;
 		strcpy(pc.chatRoomNum,"");
-		StockChatBufferLine( "你已被室长踢出聊天室！" , FONT_PAL_RED);
+		StockChatBufferLine( "你已被室長踢齣聊天室！" , FONT_PAL_RED);
 #ifdef _CHANNEL_MODIFY
 		pc.etcFlag &= ~PC_ETCFLAG_CHAT_CHAT;
 #endif
 		break;
-	case 'J'://加入申请
+	case 'J'://加入申請
 		if(assentFlag == FALSE)
 		{
 			DeathAction(pAssentWnd);
@@ -22724,7 +22724,7 @@ void lssproto_CHATROOM_recv ( int fd, char *data)
 			initAssentWnd(data);
 		}
 		break;
-	case 'R':			//更新聊天室资讯
+	case 'R':			//更新聊天室資訊
 		InitCreateChatRoom(data);
 		break;
 	}
@@ -22735,12 +22735,12 @@ void lssproto_CHATROOM_recv ( int fd, char *data)
 
 #ifdef _TIMEBAR_FUNCTION
 /***********************************************************
-参数:
-title :  TimeBar 标头  范围32bit
-range :  TimeBar 范围
-回传值:	 TimeBar 识别用.用以设定正确的值
+參數:
+title :  TimeBar 標頭  範圍32bit
+range :  TimeBar 範圍
+迴傳值:	 TimeBar 識彆用.用以設定正確的值
 
-barHolder[timBarIdent] : 可用以判断现在是否为此函式的拥有者
+barHolder[timBarIdent] : 可用以判斷現在是否為此函式的擁有者
 ***********************************************************/
 int SetTimeBar(char *title, int range)
 {
@@ -22772,17 +22772,17 @@ int SetTimeBar(char *title, int range)
 	return timBarIdent;
 }
 /*******************************************
-return -1: 注意!!代表无法设定现在的位址,可能被其他程式占用
-return  1: 已经完成 100 %
+return -1: 注意!!代錶無法設定現在的位址,可能被其他程式占用
+return  1: 已經完成 100 %
 *******************************************/
 int SetTimeBarPos(int timBarIdent, int CurPos)
 {
 	if(!barHolder[timBarIdent] )//|| CurPos > timeBarRange)
 		return -1;
-	timeBarCurPos = 20 * CurPos / timeBarRange;  //20为bar的单位总数.
+	timeBarCurPos = 20 * CurPos / timeBarRange;  //20為bar的單位總數.
 	if(timeBarCurPos > 20){
 		timeBarCurPos = 20;
-		return 1;				//已经到达100 %了
+		return 1;				//已經到達100 %瞭
 	}
 	return 0;
 }
@@ -22825,11 +22825,11 @@ void send_StandBy_Pet(void)
 /* =========================================
 
 注意!!
-这个档案已经超过1万5千多行了，造成VC编辑器效率低落，
-请尽量不要在后面增加新Code了。
+這個檔案已經超過1萬5韆多行瞭，造成VC編輯器效率低落，
+請盡量不要在後麵增加新Code瞭。
 
 ~Robin~
 
-所以请加到menu2.cpp  by  Change
+所以請加到menu2.cpp  by  Change
 ========================================= */
 

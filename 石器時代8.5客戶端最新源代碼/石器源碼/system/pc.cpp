@@ -1,4 +1,4 @@
-﻿#include "../systeminc/version.h"
+#include "../systeminc/version.h"
 #include"../systeminc/system.h"
 #include"../systeminc/action.h"
 #include"../systeminc/pc.h"
@@ -33,7 +33,7 @@ short tradeStatus = 0;
 
 PET pet[MAX_PET];
 
-#ifdef _CHAR_PROFESSION			// WON ADD 人物职业
+#ifdef _CHAR_PROFESSION			// WON ADD 人物職業
 PROFESSION_SKILL profession_skill[MAX_PROFESSION_SKILL];
 #endif
 
@@ -104,14 +104,14 @@ void initPcAll(void)
 	memset(&party, 0, sizeof(party));
 	memset(&petSkill, 0, sizeof(petSkill));
 
-#ifdef _CHAR_PROFESSION			// WON ADD 人物职业	
+#ifdef _CHAR_PROFESSION			// WON ADD 人物職業	
 	memset(&profession_skill, 0, sizeof(profession_skill));
 #endif
 
 	pc.mailPetNo = -1;
 #ifdef _MORECHARACTERS_
-	extern int 多人物当前页数;
-	getUserSetting(selectPcNo+多人物当前页数*2);
+	extern int 多人物當前頁數;
+	getUserSetting(selectPcNo+多人物當前頁數*2);
 #else
 	getUserSetting(selectPcNo);
 #endif
@@ -164,7 +164,7 @@ void initPcAll(void)
 	pc.iSceneryNumber = -1;
 #endif
 #ifdef _SFUMATO
-	pc.sfumato = 0;		// 二次渲染图层色彩
+	pc.sfumato = 0;		// 二次渲染圖層色彩
 #endif
 }
 
@@ -194,13 +194,13 @@ void initPc(void)
 	{
 		height = 1;
 	}
-#ifdef _CHAR_PROFESSION			// WON ADD 人物职业
-//    #ifdef _GM_IDENTIFY		// Rog ADD GM识别
+#ifdef _CHAR_PROFESSION			// WON ADD 人物職業
+//    #ifdef _GM_IDENTIFY		// Rog ADD GM識彆
 //	setPcParam(pc.name, pc.freeName, pc.level, pc.ridePetName, pc.ridePetLevel, pc.nameColor, walk, height, pc.profession_class, pc.profession_level, pc.profession_exp, pc.profession_skill_point, pc.ptAct->gm_name);
 //	setPcParam(pc.name, pc.freeName, pc.level, pc.ridePetName, pc.ridePetLevel, pc.nameColor, walk, height, pc.profession_class, pc.profession_level, pc.profession_skill_point, pc.ptAct->gm_name);    
 //	#else	
 //	setPcParam(pc.name, pc.freeName, pc.level, pc.ridePetName, pc.ridePetLevel, pc.nameColor, walk, height, pc.profession_class, pc.profession_level, pc.profession_exp, pc.profession_skill_point);
-#ifdef _ALLDOMAN // (不可开) Syu ADD 排行榜NPC
+#ifdef _ALLDOMAN // (不可開) Syu ADD 排行榜NPC
 	setPcParam(pc.name, pc.freeName, pc.level, pc.ridePetName, pc.ridePetLevel, pc.nameColor, walk, height, pc.profession_class, pc.profession_level, pc.profession_skill_point , pc.herofloor);
 #else
 	setPcParam(pc.name, pc.freeName, pc.level, pc.ridePetName, pc.ridePetLevel, pc.nameColor, walk, height, pc.profession_class, pc.profession_level, pc.profession_skill_point);
@@ -332,7 +332,7 @@ void setPcGraNo(int graNo, int dir)
 	pc.ptAct->anim_chr_no = graNo;
 	pc.ptAct->anim_ang = dir;
 #ifdef _SFUMATO
-	pc.ptAct->sfumato = pc.sfumato;		// 二次渲染图层色彩
+	pc.ptAct->sfumato = pc.sfumato;		// 二次渲染圖層色彩
 #endif
 }
 
@@ -426,13 +426,13 @@ int getPcAction(void)
 extern int TalkMode;
 #endif
 
-#ifdef _CHAR_PROFESSION			// WON ADD 人物职业
-//    #ifdef _GM_IDENTIFY		// Rog ADD GM识别
+#ifdef _CHAR_PROFESSION			// WON ADD 人物職業
+//    #ifdef _GM_IDENTIFY		// Rog ADD GM識彆
 //  void setPcParam(char *name, char *freeName, int level, char *petname, int petlevel, int nameColor, int walk, int height, int profession_class, int profession_level, int profession_exp, int profession_skill_point , char *gm_name)
 //    void setPcParam(char *name, char *freeName, int level, char *petname, int petlevel, int nameColor, int walk, int height, int profession_class, int profession_level, int profession_skill_point , char *gm_name)    
 //	#else
 //	void setPcParam(char *name, char *freeName, int level, char *petname, int petlevel, int nameColor, int walk, int height, int profession_class, int profession_level, int profession_exp, int profession_skill_point)
-#ifdef _ALLDOMAN // (不可开) Syu ADD 排行榜NPC
+#ifdef _ALLDOMAN // (不可開) Syu ADD 排行榜NPC
 	void setPcParam(char *name, char *freeName, int level, char *petname, int petlevel, int nameColor, int walk, int height, int profession_class, int profession_level, int profession_skill_point , int herofloor)
 #else
 	void setPcParam(char *name, char *freeName, int level, char *petname, int petlevel, int nameColor, int walk, int height, int profession_class, int profession_level, int profession_skill_point)
@@ -445,7 +445,7 @@ extern int TalkMode;
 	int nameLen;
 	int freeNameLen;
 	int petnameLen;
-#ifdef _GM_IDENTIFY		// Rog ADD GM识别
+#ifdef _GM_IDENTIFY		// Rog ADD GM識彆
 	int gmnameLen;
 #endif
 	nameLen = strlen(name);
@@ -501,17 +501,17 @@ extern int TalkMode;
 
 	pc.ptAct->itemNameColor = nameColor;
 
-#ifdef _CHAR_PROFESSION			// WON ADD 人物职业
+#ifdef _CHAR_PROFESSION			// WON ADD 人物職業
 	pc.profession_class	= profession_class;
 	pc.ptAct->profession_class = profession_class;
 	pc.profession_level = profession_level;
 //	pc.profession_exp = profession_exp;
 	pc.profession_skill_point = profession_skill_point;
 #endif
-#ifdef _ALLDOMAN // (不可开) Syu ADD 排行榜NPC
+#ifdef _ALLDOMAN // (不可開) Syu ADD 排行榜NPC
 	pc.herofloor = herofloor;
 #endif
-#ifdef _GM_IDENTIFY		// Rog ADD GM识别
+#ifdef _GM_IDENTIFY		// Rog ADD GM識彆
 	gmnameLen = strlen(gm_name);
 	if(gmnameLen <= 33){
 		strcpy(pc.ptAct->gm_name, gm_name);
@@ -547,7 +547,7 @@ void updataPcAct(void)
 	pc.ptAct->hp    = pc.hp;
 	pc.ptAct->maxHp = pc.maxHp;
 #ifdef _SFUMATO
-	pc.ptAct->sfumato = pc.sfumato;		// 二次渲染图层色彩
+	pc.ptAct->sfumato = pc.sfumato;		// 二次渲染圖層色彩
 #endif
 }
 
@@ -982,7 +982,7 @@ void changePcAct(int x, int y, int dir, int action,
 					ext->pActFirework[1] = NULL;
 				}
 				ext->pActFirework[0] = GetAction(PRIO_CHR, 0);
-				ext->pActFirework[0]->damage		= effectno;	// 借用 damage 来储存 type (effectno = type)
+				ext->pActFirework[0]->damage		= effectno;	// 藉用 damage 來儲存 type (effectno = type)
 				ext->pActFirework[0]->anim_chr_no	= effectparam1;
 				ext->pActFirework[0]->anim_no		= ANIM_STAND;
 				ext->pActFirework[0]->anim_ang		= 1;
@@ -1022,7 +1022,7 @@ void changePcAct(int x, int y, int dir, int action,
 				//changePcAct(x, y, dir, 60 , giver , actionNum , petaction)
 				//changePcAct(int x, int y, int dir, int action,int effectno, int effectparam1, int effectparam2)
 
-				//effectno 传来的值代表施放者的位置编号
+				//effectno 傳來的值代錶施放者的位置編號
 				if(effectparam2 == 3){ //魔法牌
 					ext->pActMagiccard[0] = GetAction(PRIO_CHR,0);
 					ext->pActMagiccard[0]->anim_chr_no	= effectparam1;
@@ -1034,7 +1034,7 @@ void changePcAct(int x, int y, int dir, int action,
 						ext->pActMagiccard[0]->gx		= Positiontable[effectno].petX+1 + x; 
 						ext->pActMagiccard[0]->gy		= Positiontable[effectno].petY-1 + y; 
 					}
-				}else if(effectparam2 == 0){ //被封印或是放弃出牌 
+				}else if(effectparam2 == 0){ //被封印或是放棄齣牌 
 					ext->pActMagiccard[0] = GetAction(PRIO_CHR,0);
 					ext->pActMagiccard[0]->anim_chr_no	= 101290;
 					ext->pActMagiccard[0]->dispPrio	= DISP_PRIO_RESERVE;
@@ -1053,14 +1053,14 @@ void changePcAct(int x, int y, int dir, int action,
 						ext->pActMagiccard[i]->gx		= Positiontable[effectno].petX + x; 
 						ext->pActMagiccard[i]->gy		= Positiontable[effectno].petY + y;
 						ext->pActMagiccard[i]->dispPrio	= DISP_PRIO_RESERVE;
-						ext->pActMagiccard[i]->anim_ang	= dir;//1;	//方向
+						ext->pActMagiccard[i]->anim_ang	= dir;//1;	//方嚮
 					}
 
 					ext->pActMagiccard[1]->anim_no		= ANIM_STAND;
 
-					if(effectparam2 == 1)	//宠牌攻击			
+					if(effectparam2 == 1)	//寵牌攻擊			
 						ext->pActMagiccard[2]->anim_no		= ANIM_ATTACK;
-					else if(effectparam2 == 2)	//宠牌防御	
+					else if(effectparam2 == 2)	//寵牌防禦	
 					 	ext->pActMagiccard[2]->anim_no		= ANIM_GUARD;
 				}	
 #ifdef _MOVE_SCREEN
@@ -1191,7 +1191,7 @@ int setCharacterList(char *name, char *opt)
 	if(index < 0 || index >= MAXCHARACTER)
 		return -1;
 #ifdef _AIDENGLU_
-	memset(PcLanded.登陆人物名称[index],0,32);
+	memset(PcLanded.登陸人物名稱[index],0,32);
 #endif
 	memset(&chartable[index], 0, sizeof(CHARLISTTABLE));
 
@@ -1217,7 +1217,7 @@ int setCharacterList(char *name, char *opt)
 	chartable[index].attr[3]	= getIntegerToken(opt, '|', 13)/10;
 	chartable[index].login		= getIntegerToken(opt, '|', 14);
 #ifdef _AIDENGLU_
-	strcpy(PcLanded.登陆人物名称[index],name);
+	strcpy(PcLanded.登陸人物名稱[index],name);
 #endif
 	return 0;
 }
@@ -1633,12 +1633,12 @@ void addressBookWindow1(void)
 					if(addressBook[i].onlineFlag != 0)
 					{
 						StockFontBuffer(addressBookX + 130, addressBookY + i * 110 + 46,
-							FONT_PRIO_FRONT, FONT_PAL_WHITE, "线上", 0);
+							FONT_PRIO_FRONT, FONT_PAL_WHITE, "綫上", 0);
 					}
 					else
 					{
 						StockFontBuffer(addressBookX + 130, addressBookY + i * 110 + 46,
-							FONT_PRIO_FRONT, FONT_PAL_GRAY, "断线", 0);
+							FONT_PRIO_FRONT, FONT_PAL_GRAY, "斷綫", 0);
 					}
 					// ????
 					addressBookSelectStrItem[i*3+1] =
@@ -1651,7 +1651,7 @@ void addressBookWindow1(void)
 					// ?????
 					addressBookSelectStrItem[i*3+3] =
 						StockFontBuffer(addressBookX + 156, addressBookY + i * 110 + 64,
-							FONT_PRIO_FRONT, FONT_PAL_YELLOW, "删除", 2);
+							FONT_PRIO_FRONT, FONT_PAL_YELLOW, "刪除", 2);
 				}
 				else
 				{
@@ -1664,14 +1664,14 @@ void addressBookWindow1(void)
 
 		addressBookSelectStrItem[0] =
 			StockFontBuffer(addressBookX + 56, addressBookY + 352,
-				FONT_PRIO_FRONT, FONT_PAL_YELLOW, "关闭", 2);
+				FONT_PRIO_FRONT, FONT_PAL_YELLOW, "關閉", 2);
 	}
 }
 
 int CHAR_getMaxHaveGold()
 {
 	int MaxGold;
-#ifdef _FIX_MAXGOLD				// WON ADD 增加人物金钱上限
+#ifdef _FIX_MAXGOLD				// WON ADD 增加人物金錢上限
 	int trans = pc.transmigration;
 	MaxGold = 1000000 + trans*(1800000);
 #else

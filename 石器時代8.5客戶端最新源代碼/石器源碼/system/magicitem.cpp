@@ -1,4 +1,4 @@
-﻿/************************/
+/************************/
 #include "../systeminc/version.h"
 #include "../systeminc/system.h"
 #include "../systeminc/pc.h"
@@ -20,7 +20,7 @@ ACTION* MagicItemActAddr;
 int MagicItemCombinData[3];
 int MagicItemPosState[4];
 
-void InitMagicItemWin(char * 内容)
+void InitMagicItemWin(char * 內容)
 {
 
 	if(!(MenuToggleFlag & JOY_CTRL_I))
@@ -117,7 +117,7 @@ ACTION* ShowMagicItemData()
 		}
 	}
 	if(flg){
-		char *str="上方放入待强化装备，左下需放入强化石/精灵石，右下可选择性放入祝福石";
+		char *str="上方放入待強化裝備，左下需放入強化石/精靈石，右下可選擇性放入祝福石";
 		char *splitPoint = str;
 		char moji[256];
 		int x=20;
@@ -144,23 +144,23 @@ ACTION* ShowMagicItemData()
 
 
 	int id ;
-	id = StockFontBuffer( 70,338, FONT_PRIO_FRONT,FONT_PAL_YELLOW, " 确  定 ", 2 );
+	id = StockFontBuffer( 70,338, FONT_PRIO_FRONT,FONT_PAL_YELLOW, " 確  定 ", 2 );
 	if(id ==HitFontNo){
 		if( (mouse.onceState & MOUSE_LEFT_CRICK)){
 		//	if(MagicItemCombinData[0]>0 && MagicItemCombinData[1]>0 && MagicItemCombinData[2]>0){
 			if(MagicItemCombinData[0]>0 && MagicItemCombinData[1]>0 ){
-				char 临时内容[10]={0};
-				sprintf_s(临时内容,"%d|%d|%d",MagicItemCombinData[0],MagicItemCombinData[1],MagicItemCombinData[2]);
+				char 臨時內容[10]={0};
+				sprintf_s(臨時內容,"%d|%d|%d",MagicItemCombinData[0],MagicItemCombinData[1],MagicItemCombinData[2]);
 				extern int indexWN,idWN;
-				lssproto_WN_send(sockfd,nowGx,nowGy,indexWN,idWN,0,临时内容);
+				lssproto_WN_send(sockfd,nowGx,nowGy,indexWN,idWN,0,臨時內容);
 				windowTypeWN = -1;
 				wnCloseFlag = 1;
 			}else{
-				StockChatBufferLine("系统：您未放入合成材料!",6);
+				StockChatBufferLine("係統：您未放入閤成材料!",6);
 			}
 		}
 	}
-	id = StockFontBuffer( 160,338, FONT_PRIO_FRONT, FONT_PAL_YELLOW, " 关  闭 ", 2 );
+	id = StockFontBuffer( 160,338, FONT_PRIO_FRONT, FONT_PAL_YELLOW, " 關  閉 ", 2 );
 	if(id ==HitFontNo){
 		if( (mouse.onceState & MOUSE_LEFT_CRICK)){
 			windowTypeWN = -1;

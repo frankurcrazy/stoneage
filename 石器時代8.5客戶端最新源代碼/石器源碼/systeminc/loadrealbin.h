@@ -1,4 +1,4 @@
-﻿#ifndef _LOADREALBIN_H_
+#ifndef _LOADREALBIN_H_
 #define _LOADREALBIN_H_
 #include "directdraw.h"
 void initAutoMapColor( char * );
@@ -78,17 +78,17 @@ struct ADRNBIN{
 
 #ifdef _READ16BITBMP
 struct AddressBin_s{
-	unsigned int bitmapno;			// 图号
-	unsigned int adder;					// 资料在图素档里的起始位址
-	unsigned int palSize;				// 色盘资料大小
-	unsigned int size;					// 一笔资料的大小
-	unsigned int alpha_size;		// alpha_size不为0表示在图素资料后连着是alpha资料,alpha_size就是alpha资料的大小
-															// 如果alpha_size为0表示没有带alpha资料
+	unsigned int bitmapno;			// 圖號
+	unsigned int adder;					// 資料在圖素檔裏的起始位址
+	unsigned int palSize;				// 色盤資料大小
+	unsigned int size;					// 一筆資料的大小
+	unsigned int alpha_size;		// alpha_size不為0錶示在圖素資料後連著是alpha資料,alpha_size就是alpha資料的大小
+															// 如果alpha_size為0錶示沒有帶alpha資料
 	int	xoffset;
 	int	yoffset;
-	unsigned int width;					// 图宽
-	unsigned int height;				// 图高
-	unsigned int staturated;		// 是否用饱和效果
+	unsigned int width;					// 圖寬
+	unsigned int height;				// 圖高
+	unsigned int staturated;		// 是否用飽和效果
 };
 #endif
 
@@ -130,23 +130,23 @@ static DWORD FontPal[FONT_PAL_NUM]={
 };
 
 /*
-BOOL InitRealbinFileOpen( char *realbinfilename, char *addrbinfilename);	//初始化realbin的资料并配置相关的记忆体
-//void SetCurFrame();									//累加CurFrame的counter，请每个frame执行一次
-void CacheRLU( int howlong);							//释放太久没使用的图档记忆体
-BOOL realGetNo( DWORD CharAction, DWORD *GraphicNo);	//从char action转成图档编号
-DWORD realGetNo2( DWORD bnum);							//从bnum转成图档编号
-BOOL realIsValid( DWORD CharAction);					//检查图号是否有效
-DWORD realGetBitmapNo( DWORD num);						//从图档编号转回bnum
-BOOL realGetPos( DWORD GraphicNo, short *x, short *y);	//取回GraphicNo的x和y offset
-BOOL realGetWH( DWORD GraphicNo, short *w, short *h);	//取回GraphicNo的宽和高
-BOOL realGetHitPoints( DWORD GraphicNo, short *HitX, short *HitY);	//取回GraphicNo的实际宽和高
-BOOL realGetPrioType( DWORD GraphicNo , short *prioType);	//取回GraphicNo的优先权种类
-BOOL realGetHitFlag( DWORD GraphicNo, short *Hit);			//取回GraphicNo的Hit
-BOOL realGetHeightFlag( DWORD GraphicNo, short *Height);	//取回GraphicNo是否有高度
-int realGetSoundEffect( DWORD GraphicNo);					//取回GraphicNo的环境音
-int realGetWalkSoundEffect( DWORD GraphicNo);				//取回GraphicNo的脚步声
+BOOL InitRealbinFileOpen( char *realbinfilename, char *addrbinfilename);	//初始化realbin的資料並配置相關的記憶體
+//void SetCurFrame();									//纍加CurFrame的counter，請每個frame執行一次
+void CacheRLU( int howlong);							//釋放太久沒使用的圖檔記憶體
+BOOL realGetNo( DWORD CharAction, DWORD *GraphicNo);	//從char action轉成圖檔編號
+DWORD realGetNo2( DWORD bnum);							//從bnum轉成圖檔編號
+BOOL realIsValid( DWORD CharAction);					//檢查圖號是否有效
+DWORD realGetBitmapNo( DWORD num);						//從圖檔編號轉迴bnum
+BOOL realGetPos( DWORD GraphicNo, short *x, short *y);	//取迴GraphicNo的x和y offset
+BOOL realGetWH( DWORD GraphicNo, short *w, short *h);	//取迴GraphicNo的寬和高
+BOOL realGetHitPoints( DWORD GraphicNo, short *HitX, short *HitY);	//取迴GraphicNo的實際寬和高
+BOOL realGetPrioType( DWORD GraphicNo , short *prioType);	//取迴GraphicNo的優先權種類
+BOOL realGetHitFlag( DWORD GraphicNo, short *Hit);			//取迴GraphicNo的Hit
+BOOL realGetHeightFlag( DWORD GraphicNo, short *Height);	//取迴GraphicNo是否有高度
+int realGetSoundEffect( DWORD GraphicNo);					//取迴GraphicNo的環境音
+int realGetWalkSoundEffect( DWORD GraphicNo);				//取迴GraphicNo的腳步聲
 LPBYTE ReadRealBin( DWORD GraphicNo);
-//画出realbin
+//畫齣realbin
 BOOL DrawScaleImage( DWORD GraphicNo, int screenx, int screeny, int screenw, int screenh, LPWORD dest,
 					int destw, int desth, int pitch, LPWORD pal);
 */

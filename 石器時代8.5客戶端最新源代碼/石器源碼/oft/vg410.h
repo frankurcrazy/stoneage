@@ -5,14 +5,14 @@
 #include "windows.h"
 #include "../systeminc/action.h"
 
-typedef unsigned char	Uint8 ;		/* ????????şĞ? */
-typedef signed   char	Sint8 ;		/* ????????şĞ? */
-typedef unsigned short	Uint16 ;	/* ????????şĞ? */
-typedef signed   short	Sint16 ;	/* ????????şĞ? */
-typedef unsigned long	Uint32 ;	/* ????????şĞ? */
-typedef signed   long	Sint32 ;	/* ????????şĞ? */
-typedef float		Float32 ;	/* ????ûÂ? */
-typedef double		Float64 ;	/* ????ûÂ? */
+typedef unsigned char	Uint8 ;		/* ????????? */
+typedef signed   char	Sint8 ;		/* ????????? */
+typedef unsigned short	Uint16 ;	/* ????????? */
+typedef signed   short	Sint16 ;	/* ????????? */
+typedef unsigned long	Uint32 ;	/* ????????? */
+typedef signed   long	Sint32 ;	/* ????????? */
+typedef float		Float32 ;	/* ????? */
+typedef double		Float64 ;	/* ????? */
 
 /*----------  ????????????  ----------*/
 #define	ATR_MAX	256
@@ -70,8 +70,8 @@ typedef struct{
 	int		effect_anim;
 	int		effect_param;
 #endif
-#ifdef _SKILL_SELFEXPLODE //×Ô±¬
-	int		petSelfExplode;		//´óºğ(¿ËÄêÊŞ)
+#ifdef _SKILL_SELFEXPLODE //è‡ªçˆ†
+	int		petSelfExplode;		//å¤§å¼(å‰‹å¹´ç¸)
 #endif 
 #ifdef _PETSKILL_BATTLE_MODEL
 	int	battle_model;
@@ -104,15 +104,15 @@ typedef struct{
 #define	ATR_CHR_TIM(a)		a->anim_frame_cnt
 #define	ATR_CHR_H_POS(a)	a->anim_x
 #define	ATR_CHR_V_POS(a)	a->anim_y
-#define ATR_TASK_PRIO(a)	a->prio						/* ????¡I?? */
-#define ATR_DISP_PRIO(a)	a->dispPrio					/* ¤úû¨??¡I?? */
+#define ATR_TASK_PRIO(a)	a->prio						/* ????I?? */
+#define ATR_DISP_PRIO(a)	a->dispPrio					/* ??I?? */
 #define ATR_LIFE(a)			a->hp
 #ifdef _PET_ITEM
 #define ATR_OLD_LIFE(a)		a->iOldHp
 #endif
 #define ATR_MP(a)			a->mp
 #define ATR_MAX_LIFE(a)		a->maxHp
-#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+#ifdef _BATTLESKILL				// (ä¸å¯é–‹) Syu ADD æˆ°é¬¥æŠ€èƒ½ä»‹éºµ
 #define ATR_MAX_MANA(a)		a->maxMp
 #endif
 #define ATR_HANDLE(a)		a->name
@@ -128,20 +128,20 @@ typedef struct{
 #define ATR_PET_MAX_LIFE(a)		a->petMaxHp
 #define ATR_PETFALL(a)		a->petFall
 #ifdef _SKILL_ROAR  
-#define ATR_ROAR(a)		    a->petRoar		        //´óºğ(¿ËÄêÊŞ)
+#define ATR_ROAR(a)		    a->petRoar		        //å¤§å¼(å‰‹å¹´ç¸)
 #endif 
-#ifdef _SKILL_SELFEXPLODE //×Ô±¬
+#ifdef _SKILL_SELFEXPLODE //è‡ªçˆ†
 #define ATR_SELFEXPLODE(a)		    a->petSelfExplode	
 #endif 
-#ifdef _MAGIC_DEEPPOISION   //¾ç¶¾
+#ifdef _MAGIC_DEEPPOISION   //åŠ‡æ¯’
 #define ATR_DEEPPOISION(a)		    a->petDeepPoision	
 #endif 
-//#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+//#ifdef _BATTLESKILL				// (ä¸å¯é–‹) Syu ADD æˆ°é¬¥æŠ€èƒ½ä»‹éºµ
 #define ATR_WARRIOR_EFFECT(a) a->warrioreffect
 //#endif
 
 #ifdef _SFUMATO
-#define ATR_SFUMATO(a)		    a->sfumato	 // ¶ş´ÎäÖÈ¾Í¼²ãÉ«²Ê		
+#define ATR_SFUMATO(a)		    a->sfumato	 // äºŒæ¬¡æ¸²æŸ“åœ–å±¤è‰²å½©		
 #endif
 
 #define ATR_VCT_NO(a)		((ATR_EQU *)a->pYobi)->vct_no
@@ -206,103 +206,103 @@ ACTION * _ATR_BODY_WORK(int b ,ACTION * a,char *file,int line);
 #define ATR_BATTLE_MODEL(a)	((ATR_EQU *)a->pYobi)->battle_model
 #endif
 
-#ifdef _SKILL_SELFEXPLODE //×Ô±¬ 
-//#define ATR_SELFEXPLODE(a)	((ATR_EQU *)a->pYobi)->petSelfExplode 		//×Ô±¬
+#ifdef _SKILL_SELFEXPLODE //è‡ªçˆ† 
+//#define ATR_SELFEXPLODE(a)	((ATR_EQU *)a->pYobi)->petSelfExplode 		//è‡ªçˆ†
 #endif 
-/*----------  ??ûï?  ----------*/
+/*----------  ???  ----------*/
 #define ATT_HIT				'H'				//???
-#define ATT_FIRE			'Z'				//?£d
+#define ATT_FIRE			'Z'				//?d
 #define ATT_BOW				'B'				//?
-#define ATT_TAKE			'T'				//¨ö?
-#define ATT_ESCAPE			'E'				//£DüÒ
-#define ATT_SELECT			'S'				//???¡k¢‘
-#define ATT_MONSTER			'W'				//şğ§l
-#define ATT_JUJUTSU			'J'				//ûöüÓ
+#define ATT_TAKE			'T'				//?
+#define ATT_ESCAPE			'E'				//D
+#define ATT_SELECT			'S'				//???k
+#define ATT_MONSTER			'W'				//çšˆl
+#define ATT_JUJUTSU			'J'				//é°‰
 #ifdef __NEW_BATTLE_EFFECT
-#define ATT_EFFECT			'j'				//ÆäËüµÄÕ½¶·ÌØĞ§
+#define ATT_EFFECT			'j'				//å…¶å®ƒçš„æˆ°é¬¥ç‰¹æ•ˆ
 #endif
-//#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
+//#ifdef _BATTLESKILL				// (ä¸å¯é–‹) Syu ADD æˆ°é¬¥æŠ€èƒ½ä»‹éºµ
 #define ATT_PROSKILL		'+'
 //#endif
-#ifdef _FIREHUNTER_SKILL				// (²»¿É¿ª) ROG ADD ÖìÈ¸¼¼ÄÜ_»ğÏßÁÔÉ±
+#ifdef _FIREHUNTER_SKILL				// (ä¸å¯é–‹) ROG ADD ç¡ƒé›€æŠ€èƒ½_ç«ç¶«çµæ®º
 #define ATT_FIRESKILL		'f'				
 #endif
-#ifdef _PROFESSION_ADDSKILL//½á½ç
+#ifdef _PROFESSION_ADDSKILL//çµç•Œ
 #define ATT_BOUNDARY		'a'				
 #endif
 #ifdef _PETSKILL_BATTLE_MODEL
-#define ATT_BATTLE_MODEL 'b'	// ³èÎï¼¼ÄÜÕ½¶·Ä£×é
+#define ATT_BATTLE_MODEL 'b'	// å¯µç‰©æŠ€èƒ½æˆ°é¬¥æ¨¡çµ„
 #endif
 #ifdef _PETSKILL_RIDE
 #define ATT_RIDE		'c'				
 #endif
 
 //andy_mp
-#define ATT_MPDAMAGE		'p'				//MPÉËº¦
+#define ATT_MPDAMAGE		'p'				//MPå‚·å®³
 #define ATT_DAMAGETOHP		'h'
-#define ATT_MAGICSTATUS		'm'				//ÌØÊâ×´Ì¬
+#define ATT_MAGICSTATUS		'm'				//ç‰¹æ®Šç‹€æ…‹
 #ifdef _MAGIC_DEEPPOISION
-#define	ATT_DEEPPOISION     'd'             //¾ç¶¾
+#define	ATT_DEEPPOISION     'd'             //åŠ‡æ¯’
 #endif
 #define ATT_BOOMERANG		'O'				//?????
-#define ATT_SYNCHRONOUS		'Y'				//¥i???
-#define ATT_MALFUNCTION		'M'				//£O¢lûöüÓ
-#define ATT_DAMAGE			'D'				//£O¢l????
-#define ATT_FADE_OUT		'F'				//¢NşÍ§T¤š
-#define ATT_LIFE			'L'				//Ô??ûş?úğ
-#define ATT_IN				'I'				//Ô??ûşü¬?
-#define ATT_VARIABLE		'V'				//¢NşÍ??
-#define ATT_REVERSE			'R'				//şØ?¨ë?
-#define ATT_QUIT			'Q'				//???¥`??
-#define ATT_NIX				'X'				//????§r
-#define ATT_KANJI			'K'				//§ó??
-#define ATT_NEXT_EQUIP		'N'				//?§¨Á?
-#define ATT_COMPANIONS		'!'				//¥s??
+#define ATT_SYNCHRONOUS		'Y'				//i???
+#define ATT_MALFUNCTION		'M'				//Olé°‰
+#define ATT_DAMAGE			'D'				//Ol????
+#define ATT_FADE_OUT		'F'				//Nè‰‡T
+#define ATT_LIFE			'L'				//???
+#define ATT_IN				'I'				//???
+#define ATT_VARIABLE		'V'				//N??
+#define ATT_REVERSE			'R'				//??
+#define ATT_QUIT			'Q'				//???`??
+#define ATT_NIX				'X'				//????r
+#define ATT_KANJI			'K'				//??
+#define ATT_NEXT_EQUIP		'N'				//??
+#define ATT_COMPANIONS		'!'				//s??
 #define ATT_STEAL			'#'				//??
 #define ATT_TALK			'%'				//????
-#define ATT_TOCALL			'$'				// ÕÙ»½
+#define ATT_TOCALL			'$'				// å¬å–š
 
-#define ATT_DEATH			(1 << 0)		//ËÀÍö
-#define ATT_NORMAL			(1 << 1)		//ÆÕÍ¨¹¥»÷
-#define ATT_SATISFACTORY	(1 << 2)		//»áĞÄÒ»»÷
-#define ATT_GUARD			(1 << 3)		//·ÀÓù
-#define ATT_COUNTER			(1 << 4)		//·´»÷
-#define ATT_DODGE			(1 << 5)		//ÉÁ±Ü
-#define ATT_AKO1			(1 << 6)		//±³1
-#define ATT_AKO2			(1 << 7)		//±³2
-#define ATT_G_CRASH			(1 << 8)		//·ÀÅö×²
-#define ATT_VICARIOUS		(1 << 9)		//ÖÒÈ®
-#define ATT_REFLEX			(1 << 10)		//·´Éä
-#define ATT_ABSORPTION		(1 << 11)		//ÎüÊÕ
-#define ATT_BALLIA			(1 << 12)		//ÆÁÕÏ
-#define ATT_CRUSH			(1 << 13)		//Åö×²
-#define ATT_FALL			(1 << 14)		//ÂäÂí
-#define ATT_TOOEH			(1 << 15)		//Äö³İ
-#define ATT_ATTDOUBLE		(1 << 16)		//ÊôĞÔÇ¿»¯¹¥»÷
+#define ATT_DEATH			(1 << 0)		//æ­»äº¡
+#define ATT_NORMAL			(1 << 1)		//æ™®é€šæ”»æ“Š
+#define ATT_SATISFACTORY	(1 << 2)		//æœƒå¿ƒä¸€æ“Š
+#define ATT_GUARD			(1 << 3)		//é˜²ç¦¦
+#define ATT_COUNTER			(1 << 4)		//åæ“Š
+#define ATT_DODGE			(1 << 5)		//é–ƒé¿
+#define ATT_AKO1			(1 << 6)		//èƒŒ1
+#define ATT_AKO2			(1 << 7)		//èƒŒ2
+#define ATT_G_CRASH			(1 << 8)		//é˜²ç¢°æ’
+#define ATT_VICARIOUS		(1 << 9)		//å¿ çŠ¬
+#define ATT_REFLEX			(1 << 10)		//åå°„
+#define ATT_ABSORPTION		(1 << 11)		//å¸æ”¶
+#define ATT_BALLIA			(1 << 12)		//å±éšœ
+#define ATT_CRUSH			(1 << 13)		//ç¢°æ’
+#define ATT_FALL			(1 << 14)		//è½é¦¬
+#define ATT_TOOEH			(1 << 15)		//åš™é½’
+#define ATT_ATTDOUBLE		(1 << 16)		//å±¬æ€§å¼·åŒ–æ”»æ“Š
 #ifdef _SKILL_ROAR  
-#define ATT_ATTROAR		    (1 << 17)		//´óºğ(¿ËÄêÊŞ)
+#define ATT_ATTROAR		    (1 << 17)		//å¤§å¼(å‰‹å¹´ç¸)
 #endif 
-#ifdef _SKILL_SELFEXPLODE //×Ô±¬
-#define ATT_ATTSELFEXPLODE	(1 << 18)		//×Ô±¬
+#ifdef _SKILL_SELFEXPLODE //è‡ªçˆ†
+#define ATT_ATTSELFEXPLODE	(1 << 18)		//è‡ªçˆ†
 #endif
 #ifdef _PETSKILL_EXPLODE
-#define ATT_EXPLODE	(1 << 29)		//±¬µ¯(¸ú×Ô±¬Ò»Ñù,Ö»ÊÇ½ÇÉ«²»»áÏûÊ§)
+#define ATT_EXPLODE	(1 << 29)		//çˆ†å½ˆ(è·Ÿè‡ªçˆ†ä¸€æ¨£,éš»æ˜¯è§’è‰²ä¸æœƒæ¶ˆå¤±)
 #endif 
 
 #define BCF_DEFMAGICATT		(1 << 19)
 #define BCF_SUPERWALL		(1 << 20)
-#define BCF_MODIFY			(1 << 21)		//ÊôĞÔ×ª»»
+#define BCF_MODIFY			(1 << 21)		//å±¬æ€§è½‰æ›
 
 
-//#ifdef _BATTLESKILL				// (²»¿É¿ª) Syu ADD Õ½¶·¼¼ÄÜ½éÃæ
-#define ATT_ATTPREPROSKILL		(1 << 22)		//Ö°Òµ¼¼ÄÜ
-#define ATT_ATTNEXTPROSKILL		(1 << 23)		//Ö°Òµ¼¼ÄÜ
-#define ATT_TRAP				(1 << 25)		//ÏİÚå
-#define ATT_NOMISS				(1 << 26)		//±©»÷µÚÒ»ÏÂ»÷¿Õ
+//#ifdef _BATTLESKILL				// (ä¸å¯é–‹) Syu ADD æˆ°é¬¥æŠ€èƒ½ä»‹éºµ
+#define ATT_ATTPREPROSKILL		(1 << 22)		//è·æ¥­æŠ€èƒ½
+#define ATT_ATTNEXTPROSKILL		(1 << 23)		//è·æ¥­æŠ€èƒ½
+#define ATT_TRAP				(1 << 25)		//é™·é˜±
+#define ATT_NOMISS				(1 << 26)		//æš´æ“Šç¬¬ä¸€ä¸‹æ“Šç©º
 //#endif
 
 #ifdef _EQUIT_ARRANGE
-#define ATT_ARRANGE				(1 << 24)	//¸ñµ²ĞãÍ¼#endif
+#define ATT_ARRANGE				(1 << 24)	//æ ¼æ“‹ç§€åœ–#endif
 #endif
 
 #ifdef _PETSKILL_ACUPUNCTURE
@@ -317,67 +317,67 @@ ACTION * _ATR_BODY_WORK(int b ,ACTION * a,char *file,int line);
 #define ATT_ATTACKBACK			(1 << 30)
 #endif
 
-#define JUJUTSU_1			(1)				//  "¥€", 
+#define JUJUTSU_1			(1)				//  "", 
 #define JUJUTSU_2			(2)				//  "??", 
-#define JUJUTSU_3			(3)				//  "şƒ?", 
-#define JUJUTSU_4			(4)				//  "şğ?", 
+#define JUJUTSU_3			(3)				//  "?", 
+#define JUJUTSU_4			(4)				//  "?", 
 #define JUJUTSU_5			(5)				//  "?????", 
 #define JUJUTSU_6			(6)				//  "??" 
 
-#define BC_FRESH			(1 << 0)		//ıø?úÓ?
-#define BC_DEATH			(1 << 1)		//?©û
-#define BC_PET_OK			(1 << 2)		//???üÒ?¦V?£Ï£Ë
-#define BC_BIT3				(1 << 3)		//  "¥€", 
+#define BC_FRESH			(1 << 0)		//??
+#define BC_DEATH			(1 << 1)		//?
+#define BC_PET_OK			(1 << 2)		//????V?ï¼¯ï¼«
+#define BC_BIT3				(1 << 3)		//  "", 
 #define BC_BIT4				(1 << 4)		//  "??", 
-#define BC_BIT5				(1 << 5)		//  "şƒ?", 
-#define BC_BIT6				(1 << 6)		//  "şğ?", 
+#define BC_BIT5				(1 << 5)		//  "?", 
+#define BC_BIT6				(1 << 6)		//  "?", 
 #define BC_BIT7				(1 << 7)		//  "?????", 
 #define BC_BIT8				(1 << 8)		//  "??" 
 #define BC_FADE_OUT			(1 << 9)		//??? 
-#define BC_REVERSE			(1 << 10)		//¢NşÍ§T¤š
+#define BC_REVERSE			(1 << 10)		//Nè‰‡T
 #ifdef _MAGIC_WEAKEN
-#define BC_WEAKEN           (1 << 11)      //ĞéÈõ
+#define BC_WEAKEN           (1 << 11)      //è™›å¼±
 #endif
 #ifdef _MAGIC_DEEPPOISION
-#define BC_DEEPPOISON       (1 << 12)      //¾ç¶¾   
+#define BC_DEEPPOISON       (1 << 12)      //åŠ‡æ¯’   
 #endif
 #ifdef _MAGIC_BARRIER
-#define BC_BARRIER          (1 << 13)      //Ä§ÕÏ   
+#define BC_BARRIER          (1 << 13)      //é­”éšœ   
 #endif
 #ifdef _MAGIC_NOCAST
-#define BC_NOCAST           (1 << 14)      //³ÁÄ¬   
+#define BC_NOCAST           (1 << 14)      //æ²‰é»˜   
 #endif
 
-#ifdef _SARS						// WON ADD ¶¾É·ÂûÑÓ
-#define BC_SARS				(1 << 15)	   // ¶¾É·ÂûÑÓ
+#ifdef _SARS						// WON ADD æ¯’ç…è”“å»¶
+#define BC_SARS				(1 << 15)	   // æ¯’ç…è”“å»¶
 #endif
 #ifdef _PETSKILL_LER
-#define BC_CHANGE			(1<<30) // À×¶û±äÉí
+#define BC_CHANGE			(1<<30) // é›·çˆ¾è®Šèº«
 #endif
 #ifdef _CHAR_PROFESSION					   // WON ADD
-#define	BC_DIZZY			(1 << 16)	   // ÔÎÑ£ 
-#define BC_ENTWINE			(1 << 17)	   // Ê÷¸ù²øÈÆ
-#define BC_DRAGNET			(1 << 18)	   // ÌìÂŞµØÍø
-#define BC_ICECRACK			(1 << 19)	   // ±ù±¬Êõ	
-#define BC_OBLIVION 		(1 << 20)	   // ÒÅÍü
-#define BC_ICEARROW         (1 << 21)	   // ±ù¼ı
-#define BC_BLOODWORMS		(1 << 22)	   // ÊÈÑª¹Æ
-#define BC_SIGN				(1 << 23)	   // Ò»Õë¼ûÑª
-#define BC_CRAZY			(1 << 24)      // Ìô²¦
-#define BC_F_ENCLOSE		(1 << 25)	   // »ğ¸½Ìå
-#define BC_I_ENCLOSE		(1 << 26)      // ±ù¸½Ìå
-#define BC_T_ENCLOSE		(1 << 27)      // À×¸½Ìå
+#define	BC_DIZZY			(1 << 16)	   // æšˆçœ© 
+#define BC_ENTWINE			(1 << 17)	   // æ¨¹æ ¹çºç¹
+#define BC_DRAGNET			(1 << 18)	   // å¤©ç¾…åœ°ç¶²
+#define BC_ICECRACK			(1 << 19)	   // å†°çˆ†è¡“	
+#define BC_OBLIVION 		(1 << 20)	   // éºå¿˜
+#define BC_ICEARROW         (1 << 21)	   // å†°ç®­
+#define BC_BLOODWORMS		(1 << 22)	   // å—œè¡€è ±
+#define BC_SIGN				(1 << 23)	   // ä¸€é‡è¦‹è¡€
+#define BC_CRAZY			(1 << 24)      // æŒ‘æ’¥
+#define BC_F_ENCLOSE		(1 << 25)	   // ç«é™„é«”
+#define BC_I_ENCLOSE		(1 << 26)      // å†°é™„é«”
+#define BC_T_ENCLOSE		(1 << 27)      // é›·é™„é«”
 
 #ifdef _PROFESSION_ADDSKILL
-#define BC_WATER            (1 << 28)      // Ë®¸½Ìå
-#define BC_FEAR				(1 << 29)	   // ¿Ö¾å
-//#define BC_F_I_T_ENCLOSE	(1 << 28)      // »ğ±ùÀ×¸½Ìå
+#define BC_WATER            (1 << 28)      // æ°´é™„é«”
+#define BC_FEAR				(1 << 29)	   // ææ‡¼
+//#define BC_F_I_T_ENCLOSE	(1 << 28)      // ç«å†°é›·é™„é«”
 #endif
 #ifdef _PETSKILL_LER
-#define BC_CHANGE			(1<<30) // À×¶û±äÉí
+#define BC_CHANGE			(1<<30) // é›·çˆ¾è®Šèº«
 #endif
 #ifdef _PRO_KILLME
-#define BC_ANGER			(1<<31) // Å­
+#define BC_ANGER			(1<<31) // æ€’
 #endif
 
 #endif
@@ -461,16 +461,16 @@ ACTION * _ATR_BODY_WORK(int b ,ACTION * a,char *file,int line);
 // ?????
 #define	JOY_RSHIFT			(1 << 26)	/* Ctrl + RSHIFT			*/
 #define	JOY_LSHIFT			(1 << 27)	/* Ctrl + LSHIFT			*/
-// ûöüÓ?????
+// é°‰?????
 #define	JOY_CTRL_J			(1 << 24)	/* Ctrl + J	*/
-// şú?¢v?????
+// ?v?????
 #define	JOY_CTRL_Q			(1 << 29)	/* Ctrl + Q	*/
 // ??????
 #define	JOY_CTRL_W			(1 << 30)	/* Ctrl + W	*/
 // ?????????
 #define	JOY_CTRL_G			(1 << 31)	/* Ctrl + G	*/
 
-#ifdef _TELLCHANNEL				//ROG ADD ÃÜÓïÆµµÀ
+#ifdef _TELLCHANNEL				//ROG ADD å¯†èªé »é“
 #define JOY_CTRL_R  (1 << 31)
 #endif
 

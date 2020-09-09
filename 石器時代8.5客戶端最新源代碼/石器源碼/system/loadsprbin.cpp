@@ -1,4 +1,4 @@
-﻿#define sprVERSION	3				//SPR ?  ??????
+#define sprVERSION	3				//SPR ?  ??????
 #include "../systeminc/version.h"
 #include 	"../systeminc/system.h"
 #include 	"../systeminc/loadsprbin.h"
@@ -116,7 +116,7 @@ BOOL InitSprBinFileOpen(char *SPR_BIN, char *SPRADRN_BIN)
 		}
 
 
-		//Change fix 投掷动作没有设定SoundNo,战斗时会当
+		//Change fix 投擲動作沒有設定SoundNo,戰鬥時會當
 		if (no >= 1965 && no < 1987) {
 			//for(int kk=1965;kk<1987;kk++)
 			//{

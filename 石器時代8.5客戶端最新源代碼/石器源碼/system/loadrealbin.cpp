@@ -1,4 +1,4 @@
-﻿#define UNPACK2	0
+#define UNPACK2	0
 #define WIN32_LEAN_AND_MEAN
 #include "../systeminc/version.h"
 #include "../systeminc/system.h"
@@ -206,7 +206,7 @@ BOOL initRealbinFileOpen(char *realbinfilename, char *addrbinfilename)
 				adrnbuff[tmpadrnbuff.bitmapno].attr.hit =
 					300 + (adrnbuff[tmpadrnbuff.bitmapno].attr.hit % 100);
 			}
-			if( tmpadrnbuff.attr.bmpnumber<=33 && tmpadrnbuff.bitmapno>230000){//防堵魔法图号覆盖声音的bug
+			if( tmpadrnbuff.attr.bmpnumber<=33 && tmpadrnbuff.bitmapno>230000){//防堵魔法圖號覆蓋聲音的bug
 				continue;
 			}
 			bitmapnumbertable[tmpadrnbuff.attr.bmpnumber] = tmpadrnbuff.bitmapno;
@@ -295,7 +295,7 @@ BOOL realGetHitFlag(U4 GraphicNo , S2 *Hit)
 		return FALSE;
 	}
 
-	if ((GraphicNo >= 369715 && GraphicNo <= 369847) || GraphicNo == 369941)//强制地表可走
+	if ((GraphicNo >= 369715 && GraphicNo <= 369847) || GraphicNo == 369941)//強製地錶可走
 		*Hit = 1;
 	else if (GraphicNo >= 369641 && GraphicNo <= 369654)
 		*Hit = 1;
@@ -419,7 +419,7 @@ int InitRealTruebinFileOpen(char *szRealTrueBinFileName,char *szAdrnTruebinFileN
 	DWORD dwReadByte;
 
 	ZeroMemory(adrntruebuff,sizeof(adrntruebuff));
-	// 开档
+	// 開檔
 	hAdrntrueFile = CreateFile(szAdrnTruebinFileName,GENERIC_READ,FILE_SHARE_READ,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
 	if(hAdrntrueFile == INVALID_HANDLE_VALUE) return -1;
 	hRealtrueFile = CreateFile(szRealTrueBinFileName,GENERIC_READ,FILE_SHARE_READ,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
@@ -429,11 +429,11 @@ int InitRealTruebinFileOpen(char *szRealTrueBinFileName,char *szAdrnTruebinFileN
 	}
 	
 	while(1){
-		// 把档案内的资料读入
+		// 把檔案內的資料讀入
 		bReadReturn = ReadFile(hAdrntrueFile,&Addr,sizeof(AddressBin_s),&dwReadByte,NULL);
-		// 资料读完了
+		// 資料讀完瞭
 		if(bReadReturn && dwReadByte == 0) break;
-		// 错误
+		// 錯誤
 		if(dwReadByte == 0) break;
 		memcpy(&adrntruebuff[Addr.bitmapno],&Addr,sizeof(AddressBin_s));
 	}
@@ -441,7 +441,7 @@ int InitRealTruebinFileOpen(char *szRealTrueBinFileName,char *szAdrnTruebinFileN
 	return 0;
 }
 
-// 传入的BmpNo 值必须是减去 OLD_GRAPHICS_START 后的值,才能在全彩的图档里找到图
+// 傳入的BmpNo 值必須是減去 OLD_GRAPHICS_START 後的值,纔能在全彩的圖檔裏找到圖
 BOOL Read16BMP(int BmpNo,unsigned char **BmpData,int *width,int *height,BYTE **AlphaData,BOOL *useAlpha)
 {
 	BOOL bRet = TRUE,bReadReturn;
@@ -452,7 +452,7 @@ BOOL Read16BMP(int BmpNo,unsigned char **BmpData,int *width,int *height,BYTE **A
 
 	if(BmpNo > MAX_GRAPHICS_24) return FALSE;
 	pAddr = &adrntruebuff[BmpNo];
-	// 移到要读取的图档资料位置上
+	// 移到要讀取的圖檔資料位置上
 	SetFilePointer(hRealtrueFile,pAddr->adder,NULL,FILE_BEGIN);
 	pBmpData = (unsigned char*)MALLOC(pAddr->size);
 #ifdef _STONDEBUG_
@@ -461,13 +461,13 @@ BOOL Read16BMP(int BmpNo,unsigned char **BmpData,int *width,int *height,BYTE **A
 	if(pBmpData == NULL) return FALSE;
 	else{
 		memset(g_rgbPal,0,sizeof(g_rgbPal));
-		// 先读入色盘资料
+		// 先讀入色盤資料
 		bReadReturn = ReadFile(hRealtrueFile,g_rgbPal,pAddr->palSize+sizeof(RGBQUAD),&dwReadByte,NULL);
-		// 读档失败
+		// 讀檔失敗
 		if(bReadReturn && dwReadByte == 0) bRet = FALSE;
-		// 把图档资料读入
+		// 把圖檔資料讀入
 		bReadReturn = ReadFile(hRealtrueFile,pBmpData,pAddr->size,&dwReadByte,NULL);
-		// 读档失败
+		// 讀檔失敗
 		if(bReadReturn && dwReadByte == 0) bRet = FALSE;
 		else{
 			*BmpData = g_realgetimagebuf2;
@@ -477,7 +477,7 @@ BOOL Read16BMP(int BmpNo,unsigned char **BmpData,int *width,int *height,BYTE **A
 #ifdef _STONDEBUG_
 		g_iMallocCount--;
 #endif
-		// 把alpha资料读入
+		// 把alpha資料讀入
 		*useAlpha = FALSE;
 		if(pAddr->alpha_size > 0){
 			pBmpData = (unsigned char*)MALLOC(pAddr->alpha_size);
@@ -486,7 +486,7 @@ BOOL Read16BMP(int BmpNo,unsigned char **BmpData,int *width,int *height,BYTE **A
 #endif
 			if(pBmpData == NULL) return FALSE;
 			bReadReturn = ReadFile(hRealtrueFile,pBmpData,pAddr->alpha_size,&dwReadByte,NULL);
-			// 读档失败
+			// 讀檔失敗
 			if(bReadReturn && dwReadByte == 0) bRet = FALSE;
 			else{
 				*AlphaData = g_realgetimagebuf;

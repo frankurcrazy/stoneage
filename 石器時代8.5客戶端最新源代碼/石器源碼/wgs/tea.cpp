@@ -1,4 +1,4 @@
-﻿#include <windows.h>
+#include <windows.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include "tea.h"
@@ -15,7 +15,7 @@ long TEA加密(long* v, long n, long* k)
 	y=v[0];
 	sum=0;
 	long p, q;
-	/* 加密过程 */
+	/* 加密過程 */
 	q = 6 + 52/n;
 	while (q-- > 0)
 	{

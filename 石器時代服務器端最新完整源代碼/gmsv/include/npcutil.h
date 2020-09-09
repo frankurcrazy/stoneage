@@ -70,11 +70,11 @@ int addNpcFamilyTax( int meindex, int talkerindex, int income );
 #ifdef _JZ_NEWSCRIPT_LUA
 void  NPC_EndEventSetFlgCls(int talker,int shiftbit);
 #endif
-#define		NPC_ENEMY_ENEMYNUMBER		10		/* ╟ыЄ╪│─    ╨╤ */
+#define		NPC_ENEMY_ENEMYNUMBER		10		/* ├З├л├▓├Ш┬│├Д    ├Р├С */
 
-/* ┬ж╨╤░╫╤ы─╠╗я  ╨─  ╨─╝░ир╡ц╝░  ┘п╨╤╧■Є╫ */
+/* ├В┬ж├Р├С┬░├Ч├С├л├Д├М┬╗├п  ├Р├Д  ├Р├Д┬╝┬░┬и├а┬╡├ж┬╝┬░  ├Щ┬п├Р├С├П├╛├▓├Ч */
 #define NPC_UTIL_GETARGSTR_LINEMAX	4096
-/* ┬ж╨╤░╫╤ы─╠╗я╝░  ╨─  ╨─╠я╙└░╫╤ы╚╙─╠╩ї*/
+/* ├В┬ж├Р├С┬░├Ч├С├л├Д├М┬╗├п┬╝┬░  ├Р├Д  ├Р├Д├М├п├У├А┬░├Ч├С├л├И├У├Д├М├К├╡*/
 #ifdef _NEWEVENT
 //#define NPC_UTIL_GETARGSTR_BUFSIZE	1024*1200
 #define NPC_UTIL_GETARGSTR_BUFSIZE	1024*128

@@ -1,4 +1,4 @@
-﻿#pragma comment(lib,"lua51.lib")
+#pragma comment(lib,"lua51.lib")
 extern "C" {
 #include "lua.h" 
 #include "lauxlib.h"

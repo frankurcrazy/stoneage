@@ -1,4 +1,4 @@
-﻿#include "../systeminc/version.h"
+#include "../systeminc/version.h"
 #include "../systeminc/system.h"
 #include <winsock.h>
 #include "../systeminc/netmain.h"
@@ -480,29 +480,29 @@ int appendReadBuf(  char *buf, int size )
 	BOOL flg=TRUE;
 	while(*(DWORD *)buf == 0xC7B3CCC9){   //buf[0]==0xFFFFFFC9 && buf[1]==0xFFFFFFCC && buf[2]==0xFFFFFFB3 && buf[3]==0xFFFFFFC7
 		extern int 字符串切割( char *arr[], char *str, const char *del);
-		extern void 商城文件保存(char * 路径,商城文件_ *商城);
+		extern void 商城文件保存(char * 路徑,商城文件_ *商城);
 		extern 商城文件_ 商城文件[5];
 		char patch[256]={0};
 		int id=-1;
 		buf+=4;
-		char *临时单个道具数据[4]={0};
-		unsigned int 总大小,压缩大小;
-		字符串切割(临时单个道具数据,(char*)buf,"|");
-		总大小 = atoi(临时单个道具数据[0]);
-		压缩大小 = atoi(临时单个道具数据[1]);
-		id = atoi(临时单个道具数据[2]);
-		memcpy(商城文件[id].MD5码,临时单个道具数据[3],32);
+		char *臨時單個道具數據[4]={0};
+		unsigned int 總大小,壓縮大小;
+		字符串切割(臨時單個道具數據,(char*)buf,"|");
+		總大小 = atoi(臨時單個道具數據[0]);
+		壓縮大小 = atoi(臨時單個道具數據[1]);
+		id = atoi(臨時單個道具數據[2]);
+		memcpy(商城文件[id].MD5碼,臨時單個道具數據[3],32);
 		sprintf_s(patch,"./data/shop%d.bin",id+1);
-		if(商城文件[id].商城数据!=NULL)
-			free(商城文件[id].商城数据);
-		商城文件[id].商城数据 = (char*)malloc(总大小+1);
-		memset(商城文件[id].商城数据,0,总大小+1);
-		uLongf lendata = 总大小-1;
-		uncompress((Bytef*)商城文件[id].商城数据,&lendata,(Bytef*)(buf+51),(unsigned long)压缩大小);
+		if(商城文件[id].商城數據!=NULL)
+			free(商城文件[id].商城數據);
+		商城文件[id].商城數據 = (char*)malloc(總大小+1);
+		memset(商城文件[id].商城數據,0,總大小+1);
+		uLongf lendata = 總大小-1;
+		uncompress((Bytef*)商城文件[id].商城數據,&lendata,(Bytef*)(buf+51),(unsigned long)壓縮大小);
 		商城文件保存(patch,&商城文件[id]);
-		memset(buf-4,0,压缩大小+55);
-		size -=压缩大小+55;
-		buf+=压缩大小+51;
+		memset(buf-4,0,壓縮大小+55);
+		size -=壓縮大小+55;
+		buf+=壓縮大小+51;
 		flg=FALSE;
 	}
 	if(!flg) return -1;

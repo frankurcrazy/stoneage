@@ -1,4 +1,4 @@
-﻿#ifndef _MAP_H_ 
+#ifndef _MAP_H_ 
 #define _MAP_H_
 
 // ?????????????????????
@@ -112,7 +112,7 @@ void setMap( int, int, int );
 void setWarpMap( int, int );
 BOOL mapCheckSum( int, int, int, int, int, int, int, int );
 
-#ifdef _NEWDRAWBATTLEMAP		   // (不可开放) Syu ADD 自动产生BattleMap
+#ifdef _NEWDRAWBATTLEMAP		   // (不可開放) Syu ADD 自動産生BattleMap
 void ddrawBattleMap( void );
 #endif
 void drawMap( void );

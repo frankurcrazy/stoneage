@@ -1,4 +1,4 @@
-﻿#include<string.h>
+#include<string.h>
 #include <math.h>
 #include"../systeminc/version.h"
 #include"../systeminc/system.h"
@@ -39,10 +39,10 @@
 #include "../wgs/Ping.h"
 #endif
 #ifdef _MORECHARACTERS_
-int 多人物当前页数;
+int 多人物當前頁數;
 #endif
 
-extern int 编码;
+extern int 編碼;
 #define SA_VERSION ""
 #define SA_VERSION_NUM	300
 #ifdef _AIDENGLU_
@@ -51,7 +51,7 @@ extern Landed PcLanded;
 int nGroup = 0;
 int nServerGroup = 0;
 #ifdef _LOGIP_
-char 玩家公网IP[128];
+char 玩傢公網IP[128];
 #endif
 BOOL logOutFlag = FALSE;
 unsigned int MsgCooltime = 0;
@@ -94,19 +94,19 @@ static ACTION *aEffect,*aEffect1;
 void BankProc(void);
 #endif
 #ifdef _NEWSHOP_
-ACTION* 商城动作地址;
+ACTION* 商城動作地址;
 #endif
 #ifdef _ICONBUTTONS_
-extern ACTION*转盘动作地址;
+extern ACTION*轉盤動作地址;
 #endif
 #ifdef _CHARSIGNDAY_
-extern ACTION*签到动作地址;
+extern ACTION*簽到動作地址;
 #endif
 #ifdef _MAGIC_ITEM_
 extern ACTION* MagicItemActAddr;
 extern ACTION* ShowMagicItemData();
 extern ACTION* CreateMagicItemWin();
-extern void InitMagicItemWin(char * 内容);
+extern void InitMagicItemWin(char * 內容);
 #endif
 
 // Terry end
@@ -116,27 +116,27 @@ void AuctionNewWT(void);
 void AuctionListWT(void);
 void AuctionSurveyModifyWT(void);
 void AuctionModifyWT(void);
-// server所传来的资料
+// server所傳來的資料
 typedef struct _AUCTION_LIST_DATA
 {
-	int  index;												// 委托的玩家的索引号码
-	char cdkey[CHAR_NAME_LEN + 1];			// 玩家的cdkey
-	char account[101];								// 委托内容
+	int  index;												// 委托的玩傢的索引號碼
+	char cdkey[CHAR_NAME_LEN + 1];			// 玩傢的cdkey
+	char account[101];								// 委托內容
 	char name[CHAR_NAME_LEN + 1];				// 委托人的名字
-	char money[8];										// 价钱
-	int  kind;												// 卖宠物或是物品
-	char sellname[ITEM_NAME_LEN + 1];		// 宠物或是物品的名称
-	int  grp_no;											// 宠物或是物品的图号
-	int  lv, act, def, dex, hp, loyal;			// 宠物的资料
-	int  name_color;									// 道具名称的颜色
-	char item_effect_string[64];			// 道具叙述
+	char money[8];										// 價錢
+	int  kind;												// 賣寵物或是物品
+	char sellname[ITEM_NAME_LEN + 1];		// 寵物或是物品的名稱
+	int  grp_no;											// 寵物或是物品的圖號
+	int  lv, act, def, dex, hp, loyal;			// 寵物的資料
+	int  name_color;									// 道具名稱的顔色
+	char item_effect_string[64];			// 道具敘述
 }ALD, *pALD;
 
-char *szpALD = NULL;  // server传来的资料内容
-BOOL bNewData = FALSE;        // 是否有新的资料传来
-void AuctionGetString(int nWhichOne, pALD ald); //处理字串的分析
-void CheckNumber(char *buf, int num);	// 处理非数字的输入
-void CheckSpace(char *buf);		// 处理空白的输入
+char *szpALD = NULL;  // server傳來的資料內容
+BOOL bNewData = FALSE;        // 是否有新的資料傳來
+void AuctionGetString(int nWhichOne, pALD ald); //處理字串的分析
+void CheckNumber(char *buf, int num);	// 處理非數字的輸入
+void CheckSpace(char *buf);		// 處理空白的輸入
 #endif
 
 #ifdef _SAHOOK //Syu ADD Hook程式
@@ -160,14 +160,14 @@ static int idPasswordFocusSw = 0;
 static short idKeyBoxX, idKeyBoxY;
 static short passwdBoxX, passwdBoxY;
 BOOL bAgain = FALSE;
-#ifdef _DELBORNPLACE //Syu ADD 6.0 统一出生于新手村
+#ifdef _DELBORNPLACE //Syu ADD 6.0 統一齣生於新手村
 static ACTION *pActPet20;
 int BornPetNum = 0;
 #endif
-#ifdef _PKSERVERCHARSEL			// (不可开) Syu ADD PK服务器选择星系人物
+#ifdef _PKSERVERCHARSEL			// (不可開) Syu ADD PK服務器選擇星係人物
 ACTION *PkServerSel;
 short PkMenuflag = 0 ; 
-int VersionXYZ = 1 ; //Pk Server版本号
+int VersionXYZ = 1 ; //Pk Server版本號
 #endif
 // Nuke 0615: Avoid 7's lock
 extern int isWGS7;
@@ -191,7 +191,7 @@ void idPasswordProc(void)
 	BOOL flag = FALSE;
 	int ret;
 	static char msg[256];
-	static char szWGSState[] = "登入游戏中，请稍候！";
+	static char szWGSState[] = "登入遊戲中，請稍候！";
 
 	if (SubProcNo == 0){
 #ifdef __NEW_CLIENT
@@ -220,14 +220,14 @@ void idPasswordProc(void)
 		if (!bAgain)
 			bAgain = TRUE;
 		else{
-			//启动Hook程式
+			//啓動Hook程式
 #ifdef _SAHOOK //Syu ADD Hook程式
 			if( hookflag == false)
 			{
 				hookflag = true;
 				KeyboardHook_Start(hWnd, UM_KEYEVENT);
 			}
-			//以下无用
+			//以下無用
 			CopyMemory(idKey.buffer,szUser,32);
 			ecb_crypt("f;encor1c",idKey.buffer,32,DES_DECRYPT);
 			CopyMemory(passwd.buffer,szPassword,32);
@@ -248,20 +248,20 @@ void idPasswordProc(void)
 		SubProcNo++;
 	}
 
-	// 可以输入
+	// 可以輸入
 	if (SubProcNo == 2)
-		flag = TRUE;	// 可以输入
+		flag = TRUE;	// 可以輸入
 
 	ret = inputIdPassword(flag);
 
 	if (ret == 1){
 #ifdef _LOGIP_
-		memset(玩家公网IP,0,128);
-		extern BOOL 获取IP(char *IP);
-		if(!获取IP(玩家公网IP)){
+		memset(玩傢公網IP,0,128);
+		extern BOOL 獲取IP(char *IP);
+		if(!獲取IP(玩傢公網IP)){
 			SubProcNo = 100;
 			ret = -1;
-			strcpy( msg, "获取游戏线路失败，请重新尝试！" );
+			strcpy( msg, "獲取遊戲綫路失敗，請重新嘗試！" );
 		}else
 #endif
 		{
@@ -276,7 +276,7 @@ void idPasswordProc(void)
 	}
 	else if (ret < 0){
 		SubProcNo = 100;
-		strcpy(msg, "请输入您的帐号与密码！");
+		strcpy(msg, "請輸入您的帳號與密碼！");
 	}
 	if (SubProcNo == 3){
 #ifdef _STONDEBUG_
@@ -319,13 +319,13 @@ void idPasswordProc(void)
 				case 0:
 					wsprintf(msg,"%s",szWGSState);
 					break;
-				case 1: //连接WGS
+				case 1: //連接WGS
 					wsprintf(msg,"%s(%s)",szWGSState,"Connect to WGS!!");
 					break;
 				case 2: //取得CSIP
 					wsprintf(msg,"%s(%s)",szWGSState,"Get the Redirect!!");
 					break;
-				case 3: //连接CS
+				case 3: //連接CS
 					wsprintf(msg,"%s(%s)",szWGSState,"Connect to CS!!");
 					break;
 				case 4: //取得Public key(加密)
@@ -334,10 +334,10 @@ void idPasswordProc(void)
 				case 5: //取得Session key(解密)
 					wsprintf(msg,"%s(%s)",szWGSState,"Send the Session key!!");
 					break;
-				case 6: //取得连接GS表单
+				case 6: //取得連接GS錶單
 					wsprintf(msg,"%s(%s)",szWGSState,"Get Continue!!");
 					break;
-				case 7: //传送帐号、密码
+				case 7: //傳送帳號、密碼
 					wsprintf(msg,"%s(%s)",szWGSState,"Send UserName!!");
 					break;
 				case 8:
@@ -362,7 +362,7 @@ void idPasswordProc(void)
 		int ret2 = ConnectWGS();
 #endif
 		if (ret2 == 1){
-			// 处理Title
+			// 處理Title
 			CopyMemory(szUser, idKey.buffer, 32);
 			ecb_crypt("f;encor1c", szUser, 32, DES_ENCRYPT);
 			CopyMemory(szPassword, passwd.buffer, 32);
@@ -387,7 +387,7 @@ void idPasswordProc(void)
 		else if (ret2 < 0){
 			SubProcNo = 100;
 #ifdef _AIDENGLU_
-			PcLanded.登陆延时时间 = TimeGetTime() + 2000;
+			PcLanded.登陸延時時間 = TimeGetTime() + 2000;
 #endif
 			strcpy(msg, netprocErrmsg);
 		}
@@ -399,7 +399,7 @@ void idPasswordProc(void)
 	if (SubProcNo == 5)
 	{
 		SubProcNo = 100;
-		strcpy(msg, "输入的账号或密码错误\n请再次输入!");
+		strcpy(msg, "輸入的賬號或密碼錯誤\n請再次輸入!");
 	}
 	if (SubProcNo == 100){
 		cleanupNetwork();
@@ -413,7 +413,7 @@ void idPasswordProc(void)
 	if (SubProcNo == 101){
 		if (commonMsgWin(msg)){
 			// ＯＫ????????
-			//错误讯息回到Title画面重新启动Hook
+			//錯誤訊息迴到Title畫麵重新啓動Hook
 #ifdef _SAHOOK //Syu ADD Hook程式
 			if( hookflag == false)
 			{
@@ -481,19 +481,19 @@ int inputIdPassword(BOOL flag)
 	int ret = 0;
 	int x1, y1, x2, y2, cx, cy;
 #ifdef _AIDENGLU_
-	extern int 自动登陆是否开启;
+	extern int 自動登陸是否開啓;
 #endif
 	id = selGraId(idPasswordGraId, sizeof(idPasswordGraId) / sizeof(int));
 	if (id == 0
 #ifdef _AIDENGLU_
-		|| 自动登陆是否开启
+		|| 自動登陸是否開啓
 #endif
 		)
 	{
 		if (strlen(idKey.buffer) > 0 && strlen(passwd.buffer) > 0)
 		{
 
-			//按下OK Button要求Dll传回真正的密码
+			//按下OK Button要求Dll傳迴真正的密碼
 #ifdef _SAHOOK //Syu ADD Hook程式
 			keyboardHook_Send(passwd.buffer);
 			passwd.cnt = strlen(passwd.buffer);
@@ -589,7 +589,7 @@ int inputIdPassword(BOOL flag)
 		{
 			if (flag2)
 				id = oldId;
-			//Hook程式启动关闭与星号处理
+			//Hook程式啓動關閉與星號處理
 #ifdef _SAHOOK //Syu ADD Hook程式
 			if ( (id == 1) && (hookflag == false ))
 			{
@@ -663,7 +663,7 @@ int commonMsgWin(char *msg)
 	int i;
 	static int x, y, w, h;
 	int ret = 0;
-#ifdef _NEW_WGS_MSG				// WON ADD WGS的新视窗?
+#ifdef _NEW_WGS_MSG				// WON ADD WGS的新視窗?
 	char temp[256], out_msg[5][128];
 	int j, count=0, temp_size=0;
 #endif
@@ -678,7 +678,7 @@ int commonMsgWin(char *msg)
 			fontId[i] = -2;
 		}
 
-#ifdef _NEW_WGS_MSG				// WON ADD WGS的新视窗?
+#ifdef _NEW_WGS_MSG				// WON ADD WGS的新視窗?
 
 		memset( temp, 0, sizeof(temp) );
 		strcpy( temp, msg);		
@@ -723,19 +723,19 @@ int commonMsgWin(char *msg)
 	// ?????
 	id = selFontId(fontId, sizeof(fontId) / sizeof(int));
 #ifdef _AIDENGLU_
-	extern int 自动登陆是否开启;
+	extern int 自動登陸是否開啓;
 #endif
 #ifdef _AIDENGLU_
-	int 进入 = FALSE;
-	if (自动登陆是否开启){
-		if (TimeGetTime() > PcLanded.登陆延时时间){
-			进入 = TRUE;
+	int 進入 = FALSE;
+	if (自動登陸是否開啓){
+		if (TimeGetTime() > PcLanded.登陸延時時間){
+			進入 = TRUE;
 		}
 	}
 #endif
 	if (id == 0
 #ifdef _AIDENGLU_
-		|| 进入
+		|| 進入
 #endif
 		)
 	{
@@ -763,7 +763,7 @@ int commonMsgWin(char *msg)
 			int len;
 			int xx;
 
-#ifdef _NEW_WGS_MSG				// WON ADD WGS的新视窗?
+#ifdef _NEW_WGS_MSG				// WON ADD WGS的新視窗?
 
 			memset( temp, 0, sizeof(temp) );
 			strcpy( temp, msg);		
@@ -806,7 +806,7 @@ int commonMsgWin(char *msg)
 			}
 #endif
 
-#ifdef _NEW_WGS_MSG				// WON ADD WGS的新视窗?
+#ifdef _NEW_WGS_MSG				// WON ADD WGS的新視窗?
 			fontId[0] =	StockFontBuffer( x+xx, y+(j*30)+56, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "ＯＫ", 2 );
 #else
 			fontId[0] = StockFontBuffer(x + xx, y + 56, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "ＯＫ", 2);
@@ -995,7 +995,7 @@ void __fastcall GBK2BIG5(char *szBuf)
 
 
 
-wchar_t* GB2312ToUnicode(const char* szGBString)//删
+wchar_t* GB2312ToUnicode(const char* szGBString)//刪
 {
 	UINT nCodePage = 936; //GB2312
 	int nLength = MultiByteToWideChar(nCodePage, 0, szGBString, -1, NULL, 0);
@@ -1007,7 +1007,7 @@ wchar_t* GB2312ToUnicode(const char* szGBString)//删
 
 
 
-char* UnicodeToBIG5(const wchar_t* szUnicodeString)//删
+char* UnicodeToBIG5(const wchar_t* szUnicodeString)//刪
 {
 	UINT nCodePage = 950; //BIG5
 	int nLength = WideCharToMultiByte(nCodePage, 0, szUnicodeString, -1, NULL, 0, NULL, NULL);
@@ -1016,7 +1016,7 @@ char* UnicodeToBIG5(const wchar_t* szUnicodeString)//删
 	pBuffer[nLength] = 0;
 	return pBuffer;
 }
-char* GB2312ToBIG5(const char* szGBString)//删
+char* GB2312ToBIG5(const char* szGBString)//刪
 {
 	LCID lcid = MAKELCID(MAKELANGID(LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED), SORT_CHINESE_PRC);
 	int nLength = LCMapString(lcid, LCMAP_TRADITIONAL_CHINESE, szGBString, -1, NULL, 0);
@@ -1030,7 +1030,7 @@ char* GB2312ToBIG5(const char* szGBString)//删
 	return pBIG5Buff;
 }
 
-wchar_t* BIG5ToUnicode(const char* szBIG5String)//删
+wchar_t* BIG5ToUnicode(const char* szBIG5String)//刪
 {
 	UINT nCodePage = 950; //BIG5
 	int nLength = MultiByteToWideChar(nCodePage, 0, szBIG5String, -1, NULL, 0);
@@ -1042,7 +1042,7 @@ wchar_t* BIG5ToUnicode(const char* szBIG5String)//删
 
 
 
-char* UnicodeToGB2312(const wchar_t* szUnicodeString)//删
+char* UnicodeToGB2312(const wchar_t* szUnicodeString)//刪
 {
 	UINT nCodePage = 936; //GB2312
 	int nLength = WideCharToMultiByte(nCodePage, 0, szUnicodeString, -1, NULL, 0, NULL, NULL);
@@ -1051,7 +1051,7 @@ char* UnicodeToGB2312(const wchar_t* szUnicodeString)//删
 	pBuffer[nLength] = 0;
 	return pBuffer;
 }
-//繁体中文BIG5 转换成 简体中文 GB2312
+//繁體中文BIG5 轉換成 簡體中文 GB2312
 char* BIG5ToGB2312(const char* szBIG5String)
 {
 	LCID lcid = MAKELCID(MAKELANGID(LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED), SORT_CHINESE_PRC);
@@ -1079,16 +1079,16 @@ void titleProc(void)
 #ifndef _TAIKEN
 		sprintf_s(str, "%s %s", DEF_APPNAME, SA_VERSION);
 #else
-		sprintf_s( str, "%s %s [体验版] DEF_APPNAME, SA_VERSION );
+		sprintf_s( str, "%s %s [體驗版] DEF_APPNAME, SA_VERSION );
 #endif
 
-			extern int 繁体开关;
-		if (繁体开关){
-			char 繁体[1024] = { 0 };
-			LCMapString(0x804, 0x4000000, str, strlen(str), 繁体, 1024);
-			sprintf(str, "%s", 繁体);
+			extern int 繁體開關;
+		if (繁體開關){
+			char 繁體[1024] = { 0 };
+			LCMapString(0x804, 0x4000000, str, strlen(str), 繁體, 1024);
+			sprintf(str, "%s", 繁體);
 		}
-		if (编码 == 950){
+		if (編碼 == 950){
 			SetWindowText(hWnd, GB2312ToBIG5((const char *)str));
 		}
 		else{
@@ -1113,12 +1113,12 @@ void titleProc(void)
 		else{
 			SubProcNo = 100;
 #ifdef _AIDENGLU_
-			PcLanded.登陆延时时间 = TimeGetTime() + 2000;
+			PcLanded.登陸延時時間 = TimeGetTime() + 2000;
 #endif
 			strcpy(netprocErrmsg, NET_ERRMSG_SOCKLIBERROR);
 		}
 	}
-	// 选择Group
+	// 選擇Group
 	if (SubProcNo == 2){
 		ret = selectGroup();
 		if (ret == 1){
@@ -1133,19 +1133,19 @@ void titleProc(void)
 		}
 		else if (ret == 3){
 			SubProcNo = 100;
-			wsprintf(msg, "[%s]您使用的版本无法连接此星系！", gmgroup[nServerGroup].name);
+			wsprintf(msg, "[%s]您使用的版本無法連接此星係！", gmgroup[nServerGroup].name);
 			cleanupNetwork();
 		}
 	}
-	// 选择Server
+	// 選擇Server
 	if (SubProcNo == 3){
 		ret = selectServer();
 		if (ret == 1){
 #ifdef _SHOWIPSLEEP_
 
-			extern HANDLE IP线程;
-			CloseHandle(IP线程);
-			IP线程=NULL;
+			extern HANDLE IP綫程;
+			CloseHandle(IP綫程);
+			IP綫程=NULL;
 #endif
 			SubProcNo++;
 		}
@@ -1161,12 +1161,12 @@ void titleProc(void)
 		}
 	}
 	if (SubProcNo == 4){
-		// 连接Game server的初始化
+		// 連接Game server的初始化
 		initConnecGameServer();
 		SubProcNo++;
 	}
 	if (SubProcNo == 5){
-		// 连接Game server
+		// 連接Game server
 		ret = connecGameServer();
 		if (ret == 1){
 #ifdef _PK2007
@@ -1174,14 +1174,14 @@ void titleProc(void)
 #else
 			ChangeProc(PROC_CHAR_SELECT);
 #endif
-#ifdef _PKSERVERCHARSEL			// (不可开) Syu ADD PK服务器选择星系人物
+#ifdef _PKSERVERCHARSEL			// (不可開) Syu ADD PK服務器選擇星係人物
 			PkMenuflag = 0 ;
 #endif
 		}
 		else if (ret == -2){
 			SubProcNo = 100;
 #ifdef _AIDENGLU_
-			PcLanded.登陆延时时间 = TimeGetTime() + 2000;
+			PcLanded.登陸延時時間 = TimeGetTime() + 2000;
 #endif
 			strcpy(msg, netprocErrmsg);
 			cleanupNetwork();
@@ -1199,15 +1199,15 @@ void titleProc(void)
 #ifndef _TAIKEN
 			sprintf_s(str, "%s %s", DEF_APPNAME, SA_VERSION);
 #else
-			sprintf_s( str, "%s %s [体验版]", DEF_APPNAME, SA_VERSION );
+			sprintf_s( str, "%s %s [體驗版]", DEF_APPNAME, SA_VERSION );
 #endif
-			extern int 繁体开关;
-			if (繁体开关){
-				char 繁体[1024] = { 0 };
-				LCMapString(0x804, 0x4000000, str, strlen(str), 繁体, 1024);
-				sprintf(str, "%s", 繁体);
+			extern int 繁體開關;
+			if (繁體開關){
+				char 繁體[1024] = { 0 };
+				LCMapString(0x804, 0x4000000, str, strlen(str), 繁體, 1024);
+				sprintf(str, "%s", 繁體);
 			}
-			if (编码 == 950){
+			if (編碼 == 950){
 
 				SetWindowText(hWnd, GB2312ToBIG5((const char *)str));
 			}
@@ -1232,10 +1232,10 @@ void titleProc(void)
 #endif
 	// ?????
 #ifdef _TAIKEN
-	StockFontBuffer( 480, 424, FONT_PRIO_BACK, FONT_PAL_BLUE, "体验版", 0 );
+	StockFontBuffer( 480, 424, FONT_PRIO_BACK, FONT_PAL_BLUE, "體驗版", 0 );
 #endif
 #ifdef _SA_VERSION_25
-	StockFontBuffer( 620, 580, FONT_PRIO_BACK, FONT_PAL_BLUE, "体验版！", 0 );
+	StockFontBuffer( 620, 580, FONT_PRIO_BACK, FONT_PAL_BLUE, "體驗版！", 0 );
 #endif
 }
 
@@ -1250,10 +1250,10 @@ void initSelectServer(void)
 	ptActSelectServerWin = NULL;
 }
 
-/*return:	0 ... 选择中
-1 ... 决定Group
-2 ... 按回上一页
-3 ... 选择到网咖专用的服务器	*/
+/*return:	0 ... 選擇中
+1 ... 決定Group
+2 ... 按迴上一頁
+3 ... 選擇到網咖專用的服務器	*/
 int selectGroup()
 {
 	static int fontId[] = { -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2 };
@@ -1286,30 +1286,30 @@ int selectGroup()
 			fontId[i] = -2;
 	}
 	if (ptActSelectServerWin != NULL){
-		// 游标在第几个选项
+		// 遊標在第幾個選項
 #ifdef _AIDENGLU_
-		extern int 自动登陆是否开启;
+		extern int 自動登陸是否開啓;
 #endif
 		id = selFontId(fontId, nGroup + 1);
 		if ((id >= 0 && id < nGroup)
 #ifdef _AIDENGLU_
-			|| 自动登陆是否开启
+			|| 自動登陸是否開啓
 #endif
 			){
 #ifdef _AIDENGLU_
-				if (自动登陆是否开启) nServerGroup = PcLanded.大区;
+				if (自動登陸是否開啓) nServerGroup = PcLanded.大區;
 				else
 #endif
 					nServerGroup = id;
 				char title[256];
 				sprintf_s(title, "%s %s %s", DEF_APPNAME, SA_VERSION, gmgroup[nServerGroup].name);
-				extern int 繁体开关;
-				if (繁体开关){
-					char 繁体[1024] = { 0 };
-					LCMapString(0x804, 0x4000000, title, strlen(title), 繁体, 1024);
-					sprintf(title, "%s", 繁体);
+				extern int 繁體開關;
+				if (繁體開關){
+					char 繁體[1024] = { 0 };
+					LCMapString(0x804, 0x4000000, title, strlen(title), 繁體, 1024);
+					sprintf(title, "%s", 繁體);
 				}
-				if (编码 == 950){
+				if (編碼 == 950){
 
 					SetWindowText(hWnd, GB2312ToBIG5((const char *)title));
 				}
@@ -1319,12 +1319,12 @@ int selectGroup()
 				}
 				DeathAction(ptActSelectServerWin);
 				ptActSelectServerWin = NULL;
-				play_se(217, 320, 240);	// click声
+				play_se(217, 320, 240);	// click聲
 				if (gmgroup[nServerGroup].used == 1)
 					return 1;
 				else{
 #ifdef _AIDENGLU_
-					//自动登陆是否开启 = FALSE;
+					//自動登陸是否開啓 = FALSE;
 #endif
 					return 3;
 				}
@@ -1332,7 +1332,7 @@ int selectGroup()
 		else if (id == nGroup){
 			DeathAction(ptActSelectServerWin);
 			ptActSelectServerWin = NULL;
-			play_se(217, 320, 240);	// click声
+			play_se(217, 320, 240);	// click聲
 			return 2;
 		}
 		if (ptActSelectServerWin->hp >= 1){
@@ -1343,9 +1343,9 @@ int selectGroup()
 				fontId[i] = StockFontBuffer(x + (i >> 2) * 128, y + (i % 4) * 25, FONT_PRIO_FRONT, FONT_PAL_YELLOW, gmgroup[i].name, Hit);
 			}
 #ifdef _NEWFONT_
-			fontId[i] = StockFontBuffer(x + (i >> 2) * 128 + 10, y + 75, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "  回上一页  ", 2);
+			fontId[i] = StockFontBuffer(x + (i >> 2) * 128 + 10, y + 75, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "  迴上一頁  ", 2);
 #else
-			fontId[i]=StockFontBuffer(x+(i>>2)*128,y+75,FONT_PRIO_FRONT,FONT_PAL_YELLOW,"  回上一页  ",2);
+			fontId[i]=StockFontBuffer(x+(i>>2)*128,y+75,FONT_PRIO_FRONT,FONT_PAL_YELLOW,"  迴上一頁  ",2);
 #endif
 		}
 	}
@@ -1353,9 +1353,9 @@ int selectGroup()
 }
 
 #ifdef _SHOWIPSLEEP_
-HANDLE IP线程 = NULL;
+HANDLE IP綫程 = NULL;
 CPing objPing;
-DWORD WINAPI IP延时读取(PVOID pParam)
+DWORD WINAPI IP延時讀取(PVOID pParam)
 {
 	int i;
 	WORD wVersionRequested;
@@ -1422,9 +1422,9 @@ int selectServer()
 			x = 64;
 		ptActSelectServerWin = MakeWindowDisp(x, y, row << 1, 3, NULL, 1);
 #ifdef _SHOWIPSLEEP_
-		extern DWORD WINAPI IP延时读取(PVOID pParam);
-		if(IP线程 ==NULL)
-			IP线程  = CreateThread(NULL,0,IP延时读取,0,0,NULL);
+		extern DWORD WINAPI IP延時讀取(PVOID pParam);
+		if(IP綫程 ==NULL)
+			IP綫程  = CreateThread(NULL,0,IP延時讀取,0,0,NULL);
 #endif
 #ifdef _NEW_RESOMODE  //800 600模式
 		x = ptActSelectServerWin->x + 22;
@@ -1437,32 +1437,32 @@ int selectServer()
 			fontId[i] = -2;
 	}
 	if (ptActSelectServerWin != NULL){
-		// 游标在第几个选项
+		// 遊標在第幾個選項
 		id = selFontId(fontId, gmgroup[nServerGroup].num + 1);
 #ifdef _AIDENGLU_
-		extern int 自动登陆是否开启;
+		extern int 自動登陸是否開啓;
 #endif
 		if (id >= 0 && id < gmgroup[nServerGroup].num
 #ifdef _AIDENGLU_
-			|| 自动登陆是否开启
+			|| 自動登陸是否開啓
 #endif
 			){
 				char title[256];
 #ifdef _AIDENGLU_
-				if (自动登陆是否开启) selectServerIndex = gmgroup[nServerGroup].startindex + PcLanded.小区;
+				if (自動登陸是否開啓) selectServerIndex = gmgroup[nServerGroup].startindex + PcLanded.小區;
 				else
 #endif
 					selectServerIndex = gmgroup[nServerGroup].startindex + id;
 
 				DeathAction(ptActSelectServerWin);
 				ptActSelectServerWin = NULL;
-				play_se(217, 320, 240);	// click声
+				play_se(217, 320, 240);	// click聲
 				return 1;
 		}
 		else if (id == gmgroup[nServerGroup].num){
 			DeathAction(ptActSelectServerWin);
 			ptActSelectServerWin = NULL;
-			play_se(217, 320, 240);	// click声
+			play_se(217, 320, 240);	// click聲
 			return 2;
 		}
 		if (ptActSelectServerWin->hp >= 1){
@@ -1474,7 +1474,7 @@ int selectServer()
 				else
 					Hit = 0;
 
-#ifdef _SHOW_COUNT						// WON ADD 秀服务器流量
+#ifdef _SHOW_COUNT						// WON ADD 秀服務器流量
 				fontId[i]=StockFontBuffer(x+(i>>2)*128+10,y+(i%4)*25,FONT_PRIO_FRONT,FONT_PAL_YELLOW,gmsv[j].name,Hit);
 				{
 					int img = 24324;
@@ -1495,7 +1495,7 @@ int selectServer()
 				fontId[i] = StockFontBuffer(x + (i >> 2) * 128, y + (i % 4) * 25, FONT_PRIO_FRONT, FONT_PAL_YELLOW, gmsv[j].name, Hit);
 #endif
 			}
-			fontId[i] = StockFontBuffer(x + (i >> 2) * 128, y + 75, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "  回上一页  ", 2);
+			fontId[i] = StockFontBuffer(x + (i >> 2) * 128, y + 75, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "  迴上一頁  ", 2);
 		}
 	}
 	return 0;
@@ -1534,7 +1534,7 @@ int connecGameServer(void)
 	{
 		connecGameServerProcNo = 1;
 
-		sprintf_s(msg, "%s服务器连线中", gmsv[selectServerIndex].name);
+		sprintf_s(msg, "%s服務器連綫中", gmsv[selectServerIndex].name);
 
 		// ??????
 		w = (strlen(msg) * 9 + 63) / 64;
@@ -1618,7 +1618,7 @@ int connecGameServer(void)
 //
 // ???????????
 //
-//cary 十二、加入saac的错误讯息
+//cary 十二、加入saac的錯誤訊息
 void selectCharacterProc(void)
 {
 	int ret;
@@ -1627,22 +1627,22 @@ void selectCharacterProc(void)
 	int x;
 	static char msg[256];
 	static int btnGraId[] = { -2, -2, -2, -2, -2, -2, -2 };
-#ifdef _PKSERVERCHARSEL			// (不可开) Syu ADD PK服务器选择星系人物
+#ifdef _PKSERVERCHARSEL			// (不可開) Syu ADD PK服務器選擇星係人物
 	static int PkBtn[1] = { -2 } ; 
 	int x3 , y3 ;
 	char ServerName[13][32] = {
-		{"预设"} , 
-		{"天鹰　　　"} , 
-		{"网路家庭　"} , 
-		{"圣兽　　　"} , 
-		{"星乐园　　"} , 
-		{"银河系　　"} , 
-		{"太阳　　　"} , 
-		{"北斗　　　"} , 
+		{"預設"} , 
+		{"天鷹　　　"} , 
+		{"網路傢庭　"} , 
+		{"聖獸　　　"} , 
+		{"星樂園　　"} , 
+		{"銀河係　　"} , 
+		{"太陽　　　"} , 
+		{"北鬥　　　"} , 
 		{"天神　　　"} , 
 		{"紫微　　　"} , 
-		{"苍龙　　　"} , 
-		{"香港地区　"} , 
+		{"蒼龍　　　"} , 
+		{"香港地區　"} , 
 		{"香港新界　"} };
 #endif
 		int btnUseFlag = 0;
@@ -1655,7 +1655,7 @@ void selectCharacterProc(void)
 		};
 		int x1, y1, x2, y2;
 
-		extern TCHAR 登陆错误内容[];
+		extern TCHAR 登陸錯誤內容[];
 
 		if (SubProcNo == 0)
 		{
@@ -1674,141 +1674,141 @@ void selectCharacterProc(void)
 			else if (ret == -1){
 				SubProcNo = 100;
 				cleanupNetwork();
-				strcpy(msg, 登陆错误内容);
+				strcpy(msg, 登陸錯誤內容);
 			}
 			else if (ret == -2){
 				SubProcNo = 100;
 				cleanupNetwork();
-				strcpy(msg, 登陆错误内容);
+				strcpy(msg, 登陸錯誤內容);
 			}
 			else if (ret == -3){
 				SubProcNo = 100;
 				cleanupNetwork();
-				strcpy(msg, 登陆错误内容);
+				strcpy(msg, 登陸錯誤內容);
 			}
 			else if (ret == -4){
 				SubProcNo = 100;
 				cleanupNetwork();
-				strcpy(msg, 登陆错误内容);
+				strcpy(msg, 登陸錯誤內容);
 			}
 			else if (ret == -5){
 				SubProcNo = 100;
 				cleanupNetwork();
-				strcpy(msg, 登陆错误内容);
+				strcpy(msg, 登陸錯誤內容);
 			}
 			else if (ret == -6){
 				SubProcNo = 100;
 				cleanupNetwork();
-				strcpy(msg, 登陆错误内容);
+				strcpy(msg, 登陸錯誤內容);
 			}
 			else if (ret == -7){
 				SubProcNo = 100;
 				cleanupNetwork();
-				strcpy(msg, 登陆错误内容);
+				strcpy(msg, 登陸錯誤內容);
 			}
 			else if (ret == -8){
 				SubProcNo = 100;
 				cleanupNetwork();
-				strcpy(msg, 登陆错误内容);
+				strcpy(msg, 登陸錯誤內容);
 			}
 			else if (ret == -9){
 				SubProcNo = 100;
 				cleanupNetwork();
-				strcpy(msg, 登陆错误内容);
+				strcpy(msg, 登陸錯誤內容);
 			}
 			else if (ret == -10){
 				SubProcNo = 100;
 				cleanupNetwork();
-				strcpy(msg, 登陆错误内容/*"系统忙线中，请稍候再试！"*/);
+				strcpy(msg, 登陸錯誤內容/*"係統忙綫中，請稍候再試！"*/);
 			}
 			else if (ret == -11){
 				SubProcNo = 100;
 				cleanupNetwork();
-				strcpy(msg, 登陆错误内容);
+				strcpy(msg, 登陸錯誤內容);
 			}
 #ifdef _CHANGEGALAXY
 			else if( ret == -12 ){
 				SubProcNo = 100;
 				cleanupNetwork();
-				strcpy(msg,登陆错误内容);
+				strcpy(msg,登陸錯誤內容);
 			}
 #endif
 #ifdef _ERROR301
 			else if( ret == -13 ){
 				SubProcNo = 100;
 				cleanupNetwork();
-				strcpy(msg,登陆错误内容);
+				strcpy(msg,登陸錯誤內容);
 			}
 #endif
 			else if (ret == -101){
 				SubProcNo = 100;
 				cleanupNetwork();
-				strcpy(msg, 登陆错误内容);
+				strcpy(msg, 登陸錯誤內容);
 			}
 			else if (ret == -102){
 				SubProcNo = 100;
 				cleanupNetwork();
-				strcpy(msg, 登陆错误内容);
+				strcpy(msg, 登陸錯誤內容);
 			}
 			else if (ret == -103){
 				SubProcNo = 100;
 				cleanupNetwork();
-				strcpy(msg, 登陆错误内容);
+				strcpy(msg, 登陸錯誤內容);
 			}
 			else if (ret == -201){
 				SubProcNo = 100;
 				cleanupNetwork();
-				strcpy(msg, 登陆错误内容);
+				strcpy(msg, 登陸錯誤內容);
 			}
 			else if (ret == -202){
 				SubProcNo = 100;
 				cleanupNetwork();
-				strcpy(msg, 登陆错误内容);
+				strcpy(msg, 登陸錯誤內容);
 			}
 			else if (ret == -203){
 				SubProcNo = 100;
 				cleanupNetwork();
-				strcpy(msg, 登陆错误内容);
+				strcpy(msg, 登陸錯誤內容);
 			}
 			else if (ret == -204){
 				SubProcNo = 100;
 				cleanupNetwork();
-				strcpy(msg, 登陆错误内容);
+				strcpy(msg, 登陸錯誤內容);
 			}
 			else if (ret == -205){
 				SubProcNo = 100;
 				cleanupNetwork();
-				strcpy(msg, 登陆错误内容);
+				strcpy(msg, 登陸錯誤內容);
 			}
 			else if (ret == -301){
 				SubProcNo = 100;
 				cleanupNetwork();
-				strcpy(msg, 登陆错误内容);
+				strcpy(msg, 登陸錯誤內容);
 			}
 			else if (ret == -302){
 				SubProcNo = 100;
 				cleanupNetwork();
-				strcpy(msg, 登陆错误内容);
+				strcpy(msg, 登陸錯誤內容);
 			}
 			else if (ret == -303){
 				SubProcNo = 100;
 				cleanupNetwork();
-				strcpy(msg, 登陆错误内容);
+				strcpy(msg, 登陸錯誤內容);
 			}
 			else if (ret == -304){
 				SubProcNo = 100;
 				cleanupNetwork();
-				strcpy(msg, 登陆错误内容);
+				strcpy(msg, 登陸錯誤內容);
 			}
 			else if (ret == -401){
 				SubProcNo = 100;
 				cleanupNetwork();
-				strcpy(msg, 登陆错误内容);
+				strcpy(msg, 登陸錯誤內容);
 			}
 			else if (ret == -402){
 				SubProcNo = 100;
 				cleanupNetwork();
-				strcpy(msg, 登陆错误内容);
+				strcpy(msg, 登陸錯誤內容);
 			}
 		}
 
@@ -1828,8 +1828,8 @@ void selectCharacterProc(void)
 		// ???????
 		if (SubProcNo == 20)
 		{
-			//cary 按下删除人物后
-#ifdef _PKSERVERCHARSEL			// (不可开) Syu ADD PK服务器选择星系人物
+			//cary 按下刪除人物後
+#ifdef _PKSERVERCHARSEL			// (不可開) Syu ADD PK服務器選擇星係人物
 			PkMenuflag = 0 ;
 #endif
 
@@ -1859,8 +1859,8 @@ void selectCharacterProc(void)
 			if (ret == 1)
 			{
 #ifdef _MORECHARACTERS_
-				resetCharacterList( selectPcNo+多人物当前页数*2 );
-				clearUserSetting( selectPcNo+多人物当前页数*2 );
+				resetCharacterList( selectPcNo+多人物當前頁數*2 );
+				clearUserSetting( selectPcNo+多人物當前頁數*2 );
 #else
 				resetCharacterList(selectPcNo);
 				clearUserSetting(selectPcNo);
@@ -1890,13 +1890,13 @@ void selectCharacterProc(void)
 		{
 			if (commonMsgWin(msg)){
 				ChangeProc(PROC_TITLE_MENU);
-#ifdef _PKSERVERCHARSEL			// (不可开) Syu ADD PK服务器选择星系人物
+#ifdef _PKSERVERCHARSEL			// (不可開) Syu ADD PK服務器選擇星係人物
 				PkMenuflag = 0 ;
 #endif
 				SubProcNo = 1;
 			}
 		}
-		//删除人物失败
+		//刪除人物失敗
 		if (SubProcNo == 300)
 		{
 			initCommonMsgWin();
@@ -1904,69 +1904,69 @@ void selectCharacterProc(void)
 		}
 		if (SubProcNo == 301)
 		{
-			if (commonMsgWin("人物无法删除。"))
+			if (commonMsgWin("人物無法刪除。"))
 				SubProcNo = 10;
 		}
 
 		ret = selGraId(btnGraId, sizeof(btnGraId) / sizeof(int));
 #ifdef _AIDENGLU_
-		extern int 自动登陆是否开启;
+		extern int 自動登陸是否開啓;
 #endif
 		if (ret == 0)
 		{
 			fade_out_bgm();
-#ifdef _PKSERVERCHARSEL			// (不可开) Syu ADD PK服务器选择星系人物
+#ifdef _PKSERVERCHARSEL			// (不可開) Syu ADD PK服務器選擇星係人物
 			PkMenuflag = 0 ;
 #endif
 
 			ChangeProc(PROC_TITLE_MENU);
 			SubProcNo = 1;
-			play_se(217, 320, 240);	// click声
+			play_se(217, 320, 240);	// click聲
 		}
 		else if (1 <= ret && ret <= 2)
 		{
 			selectPcNo = ret - 1;
 			ChangeProc(PROC_CHAR_MAKE);
-#ifdef _PKSERVERCHARSEL			// (不可开) Syu ADD PK服务器选择星系人物
+#ifdef _PKSERVERCHARSEL			// (不可開) Syu ADD PK服務器選擇星係人物
 			PkMenuflag = 0 ;
 #endif
 
-			play_se(217, 320, 240);	// click声
+			play_se(217, 320, 240);	// click聲
 		}
 		else if ((3 <= ret && ret <= 4)
 #ifdef _AIDENGLU_
-			|| (自动登陆是否开启&&SubProcNo == 11)
+			|| (自動登陸是否開啓&&SubProcNo == 11)
 #endif		
 			)
 		{
-			int 选择人物;
+			int 選擇人物;
 #ifdef _AIDENGLU_
-			if (自动登陆是否开启) 选择人物 = PcLanded.人物;
+			if (自動登陸是否開啓) 選擇人物 = PcLanded.人物;
 			else
 #endif
 #ifdef _MORECHARACTERS_
-				选择人物 = ret-3+多人物当前页数*2;
+				選擇人物 = ret-3+多人物當前頁數*2;
 #else
-				选择人物 = ret - 3;
+				選擇人物 = ret - 3;
 #endif
 			char name[CHAR_NAME_LEN + 1];
 
-			strcpy(name, chartable[选择人物].name);
+			strcpy(name, chartable[選擇人物].name);
 
 			strcpy(gamestate_login_charname, name);
 #ifdef _AIDENGLU_
-			if (自动登陆是否开启) selectPcNo = PcLanded.人物;
+			if (自動登陸是否開啓) selectPcNo = PcLanded.人物;
 			else
 #endif
 				selectPcNo = ret - 3;
 
-			newCharacterFaceGraNo = chartable[选择人物].faceGraNo;
-			loginDp = chartable[选择人物].dp;
-#ifdef _PKSERVERCHARSEL			// (不可开) Syu ADD PK服务器选择星系人物
+			newCharacterFaceGraNo = chartable[選擇人物].faceGraNo;
+			loginDp = chartable[選擇人物].dp;
+#ifdef _PKSERVERCHARSEL			// (不可開) Syu ADD PK服務器選擇星係人物
 			PkMenuflag = 0 ;
 #endif
 			ChangeProc(PROC_CHAR_LOGIN_START);
-			play_se(217, 320, 240);	// click声
+			play_se(217, 320, 240);	// click聲
 			map_bgm_no = 0;
 			if (ret == 3){
 				sCharSide = 1;
@@ -1981,7 +1981,7 @@ void selectCharacterProc(void)
 				char name[CHAR_NAME_LEN + 1];
 
 #ifdef _MORECHARACTERS_
-				strcpy( name, chartable[ret-5+多人物当前页数*2].name );
+				strcpy( name, chartable[ret-5+多人物當前頁數*2].name );
 #else
 				strcpy(name, chartable[ret - 5].name);
 #endif
@@ -1990,7 +1990,7 @@ void selectCharacterProc(void)
 				selectPcNo = ret - 5;
 				SubProcNo = 20;
 				selCharGraColorWinProcNo = 0;
-				play_se(217, 320, 240);	// click声
+				play_se(217, 320, 240);	// click聲
 			}
 
 
@@ -2008,15 +2008,15 @@ void selectCharacterProc(void)
 #endif
 #ifdef _MORECHARACTERS_
 				char buff[256];
-				int 按钮ID = StockDispBuffer(563+ix, 435 + iy, DISP_PRIO_CHAR, 55222, 2 );
-				if((mouse.onceState & MOUSE_LEFT_CRICK && HitDispNo == 按钮ID)){
-					if(!多人物当前页数) 多人物当前页数=1;
+				int 按鈕ID = StockDispBuffer(563+ix, 435 + iy, DISP_PRIO_CHAR, 55222, 2 );
+				if((mouse.onceState & MOUSE_LEFT_CRICK && HitDispNo == 按鈕ID)){
+					if(!多人物當前頁數) 多人物當前頁數=1;
 				}
-				按钮ID = StockDispBuffer( 72+ix, 435+iy, DISP_PRIO_CHAR, 55221, 2 );
-				if((mouse.onceState & MOUSE_LEFT_CRICK && HitDispNo == 按钮ID)){
-					if(多人物当前页数) 多人物当前页数=0;
+				按鈕ID = StockDispBuffer( 72+ix, 435+iy, DISP_PRIO_CHAR, 55221, 2 );
+				if((mouse.onceState & MOUSE_LEFT_CRICK && HitDispNo == 按鈕ID)){
+					if(多人物當前頁數) 多人物當前頁數=0;
 				}
-				sprintf_s(buff,"－%d/2－",多人物当前页数+1);
+				sprintf_s(buff,"－%d/2－",多人物當前頁數+1);
 				StockFontBuffer(300+ix,453+iy,0,4,buff,0);
 				int b;
 				for( b = 0; b < 2; b++ )
@@ -2025,7 +2025,7 @@ void selectCharacterProc(void)
 #endif
 				{
 #ifdef _MORECHARACTERS_
-					i = 多人物当前页数*2+b;
+					i = 多人物當前頁數*2+b;
 					if( existCharacterListEntry( i ) )
 					{
 						StockDispBuffer( 169+b*(304 + ii) + ix, 84 + iy, DISP_PRIO_CHAR, chartable[i].faceGraNo, 0 );
@@ -2143,13 +2143,13 @@ void selectCharacterProc(void)
 #ifdef _LOGINKICK			
 			if (StartTime == -1)
 				StartTime = TimeGetTime();
-			if (TimeGetTime() > StartTime + 30 * 1000 /*1000为一秒*/) {
+			if (TimeGetTime() > StartTime + 30 * 1000 /*1000為一秒*/) {
 				ChangeProc(PROC_TITLE_MENU);
 				StartTime = -1;
 			}
 #endif
 
-#ifdef _PKSERVERCHARSEL			// (不可开) Syu ADD PK服务器选择星系人物
+#ifdef _PKSERVERCHARSEL			// (不可開) Syu ADD PK服務器選擇星係人物
 			if ( VersionXYZ == 1 ) {
 				PkBtn[0] = StockDispBuffer( 160, 430, DISP_PRIO_CHAR, CG_PKSERVER_BTN_UP + PkMenuflag , 2 );
 				if( HitDispNo == PkBtn[ 0 ] ) {
@@ -2166,12 +2166,12 @@ void selectCharacterProc(void)
 							x3 = PkServerSel->x ; 
 							y3 = PkServerSel->y ;
 							StockDispBuffer( x3 + 60 , y3 + 200 , DISP_PRIO_IME3 , CG_PKSERVER_PANEL , 0 ) ; 
-							StockFontBuffer( x3 + 20 , y3 + 155, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "选择星系人物" , 1 );
+							StockFontBuffer( x3 + 20 , y3 + 155, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "選擇星係人物" , 1 );
 							for ( i = 0 ; i < 4 ; i ++ ) {
 								for ( j = 0 ; j < 3 ; j ++ ) {
 									StockFontBuffer( x3 - 95 + i * 83 , y3 + 178 + j * 22  , FONT_PRIO_FRONT, FONT_PAL_WHITE, ServerName[ i * 3 + j + 1] , 2 );
 									if ( mouse.onceState & MOUSE_LEFT_CRICK ) {
-										//送出i * 4 + j + 1给Gmsv取得所要的AC资料
+										//送齣i * 4 + j + 1給Gmsv取得所要的AC資料
 									}
 								}
 							}
@@ -2213,7 +2213,7 @@ int deleteCharacter(void)
 	static ACTION *ptActMenuWin = NULL;
 	static int x, y, w, h;
 	int ret = 0;
-	static char msg[] = "人物删除中";
+	static char msg[] = "人物刪除中";
 
 	// ???
 	if (deleteCharacterProcNo == 0)
@@ -2307,7 +2307,7 @@ int downloadCharList(void)
 	{
 		downloadCharListProcNo = 1;
 
-		strcpy(msg, "人物名单取得中");
+		strcpy(msg, "人物名單取得中");
 
 		// ??????
 		w = strlen(msg) * 8 / 64 + 2;
@@ -2371,7 +2371,7 @@ int downloadpkList( void )
 	if( downloadpkListProcNo == 0 )
 	{
 		downloadpkListProcNo = 1;
-		strcpy( msg, "星系列表取得中" );
+		strcpy( msg, "星係列錶取得中" );
 		w = strlen( msg )*8/64+2;
 		h = (16+47)/48;
 		if( h < 2 )
@@ -2505,15 +2505,15 @@ static int selectGraNoTbl[MaxSelectChar] =
 int selectGraLocate[MaxSelectChar][2] =
 {
 	{ 305, 290 },//豆丁
-	{ 240, 360 },//塞亚人
-	{ 410, 500 },//辫子男孩
+	{ 240, 360 },//塞亞人
+	{ 410, 500 },//辮子男孩
 	{ 330, 400 },//酷哥
 	{ 200, 240 },//熊皮男
-	{ 480, 430 },//大个
+	{ 480, 430 },//大個
 	{ 560, 410 },//豆丁妹
 	{ 600, 340 },//熊皮妹
 	{ 500, 310 },//帽子妹
-	{ 380, 240 },//短发妹
+	{ 380, 240 },//短發妹
 	{ 460, 200 },//手套女
 	{ 280, 200 },//辣妹
 #ifdef _MO_IMAGE_EXTENSION
@@ -2678,7 +2678,7 @@ void makeCharacterProc(void)
 				if (ret == 1)
 				{
 					SubProcNo = 20;
-#ifdef _DELBORNPLACE //Syu ADD 6.0 统一出生于新手村
+#ifdef _DELBORNPLACE //Syu ADD 6.0 統一齣生於新手村
 					if ( pActPet20 != NULL)
 					{
 						DeathAction( pActPet20 );
@@ -2689,7 +2689,7 @@ void makeCharacterProc(void)
 				// ?????
 				if (ret == 2)
 				{
-#ifdef _DELBORNPLACE //Syu ADD 6.0 统一出生于新手村
+#ifdef _DELBORNPLACE //Syu ADD 6.0 統一齣生於新手村
 					if ( pActPet20 != NULL)
 					{
 						DeathAction( pActPet20 );
@@ -2703,14 +2703,14 @@ void makeCharacterProc(void)
 			// 佋?
 			if (SubProcNo == 20)
 			{
-#ifndef _DELBORNPLACE //Syu ADD 6.0 统一出生于新手村
+#ifndef _DELBORNPLACE //Syu ADD 6.0 統一齣生於新手村
 				initSelHomeTown();
 #endif
 				SubProcNo = 21;
 			}
 			if (SubProcNo == 21)
 			{
-#ifdef _DELBORNPLACE //Syu ADD 6.0 统一出生于新手村
+#ifdef _DELBORNPLACE //Syu ADD 6.0 統一齣生於新手村
 				ret = 1;
 #else
 				ret = selHomeTown();
@@ -2721,8 +2721,8 @@ void makeCharacterProc(void)
 					SubProcNo = 30;
 					// ????????????
 #ifdef _MORECHARACTERS_
-					resetCharacterList( selectPcNo+多人物当前页数*2 );
-					clearUserSetting( selectPcNo+多人物当前页数*2 );
+					resetCharacterList( selectPcNo+多人物當前頁數*2 );
+					clearUserSetting( selectPcNo+多人物當前頁數*2 );
 #else
 					resetCharacterList(selectPcNo);
 					clearUserSetting(selectPcNo);
@@ -2770,8 +2770,8 @@ void makeCharacterProc(void)
 			}
 			if (SubProcNo == 101)
 			{
-				extern char 创建人物内容提示[512];
-				if (commonMsgWin(创建人物内容提示))
+				extern char 創建人物內容提示[512];
+				if (commonMsgWin(創建人物內容提示))
 				{
 					// ＯＫ????????
 					ChangeProc(PROC_CHAR_SELECT, 10);
@@ -3018,18 +3018,18 @@ int selCharGraNo(void)
 		id = focusGraId(selCharCanselGraId, sizeof(selCharCanselGraId) / sizeof(int));
 		if (id == 0)
 		{
-			ShowBottomLineString(FONT_PAL_WHITE, "回到前一个画面。");
+			ShowBottomLineString(FONT_PAL_WHITE, "迴到前一個畫麵。");
 		}
 #ifdef _TAIKEN
 		else
 			if( taikenFlag )
 			{
-				ShowBottomLineString(FONT_PAL_WHITE,"体验版不能选择！");
+				ShowBottomLineString(FONT_PAL_WHITE,"體驗版不能選擇！");
 			}
 #endif
 			else
 			{
-				ShowBottomLineString(FONT_PAL_WHITE, "请选择一个人物。");
+				ShowBottomLineString(FONT_PAL_WHITE, "請選擇一個人物。");
 			}
 #ifdef _NEW_WIN_POS_
 			selCharCanselGraId[0] =
@@ -3075,9 +3075,9 @@ int selCharGraColorWin(void)
 	int ret = 0;
 	char msg[][16] =
 	{
-		"   决定   ",
-		" 改变颜色 ",
-		" 转动方向 ",
+		"   決定   ",
+		" 改變顔色 ",
+		" 轉動方嚮 ",
 		"   取消   "
 	};
 
@@ -3153,25 +3153,25 @@ int selCharGraColorWin(void)
 				// ?
 				if (id == 0)
 				{
-					ShowBottomLineString(FONT_PAL_WHITE, "决定目前所选择的人物。");
+					ShowBottomLineString(FONT_PAL_WHITE, "決定目前所選擇的人物。");
 				}
 				else
 					// ???
 					if (id == 1)
 					{
-						ShowBottomLineString(FONT_PAL_WHITE, "改变人物的颜色。");
+						ShowBottomLineString(FONT_PAL_WHITE, "改變人物的顔色。");
 					}
 					else
 						// ????
 						if (id == 2)
 						{
-							ShowBottomLineString(FONT_PAL_WHITE, "转动人物的方向。");
+							ShowBottomLineString(FONT_PAL_WHITE, "轉動人物的方嚮。");
 						}
 						else
 							// ?????
 							if (id == 3)
 							{
-								ShowBottomLineString(FONT_PAL_WHITE, "回到选择人物的画面。");
+								ShowBottomLineString(FONT_PAL_WHITE, "迴到選擇人物的畫麵。");
 							}
 
 							if (ptActMenuWin != NULL)
@@ -3243,14 +3243,14 @@ void initEditCharParam2(void)
 		CHAR_NAME_LEN, FONT_PAL_WHITE, FONT_PRIO_BACK);
 	GetKeyInputFocus(&selCharName);
 }
-#ifdef _DELBORNPLACE //Syu ADD 6.0 统一出生于新手村
+#ifdef _DELBORNPLACE //Syu ADD 6.0 統一齣生於新手村
 typedef struct{
-	int spr_num;	 //SPR图号
-	int earth;		 //地属性
-	int water;		 //水属性
-	int fire;		 //火属性
-	int wind;		 //风属性
-	char name[16];	 //宠物名称
+	int spr_num;	 //SPR圖號
+	int earth;		 //地屬性
+	int water;		 //水屬性
+	int fire;		 //火屬性
+	int wind;		 //風屬性
+	char name[16];	 //寵物名稱
 } BORNPETINFO;
 #endif
 // ???????????
@@ -3264,18 +3264,18 @@ int editCharParam(void)
 	char msg[64];
 	int x1, y1, x2, y2;
 	int cnt = 1;
-#ifdef _DELBORNPLACE //Syu ADD 6.0 统一出生于新手村
+#ifdef _DELBORNPLACE //Syu ADD 6.0 統一齣生於新手村
 	BORNPETINFO petinfo[4] = {
 
-		{ 100251 , 0 , 4 , 6 , 0 , "乌力乌力"},
-		{ 100296 , 2 , 0 , 0 , 8 , "凯比"},
-		{ 100292 , 0 , 7 , 3 , 0 , "克克尔"},
+		{ 100251 , 0 , 4 , 6 , 0 , "烏力烏力"},
+		{ 100296 , 2 , 0 , 0 , 8 , "凱比"},
+		{ 100292 , 0 , 7 , 3 , 0 , "剋剋爾"},
 		{ 100266 , 6 , 0 , 0 , 4 , "威伯"}};
 
-		/*		{ 101490 , 7 , 5 , 8 , 3 , "海贼王"},
-		{ 100444 , 10 , 10 , 10 , 10 , "黑暗精灵王"},
+		/*		{ 101490 , 7 , 5 , 8 , 3 , "海賊王"},
+		{ 100444 , 10 , 10 , 10 , 10 , "黑暗精靈王"},
 		{ 100725 , 10 , 9 , 10 , 9 , "柯黑穆肯"},
-		{ 100451 , 1 , 1 , 1 , 1 , "玛雷菲雅"}};
+		{ 100451 , 1 , 1 , 1 , 1 , "瑪雷菲雅"}};
 		*/	int BornPreBtn , BornNextBtn ;
 		int attrx1 , attry1 , attrx2 , attry2;
 		int BornBaseX = 430 , BornBaseY = 110 ;
@@ -3283,7 +3283,7 @@ int editCharParam(void)
 		static int graId[] =
 		{ -2, -2, -2, -2, -2, -2, -2, -2, -2, -2,
 		-2, -2, -2, -2, -2, -2, -2, -2,
-#ifdef _DELBORNPLACE //Syu ADD 6.0 统一出生于新手村
+#ifdef _DELBORNPLACE //Syu ADD 6.0 統一齣生於新手村
 		-2, -2, -2, -2, -2, -2};
 #else
 		- 2, -2, -2, -2 };
@@ -3422,8 +3422,8 @@ int editCharParam(void)
 									newCharacterWater = nowSelCharAttr[1];
 									newCharacterFire = nowSelCharAttr[2];
 									newCharacterWind = nowSelCharAttr[3];
-#ifdef _DELBORNPLACE //Syu ADD 6.0 统一出生于新手村
-									//用原来的出生点变数纪录出生宠
+#ifdef _DELBORNPLACE //Syu ADD 6.0 統一齣生於新手村
+									//用原來的齣生點變數紀錄齣生寵
 									newCharacterHomeTown = BornPetNum;
 #endif
 									loginDp = 0;
@@ -3594,7 +3594,7 @@ int editCharParam(void)
 									}
 									play_se(217, 320, 240);	// ?????
 								}
-#ifdef _DELBORNPLACE //Syu ADD 6.0 统一出生于新手村
+#ifdef _DELBORNPLACE //Syu ADD 6.0 統一齣生於新手村
 								else
 									if( id == 22 || id == 23 )
 									{
@@ -3633,7 +3633,7 @@ int editCharParam(void)
 		}
 		if (editCharParamProcNo == 101)
 		{
-			if (commonMsgWin("没有输入名字！"))
+			if (commonMsgWin("沒有輸入名字！"))
 			{
 				// ＯＫ????????
 				editCharParamProcNo = 1;
@@ -3648,7 +3648,7 @@ int editCharParam(void)
 		}
 		if (editCharParamProcNo == 103)
 		{
-			if (commonMsgWin("已经有同名的人物存在了！"))
+			if (commonMsgWin("已經有同名的人物存在瞭！"))
 			{
 				// ＯＫ????????
 				editCharParamProcNo = 1;
@@ -3663,7 +3663,7 @@ int editCharParam(void)
 		}
 		if (editCharParamProcNo == 105)
 		{
-			if (commonMsgWin("请将状态的点数分配完毕！"))
+			if (commonMsgWin("請將狀態的點數分配完畢！"))
 			{
 				// ＯＫ????????
 				editCharParamProcNo = 1;
@@ -3678,7 +3678,7 @@ int editCharParam(void)
 		}
 		if (editCharParamProcNo == 107)
 		{
-			if (commonMsgWin("请将属性的点数分配完毕！"))
+			if (commonMsgWin("請將屬性的點數分配完畢！"))
 			{
 				// ＯＫ????????
 				editCharParamProcNo = 1;
@@ -3693,7 +3693,7 @@ int editCharParam(void)
 		}
 		if (editCharParamProcNo == 109)
 		{
-			if (commonMsgWin("名字里面不可以有空白！"))
+			if (commonMsgWin("名字裏麵不可以有空白！"))
 			{
 				// ＯＫ????????
 				editCharParamProcNo = 1;
@@ -3707,7 +3707,7 @@ int editCharParam(void)
 		}
 		if (editCharParamProcNo == 111)
 		{
-			if (commonMsgWin("你输入的名字有不允许字符"))
+			if (commonMsgWin("你輸入的名字有不允許字符"))
 			{
 				// ＯＫ????????
 				editCharParamProcNo = 1;
@@ -3721,12 +3721,12 @@ int editCharParam(void)
 			id = focusGraId(graId, sizeof(graId) / sizeof(int));
 			if (id == 0)
 			{
-				ShowBottomLineString(FONT_PAL_WHITE, "决定人物的设定。");
+				ShowBottomLineString(FONT_PAL_WHITE, "決定人物的設定。");
 			}
 			else
 				if (id == 1)
 				{
-					ShowBottomLineString(FONT_PAL_WHITE, "回到前一个画面。");
+					ShowBottomLineString(FONT_PAL_WHITE, "迴到前一個畫麵。");
 				}
 				else
 					if (2 <= id && id <= 9)
@@ -3735,22 +3735,22 @@ int editCharParam(void)
 						id /= 2;
 						if (id == 0)
 						{
-							ShowBottomLineString(FONT_PAL_WHITE, "这项主要与耐久力有关。");
+							ShowBottomLineString(FONT_PAL_WHITE, "這項主要與耐久力有關。");
 						}
 						else
 							if (id == 1)
 							{
-								ShowBottomLineString(FONT_PAL_WHITE, "这项主要与攻击力有关。");
+								ShowBottomLineString(FONT_PAL_WHITE, "這項主要與攻擊力有關。");
 							}
 							else
 								if (id == 2)
 								{
-									ShowBottomLineString(FONT_PAL_WHITE, "这项主要与防御力有关。");
+									ShowBottomLineString(FONT_PAL_WHITE, "這項主要與防禦力有關。");
 								}
 								else
 									if (id == 3)
 									{
-										ShowBottomLineString(FONT_PAL_WHITE, "这项主要与战斗时的行动顺序有关。");
+										ShowBottomLineString(FONT_PAL_WHITE, "這項主要與戰鬥時的行動順序有關。");
 									}
 					}
 					else
@@ -3760,22 +3760,22 @@ int editCharParam(void)
 							id /= 2;
 							if (id == 0)
 							{
-								ShowBottomLineString(FONT_PAL_WHITE, "地属性。与水属性的对手战斗时较为有利。");
+								ShowBottomLineString(FONT_PAL_WHITE, "地屬性。與水屬性的對手戰鬥時較為有利。");
 							}
 							else
 								if (id == 1)
 								{
-									ShowBottomLineString(FONT_PAL_WHITE, "水属性。与火属性的对手战斗时较为有利。");
+									ShowBottomLineString(FONT_PAL_WHITE, "水屬性。與火屬性的對手戰鬥時較為有利。");
 								}
 								else
 									if (id == 2)
 									{
-										ShowBottomLineString(FONT_PAL_WHITE, "火属性。与风属性的对手战斗时较为有利。");
+										ShowBottomLineString(FONT_PAL_WHITE, "火屬性。與風屬性的對手戰鬥時較為有利。");
 									}
 									else
 										if (id == 3)
 										{
-											ShowBottomLineString(FONT_PAL_WHITE, "风属性。与地属性的对手战斗时较为有利。");
+											ShowBottomLineString(FONT_PAL_WHITE, "風屬性。與地屬性的對手戰鬥時較為有利。");
 										}
 						}
 						else
@@ -3783,21 +3783,21 @@ int editCharParam(void)
 							{
 								if (nowSelCharGraNo != 0 && nowSelCharGraNo != 6)
 								{
-									ShowBottomLineString(FONT_PAL_WHITE, "改变眼睛的形状。");
+									ShowBottomLineString(FONT_PAL_WHITE, "改變眼睛的形狀。");
 								}
 								else
 								{
-									ShowBottomLineString(FONT_PAL_WHITE, "改变鼻子的形状。");
+									ShowBottomLineString(FONT_PAL_WHITE, "改變鼻子的形狀。");
 								}
 							}
 							else
 								if (id == 20 || id == 21)
 								{
-									ShowBottomLineString(FONT_PAL_WHITE, "改变嘴巴的形状。");
+									ShowBottomLineString(FONT_PAL_WHITE, "改變嘴巴的形狀。");
 								}
 								else
 								{
-									ShowBottomLineString(FONT_PAL_WHITE, "设定姓名、长相、基本状态与属性。");
+									ShowBottomLineString(FONT_PAL_WHITE, "設定姓名、長相、基本狀態與屬性。");
 								}
 		}
 
@@ -3952,7 +3952,7 @@ int editCharParam(void)
 		{
 			StockDispBuffer(320, 240, DISP_PRIO_CHAR, CG_CHR_MAKE_NOSE_SEL, 0);
 		}
-#ifdef _DELBORNPLACE //Syu ADD 6.0 统一出生于新手村
+#ifdef _DELBORNPLACE //Syu ADD 6.0 統一齣生於新手村
 		BornPreBtn = 0;
 		BornNextBtn = 0;
 		if(  id3 == 22 || id3 == 23 )
@@ -4048,10 +4048,10 @@ int selHomeTown(void)
 	int ret2;
 	char *homeTownName[] =
 	{
-		"萨姆吉尔村",
-		"玛丽娜丝村",
+		"薩姆吉爾村",
+		"瑪麗娜絲村",
 		"加加村",
-		"卡鲁它那村"
+		"卡魯它那村"
 	};
 	int selUseFlag = 0;
 	int i;
@@ -4130,7 +4130,7 @@ int selHomeTown(void)
 
 
 		// ??????
-#ifdef _DELBORNPLACE //Syu ADD 6.0 统一出生于新手村
+#ifdef _DELBORNPLACE //Syu ADD 6.0 統一齣生於新手村
 #else
 		if (id == 1)
 		{
@@ -4138,14 +4138,14 @@ int selHomeTown(void)
 				FONT_PRIO_BACK, FONT_PAL_YELLOW, homeTownName[0], 0);
 #ifndef _TAIKEN
 			StockFontBuffer(386 + ix, 158 + iy,
-				FONT_PRIO_BACK, FONT_PAL_BLUE, "位在萨伊那斯的东边，", 0);
+				FONT_PRIO_BACK, FONT_PAL_BLUE, "位在薩伊那斯的東邊，", 0);
 			StockFontBuffer(386 + ix, 178 + iy,
-				FONT_PRIO_BACK, FONT_PAL_BLUE, "是四个村子中最大", 0);
+				FONT_PRIO_BACK, FONT_PAL_BLUE, "是四個村子中最大", 0);
 			StockFontBuffer(386 + ix, 198 + iy,
-				FONT_PRIO_BACK, FONT_PAL_BLUE, "也是最整齐的村子。", 0);
+				FONT_PRIO_BACK, FONT_PAL_BLUE, "也是最整齊的村子。", 0);
 #else
 			StockFontBuffer( 390 + ix, 176 + iy,
-				FONT_PRIO_BACK, FONT_PAL_BLUE, "体验版不能选择！", 0 );
+				FONT_PRIO_BACK, FONT_PAL_BLUE, "體驗版不能選擇！", 0 );
 #endif
 		}
 		else
@@ -4155,9 +4155,9 @@ int selHomeTown(void)
 				StockFontBuffer(454 + ix, 135 + iy,
 					FONT_PRIO_BACK, FONT_PAL_YELLOW, homeTownName[1], 0);
 				StockFontBuffer(390 + ix, 168 + iy,
-					FONT_PRIO_BACK, FONT_PAL_BLUE, "位在萨伊那斯的西边", 0);
+					FONT_PRIO_BACK, FONT_PAL_BLUE, "位在薩伊那斯的西邊", 0);
 				StockFontBuffer(390 + ix, 188 + iy,
-					FONT_PRIO_BACK, FONT_PAL_BLUE, "面向美丽海滩的村子。", 0);
+					FONT_PRIO_BACK, FONT_PAL_BLUE, "麵嚮美麗海灘的村子。", 0);
 			}
 			else
 				// ??????
@@ -4167,14 +4167,14 @@ int selHomeTown(void)
 						FONT_PRIO_BACK, FONT_PAL_YELLOW, homeTownName[2], 0);
 #ifndef _TAIKEN
 					StockFontBuffer(390 + ix, 158 + iy,
-						FONT_PRIO_BACK, FONT_PAL_BLUE, "位在加鲁卡的东边，", 0);
+						FONT_PRIO_BACK, FONT_PAL_BLUE, "位在加魯卡的東邊，", 0);
 					StockFontBuffer(390 + ix, 178 + iy,
-						FONT_PRIO_BACK, FONT_PAL_BLUE, "四周被森林围绕着", 0);
+						FONT_PRIO_BACK, FONT_PAL_BLUE, "四周被森林圍繞著", 0);
 					StockFontBuffer(390 + ix, 198 + iy,
-						FONT_PRIO_BACK, FONT_PAL_BLUE, "绿意盎然的村子。", 0);
+						FONT_PRIO_BACK, FONT_PAL_BLUE, "綠意盎然的村子。", 0);
 #else
 					StockFontBuffer( 390, 176 + iy,
-						FONT_PRIO_BACK, FONT_PAL_BLUE, "体验版不能选择！", 0 );
+						FONT_PRIO_BACK, FONT_PAL_BLUE, "體驗版不能選擇！", 0 );
 #endif
 				}
 				else
@@ -4185,14 +4185,14 @@ int selHomeTown(void)
 							FONT_PRIO_BACK, FONT_PAL_YELLOW, homeTownName[3], 0);
 #ifndef _TAIKEN
 						StockFontBuffer(390 + ix, 158 + iy,
-							FONT_PRIO_BACK, FONT_PAL_BLUE, "位在加鲁卡的西边。", 0);
+							FONT_PRIO_BACK, FONT_PAL_BLUE, "位在加魯卡的西邊。", 0);
 						StockFontBuffer(390 + ix, 178 + iy,
-							FONT_PRIO_BACK, FONT_PAL_BLUE, "村子是在好几个小小", 0);
+							FONT_PRIO_BACK, FONT_PAL_BLUE, "村子是在好幾個小小", 0);
 						StockFontBuffer(390 + ix, 198 + iy,
-							FONT_PRIO_BACK, FONT_PAL_BLUE, "的岛上建立起来的。", 0);
+							FONT_PRIO_BACK, FONT_PAL_BLUE, "的島上建立起來的。", 0);
 #else
 						StockFontBuffer( 390 + ix, 176 + iy,
-							FONT_PRIO_BACK, FONT_PAL_BLUE, "体验版不能选择！", 0 );
+							FONT_PRIO_BACK, FONT_PAL_BLUE, "體驗版不能選擇！", 0 );
 #endif
 					}
 					else
@@ -4200,12 +4200,12 @@ int selHomeTown(void)
 						if (id == 0)
 						{
 							StockFontBuffer(390 + ix, 176 + iy,
-								FONT_PRIO_BACK, FONT_PAL_BLUE, "回到前一个画面。", 0);
+								FONT_PRIO_BACK, FONT_PAL_BLUE, "迴到前一個畫麵。", 0);
 						}
 						else
 						{
 							StockFontBuffer(390 + ix, 176 + iy,
-								FONT_PRIO_BACK, FONT_PAL_BLUE, "请选择出身地。", 0);
+								FONT_PRIO_BACK, FONT_PAL_BLUE, "請選擇齣身地。", 0);
 						}
 #ifdef _SPECIAL_LOGO
 						btnId[0] = StockDispBuffer(675, 450, DISP_PRIO_CHAR, CG_CHR_MAKE_BACK_BTN, selUseFlag);
@@ -4251,7 +4251,7 @@ int createChar(void)
 	static int x, y, w, h;
 	int ret = 0;
 	int ret2;
-	char msg[] = "人物制作中...";
+	char msg[] = "人物製作中...";
 
 	// ???
 	if (createCharProcNo == 0)
@@ -4338,12 +4338,12 @@ void characterLoginProc(void)
 	if (SubProcNo == 1){
 		ret = charLogin();
 		if (ret == 0) {
-			// 签入成功
+			// 簽入成功
 		}
 		else if (ret == 1){
 #ifdef _TAIKEN
 			if( createCharFlag ){
-				char title[128] = "体验版";
+				char title[128] = "體驗版";
 				if( bNewServer)
 					lssproto_FT_send( sockfd, title );
 				else
@@ -4363,142 +4363,142 @@ void characterLoginProc(void)
 			else
 				if (ret == -2){
 					SubProcNo = 100;
-				//	strcpy(msg, "签入处理失败。(1001)");
-					strcpy(msg, "您的账号目前正在离线，请重新登录。");
+				//	strcpy(msg, "簽入處理失敗。(1001)");
+					strcpy(msg, "您的賬號目前正在離綫，請重新登錄。");
 				}
 				else
 					if (ret == -3){
 						SubProcNo = 100;
-						strcpy(msg, "按照版署《网络游戏未成年人防沉迷系统》规定，您未通过验证，\n将被强制离线，如有疑问请登录网站查询或进行验证");
+						strcpy(msg, "按照版署《網絡遊戲未成年人防沉迷係統》規定，您未通過驗證，\n將被強製離綫，如有疑問請登錄網站查詢或進行驗證");
 					}
 
-#ifdef _NEW_WGS_MSG				// WON ADD WGS的新视窗
+#ifdef _NEW_WGS_MSG				// WON ADD WGS的新視窗
 
 					else if( ret == 101 ){ // 2.1 New
 						SubProcNo = 100;
-						strcpy( msg, "无法与资料服务器取得连系" );
+						strcpy( msg, "無法與資料服務器取得連係" );
 					}		
 					else if( ret == 102 ){
 						SubProcNo = 100;
-						strcpy( msg, "无法由资料库取得正确资讯" );
+						strcpy( msg, "無法由資料庫取得正確資訊" );
 					}
 					else if( ret == 103 ){ // 2.1 New
 						SubProcNo = 100;
-						strcpy( msg, "服务器忙碌中,请稍待一会再试" );
+						strcpy( msg, "服務器忙碌中,請稍待一會再試" );
 					}		
 					else if( ret == 104 ){
 						SubProcNo = 100;
-						strcpy( msg, "输入的资料格式不正确" );
+						strcpy( msg, "輸入的資料格式不正確" );
 					}
 					else if( ret == 201 ){
 						SubProcNo = 100;
-						strcpy( msg, "错误的使用者名称或密码, 若您尚未加入会员, 请先到游戏网站免费加入会员" );
+						strcpy( msg, "錯誤的使用者名稱或密碼, 若您尚未加入會員, 請先到遊戲網站免費加入會員" );
 					}
 					else if( ret == 202 ){ // 2.1 New
 						SubProcNo = 100;
-						strcpy( msg, "同一个使用者不得重覆登入" );
+						strcpy( msg, "同一個使用者不得重覆登入" );
 					}
 					else if( ret == 203 ){ // 2.1 New
 						SubProcNo = 100;
-						strcpy( msg, "同一帐号已在线上" );
+						strcpy( msg, "同一帳號已在綫上" );
 					}
-					else if( ret == 204 ){ // 2.1 New  	// 同星系重覆登入
+					else if( ret == 204 ){ // 2.1 New  	// 同星係重覆登入
 						SubProcNo = 100;
-						//strcpy( msg, "您已在此星系登入" );				
-						strcpy( msg, "使用者已在进行游戏" );
+						//strcpy( msg, "您已在此星係登入" );				
+						strcpy( msg, "使用者已在進行遊戲" );
 					}
 					else if( ret == 205 ){
 						SubProcNo = 100;
-						strcpy( msg, "未登入此游戏或登入错误" );
+						strcpy( msg, "未登入此遊戲或登入錯誤" );
 					}
 					else if( ret == 206 ){ // 2.1 New
 						SubProcNo = 100;
-						strcpy( msg, "同名帐号已存在" );
+						strcpy( msg, "同名帳號已存在" );
 					}
 					else if( ret == 207 ){ // 2.1 New
 						SubProcNo = 100;
-						strcpy( msg, "会员帐号已经启动" );
+						strcpy( msg, "會員帳號已經啓動" );
 					}
 					else if( ret == 208 ){ // 2.1 New
 						SubProcNo = 100;
-						strcpy( msg, "错误的启动码" );
+						strcpy( msg, "錯誤的啓動碼" );
 					}
 					else if( ret == 209 ){ // 2.1 New
 						SubProcNo = 100;
-						strcpy( msg, "会员帐号尚未启动" );
+						strcpy( msg, "會員帳號尚未啓動" );
 					}
 					else if( ret == 210 ){ // 2.1 New
 						SubProcNo = 100;
-						strcpy( msg, "会员帐号和密码只能使用英文字母和数字" );
+						strcpy( msg, "會員帳號和密碼隻能使用英文字母和數字" );
 					}
 					else if( ret == 211 ){
 						SubProcNo = 100;
-						strcpy( msg, "此帐号已被停权, 如有问题请联系客服" );
+						strcpy( msg, "此帳號已被停權, 如有問題請聯係客服" );
 					}
 					else if( ret == 212 ){ // 2.1 New
 						SubProcNo = 100;
-						strcpy( msg, "请先到游戏网站重新确认个人资料, 再启动此游戏" );
+						strcpy( msg, "請先到遊戲網站重新確認個人資料, 再啓動此遊戲" );
 					}
 					else if( ret == 213 ){ // 2.1 New
 						SubProcNo = 100;
-						strcpy( msg, "登入逾时, 请重新登入" );
+						strcpy( msg, "登入逾時, 請重新登入" );
 					}
 					else if( ret == 214 ){ // 2.1 New
 						SubProcNo = 100;
-						strcpy( msg, "网页尚未登入" );
+						strcpy( msg, "網頁尚未登入" );
 					}
 					else if( ret == 220 ){ // 2.1 New
 						SubProcNo = 100;
-						strcpy( msg, "此帐号已转换为新游戏会员" );
+						strcpy( msg, "此帳號已轉換為新遊戲會員" );
 					}
 					else if( ret == 222 ){ // 2.1 New
 						SubProcNo = 100;
-						strcpy( msg, "请先到游戏网站更新游戏管理帐号的密码, 再启动此游戏" );
+						strcpy( msg, "請先到遊戲網站更新遊戲管理帳號的密碼, 再啓動此遊戲" );
 					}
 					else if( ret == 301 ){
 						SubProcNo = 100;
-						strcpy( msg, "此产品尚未注册, 请先到游戏网站完成注册" );
+						strcpy( msg, "此産品尚未注冊, 請先到遊戲網站完成注冊" );
 					}
 					else if( ret == 402 ){
 						SubProcNo = 100;
-						strcpy( msg, "游戏点数卡已用完点数, 请购买点数卡再至游戏网站完成注册" );
+						strcpy( msg, "遊戲點數卡已用完點數, 請購買點數卡再至遊戲網站完成注冊" );
 					}
 					else if( ret == 405 ){
 						SubProcNo = 100;
-						strcpy( msg, "游戏点数不足, 请购买点数卡再至游戏网站注册" );
+						strcpy( msg, "遊戲點數不足, 請購買點數卡再至遊戲網站注冊" );
 					}
 					else if( ret == 999 ){ // 2.1 New
 						SubProcNo = 100;
-						strcpy( msg, "网路连线错误" );
+						strcpy( msg, "網路連綫錯誤" );
 					}
-					else if( ret >= 2030 && ret < 2044 ){	// 不同星系重覆登入
+					else if( ret >= 2030 && ret < 2044 ){	// 不同星係重覆登入
 						int star=-1;
 						star = ret - 2030;
 						SubProcNo = 100;
 
-						// 依照 cs 的 acid 号码设的
+						// 依照 cs 的 acid 號碼設的
 						switch( star ){
-						case 0: strcpy( msg, "您已在其他星系登入。" );	break;	
-						case 1:	strcpy( msg, "您已在太阳星系登入" );	break;
-						case 2:	strcpy( msg, "您已在天神星系登入" );	break;
-						case 3:	strcpy( msg, "您已在北斗星系登入" );	break;
-						case 4:	strcpy( msg, "您已在紫微星系登入" );	break;
-						case 5:	strcpy( msg, "您已在苍龙星系登入" );	break;
-						case 6:	strcpy( msg, "您已在银河星系登入" );	break;
-						case 7:	strcpy( msg, "您已在香港星系登入" );	break;
-						case 8:	strcpy( msg, "您已在星乐园星系登入" );	break;
-						case 9:	strcpy( msg, "您已在网路家庭星系登入" );	break;
-						case 10: strcpy( msg, "您已在圣兽星系登入" );	break;
-						case 11: strcpy( msg, "您已在天鹰星系登入" );	break;				
-						case 12: strcpy( msg, "您已在新界星系登入" );	break;
-						case 13: strcpy( msg, "您已在测试星系登入" );	break;
-						default: strcpy( msg, "签入处理失败。(1002)" );		break;
+						case 0: strcpy( msg, "您已在其他星係登入。" );	break;	
+						case 1:	strcpy( msg, "您已在太陽星係登入" );	break;
+						case 2:	strcpy( msg, "您已在天神星係登入" );	break;
+						case 3:	strcpy( msg, "您已在北鬥星係登入" );	break;
+						case 4:	strcpy( msg, "您已在紫微星係登入" );	break;
+						case 5:	strcpy( msg, "您已在蒼龍星係登入" );	break;
+						case 6:	strcpy( msg, "您已在銀河星係登入" );	break;
+						case 7:	strcpy( msg, "您已在香港星係登入" );	break;
+						case 8:	strcpy( msg, "您已在星樂園星係登入" );	break;
+						case 9:	strcpy( msg, "您已在網路傢庭星係登入" );	break;
+						case 10: strcpy( msg, "您已在聖獸星係登入" );	break;
+						case 11: strcpy( msg, "您已在天鷹星係登入" );	break;				
+						case 12: strcpy( msg, "您已在新界星係登入" );	break;
+						case 13: strcpy( msg, "您已在測試星係登入" );	break;
+						default: strcpy( msg, "簽入處理失敗。(1002)" );		break;
 						}
 					}
 
 					else {
 						SubProcNo = 100;
-						sprintf_s( msg, "签入处理失败(%d)。", ret );
+						sprintf_s( msg, "簽入處理失敗(%d)。", ret );
 					}
 #endif
 
@@ -4543,7 +4543,7 @@ int charLogin(void)
 	static ACTION *ptActMenuWin = NULL;
 	static int x, y, w, h;
 	int ret = 0;
-	static char msg[] = "签入中";
+	static char msg[] = "簽入中";
 
 	// ???
 	if (charLoginProcNo == 0)
@@ -4569,31 +4569,31 @@ int charLogin(void)
 	{
 #ifdef _AIDENGLU_
 		extern int 是否重登;
-		extern int 是否重登战斗了;
-		extern int 自动登陆是否开启;
+		extern int 是否重登戰鬥瞭;
+		extern int 自動登陸是否開啓;
 		extern int 是否重登AI模式;
-		extern int 是否重登人物方向;
-		extern int 是否重登组队;
-		extern int 是否重登喊话;
-		extern int 是否重开登组队_1;
-		是否重登战斗了 = FALSE;
+		extern int 是否重登人物方嚮;
+		extern int 是否重登組隊;
+		extern int 是否重登喊話;
+		extern int 是否重開登組隊_1;
+		是否重登戰鬥瞭 = FALSE;
 		是否重登 = FALSE;
-		是否重登组队 = FALSE;
+		是否重登組隊 = FALSE;
 		是否重登AI模式 = FALSE;
-		是否重登喊话 = FALSE;
-		是否重开登组队_1 = FALSE;
-		if (PcLanded.大区 >= 0 && PcLanded.小区 >= 0 && PcLanded.人物 >= 0 && 自动登陆是否开启){
+		是否重登喊話 = FALSE;
+		是否重開登組隊_1 = FALSE;
+		if (PcLanded.大區 >= 0 && PcLanded.小區 >= 0 && PcLanded.人物 >= 0 && 自動登陸是否開啓){
 			是否重登 = TRUE;
 			是否重登AI模式 = TRUE;
-			是否重登人物方向 = TRUE;
-			if (PcLanded.是否自动遇敌&&PcLanded.队模 != 1)
-				是否重登战斗了 = TRUE;
-			if (PcLanded.队模 == 1)
-				是否重登组队 = TRUE;
-			if (PcLanded.是否自动喊话)
-				是否重登喊话 = TRUE;
-			if (PcLanded.队模 == 0)
-				是否重开登组队_1 = TRUE;
+			是否重登人物方嚮 = TRUE;
+			if (PcLanded.是否自動遇敵&&PcLanded.隊模 != 1)
+				是否重登戰鬥瞭 = TRUE;
+			if (PcLanded.隊模 == 1)
+				是否重登組隊 = TRUE;
+			if (PcLanded.是否自動喊話)
+				是否重登喊話 = TRUE;
+			if (PcLanded.隊模 == 0)
+				是否重開登組隊_1 = TRUE;
 		}
 #endif
 		charLoginStart();
@@ -4664,24 +4664,24 @@ void characterLogoutProc(void)
 		//???????
 		produce_vct_no = 0;
 
-#ifdef _AniRandom   // Syu ADD 随机产生环境动画
+#ifdef _AniRandom   // Syu ADD 隨機産生環境動畫
 		extern void AniRandomRelease();
 		AniRandomRelease();
 #endif
 
-#ifdef _AniCrossFrame	   // Syu ADD 动画层游过画面生物
+#ifdef _AniCrossFrame	   // Syu ADD 動畫層遊過畫麵生物
 		extern void crossAniRelease();
 		crossAniRelease();
 #endif
-#ifdef _AniCharBubble	   // Syu ADD 动画层人物吐出气泡
+#ifdef _AniCharBubble	   // Syu ADD 動畫層人物吐齣氣泡
 		extern void CharbubbleRelease();
 		CharbubbleRelease();
 #endif
-#ifdef _AniImmobile	 // Syu ADD 定点产生特定动画
+#ifdef _AniImmobile	 // Syu ADD 定點産生特定動畫
 		extern void ImmobileAniRelease();
 		ImmobileAniRelease();
 #endif
-#ifdef _SPECIALSPACEANIM	// Syu ADD 特殊场景动画配置
+#ifdef _SPECIALSPACEANIM	// Syu ADD 特殊場景動畫配置
 		extern void ReleaseSpecAnim();
 		ReleaseSpecAnim();
 #endif
@@ -4738,7 +4738,7 @@ void characterLogoutProc(void)
 						// ?????????
 						cleanupNetwork();
 						SubProcNo = 100;
-						strcpy(msg, "签出处理失败。");
+						strcpy(msg, "簽齣處理失敗。");
 					}
 		}
 
@@ -4784,7 +4784,7 @@ int charLogout(void)
 	static ACTION *ptActMenuWin = NULL;
 	static int x, y, w, h;
 	int ret = 0;
-	static char msg[] = "签出中";
+	static char msg[] = "簽齣中";
 
 	if (systemWndNo != 1){
 #ifdef _CHAR_NEWLOGOUT
@@ -5021,7 +5021,7 @@ void serverWindowType6(void);
 void serverWindowType7(void);
 void serverWindowType9(void);
 
-#ifdef _CHAR_PROFESSION			// WON ADD 人物职业技能
+#ifdef _CHAR_PROFESSION			// WON ADD 人物職業技能
 void initServerWindowProfession( char *data );
 void profession_windows();
 int profession_windows_1();
@@ -5030,7 +5030,7 @@ char ProfessionShopTitle[27];
 char ProfessionShopMsg[2][45];
 #endif
 
-#ifdef _NPC_WELFARE_2				// WON ADD 职业NPC-2
+#ifdef _NPC_WELFARE_2				// WON ADD 職業NPC-2
 void initServerWindowProfession2( char *data );
 void profession_windows2();
 int profession_windows_12();
@@ -5070,7 +5070,7 @@ void initBlackMarket(char *);
 void BMWindowType(void);
 #endif
 
-#ifdef _ADD_FAMILY_TAX			   // WON ADD 增加庄园税收
+#ifdef _ADD_FAMILY_TAX			   // WON ADD 增加莊園稅收
 void FMTAXWindowsType( void );
 #endif
 
@@ -5201,7 +5201,7 @@ void openServerWindow(int windowtype, int buttontype, int index, int id, char *d
 			if (windowTypeWN == WINDOW_MESSAGETYPE_MESSAGE
 				|| windowTypeWN == WINDOW_MESSAGETYPE_MESSAGEANDLINEINPUT
 #ifdef _NEW_MANOR_LAW
-				|| windowTypeWN == WINDOW_FMMESSAGETYPE_MANOR_SCHEDULE	// 挑战庄园排行
+				|| windowTypeWN == WINDOW_FMMESSAGETYPE_MANOR_SCHEDULE	// 挑戰莊園排行
 #endif
 				)
 			{
@@ -5237,13 +5237,13 @@ void openServerWindow(int windowtype, int buttontype, int index, int id, char *d
 								initServerWindowType5(data);
 							}
 							else
-#ifdef _CHAR_PROFESSION			// WON ADD 人物职业技能
+#ifdef _CHAR_PROFESSION			// WON ADD 人物職業技能
 								if( windowTypeWN == WINDOW_MESSAGETYPE_PROFESSIONSHOP )
 								{
 									initServerWindowProfession( data );
 								}else
 #endif
-#ifdef _NPC_WELFARE_2				// WON ADD 职业NPC-2
+#ifdef _NPC_WELFARE_2				// WON ADD 職業NPC-2
 									if( windowTypeWN == WINDOW_MESSAGETYPE_PROFESSIONSHOP2 )
 									{
 										initServerWindowProfession2( data );
@@ -5289,7 +5289,7 @@ void openServerWindow(int windowtype, int buttontype, int index, int id, char *d
 																initBlackMarket(data);
 															}
 #endif
-#ifdef _ADD_FAMILY_TAX			   // WON ADD 增加庄园税收
+#ifdef _ADD_FAMILY_TAX			   // WON ADD 增加莊園稅收
 															else
 																if( windowTypeWN == WINDOWS_MESSAGETYPE_FAMILY_TAX )
 																{
@@ -5399,11 +5399,11 @@ void openServerWindow(int windowtype, int buttontype, int index, int id, char *d
 #endif
 
 																												// Terry add 2001/12/06
-																												// 伊甸大陆--个人银行
+																												// 伊甸大陸--個人銀行
 #ifdef __EDEN_EFFECT
 																												else if (windowTypeWN == WINDOW_MESSAGETYPE_BANK)
 																												{
-																													// 设定玩家身上的银行存款
+																													// 設定玩傢身上的銀行存款
 																													pc.personal_bankgold = atoi(data);
 																													if (pc.personal_bankgold < 0)			          					pc.personal_bankgold = 0;
 																													else if (pc.personal_bankgold > MAX_PERSONAL_BANKGOLD) pc.personal_bankgold = MAX_PERSONAL_BANKGOLD;
@@ -5417,19 +5417,19 @@ void openServerWindow(int windowtype, int buttontype, int index, int id, char *d
 																												{
 																													switch (windowTypeWN)
 																													{
-																														// 开启委托视窗
+																														// 開啓委托視窗
 																													case WINDOW_MESSAGETYPE_AUCTIONNEW:
 																														break;
-																														// 开启委托列表视窗
+																														// 開啓委托列錶視窗
 																													case WINDOW_MESSAGETYPE_AUCTIONLIST_BUY:
 																													case WINDOW_MESSAGETYPE_AUCTIONLIST_MODIFY:
 																														szpALD = data;
 																														//szpALD = TESTDATA;
 																														bNewData = TRUE;
 																														break;
-																														// 开启委托详细内容视窗
+																														// 開啓委托詳細內容視窗
 																													case WINDOW_MESSAGETYPE_AUCTIONSURVEY:
-																														// 开启修改委托内容视窗
+																														// 開啓修改委托內容視窗
 																													case WINDOW_MESSAGETYPE_AUCTIONMODIFY:
 																														szpALD = data;
 																														break;
@@ -5483,30 +5483,30 @@ void openServerWindow(int windowtype, int buttontype, int index, int id, char *d
 #ifdef _NEWSHOP_
 	if (windowtype == 1001){
 		cloasewindows = 0;
-		extern void 在线商城窗口初始化(char * 内容);
-		extern ACTION* 创建商城窗口();
-		在线商城窗口初始化(data);
-		商城动作地址 = 创建商城窗口();
+		extern void 在綫商城窗口初始化(char * 內容);
+		extern ACTION* 創建商城窗口();
+		在綫商城窗口初始化(data);
+		商城動作地址 = 創建商城窗口();
 		return;
 	}
 #endif
 #ifdef _CHARSIGNDAY_
 	if(windowtype==1002){
 		cloasewindows=0;
-		extern void 签到窗口初始化(char * 内容);
-		extern ACTION* 创建签到窗口();
-		签到窗口初始化(data);
-		创建签到窗口();
+		extern void 簽到窗口初始化(char * 內容);
+		extern ACTION* 創建簽到窗口();
+		簽到窗口初始化(data);
+		創建簽到窗口();
 		return;
 	}
 #endif
 #ifdef _ICONBUTTONS_
 	if(windowtype==1003){
 		cloasewindows=0;
-		extern void 转盘窗口初始化(char * 内容);
-		extern ACTION* 创建转盘窗口();
-		转盘窗口初始化(data);
-		创建转盘窗口();
+		extern void 轉盤窗口初始化(char * 內容);
+		extern ACTION* 創建轉盤窗口();
+		轉盤窗口初始化(data);
+		創建轉盤窗口();
 		return;
 	}
 #endif
@@ -5545,24 +5545,24 @@ void openServerWindowProc(void)
 	{
 #if 1
 		openServerWindow( 9, 0x3c, 0, 0,
-			"1|萨姆吉尔的武器店|欢迎光临。现在推出很棒的技能喔|"
-			"背水一战之　|500|攻击力上升３０％　防御力下降３０％|"
-			"地球一周|1000|也许还有什么新的发现（适当）|"
-			"地球一周|1000|也许还有什么新的发现（适当）|"
-			"地球一周|1000|也许还有什么新的发现（适当）|"
-			"地球一周|1000|也许还有什么新的发现（适当）|"
-			"地球一周|1000|也许还有什么新的发现（适当）|"
-			"地球一周|1000|也许还有什么新的发现（适当）|"
-			"地球一周|1000|也许还有什么新的发现（适当）|"
-			"地球一周|1000|也许还有什么新的发现（适当）|"
-			"地球一周|1000|也许还有什么新的发现（适当）|"
-			"地球一周|1000|也许还有什么新的发现（适当）|"
-			"地球一周|1000|也许还有什么新的发现（适当）|"
-			"地球一周|1000|也许还有什么新的发现（适当）|"
-			"地球一周|1000|也许还有什么新的发现（适当）|"
-			"地球一周|1000|也许还有什么新的发现（适当）|"
-			"地球一周|1000|也许还有什么新的发现（适当）|"
-			"地球一周|1000|也许还有什么新的发现（适当）|"
+			"1|薩姆吉爾的武器店|歡迎光臨。現在推齣很棒的技能喔|"
+			"背水一戰之　|500|攻擊力上升３０％　防禦力下降３０％|"
+			"地球一周|1000|也許還有什麼新的發現（適當）|"
+			"地球一周|1000|也許還有什麼新的發現（適當）|"
+			"地球一周|1000|也許還有什麼新的發現（適當）|"
+			"地球一周|1000|也許還有什麼新的發現（適當）|"
+			"地球一周|1000|也許還有什麼新的發現（適當）|"
+			"地球一周|1000|也許還有什麼新的發現（適當）|"
+			"地球一周|1000|也許還有什麼新的發現（適當）|"
+			"地球一周|1000|也許還有什麼新的發現（適當）|"
+			"地球一周|1000|也許還有什麼新的發現（適當）|"
+			"地球一周|1000|也許還有什麼新的發現（適當）|"
+			"地球一周|1000|也許還有什麼新的發現（適當）|"
+			"地球一周|1000|也許還有什麼新的發現（適當）|"
+			"地球一周|1000|也許還有什麼新的發現（適當）|"
+			"地球一周|1000|也許還有什麼新的發現（適當）|"
+			"地球一周|1000|也許還有什麼新的發現（適當）|"
+			"地球一周|1000|也許還有什麼新的發現（適當）|"
 			);
 #endif
 #if 0
@@ -5610,7 +5610,7 @@ void openServerWindowProc(void)
 #if 0
 		openServerWindow( 7, 0x3c, 0, 0,
 			"0|1|0|????????|?????????????|???????????|"
-			"?个???|?????????????????\n??????|???????|"
+			"?個???|?????????????????\n??????|???????|"
 			"?????????????|"
 			"??|0|1|30|24000|???????|"
 			"??|0|3|100|24001|???????|"
@@ -5658,7 +5658,7 @@ void openServerWindowProc(void)
 		serverWindowType0(1);
 		break;
 #ifdef _NEW_MANOR_LAW
-	case WINDOW_FMMESSAGETYPE_MANOR_SCHEDULE:	// 挑战庄园排行
+	case WINDOW_FMMESSAGETYPE_MANOR_SCHEDULE:	// 挑戰莊園排行
 		serverWindowType0(2);
 		break;
 #endif
@@ -5672,7 +5672,7 @@ void openServerWindowProc(void)
 		serverWindowType2();
 		break;
 #ifdef _NPC_FUSION
-	case WINDOWS_MESSAGETYPE_PETFUSION://andy_add 宠物融合
+	case WINDOWS_MESSAGETYPE_PETFUSION://andy_add 寵物融閤
 		serverWindowType9();
 		break;
 #endif
@@ -5698,12 +5698,12 @@ void openServerWindowProc(void)
 		serverWindowType6();
 		break;
 
-#ifdef _CHAR_PROFESSION			// WON ADD 人物职业技能
+#ifdef _CHAR_PROFESSION			// WON ADD 人物職業技能
 	case WINDOW_MESSAGETYPE_PROFESSIONSHOP:
 		profession_windows();
 		break;
 #endif
-#ifdef _NPC_WELFARE_2				// WON ADD 职业NPC-2
+#ifdef _NPC_WELFARE_2				// WON ADD 職業NPC-2
 	case WINDOW_MESSAGETYPE_PROFESSIONSHOP2:
 		profession_windows2();
 		break;
@@ -5746,7 +5746,7 @@ void openServerWindowProc(void)
 		itemmanWN();
 		break;
 		*/
-#ifdef _ADD_FAMILY_TAX			   // WON ADD 增加庄园税收			
+#ifdef _ADD_FAMILY_TAX			   // WON ADD 增加莊園稅收			
 	case WINDOWS_MESSAGETYPE_FAMILY_TAX:
 		FMTAXWindowsType();
 		break;
@@ -5839,14 +5839,14 @@ void openServerWindowProc(void)
 		// Terry add 2002/01/03
 #ifdef __EDEN_AUCTION
 		// WT-->(W)indow(T)ype
-		// 开启委托视窗
+		// 開啓委托視窗
 	case WINDOW_MESSAGETYPE_AUCTIONNEW: AuctionNewWT(); break;
-		// 开启委托列表视窗
+		// 開啓委托列錶視窗
 	case WINDOW_MESSAGETYPE_AUCTIONLIST_BUY:
 	case WINDOW_MESSAGETYPE_AUCTIONLIST_MODIFY: AuctionListWT(); break;
-		// 开启委托详细内容视窗
+		// 開啓委托詳細內容視窗
 	case WINDOW_MESSAGETYPE_AUCTIONSURVEY:
-		// 开启修改委托内容视窗
+		// 開啓修改委托內容視窗
 	case WINDOW_MESSAGETYPE_AUCTIONMODIFY: AuctionSurveyModifyWT(); break;
 		break;
 #endif
@@ -5870,7 +5870,7 @@ void openServerWindowProc(void)
 		break;
 #endif
 
-#ifdef _DRAGON_FUSION // 人龙进化
+#ifdef _DRAGON_FUSION // 人龍進化
 	case WINDOWS_MESSAGETYPE_DRAGONFUSION:
 		serverWindowDragonFusion();
 		break;
@@ -5883,28 +5883,28 @@ void openServerWindowProc(void)
 #endif
 #ifdef _NEWSHOP_
 	case 1001:
-		extern ACTION* 商城数据显示();
-		extern ACTION* 创建商城窗口();
-		if (商城动作地址 == NULL){
-			商城动作地址 = 创建商城窗口();
+		extern ACTION* 商城數據顯示();
+		extern ACTION* 創建商城窗口();
+		if (商城動作地址 == NULL){
+			商城動作地址 = 創建商城窗口();
 		}
-		if (商城动作地址){
-			if (商城动作地址->hp >= 1){
-				商城动作地址 = 商城数据显示();
+		if (商城動作地址){
+			if (商城動作地址->hp >= 1){
+				商城動作地址 = 商城數據顯示();
 			}
 		}
 		break;
 #endif
 #ifdef _ICONBUTTONS_
 	case 1003:
-		extern ACTION* 转盘数据显示();
-		extern ACTION* 创建转盘窗口();
-		if(转盘动作地址==NULL){
-			转盘动作地址 = 创建转盘窗口();
+		extern ACTION* 轉盤數據顯示();
+		extern ACTION* 創建轉盤窗口();
+		if(轉盤動作地址==NULL){
+			轉盤動作地址 = 創建轉盤窗口();
 		}
-		if(转盘动作地址){
-			if(转盘动作地址->hp >=1){
-				转盘数据显示();
+		if(轉盤動作地址){
+			if(轉盤動作地址->hp >=1){
+				轉盤數據顯示();
 			}
 		}
 		break;
@@ -5925,14 +5925,14 @@ void openServerWindowProc(void)
 #endif
 #ifdef _CHARSIGNDAY_
 	case 1002:
-		extern ACTION* 签到数据显示();
-		extern ACTION* 创建签到窗口();
-		if(签到动作地址==NULL){
-			签到动作地址 = 创建签到窗口();
+		extern ACTION* 簽到數據顯示();
+		extern ACTION* 創建簽到窗口();
+		if(簽到動作地址==NULL){
+			簽到動作地址 = 創建簽到窗口();
 		}
-		if(签到动作地址){
-			if(签到动作地址->hp >=1){
-				签到数据显示();
+		if(簽到動作地址){
+			if(簽到動作地址->hp >=1){
+				簽到數據顯示();
 			}
 		}
 		break;
@@ -6613,14 +6613,14 @@ void serverWindowType0(int mode)
 	static STR_BUFFER input;
 	char *btnTitle[] =
 	{
-		"确  定",
+		"確  定",
 		"取  消",
 		//	" ＯＫ ",
 		//	"CANCEL",
-		"确  定",
+		"確  定",
 		"取  消",
-		"上一页",
-		"下一页"
+		"上一頁",
+		"下一頁"
 	};
 	int id;
 	int i, j;
@@ -6804,14 +6804,14 @@ void serverWindowType1(void)
 	static int msgLine;
 	char *btnTitle[] =
 	{
-		"确  定",
+		"確  定",
 		"取  消",
 		//	" ＯＫ ",
 		//	"CANCEL",
-		"确  定",
+		"確  定",
 		"取  消",
-		"上一页",
-		"下一页"
+		"上一頁",
+		"下一頁"
 	};
 	int id, id2;
 	int i, j;
@@ -7004,14 +7004,14 @@ void serverWindowType2(void)
 	static int btnCnt;
 	char *btnTitle[] =
 	{
-		"确  定",
+		"確  定",
 		"取  消",
 		//	" ＯＫ ",
 		//	"CANCEL",
-		"确  定",
+		"確  定",
 		"取  消",
-		"上一页",
-		"下一页"
+		"上一頁",
+		"下一頁"
 	};
 	int id, id2;
 	int i, j;
@@ -7053,7 +7053,7 @@ void serverWindowType2(void)
 				btnLoc[i][1] = 196;
 			}
 		}
-		strcpy(msgWN[0], "＝＝＝         请选择宠物         ＝＝＝");
+		strcpy(msgWN[0], "＝＝＝         請選擇寵物         ＝＝＝");
 		play_se(202, 320, 240);	// ????????
 	}
 
@@ -7175,14 +7175,14 @@ void serverWindowType3(void)
 	static int btnCnt;
 	char *btnTitle[] =
 	{
-		"确  定",
+		"確  定",
 		"取  消",
 		//	" ＯＫ ",
 		//	"CANCEL",
-		"确  定",
+		"確  定",
 		"取  消",
-		"上一页",
-		"下一页"
+		"上一頁",
+		"下一頁"
 	};
 	int id, id2;
 	int i, j;
@@ -7230,7 +7230,7 @@ void serverWindowType3(void)
 			}
 		}
 
-		strcpy(msgWN[0], "＝＝＝         请选择队友       ＝＝＝");
+		strcpy(msgWN[0], "＝＝＝         請選擇隊友       ＝＝＝");
 
 		play_se(202, 320, 240);	// ????????
 	}
@@ -7382,14 +7382,14 @@ void serverWindowType4(void)
 	static int btnCnt;
 	char *btnTitle[] =
 	{
-		"确  定",
+		"確  定",
 		"取  消",
 		//	" ＯＫ ",
 		//	"CANCEL",
-		"确  定",
+		"確  定",
 		"取  消",
-		"上一页",
-		"下一页"
+		"上一頁",
+		"下一頁"
 	};
 	int id, id2;
 	int i, j;
@@ -7437,7 +7437,7 @@ void serverWindowType4(void)
 			}
 		}
 
-		strcpy(msgWN[0], "＝＝＝    请选择宠物或是队友    ＝＝＝");
+		strcpy(msgWN[0], "＝＝＝    請選擇寵物或是隊友    ＝＝＝");
 
 		play_se(202, 320, 240);	// ????????
 	}
@@ -7628,14 +7628,14 @@ void serverWindowType9(void)
 	static int btnLoc[6][2];
 	static int btnCnt;
 	char *btnTitle[] = {
-		"确  定",
+		"確  定",
 		"取  消",
 		//	" ＯＫ ",
 		//	"CANCEL",
-		"确  定",
+		"確  定",
 		"取  消",
-		"上一页",
-		"下一页" };
+		"上一頁",
+		"下一頁" };
 
 		static int selectID[3] = { -1, -1, -1 };
 		static int selects = 0;
@@ -7676,10 +7676,10 @@ void serverWindowType9(void)
 				}
 			}
 			if (selects == 0)	{
-				strcpy(msgWN[0], "＝＝＝       请选择主体宠物     ＝＝＝");
+				strcpy(msgWN[0], "＝＝＝       請選擇主體寵物     ＝＝＝");
 			}
 			else	{
-				strcpy(msgWN[0], "＝＝＝       请选择客体宠物     ＝＝＝");
+				strcpy(msgWN[0], "＝＝＝       請選擇客體寵物     ＝＝＝");
 			}
 			play_se(202, 320, 240);	// ????????
 		}
@@ -7777,12 +7777,12 @@ void serverWindowType9(void)
 
 						//selectID
 						if (selectID[0] == i)	{
-							sprintf_s(msgWN[1], "主体");
+							sprintf_s(msgWN[1], "主體");
 							StockFontBuffer(winX + 220, winY + 21 + (j + 1) * 21,
 								FONT_PRIO_FRONT, FONT_PAL_RED, msgWN[1], 0);
 						}
 						else if (selectID[1] == i || selectID[2] == i)	{
-							sprintf_s(msgWN[1], "客体");
+							sprintf_s(msgWN[1], "客體");
 							StockFontBuffer(winX + 220, winY + 21 + (j + 1) * 21,
 								FONT_PRIO_FRONT, FONT_PAL_GREEN, msgWN[1], 0);
 						}
@@ -7859,7 +7859,7 @@ void serverWindowType5(void)
 		int i, j;
 
 #ifdef _NEW_ITEM_
-		for( i = MAX_ITEMSTART, j= 0; i < 判断玩家道具数量(); i++ ){
+		for( i = MAX_ITEMSTART, j= 0; i < 判斷玩傢道具數量(); i++ ){
 #else
 		for (i = MAX_ITEMSTART, j = 0; i < MAX_ITEM; i++){
 #endif
@@ -8382,29 +8382,29 @@ int shopWindow2(void)
 #ifdef _NEW_MANOR_LAW
 #ifdef _EVIL_KILL
 				if( pc.ftype == 0 )
-					sprintf_s(tmsg,"声望 %8dＦ",pc.fame);
+					sprintf_s(tmsg,"聲望 %8dＦ",pc.fame);
 				else if( pc.ftype == 1 )
 					sprintf_s(tmsg,"白狼 %8dＤ",pc.newfame);
 				else if( pc.ftype == 2 )
-					sprintf_s(tmsg,"法师 %8dＤ",pc.newfame);
+					sprintf_s(tmsg,"法師 %8dＤ",pc.newfame);
 				else if( pc.ftype == 3 )
-					sprintf_s(tmsg,"追猎 %8dＤ",pc.newfame);
+					sprintf_s(tmsg,"追獵 %8dＤ",pc.newfame);
 				else
-					sprintf_s(tmsg,"声望 %8dＦ",pc.fame);
+					sprintf_s(tmsg,"聲望 %8dＦ",pc.fame);
 
 				StockFontBuffer(x+244,y+64,FONT_PRIO_FRONT,FONT_PAL_WHITE,tmsg,0);
 #else
-				sprintf_s(tmsg, "声望 %8dＦ", pc.fame);
+				sprintf_s(tmsg, "聲望 %8dＦ", pc.fame);
 			StockFontBuffer(x + 244, y + 64, FONT_PRIO_FRONT, FONT_PAL_WHITE, tmsg, 0);
 #endif
 #endif
 
-			sprintf_s(tmsg, "金钱  %8dＳ", pc.gold);
+			sprintf_s(tmsg, "金錢  %8dＳ", pc.gold);
 
 			StockFontBuffer(x + 244, y + 84, FONT_PRIO_FRONT, FONT_PAL_WHITE, tmsg, 0);
 			btnId[0] = StockDispBuffer(x + 32, y + 100, DISP_PRIO_IME3, prevBtnGraNo[prevBtn], 2);
 			btnId[1] = StockDispBuffer(x + 200, y + 100, DISP_PRIO_IME3, nextBtnGraNo[nextBtn], 2);
-			sprintf_s(tmsg, "%2d/%2d 页", shopWondow2Page + 1, shopWondow2MaxPage);
+			sprintf_s(tmsg, "%2d/%2d 頁", shopWondow2Page + 1, shopWondow2MaxPage);
 			StockFontBuffer(x + 66, y + 92, FONT_PRIO_FRONT, FONT_PAL_WHITE, tmsg, 0);
 			j = shopWondow2Page*MAX_SHOP_ITEM;
 			for (i = 0; i < MAX_SHOP_ITEM; i++){
@@ -8433,7 +8433,7 @@ int shopWindow2(void)
 				StockFontBuffer(x + 34, y + 118 + i * 21, FONT_PRIO_FRONT, color, sealItem[j + i].name, 0);
 #ifdef _NEW_SHOP_FRAME
 				if(sealItem[j+i].costfame > -1){
-					sprintf_s(tmsg,"%8d点%8dＳ",sealItem[j+i].costfame,sealItem[j+i].price);
+					sprintf_s(tmsg,"%8d點%8dＳ",sealItem[j+i].costfame,sealItem[j+i].price);
 					StockFontBuffer(x+242,y+118+i*21,FONT_PRIO_FRONT,color,tmsg,0);
 				}
 				else
@@ -8467,7 +8467,7 @@ int shopWindow2(void)
 				{
 #ifdef _NEW_SHOP_FRAME
 					if(atoi(shopWindowCurrency) != 1){
-						sprintf_s( tmsg, "%8d点", sealItem[j+i].price );
+						sprintf_s( tmsg, "%8d點", sealItem[j+i].price );
 					}else
 #endif
 						sprintf_s(tmsg, "%8dＳ", sealItem[j + i].price);
@@ -8608,7 +8608,7 @@ int shopWindow3(void)
 			StockFontBuffer(x + xx, y + 20, FONT_PRIO_FRONT, FONT_PAL_WHITE, shopWindow3Msg, 0);
 			StockFontBuffer(x + 16, y + 52, FONT_PRIO_FRONT, FONT_PAL_WHITE,
 				sealItem[selShopItemNo].name, 0);
-			sprintf_s(tmsg, "%2d个", sealItemCnt);
+			sprintf_s(tmsg, "%2d個", sealItemCnt);
 			StockFontBuffer(x + 300, y + 52, FONT_PRIO_FRONT, FONT_PAL_WHITE, tmsg, 0);
 			sprintf_s(tmsg, "%8dＳ x %2d = %8dＳ", sealItem[selShopItemNo].price,
 				sealItemCnt, sealItem[selShopItemNo].price*sealItemCnt);
@@ -8630,15 +8630,15 @@ int shopWindow3(void)
 			if( pc.ftype == 1 )
 				sprintf_s(tmsg,"白狼 %8dＤ",pc.newfame);
 			else if( pc.ftype == 2 )
-				sprintf_s(tmsg,"法师 %8dＤ",pc.newfame);
+				sprintf_s(tmsg,"法師 %8dＤ",pc.newfame);
 			else if( pc.ftype == 3 )
-				sprintf_s(tmsg,"追猎 %8dＤ",pc.newfame);
+				sprintf_s(tmsg,"追獵 %8dＤ",pc.newfame);
 			else
 #endif
-				sprintf_s(tmsg, "声望 %8dＦ", pc.fame);
+				sprintf_s(tmsg, "聲望 %8dＦ", pc.fame);
 			StockFontBuffer(x + 248, y + 100, FONT_PRIO_FRONT, FONT_PAL_WHITE, tmsg, 0);
 #endif
-			sprintf_s(tmsg, "金钱 %8dＳ", pc.gold);
+			sprintf_s(tmsg, "金錢 %8dＳ", pc.gold);
 			StockFontBuffer(x + 248, y + 120, FONT_PRIO_FRONT, FONT_PAL_WHITE, tmsg, 0);
 			btnId[0] = StockDispBuffer(x + 364, y + 60, DISP_PRIO_IME3, downBtnGraNo[downBtn], 2);
 			btnId[1] = StockDispBuffer(x + 404, y + 60, DISP_PRIO_IME3, upBtnGraNo[upBtn], 2);
@@ -8978,7 +8978,7 @@ int shopWindow7(void)
 							{
 								selId = j + i;
 							}
-#ifdef _EVIL_KILL	//以前玩家卖的话  sealflag只有 0 或 1 
+#ifdef _EVIL_KILL	//以前玩傢賣的話  sealflag隻有 0 或 1 
 							if( userItem[j+i].sealFlag == 2 )
 							{
 								selId = j+i;
@@ -9118,13 +9118,13 @@ int shopWindow7(void)
 
 
 			// ???
-			sprintf_s(tmsg, "金钱 %8dＳ", pc.gold);
+			sprintf_s(tmsg, "金錢 %8dＳ", pc.gold);
 			StockFontBuffer(x + 244, y + 84, FONT_PRIO_FRONT, FONT_PAL_WHITE, tmsg, 0);
 
-			// 页??
+			// 頁??
 			btnId[0] = StockDispBuffer(x + 32, y + 100, DISP_PRIO_IME3, prevBtnGraNo[prevBtn], 2);
 			btnId[1] = StockDispBuffer(x + 200, y + 100, DISP_PRIO_IME3, nextBtnGraNo[nextBtn], 2);
-			sprintf_s(tmsg, "%2d/%2d 页", shopWondow2Page + 1, shopWondow2MaxPage);
+			sprintf_s(tmsg, "%2d/%2d 頁", shopWondow2Page + 1, shopWondow2MaxPage);
 			StockFontBuffer(x + 66, y + 92, FONT_PRIO_FRONT, FONT_PAL_WHITE, tmsg, 0);
 
 			j = shopWondow2Page*MAX_SHOP_ITEM;
@@ -9401,7 +9401,7 @@ int shopWindow10(void)
 			StockFontBuffer(x + xx, y + 20, FONT_PRIO_FRONT, FONT_PAL_WHITE, shopWindow3Msg, 0);
 			StockFontBuffer(x + 16, y + 52, FONT_PRIO_FRONT, FONT_PAL_WHITE,
 				userItem[selShopItemNo].name, 0);
-			sprintf_s(tmsg, "%2d个", sealItemCnt);
+			sprintf_s(tmsg, "%2d個", sealItemCnt);
 			StockFontBuffer(x + 300, y + 52, FONT_PRIO_FRONT, FONT_PAL_WHITE, tmsg, 0);
 #ifdef _EVIL_KILL
 			if(userItem[selShopItemNo].sealFlag == 2 )
@@ -9415,7 +9415,7 @@ int shopWindow10(void)
 				sealItemCnt, userItem[selShopItemNo].price*sealItemCnt);
 			StockFontBuffer(x + 146, y + 82, FONT_PRIO_FRONT, FONT_PAL_WHITE,
 				tmsg, 0);
-			sprintf_s(tmsg, "金钱 %8dＳ", pc.gold);
+			sprintf_s(tmsg, "金錢 %8dＳ", pc.gold);
 			StockFontBuffer(x + 248, y + 120, FONT_PRIO_FRONT, FONT_PAL_WHITE, tmsg, 0);
 			btnId[0] = StockDispBuffer(x + 364, y + 60, DISP_PRIO_IME3, downBtnGraNo[downBtn], 2);
 			btnId[1] = StockDispBuffer(x + 404, y + 60, DISP_PRIO_IME3, upBtnGraNo[upBtn], 2);
@@ -9520,7 +9520,7 @@ void serverWindowType6(void)
 }
 
 
-#ifdef _CHAR_PROFESSION			// WON ADD 人物职业技能
+#ifdef _CHAR_PROFESSION			// WON ADD 人物職業技能
 
 void initServerWindowProfession( char *data )
 {
@@ -9550,13 +9550,13 @@ void initServerWindowProfession( char *data )
 		sizeof( ProfessionShopMsg )/sizeof( ProfessionShopMsg[0] ),
 		sizeof( ProfessionShopMsg[0] )-1 );
 
-	// Robin fix 20040707 回圈过大
+	// Robin fix 20040707 迴圈過大
 	//shopWondow2MaxPage = MAX_SKILL_SHOP_SKILL* 9;
 	shopWondow2MaxPage = MAX_SKILL_SHOP_SKILL*MAX_SKILL_SHOP_PAGE;
 
 	for( i = 0, j = 0; i < shopWondow2MaxPage; i++ )
 	{
-		// 技能名称
+		// 技能名稱
 		flag = getStringToken( data, '|', 4+i*4, sizeof( skillName )-1, skillName );
 		makeStringFromEscaped( skillName );
 		if( flag )
@@ -9572,10 +9572,10 @@ void initServerWindowProfession( char *data )
 		else
 			strcpy( sealSkill[i].name, "???" );
 
-		// 金额
+		// 金額
 		sealSkill[i].price = getIntegerToken( data, '|', 5+i*4 );
 
-		// 说明
+		// 說明
 		getStringToken( data, '|', 6+i*4, sizeof( info )-1, info );
 		makeStringFromEscaped( info );
 		getStrSplit( (char *)(&sealSkill[i].info), info,
@@ -9583,7 +9583,7 @@ void initServerWindowProfession( char *data )
 			sizeof( sealSkill[0].info )/sizeof( sealSkill[0].info[0] ),
 			sizeof( sealSkill[0].info[0] )-1 );
 
-		// 图示
+		// 圖示
 		sealSkill[i].icon = getIntegerToken( data, '|', 7+i*4 );
 
 	}
@@ -9635,7 +9635,7 @@ void profession_windows( void )
 			else
 				old_lssproto_WN_send( sockfd, nowGx, nowGy, indexWN, idWN, 0, msg ) ;
 
-			// Robin fix 20040707 修改Client自动扣钱bug
+			// Robin fix 20040707 修改Client自動扣錢bug
 			//pc.gold -= sealSkill[selShopSkillNo].price;
 
 			windowTypeWN = -1;
@@ -9831,13 +9831,13 @@ int profession_windows_1( void )
 				}
 			}
 
-			sprintf_s( tmsg, "金钱 %8dＳ", pc.gold );
+			sprintf_s( tmsg, "金錢 %8dＳ", pc.gold );
 			StockFontBuffer( x+244, y+84, FONT_PRIO_FRONT, FONT_PAL_WHITE, tmsg, 0 );
 
-			// 页??
+			// 頁??
 			btnId[0] = StockDispBuffer( x +32, y+100, DISP_PRIO_IME3, prevBtnGraNo[prevBtn], 2 );
 			btnId[1] = StockDispBuffer( x+200, y+100, DISP_PRIO_IME3, nextBtnGraNo[nextBtn], 2 );
-			sprintf_s( tmsg, "%2d/%2d 页", shopWondow2Page+1, shopWondow2MaxPage );
+			sprintf_s( tmsg, "%2d/%2d 頁", shopWondow2Page+1, shopWondow2MaxPage );
 			StockFontBuffer( x +66, y+92, FONT_PRIO_FRONT, FONT_PAL_WHITE, tmsg, 0 );
 
 			j = shopWondow2Page*MAX_SKILL_SHOP_SKILL;
@@ -9921,7 +9921,7 @@ int profession_windows_2( void )
 			strcpy( name, pc.name );
 		}
 
-		sprintf_s( msg1, "让[%s]将[%s]", name,
+		sprintf_s( msg1, "讓[%s]將[%s]", name,
 			sealSkill[selShopSkillNo].name );
 
 		skillShopWindow4ProcNo++;
@@ -9984,7 +9984,7 @@ int profession_windows_2( void )
 			StockFontBuffer( x+20, y+20+0*20, FONT_PRIO_FRONT, FONT_PAL_WHITE,
 				msg1, 0 );
 			StockFontBuffer( x+20, y+20+1*20, FONT_PRIO_FRONT, FONT_PAL_WHITE,
-				"学起来吗？", 0 );
+				"學起來嗎？", 0 );
 
 			btnId[0] = StockDispBuffer( x+w*64/3, y+72, DISP_PRIO_IME3, CG_YES_BTN, 2 );
 			btnId[1] = StockDispBuffer( x+w*64/3*2, y+72, DISP_PRIO_IME3, CG_NO_BTN, 2 );
@@ -9998,7 +9998,7 @@ int profession_windows_2( void )
 #endif
 
 
-#ifdef _NPC_WELFARE_2				// WON ADD 职业NPC-2
+#ifdef _NPC_WELFARE_2				// WON ADD 職業NPC-2
 void initServerWindowProfession2( char *data )
 {
 	char title1[128];
@@ -10031,7 +10031,7 @@ void initServerWindowProfession2( char *data )
 
 	for( i = 0, j = 0; i < shopWondow2MaxPage; i++ )
 	{
-		// 技能名称
+		// 技能名稱
 		flag = getStringToken( data, '|', 4+i*4, sizeof( skillName )-1, skillName );
 		makeStringFromEscaped( skillName );
 		if( flag )
@@ -10047,10 +10047,10 @@ void initServerWindowProfession2( char *data )
 		else
 			strcpy( sealSkill[i].name, "???" );
 
-		// 金额
+		// 金額
 		sealSkill[i].price = getIntegerToken( data, '|', 5+i*4 );
 
-		// 说明
+		// 說明
 		getStringToken( data, '|', 6+i*4, sizeof( info )-1, info );
 		makeStringFromEscaped( info );
 		getStrSplit( (char *)(&sealSkill[i].info), info,
@@ -10058,7 +10058,7 @@ void initServerWindowProfession2( char *data )
 			sizeof( sealSkill[0].info )/sizeof( sealSkill[0].info[0] ),
 			sizeof( sealSkill[0].info[0] )-1 );
 
-		// 图示
+		// 圖示
 		sealSkill[i].icon = getIntegerToken( data, '|', 7+i*4 );
 
 	}
@@ -10305,13 +10305,13 @@ int profession_windows_12( void )
 				}
 			}
 
-			sprintf_s( tmsg, "职业：%s  点数：%3d", pc.profession_class_name, pc.profession_skill_point );
+			sprintf_s( tmsg, "職業：%s  點數：%3d", pc.profession_class_name, pc.profession_skill_point );
 			StockFontBuffer( x+235, y+84, FONT_PRIO_FRONT, FONT_PAL_WHITE, tmsg, 0 );
 
-			// 页??
+			// 頁??
 			btnId[0] = StockDispBuffer( x +32, y+100, DISP_PRIO_IME3, prevBtnGraNo[prevBtn], 2 );
 			btnId[1] = StockDispBuffer( x+200, y+100, DISP_PRIO_IME3, nextBtnGraNo[nextBtn], 2 );
-			sprintf_s( tmsg, "%2d/%2d 页", shopWondow2Page+1, shopWondow2MaxPage );
+			sprintf_s( tmsg, "%2d/%2d 頁", shopWondow2Page+1, shopWondow2MaxPage );
 			StockFontBuffer( x +66, y+92, FONT_PRIO_FRONT, FONT_PAL_WHITE, tmsg, 0 );
 
 			j = shopWondow2Page*MAX_SKILL_SHOP_SKILL;
@@ -10330,7 +10330,7 @@ int profession_windows_12( void )
 				StockFontBuffer( x+34, y+118+i*21,
 					FONT_PRIO_FRONT, color, sealSkill[j+i].name, 0 );
 
-				sprintf_s( tmsg, "熟练度：%5d", sealSkill[j+i].price );
+				sprintf_s( tmsg, "熟練度：%5d", sealSkill[j+i].price );
 				StockFontBuffer( x+280, y+118+i*21,
 					FONT_PRIO_FRONT, color, tmsg, 0 );
 			}
@@ -10395,7 +10395,7 @@ int profession_windows_22( void )
 			strcpy( name, pc.name );
 		}
 
-		sprintf_s( msg1, "要[%s]将[%s]", name,
+		sprintf_s( msg1, "要[%s]將[%s]", name,
 			sealSkill[selShopSkillNo].name );
 
 		skillShopWindow4ProcNo++;
@@ -10458,7 +10458,7 @@ int profession_windows_22( void )
 			StockFontBuffer( x+20, y+20+0*20, FONT_PRIO_FRONT, FONT_PAL_WHITE,
 				msg1, 0 );
 			StockFontBuffer( x+20, y+20+1*20, FONT_PRIO_FRONT, FONT_PAL_WHITE,
-				"遗忘吗？", 0 );
+				"遺忘嗎？", 0 );
 
 			btnId[0] = StockDispBuffer( x+w*64/3, y+72, DISP_PRIO_IME3, CG_YES_BTN, 2 );
 			btnId[1] = StockDispBuffer( x+w*64/3*2, y+72, DISP_PRIO_IME3, CG_NO_BTN, 2 );
@@ -10569,7 +10569,7 @@ void PetSkillShowType1(void)
 
 		if (ptActMenuWin->hp >= 1){
 			StockFontBuffer(x + 75, y + 33,
-				FONT_PRIO_FRONT, FONT_PAL_WHITE, "要在那个位置做呢？", 0);
+				FONT_PRIO_FRONT, FONT_PAL_WHITE, "要在那個位置做呢？", 0);
 			for (i = 0; i < MAX_SKILL && i < pet[selShopSkillPetNo].maxSkill; i++){
 				sprintf_s(skillName, "技 %d: ", i + 1);
 				if (petSkill[selShopSkillPetNo][i].useFlag != 0){
@@ -10781,16 +10781,16 @@ int skillShopWindow1(void)
 				}
 			}
 #ifdef _PETKILL_COST_FAME
-			sprintf_s(tmsg, "声望 %8dＦ", pc.fame);
+			sprintf_s(tmsg, "聲望 %8dＦ", pc.fame);
 			StockFontBuffer(x + 244, y + 64, FONT_PRIO_FRONT, FONT_PAL_WHITE, tmsg, 0);
 #endif
-			sprintf_s(tmsg, "金钱 %8dＳ", pc.gold);
+			sprintf_s(tmsg, "金錢 %8dＳ", pc.gold);
 			StockFontBuffer(x + 244, y + 84, FONT_PRIO_FRONT, FONT_PAL_WHITE, tmsg, 0);
 
-			// 页??
+			// 頁??
 			btnId[0] = StockDispBuffer(x + 32, y + 100, DISP_PRIO_IME3, prevBtnGraNo[prevBtn], 2);
 			btnId[1] = StockDispBuffer(x + 200, y + 100, DISP_PRIO_IME3, nextBtnGraNo[nextBtn], 2);
-			sprintf_s(tmsg, "%2d/%2d 页", shopWondow2Page + 1, shopWondow2MaxPage);
+			sprintf_s(tmsg, "%2d/%2d 頁", shopWondow2Page + 1, shopWondow2MaxPage);
 			StockFontBuffer(x + 66, y + 92, FONT_PRIO_FRONT, FONT_PAL_WHITE, tmsg, 0);
 
 			j = shopWondow2Page*MAX_SKILL_SHOP_SKILL;
@@ -10951,7 +10951,7 @@ int skillShopWindow2(void)
 		if (ptActMenuWin->hp >= 1)
 		{
 			StockFontBuffer(x + 145, y + 25,
-				FONT_PRIO_FRONT, FONT_PAL_WHITE, "要让谁学呢？", 0);
+				FONT_PRIO_FRONT, FONT_PAL_WHITE, "要讓誰學呢？", 0);
 			for (i = 0, j = 0; i < MAX_PET; i++)
 			{
 				if (pet[i].useFlag != 0)
@@ -11101,7 +11101,7 @@ int skillShopWindow3(void)
 		if (ptActMenuWin->hp >= 1)
 		{
 			StockFontBuffer(x + 75, y + 33,
-				FONT_PRIO_FRONT, FONT_PAL_WHITE, "要在那个位置做呢？", 0);
+				FONT_PRIO_FRONT, FONT_PAL_WHITE, "要在那個位置做呢？", 0);
 			for (i = 0; i < MAX_SKILL && i < pet[selShopSkillPetNo - 1].maxSkill; i++)
 			{
 				sprintf_s(skillName, "技 %d: ", i + 1);
@@ -11163,7 +11163,7 @@ int skillShopWindow4(void)
 			strcpy(name, pet[selShopSkillPetNo - 1].name);
 		}
 
-		sprintf_s(msg1, "让[%s]将[%s]", name,
+		sprintf_s(msg1, "讓[%s]將[%s]", name,
 			sealSkill[selShopSkillNo].name);
 
 		skillShopWindow4ProcNo++;
@@ -11226,7 +11226,7 @@ int skillShopWindow4(void)
 			StockFontBuffer(x + 20, y + 20 + 0 * 20, FONT_PRIO_FRONT, FONT_PAL_WHITE,
 				msg1, 0);
 			StockFontBuffer(x + 20, y + 20 + 1 * 20, FONT_PRIO_FRONT, FONT_PAL_WHITE,
-				"学起来吗？", 0);
+				"學起來嗎？", 0);
 
 			btnId[0] = StockDispBuffer(x + w * 64 / 3, y + 72, DISP_PRIO_IME3, CG_YES_BTN, 2);
 			btnId[1] = StockDispBuffer(x + w * 64 / 3 * 2, y + 72, DISP_PRIO_IME3, CG_NO_BTN, 2);
@@ -11786,13 +11786,13 @@ int poolShopWindow2(void)
 
 
 			// ???
-			sprintf_s(tmsg, "金钱 %8dＳ", pc.gold);
+			sprintf_s(tmsg, "金錢 %8dＳ", pc.gold);
 			StockFontBuffer(x + 244, y + 84, FONT_PRIO_FRONT, FONT_PAL_WHITE, tmsg, 0);
 
-			// 页??
+			// 頁??
 			btnId[0] = StockDispBuffer(x + 32, y + 100, DISP_PRIO_IME3, prevBtnGraNo[prevBtn], 2);
 			btnId[1] = StockDispBuffer(x + 200, y + 100, DISP_PRIO_IME3, nextBtnGraNo[nextBtn], 2);
-			sprintf_s(tmsg, "%2d/%2d 页", shopWondow2Page + 1, shopWondow2MaxPage);
+			sprintf_s(tmsg, "%2d/%2d 頁", shopWondow2Page + 1, shopWondow2MaxPage);
 			StockFontBuffer(x + 66, y + 92, FONT_PRIO_FRONT, FONT_PAL_WHITE, tmsg, 0);
 
 			j = shopWondow2Page*MAX_SHOP_ITEM;
@@ -12193,13 +12193,13 @@ int poolShopWindow4(void)
 
 
 			// ???
-			sprintf_s(tmsg, "金钱 %8dＳ", pc.gold);
+			sprintf_s(tmsg, "金錢 %8dＳ", pc.gold);
 			StockFontBuffer(x + 244, y + 84, FONT_PRIO_FRONT, FONT_PAL_WHITE, tmsg, 0);
 
-			// 页??
+			// 頁??
 			btnId[0] = StockDispBuffer(x + 32, y + 100, DISP_PRIO_IME3, prevBtnGraNo[prevBtn], 2);
 			btnId[1] = StockDispBuffer(x + 200, y + 100, DISP_PRIO_IME3, nextBtnGraNo[nextBtn], 2);
-			sprintf_s(tmsg, "%2d/%2d 页", shopWondow2Page + 1, shopWondow2MaxPage);
+			sprintf_s(tmsg, "%2d/%2d 頁", shopWondow2Page + 1, shopWondow2MaxPage);
 			StockFontBuffer(x + 66, y + 92, FONT_PRIO_FRONT, FONT_PAL_WHITE, tmsg, 0);
 
 			j = shopWondow2Page*MAX_SHOP_ITEM;
@@ -12311,8 +12311,8 @@ STR_BUFFER familyRuleShow;
 
 
 static char familySpriteName[3][10] = {
-	"光明精灵",
-	"黑暗精灵",
+	"光明精靈",
+	"黑暗精靈",
 	"        ",
 };
 
@@ -12345,8 +12345,8 @@ void closeFamilyAddWN(void)
 }
 
 #ifdef _FAMILYBADGE_
-int 徽章数据[200];
-int 徽章个数;
+int 徽章數據[200];
+int 徽章個數;
 #endif
 
 void familyAddWN(void)
@@ -12359,8 +12359,8 @@ void familyAddWN(void)
 #ifdef _FAMILYBADGE_
 	static int 徽章窗口;
 	static int 徽章索引;
-	int 徽章总页数;
-	static int 徽章当前页;
+	int 徽章總頁數;
+	static int 徽章當前頁;
 #endif
 	char buf[1024], buf2[1024], buf3[1024];
 
@@ -12396,9 +12396,9 @@ void familyAddWN(void)
 #ifdef _FAMILYBADGE_
 		徽章窗口 = FALSE;
 		徽章索引 = -1;
-		徽章个数 = 0;
-		徽章当前页 = 0;
-		memset(徽章数据, -1, 4 * 200);
+		徽章個數 = 0;
+		徽章當前頁 = 0;
+		memset(徽章數據, -1, 4 * 200);
 		extern unsigned int sockfd;
 		lssproto_FamilyBadge_send(sockfd);
 #endif
@@ -12440,7 +12440,7 @@ void familyAddWN(void)
 	else if (ptActMenuWin->hp >= 1)
 	{
 #ifdef _FAMILYBADGE_
-		徽章总页数 = 徽章个数 % 12 ? 徽章个数 / 12 + 1 : 徽章个数 / 12;
+		徽章總頁數 = 徽章個數 % 12 ? 徽章個數 / 12 + 1 : 徽章個數 / 12;
 #endif
 		selBtnId = focusGraId(btnId, sizeof(btnId) / sizeof(int));
 		selFontBtnId = selFontId(fontId, sizeof(fontId) / sizeof(int));
@@ -12451,23 +12451,23 @@ void familyAddWN(void)
 			{
 			case 0:
 				if (徽章索引 == -1){
-					StockChatBufferLine("请选择家族徽章！", FONT_PAL_WHITE);
+					StockChatBufferLine("請選擇傢族徽章！", FONT_PAL_WHITE);
 					break;
 				}
 				if (!familyNameInput.buffer[0]) {
-					StockChatBufferLine("请输入家族名称！", FONT_PAL_WHITE);
+					StockChatBufferLine("請輸入傢族名稱！", FONT_PAL_WHITE);
 					break;
 				}
 				if (!familyRuleInput.buffer[0]) {
-					StockChatBufferLine("请输入家族主旨！", FONT_PAL_WHITE);
+					StockChatBufferLine("請輸入傢族主旨！", FONT_PAL_WHITE);
 					break;
 				}
 				if (familyElf == 2) {
-					StockChatBufferLine("请选择守护精灵！", FONT_PAL_WHITE);
+					StockChatBufferLine("請選擇守護精靈！", FONT_PAL_WHITE);
 					break;
 				}
 				if (pet[familyPetIndex].useFlag == NULL) {
-					StockChatBufferLine("请选择家族守护兽！", FONT_PAL_WHITE);
+					StockChatBufferLine("請選擇傢族守護獸！", FONT_PAL_WHITE);
 					break;
 				}
 				makeEscapeString(familyNameInput.buffer, buf2, sizeof(buf2));
@@ -12552,32 +12552,32 @@ void familyAddWN(void)
 		btnId[2] = StockDispBuffer(x + 435, y + 270, DISP_PRIO_IME3, prevBtnGraNo[prevBtn], 2);
 		btnId[3] = StockDispBuffer(x + 495, y + 270, DISP_PRIO_IME3, nextBtnGraNo[nextBtn], 2);
 #ifdef _FAMILYBADGE_
-		fontId[5] = StockFontBuffer(x + 170, y + 135, FONT_PRIO_FRONT, FONT_PAL_RED, "设置徽章", 2);
-		if (徽章索引 != -1) StockDispBuffer(x + 130, y + 139, DISP_PRIO_IME4, 徽章数据[徽章索引], 0);
+		fontId[5] = StockFontBuffer(x + 170, y + 135, FONT_PRIO_FRONT, FONT_PAL_RED, "設置徽章", 2);
+		if (徽章索引 != -1) StockDispBuffer(x + 130, y + 139, DISP_PRIO_IME4, 徽章數據[徽章索引], 0);
 		if (mouse.onceState & MOUSE_LEFT_CRICK)
 			if (HitFontNo == fontId[5]) 徽章窗口 = !徽章窗口;
 		if (徽章窗口){
 			StockDispBuffer(x + 290, y + 335, DISP_PRIO_MENU, 55232, 1);
-			int 按钮ID = StockDispBuffer(x + 28, y + 333, DISP_PRIO_IME3, 55243, 2);
+			int 按鈕ID = StockDispBuffer(x + 28, y + 333, DISP_PRIO_IME3, 55243, 2);
 			if (mouse.onceState & MOUSE_LEFT_CRICK){
-				if (HitDispNo == 按钮ID){
-					if (徽章当前页) 徽章当前页--;
+				if (HitDispNo == 按鈕ID){
+					if (徽章當前頁) 徽章當前頁--;
 				}
 			}
-			按钮ID = StockDispBuffer(x + 550, y + 333, DISP_PRIO_IME3, 55244, 2);
+			按鈕ID = StockDispBuffer(x + 550, y + 333, DISP_PRIO_IME3, 55244, 2);
 			if (mouse.onceState & MOUSE_LEFT_CRICK){
-				if (HitDispNo == 按钮ID){
-					if (徽章当前页 != 徽章总页数 - 1) 徽章当前页++;
+				if (HitDispNo == 按鈕ID){
+					if (徽章當前頁 != 徽章總頁數 - 1) 徽章當前頁++;
 				}
 			}
 			int i = 0;
 			for (; i < 12; i++){
-				if (徽章数据[i + 徽章当前页 * 12] != -1){
-					按钮ID = StockDispBuffer(x + 70 + i * 40, y + 333, DISP_PRIO_IME3, 55245, 2);
-					StockDispBuffer(x + 70 + i * 40, y + 333, DISP_PRIO_IME4, 徽章数据[i + 徽章当前页 * 12], 0);
+				if (徽章數據[i + 徽章當前頁 * 12] != -1){
+					按鈕ID = StockDispBuffer(x + 70 + i * 40, y + 333, DISP_PRIO_IME3, 55245, 2);
+					StockDispBuffer(x + 70 + i * 40, y + 333, DISP_PRIO_IME4, 徽章數據[i + 徽章當前頁 * 12], 0);
 					if (mouse.onceState & MOUSE_LEFT_CRICK){
-						if (HitDispNo == 按钮ID){
-							徽章索引 = i + 徽章当前页 * 12;
+						if (HitDispNo == 按鈕ID){
+							徽章索引 = i + 徽章當前頁 * 12;
 							徽章窗口 = FALSE;
 						}
 					}
@@ -12586,12 +12586,12 @@ void familyAddWN(void)
 			}
 		}
 #endif
-		// 家族名称：
+		// 傢族名稱：
 		fontId[0] = StockFontBuffer(x + 100, y + 40, FONT_PRIO_FRONT, FONT_PAL_WHITE, "                  ", 2);
-		// 族长名称：
+		// 族長名稱：
 		StockFontBuffer(x + 100, y + 70, FONT_PRIO_FRONT, FONT_PAL_WHITE, pc.name, 0);
-		// 人数
-		StockFontBuffer(x + 100, y + 100, FONT_PRIO_FRONT, FONT_PAL_WHITE, "无", 0);
+		// 人數
+		StockFontBuffer(x + 100, y + 100, FONT_PRIO_FRONT, FONT_PAL_WHITE, "無", 0);
 		// pet
 		if (pet[familyPetIndex].useFlag != NULL)
 			if (pet[familyPetIndex].freeName[0] == NULL)
@@ -12923,7 +12923,7 @@ void familyListWN(void)
 			else	nextBtn10 = FALSE;
 
 
-			StockFontBuffer(x + 190, y + 20, FONT_PRIO_FRONT, FONT_PAL_WHITE, "家族列表", 0);
+			StockFontBuffer(x + 190, y + 20, FONT_PRIO_FRONT, FONT_PAL_WHITE, "傢族列錶", 0);
 #ifdef _READ16BITBMP
 			if(!g_bUseAlpha) StockDispHLine( x+150, y+40, 2 );
 #endif
@@ -12932,14 +12932,14 @@ void familyListWN(void)
 			btnId[2] = StockDispBuffer(x + 16 + 210, y + 8 + 60, DISP_PRIO_IME4, nextBtnGraNo[nextBtn], 2);
 			btnId[3] = StockDispBuffer(x + 16 + 20, y + 8 + 60, DISP_PRIO_IME4, prevBtnGraNo10[prevBtn10], 2);
 			btnId[4] = StockDispBuffer(x + 16 + 250, y + 8 + 60, DISP_PRIO_IME4, nextBtnGraNo10[nextBtn10], 2);
-			sprintf_s(buf, "%3d / %3d 页", pagenum, (familytotal - 1) / 10 + 1);
+			sprintf_s(buf, "%3d / %3d 頁", pagenum, (familytotal - 1) / 10 + 1);
 			StockFontBuffer(x + 100, y + 60, FONT_PRIO_FRONT, FONT_PAL_WHITE, buf, 0);
 
 #ifdef _NEWFONT_
-			sprintf_s(buf, "    [家 族 名 称]                        [族  长]            [人数]   [家族声望]");
+			sprintf_s(buf, "    [傢 族 名 稱]                        [族  長]            [人數]   [傢族聲望]");
 			StockFontBuffer(x + 25, y + 90, FONT_PRIO_FRONT, FONT_PAL_WHITE, buf, 0);
 #else
-			sprintf_s( buf, "%-4s %-16s %-16s %6s %10s", "", "[家 族 名 称]", "[族  长]", "[人数]", "[家族声望]" );
+			sprintf_s( buf, "%-4s %-16s %-16s %6s %10s", "", "[傢 族 名 稱]", "[族  長]", "[人數]", "[傢族聲望]" );
 			StockFontBuffer( x+25, y+90, FONT_PRIO_FRONT, FONT_PAL_WHITE, buf, 0 );
 #endif
 
@@ -13066,11 +13066,11 @@ int familyDetailWN(void)
 #ifdef _FAMILYBADGE_
 	static int 徽章窗口;
 	static int 徽章索引;
-	int 徽章总页数;
-	static int 徽章当前页;
-	static int 购买徽章窗口;
-	extern int 徽章价格;
-	static int 临时徽章索引;
+	int 徽章總頁數;
+	static int 徽章當前頁;
+	static int 購買徽章窗口;
+	extern int 徽章價格;
+	static int 臨時徽章索引;
 #endif
 	static int w, h, x, y, xx, yy, i;
 	static int btnId[5];
@@ -13116,10 +13116,10 @@ int familyDetailWN(void)
 #ifdef _FAMILYBADGE_
 		徽章窗口 = FALSE;
 		徽章索引 = -1;
-		徽章个数 = 0;
-		徽章当前页 = 0;
-		购买徽章窗口 = FALSE;
-		memset(徽章数据, -1, 4 * 200);
+		徽章個數 = 0;
+		徽章當前頁 = 0;
+		購買徽章窗口 = FALSE;
+		memset(徽章數據, -1, 4 * 200);
 		if ((pc.familyleader == FMMEMBER_LEADER) && (strcmp(pc.familyName, familyDetail.name) == 0)) {
 			extern unsigned int sockfd;
 			lssproto_FamilyBadge_send(sockfd);
@@ -13137,7 +13137,7 @@ int familyDetailWN(void)
 	if (ptActMenuWin->hp >= 1)
 	{
 #ifdef _FAMILYBADGE_
-		if (!购买徽章窗口){
+		if (!購買徽章窗口){
 #endif
 			selBtnId = focusGraId(btnId, sizeof(btnId) / sizeof(int));
 			selFontBtnId = selFontId(fontId, sizeof(fontId) / sizeof(int));
@@ -13147,7 +13147,7 @@ int familyDetailWN(void)
 				switch (selBtnId) {
 				case 0:
 					if (pc.familyName[0] != NULL) {
-						lssproto_TK_recv(sockfd, 0, "P|你已经加入其他家族了喔！", 0);
+						lssproto_TK_recv(sockfd, 0, "P|你已經加入其他傢族瞭喔！", 0);
 						break;
 					}
 
@@ -13231,7 +13231,7 @@ int familyDetailWN(void)
 					}
 #ifdef _FAMILYBADGE_
 					if (徽章索引 != 1) {
-						if (徽章数据[徽章索引] != familyDetail.badgeNo){
+						if (徽章數據[徽章索引] != familyDetail.badgeNo){
 							sprintf_s(buf, "X|B|%d", 徽章索引);
 							if (bNewServer)
 								lssproto_FM_send(sockfd, buf);
@@ -13271,22 +13271,22 @@ int familyDetailWN(void)
 
 		//StockFontBuffer( x+60, y+60, FONT_PRIO_FRONT, FONT_PAL_WHITE, "", 0 );
 		//sprintf_s( buf, "", pagenum, (familytotal-1)/8 +1  );
-		//StockFontBuffer( x+160, y+30, FONT_PRIO_FRONT, FONT_PAL_WHITE, "家族资料", 0 );
+		//StockFontBuffer( x+160, y+30, FONT_PRIO_FRONT, FONT_PAL_WHITE, "傢族資料", 0 );
 		//StockDispHLine( x+140, y+ );
 
-		//sprintf_s( buf, "家族名称：%s", familyDetail.name );
+		//sprintf_s( buf, "傢族名稱：%s", familyDetail.name );
 		StockFontBuffer(x + 100, y + 40, FONT_PRIO_FRONT, FONT_PAL_WHITE, familyDetail.name, 0);
-		//sprintf_s( buf, "族长名称：%s", familyDetail.leadername );
+		//sprintf_s( buf, "族長名稱：%s", familyDetail.leadername );
 		StockFontBuffer(x + 100, y + 70, FONT_PRIO_FRONT, FONT_PAL_WHITE, familyDetail.leadername, 0);
 		sprintf_s(buf, "%d 人", familyDetail.joinnum);
 		StockFontBuffer(x + 100, y + 100, FONT_PRIO_FRONT, FONT_PAL_WHITE, buf, 0);
 
 
 #ifdef _FAMILYBADGE_
-		if (徽章索引 != -1) StockDispBuffer(x + 130, y + 139, DISP_PRIO_IME4, 徽章数据[徽章索引], 0);
+		if (徽章索引 != -1) StockDispBuffer(x + 130, y + 139, DISP_PRIO_IME4, 徽章數據[徽章索引], 0);
 		else StockDispBuffer(x + 130, y + 139, DISP_PRIO_IME4, familyDetail.badgeNo, 0);
 #endif
-		// 家族主旨
+		// 傢族主旨
 		sprintf_s(buf, "%38s", "");
 #ifdef _FMVER21
 		if ((pc.familyleader == FMMEMBER_LEADER) && (strcmp(pc.familyName, familyDetail.name) == 0)) {
@@ -13297,59 +13297,59 @@ int familyDetailWN(void)
 			btnId[2] = StockDispBuffer(x + 435, y + 270, DISP_PRIO_IME3, prevBtnGraNo[prevBtn], 2);
 			btnId[3] = StockDispBuffer(x + 495, y + 270, DISP_PRIO_IME3, nextBtnGraNo[nextBtn], 2);
 #ifdef _FAMILYBADGE_
-			int 按钮ID;
-			徽章总页数 = 徽章个数 % 12 ? 徽章个数 / 12 + 1 : 徽章个数 / 12;
-			fontId[5] = StockFontBuffer(x + 170, y + 135, FONT_PRIO_FRONT, FONT_PAL_RED, "设置徽章", 2);
-			if (!购买徽章窗口){
+			int 按鈕ID;
+			徽章總頁數 = 徽章個數 % 12 ? 徽章個數 / 12 + 1 : 徽章個數 / 12;
+			fontId[5] = StockFontBuffer(x + 170, y + 135, FONT_PRIO_FRONT, FONT_PAL_RED, "設置徽章", 2);
+			if (!購買徽章窗口){
 				if (mouse.onceState & MOUSE_LEFT_CRICK)
 					if (HitFontNo == fontId[5]) 徽章窗口 = !徽章窗口;
 			}
 			if (徽章窗口){
 				StockDispBuffer(x + 290, y + 335, DISP_PRIO_MENU, 55232, 1);
-				按钮ID = StockDispBuffer(x + 28, y + 333, DISP_PRIO_IME3, 55243, 2);
+				按鈕ID = StockDispBuffer(x + 28, y + 333, DISP_PRIO_IME3, 55243, 2);
 				if (mouse.onceState & MOUSE_LEFT_CRICK){
-					if (HitDispNo == 按钮ID){
-						if (徽章当前页) 徽章当前页--;
+					if (HitDispNo == 按鈕ID){
+						if (徽章當前頁) 徽章當前頁--;
 					}
 				}
-				按钮ID = StockDispBuffer(x + 550, y + 333, DISP_PRIO_IME3, 55244, 2);
+				按鈕ID = StockDispBuffer(x + 550, y + 333, DISP_PRIO_IME3, 55244, 2);
 				if (mouse.onceState & MOUSE_LEFT_CRICK){
-					if (HitDispNo == 按钮ID){
-						if (徽章当前页 != 徽章总页数 - 1) 徽章当前页++;
+					if (HitDispNo == 按鈕ID){
+						if (徽章當前頁 != 徽章總頁數 - 1) 徽章當前頁++;
 					}
 				}
 				int i = 0;
 				for (; i < 12; i++){
-					if (徽章数据[i + 徽章当前页 * 12] != -1){
-						按钮ID = StockDispBuffer(x + 70 + i * 40, y + 333, DISP_PRIO_IME3, 55245, 2);
-						StockDispBuffer(x + 70 + i * 40, y + 333, DISP_PRIO_IME4, 徽章数据[i + 徽章当前页 * 12], 0);
+					if (徽章數據[i + 徽章當前頁 * 12] != -1){
+						按鈕ID = StockDispBuffer(x + 70 + i * 40, y + 333, DISP_PRIO_IME3, 55245, 2);
+						StockDispBuffer(x + 70 + i * 40, y + 333, DISP_PRIO_IME4, 徽章數據[i + 徽章當前頁 * 12], 0);
 						if (mouse.onceState & MOUSE_LEFT_CRICK){
-							if (HitDispNo == 按钮ID){
-								临时徽章索引 = i + 徽章当前页 * 12;
+							if (HitDispNo == 按鈕ID){
+								臨時徽章索引 = i + 徽章當前頁 * 12;
 								徽章窗口 = FALSE;
-								购买徽章窗口 = TRUE;
+								購買徽章窗口 = TRUE;
 							}
 						}
 					}
 					else break;
 				}
 			}
-			if (购买徽章窗口){
+			if (購買徽章窗口){
 				StockDispBuffer(x + 280, y + 340, DISP_PRIO_IME3, 40060, 1);
 				char token[125];
-				sprintf_s(token, "更换徽章将收取%d金币！", 徽章价格);
+				sprintf_s(token, "更換徽章將收取%d金幣！", 徽章價格);
 				StockFontBuffer(x + 200, y + 320, 2, 0, token, 0);
-				按钮ID = StockDispBuffer(x + 220, y + 355, DISP_PRIO_IME4, 26093, 2);
+				按鈕ID = StockDispBuffer(x + 220, y + 355, DISP_PRIO_IME4, 26093, 2);
 				if (mouse.onceState & MOUSE_LEFT_CRICK){
-					if (HitDispNo == 按钮ID){
-						购买徽章窗口 = FALSE;
-						徽章索引 = 临时徽章索引;
+					if (HitDispNo == 按鈕ID){
+						購買徽章窗口 = FALSE;
+						徽章索引 = 臨時徽章索引;
 					}
 				}
-				按钮ID = StockDispBuffer(x + 340, y + 355, DISP_PRIO_IME4, 26042, 2);
+				按鈕ID = StockDispBuffer(x + 340, y + 355, DISP_PRIO_IME4, 26042, 2);
 				if (mouse.onceState & MOUSE_LEFT_CRICK){
-					if (HitDispNo == 按钮ID){
-						购买徽章窗口 = FALSE;
+					if (HitDispNo == 按鈕ID){
+						購買徽章窗口 = FALSE;
 					}
 				}
 			}
@@ -13376,7 +13376,7 @@ int familyDetailWN(void)
 		//StockFontBuffer( x+20, y+220, FONT_PRIO_FRONT, FONT_PAL_WHITE, familyDetail.rule, 0 );
 
 
-		//sprintf_s( buf, "守 护 兽：%s", familyDetail.petname );
+		//sprintf_s( buf, "守 護 獸：%s", familyDetail.petname );
 		if (changeData[1] == 0)
 			StockFontBuffer(x + 436, y + 80, FONT_PRIO_FRONT, FONT_PAL_WHITE, familyDetail.petname, 0);
 		else
@@ -13386,7 +13386,7 @@ int familyDetailWN(void)
 			familySpriteName[familyDetail.sprite], 0);
 
 		//fontId[0] = StockFontBuffer( x+200, y+250, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "加 入", 2 );
-		//fontId[1] = StockFontBuffer( x+300, y+250, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "离 开", 2 );
+		//fontId[1] = StockFontBuffer( x+300, y+250, FONT_PRIO_FRONT, FONT_PAL_YELLOW, "離 開", 2 );
 		if (pc.familyName[0] == NULL && familyDetail.joinflag == 1) {
 			btnId[0] = StockDispBuffer(x + 90, y + 274, DISP_PRIO_IME3, CG_JOIN_BTN, 2);
 			btnId[1] = StockDispBuffer(x + 270, y + 274, DISP_PRIO_IME3, CG_EXIT_BTN2, 2);
@@ -13437,8 +13437,8 @@ void initFMWindowType(char *data)
 #ifdef _NEW_MANOR_LAW
 	char momentum[12] = { 0 };
 #endif
-	// 家族传送的行数为 11 ，前三行标题，后十行为资料(作为EVENT之用)
-	// 最后一行则为‘是否继续新增家族人员的选项’
+	// 傢族傳送的行數為 11 ，前三行標題，後十行為資料(作為EVENT之用)
+	// 最後一行則為‘是否繼續新增傢族人員的選項’
 	for (int i = 0; i < 11; i++){
 		if (strlen(msgWN[i]) > 0){
 			if (i >= selStartLine){
@@ -13455,7 +13455,7 @@ void initFMWindowType(char *data)
 				FMpidWN[i - (selStartLine - 1)] = atoi(tmp);
 				getStringToken(msgWN[i], '|', 2, sizeof(FMnameWN[i - (selStartLine - 1)]) - 1,
 					FMnameWN[i - (selStartLine - 1)]);
-				//处理字串
+				//處理字串
 				if (i<10){
 					getStringToken(msgWN[i], '|', 2, sizeof(namebuf)-1, namebuf);
 					getStringToken(msgWN[i], '|', 3, sizeof(lvbuf)-1, lvbuf);
@@ -13470,36 +13470,36 @@ void initFMWindowType(char *data)
 					int_status = atoi(statusbuf);
 					switch (int_status){
 						// 已 加 入	
-					case FMMEMBER_MEMBER:		   	     // 一般族员
-						strcpy(statusbuf, "一般族员");
+					case FMMEMBER_MEMBER:		   	     // 一般族員
+						strcpy(statusbuf, "一般族員");
 						break;
-					case FMMEMBER_LEADER:				 // 家族族长
-						strcpy(statusbuf, "族    长");
+					case FMMEMBER_LEADER:				 // 傢族族長
+						strcpy(statusbuf, "族    長");
 						break;
-					case FMMEMBER_ELDER:				 // 长老
-						strcpy(statusbuf, "长    老");
+					case FMMEMBER_ELDER:				 // 長老
+						strcpy(statusbuf, "長    老");
 						break;
-						/*							case FMMEMBER_ELDER:				 // 长老
-						strcpy(statusbuf, "长    老");
+						/*							case FMMEMBER_ELDER:				 // 長老
+						strcpy(statusbuf, "長    老");
 						break;
 						case FMMEMBER_INVITE:				 // 祭司
 						strcpy(statusbuf, "祭    司");
 						break;
-						case FMMEMBER_BAILEE:				 // 财务长
-						strcpy(statusbuf, "财 务 长");
+						case FMMEMBER_BAILEE:				 // 財務長
+						strcpy(statusbuf, "財 務 長");
 						break;*/
-					case FMMEMBER_APPLY:				 // 申请加入								
-						strcpy(statusbuf, "申请加入");
+					case FMMEMBER_APPLY:				 // 申請加入								
+						strcpy(statusbuf, "申請加入");
 						break;
-						/*							case FMMEMBER_VICELEADER:            // 副族长
-						strcpy(statusbuf, "副 族 长");
+						/*							case FMMEMBER_VICELEADER:            // 副族長
+						strcpy(statusbuf, "副 族 長");
 						break;*/
-					default:							 // 退    出	
-						strcpy(statusbuf, "退    出");
+					default:							 // 退    齣	
+						strcpy(statusbuf, "退    齣");
 						break;
 					}
 #ifdef _FM_MODIFY
-					// 处理星球名称
+					// 處理星球名稱
 					getStringToken(msgWN[i], '|', 8, sizeof(szGSname)-1, szGSname);
 					iGSId = atoi(szGSname);
 					if (iGSId > 0){
@@ -13513,7 +13513,7 @@ void initFMWindowType(char *data)
 							}
 						}
 					}
-					else sprintf_s(szGSname, "无");
+					else sprintf_s(szGSname, "無");
 
 #ifndef _NEW_MANOR_LAW
 					sprintf_s(msgWN[i], "%-9s%-18s%6s%13s%10s%6s", onlinebuf, namebuf, lvbuf, dpbuf, statusbuf,szGSname);
@@ -13533,8 +13533,8 @@ void initFMWindowType(char *data)
 					getStringToken(msgWN[i], '|', 3, sizeof(statusbuf)-1, statusbuf);
 					int_status = atoi(statusbuf);
 					switch (int_status){
-					case 1:  // 继续召募
-						strcpy(statusbuf, "继续召募");
+					case 1:  // 繼續召募
+						strcpy(statusbuf, "繼續召募");
 						break;
 					case 0:  // 中止召募								
 						strcpy(statusbuf, "中止召募");
@@ -13551,7 +13551,7 @@ void initFMWindowType(char *data)
 
 /*----------  Shan (BEGIN) ----------*/
 /*---------  AD 2001/05/31  ---------*/
-// 家族人员列表
+// 傢族人員列錶
 int fmDutyproc = 0;    // select number duty
 int fmDutyRet = 0;
 int fmYesNoproc = 0;    // delete number
@@ -13574,14 +13574,14 @@ void FMWindowType(void)
 	static int fmdelid;
 	char *btnTitle[] =
 	{
-		"确  定",
+		"確  定",
 		"取  消",
 		//	" ＯＫ ",
 		//	"CANCEL",
-		"确  定",
+		"確  定",
 		"取  消",
-		"上一页",
-		"下一页"
+		"上一頁",
+		"下一頁"
 	};
 	int  id, id2;
 	int  i, j;
@@ -13701,7 +13701,7 @@ void FMWindowType(void)
 #endif
 					}
 
-					// 只有族长、长老才可以修改
+					// 隻有族長、長老纔可以修改
 					/*if( pc.familyleader == FMMEMBER_LEADER &&
 					FMmsgWN[i-selStartLine+1] > 0 && FMmsgWN[i-selStartLine+1] < FMMEMBER_NUMBER &&
 					FMmsgWN[i-selStartLine+1] != FMMEMBER_LEADER ||
@@ -13731,13 +13731,13 @@ void FMWindowType(void)
 
 								if (id2 >= 1 && id2 <= 10)
 									switch (FMmsgWN[id2]){
-									case FMMEMBER_MEMBER:		// 一般成员
-									case FMMEMBER_APPLY:		// 申请加入
-									case FMMEMBER_ELDER:		  // 长老
-										//case FMMEMBER_ELDER:		  // 长老
+									case FMMEMBER_MEMBER:		// 一般成員
+									case FMMEMBER_APPLY:		// 申請加入
+									case FMMEMBER_ELDER:		  // 長老
+										//case FMMEMBER_ELDER:		  // 長老
 										//case FMMEMBER_INVITE:		  // 祭司
-										//case FMMEMBER_BAILEE:	 	  // 财务							
-										//case FMMEMBER_VICELEADER:   // 副族长
+										//case FMMEMBER_BAILEE:	 	  // 財務							
+										//case FMMEMBER_VICELEADER:   // 副族長
 										fmDutyproc = 1;
 										fmdelid = id2;
 										id2 = -1;
@@ -13762,7 +13762,7 @@ void FMWindowType(void)
 							}
 						}
 #ifdef _FM_MODIFY
-						//滑鼠移到人名上方显示方框
+						//滑鼠移到人名上方顯示方框
 						if (i < 10){
 #ifdef _NEWFONT_
 							if (MakeHitBox(iNameX1, iNameY1 + 2, iNameX2 + 35, iNameY2 + 2, DISP_PRIO_BOX2))
@@ -13773,7 +13773,7 @@ void FMWindowType(void)
 								time_t now_time;
 								time(&now_time);
 								if (mouse.onceState & MOUSE_LEFT_CRICK && (now_time - FMHoldTime) >= 1){
-									//密语模式
+									//密語模式
 #ifdef _TELLCHANNEL
 									TalkMode = 1;
 									sprintf_s(secretName, "%s ", FMnameWN[i + 1]);
@@ -13862,17 +13862,17 @@ void FMWindowType(void)
 		{
 #ifndef _FM_MODIFY
 			StockFontBuffer( winX+34, winY+21,
-				FONT_PRIO_FRONT, FONT_PAL_YELLOW, "              ‘家族成员列表’", 0 );
+				FONT_PRIO_FRONT, FONT_PAL_YELLOW, "              ‘傢族成員列錶’", 0 );
 			StockFontBuffer( winX+24, winY+21+2*21,
-				FONT_PRIO_FRONT, FONT_PAL_YELLOW, " ‘状态’ ‘ 成 员 姓 名 ’ ‘等级’ ‘个人声望’ ‘加入’", 0 );
+				FONT_PRIO_FRONT, FONT_PAL_YELLOW, " ‘狀態’ ‘ 成 員 姓 名 ’ ‘等級’ ‘個人聲望’ ‘加入’", 0 );
 #else
 
 #ifdef _NEWFONT_
 			StockFontBuffer(winX + 250, winY + 21,
-				FONT_PRIO_FRONT, FONT_PAL_YELLOW, "‘家族成员列表’", 0);
+				FONT_PRIO_FRONT, FONT_PAL_YELLOW, "‘傢族成員列錶’", 0);
 #else
 			StockFontBuffer( winX+34, winY+21,
-				FONT_PRIO_FRONT, FONT_PAL_YELLOW, "                         ‘家族成员列表’", 0 );
+				FONT_PRIO_FRONT, FONT_PAL_YELLOW, "                         ‘傢族成員列錶’", 0 );
 #endif
 
 
@@ -13880,10 +13880,10 @@ void FMWindowType(void)
 
 #ifdef _NEW_MANOR_LAW
 			StockFontBuffer(winX + 24, winY + 21 + 2 * 21,
-				FONT_PRIO_FRONT, FONT_PAL_YELLOW, "‘状态’‘ 成 员 姓 名 ’            ‘等级’‘个人声望’‘个人气势’‘加入’", 0);
+				FONT_PRIO_FRONT, FONT_PAL_YELLOW, "‘狀態’‘ 成 員 姓 名 ’            ‘等級’‘個人聲望’‘個人氣勢’‘加入’", 0);
 #else
 			StockFontBuffer( winX+24, winY+21+2*21,
-				FONT_PRIO_FRONT, FONT_PAL_YELLOW, " ‘状态’ ‘ 成 员 姓 名 ’ ‘等级’ ‘个人声望’ ‘加入’‘服务器’", 0 );
+				FONT_PRIO_FRONT, FONT_PAL_YELLOW, " ‘狀態’ ‘ 成 員 姓 名 ’ ‘等級’ ‘個人聲望’ ‘加入’‘服務器’", 0 );
 #endif
 #endif
 			for (i = 0; i < msgLine; i++){
@@ -13984,8 +13984,8 @@ void initFMWindowType( char *data )
 	char namebuf[30],lvbuf[5],statusbuf[16],onlinebuf[12],dpbuf[64];	
 	int int_status,onlineflag;
 	char tmp[32];
-	// 家族传送的行数为 11 ，前三行标题，后十行为资料(作为EVENT之用)
-	// 最后一行则为‘是否继续新增家族人员的选项’
+	// 傢族傳送的行數為 11 ，前三行標題，後十行為資料(作為EVENT之用)
+	// 最後一行則為‘是否繼續新增傢族人員的選項’
 	for( int i = 0; i < 11;  i++ ){
 		if( strlen( msgWN[i] ) > 0 ){					
 			if( i>=selStartLine ){
@@ -13996,7 +13996,7 @@ void initFMWindowType( char *data )
 				FMpidWN[i-(selStartLine-1)] = atoi(tmp);
 				getStringToken(msgWN[i], '|', 2, sizeof(FMnameWN[i-(selStartLine-1)])-1, 
 					FMnameWN[i-(selStartLine-1)]);								
-				//处理字串
+				//處理字串
 				if(i<10){
 					getStringToken(msgWN[i], '|', 2, sizeof(namebuf)-1, namebuf);
 					getStringToken(msgWN[i], '|', 3, sizeof(lvbuf)-1, lvbuf);
@@ -14016,8 +14016,8 @@ void initFMWindowType( char *data )
 					getStringToken(msgWN[i], '|', 3, sizeof(statusbuf)-1, statusbuf);
 					int_status = atoi(statusbuf);
 					switch( int_status ){						    
-					case 1:  // 继续召募
-						strcpy(statusbuf, "继续召募");
+					case 1:  // 繼續召募
+						strcpy(statusbuf, "繼續召募");
 						break;
 					case 0:  // 中止召募								
 						strcpy(statusbuf, "中止召募");
@@ -14034,7 +14034,7 @@ void initFMWindowType( char *data )
 
 /*----------  Shan (BEGIN) ----------*/
 /*---------  AD 2001/05/31  ---------*/
-// 家族人员列表
+// 傢族人員列錶
 int fmYesNoproc = 0;    // delete number
 int fmYesNoRet  = 0;
 void FMWindowType( void )
@@ -14048,14 +14048,14 @@ void FMWindowType( void )
 	static int fmdelid;	
 	char *btnTitle[] =
 	{
-		"确  定",
+		"確  定",
 		"取  消",
 		//	" ＯＫ ",
 		//	"CANCEL",
-		"确  定",
+		"確  定",
 		"取  消",
-		"上一页",
-		"下一页"
+		"上一頁",
+		"下一頁"
 	};	
 	char getstatus[3];	
 	int  id, id2;
@@ -14146,7 +14146,7 @@ void FMWindowType( void )
 						y2 = y1 + 20;
 					}							
 
-					// 只有族长才可以修改
+					// 隻有族長纔可以修改
 
 					if( pc.familyleader == 1 && 
 						FMmsgWN[i-selStartLine+1] > 0 &&
@@ -14171,16 +14171,16 @@ void FMWindowType( void )
 										id2 = -1;								
 										DeathAction( ptActMenuWin );																
 										break;
-									case 2:  // 申请加入
+									case 2:  // 申請加入
 										FMmsgWN[id2] = 1;
 										break;
-									case 3:  // 申请退出								
+									case 3:  // 申請退齣								
 										fmYesNoproc = 1;
 										fmdelid = id2;
 										id2 = -1;								
 										DeathAction( ptActMenuWin );								
 										break;
-									case 4:  // 退    出
+									case 4:  // 退    齣
 										break;
 									default:
 										break;
@@ -14267,9 +14267,9 @@ void FMWindowType( void )
 		if( ptActMenuWin->hp >= 1 )
 		{
 			StockFontBuffer( winX+34, winY+21,
-				FONT_PRIO_FRONT, FONT_PAL_YELLOW, "              ‘家族成员列表’", 0 );
+				FONT_PRIO_FRONT, FONT_PAL_YELLOW, "              ‘傢族成員列錶’", 0 );
 			StockFontBuffer( winX+24, winY+21+2*21,
-				FONT_PRIO_FRONT, FONT_PAL_YELLOW, " ‘状态’ ‘ 成 员 姓 名 ’ ‘等级’ ‘个人声望’ ‘加入’", 0 );
+				FONT_PRIO_FRONT, FONT_PAL_YELLOW, " ‘狀態’ ‘ 成 員 姓 名 ’ ‘等級’ ‘個人聲望’ ‘加入’", 0 );
 			for( i = 0; i < msgLine; i++ )
 			{
 				if( strlen( msgWN[i] ) > 0 )
@@ -14289,20 +14289,20 @@ void FMWindowType( void )
 						int  int_status;						
 						strcpy( getstatus, msgWN[i]+(strlen(msgWN[i])-1));
 						int_status = atoi(getstatus);
-						// 显示的范围
+						// 顯示的範圍
 						if(int_status>=1 && int_status<=4)
 							switch( int_status ){						    
 							case 1:  // 已 加 入								
 								strcpy(msgWN[i]+(strlen(msgWN[i])-3), "已 加 入");
 								break;
-							case 2:  // 申请加入								
-								strcpy(msgWN[i]+(strlen(msgWN[i])-3), "申请加入");
+							case 2:  // 申請加入								
+								strcpy(msgWN[i]+(strlen(msgWN[i])-3), "申請加入");
 								break;
-							case 3:  // 申请退出								
-								strcpy(msgWN[i]+(strlen(msgWN[i])-3), "申请退出");
+							case 3:  // 申請退齣								
+								strcpy(msgWN[i]+(strlen(msgWN[i])-3), "申請退齣");
 								break;							
-							case 4:  // 退    出								
-								strcpy(msgWN[i]+(strlen(msgWN[i])-3), "退    出");
+							case 4:  // 退    齣								
+								strcpy(msgWN[i]+(strlen(msgWN[i])-3), "退    齣");
 								break;							
 							default:								
 								break;							
@@ -14379,7 +14379,7 @@ void initFMWindowType1(char *data)
 }
 
 
-// 家族留言板
+// 傢族留言闆
 void FMWindowType1(void)
 {
 	static int winX, winY;
@@ -14391,14 +14391,14 @@ void FMWindowType1(void)
 	static STR_BUFFER input;
 	char *btnTitle[] =
 	{
-		"确  定",
+		"確  定",
 		"取  消",
 		//	" ＯＫ ",
 		//	"CANCEL",
-		"确  定",
+		"確  定",
 		"取  消",
-		"上一页",
-		"下一页"
+		"上一頁",
+		"下一頁"
 	};
 	int id;
 	int i, j;
@@ -14505,7 +14505,7 @@ void FMWindowType1(void)
 			{
 				StockFontBuffer(winX + 200,
 					winY + 25,
-					FONT_PRIO_FRONT, FONT_PAL_GREEN, "‘家 族 留 言 板’", 0);
+					FONT_PRIO_FRONT, FONT_PAL_GREEN, "‘傢 族 留 言 闆’", 0);
 				for (i = 0; i < 7; i++)
 				{
 					if (strlen(msgWN[i]) > 0)
@@ -14555,7 +14555,7 @@ void initFMWindowType2(char *data)
 	char tmp[8];
 	int  tmp_i;
 
-#ifdef _FIX_9_FMPOINT			   // WON ADD 九大庄园
+#ifdef _FIX_9_FMPOINT			   // WON ADD 九大莊園
 	for (int i = 0; i < fm_point_num; i++){
 #else
 	for( int i = 0; i < 4; i++ ){
@@ -14570,23 +14570,23 @@ void initFMWindowType2(char *data)
 				getStringToken(msgWN[i], '|', 6, sizeof(buf4)-1, buf4);
 
 				tmp_i = atoi(tmp);
-				//(tmp_i==100)?(strcpy(buf0,"萨依那斯")):(strcpy(buf0,"加 鲁 卡")); 
-				if (tmp_i == 100)      strcpy(buf0, "萨姆吉尔");
-				else if (tmp_i == 200) strcpy(buf0, "玛丽娜丝");
+				//(tmp_i==100)?(strcpy(buf0,"薩依那斯")):(strcpy(buf0,"加 魯 卡")); 
+				if (tmp_i == 100)      strcpy(buf0, "薩姆吉爾");
+				else if (tmp_i == 200) strcpy(buf0, "瑪麗娜絲");
 				else if (tmp_i == 300) strcpy(buf0, "加    加");
-				else if (tmp_i == 400) strcpy(buf0, "卡鲁它那");
-#ifdef _FIX_9_FMPOINT			   // WON ADD 九大庄园
+				else if (tmp_i == 400) strcpy(buf0, "卡魯它那");
+#ifdef _FIX_9_FMPOINT			   // WON ADD 九大莊園
 				else if (tmp_i == 500) strcpy(buf0, "伊    甸");
-				else if (tmp_i == 600) strcpy(buf0, "塔 尔 塔");
-				else if (tmp_i == 700) strcpy(buf0, "尼 克 斯");
-				else if (tmp_i == 800) strcpy(buf0, "弗 烈 顿");
-				else if (tmp_i == 900) strcpy(buf0, "亚 伊 欧");
+				else if (tmp_i == 600) strcpy(buf0, "塔 爾 塔");
+				else if (tmp_i == 700) strcpy(buf0, "尼 剋 斯");
+				else if (tmp_i == 800) strcpy(buf0, "弗 烈 頓");
+				else if (tmp_i == 900) strcpy(buf0, "亞 伊 歐");
 #endif
 #ifdef _FIX_10_FMPOINT
-				else if (tmp_i == 1000)strcpy(buf0, "瑞尔亚斯");
+				else if (tmp_i == 1000)strcpy(buf0, "瑞爾亞斯");
 #endif
 				(FMmsgWN[i - (selStartLine - 1)] > 0) ? (strcpy(buf3, buf4)) : (strcpy(buf3, "未使用"));
-				//处理字串
+				//處理字串
 				if (i < 10){
 					getStringToken(msgWN[i], '|', 3, sizeof(buf1)-1, buf1);
 					getStringToken(msgWN[i], '|', 4, sizeof(buf2)-1, buf2);
@@ -14598,12 +14598,12 @@ void initFMWindowType2(char *data)
 	}
 }
 
-// 家族据点
+// 傢族據點
 void FMWindowType2(void)
 {
 	static int winX, winY;
 	static int winW, winH;
-#ifdef _FIX_9_FMPOINT			   // WON ADD 九大庄园
+#ifdef _FIX_9_FMPOINT			   // WON ADD 九大莊園
 #ifdef _FIX_10_FMPOINT
 	static int btnId[] = { -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2 };
 	static int btnLoc[12][2];
@@ -14620,14 +14620,14 @@ void FMWindowType2(void)
 	static int msgLine;
 	char *btnTitle[] =
 	{
-		"确  定",
+		"確  定",
 		"取  消",
 		//	" ＯＫ ",
 		//	"CANCEL",
-		"确  定",
+		"確  定",
 		"取  消",
-		"上一页",
-		"下一页"
+		"上一頁",
+		"下一頁"
 	};
 	int  id, id2;
 	int  i, j;
@@ -14653,7 +14653,7 @@ void FMWindowType2(void)
 		}
 		mask = 1;
 		btnCnt = 0;
-#ifdef _FIX_9_FMPOINT			   // WON ADD 九大庄园
+#ifdef _FIX_9_FMPOINT			   // WON ADD 九大莊園
 #ifdef _FIX_10_FMPOINT
 		for (i = 0; i < 16; i++, mask <<= 1)
 #else
@@ -14666,7 +14666,7 @@ void FMWindowType2(void)
 			if (buttonTypeWN & mask)
 			{
 				btnCnt++;
-#ifdef _FIX_9_FMPOINT			   // WON ADD 九大庄园
+#ifdef _FIX_9_FMPOINT			   // WON ADD 九大莊園
 				if (btnCnt == fm_point_num)
 #else
 				if( btnCnt == 4 )
@@ -14685,7 +14685,7 @@ void FMWindowType2(void)
 			}
 		}
 
-#ifdef _FIX_9_FMPOINT			   // WON ADD 九大庄园
+#ifdef _FIX_9_FMPOINT			   // WON ADD 九大莊園
 		msgLine = fm_point_num;
 #else
 		msgLine = 4;
@@ -14709,7 +14709,7 @@ void FMWindowType2(void)
 					x2 = x1 + 260;
 					y2 = y1 + 20;
 
-					// 只有族长才可以修改
+					// 隻有族長纔可以修改
 #ifdef _FMVER21
 					if (pc.familyleader == FMMEMBER_LEADER && FMmsgWN[i - selStartLine + 1] <= 0)
 #else
@@ -14737,7 +14737,7 @@ void FMWindowType2(void)
 			wnCloseFlag = 0;
 		}
 
-#ifdef _FIX_9_FMPOINT			   // WON ADD 九大庄园
+#ifdef _FIX_9_FMPOINT			   // WON ADD 九大莊園
 #ifdef _FIX_10_FMPOINT
 		if (0 <= id && id < 16
 			|| 0 <= id2 && id2 < 17
@@ -14758,7 +14758,7 @@ void FMWindowType2(void)
 				btn = WINDOW_BUTTONTYPE_CANCEL;
 			}
 			else
-#ifdef _FIX_9_FMPOINT			   // WON ADD 九大庄园
+#ifdef _FIX_9_FMPOINT			   // WON ADD 九大莊園
 #ifdef _FIX_10_FMPOINT
 				if (0 <= id && id < 12)
 #else
@@ -14782,7 +14782,7 @@ void FMWindowType2(void)
 
 				sprintf_s(buf, "P|%d|%s", FMpidWN[id2], FMnameWN[id2]);
 
-#ifdef _FIX_9_FMPOINT			   // WON ADD 九大庄园
+#ifdef _FIX_9_FMPOINT			   // WON ADD 九大莊園
 				if (1 <= id2 && id2 <= fm_point_num + 1){
 #else
 				if(1 <= id2 && id2 < 5){
@@ -14793,7 +14793,7 @@ void FMWindowType2(void)
 						old_lssproto_FM_send(sockfd, buf);
 				}
 
-#ifdef _FIX_9_FMPOINT			   // WON ADD 九大庄园
+#ifdef _FIX_9_FMPOINT			   // WON ADD 九大莊園
 				if (0 <= id && id < fm_point_num + 2){
 #else
 				if( 0 <= id && id < 6 ){
@@ -14814,9 +14814,9 @@ void FMWindowType2(void)
 		if (ptActMenuWin->hp >= 1)
 		{
 			StockFontBuffer(winX + 34, winY + 28,
-				FONT_PRIO_FRONT, FONT_PAL_YELLOW, "        ‘家族据点申请列表’", 0);
+				FONT_PRIO_FRONT, FONT_PAL_YELLOW, "        ‘傢族據點申請列錶’", 0);
 			StockFontBuffer(winX + 30, winY + 18 + 2 * 21,
-				FONT_PRIO_FRONT, FONT_PAL_GREEN, "‘地 点’‘东’‘南’        ‘状  态’", 0);
+				FONT_PRIO_FRONT, FONT_PAL_GREEN, "‘地 點’‘東’‘南’        ‘狀  態’", 0);
 			for (i = 0; i < msgLine; i++)
 			{
 				if (strlen(msgWN[i]) > 0)
@@ -14863,7 +14863,7 @@ void FMWindowType2(void)
 				}
 			}
 			j = 0;
-#ifdef _FIX_9_FMPOINT			   // WON ADD 九大庄园
+#ifdef _FIX_9_FMPOINT			   // WON ADD 九大莊園
 #ifdef _FIX_10_FMPOINT
 			for (i = 0, mask = 1; i < 12; i++, mask <<= 1)
 #else
@@ -14901,13 +14901,13 @@ int fmselectdetuyWindow(int x, int y, int id)
 	char buff[64];
 	char *btnTitle[] =
 	{
-		"一般族员",
-		"退    出",
-		"长    老",
-		//"长    老",	
+		"一般族員",
+		"退    齣",
+		"長    老",
+		//"長    老",	
 		//"祭    司",
-		//"财 务 长",
-		//"副 族 长",
+		//"財 務 長",
+		//"副 族 長",
 		"取    消"
 	};
 
@@ -14962,11 +14962,11 @@ int fmselectdetuyWindow(int x, int y, int id)
 		break;
 	}
 
-	sprintf_s(buff, "请选择");
+	sprintf_s(buff, "請選擇");
 	StockFontBuffer(x + 100, y + 80, FONT_PRIO_FRONT, FONT_PAL_WHITE, buff, 0);
 	sprintf_s(buff, " %s ", FMnameWN[id]);
 	StockFontBuffer(x + 145, y + 80, FONT_PRIO_FRONT, FONT_PAL_GREEN, buff, 0);
-	sprintf_s(buff, "所担任的家族职务：");
+	sprintf_s(buff, "所擔任的傢族職務：");
 	StockFontBuffer(x + 100, y + 105, FONT_PRIO_FRONT, FONT_PAL_WHITE, buff, 0);
 	if (ptActMenuWin != NULL){
 		for (int i = 0; i < 4; i++)
@@ -14999,14 +14999,14 @@ int fmselectdetuyWindow(int x, int y, int id)
 						if (MakeHitBox(x1, y1, x2, y2, DISP_PRIO_BOX2)){
 							if (mouse.onceState & MOUSE_LEFT_CRICK){
 								switch (i){
-								case 0:                         // 一般成员
+								case 0:                         // 一般成員
 									ret = FMMEMBER_MEMBER;
 									fmDutyproc = 0;
 									break;
-								case 1:							// 退出 					
+								case 1:							// 退齣 					
 									fmYesNoproc = 1;
 									break;
-								case 2:							// 长老
+								case 2:							// 長老
 									ret = FMMEMBER_ELDER;
 									fmDutyproc = 0;
 									break;
@@ -15048,7 +15048,7 @@ int fmYesNoWindow(int x, int y, int id)
 	char buff[64];
 	char *btnTitle[] =
 	{
-		"确  定",
+		"確  定",
 		"取  消"
 	};
 
@@ -15067,7 +15067,7 @@ int fmYesNoWindow(int x, int y, int id)
 		play_se(202, 320, 240);
 	}
 
-	sprintf_s(buff, "确定要让 %s 退出家族吗？", FMnameWN[id]);
+	sprintf_s(buff, "確定要讓 %s 退齣傢族嗎？", FMnameWN[id]);
 	StockFontBuffer(x + 100, y + 80, FONT_PRIO_FRONT, FONT_PAL_WHITE, buff, 0);
 	if (ptActMenuWin != NULL){
 		for (int i = 0; i < 2; i++)
@@ -15118,7 +15118,7 @@ void initFMWindowType4(char *data, int king)
 		if (strlen(msgWN[i]) > 0){
 			if (i >= selStartLine){
 				if (king == 0){
-					//处理字串
+					//處理字串
 					getStringToken(msgWN[i], '|', 2, sizeof(lvbuf)-1, lvbuf);
 					getStringToken(msgWN[i], '|', 3, sizeof(fmnamebuf)-1, fmnamebuf);
 					makeStringFromEscaped(fmnamebuf);
@@ -15153,7 +15153,7 @@ void initFMWindowType4(char *data, int king)
 	}
 }
 
-// 家族强者表
+// 傢族強者錶
 #ifdef _NEW_MANOR_LAW
 void FMWindowType4(int king)
 #else
@@ -15169,14 +15169,14 @@ void FMWindowType4( void )
 	static int fmdelid;
 	char *btnTitle[] =
 	{
-		"确  定",
+		"確  定",
 		"取  消",
 		//	" ＯＫ ",
 		//	"CANCEL",
-		"确  定",
+		"確  定",
 		"取  消",
-		"上一页",
-		"下一页"
+		"上一頁",
+		"下一頁"
 	};
 	int  id, id2;
 	int  i, j;
@@ -15295,21 +15295,21 @@ void FMWindowType4( void )
 #ifdef _NEW_MANOR_LAW
 			if (king == 0){
 				StockFontBuffer(winX + 235, winY + 21,
-					FONT_PRIO_FRONT, FONT_PAL_YELLOW, "‘史上最强之家族强者排行榜’", 0);
+					FONT_PRIO_FRONT, FONT_PAL_YELLOW, "‘史上最強之傢族強者排行榜’", 0);
 				StockFontBuffer(winX + 25, winY + 16 + 2 * 21,
-					FONT_PRIO_FRONT, FONT_PAL_GREEN, "‘名次’ ‘家  族  名  称’ ‘族  长  名  称’ ‘综合声望’‘成员声望’‘家族总声望’", 0);
+					FONT_PRIO_FRONT, FONT_PAL_GREEN, "‘名次’ ‘傢  族  名  稱’ ‘族  長  名  稱’ ‘綜閤聲望’‘成員聲望’‘傢族總聲望’", 0);
 			}
 			else if (king == 1){
 				StockFontBuffer(winX + 155, winY + 21,
-					FONT_PRIO_FRONT, FONT_PAL_YELLOW, "‘史上最强之家族强者排行榜’", 0);
+					FONT_PRIO_FRONT, FONT_PAL_YELLOW, "‘史上最強之傢族強者排行榜’", 0);
 				StockFontBuffer(winX + 25, winY + 16 + 2 * 21,
-					FONT_PRIO_FRONT, FONT_PAL_GREEN, "‘名次’‘家 族 名 称’     ‘族 长 名 称’    ‘家族总气势’", 0);
+					FONT_PRIO_FRONT, FONT_PAL_GREEN, "‘名次’‘傢 族 名 稱’     ‘族 長 名 稱’    ‘傢族總氣勢’", 0);
 			}
 #else
 			StockFontBuffer( winX+235, winY+21,
-				FONT_PRIO_FRONT, FONT_PAL_YELLOW, "‘史上最强之家族强者排行榜’", 0 );
+				FONT_PRIO_FRONT, FONT_PAL_YELLOW, "‘史上最強之傢族強者排行榜’", 0 );
 			StockFontBuffer( winX+25, winY+16+2*21,
-				FONT_PRIO_FRONT, FONT_PAL_GREEN, "‘名次’ ‘家  族  名  称’ ‘族  长  名  称’ ‘综合声望’‘成员声望’‘家族总声望’", 0 );
+				FONT_PRIO_FRONT, FONT_PAL_GREEN, "‘名次’ ‘傢  族  名  稱’ ‘族  長  名  稱’ ‘綜閤聲望’‘成員聲望’‘傢族總聲望’", 0 );
 #endif
 			for (i = 0; i < msgLine; i++)
 			{
@@ -15431,7 +15431,7 @@ void initFMWindowType3(char *data)
 	for (int i = 0; i < 10; i++){
 		if (strlen(msgWN[i]) > 0){
 			if (i >= selStartLine){
-				//处理字串
+				//處理字串
 				getStringToken(msgWN[i], '|', 2, sizeof(lvbuf)-1, lvbuf);
 				getStringToken(msgWN[i], '|', 3, sizeof(fmnamebuf)-1, fmnamebuf);
 				makeStringFromEscaped(fmnamebuf);
@@ -15446,7 +15446,7 @@ void initFMWindowType3(char *data)
 	}
 }
 
-// 家族强者表 top30
+// 傢族強者錶 top30
 #ifdef _NEW_MANOR_LAW
 void FMWindowType3(int king)
 #else
@@ -15465,14 +15465,14 @@ void FMWindowType3( void )
 #endif
 	char *btnTitle[] =
 	{
-		"确  定",
+		"確  定",
 		"取  消",
 		//	" ＯＫ ",
 		//	"CANCEL",
-		"确  定",
+		"確  定",
 		"取  消",
-		"上一页",
-		"下一页"
+		"上一頁",
+		"下一頁"
 	};
 	int  id, id2;
 	int  i, j;
@@ -15578,20 +15578,20 @@ void FMWindowType3( void )
 		if (ptActMenuWin->hp >= 1)
 		{
 			StockFontBuffer(winX + 34, winY + 21,
-				FONT_PRIO_FRONT, FONT_PAL_YELLOW, "                  ‘史上最强之家族强者排行榜’", 0);
+				FONT_PRIO_FRONT, FONT_PAL_YELLOW, "                  ‘史上最強之傢族強者排行榜’", 0);
 
 #ifdef _NEW_MANOR_LAW
 #ifdef _NEWFONT_
-			if (king == 0) sprintf_s(szMessage, "‘名 次’ ‘家  族  名  称’ ‘族  长  名  称’  ‘家族声望值’");
-			else if (king == 1) sprintf_s(szMessage, "‘名 次’ ‘家  族  名  称’ ‘族  长  名  称’  ‘家族气势值’");
+			if (king == 0) sprintf_s(szMessage, "‘名 次’ ‘傢  族  名  稱’ ‘族  長  名  稱’  ‘傢族聲望值’");
+			else if (king == 1) sprintf_s(szMessage, "‘名 次’ ‘傢  族  名  稱’ ‘族  長  名  稱’  ‘傢族氣勢值’");
 			StockFontBuffer(winX + 20, winY + 16 + 2 * 21, FONT_PRIO_FRONT, FONT_PAL_GREEN, szMessage, 0);
 #else
-			if(king == 0) sprintf_s(szMessage,"‘名 次’ ‘家  族  名  称’ ‘族  长  名  称’  ‘家族声望值’");
-			else if(king == 1) sprintf_s(szMessage,"‘名 次’ ‘家  族  名  称’ ‘族  长  名  称’  ‘家族气势值’");
+			if(king == 0) sprintf_s(szMessage,"‘名 次’ ‘傢  族  名  稱’ ‘族  長  名  稱’  ‘傢族聲望值’");
+			else if(king == 1) sprintf_s(szMessage,"‘名 次’ ‘傢  族  名  稱’ ‘族  長  名  稱’  ‘傢族氣勢值’");
 			StockFontBuffer( winX+39, winY+16+2*21,FONT_PRIO_FRONT, FONT_PAL_GREEN,szMessage,0);
 #endif
 #else
-			StockFontBuffer( winX+39, winY+16+2*21,FONT_PRIO_FRONT, FONT_PAL_GREEN, "‘名 次’ ‘家  族  名  称’ ‘族  长  名  称’  ‘家族声望值’", 0 );
+			StockFontBuffer( winX+39, winY+16+2*21,FONT_PRIO_FRONT, FONT_PAL_GREEN, "‘名 次’ ‘傢  族  名  稱’ ‘族  長  名  稱’  ‘傢族聲望值’", 0 );
 #endif
 			for (i = 0; i < msgLine; i++)
 			{
@@ -15674,7 +15674,7 @@ void initFMWindowType3( char *data )
 	for( int i = 0; i < 10; i++ ){
 		if( strlen( msgWN[i] ) > 0 ){
 			if( i>=selStartLine ){
-				//处理字串
+				//處理字串
 				getStringToken(msgWN[i], '|', 2, sizeof(lvbuf)-1, lvbuf);
 				getStringToken(msgWN[i], '|', 3, sizeof(fmnamebuf)-1, fmnamebuf);
 				makeStringFromEscaped( fmnamebuf );
@@ -15689,7 +15689,7 @@ void initFMWindowType3( char *data )
 	}
 }
 
-// 家族强者表
+// 傢族強者錶
 void FMWindowType3( void )
 {
 	static int winX, winY;
@@ -15701,14 +15701,14 @@ void FMWindowType3( void )
 	static int fmdelid;	
 	char *btnTitle[] =
 	{
-		"确  定",
+		"確  定",
 		"取  消",
 		//	" ＯＫ ",
 		//	"CANCEL",
-		"确  定",
+		"確  定",
 		"取  消",
-		"上一页",
-		"下一页"
+		"上一頁",
+		"下一頁"
 	};		
 	int  id, id2;
 	int  i, j;
@@ -15814,9 +15814,9 @@ void FMWindowType3( void )
 		if( ptActMenuWin->hp >= 1 )
 		{
 			StockFontBuffer( winX+34, winY+21,
-				FONT_PRIO_FRONT, FONT_PAL_YELLOW, "                  ‘史上最强之家族强者排行榜’", 0 );
+				FONT_PRIO_FRONT, FONT_PAL_YELLOW, "                  ‘史上最強之傢族強者排行榜’", 0 );
 			StockFontBuffer( winX+39, winY+16+2*21,
-				FONT_PRIO_FRONT, FONT_PAL_GREEN, "‘名 次’ ‘家  族  名  称’ ‘族  长  名  称’  ‘家族声望值’", 0 );
+				FONT_PRIO_FRONT, FONT_PAL_GREEN, "‘名 次’ ‘傢  族  名  稱’ ‘族  長  名  稱’  ‘傢族聲望值’", 0 );
 			for( i = 0; i < msgLine; i++ )
 			{
 				if( strlen( msgWN[i] ) > 0 )
@@ -15855,7 +15855,7 @@ void FMWindowType3( void )
 #endif
 /*----------   Shan(END)   ----------*/
 
-// Robin 家族寄物处
+// Robin 傢族寄物處
 #if 0	
 
 typedef struct {
@@ -16003,10 +16003,10 @@ int itemmanWN( void )
 		btnId[0] = StockDispBuffer( x + 220, y + 400, DISP_PRIO_IME3, CG_CANCEL_BTN, 2 );
 		btnId[1] = StockDispBuffer( x +32, y+100, DISP_PRIO_IME3, prevBtnGraNo[prevBtn], 2 );
 		btnId[2] = StockDispBuffer( x+200, y+100, DISP_PRIO_IME3, nextBtnGraNo[nextBtn], 2 );
-		sprintf_s( buf, "%2d/%2d 页", poolPage+1, (havenum/7)+1 );
+		sprintf_s( buf, "%2d/%2d 頁", poolPage+1, (havenum/7)+1 );
 		StockFontBuffer( x +66, y+92, FONT_PRIO_FRONT, FONT_PAL_WHITE, buf, 0 );
 
-		StockFontBuffer( x+175, y+18, FONT_PRIO_FRONT, 0, "家族寄物处", 0 );
+		StockFontBuffer( x+175, y+18, FONT_PRIO_FRONT, 0, "傢族寄物處", 0 );
 		StockDispBuffer( x+w/2, y+h/2, DISP_PRIO_MENU, CG_ITEMSHOP_WIN, 1 );
 	}
 	return 0;
@@ -16014,8 +16014,8 @@ int itemmanWN( void )
 
 #endif
 
-// 删除人物输入密码的视窗
-// return:		0 ... 处理中
+// 刪除人物輸入密碼的視窗
+// return:		0 ... 處理中
 //				1 ... 按下OK
 //				2 ... 按下Cancel
 int DelCharGraColorWin(void)
@@ -16028,7 +16028,7 @@ int DelCharGraColorWin(void)
 	static int x, y, w, h;
 	int ret = 0;
 	char msg[][8] = {
-		" 确定 ",
+		" 確定 ",
 		" 取消 "
 	};
 	// 初始化
@@ -16036,7 +16036,7 @@ int DelCharGraColorWin(void)
 		selCharGraColorWinProcNo = 1;
 		for (i = 0; i < sizeof(fontId) / sizeof(int); i++)
 			fontId[i] = -2;
-		//视窗制作
+		//視窗製作
 		w = 3;
 		h = 2;
 		x = 250;
@@ -16052,16 +16052,16 @@ int DelCharGraColorWin(void)
 		y = ptActMenuWin->y;
 #endif	
 		initStrBuffer(&passwd, x + 20, y + 44, 20, FONT_PAL_WHITE, FONT_PRIO_FRONT);
-		// 设定输入密码的StrBuffer
+		// 設定輸入密碼的StrBuffer
 		passwd.cnt = 0;
 		passwd.cursor = 0;
 		passwd.filterFlag = BLIND_TYPE;
 		GetKeyInputFocus(&passwd);
 		bErr = FALSE;
 	}
-	// 判断是否按下文字
+	// 判斷是否按下文字
 	id = selFontId(fontId, sizeof(fontId) / sizeof(int));
-	// 按下确定
+	// 按下確定
 	if (id == 0){
 		ret = 1;
 		bErr = FALSE;
@@ -16087,24 +16087,24 @@ int DelCharGraColorWin(void)
 		// 按下取消
 		if (id == 1){
 			ret = 2;
-			play_se(217, 320, 240);	// click声
+			play_se(217, 320, 240);	// click聲
 		}
-		// 已经输入结果
+		// 已經輸入結果
 		if (ret != 0){
 			if (ptActMenuWin){
 				DeathAction(ptActMenuWin);
 				ptActMenuWin = NULL;
 			}
 		}
-		// 是否指向文字
+		// 是否指嚮文字
 		id = focusFontId(fontId, sizeof(fontId) / sizeof(int));
-		// 确定
+		// 確定
 		if (id == 0)
-			ShowBottomLineString(FONT_PAL_WHITE, "删除人物请先输入密码");
+			ShowBottomLineString(FONT_PAL_WHITE, "刪除人物請先輸入密碼");
 		else
 			// 取消
 			if (id == 1)
-				ShowBottomLineString(FONT_PAL_WHITE, "取消删除人物");
+				ShowBottomLineString(FONT_PAL_WHITE, "取消刪除人物");
 		if (ptActMenuWin != NULL){
 			// ?????
 			if (ptActMenuWin->hp >= 1){
@@ -16115,9 +16115,9 @@ int DelCharGraColorWin(void)
 
 				}
 				if (bErr)
-					StockFontBuffer(x + 20, y + 20, FONT_PRIO_FRONT, FONT_PAL_WHITE, "输入错误请再试", 0);
+					StockFontBuffer(x + 20, y + 20, FONT_PRIO_FRONT, FONT_PAL_WHITE, "輸入錯誤請再試", 0);
 				else
-					StockFontBuffer(x + 20, y + 20, FONT_PRIO_FRONT, FONT_PAL_WHITE, "请输入安全码", 0);
+					StockFontBuffer(x + 20, y + 20, FONT_PRIO_FRONT, FONT_PAL_WHITE, "請輸入安全碼", 0);
 				StockFontBuffer2(&passwd);
 				FlashKeyboardCursor();	// ???????????
 			}
@@ -16144,8 +16144,8 @@ int serverTime;
 
 char winStr[][16] =
 {
-	"乱斗生存战",
-	"满场打飞战"
+	"亂鬥生存戰",
+	"滿場打飛戰"
 };
 
 
@@ -16198,8 +16198,8 @@ void FMPKListWN(int mode)
 		" 新  增 ",
 		" 修  改 ",
 		" 接  受 ",
-		"设 定 中",
-		"等待回答",
+		"設 定 中",
+		"等待迴答",
 		"已 排 定"
 	};
 	int showcolor;
@@ -16207,14 +16207,14 @@ void FMPKListWN(int mode)
 
 	char *btnTitle[] =
 	{
-		"确  定",
+		"確  定",
 		"取  消",
 		//	" ＯＫ ",
 		//	"CANCEL",
-		"确  定",
+		"確  定",
 		"取  消",
-		"上一页",
-		"下一页"
+		"上一頁",
+		"下一頁"
 	};
 	int id;
 	int i, j;
@@ -16356,15 +16356,15 @@ void FMPKListWN(int mode)
 
 
 			StockFontBuffer(winX + 200, winY + 30, FONT_PRIO_FRONT, FONT_PAL_WHITE,
-				"家族对战时间表", 0);
-			sprintf_s(dataBuf, "目前时间： %d:%d", serverTime / 100, serverTime % 100);
+				"傢族對戰時間錶", 0);
+			sprintf_s(dataBuf, "目前時間： %d:%d", serverTime / 100, serverTime % 100);
 			StockFontBuffer(winX + 360, winY + 45, FONT_PRIO_FRONT, FONT_PAL_WHITE,
 				dataBuf, 0);
 			//StockDispHLine( winX+80, winY+30, 2 );
 
 			sprintf_s(dataBuf, "%10s  %16s  %16s  %8s  %8s"
-				, "开战时间", "挑战家族", "受邀家族"
-				, "准备时间", "参加人数");
+				, "開戰時間", "挑戰傢族", "受邀傢族"
+				, "準備時間", "參加人數");
 
 			StockFontBuffer(winX + 20, winY + 70,
 				FONT_PRIO_FRONT, FONT_PAL_WHITE, dataBuf, 0);
@@ -16392,10 +16392,10 @@ void FMPKListWN(int mode)
 
 				if (FMPKDataList[i].flag != -1)
 				{
-					sprintf_s(dataBuf, "%10s  %16s  %16s  %4d分钟  %6d人"
+					sprintf_s(dataBuf, "%10s  %16s  %16s  %4d分鍾  %6d人"
 						, buf, FMPKDataList[i].atkFMName, FMPKDataList[i].defFMName
 						, FMPKDataList[i].readyTime, FMPKDataList[i].member);
-					sprintf_s(dataBuf2, "胜利条件： %s", winStr[FMPKDataList[i].win]);
+					sprintf_s(dataBuf2, "勝利條件： %s", winStr[FMPKDataList[i].win]);
 
 					switch (FMPKDataList[i].flag) {
 					case -1:
@@ -16507,22 +16507,22 @@ void FMPKSelectWN(int mode)
 	"未使用",
 	" 修改 ",
 	" 接受 ",
-	"设定中",
-	"等待回答",
+	"設定中",
+	"等待迴答",
 	"已排定"
 	};
 	*/
 
 	char *btnTitle[] =
 	{
-		"确  定",
+		"確  定",
 		"取  消",
 		//	" ＯＫ ",
 		//	"CANCEL",
-		"确  定",
+		"確  定",
 		"取  消",
-		"上一页",
-		"下一页"
+		"上一頁",
+		"下一頁"
 	};
 	int id;
 	int i, j;
@@ -16668,7 +16668,7 @@ void FMPKSelectWN(int mode)
 				}
 			}
 
-			sprintf_s(dataBuf, "%s", "请选择想挑战的家族：");
+			sprintf_s(dataBuf, "%s", "請選擇想挑戰的傢族：");
 			StockFontBuffer(winX + 30, winY + 40,
 				FONT_PRIO_FRONT, FONT_PAL_WHITE, dataBuf, 0);
 
@@ -16740,14 +16740,14 @@ void FMPKDetailWN(int mode)
 
 	char *btnTitle[] =
 	{
-		"确  定",
+		"確  定",
 		"取  消",
 		//	" ＯＫ ",
 		//	"CANCEL",
-		"确  定",
+		"確  定",
 		"取  消",
-		"上一页",
-		"下一页"
+		"上一頁",
+		"下一頁"
 	};
 	int id;
 	int i, j;
@@ -16924,20 +16924,20 @@ void FMPKDetailWN(int mode)
 			}
 
 			StockFontBuffer(winX + 140, winY + 30,
-				FONT_PRIO_FRONT, FONT_PAL_WHITE, "家族对战申请表", 0);
+				FONT_PRIO_FRONT, FONT_PAL_WHITE, "傢族對戰申請錶", 0);
 #ifdef _READ16BITBMP
 			if(!g_bUseAlpha) StockDispHLine( winX+100, winY+50, 3 );
 #endif
 
-			sprintf_s(dataBuf, "%s %s", "挑战家族：", FMPKDetailData.atkFMName);
+			sprintf_s(dataBuf, "%s %s", "挑戰傢族：", FMPKDetailData.atkFMName);
 			StockFontBuffer(winX + 40, winY + 90,
 				FONT_PRIO_FRONT, FONT_PAL_WHITE, dataBuf, 0);
 
-			sprintf_s(dataBuf, "%s %s", "受邀家族：", FMPKDetailData.defFMName);
+			sprintf_s(dataBuf, "%s %s", "受邀傢族：", FMPKDetailData.defFMName);
 			StockFontBuffer(winX + 40, winY + 90 + 40,
 				FONT_PRIO_FRONT, FONT_PAL_WHITE, dataBuf, 0);
 
-			sprintf_s(dataBuf, "准备时间： %d 分钟", FMPKDetailData.readyTime);
+			sprintf_s(dataBuf, "準備時間： %d 分鍾", FMPKDetailData.readyTime);
 			StockFontBuffer(winX + 40, winY + 90 + 80,
 				FONT_PRIO_FRONT, FONT_PAL_WHITE, dataBuf, 0);
 
@@ -16946,7 +16946,7 @@ void FMPKDetailWN(int mode)
 			btnId[1] = StockDispBuffer(winX + 190 + 40, winY + 98 + 80, DISP_PRIO_IME3,
 				CG_DOWN_BTN + pushBtnFlag[1], 2);
 
-			sprintf_s(dataBuf, "参加人数： %d 人", FMPKDetailData.member);
+			sprintf_s(dataBuf, "參加人數： %d 人", FMPKDetailData.member);
 			StockFontBuffer(winX + 40, winY + 90 + 120,
 				FONT_PRIO_FRONT, FONT_PAL_WHITE, dataBuf, 0);
 
@@ -16955,7 +16955,7 @@ void FMPKDetailWN(int mode)
 			btnId[3] = StockDispBuffer(winX + 190 + 40, winY + 98 + 120, DISP_PRIO_IME3,
 				CG_DOWN_BTN + pushBtnFlag[3], 2);
 
-			sprintf_s(dataBuf, "胜利条件： %s", winStr[FMPKDetailData.win]);
+			sprintf_s(dataBuf, "勝利條件： %s", winStr[FMPKDetailData.win]);
 			fontId[6] = StockFontBuffer(winX + 40, winY + 90 + 160,
 				FONT_PRIO_FRONT, FONT_PAL_WHITE, dataBuf, 2);
 
@@ -17227,7 +17227,7 @@ void familyTaxWN()
 
 		if (ptActMenuWin != NULL && ptActMenuWin->hp >= 1)
 		{
-			sprintf_s(dataBuf, "%s  家族的帐户", pc.familyName);
+			sprintf_s(dataBuf, "%s  傢族的帳戶", pc.familyName);
 			StockFontBuffer(winX + 80, winY + 30,
 				FONT_PRIO_FRONT, FONT_PAL_WHITE, dataBuf, 0);
 #ifdef _READ16BITBMP
@@ -17242,7 +17242,7 @@ void familyTaxWN()
 				FONT_PRIO_FRONT, FONT_PAL_WHITE, dataBuf, 0);
 
 			StockFontBuffer(winX + 60, winY + 120,
-				FONT_PRIO_FRONT, FONT_PAL_WHITE, "现  金：", 0);
+				FONT_PRIO_FRONT, FONT_PAL_WHITE, "現  金：", 0);
 			sprintf_s(dataBuf, "%10d", haveGold);
 			StockFontBuffer(winX + 200, winY + 120,
 				FONT_PRIO_FRONT, FONT_PAL_WHITE, dataBuf, 0);
@@ -17277,7 +17277,7 @@ void familyTaxWN()
 				//btnId[1] = StockDispBuffer( winX+160, winY+160, DISP_PRIO_IME3,
 				//					CG_TRADE_OK_BTN, 2 );
 				//StockFontBuffer( winX+60, winY+120,
-				//		FONT_PRIO_FRONT, FONT_PAL_WHITE, "只有族长可以取款。", 0 );
+				//		FONT_PRIO_FRONT, FONT_PAL_WHITE, "隻有族長可以取款。", 0 );
 			}
 
 
@@ -17358,22 +17358,22 @@ void showRidePetWN(void)
 	"未使用",
 	" 修改 ",
 	" 接受 ",
-	"设定中",
-	"等待回答",
+	"設定中",
+	"等待迴答",
 	"已排定"
 	};
 	*/
 
 	char *btnTitle[] =
 	{
-		"确  定",
+		"確  定",
 		"取  消",
 		//	" ＯＫ ",
 		//	"CANCEL",
-		"确  定",
+		"確  定",
 		"取  消",
-		"上一页",
-		"下一页"
+		"上一頁",
+		"下一頁"
 	};
 	int id;
 	int i, j;
@@ -17532,7 +17532,7 @@ void showRidePetWN(void)
 				}
 			}
 
-			sprintf_s(dataBuf, "%s", "适合你骑乘的宠物种类如下：");
+			sprintf_s(dataBuf, "%s", "適閤你騎乘的寵物種類如下：");
 			StockFontBuffer(winX + 30, winY + 40,
 				FONT_PRIO_FRONT, FONT_PAL_WHITE, dataBuf, 0);
 
@@ -17548,7 +17548,7 @@ void showRidePetWN(void)
 				if (rideablePet[2] != 0)
 					pActPet14 = MakeAnimDisp(winX + 225, winY + 180, rideablePet[2], 0);
 
-			sprintf_s(dataBuf, "%s", "赶快去把它们找出来吧！");
+			sprintf_s(dataBuf, "%s", "趕快去把它們找齣來吧！");
 			StockFontBuffer(winX + 30, winY + 220,
 				FONT_PRIO_FRONT, FONT_PAL_WHITE, dataBuf, 0);
 
@@ -17668,10 +17668,10 @@ void familyLeaderChangeWN()
 			if (ptActMenuWin != NULL && ptActMenuWin->hp >= 1)
 			{
 				StockFontBuffer(winX + 50, winY + 30, FONT_PRIO_FRONT, FONT_PAL_WHITE,
-					"请选择家族成员：", 0);
+					"請選擇傢族成員：", 0);
 
 				fontId2[0] = StockFontBuffer(winX + 300, winY + 350, FONT_PRIO_FRONT, FONT_PAL_YELLOW,
-					"  离  开  ", 2);
+					"  離  開  ", 2);
 
 				switch (pagenum)
 				{
@@ -17681,24 +17681,24 @@ void familyLeaderChangeWN()
 						FONT_PRIO_FRONT, FONT_PAL_WHITE, memberName[i], 2);
 					if (memberNum > 30)
 						fontId2[2] = StockFontBuffer(winX + 100, winY + 350, FONT_PRIO_FRONT, FONT_PAL_YELLOW,
-						"下一页", 2);
+						"下一頁", 2);
 					break;
 				case 2:
 					for (i = 30; i<memberNum; i++)
 						fontId[i] = StockFontBuffer(winX + 30 + ((i - 30) / 10) * 50, winY + 60 + (i % 10) * 20,
 						FONT_PRIO_FRONT, FONT_PAL_WHITE, memberName[i], 2);
 					fontId2[1] = StockFontBuffer(winX + 30, winY + 350, FONT_PRIO_FRONT, FONT_PAL_YELLOW,
-						"上一页", 2);
+						"上一頁", 2);
 					if (memberNum > 60)
 						fontId2[2] = StockFontBuffer(winX + 100, winY + 350, FONT_PRIO_FRONT, FONT_PAL_YELLOW,
-						"下一页", 2);
+						"下一頁", 2);
 					break;
 				case 3:
 					for (i = 60; i < memberNum; i++)
 						fontId[i] = StockFontBuffer(winX + 30 + ((i - 60) / 10) * 50, winY + 60 + (i % 10) * 20,
 						FONT_PRIO_FRONT, FONT_PAL_WHITE, memberName[i], 2);
 					fontId2[1] = StockFontBuffer(winX + 30, winY + 350, FONT_PRIO_FRONT, FONT_PAL_YELLOW,
-						"上一页", 2);
+						"上一頁", 2);
 					break;
 				}
 
@@ -17774,14 +17774,14 @@ void familyLeaderChangeQWN()
 
 		if (ptActMenuWin != NULL && ptActMenuWin->hp >= 1)
 		{
-			sprintf_s(buf, "你确定要将族长的位子交给%s吗？", memberName[changeWho]);
+			sprintf_s(buf, "你確定要將族長的位子交給%s嗎？", memberName[changeWho]);
 			StockFontBuffer(winX + 50, winY + 30, FONT_PRIO_FRONT, FONT_PAL_WHITE,
 				buf, 0);
 
 			fontId[0] = StockFontBuffer(winX + 200, winY + 60, FONT_PRIO_FRONT, FONT_PAL_YELLOW,
-				"  离  开  ", 2);
+				"  離  開  ", 2);
 			fontId[1] = StockFontBuffer(winX + 280, winY + 60, FONT_PRIO_FRONT, FONT_PAL_YELLOW,
-				"  确  定  ", 2);
+				"  確  定  ", 2);
 
 		}
 
@@ -17876,16 +17876,16 @@ void familyLeaderChangeAWN()
 
 		if (ptActMenuWin != NULL && ptActMenuWin->hp >= 1)
 		{
-			sprintf_s(buf, "%s 希望将族长的位子交给你，", oldLeaderName);
+			sprintf_s(buf, "%s 希望將族長的位子交給你，", oldLeaderName);
 			StockFontBuffer(winX + 50, winY + 30, FONT_PRIO_FRONT, FONT_PAL_WHITE,
 				buf, 0);
 			StockFontBuffer(winX + 50, winY + 60, FONT_PRIO_FRONT, FONT_PAL_WHITE,
-				"你要接受吗？", 0);
+				"你要接受嗎？", 0);
 
 			fontId[0] = StockFontBuffer(winX + 200, winY + 105, FONT_PRIO_FRONT, FONT_PAL_YELLOW,
-				"  不愿意  ", 2);
+				"  不願意  ", 2);
 			fontId[1] = StockFontBuffer(winX + 280, winY + 105, FONT_PRIO_FRONT, FONT_PAL_YELLOW,
-				"  愿  意  ", 2);
+				"  願  意  ", 2);
 
 		}
 
@@ -17979,23 +17979,23 @@ void closeMineFamilyDetailWN()
 
 char	*familyJobName[] =
 {
-	"未加入家族",
-	"一般成员",
-	"待 审 核",
-	" 族  长 ",
-	" 长  老 ",
-	//    " 长  老 ",
+	"未加入傢族",
+	"一般成員",
+	"待 審 核",
+	" 族  長 ",
+	" 長  老 ",
+	//    " 長  老 ",
 	//    " 祭  司 ",
-	//    "财 务 长",
+	//    "財 務 長",
 };
 
 char *familyTownName[] =
 {
 	"",
-	"萨姆吉尔庄园",
-	"玛丽娜丝庄园",
-	"加加庄园",
-	"卡鲁它那庄园"
+	"薩姆吉爾莊園",
+	"瑪麗娜絲莊園",
+	"加加莊園",
+	"卡魯它那莊園"
 };
 
 
@@ -18054,46 +18054,46 @@ void mineFamilyDetailWN()
 		if (ptActMenuWin != NULL && ptActMenuWin->hp >= 1)
 		{
 
-			StockFontBuffer(winX + 190, winY + 20, FONT_PRIO_FRONT, FONT_PAL_WHITE, "家族资料", 0);
+			StockFontBuffer(winX + 190, winY + 20, FONT_PRIO_FRONT, FONT_PAL_WHITE, "傢族資料", 0);
 #ifdef _READ16BITBMP
 			if(!g_bUseAlpha) StockDispHLine( winX+160, winY+40, 2 );
 #endif
 
-			sprintf_s(buf, "家族名称：%s", mineFamily.name);
+			sprintf_s(buf, "傢族名稱：%s", mineFamily.name);
 			StockFontBuffer(winX + 30, winY + 60, FONT_PRIO_FRONT, FONT_PAL_WHITE, buf, 0);
-			sprintf_s(buf, "族长名称：%s", mineFamily.leadername);
+			sprintf_s(buf, "族長名稱：%s", mineFamily.leadername);
 			StockFontBuffer(winX + 240, winY + 60, FONT_PRIO_FRONT, FONT_PAL_WHITE, buf, 0);
 
-			sprintf_s(buf, "家族人数：%d", mineFamily.member);
+			sprintf_s(buf, "傢族人數：%d", mineFamily.member);
 			StockFontBuffer(winX + 30, winY + 90, FONT_PRIO_FRONT, FONT_PAL_WHITE, buf, 0);
-			sprintf_s(buf, "守护精灵：%s", familySpriteName[mineFamily.sprite]);
+			sprintf_s(buf, "守護精靈：%s", familySpriteName[mineFamily.sprite]);
 			StockFontBuffer(winX + 240, winY + 90, FONT_PRIO_FRONT, FONT_PAL_WHITE, buf, 0);
 #ifdef _NEW_MANOR_LAW
-			sprintf_s(buf, "声望排名：%d", mineFamily.rank);
+			sprintf_s(buf, "聲望排名：%d", mineFamily.rank);
 #else
-			sprintf_s( buf, "家族排名：%d", mineFamily.rank );
+			sprintf_s( buf, "傢族排名：%d", mineFamily.rank );
 #endif
 			StockFontBuffer(winX + 30, winY + 120, FONT_PRIO_FRONT, FONT_PAL_WHITE, buf, 0);
-			sprintf_s(buf, "家族声望：%d", mineFamily.fmdp);
+			sprintf_s(buf, "傢族聲望：%d", mineFamily.fmdp);
 			StockFontBuffer(winX + 240, winY + 120, FONT_PRIO_FRONT, FONT_PAL_WHITE, buf, 0);
 
-			sprintf_s(buf, "家族职位：%s", familyJobName[mineFamily.job]);
+			sprintf_s(buf, "傢族職位：%s", familyJobName[mineFamily.job]);
 			StockFontBuffer(winX + 30, winY + 150, FONT_PRIO_FRONT, FONT_PAL_WHITE, buf, 0);
-			sprintf_s(buf, "个人声望：%d", mineFamily.personaldp);
+			sprintf_s(buf, "個人聲望：%d", mineFamily.personaldp);
 			StockFontBuffer(winX + 240, winY + 150, FONT_PRIO_FRONT, FONT_PAL_WHITE, buf, 0);
 
 #ifdef _NEW_MANOR_LAW
-			sprintf_s(buf, "家族气势：%d", mineFamily.fmMomentum);
+			sprintf_s(buf, "傢族氣勢：%d", mineFamily.fmMomentum);
 			StockFontBuffer(winX + 240, winY + 180, FONT_PRIO_FRONT, FONT_PAL_WHITE, buf, 0);
-			sprintf_s(buf, "个人气势：%d", mineFamily.momentum);
+			sprintf_s(buf, "個人氣勢：%d", mineFamily.momentum);
 			StockFontBuffer(winX + 240, winY + 210, FONT_PRIO_FRONT, FONT_PAL_WHITE, buf, 0);
 #endif
 
 #ifdef _FAMILYBADGE_
-			StockFontBuffer(winX + 30, winY + 210, FONT_PRIO_FRONT, FONT_PAL_WHITE, "家族徽章：", 0);
+			StockFontBuffer(winX + 30, winY + 210, FONT_PRIO_FRONT, FONT_PAL_WHITE, "傢族徽章：", 0);
 			StockDispBuffer(winX + 120, winY + 215, DISP_PRIO_IME4, mineFamily.badgeNo, 0);
 #endif
-			StockFontBuffer(winX + 30, winY + 180, FONT_PRIO_FRONT, FONT_PAL_WHITE, "家族踢馆：", 0);
+			StockFontBuffer(winX + 30, winY + 180, FONT_PRIO_FRONT, FONT_PAL_WHITE, "傢族踢館：", 0);
 #ifdef _NEW_MANOR_LAW
 			StockFontBuffer(winX + 30, winY + 230, FONT_PRIO_FRONT, FONT_PAL_WHITE, mineFamily.pkdata, 0);
 #else
@@ -18112,7 +18112,7 @@ void mineFamilyDetailWN()
 			*/
 
 			fontId[0] = StockFontBuffer(winX + 180, winY + 250, FONT_PRIO_FRONT, FONT_PAL_YELLOW,
-				"  离  开  ", 2);
+				"  離  開  ", 2);
 		}
 
 	}
@@ -18125,11 +18125,11 @@ ACTION *pBankProcWnd = NULL;
 
 void BankProc(void)
 {
-	static int BankBtNo[20]; 		// 按钮的编号
-	static int BankBtFlag[20];	// 按钮的状态
-	static int Gold = 0;									// 要存入或取出的钱
-	static int BankGoldInc = 0;						// 金钱每加一次的值
-	static int BankGoldCnt = 0;						// 按钮计数
+	static int BankBtNo[20]; 		// 按鈕的編號
+	static int BankBtFlag[20];	// 按鈕的狀態
+	static int Gold = 0;									// 要存入或取齣的錢
+	static int BankGoldInc = 0;						// 金錢每加一次的值
+	static int BankGoldCnt = 0;						// 按鈕計數
 	int x, y;
 	char msg[256];
 
@@ -18150,10 +18150,10 @@ void BankProc(void)
 		}
 	}
 
-	// 如果目前没有秀出银行介面
+	// 如果目前沒有秀齣銀行介麵
 	if (pBankProcWnd == NULL)
 	{
-		// 秀出银行介面
+		// 秀齣銀行介麵
 #ifdef _READ16BITBMP
 		if(g_bUseAlpha) pBankProcWnd = MakeWindowDisp(185,160,270,160,OLD_GRAPHICS_START+46,-1);  //x=(640-w)/2 y=(480-h)/2 w=270 h=160
 		else
@@ -18165,12 +18165,12 @@ void BankProc(void)
 	}
 	else
 	{
-		// 如果视窗已经开好了
+		// 如果視窗已經開好瞭
 		if (pBankProcWnd->hp > 0)
 		{
 			if (mouse.onceState & MOUSE_LEFT_CRICK)
 			{
-				// 如果按下的是取消,清掉介面
+				// 如果按下的是取消,清掉介麵
 				if (HitDispNo == BankBtNo[0])
 				{
 					ZeroMemory(msg, sizeof(msg));
@@ -18182,7 +18182,7 @@ void BankProc(void)
 					play_se(217, 320, 240);
 					return;
 				}
-				// 如果按下的是确定,把玩家存或领多少钱送给gs
+				// 如果按下的是確定,把玩傢存或領多少錢送給gs
 				if (HitDispNo == BankBtNo[1])
 				{
 					sprintf_s(msg, "%d", Gold);
@@ -18199,42 +18199,42 @@ void BankProc(void)
 				}
 			}
 
-			// 玩家存钱
+			// 玩傢存錢
 			if (HitDispNo == BankBtNo[3])
 			{
-				// 如果按钮被放开了(滑鼠左键放开),设定按钮没被按下
+				// 如果按鈕被放開瞭(滑鼠左鍵放開),設定按鈕沒被按下
 				if (mouse.onceState & MOUSE_LEFT_CRICK_UP && BankBtFlag[3] == TRUE) BankBtFlag[3] = FALSE;
 
-				// 如果要存入的钱加上已在银行里的钱比银行上限小及玩家身上的钱不小于要存入的钱
+				// 如果要存入的錢加上已在銀行裏的錢比銀行上限小及玩傢身上的錢不小於要存入的錢
 				if (Gold + pc.personal_bankgold <= MAX_PERSONAL_BANKGOLD && pc.gold - Gold > 0)
 				{
-					// 存入的按钮设为true(此时为一直按着钮的状态)
+					// 存入的按鈕設為true(此時為一直按著鈕的狀態)
 					if (BankBtFlag[3] == TRUE)
 					{
 						Gold += BankGoldInc;
 						BankGoldCnt++;
 
-						// 如果BankGoldCnt大于30,增加一次的钱变为五倍
+						// 如果BankGoldCnt大於30,增加一次的錢變為五倍
 						if (BankGoldCnt >= 30)
 						{
-							// 把count清为0
+							// 把count清為0
 							BankGoldCnt = 0;
 							if (BankGoldInc == 0) BankGoldInc = 1;
 							else
 							{
-								// 增加变为五倍
+								// 增加變為五倍
 								BankGoldInc *= 5;
 								// 最多一次加10000
 								if (BankGoldInc > 10000) BankGoldInc = 10000;
 							}
 						}
-						// 如果存入的钱比银行上限大
+						// 如果存入的錢比銀行上限大
 						if (Gold + pc.personal_bankgold >= MAX_PERSONAL_BANKGOLD)
 						{
 							Gold = MAX_PERSONAL_BANKGOLD - pc.personal_bankgold;
 							play_se(220, 320, 240);
 						}
-						// 如果玩家身上的钱已小于0
+						// 如果玩傢身上的錢已小於0
 						if (pc.gold - Gold < 0)
 						{
 							Gold = pc.gold;
@@ -18242,19 +18242,19 @@ void BankProc(void)
 						}
 					}
 
-					// 按下左键时
+					// 按下左鍵時
 					if (mouse.onceState & MOUSE_LEFT_CRICK)
 					{
-						// 存入的钱增加
+						// 存入的錢增加
 						Gold++;
-						// 如果存入的钱加上玩家已在银行里的钱大于银行上限
+						// 如果存入的錢加上玩傢已在銀行裏的錢大於銀行上限
 						if (Gold + pc.personal_bankgold >= MAX_PERSONAL_BANKGOLD)
 						{
 							Gold = MAX_PERSONAL_BANKGOLD - pc.personal_bankgold;
 							// 播音效
 							play_se(220, 320, 240);
 						}
-						// 如果玩家身上的钱已小于0
+						// 如果玩傢身上的錢已小於0
 						if (pc.gold - Gold < 0)
 						{
 							Gold = pc.gold;
@@ -18262,11 +18262,11 @@ void BankProc(void)
 						}
 						else
 						{
-							// 一次增加的钱清为0
+							// 一次增加的錢清為0
 							BankGoldInc = 0;
-							// 计数清为0
+							// 計數清為0
 							BankGoldCnt = 0;
-							// 设定按钮被按下
+							// 設定按鈕被按下
 							BankBtFlag[3] = TRUE;
 							// 播音效
 							play_se(217, 320, 240);
@@ -18281,66 +18281,66 @@ void BankProc(void)
 			}
 			else
 			{
-				// 设定按键没被按下
+				// 設定按鍵沒被按下
 				BankBtFlag[3] = FALSE;
 			}
 
-			// 玩家领钱
-			// 因为是领钱,所以Gold为负数
+			// 玩傢領錢
+			// 因為是領錢,所以Gold為負數
 			if (HitDispNo == BankBtNo[2])
 			{
-				// 如果按钮被放开了(滑鼠左键放开),设定按钮没被按下
+				// 如果按鈕被放開瞭(滑鼠左鍵放開),設定按鈕沒被按下
 				if (mouse.onceState & MOUSE_LEFT_CRICK_UP && BankBtFlag[2] == TRUE) BankBtFlag[2] = FALSE;
-				// 如果要领出的钱比玩家已在银行里的钱少且领出的钱加上玩家身上的钱不大于玩家身上钱的上限
+				// 如果要領齣的錢比玩傢已在銀行裏的錢少且領齣的錢加上玩傢身上的錢不大於玩傢身上錢的上限
 				if (pc.personal_bankgold + Gold > 0 && pc.gold - Gold <= CHAR_getMaxHaveGold())
 				{
-					// 如果按钮被按下
+					// 如果按鈕被按下
 					if (BankBtFlag[2] == TRUE)
 					{
-						// 领出的钱增加
+						// 領齣的錢增加
 						Gold -= BankGoldInc;
 						BankGoldCnt++;
 
-						// 如果BankGoldCnt大于30,增加一次的钱变为五倍
+						// 如果BankGoldCnt大於30,增加一次的錢變為五倍
 						if (BankGoldCnt >= 30)
 						{
-							// 把count清为0
+							// 把count清為0
 							BankGoldCnt = 0;
 							if (BankGoldInc == 0) BankGoldInc = 1;
 							else
 							{
-								// 增加变为五倍
+								// 增加變為五倍
 								BankGoldInc *= 5;
 								// 最多一次加10000
 								if (BankGoldInc > 10000) BankGoldInc = 10000;
 							}
 						}
-						// 如果要领出的钱比玩家已在银行里的钱多
+						// 如果要領齣的錢比玩傢已在銀行裏的錢多
 						if (pc.personal_bankgold + Gold < 0)
 						{
 							Gold = pc.personal_bankgold * (-1);
 							play_se(220, 320, 240);
 						}
-						// 如果领出的钱加上玩家身上的钱大于玩家身上钱的上限
+						// 如果領齣的錢加上玩傢身上的錢大於玩傢身上錢的上限
 						if (pc.gold - Gold >= CHAR_getMaxHaveGold())
 						{
 							Gold = (CHAR_getMaxHaveGold() - pc.gold) * (-1);
 							play_se(220, 320, 240);
 						}
 					}
-					// 按下左键时
+					// 按下左鍵時
 					if (mouse.onceState & MOUSE_LEFT_CRICK)
 					{
 						Gold--;
 
-						// 如果要领出的钱比玩家已在银行里的钱多
+						// 如果要領齣的錢比玩傢已在銀行裏的錢多
 						if (pc.personal_bankgold + Gold < 0)
 						{
 							Gold = pc.personal_bankgold * (-1);
 							play_se(220, 320, 240);
 						}
 						else
-							// 如果领出的钱加上玩家身上的钱大于玩家身上钱的上限
+							// 如果領齣的錢加上玩傢身上的錢大於玩傢身上錢的上限
 							if (pc.gold - Gold >= CHAR_getMaxHaveGold())
 							{
 								Gold = (CHAR_getMaxHaveGold() - pc.gold) * (-1);
@@ -18348,11 +18348,11 @@ void BankProc(void)
 							}
 							else
 							{
-								// 一次增加的钱清为0
+								// 一次增加的錢清為0
 								BankGoldInc = 0;
-								// 计数清为0
+								// 計數清為0
 								BankGoldCnt = 0;
-								// 设定按钮被按下
+								// 設定按鈕被按下
 								BankBtFlag[2] = TRUE;
 								play_se(217, 320, 240);
 							}
@@ -18366,13 +18366,13 @@ void BankProc(void)
 			}
 			else
 			{
-				// 设定按键没被按下
+				// 設定按鍵沒被按下
 				BankBtFlag[2] = FALSE;
 			}
 
 			if (pBankProcWnd != NULL)
 			{
-				// 座标设定
+				// 座標設定
 				x = pBankProcWnd->x;
 				y = pBankProcWnd->y;
 
@@ -18399,60 +18399,60 @@ void BankProc(void)
 
 // Terry add 2002/01/03
 #ifdef __EDEN_AUCTION
-#define AUCTION_NEW     		26266 //委托拍卖介面
-#define AUCTION_OK_U				26267 //ok按钮(未按下)
-#define AUCTION_OK_D				26268 //ok按钮(按下)
-#define AUCTION_PLANK				26269 //在物品底下的石板
-#define AUCTION_UP_U				26188 //上箭头按钮(未按下)
-#define AUCTION_UP_D				26189 //上箭头按钮(按下)
-#define AUCTION_DOWN_U			26190 //下箭头按钮(未按下)
-#define AUCTION_DOWN_D			26191 //下箭头按钮(按下)
-#define AUCTION_LIST    		26270 //拍卖列表(购买)介面
-#define AUCTION_LIST_1      26271 //拍卖列表(修改)介面
-#define AUCTION_GET_BACK_U	26272 //领回按钮(未按下)
-#define AUCTION_GET_BACK_D	26273 //领回按钮(按下)
-#define AUCTION_GET_BACK_N	26274 //领回按钮(无作用)
-#define AUCTION_SEE_DATA_U	26275 //观看资料(未按下)
-#define AUCTION_SEE_DATA_D	26276 //观看资料(按下)
-#define AUCTION_SEE_DATA_N	26277 //观看资料(无作用)
-#define AUCTION_PAGE_UP_U   26278 //上一页(未按下)
-#define AUCTION_PAGE_UP_D   26279 //上一页(按下)
-#define AUCTION_PAGE_UP_N   26280 //上一页(无作用)
-#define AUCTION_PAGE_DOWN_U 26281 //下一页(未按下)
-#define AUCTION_PAGE_DOWN_D 26282 //下一页(按下)
-#define AUCTION_PAGE_DOWN_N 26283 //下一页(无作用)
-#define AUCTION_CANCEL_Y_U	26284 //取消(未按下)(黄色的)
-#define AUCTION_CANCEL_Y_D	26285 //取消(按下)(黄色的)
-#define AUCTION_CANCEL_Y_N	26286 //取消(无作用)(黄色的)
-#define AUCTION_DECIDE_U		26289 //确定(未按下)
-#define AUCTION_DECIDE_D		26288 //确定(按下)
-#define AUCTION_CANCEL_R_U	26291 //取消(未按下)(红色的)
-#define AUCTION_CANCEL_R_D	26290 //取消(按下)(红色的)
-#define AUCTION_SURVEY			26292 //观看(购买)介面
-#define AUCTION_SURVEY_1		26293 //观看(修改)介面
-#define AUCTION_PET_STAT    26297 //宠物五种资料的底图
+#define AUCTION_NEW     		26266 //委托拍賣介麵
+#define AUCTION_OK_U				26267 //ok按鈕(未按下)
+#define AUCTION_OK_D				26268 //ok按鈕(按下)
+#define AUCTION_PLANK				26269 //在物品底下的石闆
+#define AUCTION_UP_U				26188 //上箭頭按鈕(未按下)
+#define AUCTION_UP_D				26189 //上箭頭按鈕(按下)
+#define AUCTION_DOWN_U			26190 //下箭頭按鈕(未按下)
+#define AUCTION_DOWN_D			26191 //下箭頭按鈕(按下)
+#define AUCTION_LIST    		26270 //拍賣列錶(購買)介麵
+#define AUCTION_LIST_1      26271 //拍賣列錶(修改)介麵
+#define AUCTION_GET_BACK_U	26272 //領迴按鈕(未按下)
+#define AUCTION_GET_BACK_D	26273 //領迴按鈕(按下)
+#define AUCTION_GET_BACK_N	26274 //領迴按鈕(無作用)
+#define AUCTION_SEE_DATA_U	26275 //觀看資料(未按下)
+#define AUCTION_SEE_DATA_D	26276 //觀看資料(按下)
+#define AUCTION_SEE_DATA_N	26277 //觀看資料(無作用)
+#define AUCTION_PAGE_UP_U   26278 //上一頁(未按下)
+#define AUCTION_PAGE_UP_D   26279 //上一頁(按下)
+#define AUCTION_PAGE_UP_N   26280 //上一頁(無作用)
+#define AUCTION_PAGE_DOWN_U 26281 //下一頁(未按下)
+#define AUCTION_PAGE_DOWN_D 26282 //下一頁(按下)
+#define AUCTION_PAGE_DOWN_N 26283 //下一頁(無作用)
+#define AUCTION_CANCEL_Y_U	26284 //取消(未按下)(黃色的)
+#define AUCTION_CANCEL_Y_D	26285 //取消(按下)(黃色的)
+#define AUCTION_CANCEL_Y_N	26286 //取消(無作用)(黃色的)
+#define AUCTION_DECIDE_U		26289 //確定(未按下)
+#define AUCTION_DECIDE_D		26288 //確定(按下)
+#define AUCTION_CANCEL_R_U	26291 //取消(未按下)(紅色的)
+#define AUCTION_CANCEL_R_D	26290 //取消(按下)(紅色的)
+#define AUCTION_SURVEY			26292 //觀看(購買)介麵
+#define AUCTION_SURVEY_1		26293 //觀看(修改)介麵
+#define AUCTION_PET_STAT    26297 //寵物五種資料的底圖
 
-STR_BUFFER AuctionStr;		// 拍卖叙述共,50个字
-STR_BUFFER AuctionMoney;	// 拍卖价钱最多一百万
-STR_BUFFER AuctionItem;				// 道具叙述
+STR_BUFFER AuctionStr;		// 拍賣敘述共,50個字
+STR_BUFFER AuctionMoney;	// 拍賣價錢最多一百萬
+STR_BUFFER AuctionItem;				// 道具敘述
 ACTION *pActAuctionWT = NULL;
 
 void AuctionNewWT(void)
 {
 	static ACTION *pShowPet1 = NULL, *pShowPet2 = NULL;
-	static int nButton1[3][2]; // nBotton1[x][y]-> x:0->上箭头 x:1->ok x:2->下箭头  y:0->被点选时的按钮编号
-	//                                                   y:1->点选状态 0->没被点选到 1->被点选到
-	static int nButton2[2][2]; // nBotton2[x][y]-> x:0->确定 x:1->取消 y:0->被点选时的按钮编号
-	//                                      y:1->点选状态 0->没被点选到 1->被点选到
-	static int nItem[MAX_ITEM - MAX_ITEMSTART][2];	 // nItem[x][y]-> x:->第几个物品(右上开始向右算起0~14) y:0->被点选时的按钮编号
-	//                                                    y:1->点选状态 0->没被点选到 1->被点选到 
-	static int nPet, nPetShow;	 // nPet:右边列表的宠物是第几只 nPetShow:要卖的宠物
-	static int nItemSelect;		 // 目前选到的道具是第几个
-	static int nAuctionKind;	 // 要拍卖的是宠物还是道具 1:Pet 2:Item
+	static int nButton1[3][2]; // nBotton1[x][y]-> x:0->上箭頭 x:1->ok x:2->下箭頭  y:0->被點選時的按鈕編號
+	//                                                   y:1->點選狀態 0->沒被點選到 1->被點選到
+	static int nButton2[2][2]; // nBotton2[x][y]-> x:0->確定 x:1->取消 y:0->被點選時的按鈕編號
+	//                                      y:1->點選狀態 0->沒被點選到 1->被點選到
+	static int nItem[MAX_ITEM - MAX_ITEMSTART][2];	 // nItem[x][y]-> x:->第幾個物品(右上開始嚮右算起0~14) y:0->被點選時的按鈕編號
+	//                                                    y:1->點選狀態 0->沒被點選到 1->被點選到 
+	static int nPet, nPetShow;	 // nPet:右邊列錶的寵物是第幾隻 nPetShow:要賣的寵物
+	static int nItemSelect;		 // 目前選到的道具是第幾個
+	static int nAuctionKind;	 // 要拍賣的是寵物還是道具 1:Pet 2:Item
 	static BOOL bPress;
 	int x, y, i, j, k;
 	char temp[8];
-	char szSendMsg[3][260];			 // szSendMsg[x][256]-> x:0->拍卖叙述 x:1->送到server端的资料
+	char szSendMsg[3][260];			 // szSendMsg[x][256]-> x:0->拍賣敘述 x:1->送到server端的資料
 
 	if (CheckMenuFlag()
 		|| (joy_trg[0] & JOY_ESC)
@@ -18475,10 +18475,10 @@ void AuctionNewWT(void)
 			return;
 		}
 	}
-	// 如果目前没有产生委托介面
+	// 如果目前沒有産生委托介麵
 	if (pActAuctionWT == NULL)
 	{
-		// 产生委托介面
+		// 産生委托介麵
 		pActAuctionWT = MakeWindowDisp(50, 15, 540, 450, AUCTION_NEW, -1);
 		ZeroMemory(szSendMsg, sizeof(szSendMsg));
 		ZeroMemory(nButton1, sizeof(nButton1));
@@ -18486,11 +18486,11 @@ void AuctionNewWT(void)
 		ZeroMemory(nItem, sizeof(nItem));
 		for (i = 0; i < MAX_ITEM; i++) {
 #ifdef _NEW_ITEM_
-			extern int 道具栏页数;
-			int 道具起始 = MAX_ITEMSTART+MAX_MAXHAVEITEM*道具栏页数;
-			int 道具结束 = 道具起始+MAX_MAXHAVEITEM;
+			extern int 道具欄頁數;
+			int 道具起始 = MAX_ITEMSTART+MAX_MAXHAVEITEM*道具欄頁數;
+			int 道具結束 = 道具起始+MAX_MAXHAVEITEM;
 			if(i>=MAX_ITEMSTART){
-				if(i<道具起始||i>=道具结束) continue;
+				if(i<道具起始||i>=道具結束) continue;
 			}
 			nItem[i][0] = -1;
 #endif		
@@ -18500,7 +18500,7 @@ void AuctionNewWT(void)
 		nItemSelect = 0;
 		pShowPet1 = pShowPet2 = NULL;
 		bPress = TRUE;
-		// 叙述文字初始化
+		// 敘述文字初始化
 		ZeroMemory(AuctionStr.buffer, sizeof(AuctionStr.buffer));
 		AuctionStr.cnt = 0;
 		AuctionStr.cursor = 0;
@@ -18511,7 +18511,7 @@ void AuctionNewWT(void)
 		AuctionStr.x = pActAuctionWT->x + 30;
 		AuctionStr.y = pActAuctionWT->y + 260;
 		AuctionStr.fontPrio = FONT_PRIO_FRONT;
-		// 价钱文字初始化
+		// 價錢文字初始化
 		ZeroMemory(AuctionMoney.buffer, sizeof(AuctionMoney.buffer));
 		AuctionMoney.cnt = 0;
 		AuctionMoney.cursor = 0;
@@ -18522,7 +18522,7 @@ void AuctionNewWT(void)
 		AuctionMoney.x = pActAuctionWT->x + 95;
 		AuctionMoney.y = pActAuctionWT->y + 387;
 		AuctionMoney.fontPrio = FONT_PRIO_FRONT;
-		// 道具叙述初始化
+		// 道具敘述初始化
 		ZeroMemory(AuctionItem.buffer, sizeof(AuctionItem.buffer));
 		AuctionItem.cnt = 0;
 		AuctionItem.cursor = 0;
@@ -18538,14 +18538,14 @@ void AuctionNewWT(void)
 	}
 	else
 	{
-		// 如果视窗已经开好了
+		// 如果視窗已經開好瞭
 		if (pActAuctionWT->hp > 0)
 		{
-			// 座标设定
+			// 座標設定
 			x = pActAuctionWT->x;
 			y = pActAuctionWT->y;
 
-			// 如果滑鼠左键按着
+			// 如果滑鼠左鍵按著
 			if (mouse.onceState & MOUSE_LEFT_CRICK)
 			{
 				for (i = 0; i < 3; i++)
@@ -18565,7 +18565,7 @@ void AuctionNewWT(void)
 					}
 				}
 			}
-			// 如果滑鼠左键放开
+			// 如果滑鼠左鍵放開
 			if (mouse.onceState & MOUSE_LEFT_CRICK_UP)
 			{
 				for (i = 0; i < 3; i++)
@@ -18582,20 +18582,20 @@ void AuctionNewWT(void)
 				{
 					if (MakeHitBox(x + 261 + j * 50 - 24, y + 272 + i * 48 - 24, x + 261 + j * 50 + 25, y + 272 + i * 48 + 23, DISP_PRIO_IME3) == TRUE)
 					{
-						// 如果滑鼠左键double-click
+						// 如果滑鼠左鍵double-click
 						if (mouse.onceState & MOUSE_LEFT_DBL_CRICK)
 						{
 							for (k = 0; k < MAX_ITEM - MAX_ITEMSTART; k++) nItem[k][1] = 0;
 #ifdef _NEW_ITEM_
-							extern int 道具栏页数;
-							int 道具起始 = MAX_ITEMSTART+MAX_MAXHAVEITEM*道具栏页数;
-							int 道具结束 = 道具起始+MAX_MAXHAVEITEM;
+							extern int 道具欄頁數;
+							int 道具起始 = MAX_ITEMSTART+MAX_MAXHAVEITEM*道具欄頁數;
+							int 道具結束 = 道具起始+MAX_MAXHAVEITEM;
 							if(i>=MAX_ITEMSTART){
-								if(i<道具起始||i>=道具结束) continue;
+								if(i<道具起始||i>=道具結束) continue;
 							}
 #endif
 							nItem[i * 5 + j][1] = 1;
-							// 那一个道具被点选了
+							// 那一個道具被點選瞭
 							nItemSelect = i * 5 + j + 5;
 							nAuctionKind = 2;
 							DeathAction(pShowPet2);
@@ -18607,16 +18607,16 @@ void AuctionNewWT(void)
 				}
 			}
 
-			// 按下了确定
+			// 按下瞭確定
 			if (nButton2[0][1] || nButton2[1][1])
 			{
 				if (nButton2[0][1])
 				{
-					// 若是要卖宠物
+					// 若是要賣寵物
 					if (nAuctionKind == 1)
 					{
 						CheckSpace(AuctionStr.buffer);
-						// 有这只宠物
+						// 有這隻寵物
 						if (pet[nPetShow].useFlag == 1)
 						{
 							makeEscapeString(AuctionStr.buffer, szSendMsg[0], sizeof(AuctionStr.buffer));
@@ -18626,10 +18626,10 @@ void AuctionNewWT(void)
 							else   				 old_lssproto_WN_send(sockfd, nowGx, nowGy, indexWN, idWN, WINDOW_BUTTONTYPE_YES, szSendMsg[2]);
 						}
 					}
-					// 若是要卖道具
+					// 若是要賣道具
 					if (nAuctionKind == 2)
 					{
-						// 有这个道具
+						// 有這個道具
 						if (pc.item[nItemSelect].useFlag == 1)
 						{
 							makeEscapeString(AuctionStr.buffer, szSendMsg[0], sizeof(AuctionStr.buffer));
@@ -18652,14 +18652,14 @@ void AuctionNewWT(void)
 				return;
 			}
 
-			// 按下了上箭头
+			// 按下瞭上箭頭
 			if (nButton1[0][1] && bPress)
 			{
 				bPress = FALSE;
 				nPet = (nPet - 1 < 0 ? 4 : nPet - 1);
 				DeathAction(pShowPet1);
 				pShowPet1 = NULL;
-				// 秀宠物
+				// 秀寵物
 				for (i = 0; i < MAX_PET; i++)
 				{
 					if (pet[nPet].useFlag == 1)
@@ -18671,7 +18671,7 @@ void AuctionNewWT(void)
 				}
 				play_se(217, 320, 240);
 			}
-			// 按下了ok
+			// 按下瞭ok
 			if (nButton1[1][1] && bPress)
 			{
 				nAuctionKind = 1;
@@ -18683,19 +18683,19 @@ void AuctionNewWT(void)
 					nPetShow = nPet;
 					DeathAction(pShowPet2);
 					pShowPet2 = NULL;
-					// 秀要被拍卖的宠物
+					// 秀要被拍賣的寵物
 					if (pet[nPetShow].useFlag == 1) pShowPet2 = MakeAnimDisp(x + 15 + 70, y + 55 + 120, pet[nPetShow].graNo, 0);
 				}
 				play_se(217, 320, 240);
 			}
-			// 按下了下箭头
+			// 按下瞭下箭頭
 			if (nButton1[2][1] && bPress)
 			{
 				bPress = FALSE;
 				nPet = (nPet + 1 >= 5 ? 0 : nPet + 1);
 				DeathAction(pShowPet1);
 				pShowPet1 = NULL;
-				// 秀宠物
+				// 秀寵物
 				for (i = 0; i < MAX_PET; i++)
 				{
 					if (pet[nPet].useFlag == 1)
@@ -18708,13 +18708,13 @@ void AuctionNewWT(void)
 				play_se(217, 320, 240);
 			}
 
-			// 滑鼠在叙述区内
+			// 滑鼠在敘述區內
 			if (MakeHitBox(AuctionStr.x, AuctionStr.y, AuctionStr.x + 170, AuctionStr.y + 95, DISP_PRIO_BOX2) == TRUE)
 			{
 				GetKeyInputFocus(&AuctionStr);
 			}
 
-			// 滑鼠在价钱区内
+			// 滑鼠在價錢區內
 			if (MakeHitBox(AuctionMoney.x, AuctionMoney.y, AuctionMoney.x + 115, AuctionMoney.y + 18, DISP_PRIO_BOX2) == TRUE)
 			{
 				GetKeyInputFocus(&AuctionMoney);
@@ -18722,48 +18722,48 @@ void AuctionNewWT(void)
 
 			if (pActAuctionWT != NULL)
 			{
-				// 显示及设定button出现的位置
+				// 顯示及設定button齣現的位置
 				nButton1[0][0] = StockDispBuffer(x + 485, y + 70, DISP_PRIO_IME3, AUCTION_UP_U + nButton1[0][1], 2);
 				nButton1[1][0] = StockDispBuffer(x + 484, y + 100, DISP_PRIO_IME3, AUCTION_OK_U + nButton1[1][1], 2);
 				nButton1[2][0] = StockDispBuffer(x + 485, y + 130, DISP_PRIO_IME3, AUCTION_DOWN_U + nButton1[2][1], 2);
 				nButton2[0][0] = StockDispBuffer(x + 312, y + 422, DISP_PRIO_IME3, AUCTION_DECIDE_U + nButton2[0][1], 2);
 				nButton2[1][0] = StockDispBuffer(x + 432, y + 422, DISP_PRIO_IME3, AUCTION_CANCEL_R_U, 2);
 
-				// 显示玩家身上的道具
+				// 顯示玩傢身上的道具
 				for (i = 0; i < 3; i++)
 				{
 					for (j = 0; j < 5; j++)
 					{
-						// 如果这一栏有道具且没被点选到,秀在右下角的身上道具栏
+						// 如果這一欄有道具且沒被點選到,秀在右下角的身上道具欄
 						if (!nItem[i * 5 + j][1])
 						{
-							// 秀道具图
+							// 秀道具圖
 							if (pc.item[i * 5 + j + 5].useFlag == 1) nItem[i * 5 + j][0] = StockDispBuffer(x + 262 + j * 50, y + 273 + i * 48, DISP_PRIO_ITEM, pc.item[i * 5 + j + 5].graNo, 0);
 						}
-						// 如果这一栏的道具被点选到,秀在左上角的要被拍卖的栏位
+						// 如果這一欄的道具被點選到,秀在左上角的要被拍賣的欄位
 						else
 						{
-							// 秀道具图
+							// 秀道具圖
 							StockDispBuffer(x + 120, y + 125, DISP_PRIO_IME3, pc.item[i * 5 + j + 5].graNo, 0);
-							// 秀底下的石板
+							// 秀底下的石闆
 							StockDispBuffer(x + 120, y + 125, DISP_PRIO_IME3, AUCTION_PLANK, 0);
-							// 秀道具名称
+							// 秀道具名稱
 							StockFontBuffer(x + 36, y + 28, FONT_PRIO_FRONT, 0, pc.item[i * 5 + j + 5].name, 0);
-							// 秀道具叙述
+							// 秀道具敘述
 							strncpy_s(AuctionItem.buffer, pc.item[i * 5 + j + 5].memo, 64);
 							StockFontBuffer2(&AuctionItem);
 						}
 					}
 				}
-				// 显示玩家身上的宠物资料
-				// 把选到的宠物资料秀在右边
+				// 顯示玩傢身上的寵物資料
+				// 把選到的寵物資料秀在右邊
 				if (pet[nPet].useFlag == 1)
 				{
 					if (pShowPet1 != NULL)
 					{
-						// 秀宠物名称
+						// 秀寵物名稱
 						StockFontBuffer(x + 256, y + 28, FONT_PRIO_FRONT, 0, pet[nPet].name, 0);
-						// 秀宠物的属性
+						// 秀寵物的屬性
 						_itoa_s(pet[nPet].level, temp, 10);
 						StockFontBuffer(x + 400, y + 58, FONT_PRIO_FRONT, 0, temp, 0);
 						_itoa_s(pet[nPet].atk, temp, 10);
@@ -18777,14 +18777,14 @@ void AuctionNewWT(void)
 						_itoa_s(pet[nPet].ai, temp, 10);
 						StockFontBuffer(x + 400, y + 58 + 140, FONT_PRIO_FRONT, 0, temp, 0);
 					}
-					// 如果有按下ok 把宠物资料秀在左边
+					// 如果有按下ok 把寵物資料秀在左邊
 					if (nAuctionKind == 1 && pShowPet2 != NULL)
 					{
-						// 秀宠物名称
+						// 秀寵物名稱
 						StockFontBuffer(x + 36, y + 28, FONT_PRIO_FRONT, 0, pet[nPetShow].name, 0);
-						// 秀宠物属性底下的底图
+						// 秀寵物屬性底下的底圖
 						StockDispBuffer(x + 180, y + 137, DISP_PRIO_IME3, AUCTION_PET_STAT, 0);
-						// 秀宠物的属性
+						// 秀寵物的屬性
 						_itoa_s(pet[nPetShow].level, temp, 10);
 						StockFontBuffer(x + 180, y + 58, FONT_PRIO_FRONT, 0, temp, 0);
 						_itoa_s(pet[nPetShow].atk, temp, 10);
@@ -18811,19 +18811,19 @@ void AuctionNewWT(void)
 
 void AuctionListWT(void)
 {
-	static ALD aldArea[10];		// server一次传最多十个委托的内容过来
-	static int nButton[5][2];	// nButton[x][y]-> x:0->领回 x:1->观看资料 x:2->上一页 x:3->下一页 x:4->取消  
-	//                 y:0->被点选时的按钮编号 y:1->点选状态 0->没点选 1->有点选 2->无作用
-	static int nList[10][2];	// 传来的十个委托有无被点选到 nList[x][y]-> x:0~9->十个委托内容  
-	//															            y:0->被点选时的按钮编号 y:1->点选状态 0->没点选 1->有点选
-	static int nListSelect;   // 选到第几个列表
+	static ALD aldArea[10];		// server一次傳最多十個委托的內容過來
+	static int nButton[5][2];	// nButton[x][y]-> x:0->領迴 x:1->觀看資料 x:2->上一頁 x:3->下一頁 x:4->取消  
+	//                 y:0->被點選時的按鈕編號 y:1->點選狀態 0->沒點選 1->有點選 2->無作用
+	static int nList[10][2];	// 傳來的十個委托有無被點選到 nList[x][y]-> x:0~9->十個委托內容  
+	//															            y:0->被點選時的按鈕編號 y:1->點選狀態 0->沒點選 1->有點選
+	static int nListSelect;   // 選到第幾個列錶
 	int x, y, i;
 	char temp[16], szSendMsg[2][260];
-	static char id[16];							// 玩家的cd key
+	static char id[16];							// 玩傢的cd key
 	static BOOL bPress;
-	static BOOL bIsThisPlayerAuction; // 选到的选项是否为这个玩家的委托
-	static int nListNum;			// 列表的编号
-	static int nCurrentPage;	// 目前页数
+	static BOOL bIsThisPlayerAuction; // 選到的選項是否為這個玩傢的委托
+	static int nListNum;			// 列錶的編號
+	static int nCurrentPage;	// 目前頁數
 
 	if (CheckMenuFlag()
 		|| (joy_trg[0] & JOY_ESC)
@@ -18855,13 +18855,13 @@ void AuctionListWT(void)
 		if (buttonTypeWN & WINDOW_BUTTONTYPE_NEXT) nButton[3][1] = 0;
 	}
 
-	// 如果目前没有产生委托介面
+	// 如果目前沒有産生委托介麵
 	if (pActAuctionWT == NULL)
 	{
-		// 产生委托介面
+		// 産生委托介麵
 		pActAuctionWT = MakeWindowDisp(50, 15, 540, 450, AUCTION_LIST, -1);
 		ZeroMemory(nList, sizeof(nList));
-		nButton[0][1] = 2; // 一开始设定为无作用
+		nButton[0][1] = 2; // 一開始設定為無作用
 		nButton[1][1] = 2;
 		nButton[2][1] = 2;
 		if (!(buttonTypeWN & WINDOW_BUTTONTYPE_NEXT)) nButton[3][1] = 2;
@@ -18879,14 +18879,14 @@ void AuctionListWT(void)
 	}
 	else
 	{
-		// 如果视窗已经开好了
+		// 如果視窗已經開好瞭
 		if (pActAuctionWT->hp > 0)
 		{
-			// 座标设定
+			// 座標設定
 			x = pActAuctionWT->x;
 			y = pActAuctionWT->y;
 
-			// 如果滑鼠左键按着
+			// 如果滑鼠左鍵按著
 			if (mouse.onceState & MOUSE_LEFT_CRICK)
 			{
 				for (i = 0; i < 10; i++)
@@ -18894,7 +18894,7 @@ void AuctionListWT(void)
 					nList[i][1] = 0;
 					if (HitFontNo == nList[i][0])
 					{
-						// 如果点选到这个委托的玩家是这个委托的原委托者
+						// 如果點選到這個委托的玩傢是這個委托的原委托者
 						if (!strcmp(aldArea[i].cdkey, id))
 						{
 							bIsThisPlayerAuction = TRUE;
@@ -18916,7 +18916,7 @@ void AuctionListWT(void)
 					}
 				}
 			}
-			// 如果滑鼠左键放开
+			// 如果滑鼠左鍵放開
 			if (mouse.onceState & MOUSE_LEFT_CRICK_UP)
 			{
 				if (!bIsThisPlayerAuction) nButton[0][1] = 2;
@@ -18931,7 +18931,7 @@ void AuctionListWT(void)
 					}
 				}
 			}
-			// 按了领回或按了观看资料  传aldArea[nListSelect].index回去server
+			// 按瞭領迴或按瞭觀看資料  傳aldArea[nListSelect].index迴去server
 			if (nButton[0][1] == 1 || nButton[1][1] == 1)
 			{
 				int type;
@@ -18952,7 +18952,7 @@ void AuctionListWT(void)
 				play_se(217, 320, 240);
 				return;
 			}
-			// 按了上一页或按了下一页 传aldArea[0].index回去server
+			// 按瞭上一頁或按瞭下一頁 傳aldArea[0].index迴去server
 			if ((nButton[2][1] == 1 || nButton[3][1] == 1) && bPress)
 			{
 				int type;
@@ -18976,7 +18976,7 @@ void AuctionListWT(void)
 				else   				 old_lssproto_WN_send(sockfd, nowGx, nowGy, indexWN, idWN, type, szSendMsg[0]);
 				bPress = FALSE;
 			}
-			// 如果按了取消
+			// 如果按瞭取消
 			if (nButton[4][1])
 			{
 				StockDispBuffer(x + 439, y + 386, DISP_PRIO_IME3, AUCTION_CANCEL_Y_U + nButton[4][1], 2);
@@ -18988,32 +18988,32 @@ void AuctionListWT(void)
 				return;
 			}
 
-			// 显示及设定button出现的位置
+			// 顯示及設定button齣現的位置
 			nButton[0][0] = StockDispBuffer(x + 102, y + 386, DISP_PRIO_IME3, AUCTION_GET_BACK_U + nButton[0][1], nButton[0][1] == 2 ? 0 : 2);
 			nButton[1][0] = StockDispBuffer(x + 172, y + 386, DISP_PRIO_IME3, AUCTION_SEE_DATA_U + nButton[1][1], nButton[1][1] == 2 ? 0 : 2);
 			nButton[2][0] = StockDispBuffer(x + 299, y + 386, DISP_PRIO_IME3, AUCTION_PAGE_UP_U + nButton[2][1], nButton[2][1] == 2 ? 0 : 2);
 			nButton[3][0] = StockDispBuffer(x + 369, y + 386, DISP_PRIO_IME3, AUCTION_PAGE_DOWN_U + nButton[3][1], nButton[3][1] == 2 ? 0 : 2);
 			nButton[4][0] = StockDispBuffer(x + 439, y + 386, DISP_PRIO_IME3, AUCTION_CANCEL_Y_U, 2);
-			// 秀出目前页数
-			sprintf_s(temp, "%d/9 页", nCurrentPage);
+			// 秀齣目前頁數
+			sprintf_s(temp, "%d/9 頁", nCurrentPage);
 			StockFontBuffer(x + 420, y + 350, FONT_PRIO_FRONT, 0, temp, 0);
 			for (i = 0; i<10; i++)
 			{
 				if (strlen(aldArea[i].account) > 0)
 				{
-					// 秀出编号
+					// 秀齣編號
 					_itoa_s(nListNum + i, temp, 16, 10);
 					StockFontBuffer(x + 92, y + 110 + i * 25, FONT_PRIO_FRONT, 0, temp, 0);
-					// 秀出叙述
-					// 修改列表
+					// 秀齣敘述
+					// 修改列錶
 					if (windowTypeWN == WINDOW_MESSAGETYPE_AUCTIONLIST_MODIFY)
 					{
-						// 如果是这个玩家的委托,叙述秀红字;点选到秀黄字
+						// 如果是這個玩傢的委托,敘述秀紅字;點選到秀黃字
 						if (!strcmp(aldArea[i].cdkey, id)) nList[i][0] = StockFontBuffer(x + 132, y + 110 + i * 25, FONT_PRIO_FRONT, nListSelect == i ? FONT_PAL_YELLOW : FONT_PAL_RED, aldArea[i].account, 2);
-						// 其它的叙述不能点选秀白字
+						// 其它的敘述不能點選秀白字
 						else StockFontBuffer(x + 132, y + 110 + i * 25, FONT_PRIO_FRONT, 0, aldArea[i].account, 0);
 					}
-					// 购买列表
+					// 購買列錶
 					else nList[i][0] = StockFontBuffer(x + 132, y + 110 + i * 25, FONT_PRIO_FRONT, nListSelect == i ? FONT_PAL_YELLOW : 0, aldArea[i].account, 2);
 				}
 			}
@@ -19026,9 +19026,9 @@ void AuctionListWT(void)
 void AuctionSurveyModifyWT(void)
 {
 	static ACTION *pShowPet = NULL;
-	static ALD ald;	// 委托物的各项资料
-	static int nButton[2][2]; // nButton[x][y]-> x:0->确定 x:1->取消
-	//                 y:0->被点选时的按钮编号 y:1->点选状态 0->没点选 1->有点选
+	static ALD ald;	// 委托物的各項資料
+	static int nButton[2][2]; // nButton[x][y]-> x:0->確定 x:1->取消
+	//                 y:0->被點選時的按鈕編號 y:1->點選狀態 0->沒點選 1->有點選
 	static BOOL bPress;
 	int x, y, i;
 	char szSendMsg[2][8];
@@ -19056,16 +19056,16 @@ void AuctionSurveyModifyWT(void)
 			return;
 		}
 	}
-	// 如果目前没有产生购买介面
+	// 如果目前沒有産生購買介麵
 	if (pActAuctionWT == NULL)
 	{
-		// 产生购买介面
+		// 産生購買介麵
 		pActAuctionWT = MakeWindowDisp(50, 15, 540, 450, AUCTION_SURVEY, -1);
 		ZeroMemory(&ald, sizeof(ald));
 		ZeroMemory(nButton, sizeof(nButton));
 		AuctionGetString(1, &ald);
 		bPress = FALSE;
-		// 叙述文字初始化
+		// 敘述文字初始化
 		strcpy(AuctionStr.buffer, ald.account);
 		AuctionStr.cnt = strlen(AuctionStr.buffer);
 		AuctionStr.cursor = strlen(AuctionStr.buffer);
@@ -19076,7 +19076,7 @@ void AuctionSurveyModifyWT(void)
 		AuctionStr.x = pActAuctionWT->x + 230;
 		AuctionStr.y = pActAuctionWT->y + 265;
 		AuctionStr.fontPrio = FONT_PRIO_FRONT;
-		// 价钱文字初始化
+		// 價錢文字初始化
 		strcpy(AuctionMoney.buffer, ald.money);
 		AuctionMoney.cnt = strlen(AuctionMoney.buffer);
 		AuctionMoney.cursor = strlen(AuctionMoney.buffer);
@@ -19087,7 +19087,7 @@ void AuctionSurveyModifyWT(void)
 		AuctionMoney.x = pActAuctionWT->x + 270;
 		AuctionMoney.y = pActAuctionWT->y + 385;
 		AuctionMoney.fontPrio = FONT_PRIO_FRONT;
-		// 道具叙述初始化
+		// 道具敘述初始化
 		if (ald.kind == 2)
 		{
 			strcpy(AuctionItem.buffer, ald.item_effect_string);
@@ -19106,26 +19106,26 @@ void AuctionSurveyModifyWT(void)
 	}
 	else
 	{
-		// 如果视窗已经开好了
+		// 如果視窗已經開好瞭
 		if (pActAuctionWT->hp > 0)
 		{
-			// 座标设定
+			// 座標設定
 			x = pActAuctionWT->x;
 			y = pActAuctionWT->y;
 
-			// 如果滑鼠左键按着
+			// 如果滑鼠左鍵按著
 			if (mouse.onceState & MOUSE_LEFT_CRICK)
 			{
 				for (i = 0; i < 2; i++) if (HitDispNo == nButton[i][0]) nButton[i][1] = 1;
 				bPress = TRUE;
 			}
-			// 如果滑鼠左键放开
+			// 如果滑鼠左鍵放開
 			if (mouse.onceState & MOUSE_LEFT_CRICK_UP)
 			{
 				for (i = 0; i < 2; i++) nButton[i][1] = 0;
 				bPress = FALSE;
 			}
-			// 如果按下确定或取消
+			// 如果按下確定或取消
 			if (nButton[0][1] || nButton[1][1])
 			{
 				if (nButton[0][1])
@@ -19151,33 +19151,33 @@ void AuctionSurveyModifyWT(void)
 
 			if (windowTypeWN == WINDOW_MESSAGETYPE_AUCTIONMODIFY)
 			{
-				// 滑鼠在叙述区内
+				// 滑鼠在敘述區內
 				if (MakeHitBox(AuctionStr.x, AuctionStr.y, AuctionStr.x + 170, AuctionStr.y + 95, DISP_PRIO_BOX2) == TRUE)
 				{
 					GetKeyInputFocus(&AuctionStr);
 				}
 
-				// 滑鼠在价钱区内
+				// 滑鼠在價錢區內
 				if (MakeHitBox(AuctionMoney.x, AuctionMoney.y, AuctionMoney.x + 115, AuctionMoney.y + 18, DISP_PRIO_BOX2) == TRUE)
 				{
 					GetKeyInputFocus(&AuctionMoney);
 				}
 			}
 
-			// 显示及设定button出现的位置
+			// 顯示及設定button齣現的位置
 			nButton[0][0] = StockDispBuffer(x + 210, y + 433, DISP_PRIO_IME3, AUCTION_DECIDE_U, 2);
 			nButton[1][0] = StockDispBuffer(x + 320, y + 433, DISP_PRIO_IME3, AUCTION_CANCEL_R_U, 2);
-			// 显示委托人名字
+			// 顯示委托人名字
 			StockFontBuffer(x + 235, y + 22, FONT_PRIO_FRONT, 0, ald.name, 1);
-			// 若是宠物
+			// 若是寵物
 			if (ald.kind == 1)
 			{
 				if (pShowPet == NULL) pShowPet = MakeAnimDisp(x + 280, y + 200, ald.grp_no, 0);
-				// 显示宠物名字
+				// 顯示寵物名字
 				StockFontBuffer(x + 235, y + 55, FONT_PRIO_FRONT, 0, ald.sellname, 1);
-				// 秀宠物属性底下的底图
+				// 秀寵物屬性底下的底圖
 				StockDispBuffer(x + 375, y + 170, DISP_PRIO_IME3, AUCTION_PET_STAT, 0);
-				// 秀宠物资料
+				// 秀寵物資料
 				_itoa_s(ald.lv, szPetAttrib, 10);
 				StockFontBuffer(x + 375, y + 90, FONT_PRIO_FRONT, 0, szPetAttrib, 1);
 				_itoa_s(ald.act, szPetAttrib, 10);
@@ -19193,21 +19193,21 @@ void AuctionSurveyModifyWT(void)
 			}
 			else
 			{
-				// 显示道具名字
+				// 顯示道具名字
 				StockFontBuffer(x + 235, y + 55, FONT_PRIO_FRONT, ald.name_color, ald.sellname, 1);
-				// 显示道具叙述
+				// 顯示道具敘述
 				StockFontBuffer2(&AuctionItem);
-				// 秀道具图
+				// 秀道具圖
 				StockDispBuffer(x + 315, y + 155, DISP_PRIO_IME3, ald.grp_no, 0);
-				// 秀底下的石板
+				// 秀底下的石闆
 				StockDispBuffer(x + 315, y + 155, DISP_PRIO_IME3, AUCTION_PLANK, 0);
 			}
-			// 秀出叙述及价钱
+			// 秀齣敘述及價錢
 			StockFontBuffer2(&AuctionStr);
 			CheckNumber(AuctionMoney.buffer, -1);
 			StockFontBuffer2(&AuctionMoney);
 
-			// 如果是修改委托内容,秀出"修改"的图把"购买"的字盖掉
+			// 如果是修改委托內容,秀齣"修改"的圖把"購買"的字蓋掉
 			if (windowTypeWN == WINDOW_MESSAGETYPE_AUCTIONMODIFY) StockDispBuffer(x + 160, y, DISP_PRIO_IME3, AUCTION_SURVEY_1, 1);
 			StockDispBuffer(320, 240, DISP_PRIO_IME3, AUCTION_SURVEY, 1);
 		}
@@ -19223,7 +19223,7 @@ void AuctionGetString(int nWhichOne, pALD ald)
 	ZeroMemory(buf, sizeof(buf));
 	ZeroMemory(temp, sizeof(temp));
 	makeStringFromEscaped(szpALD);
-	// 若是开了list
+	// 若是開瞭list
 	if (nWhichOne == 0)
 	{
 		for (i = 0; i < 10; i++)
@@ -19234,56 +19234,56 @@ void AuctionGetString(int nWhichOne, pALD ald)
 			ald[i].index = atoi(temp);
 			getStringToken(buf, '|', 2, sizeof(ald[i].cdkey), ald[i].cdkey);				// 委托人的cdkey
 			makeStringFromEscaped(ald[i].cdkey);
-			getStringToken(buf, '|', 3, sizeof(ald[i].account), ald[i].account);		// 叙述
+			getStringToken(buf, '|', 3, sizeof(ald[i].account), ald[i].account);		// 敘述
 			makeStringFromEscaped(ald[i].account);
 		}
 	}
-	// 若是开了观看资料
+	// 若是開瞭觀看資料
 	if (nWhichOne == 1)
 	{
 		getStringToken(szpALD, '|', 1, sizeof(temp), temp);											// 索引值
 		ald->index = atoi(temp);
 		getStringToken(szpALD, '|', 2, sizeof(ald->name), ald->name);					// 委托人名字
 		makeStringFromEscaped(ald->name);
-		getStringToken(szpALD, '|', 3, sizeof(ald->account), ald->account);			// 叙述
+		getStringToken(szpALD, '|', 3, sizeof(ald->account), ald->account);			// 敘述
 		makeStringFromEscaped(ald->account);
-		getStringToken(szpALD, '|', 4, sizeof(ald->money), ald->money);				// 价钱
-		getStringToken(szpALD, '|', 5, sizeof(temp), temp);										// 卖宠物或是物品
+		getStringToken(szpALD, '|', 4, sizeof(ald->money), ald->money);				// 價錢
+		getStringToken(szpALD, '|', 5, sizeof(temp), temp);										// 賣寵物或是物品
 		ald->kind = atoi(temp);
-		getStringToken(szpALD, '|', 6, sizeof(buf), buf);								  		// 取得宠物或是物品的资料
+		getStringToken(szpALD, '|', 6, sizeof(buf), buf);								  		// 取得寵物或是物品的資料
 		makeStringFromEscaped(buf);
-		getStringToken(buf, '|', 1, sizeof(ald->sellname), ald->sellname);		// 宠物或是物品的名称
-		getStringToken(buf, '|', 2, sizeof(temp), temp);		           				// 宠物或是物品的图号
+		getStringToken(buf, '|', 1, sizeof(ald->sellname), ald->sellname);		// 寵物或是物品的名稱
+		getStringToken(buf, '|', 2, sizeof(temp), temp);		           				// 寵物或是物品的圖號
 		ald->grp_no = atoi(temp);
-		// 若是卖宠物
+		// 若是賣寵物
 		if (ald[0].kind == 1)
 		{
-			getStringToken(buf, '|', 3, sizeof(temp), temp);									// 宠物的等级
+			getStringToken(buf, '|', 3, sizeof(temp), temp);									// 寵物的等級
 			ald->lv = atoi(temp);
-			getStringToken(buf, '|', 4, sizeof(temp), temp);									// 宠物的攻
+			getStringToken(buf, '|', 4, sizeof(temp), temp);									// 寵物的攻
 			ald->act = atoi(temp);
-			getStringToken(buf, '|', 5, sizeof(temp), temp);									// 宠物的防
+			getStringToken(buf, '|', 5, sizeof(temp), temp);									// 寵物的防
 			ald->def = atoi(temp);
-			getStringToken(buf, '|', 6, sizeof(temp), temp);									// 宠物的敏
+			getStringToken(buf, '|', 6, sizeof(temp), temp);									// 寵物的敏
 			ald->dex = atoi(temp);
-			getStringToken(buf, '|', 7, sizeof(temp), temp);									// 宠物的血
+			getStringToken(buf, '|', 7, sizeof(temp), temp);									// 寵物的血
 			ald->hp = atoi(temp);
-			getStringToken(buf, '|', 8, sizeof(temp), temp);									// 宠物的忠诚
+			getStringToken(buf, '|', 8, sizeof(temp), temp);									// 寵物的忠誠
 			ald->loyal = atoi(temp);
 		}
-		// 卖道具
+		// 賣道具
 		else
 		{
-			getStringToken(buf, '|', 3, sizeof(temp), temp);									// 道具名称的颜色 0:白字 4:黄字 5:绿字
+			getStringToken(buf, '|', 3, sizeof(temp), temp);									// 道具名稱的顔色 0:白字 4:黃字 5:綠字
 			ald->name_color = atoi(temp);
-			getStringToken(buf, '|', 4, sizeof(temp), temp);									// 道具叙述
+			getStringToken(buf, '|', 4, sizeof(temp), temp);									// 道具敘述
 			makeStringFromEscaped(temp);
 			strncpy_s(ald->item_effect_string, temp, 64);
 		}
 	}
 }
 
-// 检查价钱是否为数字
+// 檢查價錢是否為數字
 void CheckNumber(char *buf, int num)
 {
 	int i;
@@ -19296,7 +19296,7 @@ void CheckNumber(char *buf, int num)
 }
 
 
-// 移走叙述内的空白
+// 移走敘述內的空白
 void CheckSpace(char *buf)
 {
 	int i, j;
@@ -19345,7 +19345,7 @@ void initBlackMarket(char *data){
 	}
 }
 
-#ifdef _ADD_FAMILY_TAX			   // WON ADD 增加庄园税收		
+#ifdef _ADD_FAMILY_TAX			   // WON ADD 增加莊園稅收		
 void FMTAXWindowsType( void )
 {
 	static int winX, winY;
@@ -19469,14 +19469,14 @@ void FMTAXWindowsType( void )
 
 		if( ptActMenuWin != NULL && ptActMenuWin->hp >= 1 )
 		{
-			sprintf_s( dataBuf, "%s  庄园税率调整", pc.familyName );
+			sprintf_s( dataBuf, "%s  莊園稅率調整", pc.familyName );
 			StockFontBuffer( winX+80, winY+30,
 				FONT_PRIO_FRONT, FONT_PAL_WHITE, dataBuf, 0 );
 #ifdef _READ16BITBMP
 			if(!g_bUseAlpha) StockDispHLine( winX+64, winY+50, 3 );
 #endif
 			StockFontBuffer( winX+60, winY+70,
-				FONT_PRIO_FRONT, FONT_PAL_WHITE, "税  率：", 0 );
+				FONT_PRIO_FRONT, FONT_PAL_WHITE, "稅  率：", 0 );
 
 			sprintf_s( dataBuf, "%5d	％", fm_tax_num );
 			StockFontBuffer( winX+200, winY+70,
@@ -19614,18 +19614,18 @@ void BMWindowType(void)
 				}
 				StockDispBuffer(x + i % 4 * 62 + 46, y + i / 4 * 48 + 48, DISP_PRIO_IME3, BMItem[i].iGraphicsNum + 1, 1);
 
-				if (BMItem[i].iGraphicsNum == 22268) strcpy(iName, "不知名的枪");
+				if (BMItem[i].iGraphicsNum == 22268) strcpy(iName, "不知名的槍");
 				else if (BMItem[i].iGraphicsNum == 22270) strcpy(iName, "不知名的兜");
 				else if (BMItem[i].iGraphicsNum == 22272) strcpy(iName, "不知名的服");
-				else if (BMItem[i].iGraphicsNum == 22274) strcpy(iName, "不知名的铠");
-				else if (BMItem[i].iGraphicsNum == 22276) strcpy(iName, "不知名的斧头");
-				else if (BMItem[i].iGraphicsNum == 22278) strcpy(iName, "不知名的回旋标");
+				else if (BMItem[i].iGraphicsNum == 22274) strcpy(iName, "不知名的鎧");
+				else if (BMItem[i].iGraphicsNum == 22276) strcpy(iName, "不知名的斧頭");
+				else if (BMItem[i].iGraphicsNum == 22278) strcpy(iName, "不知名的迴鏇標");
 				else if (BMItem[i].iGraphicsNum == 22280) strcpy(iName, "不知名的爪");
 				else if (BMItem[i].iGraphicsNum == 22282) strcpy(iName, "不知名的棍棒");
 				else if (BMItem[i].iGraphicsNum == 22284) strcpy(iName, "不知名的戒指");
-				else if (BMItem[i].iGraphicsNum == 22286) strcpy(iName, "不知名的首饰");
+				else if (BMItem[i].iGraphicsNum == 22286) strcpy(iName, "不知名的首飾");
 				else if (BMItem[i].iGraphicsNum == 22288) strcpy(iName, "不知名的石");
-				else if (BMItem[i].iGraphicsNum == 22290) strcpy(iName, "不知名的耳饰");
+				else if (BMItem[i].iGraphicsNum == 22290) strcpy(iName, "不知名的耳飾");
 				StockFontBuffer(x + 20, y + 180, FONT_PRIO_FRONT, FONT_PAL_YELLOW, iName, 1);
 			}
 			StockDispBuffer(x + i % 4 * 62 + 46, y + i / 4 * 48 + 48, DISP_PRIO_IME3, BMItem[i].iGraphicsNum, 1);
@@ -19829,12 +19829,12 @@ void SellSth_SellSub_MessView( void)
 			}
 
 		}
-		sprintf_s( buf, "拍卖玩家：%s", SellSthListView.username);
+		sprintf_s( buf, "拍賣玩傢：%s", SellSthListView.username);
 		StockFontBuffer( x+220, y+50, FONT_PRIO_FRONT, 0, buf, 0 );
 		StockDispBuffer( x+100, y+30, DISP_PRIO_DRAG, CG_TRADE_LINE, 0 );
 		StockDispBuffer( x+230, y+30, DISP_PRIO_DRAG, CG_TRADE_LINE, 0 );
 
-		StockFontBuffer( x+220, y+386, FONT_PRIO_FRONT, 0, "如欲购买，按OK可以通知对方。", 0 );
+		StockFontBuffer( x+220, y+386, FONT_PRIO_FRONT, 0, "如欲購買，按OK可以通知對方。", 0 );
 
 		StockFontBuffer( x+44, y+22, FONT_PRIO_FRONT, 0, SellSthListView.headmess, 0 );
 		char *splitPoint = SellSthListView.sellmess;
@@ -19886,7 +19886,7 @@ void SellSth_SellSub_MessView( void)
 					break;
 				}
 			}
-		}else if( SellSthListView.type == 2 ){//宠物
+		}else if( SellSthListView.type == 2 ){//寵物
 			if ( SellSthActPet == NULL ) {
 				SellSthSPetNum = SellSthListView.tmp[0];
 				SellSthActPet = MakeAnimDisp( x+120, y+220, SellSthSPetNum , 0 );
@@ -19900,12 +19900,12 @@ void SellSth_SellSub_MessView( void)
 
 #ifdef _PET_2TRANS
 			if( SellSthListView.tmp[2] == 1 )
-				StockFontBuffer( x+140, y+260, FONT_PRIO_FRONT, 0, "一转", 0 );
+				StockFontBuffer( x+140, y+260, FONT_PRIO_FRONT, 0, "一轉", 0 );
 			else if( SellSthListView.tmp[2] == 2 )
-				StockFontBuffer( x+140, y+260, FONT_PRIO_FRONT, 0, "二转", 0 );
+				StockFontBuffer( x+140, y+260, FONT_PRIO_FRONT, 0, "二轉", 0 );
 #else
 			if( SellSthListView.tmp[2] == 1 )
-				StockFontBuffer( x+140, y+260, FONT_PRIO_FRONT, 0, "转", 0 );
+				StockFontBuffer( x+140, y+260, FONT_PRIO_FRONT, 0, "轉", 0 );
 #endif
 			x1 = x+50;
 			y1 = y+100;
@@ -19983,7 +19983,7 @@ void SellSth_Menu( void )
 			}
 			sprintf_s( buf, "%d.[%s] %s", i, SellSthList[i].name, SellSthList[i].headmess);
 
-			//			sprintf_s( buf, "%s", "范例");
+			//			sprintf_s( buf, "%s", "範例");
 			StockFontBuffer( x1, y1, FONT_PRIO_FRONT, FONT_PAL_WHITE, buf, 0 );
 		}
 
@@ -20121,13 +20121,13 @@ void SellSth_SellSub_MessUpItem( void)
 			StockFontBuffer( x1+220, y1+21, FONT_PRIO_FRONT, FONT_PAL_WHITE, buf, 0 );
 
 		}
-		StockFontBuffer( x, y+2, FONT_PRIO_FRONT, FONT_PAL_WHITE, "请选择欲拍卖的宠物或道具：", 0 );
+		StockFontBuffer( x, y+2, FONT_PRIO_FRONT, FONT_PAL_WHITE, "請選擇欲拍賣的寵物或道具：", 0 );
 		if( selectI != -1 ){
 			int kk = MAX_ITEMSTART;
 			StockDispBuffer( x+10, y+60, DISP_PRIO_DRAG, pc.item[selectI].graNo, 0 );
 			StockFontBuffer( x+80, y+60, FONT_PRIO_FRONT, 0, pc.item[selectI].name, 0 );
 			StockFontBuffer( x+80, y+80, FONT_PRIO_FRONT, 0, pc.item[selectI].name2, 0 );
-			sprintf_s( buf, "数量：%2d", pc.item[selectI].pile);
+			sprintf_s( buf, "數量：%2d", pc.item[selectI].pile);
 			StockFontBuffer( x, y+100, FONT_PRIO_FRONT, 0, buf, 0 );
 
 			sprintf_s( buf, "耐用：%s", pc.item[selectI].damage );
@@ -20221,7 +20221,7 @@ void SellSth_SellSub_MessRegist( void )
 	int selSSthFontBtnId;
 	int x, y, w, h, i;
 
-	// 如果目前没有秀出银行介面
+	// 如果目前沒有秀齣銀行介麵
 	if( pSellSthSellProcWnd == NULL){
 		x = lpDraw->xSize/2;
 		y = lpDraw->ySize/2;
@@ -20263,10 +20263,10 @@ void SellSth_SellSub_MessRegist( void )
 		int frontX=x-36, frontY=y+42;
 		char buf[256];
 
-		StockFontBuffer( frontX, frontY, FONT_PRIO_FRONT, FONT_PAL_WHITE, "标题：", 1);
+		StockFontBuffer( frontX, frontY, FONT_PRIO_FRONT, FONT_PAL_WHITE, "標題：", 1);
 		sprintf_s( buf, "%32s", "");
 		SSthfontId[0] = StockFontBuffer( x+10, frontY, FONT_PRIO_FRONT, FONT_PAL_WHITE, buf, 2 );
-		StockFontBuffer( frontX, frontY+26, FONT_PRIO_FRONT, FONT_PAL_WHITE, "说明：", 1);
+		StockFontBuffer( frontX, frontY+26, FONT_PRIO_FRONT, FONT_PAL_WHITE, "說明：", 1);
 		sprintf_s( buf, "%64s", "");
 		SSthfontId[1] = StockFontBuffer( x+10, frontY+26, FONT_PRIO_FRONT, FONT_PAL_WHITE, buf, 2 );
 
@@ -20310,10 +20310,10 @@ void SellSth_SellSub_MessRegist( void )
 			/*
 			SellSthInput
 			SellSthMesInput
-			#define CG_AUCWND_DETAIL		26381	// 拍卖明细视窗
-			#define CG_AUCWND_MESSAGE		26382	// 拍卖讯息视窗
-			#define CG_AUCWND_COLUMN		26383	// 拍卖专栏
-			#define CG_AUCWND_CHANGE		26384	// 拍卖交换视窗
+			#define CG_AUCWND_DETAIL		26381	// 拍賣明細視窗
+			#define CG_AUCWND_MESSAGE		26382	// 拍賣訊息視窗
+			#define CG_AUCWND_COLUMN		26383	// 拍賣專欄
+			#define CG_AUCWND_CHANGE		26384	// 拍賣交換視窗
 			*/
 			StockDispBuffer( 320, 220, DISP_PRIO_IME3, CG_AUCWND_DETAIL, 1);
 	}
@@ -20618,7 +20618,7 @@ void showMouseGetNameWN( void )
 		{
 			switch( id) {
 #ifdef _TELLCHANNEL
-			case 1: // 密语
+			case 1: // 密語
 				//pc.etcFlag |= PC_ETCFLAG_CHAT_TELL;
 				pNowStrBuffer->buffer[ 0 ] = NULL;
 				pNowStrBuffer->cursor=0;
@@ -20628,7 +20628,7 @@ void showMouseGetNameWN( void )
 				TalkMode = 1;
 				break;
 #endif
-			case 2: // 黑名单
+			case 2: // 黑名單
 				if( inBlacklist)
 					removeBlacklist( mouseGetName);
 				else {
@@ -20637,10 +20637,10 @@ void showMouseGetNameWN( void )
 					addBlacklist( mouseGetName);
 				}
 				break;
-			case 3: // 清除黑名单
+			case 3: // 清除黑名單
 				cleanBlacklist();
 				break;
-			case 4: // 查询
+			case 4: // 查詢
 				// Black Jack
 				break;
 			case 5: // 踢人
@@ -20662,29 +20662,29 @@ void showMouseGetNameWN( void )
 		{
 
 
-			sprintf_s( dataBuf, "你打算对 %s ：", mouseGetName);
+			sprintf_s( dataBuf, "你打算對 %s ：", mouseGetName);
 			StockFontBuffer( winX+40, winY+30,
 				FONT_PRIO_FRONT, FONT_PAL_WHITE, dataBuf, 0 );
 
 			fontId[1] =
 				StockFontBuffer( winX+110, winY+60,
-				FONT_PRIO_FRONT, FONT_PAL_YELLOW, " 密　　语 ", 2 );
+				FONT_PRIO_FRONT, FONT_PAL_YELLOW, " 密　　語 ", 2 );
 			if( inBlacklist)
 				fontId[2] =
 				StockFontBuffer( winX+110, winY+90,
-				FONT_PRIO_FRONT, FONT_PAL_YELLOW, "移出黑名单", 2 );
+				FONT_PRIO_FRONT, FONT_PAL_YELLOW, "移齣黑名單", 2 );
 			else
 				fontId[2] =
 				StockFontBuffer( winX+110, winY+90,
-				FONT_PRIO_FRONT, FONT_PAL_YELLOW, "加入黑名单", 2 );
+				FONT_PRIO_FRONT, FONT_PAL_YELLOW, "加入黑名單", 2 );
 
 			fontId[3] =
 				StockFontBuffer( winX+110, winY+120,
-				FONT_PRIO_FRONT, FONT_PAL_YELLOW, "清除黑名单", 2 );
+				FONT_PRIO_FRONT, FONT_PAL_YELLOW, "清除黑名單", 2 );
 
 			fontId[4] =
 				StockFontBuffer( winX+110, winY+120,
-				FONT_PRIO_FRONT, FONT_PAL_YELLOW, " 查    询 ", 2 );
+				FONT_PRIO_FRONT, FONT_PAL_YELLOW, " 查    詢 ", 2 );
 
 			fontId[5] =
 				StockFontBuffer( winX+110, winY+120,
@@ -20747,7 +20747,7 @@ void initContractWN( char* data )
 		getStringToken( buf, ':', 2, sizeof( contractSign[index].name )-1, contractSign[index].name );
 		getStringToken( buf, ':', 3, sizeof( contractSign[index].fmname )-1, contractSign[index].fmname );
 		contractSign[index].used = TRUE;
-		// 判断是否签过名
+		// 判斷是否簽過名
 		if( !strcmp( contractSign[index].name, pc.name) )
 			contractSigned = TRUE;
 	}
@@ -20794,7 +20794,7 @@ void showContractWN()
 		winY = ptActMenuWin->y;
 #endif
 
-		// 契约内容排版
+		// 契約內容排版
 		memset( msgLine, 0, sizeof( msgLine));
 		page =0;
 		max_page =0;
@@ -20802,11 +20802,11 @@ void showContractWN()
 		for( i =0; i <MAX_LINE; i++) {
 			char* pFind;
 			pFind = strstr( pStart, "\\n");
-			if( pFind != NULL && pFind-pStart < MAX_CHAR ) { // 有换行符号且未超行
+			if( pFind != NULL && pFind-pStart < MAX_CHAR ) { // 有換行符號且未超行
 				strncpy_s( msgLine[i], pStart, pFind - pStart);
 				pStart = pFind +2;
 			}
-			else if( pFind != NULL && pFind-pStart >= MAX_CHAR ) { // 有换行符号但已超行
+			else if( pFind != NULL && pFind-pStart >= MAX_CHAR ) { // 有換行符號但已超行
 				strncpy_s( msgLine[i], pStart, MAX_CHAR);
 				pStart += MAX_CHAR;
 			}
@@ -20862,19 +20862,19 @@ void showContractWN()
 			case 1:
 			case 2:
 			case 3:
-				// 签名
+				// 簽名
 				if( contractSignIndex != id)
 					contractSignIndex = id;
 				else
 					contractSignIndex = -1;
 				break;
-			case 6: // 上一页
+			case 6: // 上一頁
 				if( page > 0 )	page--;
 				break;
-			case 7: // 下一页
+			case 7: // 下一頁
 				if( page < max_page )	page++;
 				break;
-			case 4: // 确定
+			case 4: // 確定
 				if( contractSignIndex != -1 )
 					lssproto_WN_send( sockfd, nowGx, nowGy, indexWN, idWN, contractSignIndex, "" );
 			default:
@@ -20894,7 +20894,7 @@ void showContractWN()
 		{
 			char sideComment[4][10] = { "甲方", "乙方", "丙方", "丁方"};
 
-			// 显示契约内容
+			// 顯示契約內容
 			for( i =0; i <LINE_PER_PAGE; i++) {
 				StockFontBufferExt( winX+30, winY+(i*26)+30,
 					FONT_PRIO_FRONT, FONT_PAL_WHITE, msgLine[(page*LINE_PER_PAGE)+i], 0, 18 );
@@ -20903,37 +20903,37 @@ void showContractWN()
 			for( i =0; i <contractArgnum; i++) {
 				int x, y;
 
-				// 签名栏横排
+				// 簽名欄橫排
 				//x = winX+40+(i%2)*240;
 				//y = winY+(winH*48)-130+((i/2)*28);
-				// 签名栏纵排
+				// 簽名欄縱排
 				x = winX + 40;
 				y = winY +(winH*48) -110 +(i*24);
 
 				if( contractSign[i].used ) {
-					// 已签过名的栏位
+					// 已簽過名的欄位
 					sprintf_s( dataBuf, "%s： %s  %s", sideComment[i],
 						contractSign[i].fmname, contractSign[i].name);
 					StockFontBuffer( x, y,
 						FONT_PRIO_FRONT, FONT_PAL_WHITE, dataBuf, 0 );
 				}
 				else {
-					// 预定签名的栏位
+					// 預定簽名的欄位
 					if( contractSignIndex == i) {
 						sprintf_s( dataBuf, "%s： %s  %s", sideComment[i], pc.familyName, pc.name );
 						fontId[i] =
 							StockFontBuffer( x, y, FONT_PRIO_FRONT, FONT_PAL_RED, dataBuf, 2 );
 					}
 					else {
-						// 可签名的栏位
+						// 可簽名的欄位
 						if( contractSigned == FALSE ) {
-							sprintf_s( dataBuf, "%s：   在此签名", sideComment[i] );
+							sprintf_s( dataBuf, "%s：   在此簽名", sideComment[i] );
 							fontId[i] =
 								StockFontBuffer( x, y, FONT_PRIO_FRONT, FONT_PAL_BLUE2, dataBuf, 2 );
 						}
-						// 已签过名不可再签
+						// 已簽過名不可再簽
 						else {
-							sprintf_s( dataBuf, "%s：   尚未签名", sideComment[i] );
+							sprintf_s( dataBuf, "%s：   尚未簽名", sideComment[i] );
 							fontId[i] =
 								StockFontBuffer( x, y, FONT_PRIO_FRONT, FONT_PAL_BLUE2, dataBuf, 0 );
 						}
@@ -20943,10 +20943,10 @@ void showContractWN()
 
 			fontId[4] =
 				StockFontBuffer( winX+100, winY+(winH*48)-50,
-				FONT_PRIO_FRONT, FONT_PAL_YELLOW, "确　定", 2 );
+				FONT_PRIO_FRONT, FONT_PAL_YELLOW, "確　定", 2 );
 
 			if( contractTime[0] != NULL ) {
-				sprintf_s( dataBuf, "立书日：%s", contractTime);
+				sprintf_s( dataBuf, "立書日：%s", contractTime);
 				StockFontBuffer( winX+(winW*64)-200, winY+(winH*48)-50,
 					FONT_PRIO_FRONT, FONT_PAL_WHITE, dataBuf, 0 );
 			}
@@ -20959,12 +20959,12 @@ void showContractWN()
 			if( page > 0 )
 				fontId[6] =
 				StockFontBuffer( winX+150, winY+248,
-				FONT_PRIO_FRONT, FONT_PAL_YELLOW, "上一页", 2 );
+				FONT_PRIO_FRONT, FONT_PAL_YELLOW, "上一頁", 2 );
 
 			if( page < max_page )
 				fontId[7] =
 				StockFontBuffer( winX+(winW*64)-200, winY+248,
-				FONT_PRIO_FRONT, FONT_PAL_YELLOW, "下一页", 2 );
+				FONT_PRIO_FRONT, FONT_PAL_YELLOW, "下一頁", 2 );
 
 		}
 	}
@@ -20973,12 +20973,12 @@ void showContractWN()
 
 #endif
 
-//猎宠大会
+//獵寵大會
 #ifdef _RACEMAN
-char linemsgWN[10][200];   //每次最多收到十笔
-char ranktitle[60];		   //排行榜名称	
+char linemsgWN[10][200];   //每次最多收到十筆
+char ranktitle[60];		   //排行榜名稱	
 
-void initRacemanRankWN( char* data)   //把资料解一解
+void initRacemanRankWN( char* data)   //把資料解一解
 {
 	int i,j;
 
@@ -20996,7 +20996,7 @@ void initRacemanRankWN( char* data)   //把资料解一解
 	getStringToken( data , ' ', 1 , sizeof(ranktitle)-1, ranktitle);
 	j =0 ;
 	for( i = 1; i < 31 ; i++ ){	
-		//处理字串
+		//處理字串
 		if(i%3==1)
 			getStringToken( data , ' ', i+1 , sizeof(rankbuf)-1, rankbuf);
 		else if(i%3==2)
@@ -21025,14 +21025,14 @@ void showRacemanRankWN( void )
 	int  btn;	
 	char *btnTitle[] =
 	{
-		"确  定",
+		"確  定",
 		"取  消",
 		//	" ＯＫ ",
 		//	"CANCEL",
-		"确  定",
+		"確  定",
 		"取  消",
-		"上一页",
-		"下一页"
+		"上一頁",
+		"下一頁"
 	};		
 
 
@@ -21121,11 +21121,11 @@ void showRacemanRankWN( void )
 		if( ptActMenuWin->hp >= 1 )
 		{
 			StockFontBuffer( winX+235-130 , winY+21+10,
-				FONT_PRIO_FRONT, FONT_PAL_YELLOW, ranktitle , 0 );//"‘猎宠个人惊为天人排行榜’", 0 );
+				FONT_PRIO_FRONT, FONT_PAL_YELLOW, ranktitle , 0 );//"‘獵寵個人驚為天人排行榜’", 0 );
 			StockFontBuffer( winX+25, winY+16+2*21,
-				FONT_PRIO_FRONT, FONT_PAL_GREEN, "‘排名’    ‘   名   称    ’      ‘抓宠数量’", 0 );
+				FONT_PRIO_FRONT, FONT_PAL_GREEN, "‘排名’    ‘   名   稱    ’      ‘抓寵數量’", 0 );
 
-			//处理资料
+			//處理資料
 			int fontcolor = FONT_PAL_WHITE;
 			for( i = 0; i < 10 ; i++ )			//一次十行
 			{
@@ -21134,7 +21134,7 @@ void showRacemanRankWN( void )
 					StockFontBuffer( winX+40, winY+14+(i+3)*21,FONT_PRIO_FRONT, fontcolor,linemsgWN[i], 0 );
 				}
 			}
-			//处理按钮
+			//處理按鈕
 			j = 0;
 			for( i = 0, mask = 1; i < 6; i++, mask <<= 1 )
 			{
@@ -21169,7 +21169,7 @@ void _80LoginProc(void)
 		SubProcNo = 8;
 	switch (SubProcNo)
 	{
-		// 产生人物
+		// 産生人物
 	case 0:
 		pMainChar = MakeAnimDisp(DEF_APPSIZEX, DEF_APPSIZEY >> 1, 100400, 0);
 		ATR_CHR_ACT(pMainChar) = ANIM_WALK;
@@ -21177,19 +21177,19 @@ void _80LoginProc(void)
 		ATR_CHR_H_POS(pMainChar) = ATR_H_POS(pMainChar);
 		SubProcNo++;
 		break;
-		// 人物往左跑到中间
+		// 人物往左跑到中間
 	case 1:
 		ATR_H_POS(pMainChar) -= 2;
-		// 跑超过中间了
+		// 跑超過中間瞭
 		if (ATR_H_POS(pMainChar) < DEF_APPSIZEX >> 1)
 		{
-			// 作生气的样子
+			// 作生氣的樣子
 			ATR_CHR_ACT(pMainChar) = ANIM_ANGRY;
 			ATR_CHR_ANG(pMainChar) = 0;
 			SubProcNo++;
 		}
 		break;
-		// 生气动作
+		// 生氣動作
 	case 2:
 		if (ATR_CHR_TIM(pMainChar) <= 0)
 			iWaitCount++;
@@ -21199,7 +21199,7 @@ void _80LoginProc(void)
 			SubProcNo++;
 		}
 		break;
-		// 转向右边吓一跳
+		// 轉嚮右邊嚇一跳
 	case 3:
 		ATR_CHR_ACT(pMainChar) = ANIM_STAND;
 		ATR_CHR_ANG(pMainChar) = 6;
@@ -21211,13 +21211,13 @@ void _80LoginProc(void)
 		ATR_DISP_PRIO(pFace) = DISP_PRIO_BOX3;
 		SubProcNo++;
 		break;
-		// 播放惊叹号
+		// 播放驚嘆號
 	case 4:
 		if (pattern(pFace, ANM_NOMAL_SPD, ANM_NO_LOOP))
 		{
 			int iShowSet, iShowPet;
 
-			// 转身逃跑
+			// 轉身逃跑
 			ATR_CHR_ANG(pMainChar) = 2;
 			ATR_CHR_ACT(pMainChar) = ANIM_WALK;
 			// 冒汗
@@ -21246,20 +21246,20 @@ void _80LoginProc(void)
 			SubProcNo++;
 		}
 		break;
-		// 场景往右移动
+		// 場景往右移動
 	case 5:
 		pattern(pFace, ANM_NOMAL_SPD, ANM_LOOP);
 		pattern(pFacePet, ANM_NOMAL_SPD, ANM_LOOP);
 		iX += 4;
 		if (iX > 960)
 		{
-			// 换登入画面
+			// 換登入畫麵
 			iBackBMP = CG_TITLE_ID_PASS;
 			iX = -320;
 			SubProcNo++;
 		}
 		break;
-		// 登入画面往右移动
+		// 登入畫麵往右移動
 	case 6:
 		pattern(pFace, ANM_NOMAL_SPD, ANM_LOOP);
 		pattern(pFacePet, ANM_NOMAL_SPD, ANM_LOOP);
@@ -21267,7 +21267,7 @@ void _80LoginProc(void)
 		if (iX >= 320)
 			SubProcNo++;
 		break;
-		// 登入画面不动,人物继续往左移动
+		// 登入畫麵不動,人物繼續往左移動
 	case 7:
 		pattern(pFace, ANM_NOMAL_SPD, ANM_LOOP);
 		pattern(pFacePet, ANM_NOMAL_SPD, ANM_LOOP);
@@ -21315,14 +21315,14 @@ void serverWindowDragonFusion( void )
 	static int btnLoc[6][2];
 	static int btnCnt;
 	char *btnTitle[] = {
-		"确  定",
+		"確  定",
 		"取  消",
 		//	" ＯＫ ",
 		//	"CANCEL",
-		"确  定", 
+		"確  定", 
 		"取  消", 
-		"上一页", 
-		"下一页" };
+		"上一頁", 
+		"下一頁" };
 
 		static int selectID[5]={-1,-1,-1,-1,-1};
 		static int selects=0;
@@ -21364,10 +21364,10 @@ void serverWindowDragonFusion( void )
 			}
 
 			if( selects >= 0 && selects < 5 ) {
-				sprintf_s( msgWN[0], "＝＝＝      请选择第%d只宠物    ＝＝＝", selects+1 );
+				sprintf_s( msgWN[0], "＝＝＝      請選擇第%d隻寵物    ＝＝＝", selects+1 );
 			}
 			else{
-				sprintf_s( msgWN[0], "＝＝＝      决定好了吗？     ＝＝＝" );
+				sprintf_s( msgWN[0], "＝＝＝      決定好瞭嗎？     ＝＝＝" );
 			}
 
 			play_se( 202, 320, 240 );	// ????????
@@ -21465,13 +21465,13 @@ void serverWindowDragonFusion( void )
 						for( k=0; k <(sizeof(selectID)/sizeof(selectID[0])); k++) {
 							if( selectID[k] == i ) {
 								if( k == 0 )
-									sprintf_s( msgWN[1], "钩召");
+									sprintf_s( msgWN[1], "鈎召");
 								else if( k == 1 )
-									sprintf_s( msgWN[1], "敬爱");
+									sprintf_s( msgWN[1], "敬愛");
 								else if( k == 2 )
-									sprintf_s( msgWN[1], "调伏");
+									sprintf_s( msgWN[1], "調伏");
 								else if( k == 3 )
-									sprintf_s( msgWN[1], "息灾");
+									sprintf_s( msgWN[1], "息災");
 								else if( k == 4 )
 									sprintf_s( msgWN[1], "增益");
 
@@ -21509,10 +21509,10 @@ void serverWindowDragonFusion( void )
 
 #ifdef _NPC_DAYACTION
 
-char llinemsgWN[10][200];   //每次最多收到十笔
-char rranktitle[60];		   //排行榜名称	
+char llinemsgWN[10][200];   //每次最多收到十筆
+char rranktitle[60];		   //排行榜名稱	
 
-void initDayactionRankWN( char* data)   //把资料解一解
+void initDayactionRankWN( char* data)   //把資料解一解
 {
 	int i,j;
 
@@ -21527,7 +21527,7 @@ void initDayactionRankWN( char* data)   //把资料解一解
 	getStringToken( data , ' ', 1 , sizeof(rranktitle)-1, rranktitle);
 	j =0 ;
 	for( i = 1; i < 31 ; i++ ){	
-		//处理字串
+		//處理字串
 		if(i%3==1)
 			getStringToken( data , ' ', i+1 , sizeof(rankbuf)-1, rankbuf);
 		else if(i%3==2)
@@ -21554,14 +21554,14 @@ void showDayactionRankWN( void )
 	int  btn;	
 	char *btnTitle[] =
 	{
-		"确  定",
+		"確  定",
 		"取  消",
 		//	" ＯＫ ",
 		//	"CANCEL",
-		"确  定",
+		"確  定",
 		"取  消",
-		"上一页",
-		"下一页"
+		"上一頁",
+		"下一頁"
 	};		
 
 
@@ -21652,9 +21652,9 @@ void showDayactionRankWN( void )
 			StockFontBuffer( winX+235-130 , winY+21+10,
 				FONT_PRIO_FRONT, FONT_PAL_YELLOW, rranktitle , 0 ); 
 			StockFontBuffer( winX+25, winY+16+2*21,
-				FONT_PRIO_FRONT, FONT_PAL_GREEN, "‘排名’    ‘   名   称    ’       ‘友好度’", 0 );
+				FONT_PRIO_FRONT, FONT_PAL_GREEN, "‘排名’    ‘   名   稱    ’       ‘友好度’", 0 );
 
-			//处理资料
+			//處理資料
 			int fontcolor = FONT_PAL_WHITE;
 			for( i = 0; i < 10 ; i++ )			//一次十行
 			{
@@ -21663,7 +21663,7 @@ void showDayactionRankWN( void )
 					StockFontBuffer( winX+40, winY+14+(i+3)*21,FONT_PRIO_FRONT, fontcolor,llinemsgWN[i], 0 );
 				}
 			}
-			//处理按钮
+			//處理按鈕
 			j = 0;
 			for( i = 0, mask = 1; i < 6; i++, mask <<= 1 )
 			{

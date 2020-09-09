@@ -21,56 +21,56 @@
 #include "petmail.h"
 #include "log.h"
 
-/*ÒáÀÃ¶ªÓÀ±¾¡õ³â¼°  Ó®Ó®½ñ£ÛÆ±Æ¥ÀÃñøÔÊÔÂ  Ù¯  ¼°Ó®½ñ·´
- ³ðÄ¾¶¯Æ±±åÔÊÔÂ³ðÎç*/
+/*è£”çˆ›ä¸Ÿæ°¸æœ¬â–¡æ–¥åŠ  è´è´ä»Šï¼»ç¥¨åŒ¹çˆ›è’å…æœˆ  å„‚  åŠè´ä»Šå
+ ä»‡æœ¨å‹•ç¥¨åžå…æœˆä»‡åˆ*/
 #define ADDRESSBOOK_FIXEDMESSAGE_MAXLEN  128
 
-/* ·ßÛÐ¼°ó¡±å²¾ÊÖÖÐØ¦¾®ÔÈÐ×¼°Æ¥£ýÊ§ÓñÒÁµ©Æ¤ÓÀÛÍ±åÜ°µÑÆ¥ÎåØ¦¾®ÔÈÐ×
-   ÎçÎå¼°ÒáÀÃ¶ªÓÀ±¾¡õ³â */
-#define ADDRESSBOOK_CANTADD "ÄÇÀïÃ»ÓÐÈÎºÎÈË¡£"
-#define ADDRESSBOOK_CANTADD2 "ÎÞ·¨½»»»ÃûÆ¬¡£"
+/* æ†¤åŒåŠèŸ†åžç°¿æ‰‹ä¸­å…äº•å‹»å‡¶åŠåŒ¹ï½å¤±çŽ‰ä¼Šæ—¦çš®æ°¸å¼åžé¦¨ç¬›åŒ¹äº”å…äº•å‹»å‡¶
+   åˆäº”åŠè£”çˆ›ä¸Ÿæ°¸æœ¬â–¡æ–¥ */
+#define ADDRESSBOOK_CANTADD "é‚£è£æ²’æœ‰ä»»ä½•äººã€‚"
+#define ADDRESSBOOK_CANTADD2 "ç„¡æ³•äº¤æ›åç‰‡ã€‚"
 
-/* ²¾¾®Ã«µÑÒüÔÂ³ðÎç»¥Æ¥ÎåÐ×ÎçÎå£ýµÑÒü·½µ¤ÎçØÆÐ×ÚÐ±åËªññÔÊÔÂ¶ªÓÀ±¾¡õ³â*/
-#define ADDRESSBOOK_ADDED "ºÍ%s½»»»ÃûÆ¬ ¡£"
+/* ç°¿äº•æ¯›ç¬›å°¹æœˆä»‡åˆäº’åŒ¹äº”å‡¶åˆäº”ï½ç¬›å°¹æ–¹ä¸¹åˆä»„å‡¶è«¦åžéœœè€¨å…æœˆä¸Ÿæ°¸æœ¬â–¡æ–¥*/
+#define ADDRESSBOOK_ADDED "å’Œ%säº¤æ›åç‰‡ ã€‚"
 
-/* ²¾¾®±åÓ¿Ã«´´ÒüÈÕÄ¾Ð×ÈÕ */
-#define ADDRESSBOOK_BEINGADDED "ºÍ%s½»»»ÃûÆ¬ ¡£"
+/* ç°¿äº•åžæ¹§æ¯›å‰µå°¹æ—¥æœ¨å‡¶æ—¥ */
+#define ADDRESSBOOK_BEINGADDED "å’Œ%säº¤æ›åç‰‡ ã€‚"
 
-/* ¾Þ¼þÐþØø»¥ÖÐÔÈÌìÖÐ·ÖÔÈÐ×ÎçÎå¼°¶ªÓÀ±¾¡õ³â */
-#define ADDRESSBOOK_MYTABLEFULL "ÃûÆ¬Ï»ÒÑÂú¡£"
+/* å·¨ä»¶çŽ„ä¼‰äº’ä¸­å‹»å¤©ä¸­åˆ†å‹»å‡¶åˆäº”åŠä¸Ÿæ°¸æœ¬â–¡æ–¥ */
+#define ADDRESSBOOK_MYTABLEFULL "åç‰‡åŒ£å·²æ»¿ã€‚"
 
-/* ÇÂÅì¼°¾Þ¼þÐþØø»¥ÖÐÔÈÌìÖÐ·ÖÔÈÐ×ÎçÎå¼°¶ªÓÀ±¾¡õ³â */
-#define ADDRESSBOOK_HISTABLEFULL "¶Ô·½µÄÃûÆ¬Ï»ÒÑÂú¡£"
+/* é¬æ¾ŽåŠå·¨ä»¶çŽ„ä¼‰äº’ä¸­å‹»å¤©ä¸­åˆ†å‹»å‡¶åˆäº”åŠä¸Ÿæ°¸æœ¬â–¡æ–¥ */
+#define ADDRESSBOOK_HISTABLEFULL "å°æ–¹çš„åç‰‡åŒ£å·²æ»¿ã€‚"
 
 
-/* ¶ªÓÀ±¾¡õ³âÃ«ËªññÔÊÔÂ¼°±åÔÀ  ØÆÐ×ÎçÎå */
-#define ADDRESSBOOK_SENT  "ËÍÐÅ¸ø%s ¡£"
+/* ä¸Ÿæ°¸æœ¬â–¡æ–¥æ¯›éœœè€¨å…æœˆåŠåžå¶½  ä»„å‡¶åˆäº” */
+#define ADDRESSBOOK_SENT  "é€ä¿¡çµ¦%s ã€‚"
 
-/* ¶ªÓÀ±¾¡õ³âÃ«ËªññÔÊÔÂ¼°±åÁÃ  ØÆÐ×ÎçÎå */
-#define ADDRESSBOOK_UNSENT  "ÎÞ·¨ËÍÐÅ¸ø%s ¡£"
+/* ä¸Ÿæ°¸æœ¬â–¡æ–¥æ¯›éœœè€¨å…æœˆåŠåžæ’©  ä»„å‡¶åˆäº” */
+#define ADDRESSBOOK_UNSENT  "ç„¡æ³•é€ä¿¡çµ¦%s ã€‚"
 
-/* ²¾¾®Ã«´´Òü·½µ¤ÎçØÆÐ×»¥£ýÅÈ±å´´Òü»¯ÖÐÐ×   */
-#define ADDRESSBOOK_ALREADYADDED  "ÒÑ¾­ºÍ%s½»»»¹ýÃûÆ¬ÁË¡£ "
+/* ç°¿äº•æ¯›å‰µå°¹æ–¹ä¸¹åˆä»„å‡¶äº’ï½æ¹ƒåžå‰µå°¹åŒ–ä¸­å‡¶   */
+#define ADDRESSBOOK_ALREADYADDED  "å·²ç¶“å’Œ%säº¤æ›éŽåç‰‡çž­ã€‚ "
 
-/*   Í­Ã«Óò  ¶Á±å  µ¤ÇÁÚØ   */
-#define ADDRESSBOOK_GIVEADDRESS  "´Ó%sµÃµ½ÃûÆ¬¡£"
+/*   éŠ…æ¯›åŸŸ  è®€åž  ä¸¹æ©‡è¬«   */
+#define ADDRESSBOOK_GIVEADDRESS  "å¾ž%så¾—åˆ°åç‰‡ã€‚"
 
-/*   Í­Ã«Óò  ¶Á±åØ¤ÆÍÔÂÇÁÚØ   */
-#define ADDRESSBOOK_TAKEADDRESS1  "¸ø%s×Ô¼ºµÄÃûÆ¬¡£"
-/*   Í­Ã«Óò  ¶Á±åØ¤ÆÍÔÂÇÁÚØ   */
-#define ADDRESSBOOK_TAKEADDRESS2  "ÒòÎª%sÏëÒªÃûÆ¬£¬ËùÒÔ½«ÃûÆ¬¸øËûÁË¡£"
+/*   éŠ…æ¯›åŸŸ  è®€åžä¸åƒ•æœˆæ©‡è¬«   */
+#define ADDRESSBOOK_TAKEADDRESS1  "çµ¦%sè‡ªå·±çš„åç‰‡ã€‚"
+/*   éŠ…æ¯›åŸŸ  è®€åžä¸åƒ•æœˆæ©‡è¬«   */
+#define ADDRESSBOOK_TAKEADDRESS2  "å› ç‚º%sæƒ³è¦åç‰‡ï¼Œæ‰€ä»¥å°‡åç‰‡çµ¦ä»–çž­ã€‚"
 
 #define	ADDRESSBOOK_RETURNED1	\
-"´Ó%s¼ÄÀ´ÐÅ¼þ£¬µ«ÓÉì¶Ã»ÓÐ%sµÄÃûÆ¬ÓÖ½«ÐÅ¼þÍË»Ø¡£"
+"å¾ž%så¯„ä¾†ä¿¡ä»¶ï¼Œä½†ç”±æ–¼æ²’æœ‰%sçš„åç‰‡åˆå°‡ä¿¡ä»¶é€€è¿´ã€‚"
 
 #define	ADDRESSBOOK_RETURNED2	\
-"¼ÄÐÅ¼þ¸ø%s£¬µ«ÓÉì¶%s Ã»ÓÐÃûÆ¬£¬ËùÒÔÐÅ¼þÓÖ±»ÍË»ØÀ´ÁË¡£"
+"å¯„ä¿¡ä»¶çµ¦%sï¼Œä½†ç”±æ–¼%s æ²’æœ‰åç‰‡ï¼Œæ‰€ä»¥ä¿¡ä»¶åˆè¢«é€€è¿´ä¾†çž­ã€‚"
 
 #define	PETMAIL_RETURNED1	\
-"%s²»ÔÚÕâ¸öÊÀ½çÀï£¬ËùÒÔÎÞ·¨¼ÄËÍÐÅ¼þ¸øËû¡£"
+"%sä¸åœ¨é€™å€‹ä¸–ç•Œè£ï¼Œæ‰€ä»¥ç„¡æ³•å¯„é€ä¿¡ä»¶çµ¦ä»–ã€‚"
 
 
-/* staticÆ¥Òøµ¤åÃ£Û  ÎåÖÐ°ÀÊÖ*/
+/* staticåŒ¹éŠ€ä¸¹è¿•ï¼»  äº”ä¸­è¥–æ‰‹*/
 char ADDRESSBOOK_returnstring[25*128];
 
 
@@ -80,20 +80,20 @@ static BOOL ADDRESSBOOK_makeEntryFromCharaindex( int charaindex,
 												 ADDRESSBOOK_entry* ae);
 
 /*------------------------------------------------------------
- * Ê§ÓñÒÁµ©Æ¤ÓÀÛÍ¼°¶ªÓÀ±¾¡õ³âÃ«ËªññÔÊÔÂ
- * MSGÃó·òÐþÎì»ï¾®ÈÕ¹´¾®´õÄ¾ÔÂ£Û
+ * å¤±çŽ‰ä¼Šæ—¦çš®æ°¸å¼åŠä¸Ÿæ°¸æœ¬â–¡æ–¥æ¯›éœœè€¨å…æœˆ
+ * MSGçš¿å¤«çŽ„æˆŠå¤¥äº•æ—¥å‹¾äº•æ­¹æœ¨æœˆï¼»
  *
- * Ö§ÔÂ³ðÎç·´£ýconnection¾®ÈÕcdkeyÆ¥¸¹³ñØÆ»¯£ýÆ½ÅÒ·Â  ÊÖ
- * ¼×ÓÀÐþØÆÐ×ÈÕ£ý MSG_sendÔÊÔÂ£Û¹«¼°ÎçÎå±å£ý·ßÛÐ¼°Ê÷  »¥
- * ÇÂÅì¼°Øøµ©Ðþ±åØ¦¾®ÔÈÐ×ÈÕÖÏÊÖØÆØ¦ÖÐÎçÖÐµ¤³ðÎç·Ö£Û
- * Â¦ÐÑ
- *  cindex  int     Æ½ÅÒ·Â¼°index
- *  aindex  int     Ê§ÓñÒÁµ©Æ¤ÓÀÛÍ¼°index
- *  text    char*   ËªññÔÊÔÂ  Ù¯
- *  color   int     çÆ
- * ß¯Ô»°À
- * ×ó¼þ·ÂÄÌ¼þ¼°Æ½ÅÒ·Â±å¶ªÓÀ±¾¡õ³âÃ«ËªññØÆÐ×ÈÕTRUE ,
- * ×ó°×·ÂÄÌ¼þ±åè¶  ØÆÐ×ÈÕFALSEÃ«¾®ÒüÔÊ
+ * æ”¯æœˆä»‡åˆåï½connectionäº•æ—¥cdkeyåŒ¹è…¹ç¶¢ä»„åŒ–ï½å¹³ä¹“ä»¿  æ‰‹
+ * ç”²æ°¸çŽ„ä»„å‡¶æ—¥ï½ MSG_sendå…æœˆï¼»å…¬åŠåˆäº”åžï½æ†¤åŒåŠæ¨¹  äº’
+ * é¬æ¾ŽåŠä¼‰æ—¦çŽ„åžå…äº•å‹»å‡¶æ—¥çª’æ‰‹ä»„å…ä¸­åˆä¸­ä¸¹ä»‡åˆåˆ†ï¼»
+ * å©é†’
+ *  cindex  int     å¹³ä¹“ä»¿åŠindex
+ *  aindex  int     å¤±çŽ‰ä¼Šæ—¦çš®æ°¸å¼åŠindex
+ *  text    char*   éœœè€¨å…æœˆ  å„‚
+ *  color   int     ç¸‰
+ * å¿’æ›°è¥–
+ * å·¦ä»¶ä»¿å¥¶ä»¶åŠå¹³ä¹“ä»¿åžä¸Ÿæ°¸æœ¬â–¡æ–¥æ¯›éœœè€¨ä»„å‡¶æ—¥TRUE ,
+ * å·¦ç™½ä»¿å¥¶ä»¶åžç“š  ä»„å‡¶æ—¥FALSEæ¯›äº•å°¹å…
  ------------------------------------------------------------*/
 BOOL ADDRESSBOOK_sendMessage( int cindex, int aindex, char* text , int color )
 {
@@ -121,16 +121,16 @@ BOOL ADDRESSBOOK_sendMessage( int cindex, int aindex, char* text , int color )
     		tm1.tm_mon +1, tm1.tm_mday, tm1.tm_hour, tm1.tm_min,
     		text);
 	
-	/*   ÈÓ¡õÌï¡õ  ±åÖÐÔÂÁÝ */
+	/*   æ‰”â–¡ç”°â–¡  åžä¸­æœˆå‡œ */
 	for( i = 0 ; i < playernum ; i ++){
 		if( CHAR_CHECKINDEX( i) &&
 			strcmp( CHAR_getChar( i, CHAR_CDKEY), ae->cdkey) == 0 &&
 			strcmp( CHAR_getChar( i, CHAR_NAME), ae->charname) == 0 )
 		{
 			/*
-			 * CDKEY ÊÖ Æ½ÅÒ·Â  ÊÖÓòÚÛØÆÐ×£Û¹«¼°Æ½ÅÒ·ÂÛÍÕý¼°
-			 * Ê§ÓñÒÁµ©Æ¤ÓÀÛÍ±å·ßÛÐ¼°Ê÷  »¥Ø¤ÔÂ¾®Æ©ÍÍ»¯£ý
-			 * Ðå»þØÆÐ×ÈÕ£ýMSGÔÊÔÂ£Û
+			 * CDKEY æ‰‹ å¹³ä¹“ä»¿  æ‰‹åŸŸè­™ä»„å‡¶ï¼»å…¬åŠå¹³ä¹“ä»¿å¼æ­£åŠ
+			 * å¤±çŽ‰ä¼Šæ—¦çš®æ°¸å¼åžæ†¤åŒåŠæ¨¹  äº’ä¸æœˆäº•è­¬å±¯åŒ–ï½
+			 * ç¶‰ç®•ä»„å‡¶æ—¥ï½MSGå…æœˆï¼»
 			 */
 			int index_to_my_info = 
 					ADDRESSBOOK_getIndexInAddressbook( i , 
@@ -139,8 +139,8 @@ BOOL ADDRESSBOOK_sendMessage( int cindex, int aindex, char* text , int color )
 			int		fd;
 			if( index_to_my_info < 0 ){
 				/*
-				 * ÇÂÅì»¥·ßÛÐÃ«ÛãÛÕØÆ»¯ØÆÒýÔÈ»¯ÔÂ£Û
-				 * ÓòÉ±  ÚÐ±å£Ý¶ª¡õ»ï»¥  Ð×Îç·ÖØêÉ§ôÅÔÊÔÂ£Û
+				 * é¬æ¾Žäº’æ†¤åŒæ¯›å«å£…ä»„åŒ–ä»„å¼•å‹»åŒ–æœˆï¼»
+				 * åŸŸæ®º  è«¦åžï¼½ä¸Ÿâ–¡å¤¥äº’  å‡¶åˆåˆ†ä»ƒé¨·è¥žå…æœˆï¼»
 				 */
 				//snprintf( tmpmsg, sizeof( tmpmsg), 
 				//		  ADDRESSBOOK_RETURNED1,
@@ -155,7 +155,7 @@ BOOL ADDRESSBOOK_sendMessage( int cindex, int aindex, char* text , int color )
 							CHAR_getChar( i, CHAR_NAME),
 							CHAR_getChar( i, CHAR_NAME));
 
-				/* ËªÔ»Ç±±åÊÖ¶ªÓÀ±¾¡õ³â */
+				/* éœœæ›°æ½›åžæ‰‹ä¸Ÿæ°¸æœ¬â–¡æ–¥ */
 				CHAR_talkToCli( cindex, -1, 
 								tmpmsg , CHAR_COLORYELLOW );
 				return FALSE;
@@ -164,7 +164,7 @@ BOOL ADDRESSBOOK_sendMessage( int cindex, int aindex, char* text , int color )
 			fd = getfdFromCharaIndex( i);
 			if( fd != -1 ) {
 				lssproto_MSG_send( fd , index_to_my_info , textbuffer , color );
-				/* ·òºëÎçÔ» */
+				/* å¤«å¼˜åˆæ›° */
 				printl( LOG_TALK, "CD=%s\tNM=%s\tT=%s" , mycd, mycharaname, textbuffer );
 			
 			}
@@ -173,7 +173,7 @@ BOOL ADDRESSBOOK_sendMessage( int cindex, int aindex, char* text , int color )
 					  ae->charname  );
 			CHAR_talkToCli(cindex,-1, tmpmsg , color );
 
-            // WON ADD ÐÞÕýsnprintf»áµ¼ÖÂµ±»úµÄbug
+            // WON ADD ä¿®æ­£snprintfæœƒå°Žç·»ç•¶æ©Ÿçš„bug
 			{
 					char tmp[1000];
 					sprintf( tmp , "ADDRESSBOOK_sendMessage:"
@@ -187,7 +187,7 @@ BOOL ADDRESSBOOK_sendMessage( int cindex, int aindex, char* text , int color )
 			return TRUE;
 		}
 	}
-	/* Î­¹´¾®ÈÕØ¦¾®ÔÈÐ×ÁÝ·´£ÝÊ§ÊÐËü¼þÐþÈÓ¡õÌï¡õ±åËªÔÂ */
+	/* è‘¦å‹¾äº•æ—¥å…äº•å‹»å‡¶å‡œåï¼½å¤±å¸‚å®ƒä»¶çŽ„æ‰”â–¡ç”°â–¡åžéœœæœˆ */
 	saacproto_Message_send( acfd, mycd, mycharaname, 
 							ae->cdkey, ae->charname, textbuffer, color);
 	CHAR_setInt( cindex, CHAR_SENDMAILCOUNT, 
@@ -200,10 +200,10 @@ BOOL ADDRESSBOOK_sendMessage( int cindex, int aindex, char* text , int color )
 	return FALSE;
 }
 /*------------------------------------------------------------
- * Ê§ÓñÒÁµ©Æ¤ÓÀÛÍ¼°¶ªÓÀ±¾¡õ³âÃ«ËªññÔÊÔÂ
- * saac ¾®ÈÕmsg Ã«°¾ØêÎçÔÈ»¯ÛÍ·ÂÄÌÊ§¼þÐþ±åºÌµ©ÐþÔÊÔÂ£Û
+ * å¤±çŽ‰ä¼Šæ—¦çš®æ°¸å¼åŠä¸Ÿæ°¸æœ¬â–¡æ–¥æ¯›éœœè€¨å…æœˆ
+ * saac äº•æ—¥msg æ¯›ç†¬ä»ƒåˆå‹»åŒ–å¼ä»¿å¥¶å¤±ä»¶çŽ„åžç¦¾æ—¦çŽ„å…æœˆï¼»
  *
- * ß¯Ô»°À
+ * å¿’æ›°è¥–
  ------------------------------------------------------------*/
 BOOL ADDRESSBOOK_sendMessage_FromOther( char *fromcdkey, char *fromcharaname, 
 										char *tocdkey, char *tocharaname,
@@ -215,7 +215,7 @@ BOOL ADDRESSBOOK_sendMessage_FromOther( char *fromcdkey, char *fromcharaname,
 	char tmpmsg[256];
 	int     playernum = CHAR_getPlayerMaxNum();
 	
-	/* ÈÓ¡õÌï¡õ  Ã«¸¹³ñÔÊÔÂ */
+	/* æ‰”â–¡ç”°â–¡  æ¯›è…¹ç¶¢å…æœˆ */
 	for( i = 0 ; i < playernum ; i ++){
 		if( CHAR_CHECKINDEX( i) &&
 			strcmp( CHAR_getChar( i, CHAR_CDKEY), tocdkey) == 0 &&
@@ -223,16 +223,16 @@ BOOL ADDRESSBOOK_sendMessage_FromOther( char *fromcdkey, char *fromcharaname,
 		{
 			int		index_to_my_info;
 			/*
-			 * CDKEY ÊÖ Æ½ÅÒ·Â  ÊÖÓòÚÛØÆÐ×£Û¹«¼°Æ½ÅÒ·ÂÛÍÕý¼°
-			 * Ê§ÓñÒÁµ©Æ¤ÓÀÛÍ±å·ßÛÐ¼°Ê÷  »¥Ø¤ÔÂ¾®Æ©ÍÍ»¯£ý
-			 * Ðå»þØÆÐ×ÈÕ£ýMSGÔÊÔÂ£Û
+			 * CDKEY æ‰‹ å¹³ä¹“ä»¿  æ‰‹åŸŸè­™ä»„å‡¶ï¼»å…¬åŠå¹³ä¹“ä»¿å¼æ­£åŠ
+			 * å¤±çŽ‰ä¼Šæ—¦çš®æ°¸å¼åžæ†¤åŒåŠæ¨¹  äº’ä¸æœˆäº•è­¬å±¯åŒ–ï½
+			 * ç¶‰ç®•ä»„å‡¶æ—¥ï½MSGå…æœˆï¼»
 			 */
 			 
-			/* ÆËµ©  Ø©¶ªÓÀ±¾¡õ³â»¥½ÑÔÈ»¯ÎåÐ× */
+			/* æ’²æ—¦  ä¸žä¸Ÿæ°¸æœ¬â–¡æ–¥äº’çª–å‹»åŒ–äº”å‡¶ */
 			if( strcmp( fromcdkey, ADDRESSBOOK_SYSTEM) == 0 &&
 				strcmp( fromcharaname, ADDRESSBOOK_SYSTEM ) == 0 ) 
 			{
-				/* ÆËµ©  Ø©¶ªÓÀ±¾¡õ³âÃ«¹¨ÈÊ */
+				/* æ’²æ—¦  ä¸žä¸Ÿæ°¸æœ¬â–¡æ–¥æ¯›é¾”ä» */
 				CHAR_talkToCli( i, -1, text , color );
 				break;
 			}
@@ -242,13 +242,13 @@ BOOL ADDRESSBOOK_sendMessage_FromOther( char *fromcdkey, char *fromcharaname,
 														fromcdkey, fromcharaname);
 			if( index_to_my_info < 0 ){
 				/*
-				 * ÇÂÅì»¥·ßÛÐÃ«ÛãÛÕØÆ»¯ØÆÒýÔÈ»¯ÔÂ£Û
+				 * é¬æ¾Žäº’æ†¤åŒæ¯›å«å£…ä»„åŒ–ä»„å¼•å‹»åŒ–æœˆï¼»
 				 */
 
 				snprintf( tmpmsg, sizeof( tmpmsg), ADDRESSBOOK_RETURNED2,
 							tocharaname, tocharaname);
 
-				/* ËªÔ»Ç±±åÊÖ¶ªÓÀ±¾¡õ³â */
+				/* éœœæ›°æ½›åžæ‰‹ä¸Ÿæ°¸æœ¬â–¡æ–¥ */
 				saacproto_Message_send( acfd, ADDRESSBOOK_SYSTEM , ADDRESSBOOK_SYSTEM, 
 										fromcdkey, fromcharaname, tmpmsg, CHAR_COLORYELLOW);
 
@@ -257,7 +257,7 @@ BOOL ADDRESSBOOK_sendMessage_FromOther( char *fromcdkey, char *fromcharaname,
 				int fd = getfdFromCharaIndex( i);
 				if( fd != -1 ) {
 					lssproto_MSG_send( fd , index_to_my_info , text , color );
-					/* ·òºëÎçÔ» */
+					/* å¤«å¼˜åˆæ›° */
 					printl( LOG_TALK, "CD=%s\tNM=%s\tT=%s" , fromcdkey,
 															fromcharaname, text );
 				}
@@ -391,7 +391,7 @@ BOOL ADDRESSBOOK_addEntry( int meindex )
 		int		strlength;
 		char	msgbuf[1024];
 		char	escapebuf[2048];
-		strcpy( msgbuf, "1\nºÍË­½»»»ÃûÆ¬ÄØ£¿\n");
+		strcpy( msgbuf, "1\nå’Œèª°äº¤æ›åç‰‡å‘¢ï¼Ÿ\n");
 		strlength = strlen( msgbuf);
 		for( i = 0;
              CONNECT_getTradecardcharaindex(fd,i) != -1 
@@ -401,7 +401,7 @@ BOOL ADDRESSBOOK_addEntry( int meindex )
 			char	buf[256];
 			snprintf( buf, sizeof( buf),"%s\n", a);
 			if( strlength + strlen( buf) > arraysizeof( msgbuf)){
-				print( "%s:%dÊÓ´°Ñ¶Ï¢buffer²»×ã¡£\n",
+				print( "%s:%dè¦–çª—è¨Šæ¯bufferä¸è¶³ã€‚\n",
 						__FILE__,__LINE__);
 				break;
 			}
@@ -550,7 +550,7 @@ BOOL ADDRESSBOOK_sendAddressbookTable( int cindex )
 			char charname_escaped[CHARNAMELEN*2];
 			makeEscapeString( ae->charname, charname_escaped ,
 							  sizeof(charname_escaped  ));
-			/*  ÒøåÃ°×·Âºë|  ó¡|ÒÁÃ¬»ï|·ÂÄÌ°×|°×·Âºë   */
+			/*  éŠ€è¿•ç™½ä»¿å¼˜|  èŸ†|ä¼ŠçŸ›å¤¥|ä»¿å¥¶ç™½|ç™½ä»¿å¼˜   */
 			snprintf( tmp , sizeof( tmp ),
 #ifdef _VERSION_NEW
 					  "%d|%s|%d|%d|%d|%d|%d|0|" ,
@@ -573,7 +573,7 @@ BOOL ADDRESSBOOK_sendAddressbookTable( int cindex )
 				break;
 			}
 		}else{
-			/*ÒøÔÈ»¯Ø¦ÖÐ·¸¡õÕýÊÖ³åáß¼°ÐÄÆ¥ËªÔÂ  */
+			/*éŠ€å‹»åŒ–å…ä¸­çŠ¯â–¡æ­£æ‰‹è¡å¾‡åŠå¿ƒåŒ¹éœœæœˆ  */
 			char    tmp[32];
 #ifdef _VERSION_NEW
 		snprintf( tmp , sizeof( tmp ), "||||||||"  );
@@ -675,12 +675,12 @@ BOOL ADDRESSBOOK_sendAddressbookTableOne( int cindex, int num )
 }
 
 /*------------------------------------------------------------
- * ·òÎç¹´¼°Ê§ÓñÒÁµ©Æ¤ÓÀÛÍ¾Þ¼þÐþØøÃ«£ý  Ù¯  ±åØ¦ÔÆÔÊ£Û
- * ³ðÄ¾·´Æ½ÅÒ·ÂâçÐååÃØ¦¼°Æ¥ÛÍ·ÂÄÌÊ§¼þÐþ±åËªññÔÊÔÂ·½Ô»ÊÖ¿Ò¸î
- * Ø¦ÊÖ¼°Æ¥Ø¤ÔÂ  Û¢»¥Ø¤ÔÂ£Û
- * Â¦ÐÑ
- *  a   ADDRESSBOOK_entry*    Ù¯  ±åØÆÐ×ÖÐÑáÕ°  ³ß¼°ºÌÄÌ¼þÕý
- * ß¯Ô»°À
+ * å¤«åˆå‹¾åŠå¤±çŽ‰ä¼Šæ—¦çš®æ°¸å¼å·¨ä»¶çŽ„ä¼‰æ¯›ï½  å„‚  åžå…é›²å…ï¼»
+ * ä»‡æœ¨åå¹³ä¹“ä»¿å¿¡ç¶‰è¿•å…åŠåŒ¹å¼ä»¿å¥¶å¤±ä»¶çŽ„åžéœœè€¨å…æœˆæ–¹æ›°æ‰‹æ‡‡å‰²
+ * å…æ‰‹åŠåŒ¹ä¸æœˆ  é‚°äº’ä¸æœˆï¼»
+ * å©é†’
+ *  a   ADDRESSBOOK_entry*    å„‚  åžä»„å‡¶ä¸­åŽ­çž»  å°ºåŠç¦¾å¥¶ä»¶æ­£
+ * å¿’æ›°è¥–
  *  char *
  ------------------------------------------------------------*/
 char *ADDRESSBOOK_makeAddressbookString( ADDRESSBOOK_entry *a )
@@ -688,7 +688,7 @@ char *ADDRESSBOOK_makeAddressbookString( ADDRESSBOOK_entry *a )
 	char work1[256], work2[256];
 
 	if( a->use == 0 ){
-		/* Îë¾Þ¼þÐþØø·ÖÔÈÐ×ÈÕÎë  Ù¯   */
+		/* å¡¢å·¨ä»¶çŽ„ä¼‰åˆ†å‹»å‡¶æ—¥å¡¢  å„‚   */
 		ADDRESSBOOK_returnstring[0] = '\0';
 		return ADDRESSBOOK_returnstring;
 	}
@@ -705,13 +705,13 @@ char *ADDRESSBOOK_makeAddressbookString( ADDRESSBOOK_entry *a )
 }
 
 /*------------------------------------------------------------
- *   Ù¯  ¼À½ñÄ¾»¯ÖÐÔÂÊ§ÓñÒÁµ©Æ¤ÓÀÛÍ¾Þ¼þÐþØøÃ«£ýÑáÕ°  ±åØ¦ÔÆÔÊ£Û
- * ³ð¼°çø°íÑáÕ°  ¼°use¶¯Â½¼°Ê÷  ·´¶ØÙÕ±åØ¦ÔÂ£Û
- * Â¦ÐÑ
- *  in      char*                     Ù¯
- *  a       ADDRESSBOOK_entry*      ·¸¡õÕýÃ«è°»§ÔÂô÷
- * ß¯Ô»°À
- * ¹´ÓÑ±åTRUE
+ *   å„‚  ç¥­ä»Šæœ¨åŒ–ä¸­æœˆå¤±çŽ‰ä¼Šæ—¦çš®æ°¸å¼å·¨ä»¶çŽ„ä¼‰æ¯›ï½åŽ­çž»  åžå…é›²å…ï¼»
+ * ä»‡åŠç‘›çµ†åŽ­çž»  åŠuseå‹•é™¸åŠæ¨¹  åæ•¦åƒ¬åžå…æœˆï¼»
+ * å©é†’
+ *  in      char*                     å„‚
+ *  a       ADDRESSBOOK_entry*      çŠ¯â–¡æ­£æ¯›ç’‹æˆ¶æœˆèµ­
+ * å¿’æ›°è¥–
+ * å‹¾å‹åžTRUE
  ------------------------------------------------------------*/
 BOOL ADDRESSBOOK_makeAddressbookEntry( char *in , ADDRESSBOOK_entry *a )
 {
@@ -918,7 +918,7 @@ BOOL ADDRESSBOOK_AutoaddAddressBook( int meindex, int toindex)
 	myblank = 79;
 	hisblank = 79;
 	
-	if( hisblank < 0 || myblank < 0) { //"ÃûÆ¬Ï»ÒÑÂú¡£"
+	if( hisblank < 0 || myblank < 0) { //"åç‰‡åŒ£å·²æ»¿ã€‚"
 			return FALSE;
 	}
 	

@@ -1,4 +1,4 @@
-﻿/************************/
+/************************/
 /*	battleMap.h			*/
 /************************/
 #ifndef _BATTLE_MAP_H_
@@ -15,5 +15,5 @@ BOOL ReadBattleMap( int no );
 
 // ??????? ***********************************************************/
 void DrawBattleMap( void );
-void 显示道具数据(short x,short y,UCHAR 层次,char* 内容,unsigned int 形像,char*名字 );
+void 顯示道具數據(short x,short y,UCHAR 層次,char* 內容,unsigned int 形像,char*名字 );
 #endif

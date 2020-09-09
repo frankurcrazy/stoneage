@@ -1,4 +1,4 @@
-﻿#include "systeminc\version.h"
+#include "systeminc\version.h"
 #include "systeminc/system.h"
 #include "redMemoy.h"
 #ifdef _RED_MEMOY_
@@ -30,11 +30,11 @@ void RedMemoyCall()
 		if(TimeGetTime() < redMemoy.time){
 			char str[128];
 			int id;
-			sprintf(str,"[%s]玩家 %s 分享红包%d金币！",
-				redMemoy.type?"全服":"家族",redMemoy.name,redMemoy.vip);
-			StockDispBuffer(400, 70, DISP_PRIO_ITEM, 60001, 1);//底图
+			sprintf(str,"[%s]玩傢 %s 分享紅包%d金幣！",
+				redMemoy.type?"全服":"傢族",redMemoy.name,redMemoy.vip);
+			StockDispBuffer(400, 70, DISP_PRIO_ITEM, 60001, 1);//底圖
 			if(MakeHitBox(630-16,75-16,630+16,75+16,DISP_PRIO_ITEM+2)==1){
-				StockDispBuffer(630, 75, DISP_PRIO_ITEM+1, 60003, 1);//按钮
+				StockDispBuffer(630, 75, DISP_PRIO_ITEM+1, 60003, 1);//按鈕
 				if( (mouse.onceState & MOUSE_LEFT_CRICK)){
 					redMemoy.flg=0;
 					extern void lssproto_redMemoy_send(int fd,int index,char *str);
@@ -42,7 +42,7 @@ void RedMemoyCall()
 					sprintf(str,"%d",redMemoy.index);
 					lssproto_redMemoy_send(sockfd,2,str);
 				}
-			}else StockDispBuffer(630, 75, DISP_PRIO_ITEM+1, 60002, 1);//按钮
+			}else StockDispBuffer(630, 75, DISP_PRIO_ITEM+1, 60002, 1);//按鈕
 			static int colorindex = 0;
 
 			if(TimeGetTime() > redMemoy.colortime){

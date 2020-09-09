@@ -1,4 +1,4 @@
-﻿#ifndef _PROTOCOL_H_
+#ifndef _PROTOCOL_H_
 #define _PROTOCOL_H_
 
 int SaDispatchMessage(int fd, char *encoded);
@@ -107,7 +107,7 @@ int SaDispatchMessage(int fd, char *encoded);
 #define LSSPROTO_MA_SEND    98
 #endif
 #ifdef _FIX_DEL_MAP
-#define LSSPROTO_DM_SEND    99   // 玩家抽地图送监狱
+#define LSSPROTO_DM_SEND    99   // 玩傢抽地圖送監獄
 #endif
 #ifdef _ITEM_CRACKER
 #define LSSPROTO_IC_RECV    100   
@@ -127,35 +127,35 @@ int SaDispatchMessage(int fd, char *encoded);
 #ifdef _PETS_SELECTCON
 #define LSSPROTO_PETST_RECV	107
 #endif
-#ifdef _NEWREQUESTPROTOCOL			// (不可开) Syu ADD 新增Protocol要求细项
+#ifdef _NEWREQUESTPROTOCOL			// (不可開) Syu ADD 新增Protocol要求細項
 #define LSSPROTO_RESIST_SEND 108
 #define LSSPROTO_RESIST_RECV 109
 #endif
-#ifdef _OUTOFBATTLESKILL			// (不可开) Syu ADD 非战斗时技能Protocol
+#ifdef _OUTOFBATTLESKILL			// (不可開) Syu ADD 非戰鬥時技能Protocol
 #define LSSPROTO_BATTLESKILL_SEND 110
 #define LSSPROTO_BATTLESKILL_RECV 111
 #endif
-#ifdef _CHATROOMPROTOCOL			// (不可开) Syu ADD 聊天室频道
+#ifdef _CHATROOMPROTOCOL			// (不可開) Syu ADD 聊天室頻道
 #define LSSPROTO_CHATROOM_SEND 112
 #define LSSPROTO_CHATROOM_RECV 113
 #endif
 
 
-#define LSSPROTO_SPET_SEND 	114		// Robin 待机宠
+#define LSSPROTO_SPET_SEND 	114		// Robin 待機寵
 #define LSSPROTO_SPET_RECV 	115
 
 #ifdef _STREET_VENDOR
-#define LSSPROTO_STREET_VENDOR_SEND 	116		// 摆摊功能
+#define LSSPROTO_STREET_VENDOR_SEND 	116		// 擺攤功能
 #define LSSPROTO_STREET_VENDOR_RECV 	117
 #endif
 		
 #ifdef _JOBDAILY
-#define LSSPROTO_JOBDAILY_SEND 	121		// CYG　任务日志功能
+#define LSSPROTO_JOBDAILY_SEND 	121		// CYG　任務日誌功能
 #define LSSPROTO_JOBDAILY_RECV 	120
 #endif
 
 #ifdef _TEACHER_SYSTEM
-#define LSSPROTO_TEACHER_SYSTEM_SEND 	122		// 导师功能
+#define LSSPROTO_TEACHER_SYSTEM_SEND 	122		// 導師功能
 #define LSSPROTO_TEACHER_SYSTEM_RECV 	123
 #endif
 
@@ -255,7 +255,7 @@ int SaDispatchMessage(int fd, char *encoded);
 #define	LSSPROTO_VB_RECV 219
 #endif
 
-#ifdef _RIDEQUERY_//骑宠查询
+#ifdef _RIDEQUERY_//騎寵查詢
 #define LSSPROTO_RIDEQUERY_SEND 220
 #endif
 
@@ -267,7 +267,7 @@ int SaDispatchMessage(int fd, char *encoded);
 
 void lssproto_W_send(int fd,int x,int y,char* direction);
 void lssproto_W2_send(int fd,int x,int y,char* direction);
-//Cary say 战斗结束后的大地图座标
+//Cary say 戰鬥結束後的大地圖座標
 void lssproto_XYD_recv(int fd,int x,int y,int dir);
 void lssproto_EV_send(int fd,int event,int seqno,int x,int y,int dir);
 void lssproto_EV_recv(int fd,int seqno,int result);
@@ -292,7 +292,7 @@ void lssproto_I_recv(int fd,char* data);
 void lssproto_MI_send(int fd,int fromindex,int toindex);
 void lssproto_SI_recv(int fd,int fromindex,int toindex);
 void lssproto_MSG_send(int fd,int index,char* message,int color);
-//Cary say 收到普通邮件或宠物邮件
+//Cary say 收到普通郵件或寵物郵件
 void lssproto_MSG_recv(int fd,int aindex,char* text,int color);
 void lssproto_PMSG_send(int fd,int index,int petindex,int itemindex,char* message,int color);
 void lssproto_PME_recv(int fd,int objindex,int graphicsno,int x,int y,int dir,int flg,int no,char* cdata);
@@ -318,12 +318,12 @@ void lssproto_D_recv(int fd,int category,int dx,int dy,char* data);
 void lssproto_FS_send(int fd,int flg);
 void lssproto_FS_recv(int fd,int flg);
 void lssproto_HL_send(int fd,int flg);
-//战斗中是否要Help
+//戰鬥中是否要Help
 void lssproto_HL_recv(int fd,int flg);
 void lssproto_PR_send(int fd,int x,int y,int request);
 void lssproto_PR_recv(int fd,int request,int result);
 void lssproto_KS_send(int fd,int petarray);
-//Cary say 指定那一只宠物出场战斗
+//Cary say 指定那一隻寵物齣場戰鬥
 void lssproto_KS_recv(int fd,int petarray,int result);
 
 #ifdef _STANDBYPET
@@ -334,12 +334,12 @@ void lssproto_SPET_recv(int fd,int standbypet,int result);
 void lssproto_AC_send(int fd,int x,int y,int actionno);
 void lssproto_MU_send(int fd,int x,int y,int array,int toindex);
 void lssproto_PS_send(int fd,int havepetindex,int havepetskill,int toindex,char* data);
-//Cary say 宠物合成
+//Cary say 寵物閤成
 void lssproto_PS_recv(int fd,int result,int havepetindex,int havepetskill,int toindex);
 void lssproto_ST_send(int fd,int titleindex);
 void lssproto_DT_send(int fd,int titleindex);
 void lssproto_FT_send(int fd,char* data);
-//Cary say 取得可加的属性点数
+//Cary say 取得可加的屬性點數
 void lssproto_SKUP_recv(int fd,int point);
 void lssproto_SKUP_send(int fd,int skillid);
 void lssproto_KN_send(int fd,int havepetindex,char* data);
@@ -377,12 +377,12 @@ void lssproto_TD_send(int fd, char* data);
 void lssproto_TD_recv(int fd, char* data);
 void lssproto_FM_send(int fd, char* data);
 void lssproto_FM_recv(int fd, char* data);
-//Cary say 取得转生的特效
+//Cary say 取得轉生的特效
 void lssproto_WO_recv( int fd, int effect );
-void lssproto_PETST_send(int fd, int nPet, int sPet);// sPet  0:休息 1:等待 4:邮件
+void lssproto_PETST_send(int fd, int nPet, int sPet);// sPet  0:休息 1:等待 4:郵件
 void lssproto_BM_send(int fd, int iindex);             // _BLACK_MARKET
 #ifdef _FIX_DEL_MAP
-void lssproto_DM_send(int fd);                         // WON ADD 玩家抽地图送监狱
+void lssproto_DM_send(int fd);                         // WON ADD 玩傢抽地圖送監獄
 #endif
 #ifdef _MIND_ICON 
 void lssproto_MA_send(int fd, int x, int y, int nMind);
@@ -408,11 +408,11 @@ void lssproto_KTEAM_send( int fd,int si);
 #ifdef _PETS_SELECTCON
 void lssproto_PETST_recv( int fd,int petarray,int result );
 #endif
-#ifdef _CHATROOMPROTOCOL			// (不可开) Syu ADD 聊天室频道
+#ifdef _CHATROOMPROTOCOL			// (不可開) Syu ADD 聊天室頻道
 void lssproto_CHATROOM_send( int fd , char *data );
 void lssproto_CHATROOM_recv( int fd , char *data ) ; 
 #endif
-#ifdef _NEWREQUESTPROTOCOL			// (不可开) Syu ADD 新增Protocol要求细项
+#ifdef _NEWREQUESTPROTOCOL			// (不可開) Syu ADD 新增Protocol要求細項
 void lssproto_RESIST_send( int fd , char *data );
 void lssproto_RESIST_recv( int fd , char *data ) ; 
 #endif
@@ -422,16 +422,16 @@ void lssproto_ALCHEPLUS_send( int fd , char *data );
 void lssproto_ALCHEPLUS_recv( int fd , char *data ); 
 #endif
 
-#ifdef _OUTOFBATTLESKILL			// (不可开) Syu ADD 非战斗时技能Protocol
+#ifdef _OUTOFBATTLESKILL			// (不可開) Syu ADD 非戰鬥時技能Protocol
 void lssproto_BATTLESKILL_send( int fd, int SkillNum);
 void lssproto_BATTLESKILL_recv( int fd, char *data) ; 
 #endif
 void lssproto_CHAREFFECT_recv ( int fd, char *data);
 
-void lssproto_SPET_send(int fd, int standbypet); // Robin 待机宠
+void lssproto_SPET_send(int fd, int standbypet); // Robin 待機寵
 #ifdef _STREET_VENDOR
-void lssproto_STREET_VENDOR_send(int fd,char *data);	// 摆摊功能
-void lssproto_STREET_VENDOR_recv(int fd,char *data);	// 摆摊功能
+void lssproto_STREET_VENDOR_send(int fd,char *data);	// 擺攤功能
+void lssproto_STREET_VENDOR_recv(int fd,char *data);	// 擺攤功能
 #endif
 
 #ifdef _JOBDAILY
@@ -445,7 +445,7 @@ void lssproto_FamilyBadge_recv(char *data);
 #endif
 
 #ifdef _TEACHER_SYSTEM
-void lssproto_TEACHER_SYSTEM_send(int fd,char *data);	// 导师功能
+void lssproto_TEACHER_SYSTEM_send(int fd,char *data);	// 導師功能
 void lssproto_TEACHER_SYSTEM_recv(int fd,char *data);
 #endif
 
@@ -455,16 +455,16 @@ void lssproto_S2_recv(int fd,char *data);
 #endif
 
 #ifdef _ITEM_FIREWORK
-void lssproto_Firework_recv(int fd, int nCharaindex, int nType, int nActionNum);	// 烟火功能
+void lssproto_Firework_recv(int fd, int nCharaindex, int nType, int nActionNum);	// 煙火功能
 #endif
 #ifdef _PET_ITEM
-void lssproto_PetItemEquip_send(int fd, int nGx, int nGy, int nPetNo, int nItemNo, int nDestNO);	// 宠物装备功能
+void lssproto_PetItemEquip_send(int fd, int nGx, int nGy, int nPetNo, int nItemNo, int nDestNO);	// 寵物裝備功能
 #endif
 #ifdef _THEATER
 void lssproto_TheaterData_recv(int fd, char *pData);
 #endif
 #ifdef _MOVE_SCREEN
-void lssproto_MoveScreen_recv(int fd, BOOL bMoveScreenMode, int iXY);	// client 移动荧幕
+void lssproto_MoveScreen_recv(int fd, BOOL bMoveScreenMode, int iXY);	// client 移動熒幕
 #endif
 #ifdef _GET_HOSTNAME
 void lssproto_HostName_send(int fd);
@@ -476,7 +476,7 @@ void lssproto_MagiccardDamage_recv(int fd, int position , int damage , int offse
 #endif
 
 #ifdef  _NPC_DANCE
-void lssproto_DancemanOption_recv(int fd, int option );	//动一动状态
+void lssproto_DancemanOption_recv(int fd, int option );	//動一動狀態
 #endif
 
 

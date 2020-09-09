@@ -79,7 +79,7 @@ int _docall(lua_State *L, int narg, int clear ,char *file) {
   lua_remove(L, base);  /* remove traceback function */
   /* force a complete garbage collection in case of errors */
   if (status != 0){
-	printf("��������=%s  ������ʾ��%s\n",file,(char *)lua_tostring(L, -1));
+	printf("º¯Êý´íÎó=%s  ´íÎóÌáÊ¾£º%s\n",file,(char *)lua_tostring(L, -1));
 	 lua_gc(L, LUA_GCCOLLECT, 0);
   }
   return status;

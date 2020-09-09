@@ -104,22 +104,22 @@ int checkmac( void )
 
 int connectHost( char* hostname , unsigned short port )
 {
-    struct sockaddr_in sock;        /*connect¼°Áİ±åÒøµ¤*/
-    struct hostent* hoste;          /*hostname¼°hostent*/
-    int     fd;                     /*ÎìÉúÛÍĞşØÆĞ×Ä©¸¥ÓÀĞş·¸Å«µ©ÛÍØøÃóÕı*/
-    int     lr;                     /*·ò¡õÊĞ»ïØøÕı¡õ¼şÎì¡õÓñ*/
+    struct sockaddr_in sock;        /*connectÂ¼Â°ÃÃÂ±Ã¥Ã’Ã¸ÂµÂ¤*/
+    struct hostent* hoste;          /*hostnameÂ¼Â°hostent*/
+    int     fd;                     /*ÃÃ¬Ã‰ÃºÃ›ÃÃÃ¾Ã˜Ã†ÃÃ—Ã„Â©Â¸Â¥Ã“Ã€ÃÃ¾Â·Â¸Ã…Â«ÂµÂ©Ã›ÃÃ˜Ã¸ÃƒÃ³Ã•Ã½*/
+    int     lr;                     /*Â·Ã²Â¡ÃµÃŠÃÂ»Ã¯Ã˜Ã¸Ã•Ã½Â¡ÃµÂ¼Ã¾ÃÃ¬Â¡ÃµÃ“Ã±*/
 
     memset( &sock ,  0 , sizeof( struct sockaddr_in ) );
     sock.sin_family = AF_INET;
     sock.sin_port = htons( port );
 
-    /* dot notation ¾®Éıµ¤¾®Ã«Æ©ÍÍÔÂ */
+    /* dot notation Â¾Â®Ã‰Ã½ÂµÂ¤Â¾Â®ÃƒÂ«Ã†Â©ÃÃÃ”Ã‚ */
     sock.sin_addr.s_addr = inet_addr( hostname );
     if( sock.sin_addr.s_addr == -1 ){
 
         hoste = gethostbyname( hostname );
         if( hoste == NULL ){
-            printf( "»ñÈ¡Ö÷»úÃû: %s\n", hostname);
+            printf( "Â»Ã±ÃˆÂ¡Ã–Ã·Â»ÃºÃƒÃ»: %s\n", hostname);
             return -1;
         }
 
@@ -172,11 +172,11 @@ int attestation( void )
 	char passwd[32]="";
 	readpasswd(name, passwd);
 	if(strlen(name)==0){
-		printf("ÇëÊäÈëÓÃ»§Ãû£º");
+		printf("Ã‡Ã«ÃŠÃ¤ÃˆÃ«Ã“ÃƒÂ»Â§ÃƒÃ»Â£Âº");
 		scanf("%32s",name); 
 	}
 	if(strlen(passwd)==0){
-		printf("ÇëÊäÈëÃÜÂë£º");
+		printf("Ã‡Ã«ÃŠÃ¤ÃˆÃ«ÃƒÃœÃ‚Ã«Â£Âº");
 		scanf("%32s",passwd); 
 	}
 	int rnd=0, nowTime=0, id=0;

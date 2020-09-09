@@ -1,6 +1,6 @@
-﻿/*-----------------------------------------------
+/*-----------------------------------------------
    Message.cpp -- Message format definition
-               (c) 许百胜Cary Hsu, 1999.8.18
+               (c) 許百勝Cary Hsu, 1999.8.18
 -----------------------------------------------*/
 #include <stdio.h>
 #include "../systeminc/version.h"
@@ -24,11 +24,11 @@ Parameter	*messNewTailParam;
 MessNode	*messNew;
 MessNode	*messHead;
 MessNode	*messTail;
-//制作讯息格式时使用
-int			iFormatLen;				//此讯息格式的长度,以DWORD为单位
+//製作訊息格式時使用
+int			iFormatLen;				//此訊息格式的長度,以DWORD為單位
 int			iNumStart=0;
 char		szFormatBuf[1024];
-//分析时使用
+//分析時使用
 char		szAnalyzeBuf[1024];
 int			nState;
 BOOL		backslash;

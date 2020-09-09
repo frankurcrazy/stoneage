@@ -1,4 +1,4 @@
-﻿/************************/
+/************************/
 /*	battleMenu.h		*/
 /************************/
 #ifndef _BATTLE_MENU_H_
@@ -60,7 +60,7 @@ extern int battlePetNoBak2;
 
 // ?????
 extern int BattleBpFlag;
-// ????向??????
+// ????嚮??????
 extern int BattleAnimFlag;
 // ??????
 extern BOOL BattleTurnReceiveFlag;
@@ -87,7 +87,7 @@ void BattleMenuProc( void );
 void ClearBattleButton( void );
 // ?????????? ********************************************************/
 void InitBattleMenu( void );
-// ????向??????????? ********************************************/
+// ????嚮??????????? ********************************************/
 void CheckBattleAnimFlag( void );
 // ???匠?????? ********************************************/
 int CheckBattle1P2P( void );
@@ -101,7 +101,7 @@ void BattleSetWazaHitBox( int no , int typeflag ) ;
 #ifdef PK_SYSTEM_TIMER_BY_ZHU
 void BattleDown();
 #endif
-void battleMenuFix(void);		// 党葩桵須AI蛌遙腔BUG
+void battleMenuFix(void);		// 黨葩桵須AI蛌遙腔BUG
 
 #endif
 

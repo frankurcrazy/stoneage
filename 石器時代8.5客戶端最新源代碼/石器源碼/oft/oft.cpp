@@ -1,4 +1,4 @@
-﻿/************************/
+/************************/
 /*	oft.c				*/
 /************************/
 
@@ -41,8 +41,8 @@ static ACTION *Light1;
 extern BOOL g_bUseAlpha;
 #endif
 
-#ifdef _SHOOTCHESTNUT	// Syu ADD 宠技：丢栗子
-//做额外处理
+#ifdef _SHOOTCHESTNUT	// Syu ADD 寵技：丟栗子
+//做額外處理
 int ShooterNum = -1;
 /*
 int nuty[20] = { 384 , 408 , 360 , 432 , 336 , 312 , 360 , 264 , 408 , 216 , 150 , 174 ,
@@ -71,26 +71,26 @@ static int get_num(void);
 #define SCREEN_OUT			106
 #define ATTACK_MAGIC_CASE	200
 #define TOCALL_MAGIC_CASE	210
-//#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+//#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 #define PROSKILL			230
 int AttPreMagicNum = -1;
 int AttNextMagicNum = -1;
-short NoMiss = -1; //额外处理双重攻击
+short NoMiss = -1; //額外處理雙重攻擊
 short StarLoop = 0;
 //#endif
-#ifdef _FIREHUNTER_SKILL				// (不可开) ROG ADD 朱雀技能_火线猎杀
+#ifdef _FIREHUNTER_SKILL				// (不可開) ROG ADD 硃雀技能_火綫獵殺
 #define FIRE_HUNTER_SKILL   240
 #endif
-#ifdef _WAVETRACK					// (不可开) Syu ADD 音波轨道
-int BeAttNum = -1 ; //被攻击者的位置编号
+#ifdef _WAVETRACK					// (不可開) Syu ADD 音波軌道
+int BeAttNum = -1 ; //被攻擊者的位置編號
 #endif
 
-#ifdef _FIREHUNTER_SKILL				// (不可开) ROG ADD 朱雀技能_火线猎杀
+#ifdef _FIREHUNTER_SKILL				// (不可開) ROG ADD 硃雀技能_火綫獵殺
 BOOL FireSkillEnd = FALSE;
 BOOL bFireInit = FALSE;
 int tempPosH = 0;
 int tempPosV = 0;
-int  iBeAttNum = -1;                     //被攻击者编号
+int  iBeAttNum = -1;                     //被攻擊者編號
 int counter;
 int tarpos = -1;
 int tarMgiDem = 0;
@@ -147,136 +147,136 @@ static int monster_place_no[20] = { 2, 1, 3, 0, 4, 7, 6, 8, 5, 9, 12, 11, 13, 10
 #ifdef __ATTACK_MAGIC
 
 // Global vars
-int			g_iRunEarthQuake = 0;		// 地震的状况: 0 --> 没地震 , 1 --> 初始化地震 , 2 --> 地震中
-int			g_iCurRunEarthQuake = 0;		// 目前地震的位置线
-int			g_iNumRunEarthQuake;			// 地震的总次数
+int			g_iRunEarthQuake = 0;		// 地震的狀況: 0 --> 沒地震 , 1 --> 初始化地震 , 2 --> 地震中
+int			g_iCurRunEarthQuake = 0;		// 目前地震的位置綫
+int			g_iNumRunEarthQuake;			// 地震的總次數
 
 
 
-#define		ATTACK_MAGIC_ID		12345678	// 攻击魔法的识别代码
-#define		MAX_NUM_ATTACKED	16			// 最大被攻击者的数目
+#define		ATTACK_MAGIC_ID		12345678	// 攻擊魔法的識彆代碼
+#define		MAX_NUM_ATTACKED	16			// 最大被攻擊者的數目
 
 
 
-// 位置定义
+// 位置定義
 struct POS
 {
-	WORD	x;							// X轴的位置
-	WORD	y;							// Y轴的位置
+	WORD	x;							// X軸的位置
+	WORD	y;							// Y軸的位置
 };
 
 
 
-// BJ | 攻击者的编号 | 12345678 | 攻击者在施此咒术后的剩余MP | 前置动画的动画编号 | 攻击咒术的动画编号 | 
-// 后置动画的动画编号 | 咒术的方式 | 咒术的时间差 | 显示咒术的位置的方式( 绝对或居中 ) | 
-// 位置( 咒术敌方，绝对显示位置方式 ) | 位置( 前置动画，相对位置方式 ) | 位置( 后置动画，相对位置方式 ) |
-// 前置动画显示在人物的前面或后方 | 咒术动画显示在人物的前面或后方 | 后置动画显示在人物的前面或后方 | 
-// 震动画面 | 震动的起始时间 | 震动的结束时间 | 攻击的对象X1 | 攻击的对象X2 | ...攻击的对象Xn|FF
-// 12345678:		表示为攻击性的魔法，否则便为睡眠咒术
+// BJ | 攻擊者的編號 | 12345678 | 攻擊者在施此咒術後的剩餘MP | 前置動畫的動畫編號 | 攻擊咒術的動畫編號 | 
+// 後置動畫的動畫編號 | 咒術的方式 | 咒術的時間差 | 顯示咒術的位置的方式( 絕對或居中 ) | 
+// 位置( 咒術敵方，絕對顯示位置方式 ) | 位置( 前置動畫，相對位置方式 ) | 位置( 後置動畫，相對位置方式 ) |
+// 前置動畫顯示在人物的前麵或後方 | 咒術動畫顯示在人物的前麵或後方 | 後置動畫顯示在人物的前麵或後方 | 
+// 震動畫麵 | 震動的起始時間 | 震動的結束時間 | 攻擊的對象X1 | 攻擊的對象X2 | ...攻擊的對象Xn|FF
+// 12345678:		錶示為攻擊性的魔法，否則便為睡眠咒術
 struct ATTACK_MAGIC
 {
-	DWORD	dwCurFrame1;						// 目前已播放过的Frames相对于尚未播放过前置咒术前
-	DWORD	dwCurFrame2;						// 目前已播放过的Frames相对于已经播放完前置咒术后
-	DWORD	dwEQuake;							// 是否会震动画面
-	DWORD	dwEQuakeSTime;						// 地震的开始时间
-	DWORD	dwEQuakeETime;						// 地震的结束时间
-	DWORD	dwEQuakeSFrame;						// 播放地震的开始Frame，0XFFFFFFFF表示没有地震的特效
-	DWORD	dwEQuakeEFrame;						// 播放地震的结束Frame，0XFFFFFFFF表示没有地震的特效
-	int		iPreMgcNum;							// 前置动画的动画编号
-	int		iCurMgcNum;							// 咒术动画的动画编号
-	int		iPostMgcNum;						// 后置动画的动画编号
-	WORD	wRunPreMgc;							// 是否已经执行了前置咒术
-	WORD	wAttackType;						// 咒术的方式: 个体( 单 )，整排( 轮流攻击 )，整排( 同时攻击 )，全体( 轮流攻击 )，全体( 同时攻击 )
-	WORD	wAttackTimeSlice;					// 咒术的时间差，以毫秒为单位
-	WORD	wShowType;							// 显示咒术的位置的方式，绝对及居中两种
-	WORD	wScreenX;							// 咒术显示位置的X轴，在绝对显示方式时
-	WORD	wScreenY;							// 咒术显示位置的Y轴，在绝对显示方式时
-	WORD	wPreMgcX;							// 前置动画的相对位置
-	WORD	wPreMgcY;							// 前置动画的相对位置
-	WORD	wPostMgcX;							// 后置动画的相对位置
-	WORD	wPostMgcY;							// 后置动画的相对位置
-	WORD	wPreMgcOnChar;						// 前置动画显示在地板上，或人物上
-	WORD	wCurMgcOnChar;						// 咒术动画显示在地板上，或人物上
-	WORD	wPostMgcOnChar;						// 后置动画显示在地板上，或人物上
-	WORD	wMgcFrameCount[MAX_NUM_ATTACKED];	// 播放攻击动画在敌物时的Frame Count
-	WORD	wAttackedIndex[MAX_NUM_ATTACKED];	// 被攻击者的索引号阵列，0 - 19: 其中一位 , 20: 前排 , 21: 后排  , 22: 全体敌方
-	POS		posAttacked[MAX_NUM_ATTACKED];		// 被攻击者的被攻击位置
-	WORD	wNumAttacks;						// 攻击的总次数
-	WORD	wNumAttackeds;						// 攻击播放完毕的次数
-	WORD	wCurAttackNum;						// 目前攻击的索引号
+	DWORD	dwCurFrame1;						// 目前已播放過的Frames相對於尚未播放過前置咒術前
+	DWORD	dwCurFrame2;						// 目前已播放過的Frames相對於已經播放完前置咒術後
+	DWORD	dwEQuake;							// 是否會震動畫麵
+	DWORD	dwEQuakeSTime;						// 地震的開始時間
+	DWORD	dwEQuakeETime;						// 地震的結束時間
+	DWORD	dwEQuakeSFrame;						// 播放地震的開始Frame，0XFFFFFFFF錶示沒有地震的特效
+	DWORD	dwEQuakeEFrame;						// 播放地震的結束Frame，0XFFFFFFFF錶示沒有地震的特效
+	int		iPreMgcNum;							// 前置動畫的動畫編號
+	int		iCurMgcNum;							// 咒術動畫的動畫編號
+	int		iPostMgcNum;						// 後置動畫的動畫編號
+	WORD	wRunPreMgc;							// 是否已經執行瞭前置咒術
+	WORD	wAttackType;						// 咒術的方式: 個體( 單 )，整排( 輪流攻擊 )，整排( 同時攻擊 )，全體( 輪流攻擊 )，全體( 同時攻擊 )
+	WORD	wAttackTimeSlice;					// 咒術的時間差，以毫秒為單位
+	WORD	wShowType;							// 顯示咒術的位置的方式，絕對及居中兩種
+	WORD	wScreenX;							// 咒術顯示位置的X軸，在絕對顯示方式時
+	WORD	wScreenY;							// 咒術顯示位置的Y軸，在絕對顯示方式時
+	WORD	wPreMgcX;							// 前置動畫的相對位置
+	WORD	wPreMgcY;							// 前置動畫的相對位置
+	WORD	wPostMgcX;							// 後置動畫的相對位置
+	WORD	wPostMgcY;							// 後置動畫的相對位置
+	WORD	wPreMgcOnChar;						// 前置動畫顯示在地闆上，或人物上
+	WORD	wCurMgcOnChar;						// 咒術動畫顯示在地闆上，或人物上
+	WORD	wPostMgcOnChar;						// 後置動畫顯示在地闆上，或人物上
+	WORD	wMgcFrameCount[MAX_NUM_ATTACKED];	// 播放攻擊動畫在敵物時的Frame Count
+	WORD	wAttackedIndex[MAX_NUM_ATTACKED];	// 被攻擊者的索引號陣列，0 - 19: 其中一位 , 20: 前排 , 21: 後排  , 22: 全體敵方
+	POS		posAttacked[MAX_NUM_ATTACKED];		// 被攻擊者的被攻擊位置
+	WORD	wNumAttacks;						// 攻擊的總次數
+	WORD	wNumAttackeds;						// 攻擊播放完畢的次數
+	WORD	wCurAttackNum;						// 目前攻擊的索引號
 };
 
 
 
-static ATTACK_MAGIC	AttMgc;						// 攻击咒术的变数
-static BOOL			bRunAttMgc = FALSE;			// 是否已初始化了一个攻击咒术
-static int			AttackedInfo[4 * 10];		// 十个人的被攻击的资讯，每个人的栏位资讯( 导火线人物索引|被点着的人物索引|人扣的血|宠物扣的血 )
-static int			iAttackedNum;				// 被攻击的总数目
-static int			iCurAttackedFinishNum;		// 被完成的导火线
+static ATTACK_MAGIC	AttMgc;						// 攻擊咒術的變數
+static BOOL			bRunAttMgc = FALSE;			// 是否已初始化瞭一個攻擊咒術
+static int			AttackedInfo[4 * 10];		// 十個人的被攻擊的資訊，每個人的欄位資訊( 導火綫人物索引|被點著的人物索引|人扣的血|寵物扣的血 )
+static int			iAttackedNum;				// 被攻擊的總數目
+static int			iCurAttackedFinishNum;		// 被完成的導火綫
 
 
 
-static BOOL	BuildAttackMagicData(ACTION *pMaster, ACTION *pAttacker);	// 攻击性咒术的资料建立
-static BOOL RunTimeMagic();													// 攻击性咒术的监控函式
+static BOOL	BuildAttackMagicData(ACTION *pMaster, ACTION *pAttacker);	// 攻擊性咒術的資料建立
+static BOOL RunTimeMagic();													// 攻擊性咒術的監控函式
 
 #endif
 
 
 #ifdef __TOCALL_MAGIC
 // kjl 02/06/24
-#define TOCALL_MAGIC_ID		5711438			// 召唤术识别代码
+#define TOCALL_MAGIC_ID		5711438			// 召喚術識彆代碼
 
 struct TOCALL_MAGIC
 {
-	DWORD	dwCurFrame1;						// 目前已播放过的Frames相对于尚未播放过前置咒术前
-	DWORD	dwCurFrame2;						// 目前已播放过的Frames相对于已经播放完前置咒术后
-	DWORD	dwEQuake;							// 是否会震动画面
-	DWORD	dwEQuakeSTime;						// 地震的开始时间
-	DWORD	dwEQuakeETime;						// 地震的结束时间
-	DWORD	dwEQuakeSFrame;						// 播放地震的开始Frame，0XFFFFFFFF表示没有地震的特效
-	DWORD	dwEQuakeEFrame;						// 播放地震的结束Frame，0XFFFFFFFF表示没有地震的特效
-	int		iPreMgcNum;							// 前置动画的动画编号
-	int		iCurMgcNum;							// 咒术动画的动画编号
-	int		iPostMgcNum;						// 后置动画的动画编号
-	WORD	wRunPreMgc;							// 是否已经执行了前置咒术
-	WORD	wAttackType;						// 咒术的方式: 个体( 单 )，整排( 轮流攻击 )，整排( 同时攻击 )，全体( 轮流攻击 )，全体( 同时攻击 )
-	WORD	wAttackTimeSlice;					// 咒术的时间差，以毫秒为单位
-	WORD	wShowType;							// 显示咒术的位置的方式，绝对及居中两种
-	WORD	wScreenX;							// 咒术显示位置的X轴，在绝对显示方式时
-	WORD	wScreenY;							// 咒术显示位置的Y轴，在绝对显示方式时
-	WORD	wPreMgcX;							// 前置动画的相对位置
-	WORD	wPreMgcY;							// 前置动画的相对位置
-	WORD	wPostMgcX;							// 后置动画的相对位置
-	WORD	wPostMgcY;							// 后置动画的相对位置
-	WORD	wPreMgcOnChar;						// 前置动画显示在地板上，或人物上
-	WORD	wCurMgcOnChar;						// 咒术动画显示在地板上，或人物上
-	WORD	wPostMgcOnChar;						// 后置动画显示在地板上，或人物上
-	WORD	wMgcFrameCount[MAX_NUM_ATTACKED];	// 播放攻击动画在敌物时的Frame Count
-	WORD	wAttackedIndex[MAX_NUM_ATTACKED];	// 被攻击者的索引号阵列，0 - 19: 其中一位 , 20: 前排 , 21: 后排  , 22: 全体敌方
-	POS		posAttacked[MAX_NUM_ATTACKED];		// 被攻击者的被攻击位置
-	WORD	wNumAttacks;						// 攻击的总次数
-	WORD	wNumAttackeds;						// 攻击播放完毕的次数
-	WORD	wCurAttackNum;						// 目前攻击的索引号
-	WORD	wIsPostDisappear;					// 攻击完主体是否马上消失
-	WORD	wToCallMagicNo;						// 召唤术编号
+	DWORD	dwCurFrame1;						// 目前已播放過的Frames相對於尚未播放過前置咒術前
+	DWORD	dwCurFrame2;						// 目前已播放過的Frames相對於已經播放完前置咒術後
+	DWORD	dwEQuake;							// 是否會震動畫麵
+	DWORD	dwEQuakeSTime;						// 地震的開始時間
+	DWORD	dwEQuakeETime;						// 地震的結束時間
+	DWORD	dwEQuakeSFrame;						// 播放地震的開始Frame，0XFFFFFFFF錶示沒有地震的特效
+	DWORD	dwEQuakeEFrame;						// 播放地震的結束Frame，0XFFFFFFFF錶示沒有地震的特效
+	int		iPreMgcNum;							// 前置動畫的動畫編號
+	int		iCurMgcNum;							// 咒術動畫的動畫編號
+	int		iPostMgcNum;						// 後置動畫的動畫編號
+	WORD	wRunPreMgc;							// 是否已經執行瞭前置咒術
+	WORD	wAttackType;						// 咒術的方式: 個體( 單 )，整排( 輪流攻擊 )，整排( 同時攻擊 )，全體( 輪流攻擊 )，全體( 同時攻擊 )
+	WORD	wAttackTimeSlice;					// 咒術的時間差，以毫秒為單位
+	WORD	wShowType;							// 顯示咒術的位置的方式，絕對及居中兩種
+	WORD	wScreenX;							// 咒術顯示位置的X軸，在絕對顯示方式時
+	WORD	wScreenY;							// 咒術顯示位置的Y軸，在絕對顯示方式時
+	WORD	wPreMgcX;							// 前置動畫的相對位置
+	WORD	wPreMgcY;							// 前置動畫的相對位置
+	WORD	wPostMgcX;							// 後置動畫的相對位置
+	WORD	wPostMgcY;							// 後置動畫的相對位置
+	WORD	wPreMgcOnChar;						// 前置動畫顯示在地闆上，或人物上
+	WORD	wCurMgcOnChar;						// 咒術動畫顯示在地闆上，或人物上
+	WORD	wPostMgcOnChar;						// 後置動畫顯示在地闆上，或人物上
+	WORD	wMgcFrameCount[MAX_NUM_ATTACKED];	// 播放攻擊動畫在敵物時的Frame Count
+	WORD	wAttackedIndex[MAX_NUM_ATTACKED];	// 被攻擊者的索引號陣列，0 - 19: 其中一位 , 20: 前排 , 21: 後排  , 22: 全體敵方
+	POS		posAttacked[MAX_NUM_ATTACKED];		// 被攻擊者的被攻擊位置
+	WORD	wNumAttacks;						// 攻擊的總次數
+	WORD	wNumAttackeds;						// 攻擊播放完畢的次數
+	WORD	wCurAttackNum;						// 目前攻擊的索引號
+	WORD	wIsPostDisappear;					// 攻擊完主體是否馬上消失
+	WORD	wToCallMagicNo;						// 召喚術編號
 };
 
-static TOCALL_MAGIC	ToCallMgc;						// 攻击咒术的变数
-static BOOL			bRunToCallMgc = FALSE;			// 是否已初始化了一个攻击咒术
+static TOCALL_MAGIC	ToCallMgc;						// 攻擊咒術的變數
+static BOOL			bRunToCallMgc = FALSE;			// 是否已初始化瞭一個攻擊咒術
 
-static BOOL	BuildToCallMagicData(ACTION *pMaster, ACTION *pAttacker);	// 召唤咒术的资料建立
-//static BOOL RunTimeMagic();													// 攻击性咒术的监控函式
+static BOOL	BuildToCallMagicData(ACTION *pMaster, ACTION *pAttacker);	// 召喚咒術的資料建立
+//static BOOL RunTimeMagic();													// 攻擊性咒術的監控函式
 
 #endif
 
 #ifdef _PROFESSION_ADDSKILL
-static int bRunBoundaryMgc_l = 0, bRunBoundaryMgc_r = 0;			// 特效状态
+static int bRunBoundaryMgc_l = 0, bRunBoundaryMgc_r = 0;			// 特效狀態
 ACTION *boundary_2,*boundary_mark[2];
-static BOOL	BuildBoundaryMagicData( int state );	// 特效的资料建立
+static BOOL	BuildBoundaryMagicData( int state );	// 特效的資料建立
 static void RunTimeMagicBoundary(int state);
 #endif
 
-//处理优先顺序
+//處理優先順序
 enum {
 	T_PRIO_TOP,						/* ?? 	*/
 	T_PRIO_JIKI = 20,				/* ? 	*/
@@ -317,14 +317,14 @@ void SetDisplayAttackEffect(ACTION *a0, int iEffectNumber)
 {
 	ACTION *a1, *a2;
 
-	a2 = GetAction(T_PRIO_MISSILE, sizeof(ATR_EQU));	// 建立新的 ACTION (攻击时特效)
+	a2 = GetAction(T_PRIO_MISSILE, sizeof(ATR_EQU));	// 建立新的 ACTION (攻擊時特效)
 	if (a2 == NULL)
 		return;
 	ATR_NAME(a2) = DisplayAttackEffect;
 	ATR_CHR_NO(a2) = iEffectNumber;
-	a1 = ATR_BODY_WORK(0, a0);							// 取出被攻击方
-	ATR_DISP_PRIO(a2) = ATR_DISP_PRIO(a1) + 1;			// 显示在被攻击方图的上层
-	ATR_H_POS(a2) = ATR_H_POS(a1);						// 显示在被攻击方的位置上
+	a1 = ATR_BODY_WORK(0, a0);							// 取齣被攻擊方
+	ATR_DISP_PRIO(a2) = ATR_DISP_PRIO(a1) + 1;			// 顯示在被攻擊方圖的上層
+	ATR_H_POS(a2) = ATR_H_POS(a1);						// 顯示在被攻擊方的位置上
 	ATR_V_POS(a2) = ATR_V_POS(a1);
 }
 #endif
@@ -344,7 +344,7 @@ void kakushi_command(void)
 }
 
 #define DAMAGE_SPD	24
-//被攻击时的显示处理
+//被攻擊時的顯示處理
 void damage_num(ACTION *a0)
 {
 	int d0, d1, dx, d2 = 0;
@@ -355,12 +355,12 @@ void damage_num(ACTION *a0)
 	char szMojHp[256];
 
 	d0 = 0; dx = 0;
-	if (slow_flg)		//假如在slow状态
+	if (slow_flg)		//假如在slow狀態
 	{
-		if (s_timer & 3)		//不移动
+		if (s_timer & 3)		//不移動
 			d0 = 1;
 	}
-	if (d0 == 0)		//移动情况下
+	if (d0 == 0)		//移動情況下
 	{
 		switch (ATR_INT_WORK1(a0))
 		{
@@ -427,32 +427,32 @@ void damage_num(ACTION *a0)
 
 	switch (ATR_INT_WORK1(a0))
 	{
-	case 0:		//Miss处理
+	case 0:		//Miss處理
 		sprintf_s(szMoji, "Miss");
 		d1 = 0;		//白色Set
 		ATR_ATTRIB(a0) = 0;
 		ATR_CHR_NO(a0) = CG_ICON_MISS;
 		break;
-	case 1:		//反击处理
+	case 1:		//反擊處理
 		sprintf_s(szMoji, "Counter");
 		d1 = 1;		//水色Set
 		ATR_ATTRIB(a0) = 0;
 		ATR_CHR_NO(a0) = CG_ICON_COUNTER;
 		break;
-	case 3:		//防御处理
+	case 3:		//防禦處理
 		sprintf_s(szMoji, "Guard");
 		d1 = 3;		//青色Set
 		ATR_ATTRIB(a0) = 0;
 		ATR_CHR_NO(a0) = CG_ICON_GUARD;
 		break;
-	case 5:		//捕捉处理
+	case 5:		//捕捉處理
 		sprintf_s(szMoji, "Capture");
-		d1 = 5;		//绿色Set
+		d1 = 5;		//綠色Set
 		ATR_ATTRIB(a0) = 0;
 		ATR_CHR_NO(a0) = CG_ICON_CAPTURE;
 		break;
 
-	case 6:		//受伤处理
+	case 6:		//受傷處理
 		sprintf_s(szMoji, "%d", ATR_INT_WORK0(a0));
 		sprintf_s(szMojiP, "%d", ATR_INT_WORKp(a0));
 		//andy_mp
@@ -460,41 +460,41 @@ void damage_num(ACTION *a0)
 			sprintf_s(szMojMp, "%d", ATR_MPDAMAGE(a0));
 		if (ATR_ADDHPFLG(a0) == 1)
 			sprintf_s(szMojHp, "%d", ATR_ADDHP(a0));
-		d1 = 6;		//红色Set
+		d1 = 6;		//紅色Set
 		break;
-	case 7:		//捕捉成功处理
+	case 7:		//捕捉成功處理
 		sprintf_s(szMoji, "Success");
-		d1 = 5;		//绿色Set
+		d1 = 5;		//綠色Set
 		ATR_ATTRIB(a0) = 0;
 		ATR_CHR_NO(a0) = CG_ICON_GET;
 		break;
-	case 8:		//捕捉失败处理
+	case 8:		//捕捉失敗處理
 		sprintf_s(szMoji, "Fail");
-		d1 = 6;		//红色Set
+		d1 = 6;		//紅色Set
 		ATR_ATTRIB(a0) = 0;
 		ATR_CHR_NO(a0) = CG_ICON_FAIL;
 		break;
-	case 9:		//逃跑处理
+	case 9:		//逃跑處理
 		sprintf_s(szMoji, "Escape");
-		d1 = 5;		//绿色Set
+		d1 = 5;		//綠色Set
 		ATR_ATTRIB(a0) = 0;
 		ATR_CHR_NO(a0) = CG_ICON_ESCAPE;
 		break;
-	case 10:		//收回宠物处理
+	case 10:		//收迴寵物處理
 		sprintf_s(szMoji, "Come!");
-		d1 = 5;		//绿色Set
+		d1 = 5;		//綠色Set
 		ATR_ATTRIB(a0) = 0;
 		ATR_CHR_NO(a0) = CG_ICON_COME_ON;
 		break;
-	case 11:		//放出宠物处理
+	case 11:		//放齣寵物處理
 		sprintf_s(szMoji, "Go!");
-		d1 = 5;		//绿色Set
+		d1 = 5;		//綠色Set
 		ATR_ATTRIB(a0) = 0;
 		ATR_CHR_NO(a0) = CG_ICON_GO;
 		break;
-	case 12:		//破除防御处理
+	case 12:		//破除防禦處理
 		sprintf_s(szMoji, "Guard break");
-		d1 = 5;		//绿色Set
+		d1 = 5;		//綠色Set
 		ATR_ATTRIB(a0) = 0;
 		ATR_CHR_NO(a0) = CG_ICON_GUARD_BREAK;
 		break;
@@ -504,28 +504,28 @@ void damage_num(ACTION *a0)
 		ATR_ATTRIB(a0) = 0;
 		ATR_CHR_NO(a0) = CG_ICON_DANGER;
 		break;
-	case 14:		//回复
+	case 14:		//迴復
 		sprintf_s(szMoji, "%d", ATR_INT_WORK0(a0));
 		sprintf_s(szMojiP, "%d", ATR_INT_WORKp(a0));
-		d1 = 5;		//绿色Set
+		d1 = 5;		//綠色Set
 		break;
-	case 15:		//MP回复
+	case 15:		//MP迴復
 		sprintf_s(szMoji, "%d", ATR_INT_WORK0(a0));
 		sprintf_s(szMojiP, "%d", ATR_INT_WORKp(a0));
-		d1 = 4;		//黄色Set
+		d1 = 4;		//黃色Set
 		break;
 	case 16:		//MP下降
 		sprintf_s(szMoji, "%d", ATR_INT_WORK0(a0));
 		sprintf_s(szMojiP, "%d", ATR_INT_WORKp(a0));
 		d1 = 3;		//青色Set
 		break;
-	case 17:		//宠物逃跑
+	case 17:		//寵物逃跑
 		sprintf_s(szMoji, "Leave");
 		d1 = 2;		//紫色Set
 		ATR_ATTRIB(a0) = 0;
 		ATR_CHR_NO(a0) = CG_ICON_LEAVE;
 		break;
-	case 18:		//宠物NONO
+	case 18:		//寵物NONO
 		sprintf_s(szMoji, "No");
 		d1 = 2;		//紫色Set
 		ATR_ATTRIB(a0) = 0;
@@ -544,10 +544,10 @@ void damage_num(ACTION *a0)
 		ATR_CHR_NO(a0) = CG_ICON_CAPTURE_UP;
 		break;
 
-#ifdef _SKILL_ROAR  //宠技:大吼(克年兽)
+#ifdef _SKILL_ROAR  //寵技:大吼(剋年獸)
 	case 22:
 		sprintf_s(szMoji, "Roar");
-		d1 = 5;		//绿色Set
+		d1 = 5;		//綠色Set
 		ATR_ATTRIB(a0) = 0;
 		ATR_CHR_NO(a0) = CG_ICON_ROAR;
 		break;
@@ -556,9 +556,9 @@ void damage_num(ACTION *a0)
 #ifdef _SKILL_SELFEXPLODE //自爆
 	case 23:
 		sprintf_s(szMoji, "SelfExplode");
-		d1 = 5;		//绿色Set
+		d1 = 5;		//綠色Set
 		ATR_ATTRIB(a0) = 0;
-		ATR_CHR_NO(a0) = SPR_selfexplod; //动画
+		ATR_CHR_NO(a0) = SPR_selfexplod; //動畫
 		break;
 #endif
 
@@ -607,7 +607,7 @@ void damage_num(ACTION *a0)
 		ATR_CHR_NO(a0) = SPR_ironwall;
 		break;
 
-	case 32:	//属性转换
+	case 32:	//屬性轉換
 		sprintf_s(szMoji, "No");
 		d1 = 2;		//紫色Set
 		ATR_ATTRIB(a0) = 0;
@@ -631,7 +631,7 @@ void damage_num(ACTION *a0)
 		ATR_ATTRIB(a0) = 0;
 		ATR_CHR_NO(a0) = SPR_ch_wind;
 		break;
-	case 36:	//andy_add 回合补血
+	case 36:	//andy_add 迴閤補血
 		memset(szMoji, 0, sizeof(szMoji));
 		memset(szMojiP, 0, sizeof(szMojiP));
 		if (ATR_INT_WORK0(a0) != 0)
@@ -646,7 +646,7 @@ void damage_num(ACTION *a0)
 		break;
 	case 37:
 		memset(szMoji, 0, sizeof(szMoji));
-		sprintf_s(szMoji, "回避 %s", (ATR_INT_WORK0(a0) > 0) ? "上升" : "下降");
+		sprintf_s(szMoji, "迴避 %s", (ATR_INT_WORK0(a0) > 0) ? "上升" : "下降");
 		d1 = FONT_PAL_GREEN;
 		break;
 	case 38:
@@ -669,16 +669,16 @@ void damage_num(ACTION *a0)
 		sprintf_s(szMoji, "LightTake");
 		d1 = 5;		
 		ATR_ATTRIB(a0) = 0;
-		ATR_CHR_NO(a0) = SPR_lightget;//动画
+		ATR_CHR_NO(a0) = SPR_lightget;//動畫
 		break;
 #endif
-		//#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+		//#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 	case 41:
 		sprintf_s(szMoji, "LightTake");
 		d1 = 5;
 		ATR_ATTRIB(a0) = 0;
-		ATR_CHR_NO(a0) = AttNextMagicNum;//动画
-#ifdef _WAVETRACK					// (不可开) Syu ADD 音波轨道
+		ATR_CHR_NO(a0) = AttNextMagicNum;//動畫
+#ifdef _WAVETRACK					// (不可開) Syu ADD 音波軌道
 		if (AttNextMagicNum == 101703 && BeAttNum >= 15 && BeAttNum <= 19)
 		{
 			if (BeAttNum == 15)
@@ -746,7 +746,7 @@ void damage_num(ACTION *a0)
 		//#endif
 
 #ifdef _EQUIT_ARRANGE
-	case 42:		//挡格处理
+	case 42:		//擋格處理
 		sprintf_s(szMoji, "Guard");
 		d1 = 3;		//青色Set
 		ATR_ATTRIB(a0) = 0;
@@ -754,24 +754,24 @@ void damage_num(ACTION *a0)
 		break;
 #endif
 
-#ifdef _SKILL_ADDBARRIER		// Change 宠技:为魔障增加异常抗性功能
+#ifdef _SKILL_ADDBARRIER		// Change 寵技:為魔障增加異常抗性功能
 	case 43:
 		memset(szMoji, 0, sizeof(szMoji));
 		if (ATR_INT_WORK0(a0) == 0)
-			sprintf_s(szMoji, "异常抗性回复");
+			sprintf_s(szMoji, "異常抗性迴復");
 		else
-			sprintf_s(szMoji, "异常抗性 %s%d％", (ATR_INT_WORK0(a0) > 0) ? "上升":"下降", ATR_INT_WORK0(a0));
+			sprintf_s(szMoji, "異常抗性 %s%d％", (ATR_INT_WORK0(a0) > 0) ? "上升":"下降", ATR_INT_WORK0(a0));
 		d1 = FONT_PAL_GREEN;
 		break;
 #endif
 #ifdef _PETSKILL_PEEL
 	case 44:
 	{
-			   char *tempstr[] = { "头部", "铠部", "右手", "左饰品", "右饰品", "腰带", "左手", "鞋子", "手套"};
+			   char *tempstr[] = { "頭部", "鎧部", "右手", "左飾品", "右飾品", "腰帶", "左手", "鞋子", "手套"};
 			   memset(szMoji, 0, sizeof(szMoji));
 			   if (ATR_INT_WORK0(a0) > 8)
 				   break;
-			   sprintf_s(szMoji, "卸下 %s 装备", tempstr[ATR_INT_WORK0(a0)]);
+			   sprintf_s(szMoji, "卸下 %s 裝備", tempstr[ATR_INT_WORK0(a0)]);
 			   d1 = FONT_PAL_GREEN;
 	}
 		break;
@@ -779,7 +779,7 @@ void damage_num(ACTION *a0)
 #ifdef _PETSKILL_JUSTICE
 	case 45:
 	{
-			   sprintf_s(szMoji, "审判 %d 回合", ATR_INT_WORK0(a0));
+			   sprintf_s(szMoji, "審判 %d 迴閤", ATR_INT_WORK0(a0));
 			   d1 = FONT_PAL_GREEN;
 	}
 		break;
@@ -787,13 +787,13 @@ void damage_num(ACTION *a0)
 #ifdef _PETSKILL_ADDATTCRAZED
 	case 46:
 	{
-			   sprintf_s(szMoji, "敏捷回避下降", ATR_INT_WORK0(a0));
+			   sprintf_s(szMoji, "敏捷迴避下降", ATR_INT_WORK0(a0));
 			   d1 = FONT_PAL_GREEN;
 	}
 		break;
 	case 47:
 	{
-			   sprintf_s(szMoji, "敏捷回避回复", ATR_INT_WORK0(a0));
+			   sprintf_s(szMoji, "敏捷迴避迴復", ATR_INT_WORK0(a0));
 			   d1 = FONT_PAL_GREEN;
 	}
 		break;
@@ -807,62 +807,62 @@ void damage_num(ACTION *a0)
 				   sprintf_s(szMoji, "吼!", ATR_INT_WORK0(a0));
 				   break;
 			   case 1:
-				   sprintf_s(szMoji, "受到挑衅!", ATR_INT_WORK0(a0));
+				   sprintf_s(szMoji, "受到挑釁!", ATR_INT_WORK0(a0));
 				   break;
 			   case 2:
 				   sprintf_s(szMoji, "被黏液黏住!", ATR_INT_WORK0(a0));
 				   break;
 			   case 3:
-				   sprintf_s(szMoji, "攻击次数减少!", ATR_INT_WORK0(a0));
+				   sprintf_s(szMoji, "攻擊次數減少!", ATR_INT_WORK0(a0));
 				   break;
 			   case 4:
-				   sprintf_s(szMoji, "吸收光之精灵", ATR_INT_WORK0(a0));
+				   sprintf_s(szMoji, "吸收光之精靈", ATR_INT_WORK0(a0));
 				   break;
 			   case 5:
-				   sprintf_s(szMoji, "吸收镜之精灵", ATR_INT_WORK0(a0));
+				   sprintf_s(szMoji, "吸收鏡之精靈", ATR_INT_WORK0(a0));
 				   break;
 			   case 6:
-				   sprintf_s(szMoji, "吸收守之精灵", ATR_INT_WORK0(a0));
+				   sprintf_s(szMoji, "吸收守之精靈", ATR_INT_WORK0(a0));
 				   break;
 			   case 7:
-				   sprintf_s(szMoji, "光之精灵失效", ATR_INT_WORK0(a0));
+				   sprintf_s(szMoji, "光之精靈失效", ATR_INT_WORK0(a0));
 				   break;
 			   case 8:
-				   sprintf_s(szMoji, "镜之精灵失效", ATR_INT_WORK0(a0));
+				   sprintf_s(szMoji, "鏡之精靈失效", ATR_INT_WORK0(a0));
 				   break;
 			   case 9:
-				   sprintf_s(szMoji, "守之精灵失效", ATR_INT_WORK0(a0));
+				   sprintf_s(szMoji, "守之精靈失效", ATR_INT_WORK0(a0));
 				   break;
 			   case 10:
 				   sprintf_s(szMoji, "解除黏液效果!", ATR_INT_WORK0(a0));
 				   break;
 #ifdef _PRO3_ADDSKILL
 			   case 11:
-				   sprintf_s(szMoji, "解除裂骨断筋!");
+				   sprintf_s(szMoji, "解除裂骨斷筋!");
 				   break;
 			   case 12:
-				   sprintf_s(szMoji, "中了毒素之网!");
+				   sprintf_s(szMoji, "中瞭毒素之網!");
 				   break;
 			   case 13:
-				   sprintf_s(szMoji, "毒素之网解除!");
+				   sprintf_s(szMoji, "毒素之網解除!");
 				   break;
 			   case 14:
-				   sprintf_s(szMoji, "抚慰心灵解除!");
+				   sprintf_s(szMoji, "撫慰心靈解除!");
 				   break;
 			   case 15:
-				   sprintf_s(szMoji, "封印闇灵法术!");
+				   sprintf_s(szMoji, "封印闇靈法術!");
 				   break;
 			   case 16:
-				   sprintf_s(szMoji, "回复闇灵法术!");
+				   sprintf_s(szMoji, "迴復闇靈法術!");
 				   break;
 			   case 17:
-				   sprintf_s(szMoji, "中了恶魔诅咒!");
+				   sprintf_s(szMoji, "中瞭惡魔詛咒!");
 				   break;
 			   case 18:
-				   sprintf_s(szMoji, "解除恶魔诅咒!");
+				   sprintf_s(szMoji, "解除惡魔詛咒!");
 				   break;
 			   case 19:
-				   sprintf_s(szMoji, "受到了惊吓!");
+				   sprintf_s(szMoji, "受到瞭驚嚇!");
 				   break;
 #endif
 			   }
@@ -870,26 +870,26 @@ void damage_num(ACTION *a0)
 	}
 #endif
 #ifdef _PRO3_ADDSKILL
-	case 49: //抚慰心灵
+	case 49: //撫慰心靈
 	{
-				 sprintf_s(szMoji, "忠诚度 %d ", ATR_INT_WORK0(a0));
+				 sprintf_s(szMoji, "忠誠度 %d ", ATR_INT_WORK0(a0));
 				 d1 = FONT_PAL_GREEN;
 	}
 		break;
-	case 50: //闇灵封印
+	case 50: //闇靈封印
 	{
-				 char *tempstr[] = { "", "火山泉", "针针相对", "世界末日", "冰爆术", "附身术", "召雷术", "暴风雨", "电流术", "火星球",
-					 "嗜血蛊", "嗜血成性", "冰箭术", "火龙枪", "冰镜术", "火附体", "雷附体", "冰附体", "火熟练度", "雷熟练度", "冰熟练度", 
-					 "移形换位", "暴击", "连环攻击", "双重攻击", "回避", "枪熟练度", "斧熟练度", "棍熟练度", "弓熟练度",
-					 "精通回力镖", "精通投掷石", "精通投掷斧", "状态回复", "舍已为友", "激化攻击", "能量聚集", "专注战斗", 
-					 "盾击", "贯穿攻击", "濒死攻击", "回旋攻击", "混乱攻击", "二刀流", "追寻敌踪", "回避战斗", "树根缠绕", 
-					 "陷阱", "天罗地网", "尸体掠夺", "毒素武器", "弱点攻击", "挑拨", "格档", "座骑攻击", "加工", "驯服宠物", "激怒宠物", 
-					 "自给自足", "雷抗性", "火抗性", "冰抗性", "遗忘", "自我强化", "气力充沛", "负重增加", "自然威能", "号召自然", 
-					 "地结界", "水结界", "火结界", "风结界", "破除结界", "诱敌", "野性征服", 
-					 "四方防御", "裂骨断筋", "战狼怒吼", "斗气导引", 
-					 "魔力咒印", "恶魔诅咒", "神灵之赐", "多重冰箭", 
-					 "多重冰箭", "毒素之网", "抚慰心灵", 
-					 "战场急救", "制药学" };
+				 char *tempstr[] = { "", "火山泉", "針針相對", "世界末日", "冰爆術", "附身術", "召雷術", "暴風雨", "電流術", "火星球",
+					 "嗜血蠱", "嗜血成性", "冰箭術", "火龍槍", "冰鏡術", "火附體", "雷附體", "冰附體", "火熟練度", "雷熟練度", "冰熟練度", 
+					 "移形換位", "暴擊", "連環攻擊", "雙重攻擊", "迴避", "槍熟練度", "斧熟練度", "棍熟練度", "弓熟練度",
+					 "精通迴力鏢", "精通投擲石", "精通投擲斧", "狀態迴復", "捨已為友", "激化攻擊", "能量聚集", "專注戰鬥", 
+					 "盾擊", "貫穿攻擊", "瀕死攻擊", "迴鏇攻擊", "混亂攻擊", "二刀流", "追尋敵蹤", "迴避戰鬥", "樹根纏繞", 
+					 "陷阱", "天羅地網", "屍體掠奪", "毒素武器", "弱點攻擊", "挑撥", "格檔", "座騎攻擊", "加工", "馴服寵物", "激怒寵物", 
+					 "自給自足", "雷抗性", "火抗性", "冰抗性", "遺忘", "自我強化", "氣力充沛", "負重增加", "自然威能", "號召自然", 
+					 "地結界", "水結界", "火結界", "風結界", "破除結界", "誘敵", "野性徵服", 
+					 "四方防禦", "裂骨斷筋", "戰狼怒吼", "鬥氣導引", 
+					 "魔力咒印", "惡魔詛咒", "神靈之賜", "多重冰箭", 
+					 "多重冰箭", "毒素之網", "撫慰心靈", 
+					 "戰場急救", "製藥學" };
 				 memset(szMoji, 0, sizeof(szMoji));
 				 sprintf_s(szMoji, "%s 被封印", tempstr[ATR_INT_WORK0(a0)]);
 				 d1 = FONT_PAL_GREEN;
@@ -906,7 +906,7 @@ void damage_num(ACTION *a0)
 
 	switch (ATR_INT_WORK1(a0))
 	{
-	case 36:	//andy_add 回合补血
+	case 36:	//andy_add 迴閤補血
 		if (ATR_RIDE_FLAG(a0) == 1)
 			StockFontBuffer(ATR_H_POS(a0) - 20, ATR_V_POS(a0) + 32, FONT_PRIO_BACK, d1, szMojiP, 0);
 	case 37:
@@ -951,7 +951,7 @@ void damage_num(ACTION *a0)
 		d0 = GetStrWidth(szMoji) >> 1;
 		StockFontBuffer(ATR_H_POS(a0) - d0, ATR_V_POS(a0), FONT_PRIO_BACK, d1, szMoji, 0);
 
-		if (ATR_MPDAMAGE(a0) != 0 || ATR_MPDFLG(a0) == 1)//伤害
+		if (ATR_MPDAMAGE(a0) != 0 || ATR_MPDFLG(a0) == 1)//傷害
 			StockFontBuffer(ATR_H_POS(a0) - d0, ATR_V_POS(a0) + 12, FONT_PRIO_BACK, FONT_PAL_YELLOW, szMojMp, 0);
 		if (ATR_RIDE_FLAG(a0) == 1)
 		{
@@ -964,7 +964,7 @@ void damage_num(ACTION *a0)
 	}
 }
 
-//伤害值设定处理
+//傷害值設定處理
 void set_damage_num(ACTION *a0, int color, int v_pos)
 {
 	ACTION *a1;
@@ -972,27 +972,27 @@ void set_damage_num(ACTION *a0, int color, int v_pos)
 	if (a1 == NULL)
 		return;
 	/* ??? */
-#ifdef _WAVETRACK					// (不可开) Syu ADD 音波轨道
+#ifdef _WAVETRACK					// (不可開) Syu ADD 音波軌道
 	BeAttNum = a0->hitDispNo ; 
 #endif
 	ATR_NAME(a1) = damage_num;
-	//表示优先度
+	//錶示優先度
 	ATR_DISP_PRIO(a1) = D_PRIO_DAMAGE_NUM;
 	/* ??? */
 	ATR_H_POS(a1) = ATR_H_POS(a0);
 	ATR_V_POS(a1) = ATR_V_POS(a0) + v_pos;
 	ATR_SPD(a1) = DAMAGE_SPD;
 	ATR_ATTRIB(a1) = ACT_ATR_HIDE;
-	//Syu mark 下面这行跟颜色根本没关系，是damage_num的代码，damage_num的switch才会决定色码
-	ATR_INT_WORK1(a1) = color;		//文字颜色设定
+	//Syu mark 下麵這行跟顔色根本沒關係，是damage_num的代碼，damage_num的switch纔會決定色碼
+	ATR_INT_WORK1(a1) = color;		//文字顔色設定
 	if (ATR_ADDHPFLG(a0) == 1)
 	{
 		ATR_ADDHP(a1) = ATR_ADDHP(a0);
 		ATR_ADDHPFLG(a1) = ATR_ADDHPFLG(a0);
 	}
 	int dddd = ATR_DAMAGE(a0);
-	ATR_INT_WORK0(a1) = ATR_DAMAGE(a0);		//伤害设定
-	ATR_INT_WORKp(a1) = ATR_PET_DAMAGE(a0);		//伤害设定
+	ATR_INT_WORK0(a1) = ATR_DAMAGE(a0);		//傷害設定
+	ATR_INT_WORKp(a1) = ATR_PET_DAMAGE(a0);		//傷害設定
 	ATR_RIDE_FLAG(a1) = ATR_RIDE(a0);
 	//andy_mp
 	ATR_MPDAMAGE(a1) = ATR_MPDAMAGE(a0);
@@ -1048,7 +1048,7 @@ void set_damage_num(ACTION *a0, int color, int v_pos)
 #endif
 	}
 #ifdef _PETSKILL_LER
-	// 雷尔防御时的防护盾
+	// 雷爾防禦時的防護盾
 	if (color == 3 && ATR_CHR_NO(a0) == 101815)
 	{
 		ACTION *a2;
@@ -1099,7 +1099,7 @@ void play_damage(int no, int x)
 	//?????????
 	if (no >= 10100)
 		no -= 100;
-	//效果音分类
+	//效果音分類
 	switch (no)
 	{
 	case 10000:		//空手
@@ -1114,16 +1114,16 @@ void play_damage(int no, int x)
 	case 10003:		//棍棒
 		no = 251;
 		break;
-	case 10004:		//枪
+	case 10004:		//槍
 		no = 252;
 		break;
 	case 10005:		//弓
 		no = -1;
 		break;
-	case 10006:		//投掷斧
+	case 10006:		//投擲斧
 		no = -1;
 		break;
-	case 10007:		//咒术
+	case 10007:		//咒術
 		no = 254;
 		break;
 	default:
@@ -1196,7 +1196,7 @@ void magic_effect(ACTION *a0)
 	ATR_V_POS(a0) = ATR_V_POS(a1);
 }
 
-//HIT_MARK处理 ( 必杀 )
+//HIT_MARK處理 ( 必殺 )
 void hit_mark_critical(ACTION *a0)
 {
 	if (ATR_STIMER(a0) == ATR_FIRST_FLG(a0) >> 1)		//?????
@@ -1208,14 +1208,14 @@ void hit_mark_critical(ACTION *a0)
 	}
 	else
 	{
-		DeathAction(a0);		//终了
+		DeathAction(a0);		//終瞭
 		return;
 	}
 }
-//HIT_MARK处理
+//HIT_MARK處理
 void hit_mark(ACTION *a0)
 {
-	//对象死亡ATR_KAISHIN为TRUE
+	//對象死亡ATR_KAISHIN為TRUE
 	if (ATR_KAISHIN(a0))
 	{
 		if (ATR_STIMER(a0) == ATR_FIRST_FLG(a0) * 1 / 3)		//?????
@@ -1234,7 +1234,7 @@ void hit_mark(ACTION *a0)
 		pattern(a0, 0, 0);
 	else
 	{
-		DeathAction(a0);		//终了
+		DeathAction(a0);		//終瞭
 		return;
 	}
 }
@@ -1244,24 +1244,24 @@ void set_hit_mark(ACTION *a0)
 	ACTION *a1, *a2;
 	int d0;
 
-	//必杀时产生五颗星星，不管是不是必杀都先做，不是才break
+	//必殺時産生五顆星星，不管是不是必殺都先做，不是纔break
 	for (d0 = 5; d0 > 0; d0--)
 	{
-		//设定HIT_MARK
+		//設定HIT_MARK
 		a1 = GetAction(T_PRIO_HIT_MARK, sizeof(ATR_EQU));
 		if (a1 == NULL)
 			return;
 		/* ??? */
 		ATR_NAME(a1) = hit_mark;
-		//表示优先度
+		//錶示優先度
 		ATR_DISP_PRIO(a1) = D_PRIO_HIT_MARK;
-		//假设被攻击对象防御用青色图
+		//假設被攻擊對象防禦用青色圖
 		if (ATR_ATTACK_KIND(0, a0) & ATT_GUARD)
-			//设定图号
+			//設定圖號
 			ATR_CHR_NO(a1) = CG_HIT_MARK_12;		//青色
 		else
-			//设定图号
-			ATR_CHR_NO(a1) = CG_HIT_MARK_22;		//红色
+			//設定圖號
+			ATR_CHR_NO(a1) = CG_HIT_MARK_22;		//紅色
 		//初期位置配置
 		a2 = ATR_BODY_WORK(0, a0);
 		ATR_H_POS(a1) = ATR_H_POS(a2);
@@ -1269,13 +1269,13 @@ void set_hit_mark(ACTION *a0)
 		ATR_SPD(a1) = Rnd(4, 7);
 		ATR_CRS(a1) = d0 * 6;
 		if (ATR_HIT_STOP(a0) == HIT_STOP_TIM)		//??????????
-			ATR_FIRST_FLG(a1) = ATR_STIMER(a1) = ATR_HIT_STOP(a0);		//表示时间设定
+			ATR_FIRST_FLG(a1) = ATR_STIMER(a1) = ATR_HIT_STOP(a0);		//錶示時間設定
 		else
 		{
-			ATR_FIRST_FLG(a1) = ATR_STIMER(a1) = ATR_HIT_STOP(a0);		//表示时间设定
+			ATR_FIRST_FLG(a1) = ATR_STIMER(a1) = ATR_HIT_STOP(a0);		//錶示時間設定
 			ATR_KAISHIN(a1) = 1;
 		}
-		//必杀时处理下一颗星星，非必杀跳出
+		//必殺時處理下一顆星星，非必殺跳齣
 		if (ATR_ATTACK_KIND(0, a0) & ATT_SATISFACTORY)
 		{
 			ATR_NAME(a1) = hit_mark_critical;
@@ -1311,7 +1311,7 @@ void set_guard_mark(ACTION *a0)
 		ATR_CHR_NO(a1) = SPR_mirror;
 	else if (ATR_ATTACK_KIND(0, a0) & ATT_BALLIA)
 		ATR_CHR_NO(a1) = SPR_barrior;
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 	else if (ATR_ATTACK_KIND(0, a0) & ATT_TRAP)
 	{		//陷阱
 		if ( a0->hitDispNo >= 10 && a0->hitDispNo <= 19 )
@@ -1329,11 +1329,11 @@ void set_guard_mark(ACTION *a0)
 #endif
 #ifdef _PETSKILL_ACUPUNCTURE
 	else if (ATR_ATTACK_KIND(0, a0) & ATT_ACUPUNCTURE)
-		//目前不显示效果图
+		//目前不顯示效果圖
 #ifdef _FIX_ACUPUNCTURE
 		ATR_DAMAGE(a0) = ATR_ATTACK_POW(1, a0);
 #else
-		ATR_DAMAGE(a0) = ATR_ATTACK_POW(0, a0)*2;//设定伤害值
+		ATR_DAMAGE(a0) = ATR_ATTACK_POW(0, a0)*2;//設定傷害值
 #endif
 #endif
 #ifdef _PET_ITEM
@@ -1446,21 +1446,21 @@ void katino(ACTION *a0)
 	}
 	ATR_DISP_PRIO(a0) = ATR_DISP_PRIO(a1) + 1;
 	ATR_H_POS(a0) = ATR_H_POS(a1);
-#ifdef _FIXSTATUS					// (不可开) Syu ADD 修正战斗状态显示方式
+#ifdef _FIXSTATUS					// (不可開) Syu ADD 修正戰鬥狀態顯示方式
 	if (ATR_CHR_NO(a0) == SPR_shock)			//麻痹
 		ATR_V_POS(a0) = ATR_V_POS(a1);
-	else if (ATR_CHR_NO(a0) == 35120)		//树根缠绕
+	else if (ATR_CHR_NO(a0) == 35120)		//樹根纏繞
 		ATR_V_POS(a0) = ATR_V_POS(a1) - 34 ;
 	else if (ATR_CHR_NO(a0) == 101702)	//毒Sars蔓延
 		ATR_V_POS(a0) = ATR_V_POS(a1) - 34 ;
-	else if (ATR_CHR_NO(a0) == 27692)		//冰箭术、冰爆术
+	else if (ATR_CHR_NO(a0) == 27692)		//冰箭術、冰爆術
 		ATR_V_POS(a0) = ATR_V_POS(a1) - 34 ;
-	else if (ATR_CHR_NO(a0) == 35110)		//天罗地网
+	else if (ATR_CHR_NO(a0) == 35110)		//天羅地網
 		ATR_V_POS(a0) = ATR_V_POS(a1) - 34 ;
-	else if (ATR_CHR_NO(a0) == 26517)		//遗忘
+	else if (ATR_CHR_NO(a0) == 26517)		//遺忘
 		ATR_V_POS(a0) = ATR_V_POS(a1) - 34 ;
 	else if (ATR_CHR_NO(a0) == CG_HIT_MARK_00)
-	{	//晕眩
+	{	//暈眩
 		StarLoop++; 
 		if (StarLoop <= 20 && StarLoop > 0) 
 			ATR_V_POS(a0) = ATR_V_POS(a1) - 46;
@@ -1480,9 +1480,9 @@ void katino(ACTION *a0)
 			StarLoop = 0 ; 
 	}
 #ifdef _PETSKILL_LER
-	// 雷尔变身时的雾动画的位置不动
+	// 雷爾變身時的霧動畫的位置不動
 	else if (ATR_CHR_NO(a0) == 101810 || ATR_CHR_NO(a0) == 101811 || ATR_CHR_NO(a0) == 101863 || ATR_CHR_NO(a0) == 101864);
-	// 雷尔防御时的防护盾动画位置要变
+	// 雷爾防禦時的防護盾動畫位置要變
 	else if (ATR_CHR_NO(a0) == 101805 || ATR_CHR_NO(a0) == 101858)
 	{
 		ATR_H_POS(a0) = ATR_H_POS(a1) + 10;
@@ -1498,11 +1498,11 @@ void katino(ACTION *a0)
 		ATR_V_POS(a0) = ATR_V_POS(a1) - 64;
 #endif
 #ifdef _PETSKILL_LER
-	// 当动画为雾或防护盾时
+	// 當動畫為霧或防護盾時
 	if (ATR_CHR_NO(a0) == 101810 || ATR_CHR_NO(a0) == 101811 || ATR_CHR_NO(a0) == 101805 ||
 		ATR_CHR_NO(a0) == 101863 || ATR_CHR_NO(a0) == 101864 || ATR_CHR_NO(a0) == 101858)
 	{
-		// 动画播放完了,清除动画
+		// 動畫播放完瞭,清除動畫
 		if (pattern(a0, ANM_NOMAL_SPD, ANM_NO_LOOP))
 		{
 			ATR_JUJUTSU_WORK(a1) = NULL;
@@ -1515,7 +1515,7 @@ void katino(ACTION *a0)
 			int i;
 			for (i = 0; i < BATTLKPKPLYAERNUM; i++)
 			{
-				// 找出雷尔在那一边
+				// 找齣雷爾在那一邊
 				if (ATR_CHR_NO(p_party[i]) == ATR_CHR_NO(a1))
 					break;
 			}
@@ -1528,7 +1528,7 @@ void katino(ACTION *a0)
 		pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);		//???
 }
 
-//产生持续性人物状态动画
+//産生持續性人物狀態動畫
 void set_single_jujutsu(int d0, ACTION *a1)
 {
 	if (ATR_LIFE(a1) == 0)		//??????
@@ -1577,12 +1577,12 @@ void set_single_jujutsu(int d0, ACTION *a1)
 	case 6:
 		ATR_CHR_NO(a2) = SPR_conf;
 		break;
-#ifdef _MAGIC_WEAKEN  //虚弱
+#ifdef _MAGIC_WEAKEN  //虛弱
 	case 7:
 		ATR_CHR_NO(a2) = SPR_weaken;
 		break;
 #endif
-#ifdef _MAGIC_DEEPPOISION   //剧毒
+#ifdef _MAGIC_DEEPPOISION   //劇毒
 	case 8:
 		ATR_CHR_NO(a2) = SPR_deeppoison;
 		break;
@@ -1606,49 +1606,49 @@ void set_single_jujutsu(int d0, ACTION *a1)
 
 #ifdef _CHAR_PROFESSION						// WON ADD
 	case 12:
-		ATR_CHR_NO(a2) = CG_HIT_MARK_00; //晕眩
+		ATR_CHR_NO(a2) = CG_HIT_MARK_00; //暈眩
 		break;
 	case 13:
-		ATR_CHR_NO(a2) = 35120; //树根缠绕
+		ATR_CHR_NO(a2) = 35120; //樹根纏繞
 		break;
 	case 14:
-		ATR_CHR_NO(a2) = 35110; //天罗地网
+		ATR_CHR_NO(a2) = 35110; //天羅地網
 		break;
 	case 15:
-		ATR_CHR_NO(a2) = 27692;	//冰爆术
+		ATR_CHR_NO(a2) = 27692;	//冰爆術
 		break;
 	case 16: 
-		ATR_CHR_NO(a2) = 26517; //遗忘
+		ATR_CHR_NO(a2) = 26517; //遺忘
 		break;
 	case 17:
 		ATR_CHR_NO(a2) = 27692;	//冰箭
 		break;	
 	case 18:
-		ATR_CHR_NO(a2) = 27012; //嗜血蛊
+		ATR_CHR_NO(a2) = 27012; //嗜血蠱
 		break;	
 	case 19:
-		ATR_CHR_NO(a2) = 27012; //一针见血
+		ATR_CHR_NO(a2) = 27012; //一針見血
 		break;
 	case 20:
-		ATR_CHR_NO(a2) = SPR_conf; //挑拨
+		ATR_CHR_NO(a2) = SPR_conf; //挑撥
 		break;
 	case 21:
-		ATR_CHR_NO(a2) = 0; //火附体
+		ATR_CHR_NO(a2) = 0; //火附體
 		break;
 	case 22:
-		ATR_CHR_NO(a2) = 0; //冰附体
+		ATR_CHR_NO(a2) = 0; //冰附體
 		break;
 	case 23:
-		ATR_CHR_NO(a2) = 100551;   //雷附体
+		ATR_CHR_NO(a2) = 100551;   //雷附體
 		break;
 #ifdef _PROFESSION_ADDSKILL
 	case 32:
-		ATR_CHR_NO(a2) = SPR_barrier; // 水附体
+		ATR_CHR_NO(a2) = SPR_barrier; // 水附體
 		break;
 	case 33:
-		ATR_CHR_NO(a2) = SPR_shock; //恐惧
+		ATR_CHR_NO(a2) = SPR_shock; //恐懼
 		//case 24:
-		//	ATR_CHR_NO(a2) = 0; // 火冰雷附体
+		//	ATR_CHR_NO(a2) = 0; // 火冰雷附體
 		break;
 #endif
 #endif
@@ -1656,11 +1656,11 @@ void set_single_jujutsu(int d0, ACTION *a1)
 	case 34:
 		if (ATR_CHR_NO(a1) == 101814)
 		{
-			// 第一段变身
+			// 第一段變身
 			if (g_bUseAlpha)
-				ATR_CHR_NO(a2) = 101810; // 雾动画1
+				ATR_CHR_NO(a2) = 101810; // 霧動畫1
 			else
-				ATR_CHR_NO(a2) = 101863;	// 雾动画1
+				ATR_CHR_NO(a2) = 101863;	// 霧動畫1
 			ATR_V_POS(a2) = ATR_V_POS(a1);
 			if (ATR_CHR_ACT_OLD(a1) != ANIM_DEAD)
 			{
@@ -1670,11 +1670,11 @@ void set_single_jujutsu(int d0, ACTION *a1)
 		}
 		else if (ATR_CHR_NO(a1) == 101815)
 		{
-			// 第二段变身
+			// 第二段變身
 			if (g_bUseAlpha)
-				ATR_CHR_NO(a2) = 101811;	// 雾动画2
+				ATR_CHR_NO(a2) = 101811;	// 霧動畫2
 			else 
-				ATR_CHR_NO(a2) = 101864; // 雾动画2
+				ATR_CHR_NO(a2) = 101864; // 霧動畫2
 			ATR_V_POS(a2) = ATR_V_POS(a1);
 			if (ATR_CHR_ACT_OLD(a1) != ANIM_DEAD)
 			{
@@ -1696,13 +1696,13 @@ void set_single_jujutsu(int d0, ACTION *a1)
 #endif
 #ifdef _PRO3_ADDSKILL
 	case 37:
-		ATR_CHR_NO(a2) = 102044;//37 恶魔诅咒
+		ATR_CHR_NO(a2) = 102044;//37 惡魔詛咒
 		break;
 	case 38:
-		ATR_CHR_NO(a2) = 102046;//38 毒素之网
+		ATR_CHR_NO(a2) = 102046;//38 毒素之網
 		break;
 	case 39:
-		ATR_CHR_NO(a2) = 101296;//39 抚慰心灵
+		ATR_CHR_NO(a2) = 101296;//39 撫慰心靈
 		break;
 #endif
 	}
@@ -1762,19 +1762,19 @@ void set_attrib_reverse(ACTION *a1)
 #ifdef _BATTLE_PK_PLAYER_FOR_6VS6
 int boomerang_pos_tbl[] = { 0x320, 0x140, 0x2EE, 0xDC, 0x186, 0x6A, 0x214, 0xAA };
 int boomerang_pos_tbl2[] = { 0x2EE, 0x118, 0x2BC, 0xB4, 0x154, 0x32, 0x1BE, 0x64 };
-//左上角位置索引小于15时   xiezi
+//左上角位置索引小於15時   xiezi
 int boomerang_pos_tbl3a[] = { 0x104 + 160, 0x1A4 + 120, 0x64 + 160, 0x14A + 120, -0x60 + 160, 0xA0 + 120, -0x92 + 160, 0x104 + 120 };
 int boomerang_pos_tbl4a[] = { 0x154 + 160, 0x1C2 + 120, 0xB4 + 160, 0x190 + 120, -0x92 + 160, 0xC8 + 120, -0xC4 + 160, 0x12C + 120 };
-//左上角位置索引大于等于15时	xiezi
+//左上角位置索引大於等於15時	xiezi
 int boomerang_pos_tbl3b[] = { 0xC4 + 160, 0x1A4 + 120, 0x44 + 160, 0x16A + 120, -0x60 + 160, 0xA0 + 120, -0x92 + 160, 0x104 + 120 };
 int boomerang_pos_tbl4b[] = { 0x154 + 160, 0x1C2 + 120, 0xB4 + 160, 0x1D0 + 120, -0x92 + 160, 0xC8 + 120, -0xC4 + 160, 0x12C + 120 };
 #else
 int boomerang_pos_tbl[] = { 0x320, 0x140, 0x2EE, 0xDC, 0x186, 0x6A, 0x214, 0xAA };
 int boomerang_pos_tbl2[] = { 0x2EE, 0x118, 0x2BC, 0xB4, 0x154, 0x32, 0x1BE, 0x64 };
-//左上角位置索引小于15时   xiezi
+//左上角位置索引小於15時   xiezi
 int boomerang_pos_tbl3a[] = { 0x104 + 160, 0x1A4 + 120, 0x64 + 160, 0x14A + 120, -0x60 + 160, 0xA0 + 120, -0x92 + 160, 0x104 + 120 };
 int boomerang_pos_tbl4a[] = { 0x154 + 160, 0x1C2 + 120, 0xB4 + 160, 0x190 + 120, -0x92 + 160, 0xC8 + 120, -0xC4 + 160, 0x12C + 120 };
-//左上角位置索引大于等于15时	xiezi
+//左上角位置索引大於等於15時	xiezi
 int boomerang_pos_tbl3b[] = { 0xC4 + 160, 0x1A4 + 120, 0x44 + 160, 0x16A + 120, -0x60 + 160, 0xA0 + 120, -0x92 + 160, 0x104 + 120 };
 int boomerang_pos_tbl4b[] = { 0x154 + 160, 0x1C2 + 120, 0xB4 + 160, 0x1D0 + 120, -0x92 + 160, 0xC8 + 120, -0xC4 + 160, 0x12C + 120 };
 #endif
@@ -1801,7 +1801,7 @@ void boomerang(ACTION *a0)
 		}
 		else
 		{
-			if (ATR_PLACE_NO(a0) >= 15)//这里也是？
+			if (ATR_PLACE_NO(a0) >= 15)//這裏也是？
 			{
 				d0 = boomerang_pos_tbl3b[ATR_LONG_WORK(0, a0) * 2];
 				d1 = boomerang_pos_tbl3b[ATR_LONG_WORK(0, a0) * 2 + 1];
@@ -1877,7 +1877,7 @@ void boomerang(ACTION *a0)
 				//修正技能特效 xiezi
 #ifdef _ATTACK_EFFECT
 				if (BattleCmd[command_point] == 's')
-					ATR_LONG_WORK(0, a0) = get_num();	// 记录特效编号
+					ATR_LONG_WORK(0, a0) = get_num();	// 記錄特效編號
 #endif
 
 				ATR_VCT_NO(a0) = 2;
@@ -1897,7 +1897,7 @@ void boomerang(ACTION *a0)
 		dy = (float)(d1 - ATR_V_POS(a0));
 		d0 = (int)sqrt((double)(dx * dx + dy * dy));
 
-		if (d0 > 1000) //当回旋镖距离大于1000时，直接结束动画
+		if (d0 > 1000) //當迴鏇鏢距離大於1000時，直接結束動畫
 		{
 			ATR_COUNTER_FLG(a0) = 1;
 			ATR_LONG_WORK(2, a0) = 0;
@@ -1961,7 +1961,7 @@ void boomerang(ACTION *a0)
 			}
 #ifdef _PETSKILL_ACUPUNCTURE
 			////////////////////////////////////
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 			if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_ABSORPTION | ATT_BALLIA | ATT_TRAP | ATT_ACUPUNCTURE
 #ifdef _PET_ITEM
 				| ATT_ATTACKBACK
@@ -1977,7 +1977,7 @@ void boomerang(ACTION *a0)
 				////////////////////////////////////
 #else
 			////////////////////////////////////
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 			if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_ABSORPTION | ATT_BALLIA | ATT_TRAP))
 #else
 			if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_ABSORPTION | ATT_BALLIA))
@@ -2104,7 +2104,7 @@ void boomerang(ACTION *a0)
 				//修正技能特效 xiezi
 #ifdef _ATTACK_EFFECT
 				if (BattleCmd[command_point] == 's')
-					ATR_LONG_WORK(0, a0) = get_num();	// 记录特效编号
+					ATR_LONG_WORK(0, a0) = get_num();	// 記錄特效編號
 #endif
 			}
 		}
@@ -2240,7 +2240,7 @@ void stick_bow(ACTION *a0)
 	pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 }
 
-#ifdef _SHOOTCHESTNUT	// Syu ADD 宠技：丢栗子
+#ifdef _SHOOTCHESTNUT	// Syu ADD 寵技：丟栗子
 void shoot(ACTION *a0)
 {
 	ACTION *a1, *a2;
@@ -2369,7 +2369,7 @@ void bow(ACTION *a0)
 			}
 #ifdef _PETSKILL_ACUPUNCTURE
 			///////////////////////////////
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 			if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_ABSORPTION | ATT_BALLIA | ATT_TRAP | ATT_ACUPUNCTURE
 #ifdef _PET_ITEM
 				| ATT_ATTACKBACK
@@ -2385,7 +2385,7 @@ void bow(ACTION *a0)
 				///////////////////////////////
 #else
 			///////////////////////////////
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 			if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_ABSORPTION | ATT_BALLIA | ATT_TRAP))
 #else
 			if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_ABSORPTION | ATT_BALLIA))
@@ -2498,7 +2498,7 @@ void bow(ACTION *a0)
 			ATR_STIMER(a0) = ATR_HIT_STOP(a0) + 64;		//???????
 			ATR_INT_WORK0(a0) = Rnd(0, 8) - 4;		//???????
 			ATR_INT_WORK1(a0) = Rnd(0, 8) - 4 - 28;		//???????!!!
-#ifdef _SHOOTCHESTNUT	// Syu ADD 宠技：丢栗子
+#ifdef _SHOOTCHESTNUT	// Syu ADD 寵技：丟栗子
 			if (ShooterNum == 101578)
 				ATR_NAME(a0) = shoot;		//?????
 			else
@@ -2616,7 +2616,7 @@ void axe(ACTION *a0)
 	pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 }
 
-#ifdef _FIREHUNTER_SKILL				// (不可开) ROG ADD 朱雀技能_火线猎杀
+#ifdef _FIREHUNTER_SKILL				// (不可開) ROG ADD 硃雀技能_火綫獵殺
 void fireHunter(ACTION *a0)
 {
 	ACTION *a1, *a2;
@@ -2624,18 +2624,18 @@ void fireHunter(ACTION *a0)
 	int j = 0;
 	int d0, d1;
 
-	a1 = ATR_BODY_WORK(0, a0);		//敌人的位址
+	a1 = ATR_BODY_WORK(0, a0);		//敵人的位址
 
 	switch (ATR_VCT_NO(a0))
 	{
-	case 0:								//发射火焰
+	case 0:								//發射火焰
 		if (bFireInit)
 		{
 			int EnemyPos[4][2] = {{403 , 422}, {223 , 388},{7  , 198},{19  , 318},};
 			int refPos, difPosH, difPosV;
 			int interval = 0;
-			int difPos_v = 0;   //火线猎杀位址修正
-			int difPos_h = 0;   //火线猎杀位址修正
+			int difPos_v = 0;   //火綫獵殺位址修正
+			int difPos_h = 0;   //火綫獵殺位址修正
 			int j = 1;
 
 			ATR_INT_WORK2(a0) = ATR_H_POS(a0);
@@ -2645,7 +2645,7 @@ void fireHunter(ACTION *a0)
 				p_missile[i] = GetAction(T_PRIO_BOW, sizeof(ATR_EQU));
 				ATR_INT_WORK2(p_missile[i]) = ATR_H_POS(a0);
 				ATR_INT_WORK3(p_missile[i]) = ATR_V_POS(a0);
-				ATR_CHR_NO(p_missile[i]) = 101734;	 //图号
+				ATR_CHR_NO(p_missile[i]) = 101734;	 //圖號
 				ATR_CHR_ANG(p_missile[i]) = ATR_CHR_ANG(a0);
 				ATR_CRS(p_missile[i]) = ATR_CRS(a0);
 				ATR_SPD(p_missile[i]) = 60;
@@ -2679,7 +2679,7 @@ void fireHunter(ACTION *a0)
 				p_missile[i + 7] = GetAction(T_PRIO_BOW, sizeof(ATR_EQU));
 				ATR_H_POS(p_missile[i + 7]) = EnemyPos[refPos][0] + difPosH * i;
 				ATR_V_POS(p_missile[i + 7]) = EnemyPos[refPos][1] - difPosV * i;
-				ATR_CHR_NO(p_missile[i + 7]) = 101735;	 //图号
+				ATR_CHR_NO(p_missile[i + 7]) = 101735;	 //圖號
 			}
 			ATR_STIMER(a0) = 80;
 
@@ -2691,16 +2691,16 @@ void fireHunter(ACTION *a0)
 			{
 				d0 = ATR_H_POS(a1);
 				d1 = ATR_V_POS(a1);
-				radar(a0, &d0, &d1);	//雷达(计算路线)
-				ATR_CRS(a0) = d0;		//动画路线
+				radar(a0, &d0, &d1);	//雷達(計算路綫)
+				ATR_CRS(a0) = d0;		//動畫路綫
 				gemini(a0);
 				if (i == interval * j)
 				{
-					switch (iBeAttNum)		//火线猎杀位址修正
+					switch (iBeAttNum)		//火綫獵殺位址修正
 					{
 					case 10:
 					case 12:
-						difPos_v += 7;  //长度
+						difPos_v += 7;  //長度
 						difPos_h += 2;	//角度
 						break;
 					case 14:
@@ -2741,7 +2741,7 @@ void fireHunter(ACTION *a0)
 					if (iBeAttNum < 10)
 					{
 						//difPos_h -= 10;//角度
-						difPos_v += 10;  //长度
+						difPos_v += 10;  //長度
 					}
 					ATR_V_POS(p_missile[j+1]) = ATR_V_POS(a0) - difPos_v;
 					ATR_H_POS(p_missile[j+1]) = ATR_H_POS(a0) + difPos_h;
@@ -2753,12 +2753,12 @@ void fireHunter(ACTION *a0)
 			ATR_H_POS(a0) += difPos_h;
 			bFireInit = FALSE;
 		}
-		//准备命中
+		//準備命中
 		if (!FireSkillEnd)
 		{
 #ifdef _PETSKILL_ACUPUNCTURE
 			/////////////////////////////
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 			if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_ABSORPTION | ATT_BALLIA | ATT_TRAP | ATT_ACUPUNCTURE
 #ifdef _PET_ITEM
 				| ATT_ATTACKBACK
@@ -2774,18 +2774,18 @@ void fireHunter(ACTION *a0)
 				/////////////////////////////
 #else
 			/////////////////////////////
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 			if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_ABSORPTION | ATT_BALLIA | ATT_TRAP))
 #else
 			if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_ABSORPTION | ATT_BALLIA))
 #endif
 				/////////////////////////////
 #endif
-				set_guard_mark(a0);		//防御咒
-			ATR_COMBO(a1) = 0;   //组队
-			if (ATR_ATTACK_KIND(0, a0) & ATT_DODGE)  //闪避
+				set_guard_mark(a0);		//防禦咒
+			ATR_COMBO(a1) = 0;   //組隊
+			if (ATR_ATTACK_KIND(0, a0) & ATT_DODGE)  //閃避
 			{
-				for (i = 0; i < ATR_BODY_CNT(a0); i++) //处理全部队友
+				for (i = 0; i < ATR_BODY_CNT(a0); i++) //處理全部隊友
 				{
 					if ((i + 2) != tarpos)
 					{
@@ -2793,16 +2793,16 @@ void fireHunter(ACTION *a0)
 						ATR_DAMAGE(a2) = ATR_ATTACK_POW(i + 2, a0);
 						j = ATR_DAMAGE(a2);
 						ATR_PET_DAMAGE(a2) = ATR_ATTACK_PET_POW(i + 2, a0);
-						ATR_VCT_NO(a2) = 10;		//送出伤害讯息
+						ATR_VCT_NO(a2) = 10;		//送齣傷害訊息
 						ATR_STIMER(a2) = 0;
 						ATR_FIRST_FLG(a2) = 0;		
 					}
 				}
-				ATR_HIT_STOP(a0) = 32;				//攻击停止
+				ATR_HIT_STOP(a0) = 32;				//攻擊停止
 				ATR_VCT_NO(a0) = 1;					//停止
 				gemini(a0);
-				ATR_VCT_NO(a1) = 16;		//闪避动作
-				ATR_CRS(a1) = ATR_CRS(a0);		//路径
+				ATR_VCT_NO(a1) = 16;		//閃避動作
+				ATR_CRS(a1) = ATR_CRS(a0);		//路徑
 				ATR_DAMAGE_ANG(a1) = ATR_CHR_ANG(a0);
 				ATR_STIMER(a1) = 0;
 				ATR_FIRST_FLG(a1) = 0;		
@@ -2812,11 +2812,11 @@ void fireHunter(ACTION *a0)
 			{
 				if ((ATR_ATTACK_POW(0, a0) == 0) && (ATR_ATTACK_PET_POW(0, a0) == 0))		//????
 				{
-					//伤害
+					//傷害
 					set_damage_num(a1, 0, -64);
-					ATR_HIT_STOP(a0) = HIT_STOP_TIM;		//攻击停止
-					ATR_VCT_NO(a0) = 1;		//攻击停止
-					for (i = 0; i < ATR_BODY_CNT(a0); i++) //处理全部队友
+					ATR_HIT_STOP(a0) = HIT_STOP_TIM;		//攻擊停止
+					ATR_VCT_NO(a0) = 1;		//攻擊停止
+					for (i = 0; i < ATR_BODY_CNT(a0); i++) //處理全部隊友
 					{
 						if ((i + 2) != tarpos)
 						{
@@ -2824,7 +2824,7 @@ void fireHunter(ACTION *a0)
 							ATR_DAMAGE(a2) = ATR_ATTACK_POW(i + 2, a0);
 							j = ATR_DAMAGE(a2);
 							ATR_PET_DAMAGE(a2) = ATR_ATTACK_PET_POW(i + 2, a0);
-							ATR_VCT_NO(a2) = 10;		//送出伤害讯息
+							ATR_VCT_NO(a2) = 10;		//送齣傷害訊息
 							ATR_STIMER(a2) = 0;
 							ATR_FIRST_FLG(a2) = 0;		
 						}
@@ -2832,22 +2832,22 @@ void fireHunter(ACTION *a0)
 					break;
 				}
 			}
-			//压碎
+			//壓碎
 			if (ATR_ATTACK_KIND(0, a0) & ATT_CRUSH)
-				//压碎
+				//壓碎
 				set_damage_num(a1, 19, -112);
-			//设定KO
+			//設定KO
 			ATR_AKO_FLG(a1) = 0;
 			if (ATR_ATTACK_KIND(0, a0) & ATT_AKO1)		//KO1
 				ATR_AKO_FLG(a1) = 1;
 			if (ATR_ATTACK_KIND(0, a0) & ATT_AKO2)		//KO2
 				ATR_AKO_FLG(a1) = 2;
 			if (ATR_ATTACK_KIND(0, a0) & ATT_DEATH)		//死亡
-				ATR_LIFE(a1) = 0;		//设定死亡
-			ATR_DAMAGE_ANG(a1) = ATR_CHR_ANG(a0);		//设定伤害角度
+				ATR_LIFE(a1) = 0;		//設定死亡
+			ATR_DAMAGE_ANG(a1) = ATR_CHR_ANG(a0);		//設定傷害角度
 			if (ATR_ATTACK_KIND(0, a0) & ATT_ABSORPTION)		//如果是吸收
 			{
-				if (!ATR_COMBO(a1))		//组队
+				if (!ATR_COMBO(a1))		//組隊
 				{
 					//??
 					ATR_DAMAGE(a1) = ATR_ATTACK_POW(0, a0);
@@ -2869,48 +2869,48 @@ void fireHunter(ACTION *a0)
 				ATR_ATTACK_PET_POW(0, a0) = 0;		//?????
 			}
 			else
-				ATR_VCT_NO(a1) = 10;		//送出伤害讯息
-			/*			//会心一击
+				ATR_VCT_NO(a1) = 10;		//送齣傷害訊息
+			/*			//會心一擊
 						if (ATR_ATTACK_KIND(0, a0) & ATT_SATISFACTORY){
-						ATR_KAISHIN(a1) = 1;		//会心一击
+						ATR_KAISHIN(a1) = 1;		//會心一擊
 						} else {
-						ATR_KAISHIN(a1) = 0;		//通常攻击
+						ATR_KAISHIN(a1) = 0;		//通常攻擊
 						}*/
-			ATR_KAISHIN(a1) = 0;		//通常攻击
+			ATR_KAISHIN(a1) = 0;		//通常攻擊
 			ATR_DAMAGE(a1) = ATR_ATTACK_POW(0, a0);
 			ATR_PET_DAMAGE(a1) = ATR_ATTACK_PET_POW(0, a0);
-			//防卫
+			//防衛
 			if (ATR_ATTACK_KIND(0, a0) & ATT_GUARD)
 				ATR_GUARD_FLG(a1) = 1;
 			else
 				ATR_GUARD_FLG(a1) = 0;
 			if (ATR_LIFE(a1) - ATR_DAMAGE(a1) <= 0)		//死亡
 			{
-				ATR_LONG_WORK(1, a0) = 1;		//死亡设定
-				//组队
+				ATR_LONG_WORK(1, a0) = 1;		//死亡設定
+				//組隊
 				if (ATR_COMBO(a1) == 0)
-					ATR_KAISHIN(a1) = 1;		//设定会心一击
+					ATR_KAISHIN(a1) = 1;		//設定會心一擊
 			}
-			if (ATR_KAISHIN(a1))		//设定会心一击
-				ATR_HIT_STOP(a0) = HIT_STOP_TIM * 4;		//设定攻击停止时间
+			if (ATR_KAISHIN(a1))		//設定會心一擊
+				ATR_HIT_STOP(a0) = HIT_STOP_TIM * 4;		//設定攻擊停止時間
 			else
-				ATR_HIT_STOP(a0) = HIT_STOP_TIM;		//设定攻击停止时间
+				ATR_HIT_STOP(a0) = HIT_STOP_TIM;		//設定攻擊停止時間
 			if (ATR_DAMAGE(a1) || (ATR_ATTACK_KIND(0, a0) & ATT_BALLIA) || (ATR_ATTACK_KIND(0, a0) & ATT_ABSORPTION))
 			{
 				if (ATR_ATTACK_KIND(0, a0) & ATT_COUNTER)		//???????
 				{
-					//是否组队
+					//是否組隊
 					if (ATR_COMBO(a1) == 0)
-						set_damage_num(a0, 1, -64 + 16);	//伤害表示
+						set_damage_num(a0, 1, -64 + 16);	//傷害錶示
 				}
 				//???
 				play_se(252, ATR_H_POS(a0), ATR_V_POS(a0));
-				//必杀星星
+				//必殺星星
 				set_hit_mark(a0);
 			}
 			ATR_HIT_STOP(a0) /= 4;		//??????????
 			ATR_VCT_NO(a0) = 3;				//
-			for (i = 0; i < ATR_BODY_CNT(a0); i++) //处理全部队友
+			for (i = 0; i < ATR_BODY_CNT(a0); i++) //處理全部隊友
 			{
 				if ((i + 2) != tarpos)
 				{
@@ -2918,7 +2918,7 @@ void fireHunter(ACTION *a0)
 					ATR_DAMAGE(a2) = ATR_ATTACK_POW(i + 2, a0);
 					j = ATR_DAMAGE(a2);
 					ATR_PET_DAMAGE(a2) = ATR_ATTACK_PET_POW(i + 2, a0);
-					ATR_VCT_NO(a2) = 10;		//送出伤害讯息
+					ATR_VCT_NO(a2) = 10;		//送齣傷害訊息
 					ATR_STIMER(a2) = 0;
 					ATR_FIRST_FLG(a2) = 0;
 				}
@@ -2991,10 +2991,10 @@ void fireHunter(ACTION *a0)
 		}
 		break;
 	case 1:
-		if (--ATR_HIT_STOP(a0))		//攻击停止中
+		if (--ATR_HIT_STOP(a0))		//攻擊停止中
 			break;
-		ATR_CHR_ACT(a0) = 0;		//移动
-		//闪避
+		ATR_CHR_ACT(a0) = 0;		//移動
+		//閃避
 		if (ATR_ATTACK_KIND(0, a0) & ATT_DODGE)
 			ATR_STIMER(a0) = 32;
 		else
@@ -3004,7 +3004,7 @@ void fireHunter(ACTION *a0)
 			a2 = ATR_BODY_WORK(tarpos, a0);
 			ATR_DAMAGE(a2) = ATR_ATTACK_POW(tarpos, a0);
 			ATR_PET_DAMAGE(a2) = ATR_ATTACK_PET_POW(tarpos, a0);
-			ATR_VCT_NO(a2) = 10;		//送出伤害讯息
+			ATR_VCT_NO(a2) = 10;		//送齣傷害訊息
 			ATR_STIMER(a2) = 0;
 			ATR_FIRST_FLG(a2) = 0;
 			tarpos = -1;
@@ -3017,19 +3017,19 @@ void fireHunter(ACTION *a0)
 	case 2:
 		if (--ATR_STIMER(a0))
 			break;
-		ATR_STIMER(ATR_BODY_WORK(1, a0)) = 1;		//到达
+		ATR_STIMER(ATR_BODY_WORK(1, a0)) = 1;		//到達
 		p_missile[0] = NULL;
 		DeathAction(a0);		//?
 		break;
 	case 3:
-		if (--ATR_HIT_STOP(a0))		//攻击停止中
+		if (--ATR_HIT_STOP(a0))		//攻擊停止中
 			break;
 		/*	if ( tarMgiDem )
 			{
 			a2 = ATR_BODY_WORK(2 ,a0);
 			ATR_DAMAGE(a2) = ATR_ATTACK_POW(2 ,a0);
 			ATR_PET_DAMAGE(a2) = ATR_ATTACK_PET_POW(2 ,a0);
-			ATR_VCT_NO(a2) = 10;		//送出伤害讯息
+			ATR_VCT_NO(a2) = 10;		//送齣傷害訊息
 			ATR_STIMER(a2) = 0;
 			ATR_FIRST_FLG(a2) = 0;		
 			int k = ATR_DAMAGE(a2);
@@ -3041,7 +3041,7 @@ void fireHunter(ACTION *a0)
 			a2 = ATR_BODY_WORK(tarpos, a0);
 			ATR_DAMAGE(a2) = ATR_ATTACK_POW(tarpos, a0);
 			ATR_PET_DAMAGE(a2) = ATR_ATTACK_PET_POW(tarpos, a0);
-			ATR_VCT_NO(a2) = 10;		//送出伤害讯息
+			ATR_VCT_NO(a2) = 10;		//送齣傷害訊息
 			ATR_STIMER(a2) = 0;
 			ATR_FIRST_FLG(a2) = 0;
 			tarpos = -1;
@@ -3140,7 +3140,7 @@ void axe_shadow(ACTION *a0)
 			}
 #ifdef _PETSKILL_ACUPUNCTURE
 			/////////////////////////////
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 			if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_ABSORPTION | ATT_BALLIA | ATT_TRAP | ATT_ACUPUNCTURE
 #ifdef _PET_ITEM
 				| ATT_ATTACKBACK
@@ -3156,7 +3156,7 @@ void axe_shadow(ACTION *a0)
 				/////////////////////////////
 #else
 			/////////////////////////////
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 			if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_ABSORPTION | ATT_BALLIA | ATT_TRAP))
 #else
 			if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_ABSORPTION | ATT_BALLIA))
@@ -3459,7 +3459,7 @@ void stone_shadow(ACTION *a0)
 			}
 #ifdef _PETSKILL_ACUPUNCTURE
 			/////////////////////////////
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 			if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_ABSORPTION | ATT_BALLIA | ATT_TRAP | ATT_ACUPUNCTURE
 #ifdef _PET_ITEM
 				| ATT_ATTACKBACK
@@ -3475,7 +3475,7 @@ void stone_shadow(ACTION *a0)
 				/////////////////////////////
 #else
 			/////////////////////////////
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 			if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_ABSORPTION | ATT_BALLIA | ATT_TRAP))
 #else
 			if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_ABSORPTION | ATT_BALLIA))
@@ -3743,7 +3743,7 @@ void stone_shadow(ACTION *a0)
 }
 
 //Terry add 2001/12/31
-/* 鞭炮影子处理 *******************************************************************/
+/* 鞭炮影子處理 *******************************************************************/
 #ifdef _ITEM_FIRECREAKER
 void firecracker_shadow(ACTION *a0)
 {
@@ -3753,20 +3753,20 @@ void firecracker_shadow(ACTION *a0)
 	switch (ATR_VCT_NO(a0))
 	{
 	case 0:
-		a1 = ATR_BODY_WORK(0, a0);		//敌人的位址
+		a1 = ATR_BODY_WORK(0, a0);		//敵人的位址
 		d0 = ATR_H_POS(a1);
 		d1 = ATR_V_POS(a1);
-		radar(a0, &d0, &d1);	//雷达(计算路线)
-		ATR_CRS(a0) = d0;		//动画路线
-		//准备命中
+		radar(a0, &d0, &d1);	//雷達(計算路綫)
+		ATR_CRS(a0) = d0;		//動畫路綫
+		//準備命中
 		if (!--ATR_GROUP_FLG(a0))
 		{
 			ATR_VCT_NO(a0) = 1;				//????????
 			a1 = ATR_BODY_WORK(2, a0);		//??????
 			ATR_VCT_NO(a1) = 1;				//????????
 			ATR_STIMER(ATR_BODY_WORK(1, a0)) = 0;		//???
-			ATR_ATTRIB(a0) = ACT_ATR_HIDE;	//影子结束
-			ATR_CHR_NO(a1) = 101121;		//鞭炮炸开
+			ATR_ATTRIB(a0) = ACT_ATR_HIDE;	//影子結束
+			ATR_CHR_NO(a1) = 101121;		//鞭炮炸開
 			ATR_H_POS(a1) += 50;
 		}
 		else
@@ -3782,7 +3782,7 @@ void firecracker_shadow(ACTION *a0)
 		break;
 	case 1:
 		a1 = ATR_BODY_WORK(2, a0);		//鞭炮位址
-		if (!pattern(a1, 36, ANM_NO_LOOP))	//动画未播完
+		if (!pattern(a1, 36, ANM_NO_LOOP))	//動畫未播完
 			break;
 		a1 = ATR_BODY_WORK(0, a0);		//????????
 		if (ATR_NAME(a1) == NULL || ATR_VCT_NO(a1) >= VCT_NO_DIE || ATR_VCT_NO(a1) == 0)
@@ -4025,7 +4025,7 @@ void set_raster_pos(ACTION *a1)
 #ifdef __ATTACK_MAGIC
 	int value = 0;
 
-	// 如果正在地震中或特殊的地图编号时
+	// 如果正在地震中或特殊的地圖編號時
 	if ((g_iRunEarthQuake < 2) && (BattleMapNo < 148 || BattleMapNo > 150))
 		return;
 	if (2 == g_iRunEarthQuake)
@@ -4275,18 +4275,18 @@ static ACTION *get_body_target(void)
 		return p_party[d0];
 }
 
-//全灭确认处理
+//全滅確認處理
 int check_all_dead(void)
 {
 	int d0, d7;
 
-	d0 = 10;		//检查人数设定
+	d0 = 10;		//檢查人數設定
 	for (d7 = 0; d7 < 5; d7++)
 	{
 		if (ATR_NAME(p_party[d7]) != NULL)		//????????????
 		{
 			if (ATR_PET_OK(p_party[d7]))
-				d0 = 5;		//检查人数设定
+				d0 = 5;		//檢查人數設定
 			break;
 		}
 	}
@@ -4294,10 +4294,10 @@ int check_all_dead(void)
 	{
 		if (ATR_NAME(p_party[d7]) != NULL)
 		{
-			if (ATR_LIFE(p_party[d7]) > 0)		//假如有一个人是活着的
+			if (ATR_LIFE(p_party[d7]) > 0)		//假如有一個人是活著的
 				break;
 #ifdef _PETSKILL_LER
-			// 雷尔第一段及第二段死亡时不能算全灭,因为会变身
+			// 雷爾第一段及第二段死亡時不能算全滅,因為會變身
 			else if (ATR_CHR_NO(p_party[d7]) == 101813 || ATR_CHR_NO(p_party[d7]) == 101814)
 				break;
 #endif
@@ -4306,22 +4306,22 @@ int check_all_dead(void)
 				break;
 #endif
 #ifdef _HUNDRED_KILL
-			//代表百人npc还没真正死掉
+			//代錶百人npc還沒真正死掉
 			if( BattleHundredFlag == TRUE ) 
 				break;
 #endif
 		}
 	}
-	if (d7 == d0)		//全灭
+	if (d7 == d0)		//全滅
 		return 1;
-	d0 = 20;		//检查人数设定
+	d0 = 20;		//檢查人數設定
 
 	for (d7 = 10; d7 < 15; d7++)
 	{
 		if (ATR_NAME(p_party[d7]) != NULL)		//????????????
 		{
 			if (ATR_PET_OK(p_party[d7]))
-				d0 = 15;		//检查人数设定
+				d0 = 15;		//檢查人數設定
 			break;
 		}
 	}
@@ -4329,10 +4329,10 @@ int check_all_dead(void)
 	{
 		if (ATR_NAME(p_party[d7]) != NULL)
 		{
-			if (ATR_LIFE(p_party[d7]) > 0)		//假如有一个人是活着的
+			if (ATR_LIFE(p_party[d7]) > 0)		//假如有一個人是活著的
 				break;
 #ifdef _PETSKILL_LER
-			// 雷尔第一段及第二段死亡时不能算全灭,因为会变身
+			// 雷爾第一段及第二段死亡時不能算全滅,因為會變身
 			else if (ATR_CHR_NO(p_party[d7]) == 101813 || ATR_CHR_NO(p_party[d7]) == 101814)
 				break;
 #endif
@@ -4341,18 +4341,18 @@ int check_all_dead(void)
 				break;
 #endif
 #ifdef _HUNDRED_KILL
-			//代表百人npc还没真正死掉
+			//代錶百人npc還沒真正死掉
 			if( BattleHundredFlag == TRUE ) 
 				break;
 #endif
 		}
 	}
-	if (d7 == d0)		//全灭 return 1
+	if (d7 == d0)		//全滅 return 1
 		return 1;
-	return 0;		//还有人活着 return 0 
+	return 0;		//還有人活著 return 0 
 }
 
-//属性表示处理
+//屬性錶示處理
 void disp_attrib(ACTION *a0)
 {
 	ACTION *a1;
@@ -4360,26 +4360,26 @@ void disp_attrib(ACTION *a0)
 	a1 = p_attrib;
 	switch (ATR_ATTRIB(a0))
 	{
-		//无属性
+		//無屬性
 	case 0:
-		ATR_ATTRIB(a1) = ACT_ATR_HIDE;		//不表示
+		ATR_ATTRIB(a1) = ACT_ATR_HIDE;		//不錶示
 		break;
-		//地属性
+		//地屬性
 	case 1:
 		ATR_ATTRIB(a1) &= ~ACT_ATR_HIDE;
 		ATR_CHR_NO(a1) = CG_ATR_ICON_EARTH_BATTLE;
 		break;
-		//水属性
+		//水屬性
 	case 2:
 		ATR_ATTRIB(a1) &= ~ACT_ATR_HIDE;
 		ATR_CHR_NO(a1) = CG_ATR_ICON_WATER_BATTLE;
 		break;
-		//火属性
+		//火屬性
 	case 3:
 		ATR_ATTRIB(a1) &= ~ACT_ATR_HIDE;
 		ATR_CHR_NO(a1) = CG_ATR_ICON_FIRE_BATTLE;
 		break;
-		//风属性
+		//風屬性
 	case 4:
 		ATR_ATTRIB(a1) &= ~ACT_ATR_HIDE;
 		ATR_CHR_NO(a1) = CG_ATR_ICON_WIND_BATTLE;
@@ -4431,7 +4431,7 @@ void get_command_asc(void)
 }
 
 #ifdef __TOCALL_MAGIC
-// 召唤咒术的资料建立
+// 召喚咒術的資料建立
 BOOL BuildToCallMagicData(ACTION *pMaster, ACTION *pAttacker)
 {
 	int	i, idx = 0, midx, midy, count = 0;
@@ -4450,7 +4450,7 @@ BOOL BuildToCallMagicData(ACTION *pMaster, ACTION *pAttacker)
 	//	ToCallMgc.iPreMgcNum			= get_num();
 	//	ToCallMgc.iCurMgcNum			= get_num();
 	ToCallMgc.iPreMgcNum = get_num();
-#ifdef _PETSKILL_LER			// 雷尔技能
+#ifdef _PETSKILL_LER			// 雷爾技能
 	if (ToCallMgc.iPreMgcNum == 101808 || ToCallMgc.iPreMgcNum == 101809)
 	{
 		if (!g_bUseAlpha)
@@ -4465,7 +4465,7 @@ BOOL BuildToCallMagicData(ACTION *pMaster, ACTION *pAttacker)
 			ToCallMgc.iCurMgcNum += 55;
 	}
 #endif
-#ifdef _PETSKILL_LER			// 雷尔技能
+#ifdef _PETSKILL_LER			// 雷爾技能
 	if (ToCallMgc.iCurMgcNum == 101798)
 	{
 		if (!g_bUseAlpha)
@@ -4527,29 +4527,29 @@ BOOL BuildToCallMagicData(ACTION *pMaster, ACTION *pAttacker)
 	ToCallMgc.dwEQuakeSFrame = ToCallMgc.dwEQuakeSTime >> 4;
 	ToCallMgc.dwEQuakeEFrame = ToCallMgc.dwEQuakeETime >> 4;
 
-	// 是否有前置咒术
+	// 是否有前置咒術
 	(0XFFFFFFFF == ToCallMgc.iPreMgcNum) ? ToCallMgc.wRunPreMgc = TRUE : ToCallMgc.wRunPreMgc = FALSE;
 
-	// 绝对位置显示法
+	// 絕對位置顯示法
 	if (1 == ToCallMgc.wShowType)
 	{
 		ToCallMgc.wNumAttacks = 1;
 		ToCallMgc.wCurAttackNum = 0;
 		ToCallMgc.posAttacked[0].x = ToCallMgc.wScreenX;
 		ToCallMgc.posAttacked[0].y = ToCallMgc.wScreenY;
-		ToCallMgc.wAttackedIndex[0] = 20;		// 全部人员皆同时呈受伤状态
+		ToCallMgc.wAttackedIndex[0] = 20;		// 全部人員皆同時呈受傷狀態
 		ToCallMgc.wMgcFrameCount[0] = 0;
 
-		// 被攻击的敌人索引号
+		// 被攻擊的敵人索引號
 		for (i = 0; i < idx; i++)
 			ToCallMgc.wAttackedIndex[i + 1] = charidx[i];
 
 		ToCallMgc.wAttackedIndex[i + 1] = 0XFF;
 	}
-	// 居中位置显示法
+	// 居中位置顯示法
 	else
 	{
-		// 咒术的方式为全体同时攻击
+		// 咒術的方式為全體同時攻擊
 		if (2 == ToCallMgc.wAttackType || 4 == ToCallMgc.wAttackType)
 		{
 			midx = 0;
@@ -4566,18 +4566,18 @@ BOOL BuildToCallMagicData(ACTION *pMaster, ACTION *pAttacker)
 			ToCallMgc.wCurAttackNum = 0;
 			ToCallMgc.posAttacked[0].x = midx + ToCallMgc.wScreenX;
 			ToCallMgc.posAttacked[0].y = midy + ToCallMgc.wScreenY;
-			ToCallMgc.wAttackedIndex[0] = 20;		// 全部人员皆同时呈受伤状态
+			ToCallMgc.wAttackedIndex[0] = 20;		// 全部人員皆同時呈受傷狀態
 			ToCallMgc.wMgcFrameCount[0] = 0;
 
-			// 被攻击的敌人索引号
+			// 被攻擊的敵人索引號
 			for (i = 0; i < idx; i++)
 				ToCallMgc.wAttackedIndex[i + 1] = charidx[i];
 			ToCallMgc.wAttackedIndex[i + 1] = 0XFF;
 		}
-		// 单独攻击
+		// 單獨攻擊
 		else
 		{
-			// 被攻击的敌人索引号
+			// 被攻擊的敵人索引號
 			for (i = 0; i < idx; i++)
 			{
 				ToCallMgc.wNumAttacks++;
@@ -4597,28 +4597,28 @@ BOOL BuildToCallMagicData(ACTION *pMaster, ACTION *pAttacker)
 }
 
 
-// 动态产生新的魔法
+// 動態産生新的魔法
 BOOL RunTimeMagicToCall()
 {
-	// 开始地震
+	// 開始地震
 	if (ToCallMgc.dwEQuakeSFrame == ToCallMgc.dwCurFrame1)
 	{
 		g_iRunEarthQuake = 1;
 		g_iNumRunEarthQuake = ToCallMgc.dwEQuakeEFrame - ToCallMgc.dwEQuakeSFrame;
 	}
 
-	// 结束地震
+	// 結束地震
 	if (ToCallMgc.dwEQuakeEFrame == ToCallMgc.dwCurFrame1)
 		g_iRunEarthQuake = 3;
 
 	ToCallMgc.dwCurFrame1++;
-	// 前置魔法是否已经播完了
+	// 前置魔法是否已經播完瞭
 	if (FALSE == ToCallMgc.wRunPreMgc)
 		return TRUE;
 
 	if (ToCallMgc.wToCallMagicNo != 2)
 	{
-		// 是否仍有尚未播放的咒术
+		// 是否仍有尚未播放的咒術
 		if (ToCallMgc.wCurAttackNum < ToCallMgc.wNumAttacks)
 		{
 			while (1)
@@ -4629,7 +4629,7 @@ BOOL RunTimeMagicToCall()
 
 					a0 = GetAction(T_PRIO_MISSILE, sizeof(ATR_EQU));
 					ATR_NAME(a0) = monster;
-					ATR_VCT_NO(a0) = TOCALL_MAGIC_CASE + 2;		// 咒术的执行
+					ATR_VCT_NO(a0) = TOCALL_MAGIC_CASE + 2;		// 咒術的執行
 					ATR_DISP_PRIO(a0) = (1 == ToCallMgc.wCurMgcOnChar) ? D_PRIO_HIT_MARK : DISP_PRIO_TILE + 1;
 					ATR_CHR_NO(a0) = ToCallMgc.iCurMgcNum;
 					ATR_LONG_WORK(0, a0) = ToCallMgc.wAttackedIndex[ToCallMgc.wCurAttackNum];
@@ -4655,7 +4655,7 @@ BOOL RunTimeMagicToCall()
 	}
 	else
 	{
-		// 是否仍有尚未播放的咒术
+		// 是否仍有尚未播放的咒術
 		if (ToCallMgc.wCurAttackNum < ToCallMgc.wNumAttacks)
 		{
 			while (1)
@@ -4666,18 +4666,18 @@ BOOL RunTimeMagicToCall()
 
 					a0 = GetAction(T_PRIO_MISSILE, sizeof(ATR_EQU));
 					ATR_NAME(a0) = monster;
-					ATR_VCT_NO(a0) = TOCALL_MAGIC_CASE + 2;		// 咒术的执行
+					ATR_VCT_NO(a0) = TOCALL_MAGIC_CASE + 2;		// 咒術的執行
 					ATR_DISP_PRIO(a0) = (1 == ToCallMgc.wCurMgcOnChar) ? D_PRIO_HIT_MARK : DISP_PRIO_TILE + 1;
 					ATR_CHR_NO(a0) = ToCallMgc.iCurMgcNum;
 #ifdef _PROFESSION_ADDSKILL
 					if (g_bUseAlpha)
 					{
-						if (ToCallMgc.iCurMgcNum == 101770 || ToCallMgc.iCurMgcNum == 101771)//为了让破除结界图档显示于其它结界之上
+						if (ToCallMgc.iCurMgcNum == 101770 || ToCallMgc.iCurMgcNum == 101771)//為瞭讓破除結界圖檔顯示於其它結界之上
 							ATR_DISP_PRIO(a0)	= DISP_PRIO_TILE + ToCallMgc.wCurMgcOnChar;
 					}
 					else
 					{
-						if (ToCallMgc.iCurMgcNum == 101825 || ToCallMgc.iCurMgcNum == 101826)//为了让破除结界图档显示于其它结界之上
+						if (ToCallMgc.iCurMgcNum == 101825 || ToCallMgc.iCurMgcNum == 101826)//為瞭讓破除結界圖檔顯示於其它結界之上
 							ATR_DISP_PRIO(a0)	= DISP_PRIO_TILE + ToCallMgc.wCurMgcOnChar;
 					}
 #endif
@@ -4746,7 +4746,7 @@ BOOL BuildBoundaryMagicData(int state)
 				boundary_mark[0] = MakeAnimDisp(320, 240, state + 2, 0);
 				boundary_mark[0]->actNo = 0;
 				boundary_mark[0]->anim_ang = 3;
-				boundary_mark[0]->dispPrio = DISP_PRIO_TILE + 1;//图层
+				boundary_mark[0]->dispPrio = DISP_PRIO_TILE + 1;//圖層
 			}
 		}
 	}
@@ -4769,7 +4769,7 @@ BOOL BuildBoundaryMagicData(int state)
 				boundary_mark[1] = MakeAnimDisp(320, 240, state + 2, 0);
 				boundary_mark[1]->actNo = 0;
 				boundary_mark[1]->anim_ang = 3;
-				boundary_mark[1]->dispPrio = DISP_PRIO_TILE + 1;//图层
+				boundary_mark[1]->dispPrio = DISP_PRIO_TILE + 1;//圖層
 			}
 		}
 	}
@@ -4793,10 +4793,10 @@ void RunTimeMagicBoundary(int state)
 		boundary_2 = MakeAnimDisp(320, 240, mark, 0);
 		boundary_2->actNo = 0;
 		boundary_2->anim_ang = 3;
-		boundary_2->dispPrio = DISP_PRIO_TILE + 1;//图层
+		boundary_2->dispPrio = DISP_PRIO_TILE + 1;//圖層
 	}
 
-	/*if ( boundary_r->anim_cnt == 10 ){//拨放到最后一张
+	/*if ( boundary_r->anim_cnt == 10 ){//撥放到最後一張
 			DeathAction(boundary_r);
 			boundary_r = NULL;
 			bRunBoundaryMgc = FALSE;
@@ -4805,7 +4805,7 @@ void RunTimeMagicBoundary(int state)
 #endif
 
 #ifdef __ATTACK_MAGIC
-// 排序显示的前后位置
+// 排序顯示的前後位置
 static int SortIdx(const void *pElement1, const void *pElement2)
 {
 	int	nth1 = *((int*)pElement1);
@@ -4819,7 +4819,7 @@ static int SortIdx(const void *pElement1, const void *pElement2)
 	return 0;
 }
 
-// 攻击性咒术的资料建立
+// 攻擊性咒術的資料建立
 BOOL BuildAttackMagicData(ACTION *pMaster, ACTION *pAttacker)
 {
 	int	i, idx = 0, midx, midy, count = 0;
@@ -4875,29 +4875,29 @@ BOOL BuildAttackMagicData(ACTION *pMaster, ACTION *pAttacker)
 	AttMgc.dwEQuakeSFrame = AttMgc.dwEQuakeSTime >> 4;
 	AttMgc.dwEQuakeEFrame = AttMgc.dwEQuakeETime >> 4;
 
-	// 是否有前置咒术
+	// 是否有前置咒術
 	(0XFFFFFFFF == AttMgc.iPreMgcNum) ? AttMgc.wRunPreMgc = TRUE : AttMgc.wRunPreMgc = FALSE;
 
-	// 绝对位置显示法
+	// 絕對位置顯示法
 	if (1 == AttMgc.wShowType)
 	{
 		AttMgc.wNumAttacks = 1;
 		AttMgc.wCurAttackNum = 0;
 		AttMgc.posAttacked[0].x = AttMgc.wScreenX;
 		AttMgc.posAttacked[0].y = AttMgc.wScreenY;
-		AttMgc.wAttackedIndex[0] = 20;		// 全部人员皆同时呈受伤状态
+		AttMgc.wAttackedIndex[0] = 20;		// 全部人員皆同時呈受傷狀態
 		AttMgc.wMgcFrameCount[0] = 0;
 
-		// 被攻击的敌人索引号
+		// 被攻擊的敵人索引號
 		for (i = 0; i < idx; i++)
 			AttMgc.wAttackedIndex[i + 1] = charidx[i];
 
 		AttMgc.wAttackedIndex[i + 1] = 0XFF;
 	}
-	// 居中位置显示法
+	// 居中位置顯示法
 	else
 	{
-		// 咒术的方式为全体同时攻击
+		// 咒術的方式為全體同時攻擊
 		if (2 == AttMgc.wAttackType || 4 == AttMgc.wAttackType)
 		{
 			midx = 0;
@@ -4913,18 +4913,18 @@ BOOL BuildAttackMagicData(ACTION *pMaster, ACTION *pAttacker)
 			AttMgc.wCurAttackNum = 0;
 			AttMgc.posAttacked[0].x = midx + AttMgc.wScreenX;
 			AttMgc.posAttacked[0].y = midy + AttMgc.wScreenY;
-			AttMgc.wAttackedIndex[0] = 20;		// 全部人员皆同时呈受伤状态
+			AttMgc.wAttackedIndex[0] = 20;		// 全部人員皆同時呈受傷狀態
 			AttMgc.wMgcFrameCount[0] = 0;
-			// 被攻击的敌人索引号
+			// 被攻擊的敵人索引號
 			for (i = 0; i < idx; i++)
 				AttMgc.wAttackedIndex[i + 1] = charidx[i];
 
 			AttMgc.wAttackedIndex[i + 1] = 0XFF;
 		}
-		// 单独攻击
+		// 單獨攻擊
 		else
 		{
-			// 被攻击的敌人索引号
+			// 被攻擊的敵人索引號
 			for (i = 0; i < idx; i++)
 			{
 				AttMgc.wNumAttacks++;
@@ -4944,23 +4944,23 @@ BOOL BuildAttackMagicData(ACTION *pMaster, ACTION *pAttacker)
 	return TRUE;
 }
 
-// 动态产生新的魔法
+// 動態産生新的魔法
 BOOL RunTimeMagic()
 {
-	// 开始地震
+	// 開始地震
 	if (AttMgc.dwEQuakeSFrame == AttMgc.dwCurFrame1)
 	{
 		g_iRunEarthQuake = 1;
 		g_iNumRunEarthQuake = AttMgc.dwEQuakeEFrame - AttMgc.dwEQuakeSFrame;
 	}
-	// 结束地震
+	// 結束地震
 	if (AttMgc.dwEQuakeEFrame == AttMgc.dwCurFrame1)
 		g_iRunEarthQuake = 3;
 	AttMgc.dwCurFrame1++;
-	// 前置魔法是否已经播完了
+	// 前置魔法是否已經播完瞭
 	if (FALSE == AttMgc.wRunPreMgc)
 		return TRUE;
-	// 是否仍有尚未播放的咒术
+	// 是否仍有尚未播放的咒術
 	if (AttMgc.wCurAttackNum < AttMgc.wNumAttacks)
 	{
 		while (1)
@@ -4971,7 +4971,7 @@ BOOL RunTimeMagic()
 
 				a0 = GetAction(T_PRIO_MISSILE, sizeof(ATR_EQU));
 				ATR_NAME(a0) = monster;
-				ATR_VCT_NO(a0) = ATTACK_MAGIC_CASE + 2;		// 咒术的执行
+				ATR_VCT_NO(a0) = ATTACK_MAGIC_CASE + 2;		// 咒術的執行
 				ATR_DISP_PRIO(a0) = (1 == AttMgc.wCurMgcOnChar) ? D_PRIO_HIT_MARK : DISP_PRIO_TILE + 1;
 				ATR_CHR_NO(a0) = AttMgc.iCurMgcNum;
 				ATR_LONG_WORK(0, a0) = AttMgc.wAttackedIndex[AttMgc.wCurAttackNum];
@@ -4989,7 +4989,7 @@ BOOL RunTimeMagic()
 }
 #endif
 
-//人物行动处理
+//人物行動處理
 void master(ACTION *a0)
 {
 	ACTION *a1, *a2, *a3;
@@ -5000,11 +5000,11 @@ void master(ACTION *a0)
 	int sav_command_point, castflg = 0;
 	int petfall_flg = 0;
 
-	//属性表示
+	//屬性錶示
 	disp_attrib(a0);
-	if (ATR_VCT_NO(a0) == 0)	// 命令确认
+	if (ATR_VCT_NO(a0) == 0)	// 命令確認
 	{
-		if (BattleCmd[0] == NULL)		//战斗命令确认
+		if (BattleCmd[0] == NULL)		//戰鬥命令確認
 			goto master_500;
 	}
 	switch (ATR_VCT_NO(a0))
@@ -5033,7 +5033,7 @@ void master(ACTION *a0)
 			}
 			//中文BOX做成
 			a1 = MakeWindowDisp(640 - 4 - 64 * 4, 4, 4, 2, 0, 2);
-			//记忆体不足产生失败
+			//記憶體不足産生失敗
 			if (a1 == NULL)
 				return;
 			ATR_BODY_WORK(0, p_kanji) = a1;		//?????
@@ -5073,9 +5073,9 @@ void master(ACTION *a0)
 				who = get_num();
 				if (who == 255)
 					break;
-				effect = get_num();			//特效的编号
-				effect_anim = get_num();	//特效的动画
-				param = get_num();			//参数
+				effect = get_num();			//特效的編號
+				effect_anim = get_num();	//特效的動畫
+				param = get_num();			//參數
 				target = NULL;
 				if (who < BATTLKPKPLYAERNUM)
 					target = p_party[who];
@@ -5091,7 +5091,7 @@ void master(ACTION *a0)
 			break;
 		}
 #ifdef _PETSKILL_BATTLE_MODEL
-		if (command_no == ATT_BATTLE_MODEL)			// 宠物技能战斗模组
+		if (command_no == ATT_BATTLE_MODEL)			// 寵物技能戰鬥模組
 		{
 			ATR_VCT_NO(a0) = 1;
 			ATR_PET_DAMAGE(a0) = 0;
@@ -5113,10 +5113,10 @@ void master(ACTION *a0)
 				memset(p_missile, 0, sizeof(p_missile));
 			}
 			d7 = 0;
-			// 先取出攻击的宠物编号
+			// 先取齣攻擊的寵物編號
 			d0 = get_num();
 			a3 = p_party[d0];
-			// 判断攻击方是左上还右下来决定初始位置
+			// 判斷攻擊方是左上還右下來決定初始位置
 			if (ATR_GROUP_FLG(a3) == 0)
 			{
 				d2 = 3;	// 右下
@@ -5127,7 +5127,7 @@ void master(ACTION *a0)
 				d2 = 7; // 左上
 				d0 = 10;
 			}
-			// 取出目标攻击物件编号
+			// 取齣目標攻擊物件編號
 			a1 = NULL;
 			while ((d6 = get_num()) != 255)
 			{
@@ -5135,34 +5135,34 @@ void master(ACTION *a0)
 				if (ATR_VCT_NO(a1) != 55)
 					ATR_FIRST_FLG(a1) = 0;
 				ATR_ATTACK_KIND(2, a1) = 0;
-				d3 = get_num();			// 取出攻击物件编号
-				// 判断 p_missile[d3] 有没有在使用
-				// 有使用,表示这个攻击物件要攻击复数目标
+				d3 = get_num();			// 取齣攻擊物件編號
+				// 判斷 p_missile[d3] 有沒有在使用
+				// 有使用,錶示這個攻擊物件要攻擊復數目標
 				if (p_missile[d3] != NULL)
 				{
 					a2 = p_missile[d3];
 					ATR_BODY_WORK(ATR_INT_WORK1(a2), a2) = a1;				// 被攻方
-					ATR_BATTLE_MODEL(a1) = ATT_BATTLE_MODEL;				// 此目标是被 ATT_BATTLE_MODEL 型态攻击
-					ATR_ATTACK_KIND(ATR_INT_WORK1(a2), a2) = get_num();		// 攻击种类
-					ATR_ATTACK_POW(ATR_INT_WORK1(a2), a2) = get_num();		// 攻击力
-					ATR_ATTACK_PET_POW(ATR_INT_WORK1(a2), a2) = get_num();	// pet攻击力
-					ATR_CHR_NO(a2) = get_num();																	// 攻击物件图号
-					// 如果有忠犬效果,记录使用忠犬的目标
+					ATR_BATTLE_MODEL(a1) = ATT_BATTLE_MODEL;				// 此目標是被 ATT_BATTLE_MODEL 型態攻擊
+					ATR_ATTACK_KIND(ATR_INT_WORK1(a2), a2) = get_num();		// 攻擊種類
+					ATR_ATTACK_POW(ATR_INT_WORK1(a2), a2) = get_num();		// 攻擊力
+					ATR_ATTACK_PET_POW(ATR_INT_WORK1(a2), a2) = get_num();	// pet攻擊力
+					ATR_CHR_NO(a2) = get_num();																	// 攻擊物件圖號
+					// 如果有忠犬效果,記錄使用忠犬的目標
 					if (BattleCmd[command_point] == 'g')
 						ATR_LONG_WORK(ATR_INT_WORK1(a2), a2) = get_num();
 					ATR_INT_WORK1(a2)++;
-					// 记录目标有被此攻击物件攻击
+					// 記錄目標有被此攻擊物件攻擊
 					if (ATR_LONG_WORK(0, a1) == 0)
 					{
-						ATR_LONG_WORK(0, a1) = 1;		// ATR_LONG_WORK 栏位 : 位址 0 : 是设定目标是否被攻击过,所以都会设定为1
-						ATR_LONG_WORK(d3, a1) = d7 + 1; //						位址 d3: d3 是攻击物件的编号,而 d3 的位址是用来
-						//								 纪录攻击物件在第 d7 + 1 的回合攻击目标
+						ATR_LONG_WORK(0, a1) = 1;		// ATR_LONG_WORK 欄位 : 位址 0 : 是設定目標是否被攻擊過,所以都會設定為1
+						ATR_LONG_WORK(d3, a1) = d7 + 1; //						位址 d3: d3 是攻擊物件的編號,而 d3 的位址是用來
+						//								 紀錄攻擊物件在第 d7 + 1 的迴閤攻擊目標
 					}
 					else
-						ATR_LONG_WORK(d3, a1) = d7 + 1;	// 当 ATR_LONG_WORK 栏位 0 不为 0 时,表示这个目标已被别的攻击物件攻击,
-					// 所以直接在 d3 的位址记录要在 d7 + 1 的回合攻击目标
+						ATR_LONG_WORK(d3, a1) = d7 + 1;	// 當 ATR_LONG_WORK 欄位 0 不為 0 時,錶示這個目標已被彆的攻擊物件攻擊,
+					// 所以直接在 d3 的位址記錄要在 d7 + 1 的迴閤攻擊目標
 				}
-				// 没使用过
+				// 沒使用過
 				else
 				{
 					p_missile[d3] = GetAction(T_PRIO_BOW, sizeof(ATR_EQU));
@@ -5178,41 +5178,41 @@ void master(ACTION *a0)
 					ATR_CHR_ACT(a2) = ANIM_STAND;
 					ATR_GROUP_FLG(a2) = ATR_GROUP_FLG(a3);
 					a2->hitDispNo = a3->hitDispNo;
-					ATR_VCT_NO(a2) = 1;							// 前进
-					ATR_BODY_WORK(0, a2) = a1;					// 被攻击目标
-					ATR_BATTLE_MODEL(a1) = ATT_BATTLE_MODEL;	// 此目标是被 ATT_BATTLE_MODEL 型态攻击
-					// 记录目标有被此攻击物件攻击
+					ATR_VCT_NO(a2) = 1;							// 前進
+					ATR_BODY_WORK(0, a2) = a1;					// 被攻擊目標
+					ATR_BATTLE_MODEL(a1) = ATT_BATTLE_MODEL;	// 此目標是被 ATT_BATTLE_MODEL 型態攻擊
+					// 記錄目標有被此攻擊物件攻擊
 					if (ATR_LONG_WORK(0, a1) == 0)
 					{
-						ATR_LONG_WORK(0, a1) = 1;			// ATR_LONG_WORK 栏位 : 位址 0 : 是设定目标是否被攻击过,所以都会设定为1
-						ATR_LONG_WORK(d3, a1) = d7 + 1;		//						位址 d3: d3 是攻击物件的编号,而 d3 的位址是用来
-						//								 纪录攻击物件在第 d7 + 1 的回合攻击目标
+						ATR_LONG_WORK(0, a1) = 1;			// ATR_LONG_WORK 欄位 : 位址 0 : 是設定目標是否被攻擊過,所以都會設定為1
+						ATR_LONG_WORK(d3, a1) = d7 + 1;		//						位址 d3: d3 是攻擊物件的編號,而 d3 的位址是用來
+						//								 紀錄攻擊物件在第 d7 + 1 的迴閤攻擊目標
 					}
 					else
-						ATR_LONG_WORK(d3, a1) = d7 + 1;		// 当 ATR_LONG_WORK 栏位 0 不为 0 时,表示这个目标已被别的攻击物件攻击,
-					// 所以直接在 d3 的位址记录要在 d7 + 1 的回合攻击目标
-					ATR_ATTACK_KIND(0, a2) = get_num();		// 攻击种类
-					ATR_ATTACK_POW(0, a2) = get_num();		// 攻击力
-					ATR_ATTACK_PET_POW(0, a2) = get_num();	// pet攻击力
-					ATR_CHR_NO(a2) = get_num();				// 攻击物件图号
-					ATR_PLACE_NO(a2) = d3;					// 记录攻击物件编号
-					ATR_INT_WORK0(a2) = ATT_BATTLE_MODEL;	// 设定此 action 是 ATT_BATTLE_MODEL 在使用,以方便之后处理的辨识,使用 work0 记录
-					ATR_INT_WORK1(a2) = 1;					// 设定此攻击物件目前攻击目标数量,使用 work1记录
-					ATR_INT_WORK2(a2) = 0;					// 作为是否第一次执行离开动画旗标
-					ATR_INT_WORK3(a2) = 0;					// 作为若有忠犬则检查过后不再检查忠犬的旗标
-					// 如果有忠犬效果,记录使用忠犬的目标
+						ATR_LONG_WORK(d3, a1) = d7 + 1;		// 當 ATR_LONG_WORK 欄位 0 不為 0 時,錶示這個目標已被彆的攻擊物件攻擊,
+					// 所以直接在 d3 的位址記錄要在 d7 + 1 的迴閤攻擊目標
+					ATR_ATTACK_KIND(0, a2) = get_num();		// 攻擊種類
+					ATR_ATTACK_POW(0, a2) = get_num();		// 攻擊力
+					ATR_ATTACK_PET_POW(0, a2) = get_num();	// pet攻擊力
+					ATR_CHR_NO(a2) = get_num();				// 攻擊物件圖號
+					ATR_PLACE_NO(a2) = d3;					// 記錄攻擊物件編號
+					ATR_INT_WORK0(a2) = ATT_BATTLE_MODEL;	// 設定此 action 是 ATT_BATTLE_MODEL 在使用,以方便之後處理的辨識,使用 work0 記錄
+					ATR_INT_WORK1(a2) = 1;					// 設定此攻擊物件目前攻擊目標數量,使用 work1記錄
+					ATR_INT_WORK2(a2) = 0;					// 作為是否第一次執行離開動畫旗標
+					ATR_INT_WORK3(a2) = 0;					// 作為若有忠犬則檢查過後不再檢查忠犬的旗標
+					// 如果有忠犬效果,記錄使用忠犬的目標
 					if (BattleCmd[command_point] == 'g')
 						ATR_LONG_WORK(0, a2) = get_num();
-					ATR_SPD(a2) = 32;						// 移动速度
+					ATR_SPD(a2) = 32;						// 移動速度
 				}
 				d7++;
 			}
 			ATR_COUNTER(a0) = a1;
-			ATR_DAMAGE(a0) = -d7;	// 设为负数,让正常时候的 ATR_DAMAGE(p_master) 不会等于 ATR_BODY_CNT(p_master)
-			ATR_INT_WORK1(a0) = 0;	// 确认 p_missile 是否都被清空
-			ATR_INT_WORK2(a0) = 1;	// 攻击物件攻击时的顺序,先从 ATR_LONG_WORK 为 1 的先执行
-			ATR_BODY_CNT(a0) = d7;	// 攻击总次数,每完成一次动作 ATR_DAMAGE(p_master) 都会递增,直到 ATR_DAMAGE(p_master) ==  ATR_BODY_CNT(p_master)
-			// p_master 才会去继续处理下一笔 BattleCmd 里的资料 (这里的 a0 就是 p_master)
+			ATR_DAMAGE(a0) = -d7;	// 設為負數,讓正常時候的 ATR_DAMAGE(p_master) 不會等於 ATR_BODY_CNT(p_master)
+			ATR_INT_WORK1(a0) = 0;	// 確認 p_missile 是否都被清空
+			ATR_INT_WORK2(a0) = 1;	// 攻擊物件攻擊時的順序,先從 ATR_LONG_WORK 為 1 的先執行
+			ATR_BODY_CNT(a0) = d7;	// 攻擊總次數,每完成一次動作 ATR_DAMAGE(p_master) 都會遞增,直到 ATR_DAMAGE(p_master) ==  ATR_BODY_CNT(p_master)
+			// p_master 纔會去繼續處理下一筆 BattleCmd 裏的資料 (這裏的 a0 就是 p_master)
 			break;
 		}
 #endif
@@ -5299,13 +5299,13 @@ void master(ACTION *a0)
 				ATR_V_POS(a1) = lpDraw->ySize - 8;
 				ATR_H_POS(a1) = lpDraw->xSize + SCREEN_OUT;
 			}
-		case ATT_HIT:		//====================直接攻击===============
-			ATR_VCT_NO(a1) = 1;							//前进
+		case ATT_HIT:		//====================直接攻擊===============
+			ATR_VCT_NO(a1) = 1;							//前進
 			ATR_BODY_WORK(0, a1) = p_party[get_num()];	//被攻方
-			ATR_ATTACK_KIND(0, a1) = get_num();			//攻击种类
-			ATR_ATTACK_POW(0, a1) = get_num();			//攻击力
+			ATR_ATTACK_KIND(0, a1) = get_num();			//攻擊種類
+			ATR_ATTACK_POW(0, a1) = get_num();			//攻擊力
 			if (BattleCmd[command_point] == 'p')
-				ATR_ATTACK_PET_POW(0, a1) = get_num();	//pet攻击力
+				ATR_ATTACK_PET_POW(0, a1) = get_num();	//pet攻擊力
 #ifdef _STONDEBUG_
 			else
 				LogToBattleError( BattleCmd, __LINE__ );
@@ -5319,22 +5319,22 @@ void master(ACTION *a0)
 #ifdef _ATTACK_EFFECT
 			//修正忠犬  xiezi
 			if (BattleCmd[command_point] == 's')
-				ATR_LONG_WORK(0, a1) = get_num();	// 记录特效编号
+				ATR_LONG_WORK(0, a1) = get_num();	// 記錄特效編號
 #endif
 			break;
 #ifdef _MAGIC_DEEPPOISION
-		case ATT_DEEPPOISION:	//剧毒
-			ATR_VCT_NO(a1) = 1;	//攻方动作
-			ATR_BODY_WORK(0, a1) = p_party[get_num()];//攻方编号		//????
-			ATR_ATTACK_KIND(0, a1) = get_num();		//我方防御种类??????
-			ATR_ATTACK_POW(0, a1) = get_num();		//攻击力??????
-			ATR_ATTACK_PET_POW(0, a1) = get_num();//骑宠损伤
-			ATR_BODY_CNT(a0) = 1;//攻击次数
+		case ATT_DEEPPOISION:	//劇毒
+			ATR_VCT_NO(a1) = 1;	//攻方動作
+			ATR_BODY_WORK(0, a1) = p_party[get_num()];//攻方編號		//????
+			ATR_ATTACK_KIND(0, a1) = get_num();		//我方防禦種類??????
+			ATR_ATTACK_POW(0, a1) = get_num();		//攻擊力??????
+			ATR_ATTACK_PET_POW(0, a1) = get_num();//騎寵損傷
+			ATR_BODY_CNT(a0) = 1;//攻擊次數
 			ATR_DEEPPOISION(a1) = 1;
 			break;
 #endif
 			//andy_mp
-		case ATT_MPDAMAGE://MP伤害
+		case ATT_MPDAMAGE://MP傷害
 			ATR_VCT_NO(a1) = 1;
 			ATR_BODY_WORK(0, a1) = p_party[get_num()];
 			ATR_ATTACK_KIND(0, a1) = get_num();
@@ -5499,7 +5499,7 @@ void master(ACTION *a0)
 						ATR_PET_LIFE(a1) = ATR_PET_MAX_LIFE(a1);
 					play_se(102, ATR_H_POS(a1), 240);
 					break;
-					//andy_add	回合补血
+					//andy_add	迴閤補血
 				case 2:
 					if (BattleCmd[command_point] == 'm')
 						ATR_MPDAMAGE(a1) = get_num();
@@ -5556,7 +5556,7 @@ void master(ACTION *a0)
 					break;
 #endif 
 #ifdef _PETSKILL_PEEL
-				case 8://被卸下装备
+				case 8://被卸下裝備
 					set_damage_num(a1, 44, -64);
 					ATR_CHR_ACT_OLD(a1) = -1;
 					pattern(a1, ANM_NOMAL_SPD, ANM_LOOP);
@@ -5623,7 +5623,7 @@ void master(ACTION *a0)
 					set_damage_num(a1, 15, -64);
 					ATR_MP(a1) += ATR_DAMAGE(a1);		//?????
 
-#ifdef _FIXSHOWMPERR //Syu ADD 修正补气时动画显示错误
+#ifdef _FIXSHOWMPERR //Syu ADD 修正補氣時動畫顯示錯誤
 					if (ATR_MP(a1) > pc.maxMp)
 						ATR_MP(a1) = pc.maxMp;
 #else
@@ -5650,7 +5650,7 @@ void master(ACTION *a0)
 				}
 				break;
 #ifdef _PETSKILL_LER
-			case 3:	// 闪开攻击
+			case 3:	// 閃開攻擊
 				set_damage_num(a1, 0, -64);
 				break;
 #endif
@@ -5734,32 +5734,32 @@ void master(ACTION *a0)
 			//?????????
 			set_damage_num(a1, 20, -64);
 			break;
-#ifdef _FIREHUNTER_SKILL				// (不可开) ROG ADD 朱雀技能_火线猎杀
+#ifdef _FIREHUNTER_SKILL				// (不可開) ROG ADD 硃雀技能_火綫獵殺
 		case ATT_FIRESKILL:
-			ATR_VCT_NO(a1) = FIRE_HUNTER_SKILL;		//火线猎杀
+			ATR_VCT_NO(a1) = FIRE_HUNTER_SKILL;		//火綫獵殺
 			ATR_FIRST_FLG(a1) = 0;
 			iBeAttNum = get_num();
-			ATR_BODY_WORK(0, a1) = p_party[iBeAttNum];		//敌人位址
-			ATR_ATTACK_KIND(0, a1) = get_num();				//攻击种类
-			ATR_ATTACK_POW(0, a1) = get_num();				//攻击力
+			ATR_BODY_WORK(0, a1) = p_party[iBeAttNum];		//敵人位址
+			ATR_ATTACK_KIND(0, a1) = get_num();				//攻擊種類
+			ATR_ATTACK_POW(0, a1) = get_num();				//攻擊力
 			//			if ( BattleCmd[command_point] == 'p' )	{
-			ATR_ATTACK_PET_POW(0, a1) = get_num();		//pet攻击力??
+			ATR_ATTACK_PET_POW(0, a1) = get_num();		//pet攻擊力??
 			//			}
-			d0 = get_num();							//人数
-			ATR_BODY_CNT(a1) = d0;					//多人攻击
+			d0 = get_num();							//人數
+			ATR_BODY_CNT(a1) = d0;					//多人攻擊
 			for (d7 = 2; d7 < d0 + 2; d7++)
 			{
 				int x = get_num();
 
-				if (x == iBeAttNum)               //被攻击目标的魔法伤害
+				if (x == iBeAttNum)               //被攻擊目標的魔法傷害
 				{
 					tarMgiDem = 1;
 					tarpos = d7;//ATR_BODY_CNT(a1)--;
 				}
-				ATR_BODY_WORK(d7 ,a1) = p_party[x];		//敌人位址
-				ATR_ATTACK_KIND(d7 ,a1) = get_num();		//攻击种类
-				ATR_ATTACK_POW(d7 ,a1) = get_num();				//攻击力
-				ATR_ATTACK_PET_POW(d7 ,a1) = get_num();		//pet攻击力
+				ATR_BODY_WORK(d7 ,a1) = p_party[x];		//敵人位址
+				ATR_ATTACK_KIND(d7 ,a1) = get_num();		//攻擊種類
+				ATR_ATTACK_POW(d7 ,a1) = get_num();				//攻擊力
+				ATR_ATTACK_PET_POW(d7 ,a1) = get_num();		//pet攻擊力
 				//}
 			}
 			break;
@@ -5785,7 +5785,7 @@ void master(ACTION *a0)
 			ATR_VCT_NO(a1) = 0;		//?
 			ATR_CHR_ACT(a1) = ANIM_STAND;		//???????
 			ATR_FIRST_FLG(a1) = 0;
-			d0 = get_num(); //上马图号
+			d0 = get_num(); //上馬圖號
 			petrideChangeGraph(a1,d0);
 			d0 = get_num();
 			break;
@@ -5810,11 +5810,11 @@ void master(ACTION *a0)
 			//修正技能特效 xiezi
 #ifdef _ATTACK_EFFECT
 			if (BattleCmd[command_point] == 's')
-				ATR_LONG_WORK(0, a1) = get_num();	// 记录特效编号
+				ATR_LONG_WORK(0, a1) = get_num();	// 記錄特效編號
 #endif
 
 			ATR_BODY_CNT(a0) = 1;
-#ifdef _SHOOTCHESTNUT	// Syu ADD 宠技：丢栗子
+#ifdef _SHOOTCHESTNUT	// Syu ADD 寵技：丟栗子
 			(ATR_CHR_NO(a1) == 101578) ? ShooterNum = 101578 : ShooterNum = -1;
 #endif
 			break;
@@ -5864,7 +5864,7 @@ void master(ACTION *a0)
 				if (ATR_NAME(a1) == NULL)		//????????
 				{
 #ifdef _STONDEBUG_
-					MessageBoxNew(hWnd, "没有合体攻击的名字紧急连络日本！", "Error", MB_OK);
+					MessageBoxNew(hWnd, "沒有閤體攻擊的名字緊急連絡日本！", "Error", MB_OK);
 #endif
 					get_num();		//??????
 					get_num();		//??????
@@ -5882,7 +5882,7 @@ void master(ACTION *a0)
 				ATR_ATTACK_KIND(0, a1) = get_num();
 #ifdef _PETSKILL_ACUPUNCTURE
 				///////////////////////
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 				if (ATR_ATTACK_KIND(0, a1) & ATT_REFLEX+ATT_ABSORPTION+ATT_BALLIA+ATT_TRAP+ATT_ACUPUNCTURE
 #ifdef _PET_ITEM
 					+ ATT_ATTACKBACK
@@ -5898,7 +5898,7 @@ void master(ACTION *a0)
 					///////////////////////
 #else
 				///////////////////////
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 				if (ATR_ATTACK_KIND(0, a1) & ATT_REFLEX+ATT_ABSORPTION+ATT_BALLIA+ATT_TRAP)
 #else
 				if (ATR_ATTACK_KIND(0, a1) & ATT_REFLEX + ATT_ABSORPTION + ATT_BALLIA)
@@ -5912,7 +5912,7 @@ void master(ACTION *a0)
 					//修正技能特效 xiezi
 #ifdef _ATTACK_EFFECT
 					if (BattleCmd[command_point] == 's')
-						ATR_LONG_WORK(0, a1) = get_num();	// 记录特效编号
+						ATR_LONG_WORK(0, a1) = get_num();	// 記錄特效編號
 #endif
 				}
 				else
@@ -5926,7 +5926,7 @@ void master(ACTION *a0)
 					//修正技能特效 xiezi
 #ifdef _ATTACK_EFFECT
 					if (BattleCmd[command_point] == 's')
-						ATR_LONG_WORK(0, a1) = get_num();	// 记录特效编号
+						ATR_LONG_WORK(0, a1) = get_num();	// 記錄特效編號
 #endif
 				}
 				ATR_FIRST_FLG(a1) = 0;		//??????
@@ -6054,12 +6054,12 @@ void master(ACTION *a0)
 					att_select_flg = TRUE;
 			}
 			break;
-			//#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+			//#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 		case ATT_PROSKILL:
-			ATR_VCT_NO(a1) = PROSKILL;					//勇士职业技能
-			ATR_BODY_WORK(0, a1) = p_party[get_num()];	//取出被攻击对象No
-			ATR_ATTACK_KIND(0, a1) = get_num();			//攻击种类
-			ATR_ATTACK_POW(0, a1) = get_num();			//攻击力
+			ATR_VCT_NO(a1) = PROSKILL;					//勇士職業技能
+			ATR_BODY_WORK(0, a1) = p_party[get_num()];	//取齣被攻擊對象No
+			ATR_ATTACK_KIND(0, a1) = get_num();			//攻擊種類
+			ATR_ATTACK_POW(0, a1) = get_num();			//攻擊力
 			if (BattleCmd[command_point] == 'p')
 				ATR_ATTACK_PET_POW(0, a1) = get_num();		//pet??????
 			else
@@ -6068,7 +6068,7 @@ void master(ACTION *a0)
 			//修正技能特效 xiezi
 #ifdef _ATTACK_EFFECT
 			if (BattleCmd[command_point] == 's')
-				ATR_LONG_WORK(0, a1) = get_num();	// 记录特效编号
+				ATR_LONG_WORK(0, a1) = get_num();	// 記錄特效編號
 #endif
 
 			ATR_WARRIOR_EFFECT(a1) = get_num();
@@ -6262,18 +6262,18 @@ master_500:
 		ATR_DISP_PRIO(sort_chr_buf[d7].work) = d0++;
 }
 
-//宠物行动处理
+//寵物行動處理
 void monster(ACTION *a0)
 {
 	int d0, d1, d6, d7, sav_command_point, idx;
 	ACTION *a1, *a2, *a3;
 	static ACTION *a0tmp[10];
-	static int a0mark[10];				// 0:已将action release 1:未
+	static int a0mark[10];				// 0:已將action release 1:未
 	static int a0tmpcount;
 
 	switch (ATR_VCT_NO(a0))
 	{
-	case 0:		//待机
+	case 0:		//待機
 		ATR_CHR_ACT(a0) = ANIM_STAND;		//???????
 		if (ATR_VCT_NO(p_master) == 1)
 		{
@@ -6314,33 +6314,33 @@ void monster(ACTION *a0)
 				){
 				pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 			}
-			//这里将图片重新加载和渲染 wxy
+			//這裏將圖片重新加載和渲染 wxy
 			//pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 		}
 #ifdef _PETSKILL_BATTLE_MODEL
-		// 检查换我攻击了没
+		// 檢查換我攻擊瞭沒
 		if (ATR_INT_WORK0(a0) == ATT_BATTLE_MODEL)
 		{
-			a1 = ATR_BODY_WORK(0, a0);	// 取出被攻击目标
-			// 照先后顺序执行
+			a1 = ATR_BODY_WORK(0, a0);	// 取齣被攻擊目標
+			// 照先後順序執行
 			if (ATR_LONG_WORK(ATR_PLACE_NO(a0), a1) == ATR_INT_WORK2(p_master))
 			{
-				// 当目标回到待机时再攻击
+				// 當目標迴到待機時再攻擊
 				if (ATR_VCT_NO(a1) == 0)
-					ATR_VCT_NO(a0) = 2; // 开始攻击
-				// 当目标离开战场或死亡时结束攻击
+					ATR_VCT_NO(a0) = 2; // 開始攻擊
+				// 當目標離開戰場或死亡時結束攻擊
 				if (ATR_VCT_NO(a1) == VCT_NO_APPEAR || ATR_LIFE(a1) <= 0)
 				{
-					ATR_VCT_NO(a0) = 3; // 结束攻击
+					ATR_VCT_NO(a0) = 3; // 結束攻擊
 					ATR_BODY_WORK(0, a0) = NULL;	// 清空
 				}
 			}
 		}
 #endif
 		break;
-	case 1:		//前进
-		ATR_SPD(a0) = 32;		//移动速度
-		a1 = ATR_BODY_WORK(0, a0);		//敌方的位置
+	case 1:		//前進
+		ATR_SPD(a0) = 32;		//移動速度
+		a1 = ATR_BODY_WORK(0, a0);		//敵方的位置
 		d0 = ATR_H_POS(a1);
 		d1 = ATR_V_POS(a1);
 		radar(a0, &d0, &d1);	//????
@@ -6355,7 +6355,7 @@ void monster(ACTION *a0)
 			ATR_CRS_OLD(a0) = ATR_CRS(a0);
 		}
 		if (d1 <= 32 * 2)
-		{	//到达
+		{	//到達
 #ifdef _PIRATE_ANM			
 			if (ATR_CHR_NO(a0) == 101491)
 				ATR_CHR_NO(a0) = 101490;
@@ -6364,7 +6364,7 @@ void monster(ACTION *a0)
 			ATR_HIT_STOP(a0) = 0;		//??????????
 #ifdef _PETSKILL_BATTLE_MODEL
 			if (ATR_INT_WORK0(a0) == ATT_BATTLE_MODEL)
-				ATR_VCT_NO(a0) = 0; // 到达之后先待机
+				ATR_VCT_NO(a0) = 0; // 到達之後先待機
 			else
 #endif
 			{
@@ -6378,7 +6378,7 @@ void monster(ACTION *a0)
 #ifdef _ATTACK_EFFECT
 					//修正忠犬  xiezi
 					if (BattleCmd[command_point] == 's')
-						ATR_LONG_WORK(0, a0) = get_num();	// 记录特效编号
+						ATR_LONG_WORK(0, a0) = get_num();	// 記錄特效編號
 #endif
 					ATR_VCT_NO(a1) = 69;		//???????
 					ATR_FIRST_FLG(a1) = 0;		//
@@ -6421,7 +6421,7 @@ void monster(ACTION *a0)
 		}
 #endif
 		break;
-	case 2:		//攻击
+	case 2:		//攻擊
 		if (ATR_HIT_STOP(a0))			//??????????
 		{
 			if (--ATR_HIT_STOP(a0))		//??????????
@@ -6433,12 +6433,12 @@ void monster(ACTION *a0)
 		{
 			if (ATR_ATTACK_KIND(0, a0) & ATT_VICARIOUS)			// 忠犬
 			{
-				ATR_VCT_NO(a0) = 65;							// 攻击物件先进行等待
-				ATR_BODY_WORK(1, a1) = a0;						// 把攻击物件记录到主人身上,之后会用到
-				a1 = p_party[ATR_LONG_WORK(0, a0)];				// 取出宠物的 action
-				ATR_VCT_NO(a1) = 69;							// 显示 damage 的字
+				ATR_VCT_NO(a0) = 65;							// 攻擊物件先進行等待
+				ATR_BODY_WORK(1, a1) = a0;						// 把攻擊物件記錄到主人身上,之後會用到
+				a1 = p_party[ATR_LONG_WORK(0, a0)];				// 取齣寵物的 action
+				ATR_VCT_NO(a1) = 69;							// 顯示 damage 的字
 				ATR_FIRST_FLG(a1) = 0;
-				ATR_BODY_WORK(0, a1) = ATR_BODY_WORK(0, a0);	// 宠物的前进目标是主人
+				ATR_BODY_WORK(0, a1) = ATR_BODY_WORK(0, a0);	// 寵物的前進目標是主人
 				ATR_INT_WORK3(a0) = 1;
 				break;
 			}
@@ -6502,7 +6502,7 @@ void monster(ACTION *a0)
 				}
 			}
 #endif
-#ifdef _SKILL_ROAR  //宠技:大吼(克年兽)
+#ifdef _SKILL_ROAR  //寵技:大吼(剋年獸)
 			else if (ATR_ATTACK_KIND(0, a0) & ATT_ATTROAR)
 			{
 				set_damage_num(a0, 22, -64 + 16);
@@ -6516,7 +6516,7 @@ void monster(ACTION *a0)
 				set_damage_num(a0, 23, -64 + 16);
 			}
 #endif
-#ifdef _PETSKILL_EXPLODE //爆弹
+#ifdef _PETSKILL_EXPLODE //爆彈
 			else if (ATR_ATTACK_KIND(0, a0) & ATT_EXPLODE)
 			{
 				//ATR_SELFEXPLODE(a0) = 1;
@@ -6531,12 +6531,12 @@ void monster(ACTION *a0)
 				{
 					if (ATR_RIDE(a1) == 1)
 					{
-						//set_damage_num(a0, 12, -64+16); //落马术暂不设图
+						//set_damage_num(a0, 12, -64+16); //落馬術暫不設圖
 						ATR_PETFALL(a1) = 1;
 					}
 				}
 			}
-			//#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+			//#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 			if (ATR_ATTACK_KIND(0, a0) & ATT_ATTPREPROSKILL)
 				set_damage_num(a1, 41, -64 + 25);
 			//#endif
@@ -6580,7 +6580,7 @@ void monster(ACTION *a0)
 				ATR_VCT_NO(a0) = 3;
 				ATR_STIMER(a0) = 20;
 #ifdef _PETSKILL_BATTLE_MODEL
-				// 攻击完毕
+				// 攻擊完畢
 				if (ATR_INT_WORK0(a0) == ATT_BATTLE_MODEL)
 					ATR_LONG_WORK(ATR_PLACE_NO(a0), a1) = 0;
 #endif
@@ -6604,7 +6604,7 @@ void monster(ACTION *a0)
 			{
 				ATR_VCT_NO(a0) = 3;
 #ifdef _PETSKILL_BATTLE_MODEL
-				// 攻击完毕
+				// 攻擊完畢
 				if (ATR_INT_WORK0(a0) == ATT_BATTLE_MODEL)
 					ATR_LONG_WORK(ATR_PLACE_NO(a0), a1) = 0;
 #endif
@@ -6635,7 +6635,7 @@ void monster(ACTION *a0)
 #endif
 #ifdef _PETSKILL_ACUPUNCTURE
 			//////////////////////
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 			if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_ABSORPTION | ATT_BALLIA | ATT_TRAP | ATT_ACUPUNCTURE
 #ifdef _PET_ITEM
 				| ATT_ATTACKBACK
@@ -6651,7 +6651,7 @@ void monster(ACTION *a0)
 				//////////////////////
 #else
 			//////////////////////
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 			if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_ABSORPTION | ATT_BALLIA | ATT_TRAP))
 #else
 			if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_ABSORPTION | ATT_BALLIA))
@@ -6671,13 +6671,13 @@ void monster(ACTION *a0)
 					if (ATR_INT_WORK0(a0) != ATT_BATTLE_MODEL)
 #endif
 					{
-						ATR_VCT_NO(a1) = 10; //设定自己受伤
+						ATR_VCT_NO(a1) = 10; //設定自己受傷
 						ATR_DAMAGE(a1) = ATR_DAMAGE(a0);//ATR_DAMAGE(a1) = ATR_ATTACK_POW(0, a0)*2;
 						//ATR_ATTACK_KIND(0, a1) &= ATT_AKO2;
 						if ((float)ATR_DAMAGE(a1) >= (float)(ATR_MAX_LIFE(a1) * 1.2 + 20.0))
 						{
 							ATR_LIFE(a1) = 0;
-							ATR_AKO_FLG(a1) = 2; //打飞
+							ATR_AKO_FLG(a1) = 2; //打飛
 						}
 						a1 = ATR_BODY_WORK(0, a0) = a0;
 					}
@@ -6692,7 +6692,7 @@ void monster(ACTION *a0)
 			}
 #ifdef _PETSKILL_ACUPUNCTURE
 			///////////////////
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 			if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_TRAP | ATT_ACUPUNCTURE
 #ifdef _PET_ITEM
 				| ATT_ATTACKBACK
@@ -6708,7 +6708,7 @@ void monster(ACTION *a0)
 				///////////////////
 #else
 			///////////////////
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 			if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_TRAP) )
 #else
 			if (ATR_ATTACK_KIND(0, a0) & ATT_REFLEX)
@@ -6717,7 +6717,7 @@ void monster(ACTION *a0)
 #endif
 			{
 #ifdef _PETSKILL_BATTLE_MODEL
-				// 检查是不是攻击物件
+				// 檢查是不是攻擊物件
 				if (ATR_INT_WORK0(a0) != ATT_BATTLE_MODEL)
 #endif
 					a1 = ATR_BODY_WORK(0, a0) = a0;
@@ -6762,12 +6762,12 @@ void monster(ACTION *a0)
 				ATR_AKO_FLG(a1) = 1;
 			if (ATR_ATTACK_KIND(0, a0) & ATT_AKO2)		//??????
 				ATR_AKO_FLG(a1) = 2;
-			//连击 ?????
+			//連擊 ?????
 			if (ATR_HIT(a0) >= 10100)
 			{
 #ifdef _PETSKILL_ACUPUNCTURE
 				///////////////////////
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 				if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_TRAP | ATT_ACUPUNCTURE
 #ifdef _PET_ITEM
 					| ATT_ATTACKBACK
@@ -6783,7 +6783,7 @@ void monster(ACTION *a0)
 					///////////////////////
 #else
 				///////////////////////
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 				if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_TRAP) )
 #else
 
@@ -6808,7 +6808,7 @@ void monster(ACTION *a0)
 			{
 #ifdef _PETSKILL_ACUPUNCTURE
 				//////////////////////
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 				if (!(ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_TRAP | ATT_ACUPUNCTURE
 #ifdef _PET_ITEM
 					| ATT_ATTACKBACK
@@ -6824,7 +6824,7 @@ void monster(ACTION *a0)
 					/////////////////////
 #else
 				//////////////////////
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 				if (!(ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_TRAP) ))
 #else
 				if (!(ATR_ATTACK_KIND(0, a0) & ATT_REFLEX))
@@ -6838,7 +6838,7 @@ void monster(ACTION *a0)
 			}
 #ifdef _PETSKILL_ACUPUNCTURE
 			/////////////////////
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 			if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_TRAP | ATT_ACUPUNCTURE
 #ifdef _PET_ITEM
 				| ATT_ATTACKBACK
@@ -6854,7 +6854,7 @@ void monster(ACTION *a0)
 				////////////////////
 #else
 			/////////////////////
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 			if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_TRAP) )
 #else
 			if (ATR_ATTACK_KIND(0, a0) & ATT_REFLEX)
@@ -6863,10 +6863,10 @@ void monster(ACTION *a0)
 #endif
 			{
 #ifdef _PETSKILL_BATTLE_MODEL
-				// 检查是不是攻击物件
+				// 檢查是不是攻擊物件
 				if (ATR_INT_WORK0(a0) == ATT_BATTLE_MODEL)
 				{
-					ATR_ATTACK_POW(0, a0) = 0;		// 无伤害
+					ATR_ATTACK_POW(0, a0) = 0;		// 無傷害
 					ATR_DAMAGE_ANG(a1) = ATR_CHR_ANG(a0);
 					ATR_ATTACK_KIND(0, a0) |= ATT_NOMISS;
 				}
@@ -6880,7 +6880,7 @@ void monster(ACTION *a0)
 				set_damage_num(a1, 30, -64);
 			if (ATR_ATTACK_KIND(0, a0) & BCF_SUPERWALL)
 				set_damage_num(a1, 31, -64);
-			//#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+			//#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 			if (ATR_ATTACK_KIND(0, a0) & ATT_ATTNEXTPROSKILL)
 				set_damage_num(a1, 41, -64 + 25);
 			//#endif
@@ -6897,7 +6897,7 @@ void monster(ACTION *a0)
 						if (Light1 == NULL)
 							Light1 = MakeAnimDisp(ATR_H_POS(a0), ATR_V_POS(a0), 101581, 0);
 						set_damage_num(a1, 41, -64 + 25);
-						// 采光术预备
+						// 采光術預備
 #else
 						ATR_DAMAGE(a1) = ATR_ATTACK_POW(0, a0);
 						ATR_LIFE(a1) += ATR_DAMAGE(a1);
@@ -6921,7 +6921,7 @@ void monster(ACTION *a0)
 						//??
 						ATR_DAMAGE(a1) = ATR_ATTACK_POW(0, a0);
 #ifdef _SYUTEST
-						// 采光术预备
+						// 采光術預備
 #endif
 						ATR_LIFE(a1) += ATR_DAMAGE(a1);
 						if (ATR_LIFE(a1) > ATR_MAX_LIFE(a1))		//????
@@ -6945,7 +6945,7 @@ void monster(ACTION *a0)
 			{
 				ATR_VCT_NO(a1) = 10;		//?????
 
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 				if (ATR_ATTACK_KIND(0, a0) & ATT_NOMISS)
 					NoMiss = 1 ; 
 				else
@@ -6992,51 +6992,51 @@ void monster(ACTION *a0)
 						//?????
 						set_damage_num(a0, 1, -64 + 16);
 				}
-				//受伤效果音
+				//受傷效果音
 				play_damage(ATR_HIT(a0), ATR_H_POS(a0));
-				//必杀星星
+				//必殺星星
 				set_hit_mark(a0);
-				if (ATR_COMBO(a1))		//小队
-					ATR_HIT_STOP(a0) = HIT_STOP_TIM;		//动作停止
+				if (ATR_COMBO(a1))		//小隊
+					ATR_HIT_STOP(a0) = HIT_STOP_TIM;		//動作停止
 			}
-			ATR_HIT(a0) = 0;				//攻击旗标清除
+			ATR_HIT(a0) = 0;				//攻擊旗標清除
 			if (!(ATR_ATTACK_POW(0, a0) || ATR_ATTACK_PET_POW(0, a0)))		//????
 			{
-				ATR_HIT_STOP(a0) = 0;		//动作停止
+				ATR_HIT_STOP(a0) = 0;		//動作停止
 				play_se(8, ATR_H_POS(a0), ATR_V_POS(a0));
 			}
 		}
 		break;
 
-	case 3:		//攻击等待
+	case 3:		//攻擊等待
 #ifdef _PETSKILL_BATTLE_MODEL
-		// 检查是不是攻击物件
+		// 檢查是不是攻擊物件
 		if (ATR_INT_WORK0(a0) == ATT_BATTLE_MODEL)
 		{
-			// 检查此攻击物件还有没有目标
+			// 檢查此攻擊物件還有沒有目標
 			if (ATR_INT_WORK1(a0) > 1)
 			{
-				// 找出下一个目标
+				// 找齣下一個目標
 				for (d0 = 1; d0 < ATR_INT_WORK1(a0); d0++)
 				{
-					if (ATR_BODY_WORK(d0, a0) != NULL)	// 找到目标
+					if (ATR_BODY_WORK(d0, a0) != NULL)	// 找到目標
 					{
-						a1 = ATR_BODY_WORK(d0, a0);		// 取出目标
+						a1 = ATR_BODY_WORK(d0, a0);		// 取齣目標
 						ATR_BODY_WORK(d0, a0) = NULL;	// 清除
-						if (ATR_LIFE(a1) <= 0)			// 检查目标有无死亡
+						if (ATR_LIFE(a1) <= 0)			// 檢查目標有無死亡
 							continue;
-						if (ATR_VCT_NO(a1) == VCT_NO_APPEAR)	// 目标离开战场
+						if (ATR_VCT_NO(a1) == VCT_NO_APPEAR)	// 目標離開戰場
 							continue;
 						else
 						{
 							ATR_INT_WORK3(a0) = 0;
 							ATR_BODY_WORK(0, a0) = a1;								// 被攻方
-							ATR_ATTACK_KIND(0, a0) = ATR_ATTACK_KIND(d0, a0);		// 攻击种类
-							ATR_ATTACK_POW(0, a0) = ATR_ATTACK_POW(d0, a0);			// 攻击力
-							ATR_ATTACK_PET_POW(0, a0) = ATR_ATTACK_PET_POW(d0, a0);	// pet攻击力
-							ATR_LONG_WORK(0, a0) = ATR_LONG_WORK(d0, a0);			// 设定使用忠犬的目标
-							ATR_VCT_NO(a0) = 1;										// 前进下一个目标
-							ATR_INT_WORK2(p_master)++;								// 换下一个攻击物件攻击
+							ATR_ATTACK_KIND(0, a0) = ATR_ATTACK_KIND(d0, a0);		// 攻擊種類
+							ATR_ATTACK_POW(0, a0) = ATR_ATTACK_POW(d0, a0);			// 攻擊力
+							ATR_ATTACK_PET_POW(0, a0) = ATR_ATTACK_PET_POW(d0, a0);	// pet攻擊力
+							ATR_LONG_WORK(0, a0) = ATR_LONG_WORK(d0, a0);			// 設定使用忠犬的目標
+							ATR_VCT_NO(a0) = 1;										// 前進下一個目標
+							ATR_INT_WORK2(p_master)++;								// 換下一個攻擊物件攻擊
 							ATR_INT_WORK1(a0)--;
 							break;
 						}
@@ -7045,14 +7045,14 @@ void monster(ACTION *a0)
 				if (d0 == ATR_INT_WORK1(a0))
 					ATR_INT_WORK1(a0) = 0;
 			}
-			// 没目标了,离开
+			// 沒目標瞭,離開
 			else
 			{
-				// 设定离开
-				if (ATR_INT_WORK2(a0) == 0)	// 第一次执行
+				// 設定離開
+				if (ATR_INT_WORK2(a0) == 0)	// 第一次執行
 				{
 					ATR_SPD(a0) = 16;
-					// 往左上离开
+					// 往左上離開
 					if (ATR_GROUP_FLG(a0) == 0)
 						ATR_CHR_ANG(a0) = 3;
 					else if (ATR_GROUP_FLG(a0) == 1)
@@ -7065,33 +7065,33 @@ void monster(ACTION *a0)
 #endif
 					ATR_CRS(a0) = crs_change_tbl2[ATR_CHR_ANG(a0)];
 					ATR_INT_WORK2(a0) = 1;
-					ATR_INT_WORK2(p_master)++;	// 换下一个攻击物件攻击
+					ATR_INT_WORK2(p_master)++;	// 換下一個攻擊物件攻擊
 				}
-				gemini(a0);		// 移动
+				gemini(a0);		// 移動
 				ATR_CHR_ACT(a0) = ANIM_WALK;
 				pattern(a0, 1, ANM_LOOP);
-				// 移动超出荧幕
+				// 移動超齣熒幕
 				if (ATR_H_POS(a0) > lpDraw->xSize + SCREEN_OUT || ATR_H_POS(a0) < 0 - SCREEN_OUT)
 				{
 					DeathAction(a0);
 					p_missile[ATR_PLACE_NO(a0)] = NULL;
-					// 检查是否所有的 p_missile 都清空了
+					// 檢查是否所有的 p_missile 都清空瞭
 					for (d7 = 0; d7 < BATTLKPKPLYAERNUM; d7++)
 					{
 						if (p_missile[d7] != NULL)
 							break;
 					}
 					if (d7 >= BATTLKPKPLYAERNUM)
-						ATR_INT_WORK1(p_master) = 1;	// 所有的攻击物件都行动完了
+						ATR_INT_WORK1(p_master) = 1;	// 所有的攻擊物件都行動完瞭
 				}
-				// 所有的攻击物件都行动完了
+				// 所有的攻擊物件都行動完瞭
 				if (ATR_INT_WORK1(p_master))
 				{
 					ATR_DAMAGE(p_master) = 0;
 					ATR_BODY_CNT(p_master) = 1;
-					if (ATR_BODY_WORK(0, a0) == NULL)	// 这个蛋的目标不在场上或已死亡
+					if (ATR_BODY_WORK(0, a0) == NULL)	// 這個蛋的目標不在場上或已死亡
 						ATR_DAMAGE(p_master)++;
-					else // 如果最后一个攻击物件打的目标的状态是待机或死亡
+					else // 如果最後一個攻擊物件打的目標的狀態是待機或死亡
 					if (ATR_VCT_NO(ATR_BODY_WORK(0, a0)) == 0 || ATR_LIFE(ATR_BODY_WORK(0, a0)) <= 0)
 						ATR_DAMAGE(p_master)++;
 				}
@@ -7156,7 +7156,7 @@ void monster(ACTION *a0)
 
 #ifdef _ATTACK_EFFECT
 		if (BattleCmd[command_point] == 's')
-			ATR_LONG_WORK(0, a0) = get_num();	// 记录特效编号
+			ATR_LONG_WORK(0, a0) = get_num();	// 記錄特效編號
 #endif
 
 		if (a1 == a2)		//?????
@@ -7174,7 +7174,7 @@ void monster(ACTION *a0)
 		if (ATR_VCT_NO(a1) == 0)		//????????
 			ATR_VCT_NO(a0) = 1;		//??
 		break;
-	case 4:		//后退
+	case 4:		//後退
 		d0 = ATR_INT_WORK0(a0);
 		d1 = ATR_INT_WORK1(a0);
 		radar(a0, &d0, &d1);	//????
@@ -7233,20 +7233,20 @@ void monster(ACTION *a0)
 		ATR_VCT_NO(a0) = 14;		//????????
 		ATR_FIRST_FLG(a0) = 0;		//??
 		break;
-	case 10:		//被攻击
+	case 10:		//被攻擊
 		if (!ATR_DAMAGE(a0) && ATR_LIFE(a0) > 0 && !ATR_PET_DAMAGE(a0))	//????????
 		{
 			//????????
 			if (!ATR_COMBO(a0))
 			{
 				//??
-#ifdef _SKILL_ROAR  //宠技:大吼(克年兽)//tuen "miss"  off
+#ifdef _SKILL_ROAR  //寵技:大吼(剋年獸)//tuen "miss"  off
 				if (ATR_ROAR(a0) == 2){
 					//	set_damage_num(a0, 18, -64);
 				}
 				else
 				{
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 					if (NoMiss == 1);//set_damage_num(a0, 1, -64);
 					else if (NoMiss == -1)
 						set_damage_num(a0, 0, -64);
@@ -7282,7 +7282,7 @@ void monster(ACTION *a0)
 			ATR_CHR_ACT(a0) = ANIM_GUARD;		//??????????//防
 		}
 		else
-			ATR_CHR_ACT(a0) = ANIM_DAMAGE;		//???????????//受伤
+			ATR_CHR_ACT(a0) = ANIM_DAMAGE;		//???????????//受傷
 		ATR_CHR_ANG(a0) = (ATR_DAMAGE_ANG(a0) + 4) & 7;
 		//??????????????????
 		if (!ATR_COMBO(a0) || ATR_CHR_ACT_OLD(a0) != ANIM_DAMAGE)
@@ -7301,7 +7301,7 @@ void monster(ACTION *a0)
 		}
 #ifdef _PETSKILL_ACUPUNCTURE
 		/////////////////////////
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 		if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_TRAP | ATT_ACUPUNCTURE
 #ifdef _PET_ITEM
 			| ATT_ATTACKBACK
@@ -7317,7 +7317,7 @@ void monster(ACTION *a0)
 			/////////////////////////
 #else
 		/////////////////////////
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 		if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_TRAP) && ATR_SYNC_FLG(a0) == 0)
 #else		
 		if (ATR_ATTACK_KIND(0, a0) & ATT_REFLEX && ATR_SYNC_FLG(a0) == 0)
@@ -7326,7 +7326,7 @@ void monster(ACTION *a0)
 #endif
 			ATR_STIMER(a0) = HIT_STOP_TIM * 4;//817333333
 		ATR_SPD(a0) = 16;
-#ifdef _MAGIC_DEEPPOISION   //剧毒
+#ifdef _MAGIC_DEEPPOISION   //劇毒
 		if ((ATR_DEEPPOISION(a0) == 1))
 			ATR_STIMER(a0) = 50;
 #endif
@@ -7369,7 +7369,7 @@ void monster(ACTION *a0)
 		}
 #ifdef _PETSKILL_ACUPUNCTURE
 		//////////////////////
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 		if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_TRAP | ATT_ACUPUNCTURE
 #ifdef _PET_ITEM
 			| ATT_ATTACKBACK
@@ -7385,7 +7385,7 @@ void monster(ACTION *a0)
 			//////////////////////
 #else
 		//////////////////////
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 		if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_TRAP) && ATR_SYNC_FLG(a0) == 0)
 #else		
 		if (ATR_ATTACK_KIND(0, a0) & ATT_REFLEX && ATR_SYNC_FLG(a0) == 0)
@@ -7420,10 +7420,10 @@ void monster(ACTION *a0)
 				else
 					LogToBattleError(BattleCmd, __LINE__);
 
-				//修正战斗特效  xiezi
+				//修正戰鬥特效  xiezi
 #ifdef _ATTACK_EFFECT
 				if (BattleCmd[command_point] == 's')
-					ATR_LONG_WORK(0, a0) = get_num();	// 记录特效编号
+					ATR_LONG_WORK(0, a0) = get_num();	// 記錄特效編號
 #endif
 
 				ATR_HIT_STOP(a0) = 0;		//??????????
@@ -7462,7 +7462,7 @@ void monster(ACTION *a0)
 			//修正技能特效 xiezi
 #ifdef _ATTACK_EFFECT
 			if (BattleCmd[command_point] == 's')
-				ATR_LONG_WORK(0, a0) = get_num();	// 记录特效编号
+				ATR_LONG_WORK(0, a0) = get_num();	// 記錄特效編號
 #endif
 
 			ATR_CHR_ANG(a0) = (ATR_DAMAGE_ANG(a0) + 4) & 7;
@@ -7478,7 +7478,7 @@ void monster(ACTION *a0)
 		}
 		if (ATR_LIFE(a0) <= 0)		//???
 			slow_flg--;		//?????
-		//打飞 ?????
+		//打飛 ?????
 		if (ATR_AKO_FLG(a0))
 		{
 			//????
@@ -7529,10 +7529,10 @@ void monster(ACTION *a0)
 			break;
 		}
 		if (ATR_KAISHIN(a0))		//??????
-			ATR_SPD(a0) = 35;//后退距离
+			ATR_SPD(a0) = 35;//後退距離
 		else
 			ATR_SPD(a0) = 28;
-#ifdef _MAGIC_DEEPPOISION   //剧毒
+#ifdef _MAGIC_DEEPPOISION   //劇毒
 		if (ATR_DEEPPOISION(a0) == 1)
 		{
 			ATR_SPD(a0) = 0;
@@ -7550,7 +7550,7 @@ void monster(ACTION *a0)
 			ATR_SPD(a0) -= 2;
 		else
 		{
-			//后退动画
+			//後退動畫
 			if (ATR_CHR_ACT(a0) == ANIM_DAMAGE && ATR_CHR_NO(a0) >= SPR_pet061 && ATR_CHR_NO(a0) <= SPR_pet064 || ATR_CHR_NO(a0) == SPR_pet065)
 			{
 				pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
@@ -7569,7 +7569,7 @@ void monster(ACTION *a0)
 			ATR_SPD(a0) = 10;
 			ATR_VCT_NO(a0) = 13;		//???????
 			ATR_STIMER(a0) = 16;
-#ifdef _SHOOTCHESTNUT	// Syu ADD 宠技：丢栗子
+#ifdef _SHOOTCHESTNUT	// Syu ADD 寵技：丟栗子
 			a1 = ATR_COUNTER(p_master);
 			if (a1->anim_chr_no_bak == 101578)
 				ATR_STIMER(a0) = 26;
@@ -7579,7 +7579,7 @@ void monster(ACTION *a0)
 	case 13:		//???????
 		if (--ATR_STIMER(a0))		//?????
 			break;
-#ifdef _SHOOTCHESTNUT	// Syu ADD 宠技：丢栗子
+#ifdef _SHOOTCHESTNUT	// Syu ADD 寵技：丟栗子
 		a1 = ATR_COUNTER(p_master);
 		if (a1->anim_chr_no_bak == 101578)
 		{
@@ -7611,7 +7611,7 @@ void monster(ACTION *a0)
 		{
 #ifdef _PETSKILL_ACUPUNCTURE
 			////////////////////
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 			if (ATR_COUNTER(p_master) == a0 || ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_TRAP | ATT_ACUPUNCTURE
 #ifdef _PET_ITEM
 				| ATT_ATTACKBACK
@@ -7639,7 +7639,7 @@ void monster(ACTION *a0)
 					////////////////////
 #else
 			////////////////////
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 			if (ATR_COUNTER(p_master) == a0 || ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_TRAP))
 			{
 				if (ATR_ATTACK_KIND(0, a0) & (ATT_REFLEX | ATT_TRAP))
@@ -7654,7 +7654,7 @@ void monster(ACTION *a0)
 				else
 				{
 #ifdef _PETSKILL_BATTLE_MODEL
-					if (ATR_BATTLE_MODEL(a0) != ATT_BATTLE_MODEL)	//我是不是被攻击物件攻击
+					if (ATR_BATTLE_MODEL(a0) != ATT_BATTLE_MODEL)	//我是不是被攻擊物件攻擊
 #endif
 						ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//???
 				}
@@ -7663,7 +7663,7 @@ void monster(ACTION *a0)
 				radar(a0, &d0, &d1);	//????
 				ATR_CHR_ANG(a0) = crs_change_tbl[d0];
 			}
-#ifdef _MAGIC_DEEPPOISION   //剧毒
+#ifdef _MAGIC_DEEPPOISION   //劇毒
 			if (ATR_DEEPPOISION(a0) == 1)
 				ATR_VCT_NO(a0) = VCT_NO_DIE + 1;
 			else
@@ -7803,7 +7803,7 @@ void monster(ACTION *a0)
 						LogToBattleError(BattleCmd, __LINE__);
 #ifdef _ATTACK_EFFECT
 					if (BattleCmd[command_point] == 's')
-						ATR_LONG_WORK(0, a0) = get_num();	// 记录特效编号
+						ATR_LONG_WORK(0, a0) = get_num();	// 記錄特效編號
 #endif
 					ATR_FIRST_FLG(a0) = 0;		//????????
 				}
@@ -7871,10 +7871,10 @@ void monster(ACTION *a0)
 				else
 					LogToBattleError(BattleCmd, __LINE__);
 
-				//修正战斗特效   xiezi
+				//修正戰鬥特效   xiezi
 #ifdef _ATTACK_EFFECT
 				if (BattleCmd[command_point] == 's')
-					ATR_LONG_WORK(0, a1) = get_num();	// 记录特效编号
+					ATR_LONG_WORK(0, a1) = get_num();	// 記錄特效編號
 #endif
 
 				/* ??? */
@@ -7921,10 +7921,10 @@ void monster(ACTION *a0)
 					else
 						LogToBattleError(BattleCmd, __LINE__);
 
-					//修正战斗特效   xiezi
+					//修正戰鬥特效   xiezi
 #ifdef _ATTACK_EFFECT
 					if (BattleCmd[command_point] == 's')
-						ATR_LONG_WORK(0, a1) = get_num();	// 记录特效编号
+						ATR_LONG_WORK(0, a1) = get_num();	// 記錄特效編號
 #endif
 
 					ATR_H_POS(a1) = ATR_H_POS(a0);
@@ -8075,25 +8075,25 @@ void monster(ACTION *a0)
 			set_damage_num(a2, 14, -64);
 		}
 		break;
-#ifdef _FIREHUNTER_SKILL				// (不可开) ROG ADD 朱雀技能_火线猎杀
+#ifdef _FIREHUNTER_SKILL				// (不可開) ROG ADD 硃雀技能_火綫獵殺
 	case FIRE_HUNTER_SKILL:
 		if (ATR_FIRST_FLG(a0) == 0)
-		{	//最初的一回合
-			a2 = ATR_BODY_WORK(0, a0);		//敌人位址
+		{	//最初的一迴閤
+			a2 = ATR_BODY_WORK(0, a0);		//敵人位址
 			d0 = ATR_H_POS(a2);
 			d1 = ATR_V_POS(a2);
-			radar(a0, &d0, &d1);	//雷达
-			ATR_CRS(a0) = d0;		//路线储存
-			ATR_CHR_ANG(a0) = crs_change_tbl[d0];		//方向
-			ATR_CHR_ACT(a0) = ANIM_ATTACK;		//攻击动作
+			radar(a0, &d0, &d1);	//雷達
+			ATR_CRS(a0) = d0;		//路綫儲存
+			ATR_CHR_ANG(a0) = crs_change_tbl[d0];		//方嚮
+			ATR_CHR_ACT(a0) = ANIM_ATTACK;		//攻擊動作
 		}
-		ATR_HIT(a0) = 30;		//攻击清除
+		ATR_HIT(a0) = 30;		//攻擊清除
 		if (pattern(a0, ANM_NOMAL_SPD, ANM_NO_LOOP))
-		{	//攻击动画终了
+		{	//攻擊動畫終瞭
 			ATR_CHR_ACT_OLD(a0) = -1;
-			//Change fix 原本为 31 改成 FIRE_HUNTER_SKILL+1
-			ATR_VCT_NO(a0) = FIRE_HUNTER_SKILL+1;	//攻击终了待机
-			ATR_FIRST_FLG(a0) = 0;		//设定为最初一回合
+			//Change fix 原本為 31 改成 FIRE_HUNTER_SKILL+1
+			ATR_VCT_NO(a0) = FIRE_HUNTER_SKILL+1;	//攻擊終瞭待機
+			ATR_FIRST_FLG(a0) = 0;		//設定為最初一迴閤
 			break;
 		}
 		if (ATR_HIT(a0) >= 10000 && ATR_HIT(a0) < 10100)
@@ -8101,60 +8101,60 @@ void monster(ACTION *a0)
 			a1 = GetAction(T_PRIO_BOW, sizeof(ATR_EQU));		//火焰
 			if (a1 == NULL)
 			{
-				ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//到达的讯息
-				ATR_VCT_NO(a0) = 0;		//待机
+				ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//到達的訊息
+				ATR_VCT_NO(a0) = 0;		//待機
 				return;
 			}
 			ATR_STIMER(a0) = 0;		//????????
 			ATR_NAME(a1) = fireHunter;   //火焰的function
-			ATR_CHR_NO(a1) = 101734;	 //图号
-			ATR_DISP_PRIO(a1) = D_PRIO_MISSILE;  //优先度
+			ATR_CHR_NO(a1) = 101734;	 //圖號
+			ATR_DISP_PRIO(a1) = D_PRIO_MISSILE;  //優先度
 			/*初始位置*/
-			ATR_CHR_ANG(a1) = ATR_CHR_ANG(a0);						//方向
-			ATR_BODY_WORK(0, a1) = ATR_BODY_WORK(0, a0);				//敌人位址
-			ATR_BODY_WORK(1, a1) = a0;								//发射火焰的宠
+			ATR_CHR_ANG(a1) = ATR_CHR_ANG(a0);						//方嚮
+			ATR_BODY_WORK(0, a1) = ATR_BODY_WORK(0, a0);				//敵人位址
+			ATR_BODY_WORK(1, a1) = a0;								//發射火焰的寵
 			for (int i = 2; i < ATR_BODY_CNT(a0) + 2; i++)
 			{
-				ATR_BODY_WORK(i, a1) = ATR_BODY_WORK(i, a0);			//敌人位址
-				ATR_ATTACK_POW(i, a1) = ATR_ATTACK_POW(i, a0);			//攻击力
-				ATR_ATTACK_PET_POW(i, a1) = ATR_ATTACK_PET_POW(i, a0);	//宠物攻击力
+				ATR_BODY_WORK(i, a1) = ATR_BODY_WORK(i, a0);			//敵人位址
+				ATR_ATTACK_POW(i, a1) = ATR_ATTACK_POW(i, a0);			//攻擊力
+				ATR_ATTACK_PET_POW(i, a1) = ATR_ATTACK_PET_POW(i, a0);	//寵物攻擊力
 			}
-			ATR_ATTACK_POW(0, a1) = ATR_ATTACK_POW(0, a0);			//攻击力
-			ATR_ATTACK_PET_POW(0, a1) = ATR_ATTACK_PET_POW(0, a0);	//宠物攻击力
-			ATR_ATTACK_KIND(0, a1) = ATR_ATTACK_KIND(0, a0);			//攻击种类
+			ATR_ATTACK_POW(0, a1) = ATR_ATTACK_POW(0, a0);			//攻擊力
+			ATR_ATTACK_PET_POW(0, a1) = ATR_ATTACK_PET_POW(0, a0);	//寵物攻擊力
+			ATR_ATTACK_KIND(0, a1) = ATR_ATTACK_KIND(0, a0);			//攻擊種類
 			ATR_SPD(a1) = 60;										//速度	
 			ATR_H_POS(a1) = ATR_H_POS(a0) ;								
 			ATR_V_POS(a1) = ATR_V_POS(a0) - 50;
-			ATR_CRS(a1) = crs_change_tbl2[ATR_CHR_ANG(a1)];			//路径
-			ATR_COUNTER_FLG(a1) = ATR_CRS(a1);						//敌人攻击路线设定
-			ATR_BODY_CNT(a1) = ATR_BODY_CNT(a0);									//到达旗标
+			ATR_CRS(a1) = crs_change_tbl2[ATR_CHR_ANG(a1)];			//路徑
+			ATR_COUNTER_FLG(a1) = ATR_CRS(a1);						//敵人攻擊路綫設定
+			ATR_BODY_CNT(a1) = ATR_BODY_CNT(a0);									//到達旗標
 			bFireInit = TRUE;
 			FireSkillEnd = TRUE;
 			p_missile[0] = a1;
 			p_missile[1] = NULL;
-			d6 = 0;		//计算到达时间
+			d6 = 0;		//計算到達時間
 			while (1)
 			{
 				d0 = ATR_H_POS(ATR_BODY_WORK(0, a1));
 				d1 = ATR_V_POS(ATR_BODY_WORK(0, a1));
-				radar(a1, &d0, &d1);	//雷达
-				//到达
+				radar(a1, &d0, &d1);	//雷達
+				//到達
 				if (d1 <= 10)
 					break;
 				ATR_CRS(a1) = d0;
 				gemini(a1);
 				d6++;
 			}
-			if (!(ATR_GROUP_FLG(a1) = d6))		//到达时间储存
+			if (!(ATR_GROUP_FLG(a1) = d6))		//到達時間儲存
 				ATR_GROUP_FLG(a1) = 1;
 			ATR_H_POS(a1) = ATR_H_POS(a0) ;								
 			ATR_V_POS(a1) = ATR_V_POS(a0) - 30;
-			ATR_CHR_ANG(a1) = ATR_CHR_ANG(a0);						//方向
-			ATR_CRS(a1) = crs_change_tbl2[ATR_CHR_ANG(a1)];			//路径
-			ATR_COUNTER_FLG(a1) = ATR_CRS(a1);						//敌人攻击路线设定
+			ATR_CHR_ANG(a1) = ATR_CHR_ANG(a0);						//方嚮
+			ATR_CRS(a1) = crs_change_tbl2[ATR_CHR_ANG(a1)];			//路徑
+			ATR_COUNTER_FLG(a1) = ATR_CRS(a1);						//敵人攻擊路綫設定
 		}
 		break;
-		//Change fix 敌方睡眠后再火线,会跑去 31 (ATR_VCT_NO(a0) = 31;),结果会射箭出去,改为 ATR_VCT_NO(a0) = FIRE_HUNTER_SKILL+1; 改成这一段
+		//Change fix 敵方睡眠後再火綫,會跑去 31 (ATR_VCT_NO(a0) = 31;),結果會射箭齣去,改為 ATR_VCT_NO(a0) = FIRE_HUNTER_SKILL+1; 改成這一段
 	case FIRE_HUNTER_SKILL + 1:
 		ATR_CHR_ACT(a0) = ANIM_STAND;		//???????
 		pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
@@ -8359,14 +8359,14 @@ void monster(ACTION *a0)
 			//修正技能特效 xiezi
 #ifdef _ATTACK_EFFECT
 			if (BattleCmd[command_point] == 's')
-				ATR_LONG_WORK(0, a0) = get_num();	// 记录特效编号
+				ATR_LONG_WORK(0, a0) = get_num();	// 記錄特效編號
 #endif
 
 		}
 		break;
 
-	case 32:		//弓攻击
-		// a2为主、a1为影
+	case 32:		//弓攻擊
+		// a2為主、a1為影
 		if (ATR_FIRST_FLG(a0) == 0){		//???????
 			a2 = ATR_BODY_WORK(0, a0);		//???
 			d0 = ATR_H_POS(a2);
@@ -8383,13 +8383,13 @@ void monster(ACTION *a0)
 			ATR_FIRST_FLG(a0) = 1;		//??????
 		}
 
-#ifdef _SHOOTCHESTNUT	// Syu ADD 宠技：丢栗子
+#ifdef _SHOOTCHESTNUT	// Syu ADD 寵技：丟栗子
 		else if (ShooterNum == 101578) {
 			a2 = ATR_BODY_WORK(0, a0);		//???
-			//不定点	
+			//不定點	
 			//d0 = /*ATR_H_POS(a2) =*/ nutx[ a2->hitDispNo ] ;
 			//d1 = /*ATR_V_POS(a2) =*/ nuty[ a2->hitDispNo ] ;
-			//定点
+			//定點
 			d0 = ATR_H_POS(a2) = ATR_INT_WORK0(a2);
 			d1 = ATR_V_POS(a2) = ATR_INT_WORK1(a2);
 
@@ -8432,7 +8432,7 @@ void monster(ACTION *a0)
 			/* ? */
 			ATR_DISP_PRIO(a1) = D_PRIO_MISSILE;
 			/* ?????? */
-#ifdef _SHOOTCHESTNUT	// Syu ADD 宠技：丢栗子
+#ifdef _SHOOTCHESTNUT	// Syu ADD 寵技：丟栗子
 			if (ShooterNum == 101578)
 				ATR_CHR_NO(a1) = 27001;
 			else
@@ -8483,7 +8483,7 @@ void monster(ACTION *a0)
 			/* ? */
 			ATR_DISP_PRIO(a2) = D_PRIO_MISSILE;
 			/* ?????? */
-#ifdef _SHOOTCHESTNUT	// Syu ADD 宠技：丢栗子
+#ifdef _SHOOTCHESTNUT	// Syu ADD 寵技：丟栗子
 			//弓的部分
 			if (ShooterNum == 101578)
 				ATR_CHR_NO(a2) = 26995;
@@ -8537,32 +8537,32 @@ void monster(ACTION *a0)
 					ATR_CHR_ACT_OLD(a0) = -1;		//???
 				ATR_DAMAGE(a0)++;
 				ATR_FIRST_FLG(a0) = 0;
-				ATR_BODY_WORK(0, a0) = p_party[d0];		//攻击对象设定
-				ATR_ATTACK_KIND(0, a0) = get_num();		//攻击种类设定
-				ATR_ATTACK_POW(0, a0) = get_num();		//攻击力设定
+				ATR_BODY_WORK(0, a0) = p_party[d0];		//攻擊對象設定
+				ATR_ATTACK_KIND(0, a0) = get_num();		//攻擊種類設定
+				ATR_ATTACK_POW(0, a0) = get_num();		//攻擊力設定
 				if (BattleCmd[command_point] == 'p')
-					ATR_ATTACK_PET_POW(0, a0) = get_num();		//宠物攻击力设定
+					ATR_ATTACK_PET_POW(0, a0) = get_num();		//寵物攻擊力設定
 				else
 					LogToBattleError(BattleCmd, __LINE__);
 
 				//修正技能特效 xiezi
 #ifdef _ATTACK_EFFECT
 				if (BattleCmd[command_point] == 's')
-					ATR_LONG_WORK(0, a0) = get_num();	// 记录特效编号
+					ATR_LONG_WORK(0, a0) = get_num();	// 記錄特效編號
 #endif
 			}
 		}
 		break;
-	case 33:		//弓攻击结束等待
+	case 33:		//弓攻擊結束等待
 		ATR_CHR_ACT(a0) = ANIM_STAND;		//???????
 		pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 		if (ATR_STIMER(a0) == ATR_DAMAGE(a0))
 		{	//?????
 			ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//??????
-			ATR_VCT_NO(a0) = 0;		//待机
+			ATR_VCT_NO(a0) = 0;		//待機
 		}
 		break;
-	case 35:		//捕获移动
+	case 35:		//捕獲移動
 		ATR_SPD(a0) = 32;		//速度
 		a1 = ATR_BODY_WORK(0, a0);		//????????
 		d0 = ATR_H_POS(a1);
@@ -8719,10 +8719,10 @@ void monster(ACTION *a0)
 			ATR_CHR_ACT(a0) = ANIM_ANGRY;		//夂????????
 		pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 		break;
-	case 42:		//失败
-		ATR_CHR_ACT(a0) = ANIM_STAND;		//停止动作
+	case 42:		//失敗
+		ATR_CHR_ACT(a0) = ANIM_STAND;		//停止動作
 		pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
-		a1 = ATR_BODY_WORK(0, a0);		//取出敌方指标
+		a1 = ATR_BODY_WORK(0, a0);		//取齣敵方指標
 		if (ATR_VCT_NO(a1) == 0)
 		{	//??????????
 			ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//??????
@@ -8731,9 +8731,9 @@ void monster(ACTION *a0)
 		break;
 	case 44:		//成功
 		if (!--ATR_STIMER(a0))
-		{	//时间到
+		{	//時間到
 			ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);		//??????
-			ATR_VCT_NO(a0) = 0;		//待机
+			ATR_VCT_NO(a0) = 0;		//待機
 			play_bgm(ATR_DAMAGE(a0));		//?????
 		}
 		ATR_CHR_ACT(a0) = ANIM_HAPPY;		//???????????
@@ -8839,7 +8839,7 @@ void monster(ACTION *a0)
 			}
 		}
 		break;
-	case 52:		//战斗逃跑失败(动画加速)
+	case 52:		//戰鬥逃跑失敗(動畫加速)
 		if (ATR_FIRST_FLG(a0) == 0)
 		{	//???????
 			if (ATR_LIFE(a0) <= 0)
@@ -8857,7 +8857,7 @@ void monster(ACTION *a0)
 				ATR_VCT_NO(a0) = 50;		//逃跑成功
 				break;
 			}
-			//显示逃跑
+			//顯示逃跑
 			set_damage_num(a0, 9, -64);
 			if (ATR_GROUP_FLG(a0) == 0)
 				ATR_CHR_ANG(a0) = 7;
@@ -8902,7 +8902,7 @@ void monster(ACTION *a0)
 			}
 		}
 		break;
-	case 53:		//战斗逃跑失败(动画减速)
+	case 53:		//戰鬥逃跑失敗(動畫減速)
 		pattern(a0, ATR_STIMER(a0), ANM_LOOP);
 		//??????????
 		ATR_COUNTER_FLG(a0) = (ATR_COUNTER_FLG(a0) + 1) & 7;
@@ -8913,7 +8913,7 @@ void monster(ACTION *a0)
 			{	//????????
 				ATR_STIMER(a0) = 60;
 				ATR_VCT_NO(a0)++;
-				//显示失败
+				//顯示失敗
 				set_damage_num(a0, 8, -64);
 			}
 		}
@@ -8944,7 +8944,7 @@ void monster(ACTION *a0)
 			ATR_VCT_NO(a0) = 0;		//??
 		}
 		break;
-	case 55:		//打飞
+	case 55:		//打飛
 		if (ATR_FIRST_FLG(a0) == 0)
 		{	//???????
 			ATR_SPD(a0) = 63;		//????
@@ -8953,7 +8953,7 @@ void monster(ACTION *a0)
 			else
 			{
 				ATR_LONG_WORK(0, a0) = 3;		//???????
-				//打飞的声音
+				//打飛的聲音
 				play_se(11, ATR_H_POS(a0), ATR_V_POS(a0));
 			}
 			ATR_FIRST_FLG(a0) = 1;		//??????
@@ -9310,9 +9310,9 @@ void monster(ACTION *a0)
 			ATR_STIMER(a1) = 8;
 			//???
 #ifdef _PETSKILL_BATTLE_MODEL
-			// 若是被攻击物件攻击
+			// 若是被攻擊物件攻擊
 			if (ATR_BATTLE_MODEL(a1) == ATT_BATTLE_MODEL)
-				a1 = ATR_BODY_WORK(1, a1);	// 从 ATR_BODY_WORK(1,a1) 取出攻击物件的 action
+				a1 = ATR_BODY_WORK(1, a1);	// 從 ATR_BODY_WORK(1,a1) 取齣攻擊物件的 action
 			else 
 #endif
 				a1 = ATR_COUNTER(p_master);
@@ -9332,9 +9332,9 @@ void monster(ACTION *a0)
 		ATR_VCT_NO(a0) = 68;
 		//????
 #ifdef _PETSKILL_BATTLE_MODEL
-		// 若是被攻击物件攻击
+		// 若是被攻擊物件攻擊
 		if (ATR_BATTLE_MODEL(a0) == ATT_BATTLE_MODEL)
-			a1 = ATR_BODY_WORK(1, a0);	// 从 ATR_BODY_WORK(1, a0) 取出攻击物件的 action
+			a1 = ATR_BODY_WORK(1, a0);	// 從 ATR_BODY_WORK(1, a0) 取齣攻擊物件的 action
 		else 
 #endif
 			a1 = ATR_COUNTER(p_master);		//?????????
@@ -9644,7 +9644,7 @@ void monster(ACTION *a0)
 				a1->anim_chr_no = 101428;
 #endif
 #ifdef _PETSKILL_EVOLUTION
-			if ( a0->anim_chr_no_bak==101863 ){ //碰到烟雾图案就直接变身
+			if ( a0->anim_chr_no_bak==101863 ){ //碰到煙霧圖案就直接變身
 				if( a1->anim_chr_no == 102009 )
 					a1->anim_chr_no = 102011;
 				else if( a1->anim_chr_no == 102010 )
@@ -9808,7 +9808,7 @@ void monster(ACTION *a0)
 		break;
 	case 87:		//?????
 		ATR_SPD(a0) = 32;		//?speed
-		a1 = p_party[ATR_PLACE_NO(a0) - 5];		//????//敌方
+		a1 = p_party[ATR_PLACE_NO(a0) - 5];		//????//敵方
 		d0 = ATR_H_POS(a1);//y
 		d1 = ATR_V_POS(a1);//x
 		radar(a0, &d0, &d1);	//????//d0:course1  d1:distance
@@ -9819,7 +9819,7 @@ void monster(ACTION *a0)
 			d0 = 0 - d0;
 		if (d0 >= 2)
 		{
-#ifdef _SKILL_ROAR  //宠技:大吼(克年兽)//修正逃跑方向
+#ifdef _SKILL_ROAR  //寵技:大吼(剋年獸)//修正逃跑方嚮
 #else
 			ATR_CHR_ANG(a0) = crs_change_tbl[ATR_CRS(a0)];		/* ????? */
 			ATR_CRS_OLD(a0) = ATR_CRS(a0);
@@ -9840,7 +9840,7 @@ void monster(ACTION *a0)
 		if (ATR_FIRST_FLG(a0) == 0)
 		{	//???????
 			ATR_STIMER(a0) = 40;
-#ifdef _SKILL_ROAR  //宠技:大吼(克年兽)//修正逃跑方向
+#ifdef _SKILL_ROAR  //寵技:大吼(剋年獸)//修正逃跑方嚮
 			//????
 			ATR_SPD(a0) = 60;
 			ATR_CHR_ACT(a0) = ANIM_DAMAGE;		//???????
@@ -9858,7 +9858,7 @@ void monster(ACTION *a0)
 			ATR_STIMER(a0) = 40;
 			//????
 			set_damage_num(a0, 17, -64);
-#ifdef _SKILL_ROAR  //宠技:大吼(克年兽)修正逃跑方向
+#ifdef _SKILL_ROAR  //寵技:大吼(剋年獸)修正逃跑方嚮
 			if (ATR_GROUP_FLG(a0) == 0)
 				ATR_CHR_ANG(a0) = 7;
 			else if (ATR_GROUP_FLG(a0) == 1)
@@ -10323,7 +10323,7 @@ void monster(ACTION *a0)
 		break;
 #endif
 #ifdef __ATTACK_MAGIC
-		// 产生前置动画
+		// 産生前置動畫
 	case ATTACK_MAGIC_CASE:
 		// 是否在右下方
 		(0 == ATR_GROUP_FLG(a0)) ? ATR_CHR_ANG(a0) = 3 : ATR_CHR_ANG(a0) = 7;
@@ -10337,8 +10337,8 @@ void monster(ACTION *a0)
 				return;
 			}
 			ATR_NAME(a1) = monster;
-			ATR_VCT_NO(a1) = ATTACK_MAGIC_CASE + 1;		// 前置动画
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+			ATR_VCT_NO(a1) = ATTACK_MAGIC_CASE + 1;		// 前置動畫
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 			if (AttMgc.iPreMgcNum == 101120)
 				ATR_DISP_PRIO(a1)	= (1 == AttMgc.wPreMgcOnChar) ? D_PRIO_HIT_MARK : DISP_PRIO_TILE + 1;
 			else 
@@ -10355,7 +10355,7 @@ void monster(ACTION *a0)
 		ATR_CHR_ACT_OLD(a0) = -1;
 		pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 		break;
-		// 执行前置动画
+		// 執行前置動畫
 	case ATTACK_MAGIC_CASE + 1:
 		a1 = ATR_BODY_WORK(0, a0);
 		ATR_H_POS(a0) = ATR_H_POS(a1) + AttMgc.wPreMgcX;
@@ -10367,19 +10367,19 @@ void monster(ACTION *a0)
 			//ToCallMgc.wRunPreMgc = TRUE;
 		}
 		break;
-		// 执行目前的咒术
+		// 執行目前的咒術
 	case ATTACK_MAGIC_CASE + 2:
 	{
 								  idx = ATR_LONG_WORK(0, a0);
 
-								  // 播放的是相对于人物的位置
+								  // 播放的是相對於人物的位置
 								  if (20 != idx)
 								  {
 									  a1 = p_party[idx];
 									  ATR_H_POS(a0) = ATR_H_POS(a1) + AttMgc.posAttacked[0].x;
 									  ATR_V_POS(a0) = ATR_V_POS(a1) + AttMgc.posAttacked[0].y;
 								  }
-								  // 播放绝对座标的咒术
+								  // 播放絕對座標的咒術
 								  else
 								  {
 									  int value = 0;
@@ -10394,14 +10394,14 @@ void monster(ACTION *a0)
 								  if (d0 = pattern(a0, ANM_NOMAL_SPD, ANM_NO_LOOP))
 								  {
 									  DeathAction(a0);
-									  // 如果没有后置动画
+									  // 如果沒有後置動畫
 									  if (0XFFFFFFFF == AttMgc.iPostMgcNum)
 									  {
 										  AttMgc.wNumAttackeds++;
 										  if (20 == idx)
 										  {
-											  // wAttackedIndex[0] 放置  20 -- 代表全体攻击
-											  // wAttackedIndex[n] 放置0XFF -- 代表结束
+											  // wAttackedIndex[0] 放置  20 -- 代錶全體攻擊
+											  // wAttackedIndex[n] 放置0XFF -- 代錶結束
 											  int i = 0, j, charahurt, pethurt;
 
 											  while (++i && 0XFF != AttMgc.wAttackedIndex[i])
@@ -10511,14 +10511,14 @@ void monster(ACTION *a0)
 											  }
 										  }
 									  }
-									  // 拥有后置动画
+									  // 擁有後置動畫
 									  else
 									  {
-										  // 针对所有的敌人施后置动画
+										  // 針對所有的敵人施後置動畫
 										  if (20 == idx) // idx = wAttackedIndex[0]
 										  {
-											  // wAttackedIndex[0] 放置  20 -- 代表全体攻击
-											  // wAttackedIndex[n] 放置0XFF -- 代表结束
+											  // wAttackedIndex[0] 放置  20 -- 代錶全體攻擊
+											  // wAttackedIndex[n] 放置0XFF -- 代錶結束
 											  int i = 0;
 
 											  while (++i && 0XFF != AttMgc.wAttackedIndex[i])
@@ -10526,7 +10526,7 @@ void monster(ACTION *a0)
 												  a1 = GetAction(T_PRIO_MISSILE, sizeof(ATR_EQU));
 
 												  ATR_NAME(a1) = monster;
-												  ATR_VCT_NO(a1) = ATTACK_MAGIC_CASE + 3;		// 后置动画
+												  ATR_VCT_NO(a1) = ATTACK_MAGIC_CASE + 3;		// 後置動畫
 												  ATR_DISP_PRIO(a1) = (1 == AttMgc.wPostMgcOnChar) ? D_PRIO_HIT_MARK : DISP_PRIO_TILE + 1;
 												  ATR_CHR_NO(a1) = AttMgc.iPostMgcNum;
 												  ATR_LONG_WORK(0, a1) = AttMgc.wAttackedIndex[i];
@@ -10534,13 +10534,13 @@ void monster(ACTION *a0)
 												  ATR_V_POS(a1) = ATR_V_POS(p_party[AttMgc.wAttackedIndex[i]]) + AttMgc.wPostMgcY;
 											  }
 										  }
-										  // 针对某一个敌人施后置动画
+										  // 針對某一個敵人施後置動畫
 										  else
 										  {
 											  a1 = GetAction(T_PRIO_MISSILE, sizeof(ATR_EQU));
 
 											  ATR_NAME(a1) = monster;
-											  ATR_VCT_NO(a1) = ATTACK_MAGIC_CASE + 3;		// 后置动画
+											  ATR_VCT_NO(a1) = ATTACK_MAGIC_CASE + 3;		// 後置動畫
 											  ATR_DISP_PRIO(a1) = (1 == AttMgc.wPostMgcOnChar) ? D_PRIO_HIT_MARK : DISP_PRIO_TILE + 1;
 											  ATR_CHR_NO(a1) = AttMgc.iPostMgcNum;
 											  ATR_LONG_WORK(0, a1) = idx;
@@ -10550,7 +10550,7 @@ void monster(ACTION *a0)
 									  }
 								  }
 
-								  // 己经播放所有的动画了
+								  // 己經播放所有的動畫瞭
 								  if (AttMgc.wNumAttackeds == AttMgc.wNumAttacks && 0 == iAttackedNum)
 								  {
 									  ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);
@@ -10559,7 +10559,7 @@ void monster(ACTION *a0)
 								  }
 								  break;
 	}
-		// 执行后置动画
+		// 執行後置動畫
 	case ATTACK_MAGIC_CASE + 3:
 		idx = ATR_LONG_WORK(0, a0);
 		a1 = p_party[idx];
@@ -10572,8 +10572,8 @@ void monster(ACTION *a0)
 			AttMgc.wNumAttackeds++;
 			if (20 == idx)
 			{
-				// wAttackedIndex[0] 放置  20 -- 代表全体攻击
-				// wAttackedIndex[n] 放置0XFF -- 代表结束
+				// wAttackedIndex[0] 放置  20 -- 代錶全體攻擊
+				// wAttackedIndex[n] 放置0XFF -- 代錶結束
 				int i = 0, j, charahurt, pethurt;
 
 				while (++i && 0XFF != AttMgc.wAttackedIndex[i])
@@ -10665,7 +10665,7 @@ void monster(ACTION *a0)
 				}
 			}
 		}
-		// 己经播放所有的动画了
+		// 己經播放所有的動畫瞭
 		if (AttMgc.wNumAttackeds == AttMgc.wNumAttacks && 0 == iAttackedNum)
 		{
 			ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);
@@ -10673,7 +10673,7 @@ void monster(ACTION *a0)
 			g_iRunEarthQuake = 0;
 		}
 		break;
-		// 带人物受伤的图
+		// 帶人物受傷的圖
 	case ATTACK_MAGIC_CASE + 4:
 		if (ATR_FIRST_FLG(a0) > 40)
 			ATR_FIRST_FLG(a0) = 0;
@@ -10697,7 +10697,7 @@ void monster(ACTION *a0)
 			gemini(a0);
 			++iCurAttackedFinishNum;
 		}
-		// 己经播放所有的动画了
+		// 己經播放所有的動畫瞭
 		if (iAttackedNum == iCurAttackedFinishNum)
 		{
 			ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);
@@ -10719,7 +10719,7 @@ void monster(ACTION *a0)
 		break;
 #endif
 #ifdef __TOCALL_MAGIC
-		// 产生前置动画
+		// 産生前置動畫
 	case TOCALL_MAGIC_CASE:
 		// 是否在右下方
 		(0 == ATR_GROUP_FLG(a0)) ? ATR_CHR_ANG(a0) = 3 : ATR_CHR_ANG(a0) = 7;
@@ -10735,8 +10735,8 @@ void monster(ACTION *a0)
 				return;
 			}
 			ATR_NAME(a1) = monster;
-			ATR_VCT_NO(a1) = TOCALL_MAGIC_CASE + 1;		// 前置动画
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+			ATR_VCT_NO(a1) = TOCALL_MAGIC_CASE + 1;		// 前置動畫
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 			if (ToCallMgc.iPreMgcNum == 101120)
 				ATR_DISP_PRIO(a1) = (1 == ToCallMgc.wPreMgcOnChar) ? D_PRIO_HIT_MARK : DISP_PRIO_TILE + 1;
 			else 
@@ -10751,13 +10751,13 @@ void monster(ACTION *a0)
 		}
 		ATR_VCT_NO(a0) = 0;
 		ATR_CHR_ACT_OLD(a0) = -1;
-#ifdef _PETSKILL_LER			// 雷尔技能
+#ifdef _PETSKILL_LER			// 雷爾技能
 		if (ATR_CHR_NO(a0) == 101815)
 			ATR_CHR_NO(a0) = ATR_CHR_NO(a0) * -1;
 #endif
 		pattern(a0, ANM_NOMAL_SPD, ANM_LOOP);
 		break;
-		// 执行前置动画
+		// 執行前置動畫
 	case TOCALL_MAGIC_CASE + 1:
 
 		a1 = ATR_BODY_WORK(0, a0);
@@ -10768,7 +10768,7 @@ void monster(ACTION *a0)
 		{
 			DeathAction(a0);
 			ToCallMgc.wRunPreMgc = TRUE;
-#ifdef _PETSKILL_LER			// 雷尔技能
+#ifdef _PETSKILL_LER			// 雷爾技能
 			if (ATR_CHR_NO_OLD(a1) < 0)
 			{
 				int side;
@@ -10779,12 +10779,12 @@ void monster(ACTION *a0)
 					int i;
 					for (i = 0; i < BATTLKPKPLYAERNUM; i++)
 					{
-						// 先找到雷尔位置
+						// 先找到雷爾位置
 						if (ATR_CHR_NO(p_party[i]) == ATR_CHR_NO(a1))
 							break;
 					}
 					side = i = (i < 10 ? 0:10);
-					// 雷尔侧的人全都消失
+					// 雷爾側的人全都消失
 					for (; i < side + 10; i++)
 						ATR_H_POS(p_party[i]) += -lpDraw->xSize;
 				}
@@ -10792,14 +10792,14 @@ void monster(ACTION *a0)
 #endif
 		}
 		break;
-		// 执行目前的咒术
+		// 執行目前的咒術
 	case TOCALL_MAGIC_CASE + 2:
 	{
 								  idx = ATR_LONG_WORK(0, a0);
 #ifdef _PROFESSION_ADDSKILL
 								  RunTimeMagicBoundary(ATR_CHR_NO(a0));
 #endif
-								  // 播放的是相对于人物的位置
+								  // 播放的是相對於人物的位置
 								  if (20 != idx)
 								  {
 									  a1 = p_party[idx];
@@ -10814,7 +10814,7 @@ void monster(ACTION *a0)
 										  ATR_V_POS(a0) = ATR_V_POS(a1) + ToCallMgc.posAttacked[0].y;
 									  }
 								  }
-								  // 播放绝对座标的咒术
+								  // 播放絕對座標的咒術
 								  else
 								  {
 									  int value = 0;
@@ -10826,7 +10826,7 @@ void monster(ACTION *a0)
 								  }
 								  if (d0 = pattern(a0, ANM_NOMAL_SPD, ANM_NO_LOOP))
 								  {
-#ifdef _PETSKILL_LER			// 雷尔技能
+#ifdef _PETSKILL_LER			// 雷爾技能
 									  int side;
 
 									  if (ATR_CHR_NO(a0) == 101798 || ATR_CHR_NO(a0) == 101800 || ATR_CHR_NO(a0) == 101853 || ATR_CHR_NO(a0) == 101854)
@@ -10834,17 +10834,17 @@ void monster(ACTION *a0)
 										  int i;
 										  for (i = 0; i < BATTLKPKPLYAERNUM; i++)
 										  {
-											  // 先找到雷尔位置
+											  // 先找到雷爾位置
 											  if (ATR_CHR_NO(p_party[i]) == 101815)
 												  break;
 										  }
 										  side = i = (i < 10 ? 0:10);
-										  // 雷尔侧的人出现
+										  // 雷爾側的人齣現
 										  for (; i < side + 10; i++)
 											  ATR_H_POS(p_party[i]) += lpDraw->xSize;
 									  }
 #endif
-									  // Terry add fix 修正召雷动画
+									  // Terry add fix 修正召雷動畫
 									  if (ToCallMgc.wCurAttackNum == 101628)
 										  DeathAction(a0);
 									  else
@@ -10866,14 +10866,14 @@ void monster(ACTION *a0)
 										  }
 #endif
 									  }
-									  // 如果没有后置动画
+									  // 如果沒有後置動畫
 									  if (0XFFFFFFFF == ToCallMgc.iPostMgcNum)
 									  {
 										  ToCallMgc.wNumAttackeds++;
 										  if (20 == idx)
 										  {
-											  // wAttackedIndex[0] 放置  20 -- 代表全体攻击
-											  // wAttackedIndex[n] 放置0XFF -- 代表结束
+											  // wAttackedIndex[0] 放置  20 -- 代錶全體攻擊
+											  // wAttackedIndex[n] 放置0XFF -- 代錶結束
 											  int i = 0, j, charahurt, pethurt;
 
 											  while (++i && 0XFF != ToCallMgc.wAttackedIndex[i])
@@ -10888,16 +10888,16 @@ void monster(ACTION *a0)
 														  ATR_LONG_WORK(0, a1) = 0;
 														  ATR_DAMAGE(a1) = charahurt;
 														  ATR_PET_DAMAGE(a1) = pethurt;
-														  if (charahurt == 0)//伤害值为0 
+														  if (charahurt == 0)//傷害值為0 
 														  {
-#ifdef _BATTLESKILL				// (可开) Syu ADD 战斗技能介面
-															  if (a0->anim_chr_no == 101651 || a0->anim_chr_no == 101650) //冰爆术第一下Miss不秀
+#ifdef _BATTLESKILL				// (可開) Syu ADD 戰鬥技能介麵
+															  if (a0->anim_chr_no == 101651 || a0->anim_chr_no == 101650) //冰爆術第一下Miss不秀
 																  ATR_VCT_NO(a1) = TOCALL_MAGIC_CASE + 5;
 															  else
 															  {
 																  set_damage_num(a1, 0, -64);
 																  ATR_VCT_NO(a1) = TOCALL_MAGIC_CASE + 5;
-																  if ( ToCallMgc.iCurMgcNum == 101676 //贯穿攻击的伤害若为0,被打的人要有闪避的动作
+																  if ( ToCallMgc.iCurMgcNum == 101676 //貫穿攻擊的傷害若為0,被打的人要有閃避的動作
 																	  || ToCallMgc.iCurMgcNum == 101675
 																	  || ToCallMgc.iCurMgcNum == 101674
 																	  || ToCallMgc.iCurMgcNum == 101673
@@ -10908,7 +10908,7 @@ void monster(ACTION *a0)
 																	  || ToCallMgc.iCurMgcNum == 101662
 																	  || ToCallMgc.iCurMgcNum == 101661
 																	  || ToCallMgc.iCurMgcNum == 101656)
-																  {	//回旋攻击
+																  {	//迴鏇攻擊
 																	  ATR_STIMER(a1) = 0;
 																	  ATR_FIRST_FLG(a1) = 0;		//?????????
 																	  ATR_VCT_NO(a1) = TOCALL_MAGIC_CASE + 6;
@@ -10971,8 +10971,8 @@ void monster(ACTION *a0)
 													  ATR_PET_DAMAGE(a1) = pethurt;
 													  if (charahurt == 0)
 													  {
-														  //#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
-														  //								if ( a0->anim_chr_no == 101651 || a0->anim_chr_no == 101650 ) //冰爆术第一下Miss不秀
+														  //#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
+														  //								if ( a0->anim_chr_no == 101651 || a0->anim_chr_no == 101650 ) //冰爆術第一下Miss不秀
 														  //									ATR_VCT_NO(a1)		= TOCALL_MAGIC_CASE + 5;
 														  //								else {
 														  //									set_damage_num( a1 , 0 , -64 );
@@ -11018,14 +11018,14 @@ void monster(ACTION *a0)
 											  }
 										  }
 									  }
-									  // 拥有后置动画
+									  // 擁有後置動畫
 									  else
 									  {
-										  // 针对所有的敌人施后置动画
+										  // 針對所有的敵人施後置動畫
 										  if (20 == idx) // idx = wAttackedIndex[0]
 										  {
-											  // wAttackedIndex[0] 放置  20 -- 代表全体攻击
-											  // wAttackedIndex[n] 放置0XFF -- 代表结束
+											  // wAttackedIndex[0] 放置  20 -- 代錶全體攻擊
+											  // wAttackedIndex[n] 放置0XFF -- 代錶結束
 											  int i = 0;
 
 											  while (++i && 0XFF != ToCallMgc.wAttackedIndex[i])
@@ -11033,7 +11033,7 @@ void monster(ACTION *a0)
 												  a1 = GetAction(T_PRIO_MISSILE, sizeof(ATR_EQU));
 
 												  ATR_NAME(a1) = monster;
-												  ATR_VCT_NO(a1) = TOCALL_MAGIC_CASE + 3;		// 后置动画
+												  ATR_VCT_NO(a1) = TOCALL_MAGIC_CASE + 3;		// 後置動畫
 												  ATR_DISP_PRIO(a1) = (1 == ToCallMgc.wPostMgcOnChar) ? D_PRIO_HIT_MARK : DISP_PRIO_TILE + 1;
 												  ATR_CHR_NO(a1) = ToCallMgc.iPostMgcNum;
 												  ATR_LONG_WORK(0, a1) = ToCallMgc.wAttackedIndex[i];
@@ -11041,13 +11041,13 @@ void monster(ACTION *a0)
 												  ATR_V_POS(a1) = ATR_V_POS(p_party[ToCallMgc.wAttackedIndex[i]]) + ToCallMgc.wPostMgcY;
 											  }
 										  }
-										  // 针对某一个敌人施后置动画
+										  // 針對某一個敵人施後置動畫
 										  else
 										  {
 											  a1 = GetAction(T_PRIO_MISSILE, sizeof(ATR_EQU));
 
 											  ATR_NAME(a1) = monster;
-											  ATR_VCT_NO(a1) = TOCALL_MAGIC_CASE + 3;		// 后置动画
+											  ATR_VCT_NO(a1) = TOCALL_MAGIC_CASE + 3;		// 後置動畫
 											  ATR_DISP_PRIO(a1) = (1 == ToCallMgc.wPostMgcOnChar) ? D_PRIO_HIT_MARK : DISP_PRIO_TILE + 1;
 											  ATR_CHR_NO(a1) = ToCallMgc.iPostMgcNum;
 											  ATR_LONG_WORK(0, a1) = idx;
@@ -11057,7 +11057,7 @@ void monster(ACTION *a0)
 									  }
 								  }
 
-								  // 己经播放所有的动画了
+								  // 己經播放所有的動畫瞭
 								  if (ToCallMgc.wNumAttackeds == ToCallMgc.wNumAttacks && 0 == iAttackedNum)
 								  {
 									  ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);
@@ -11067,7 +11067,7 @@ void monster(ACTION *a0)
 
 								  break;
 	}
-		// 执行后置动画
+		// 執行後置動畫
 	case TOCALL_MAGIC_CASE + 3:
 
 		idx = ATR_LONG_WORK(0, a0);
@@ -11082,8 +11082,8 @@ void monster(ACTION *a0)
 
 			if (20 == idx)
 			{
-				// wAttackedIndex[0] 放置  20 -- 代表全体攻击
-				// wAttackedIndex[n] 放置0XFF -- 代表结束
+				// wAttackedIndex[0] 放置  20 -- 代錶全體攻擊
+				// wAttackedIndex[n] 放置0XFF -- 代錶結束
 				int i = 0, j, charahurt, pethurt;
 
 				while (++i && 0XFF != ToCallMgc.wAttackedIndex[i])
@@ -11179,7 +11179,7 @@ void monster(ACTION *a0)
 
 		}
 
-		// 己经播放所有的动画了
+		// 己經播放所有的動畫瞭
 		if (ToCallMgc.wNumAttackeds == ToCallMgc.wNumAttacks && 0 == iAttackedNum)
 		{
 			ATR_DAMAGE(p_master) = ATR_BODY_CNT(p_master);
@@ -11187,7 +11187,7 @@ void monster(ACTION *a0)
 			g_iRunEarthQuake = 0;
 		}
 		break;
-		// 带人物受伤的图
+		// 帶人物受傷的圖
 	case TOCALL_MAGIC_CASE + 4:
 		if (ATR_FIRST_FLG(a0) > 40)
 			ATR_FIRST_FLG(a0) = 0;
@@ -11197,7 +11197,7 @@ void monster(ACTION *a0)
 			ATR_CRS(a0) = (ATR_CRS(a0) + 16) & 31;
 			gemini(a0);
 		}
-		if (40 == ATR_FIRST_FLG(a0))		// 代表会振动40次
+		if (40 == ATR_FIRST_FLG(a0))		// 代錶會振動40次
 		{
 			if (ATR_LIFE(a0) <= 0)
 			{
@@ -11214,7 +11214,7 @@ void monster(ACTION *a0)
 			gemini(a0);
 			++iCurAttackedFinishNum;
 		}
-		// 己经播放所有的动画了
+		// 己經播放所有的動畫瞭
 		if (iAttackedNum == iCurAttackedFinishNum)
 		{
 			for (int i = 0; i < 10; i++)
@@ -11255,7 +11255,7 @@ void monster(ACTION *a0)
 			g_iRunEarthQuake = 0;
 		}
 		break;
-		//人物闪避
+		//人物閃避
 	case TOCALL_MAGIC_CASE + 6:
 		ATR_CHR_ACT(a0) = ANIM_WALK;		//????????
 		ATR_SPD(a0) = 16;
@@ -11274,7 +11274,7 @@ void monster(ACTION *a0)
 			ATR_STIMER(a0) = 0;
 			++iCurAttackedFinishNum;
 		}
-		// 己经播放所有的动画了
+		// 己經播放所有的動畫瞭
 		if (iAttackedNum == iCurAttackedFinishNum)
 		{
 			for (int i = 0; i < 10; i++)
@@ -11292,7 +11292,7 @@ void monster(ACTION *a0)
 		}
 		break;
 #endif
-		//#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+		//#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 	case PROSKILL:
 		// 是否在右下方
 		(0 == ATR_GROUP_FLG(a0)) ? ATR_CHR_ANG(a0) = 3 : ATR_CHR_ANG(a0) = 7;
@@ -11313,7 +11313,7 @@ void monster(ACTION *a0)
 				return;
 			}
 			ATR_NAME(a1) = monster;
-			ATR_VCT_NO(a1) = PROSKILL + 1;		// 前置动画
+			ATR_VCT_NO(a1) = PROSKILL + 1;		// 前置動畫
 			ATR_CHR_NO(a1) = AttPreMagicNum;
 			ATR_DISP_PRIO(a1) = ATR_DISP_PRIO(a0) + 1;
 			ATR_BODY_WORK(0, a1) = a0;
@@ -11346,7 +11346,7 @@ void monster(ACTION *a0)
 	if (Light1 != NULL)
 	{
 		if (Light1->anim_cnt == 5)
-		{	//拨放到最后一张
+		{	//撥放到最後一張
 			DeathAction(Light1);
 			Light1 = NULL;
 		}
@@ -11366,71 +11366,71 @@ ACTION *oft_test(void)
 	for (d7 = 0; d7 < BATTLKPKPLYAERNUM; d7++)		//清除
 		p_party[d7] = NULL;
 
-	// 产生 master action list /* ?????????????? */
+	// 産生 master action list /* ?????????????? */
 	a1 = GetAction(T_PRIO_MASTER, sizeof(ATR_EQU));
 	if (a1 == NULL)
 		return NULL;
-	//要执行的Func
+	//要執行的Func
 	ATR_NAME(a1) = master;
-	//出场先给予等待
+	//齣場先給予等待
 	ATR_VCT_NO(a1) = 3;
-	//表示优先顺序
+	//錶示優先順序
 	ATR_DISP_PRIO(a1) = D_PRIO_MASTER;
-	// sprite 编号/* ?????? */
+	// sprite 編號/* ?????? */
 	ATR_CHR_NO(a1) = 31027;
 	ATR_CHR_ANG(a1) = 3;		//左上
 	//初期位置
 	ATR_H_POS(a1) = 320;
 	ATR_V_POS(a1) = 240;
-	// 攻击种类
-	ATR_CHR_ACT(a1) = ANIM_ATTACK;		// 移动动画
-	// 记录 a1 于 p_master/* ??????? */
+	// 攻擊種類
+	ATR_CHR_ACT(a1) = ANIM_ATTACK;		// 移動動畫
+	// 記錄 a1 於 p_master/* ??????? */
 	p_master = a1;
-	// 产生 field 在左下的 action list/* ????????????????? */
+	// 産生 field 在左下的 action list/* ????????????????? */
 	a1 = GetAction(T_PRIO_MASTER, sizeof(ATR_EQU));
 	if (a1 == NULL)
 		return NULL;
-	ATR_ATTRIB(a1) = ACT_ATR_HIDE;	// 不显示	//??
-	//表示优先顺序
+	ATR_ATTRIB(a1) = ACT_ATR_HIDE;	// 不顯示	//??
+	//錶示優先順序
 	ATR_DISP_PRIO(a1) = D_PRIO_MASTER;
 	//初期位置
 	ATR_H_POS(a1) = lpDraw->xSize - 32;
 	ATR_V_POS(a1) = lpDraw->ySize - 64;
-	// 记录 a1 于 p_attrib/* ??????? */
+	// 記錄 a1 於 p_attrib/* ??????? */
 	p_attrib = a1;
 
 #ifdef _BATTLE_PK_PLAYER_FOR_6VS6
-	//X座标
+	//X座標
 	d0 = 416 + 5 + DISPLACEMENT_X;
-	//Y座标
+	//Y座標
 	d1 = 408 + 24 + DISPLACEMENT_Y;
 #else
-	//X座标
+	//X座標
 	d0 = 416 + 32 + 5 + DISPLACEMENT_X;
-	//Y座标
+	//Y座標
 	d1 = 408 + 24 + DISPLACEMENT_Y;
 #endif
-	// 预设为图号为 SPR_021em
+	// 預設為圖號為 SPR_021em
 	d2 = SPR_021em;		/*?????*/
 
 	//_BATTLE_PK_PLAYER_FOR_6VS6  XIEZI  修改
 	for (d7 = 0; d7 < MAX_BATTLE_ROW_CHARS; d7++)
 	{	//我方人物
-		// 产生我方的 monster action list /* ??????????????? */
+		// 産生我方的 monster action list /* ??????????????? */
 		a1 = GetAction(T_PRIO_JIKI, sizeof(ATR_EQU));
 		if (a1 == NULL)
 			return NULL;
-		//要执行的Func /* ??? */
+		//要執行的Func /* ??? */
 		ATR_NAME(a1) = NULL;
-		// 动作为登场
+		// 動作為登場
 		ATR_VCT_NO(a1) = VCT_NO_APPEAR;
 		/* ? */
 		ATR_DISP_PRIO(a1) = D_PRIO_MASTER;
-		// 显示出相关讯息 // ??????????
+		// 顯示齣相關訊息 // ??????????
 		a1->atr |= ACT_ATR_INFO;
-		// 可以被点选 // ?????
+		// 可以被點選 // ?????
 		a1->atr |= ACT_ATR_HIT;
-		// sprite 编号 /* ?????? */
+		// sprite 編號 /* ?????? */
 		ATR_CHR_NO(a1) = d2;
 		ATR_CHR_ANG(a1) = 3;		//左上
 		ATR_HIT_TIMING(a1) = 5;
@@ -11439,15 +11439,15 @@ ACTION *oft_test(void)
 		monster_place_pos[id_no + 1] = ATR_V_POS(a1) = ATR_INT_WORK1(a1) = d1;
 		ATR_H_POS(a1) += 300;
 		ATR_V_POS(a1) += 300;
-		// 一开始在画面外的位置
+		// 一開始在畫麵外的位置
 		monster_start_pos[id_no++] = ATR_H_POS(a1);
 		monster_start_pos[id_no++] = ATR_V_POS(a1);
 		/* ???? */
 		ATR_CHR_ACT(a1) = ANIM_STAND;		//????????
-		ATR_SPD(a1) = 32;		//移动速度
+		ATR_SPD(a1) = 32;		//移動速度
 		ATR_GROUP_FLG(a1) = 0;		// 右下 group set //?????????
-		ATR_PLACE_NO(a1) = d7;		// 记录开始位置 //??
-		// 记录 a1 于 队伍列表中/* ??????? */
+		ATR_PLACE_NO(a1) = d7;		// 記錄開始位置 //??
+		// 記錄 a1 於 隊伍列錶中/* ??????? */
 		p_party[d7] = a1;
 		pattern(a1, ANM_NOMAL_SPD, ANM_LOOP);
 		/* ?? */
@@ -11456,9 +11456,9 @@ ACTION *oft_test(void)
 	}
 
 #ifdef _BATTLE_PK_PLAYER_FOR_6VS6
-	//X座标
+	//X座標
 	d0 = 320 - 64 + 5 + DISPLACEMENT_X;
-	//Y座标
+	//Y座標
 	d1 = 432 - 24 + DISPLACEMENT_Y;
 #else
 	d0 = 320 - 32 + 5 + DISPLACEMENT_X;		//??
@@ -11468,7 +11468,7 @@ ACTION *oft_test(void)
 
 	//_BATTLE_PK_PLAYER_FOR_6VS6  XIEZI  修改
 	for (; d7 < 2 * MAX_BATTLE_ROW_CHARS; d7++)
-	{	//我方宠物
+	{	//我方寵物
 		/* ??????????????? */
 		a1 = GetAction(T_PRIO_JIKI, sizeof(ATR_EQU));
 		if (a1 == NULL)
@@ -11507,9 +11507,9 @@ ACTION *oft_test(void)
 	/* ???? */
 	p_party[d7] = NULL;
 #ifdef _BATTLE_PK_PLAYER_FOR_6VS6
-	//X座标
+	//X座標
 	d0 = 64 - 32 + 5;
-	//Y座标
+	//Y座標
 	d1 = 192 + 30;
 #else
 	d0 = 64 - 32 + 5;		//??
@@ -11519,7 +11519,7 @@ ACTION *oft_test(void)
 
 	//_BATTLE_PK_PLAYER_FOR_6VS6  XIEZI  修改
 	for (; d7 < 3 * MAX_BATTLE_ROW_CHARS; d7++)
-	{	//敌方人物
+	{	//敵方人物
 		/* ??????????????? */
 		a1 = GetAction(T_PRIO_JIKI, sizeof(ATR_EQU));
 		if (a1 == NULL)
@@ -11557,9 +11557,9 @@ ACTION *oft_test(void)
 	}
 
 #ifdef _BATTLE_PK_PLAYER_FOR_6VS6
-	//X座标
+	//X座標
 	d0 = 32 + 32 + 5;
-	//Y座标
+	//Y座標
 	d1 = 264 + 48 + 10;
 #else
 	d0 = 32 + 32 + 5;		//??
@@ -11569,7 +11569,7 @@ ACTION *oft_test(void)
 
 	//_BATTLE_PK_PLAYER_FOR_6VS6  XIEZI  修改
 	for (; d7 < 4 *	MAX_BATTLE_ROW_CHARS; d7++)
-	{	//敌方宠物
+	{	//敵方寵物
 		/* ??????????????? */
 		a1 = GetAction(T_PRIO_JIKI, sizeof(ATR_EQU));
 		if (a1 == NULL)
@@ -11611,7 +11611,7 @@ ACTION *oft_test(void)
 	d1 = 408 + 24 + DISPLACEMENT_Y;
 	d2 = SPR_021em;		/*?????*/
 	for (d7 = 20; d7 < 25; d7++)
-	{	//敌方人物
+	{	//敵方人物
 		/* ??????????????? */
 		a1 = GetAction(T_PRIO_JIKI, sizeof(ATR_EQU));
 		if (a1 == NULL)
@@ -11651,7 +11651,7 @@ ACTION *oft_test(void)
 	d1 = 432 - 24 + DISPLACEMENT_Y;		//??
 	d2 = SPR_pet001;		/*???*/
 	for (d7 = 25; d7 < 30; d7++)
-	{	//敌方宠物
+	{	//敵方寵物
 		/* ??????????????? */
 		a1 = GetAction(T_PRIO_JIKI, sizeof(ATR_EQU));
 		if (a1 == NULL)
@@ -11688,13 +11688,13 @@ ACTION *oft_test(void)
 		d1 -= 24 * 2;
 	}
 
-	//X座标
+	//X座標
 	d0 = 608 - 32 + 5 + DISPLACEMENT_X;
-	//Y座标
+	//Y座標
 	d1 = 190 - 24 + 30;
 	d2 = SPR_021em;		/*?????*/
 	for (d7 = 30; d7 < 35; d7++)
-	{	//左上角敌方人物
+	{	//左上角敵方人物
 		/* ??????????????? */
 		a1 = GetAction(T_PRIO_JIKI, sizeof(ATR_EQU));
 		if (a1 == NULL)
@@ -11734,7 +11734,7 @@ ACTION *oft_test(void)
 	d1 = 236 + 24 + 30;		//??
 	d2 = SPR_pet001;		/*???*/
 	for (d7 = 35; d7 < 40; d7++)
-	{	//左上角敌方宠物
+	{	//左上角敵方寵物
 		/* ??????????????? */
 		a1 = GetAction(T_PRIO_JIKI, sizeof(ATR_EQU));
 		if (a1 == NULL)
@@ -11900,8 +11900,8 @@ void get_bc_asc_ridepet(ACTION *a1)
 	makeStringFromEscaped(ATR_PETNAME(a1));
 }
 
-//人物是否有状态在身上确认
-//填入p_party内所有的值及所有的初始化
+//人物是否有狀態在身上確認
+//填入p_party內所有的值及所有的初始化
 void set_bc(void)
 {
 	ACTION *a1;
@@ -11918,7 +11918,7 @@ void set_bc(void)
 		d2 = get_bc_num();
 #ifdef _STONDEBUG_
 		if (d2 >= BATTLKPKPLYAERNUM)
-			MessageBoxNew(hWnd, "初始化失败,超过设定数量", "Error", MB_OK);
+			MessageBoxNew(hWnd, "初始化失敗,超過設定數量", "Error", MB_OK);
 #endif
 		//?????????????
 		a1 = p_party[d2];
@@ -11941,7 +11941,7 @@ void set_bc(void)
 
 		//??????
 		ATR_MAX_LIFE(a1) = get_bc_num();
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 		ATR_MAX_MANA(a1) = pc.maxMp ;
 #endif
 		//??????
@@ -12124,11 +12124,11 @@ void set_bc(void)
 			else if (d0 & BC_BIT8)		//  "??"??
 				d3 = 6;
 #ifdef _MAGIC_WEAKEN
-			if (d0 & BC_WEAKEN)    //虚弱
+			if (d0 & BC_WEAKEN)    //虛弱
 				d3 = 7;
 #endif
 #ifdef _MAGIC_DEEPPOISION
-			if (d0 & BC_DEEPPOISON)  //剧毒
+			if (d0 & BC_DEEPPOISON)  //劇毒
 				d3 = 8;
 #endif
 #ifdef _MAGIC_BARRIER
@@ -12143,42 +12143,42 @@ void set_bc(void)
 			if (d0 & BC_SARS)		// 毒煞蔓延
 				d3 = 11;
 #endif
-#ifdef _CHAR_PROFESSION						// WON ADD	晕眩
-			if (d0 & BC_DIZZY)		// 晕眩
+#ifdef _CHAR_PROFESSION						// WON ADD	暈眩
+			if (d0 & BC_DIZZY)		// 暈眩
 				d3 = 12;
-			if (d0 & BC_ENTWINE)	// 树根缠绕
+			if (d0 & BC_ENTWINE)	// 樹根纏繞
 				d3 = 13;
-			if (d0 & BC_DRAGNET)	// 天罗地网
+			if (d0 & BC_DRAGNET)	// 天羅地網
 				d3 = 14;
-			if (d0 & BC_ICECRACK)	// 冰爆术
+			if (d0 & BC_ICECRACK)	// 冰爆術
 				d3 = 15;
-			if (d0 & BC_OBLIVION)	// 遗忘
+			if (d0 & BC_OBLIVION)	// 遺忘
 				d3 = 16;
 			if (d0 & BC_ICEARROW)	// 冰箭
 				d3 = 17;
-			if (d0 & BC_BLOODWORMS)// 嗜血蛊
+			if (d0 & BC_BLOODWORMS)// 嗜血蠱
 				d3 = 18;
-			if (d0 & BC_SIGN)		// 一针见血
+			if (d0 & BC_SIGN)		// 一針見血
 				d3 = 19;
-			if (d0 & BC_CRAZY)		// 挑拨
+			if (d0 & BC_CRAZY)		// 挑撥
 				d3 = 20;
-			if (d0 & BC_F_ENCLOSE)		// 火附体
+			if (d0 & BC_F_ENCLOSE)		// 火附體
 				d3 = 21;
-			if (d0 & BC_I_ENCLOSE)		// 冰附体
+			if (d0 & BC_I_ENCLOSE)		// 冰附體
 				d3 = 22;
-			if (d0 & BC_T_ENCLOSE)		// 雷附体
+			if (d0 & BC_T_ENCLOSE)		// 雷附體
 				d3 = 23;
 #ifdef _PROFESSION_ADDSKILL
 			if (d0 & BC_WATER)
-				d3 = 32;		// 水附体
+				d3 = 32;		// 水附體
 			if (d0 & BC_WATER)
-				d3 = 33;		// 恐惧
-			//if (d0 & BC_F_I_T_ENCLOSE)  // 火冰雷附体
+				d3 = 33;		// 恐懼
+			//if (d0 & BC_F_I_T_ENCLOSE)  // 火冰雷附體
 			//    d3 = 24;
 #endif
 #ifdef _PETSKILL_LER
 			if (d0 & BC_CHANGE)
-				d3 = 34; // 雷尔变身
+				d3 = 34; // 雷爾變身
 #endif
 #ifdef _PRO_KILLME
 			if (d0 & BC_ANGER)
@@ -12188,7 +12188,7 @@ void set_bc(void)
 #endif
 #ifdef _PETSKILL_LER
 			if (d0 & BC_CHANGE)
-				d3 = 34; // 雷尔变身
+				d3 = 34; // 雷爾變身
 #endif
 			if (d3)
 			{	//??????
@@ -12241,7 +12241,7 @@ void disp_shild(void)
 	// ?????????????????( ?? ddsd ??????? )
 	if (lpDraw->lpBACKBUFFER->Lock(NULL, &ddsd, DDLOCK_WAIT, NULL) != DD_OK)
 	{
-		//MessageBoxNew( hWnd, "Surface的lock失败！", "确定", MB_OK | MB_ICONSTOP );
+		//MessageBoxNew( hWnd, "Surface的lock失敗！", "確定", MB_OK | MB_ICONSTOP );
 		return;
 	}
 
@@ -12312,7 +12312,7 @@ void disp_shild(void)
 	if (lpDraw->lpBACKBUFFER->Unlock(NULL) != DD_OK)
 	{
 		extern int MessageBoxNew(HWND hWnd, LPCSTR lpText, LPCSTR lpCaption, UINT uType);
-		MessageBoxNew(hWnd, "Surface的Unlock失败！", "确定", MB_OK | MB_ICONSTOP);
+		MessageBoxNew(hWnd, "Surface的Unlock失敗！", "確定", MB_OK | MB_ICONSTOP);
 		return;
 	}
 

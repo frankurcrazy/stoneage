@@ -1,4 +1,4 @@
-﻿/************************/
+/************************/
 /*	sprdisp.c			*/
 /************************/
 #include "../systeminc/version.h"
@@ -150,7 +150,7 @@ BOOL PutTileBmp( void )
 #ifdef _SURFACE_ANIM
 				if(pSortTileTail->dispPrio == 0) continue;
 #endif
-				// 因为有排序过,所以如果目前的显示顺序比地表大的话,表示地表已经处理完了
+				// 因為有排序過,所以如果目前的顯示順序比地錶大的話,錶示地錶已經處理完瞭
 				if( pSortTileTail->dispPrio > DISP_PRIO_TILE){
 					DispBuffer.DispCnt -= i;
 #ifdef _SURFACE_ANIM
@@ -159,7 +159,7 @@ BOOL PutTileBmp( void )
 					break;
 				}
 				// ????????????????
-				// 取得第一个要处理的图的 DispInfo 资料
+				// 取得第一個要處理的圖的 DispInfo 資料
 				pDispInfo = DispBuffer.DispInfo + pSortTileTail->no;
 				bmpNo = pDispInfo->bmpNo; // ????
 				
@@ -252,9 +252,9 @@ void PutBmp( void )
 {
 #ifdef __SKYISLAND
 	// ???????????
-	switch( BackBufferDrawType ){//背景类型
-		case DRAW_BACK_NORMAL://无背景
-			ClearBackSurface();	//清空背景显示
+	switch( BackBufferDrawType ){//背景類型
+		case DRAW_BACK_NORMAL://無背景
+			ClearBackSurface();	//清空背景顯示
 			void SkyIslandProc();
 			SkyIslandProc();
 			if( !PutTileBmp() ){
@@ -267,7 +267,7 @@ void PutBmp( void )
 			DrawAni();
 #endif
 			break;
-		case DRAW_BACK_BATTLE:	//战斗背景
+		case DRAW_BACK_BATTLE:	//戰鬥背景
 			amountXFastDraw = amountYFastDraw = 0;
 			PutTileBmp();
 			DrawBattleMap();
@@ -315,7 +315,7 @@ void PutBmp( void )
 	// ???????????
 	for( i = 0; i < DispBuffer.DispCnt ; i++, pDispSort++ ){
 		pDispInfo = &DispBuffer.DispInfo[pDispSort->no];
-		bmpNo = pDispInfo->bmpNo;//秀图ID
+		bmpNo = pDispInfo->bmpNo;//秀圖ID
 		if( putTextFlag == 0 ){
 			if( pDispSort->dispPrio >= DISP_PRIO_MENU ){
 				PutText( FONT_PRIO_BACK );
@@ -331,8 +331,8 @@ void PutBmp( void )
 				putTextFlag = 2;	
 			}
 		}
-#ifdef _TRADETALKWND				// Syu ADD 交易新增对话框架
-		//增加一层新的文字显示顺序
+#ifdef _TRADETALKWND				// Syu ADD 交易新增對話框架
+		//增加一層新的文字顯示順序
 		if( putTextFlag == 2 ){
 			if( pDispSort->dispPrio >= DISP_PRIO_BOX3 ){
 				PutText( FONT_PRIO_AFRONT );	
@@ -344,7 +344,7 @@ void PutBmp( void )
 			if( MenuToggleFlag & JOY_CTRL_M && pActMenuWnd2 != NULL ){
 				if( pActMenuWnd2->hp > 0 ){
 #ifdef _2005_ValentineDay
-					// 不让玩家看到小地图
+					// 不讓玩傢看到小地圖
 					if (nowFloor != 17006)
 #endif
 					drawAutoMap( pActMenuWnd2->x, pActMenuWnd2->y );
@@ -427,12 +427,12 @@ void PutBmp( void )
 #ifdef _CACHE_SURFACE_
 				DrawSurfaceFromPalette(lpSurfaceInfo);
 #endif
-				if(pDispInfo->DrawEffect == 2)//饱和处理
+				if(pDispInfo->DrawEffect == 2)//飽和處理
 					DrawStaturated(lpSurfaceInfo->lpSurface,
 						pDispInfo->x + lpSurfaceInfo->offsetX,pDispInfo->y + lpSurfaceInfo->offsetY,
 						lpSurfaceInfo->offsetX,lpSurfaceInfo->offsetY,
 						SpriteInfo[bmpNo].width,SpriteInfo[bmpNo].height,(lpSurfaceInfo->pNext == NULL ? true:false));
-				else if(pDispInfo->DrawEffect == 3 || pDispInfo->DrawEffect == 4)//石化和中毒处理
+				else if(pDispInfo->DrawEffect == 3 || pDispInfo->DrawEffect == 4)//石化和中毒處理
 					DrawGray(lpSurfaceInfo->lpSurface,
 						pDispInfo->x + lpSurfaceInfo->offsetX,pDispInfo->y + lpSurfaceInfo->offsetY,
 						lpSurfaceInfo->offsetX,lpSurfaceInfo->offsetY,
@@ -555,12 +555,12 @@ void PutBmp( void )
 //**************************************************************************/
 // 	??：	??????????????
 // 	??：	UCHAR dispPrio：????????
-//		  	int x, int y：坐标
-//			int bmpNo：图片号
+//		  	int x, int y：坐標
+//			int bmpNo：圖片號
 //			int chr_no：???????
 //			int pat_no：?????
 //**************************************************************************/
-// 储存所有要播放的Image
+// 儲存所有要播放的Image
 int StockDispBuffer( int x, int y, UCHAR dispPrio, int bmpNo, BOOL hitFlag )
 {	
 	short dx,dy;
@@ -650,7 +650,7 @@ int StockDispBuffer2( int x, int y, UCHAR dispPrio, int bmpNo, BOOL hitFlag )
 }
 
 
-// 储存所有要播放的Image，依Act的状况来设定
+// 儲存所有要播放的Image，依Act的狀況來設定
 void StockTaskDispBuffer( void )
 {
 	ACTION *pActLoop; 	/* ???????? */
@@ -903,7 +903,7 @@ int SortComp( DISP_SORT *pDisp1, DISP_SORT *pDisp2 )
 }
 
 #ifdef _SURFACE_ANIM
-// 画动态地表(优先权为0的动态地表)
+// 畫動態地錶(優先權為0的動態地錶)
 void DrawAni()
 {
 	DISP_INFO 	*pDispInfo;
@@ -918,12 +918,12 @@ void DrawAni()
 		DispBuffer.DispCnt += iProcessAniNum;
 		for(int i = 0; i<DispBuffer.DispCnt; i++, pSortTileTail++ ){
 			if( pSortTileTail->dispPrio == DISP_PRIO_TILE) continue;
-			// 因为有排序过,所以如果目前的显示顺序比地表大的话,表示地表已经处理完了
+			// 因為有排序過,所以如果目前的顯示順序比地錶大的話,錶示地錶已經處理完瞭
 			if( pSortTileTail->dispPrio > DISP_PRIO_TILE){
 				DispBuffer.DispCnt -= i;
 				break;
 			}
-			// 取得第一个要处理的图的 DispInfo 资料
+			// 取得第一個要處理的圖的 DispInfo 資料
 			pDispInfo = DispBuffer.DispInfo + pSortTileTail->no;
 			bmpNo = pDispInfo->bmpNo; // ????
 			
@@ -1038,7 +1038,7 @@ void DrawGray(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int offset
 		ptSourceDest = (DWORD*)(ddsdSource.lpSurface) + oy * surfacePitch1 + ox;
 		ptOverLayerDest = (DWORD*)(ddsdOverlayer.lpSurface) +dy * surfacePitch2 + dx;
 
-		// 565 显示模式
+		// 565 顯示模式
 		if(gBitRShift == 0){
 			for(j=0;j<h;j++){
 				if(oy >= 0){
@@ -1077,7 +1077,7 @@ void DrawGray(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int offset
 		ptSourceDest = (WORD*)(ddsdSource.lpSurface) + oy * surfacePitch1 + ox;
 		ptOverLayerDest = (WORD*)(ddsdOverlayer.lpSurface) +dy * surfacePitch2 + dx;
 		
-		// 565 显示模式
+		// 565 顯示模式
 		if(gBitRShift == 2){
 			for(j=0;j<h;j++){
 				if(oy >= 0){
@@ -1170,7 +1170,7 @@ void DrawGrayA(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int offse
 		surfacePitch2 = ddsdOverlayer.lPitch >> 2;
 		ptSourceDest = (DWORD*)(ddsdSource.lpSurface) + oy * surfacePitch1 + ox;
 		ptOverLayerDest = (DWORD*)(ddsdOverlayer.lpSurface) +dy * surfacePitch2 + dx;
-		// 565 显示模式
+		// 565 顯示模式
 		if(gBitRShift == 0){
 			for(j=0;j<h;j++){
 				if(oy >= 0){
@@ -1213,7 +1213,7 @@ void DrawGrayA(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int offse
 		ptSourceDest = (WORD*)(ddsdSource.lpSurface) + oy * surfacePitch1 + ox;
 		ptOverLayerDest = (WORD*)(ddsdOverlayer.lpSurface) +dy * surfacePitch2 + dx;
 		
-		// 565 显示模式
+		// 565 顯示模式
 		if(gBitRShift == 2){
 			for(j=0;j<h;j++){
 				if(oy >= 0){
@@ -1320,7 +1320,7 @@ void DrawStaturated(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int 
 		int i,j,nColorSource,nColorOverlayer;
 		DWORD SR,SG,SB,OR,OG,OB;
 
-		// 565 显示模式
+		// 565 顯示模式
 		if(gBitRShift == 2){
 #ifdef _HI_COLOR_32
 			if( displayBpp == 32 ){
@@ -1329,8 +1329,8 @@ void DrawStaturated(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int 
 						nColorSource = *(DWORD*)ptSourceDest32;
 						nColorOverlayer = *(DWORD*)ptOverLayerDest32;
 						if(nColorOverlayer != DEF_COLORKEY){
-							SR = (nColorSource & 0xff0000) >> 8; // 原本要右移11左移3,简化成右移8
-							SG = (nColorSource & 0x00ff00) >> 3; // 原本要右移5左移2,简化成右移3
+							SR = (nColorSource & 0xff0000) >> 8; // 原本要右移11左移3,簡化成右移8
+							SG = (nColorSource & 0x00ff00) >> 3; // 原本要右移5左移2,簡化成右移3
 							SB = (nColorSource & 0x0000ff) << 3;
 							OR = (nColorOverlayer & 0xff0000) >> 8;
 							OG = (nColorOverlayer & 0x00ff00) >> 3;
@@ -1357,8 +1357,8 @@ void DrawStaturated(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int 
 						nColorSource = *(WORD*)ptSourceDest;
 						nColorOverlayer = *(WORD*)ptOverLayerDest;
 						if(nColorOverlayer != DEF_COLORKEY){
-							SR = (nColorSource & 0xf800) >> 8; // 原本要右移11左移3,简化成右移8
-							SG = (nColorSource & 0x07e0) >> 3; // 原本要右移5左移2,简化成右移3
+							SR = (nColorSource & 0xf800) >> 8; // 原本要右移11左移3,簡化成右移8
+							SG = (nColorSource & 0x07e0) >> 3; // 原本要右移5左移2,簡化成右移3
 							SB = (nColorSource & 0x001f) << 3;
 							OR = (nColorOverlayer & 0xf800) >> 8;
 							OG = (nColorOverlayer & 0x07e0) >> 3;
@@ -1379,7 +1379,7 @@ void DrawStaturated(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int 
 				}
 			}
 		}
-		// 555 显示模式
+		// 555 顯示模式
 		else{
 #ifdef _HI_COLOR_32
 			if( displayBpp == 32 ){
@@ -1388,8 +1388,8 @@ void DrawStaturated(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int 
 						nColorSource = *(DWORD*)ptSourceDest32;
 						nColorOverlayer = *(DWORD*)ptOverLayerDest32;
 						if(nColorOverlayer != DEF_COLORKEY){
-							SR = (nColorSource & 0xff0000) >> 7;							// 原本要右移10左移3,简化成右移7
-							SG = (nColorSource & 0x00ff00) >> 2;	// 原本要右移5左移3,简化成右移2
+							SR = (nColorSource & 0xff0000) >> 7;							// 原本要右移10左移3,簡化成右移7
+							SG = (nColorSource & 0x00ff00) >> 2;	// 原本要右移5左移3,簡化成右移2
 							SB = (nColorSource & 0x0000ff) << 3;
 							OR = (nColorSource & 0xff0000) >> 7;
 							OG = (nColorOverlayer & 0x00ff00) >> 2;
@@ -1416,8 +1416,8 @@ void DrawStaturated(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int 
 						nColorSource = *(WORD*)ptSourceDest;
 						nColorOverlayer = *(WORD*)ptOverLayerDest;
 						if(nColorOverlayer != DEF_COLORKEY){
-							SR = nColorSource >> 7;							// 原本要右移10左移3,简化成右移7
-							SG = (nColorSource & 0x03e0) >> 2;	// 原本要右移5左移3,简化成右移2
+							SR = nColorSource >> 7;							// 原本要右移10左移3,簡化成右移7
+							SG = (nColorSource & 0x03e0) >> 2;	// 原本要右移5左移3,簡化成右移2
 							SB = (nColorSource & 0x001f) << 3;
 							OR = nColorOverlayer >> 7;
 							OG = (nColorOverlayer & 0x03e0) >> 2;
@@ -1521,7 +1521,7 @@ void DrawAlpha(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int offse
 		DWORD SR,SG,SB,OR,OG,OB;
 
 		w >>= 1;
-		// 565 显示模式
+		// 565 顯示模式
 		if(gBitRShift == 2){
 #ifdef _HI_COLOR_32
 			if( displayBpp == 32 ){
@@ -1530,8 +1530,8 @@ void DrawAlpha(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int offse
 						nColorSource = *(DWORD*)ptSourceDest32;
 						nColorOverlayer = *(DWORD*)ptOverLayerDest32;
 						if(nColorOverlayer != DEF_COLORKEY){
-							SR = (nColorSource & 0xff0000) >> 8; // 原本要右移11左移3,简化成右移8
-							SG = (nColorSource & 0x00ff00) >> 3; // 原本要右移5左移2,简化成右移3
+							SR = (nColorSource & 0xff0000) >> 8; // 原本要右移11左移3,簡化成右移8
+							SG = (nColorSource & 0x00ff00) >> 3; // 原本要右移5左移2,簡化成右移3
 							SB = (nColorSource & 0x0000ff) << 3;
 							OR = (nColorOverlayer & 0xff0000) >> 8;
 							OG = (nColorOverlayer & 0x00ff00) >> 3;
@@ -1577,8 +1577,8 @@ void DrawAlpha(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int offse
 						nColorSource = *(WORD*)ptSourceDest;
 						nColorOverlayer = *(WORD*)ptOverLayerDest;
 						if(nColorOverlayer != DEF_COLORKEY){
-							SR = (nColorSource & 0xf800) >> 8; // 原本要右移11左移3,简化成右移8
-							SG = (nColorSource & 0x07e0) >> 3; // 原本要右移5左移2,简化成右移3
+							SR = (nColorSource & 0xf800) >> 8; // 原本要右移11左移3,簡化成右移8
+							SG = (nColorSource & 0x07e0) >> 3; // 原本要右移5左移2,簡化成右移3
 							SB = (nColorSource & 0x001f) << 3;
 							OR = (nColorOverlayer & 0xf800) >> 8;
 							OG = (nColorOverlayer & 0x07e0) >> 3;
@@ -1619,7 +1619,7 @@ void DrawAlpha(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int offse
 			}
 			
 		}
-		// 555 显示模式
+		// 555 顯示模式
 		else{
 #ifdef _HI_COLOR_32
 			if( displayBpp == 32 ){
@@ -1628,8 +1628,8 @@ void DrawAlpha(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int offse
 						nColorSource = *(DWORD*)ptSourceDest32;
 						nColorOverlayer = *(DWORD*)ptOverLayerDest32;
 						if(nColorOverlayer != DEF_COLORKEY){
-							SR = (nColorSource & 0xff0000) >> 7;							// 原本要右移10左移3,简化成右移7
-							SG = (nColorSource & 0x00ff00) >> 2;	// 原本要右移5左移3,简化成右移2
+							SR = (nColorSource & 0xff0000) >> 7;							// 原本要右移10左移3,簡化成右移7
+							SG = (nColorSource & 0x00ff00) >> 2;	// 原本要右移5左移3,簡化成右移2
 							SB = (nColorSource & 0x0000ff) << 3;
 							OR = (nColorOverlayer & 0xff0000) >> 7;
 							OG = (nColorOverlayer & 0x00ff00) >> 2;
@@ -1677,8 +1677,8 @@ void DrawAlpha(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int offse
 						nColorSource = *(WORD*)ptSourceDest;
 						nColorOverlayer = *(WORD*)ptOverLayerDest;
 						if(nColorOverlayer != DEF_COLORKEY){
-							SR = nColorSource >> 7;							// 原本要右移10左移3,简化成右移7
-							SG = (nColorSource & 0x03e0) >> 2;	// 原本要右移5左移3,简化成右移2
+							SR = nColorSource >> 7;							// 原本要右移10左移3,簡化成右移7
+							SG = (nColorSource & 0x03e0) >> 2;	// 原本要右移5左移3,簡化成右移2
 							SB = (nColorSource & 0x001f) << 3;
 							OR = nColorOverlayer >> 7;
 							OG = (nColorOverlayer & 0x03e0) >> 2;
@@ -1793,7 +1793,7 @@ void DrawStaturated(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int 
 		int i,j,nColorSource,nColorOverlayer;
 		DWORD SR,SG,SB,OR,OG,OB;
 
-		// 565 显示模式
+		// 565 顯示模式
 		if(gBitRShift == 2){
 #ifdef _HI_COLOR_32
 			if( displayBpp == 32 ){
@@ -1802,8 +1802,8 @@ void DrawStaturated(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int 
 						nColorSource = *(DWORD*)ptSourceDest32;
 						nColorOverlayer = *(DWORD*)ptOverLayerDest32;
 						if(nColorOverlayer != DEF_COLORKEY){
-							SR = (nColorSource & 0xff0000) >> 8; // 原本要右移11左移3,简化成右移8
-							SG = (nColorSource & 0x00ff00) >> 3; // 原本要右移5左移2,简化成右移3
+							SR = (nColorSource & 0xff0000) >> 8; // 原本要右移11左移3,簡化成右移8
+							SG = (nColorSource & 0x00ff00) >> 3; // 原本要右移5左移2,簡化成右移3
 							SB = (nColorSource & 0x0000ff) << 3;
 							OR = (nColorOverlayer & 0xff0000) >> 8;
 							OG = (nColorOverlayer & 0x00ff00) >> 3;
@@ -1830,8 +1830,8 @@ void DrawStaturated(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int 
 						nColorSource = *(WORD*)ptSourceDest;
 						nColorOverlayer = *(WORD*)ptOverLayerDest;
 						if(nColorOverlayer != DEF_COLORKEY){
-							SR = (nColorSource & 0xf800) >> 8; // 原本要右移11左移3,简化成右移8
-							SG = (nColorSource & 0x07e0) >> 3; // 原本要右移5左移2,简化成右移3
+							SR = (nColorSource & 0xf800) >> 8; // 原本要右移11左移3,簡化成右移8
+							SG = (nColorSource & 0x07e0) >> 3; // 原本要右移5左移2,簡化成右移3
 							SB = (nColorSource & 0x001f) << 3;
 							OR = (nColorOverlayer & 0xf800) >> 8;
 							OG = (nColorOverlayer & 0x07e0) >> 3;
@@ -1852,7 +1852,7 @@ void DrawStaturated(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int 
 				}
 			}
 		}
-		// 555 显示模式
+		// 555 顯示模式
 		else{
 #ifdef _HI_COLOR_32
 			if( displayBpp == 32 ){
@@ -1861,8 +1861,8 @@ void DrawStaturated(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int 
 						nColorSource = *(DWORD*)ptSourceDest32;
 						nColorOverlayer = *(DWORD*)ptOverLayerDest32;
 						if(nColorOverlayer != DEF_COLORKEY){
-							SR = (nColorSource & 0xff0000) >> 7;							// 原本要右移10左移3,简化成右移7
-							SG = (nColorSource & 0x00ff00) >> 2;	// 原本要右移5左移3,简化成右移2
+							SR = (nColorSource & 0xff0000) >> 7;							// 原本要右移10左移3,簡化成右移7
+							SG = (nColorSource & 0x00ff00) >> 2;	// 原本要右移5左移3,簡化成右移2
 							SB = (nColorSource & 0x0000ff) << 3;
 							OR = (nColorSource & 0xff0000) >> 7;
 							OG = (nColorOverlayer & 0x00ff00) >> 2;
@@ -1889,8 +1889,8 @@ void DrawStaturated(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int 
 						nColorSource = *(WORD*)ptSourceDest;
 						nColorOverlayer = *(WORD*)ptOverLayerDest;
 						if(nColorOverlayer != DEF_COLORKEY){
-							SR = nColorSource >> 7;							// 原本要右移10左移3,简化成右移7
-							SG = (nColorSource & 0x03e0) >> 2;	// 原本要右移5左移3,简化成右移2
+							SR = nColorSource >> 7;							// 原本要右移10左移3,簡化成右移7
+							SG = (nColorSource & 0x03e0) >> 2;	// 原本要右移5左移3,簡化成右移2
 							SB = (nColorSource & 0x001f) << 3;
 							OR = nColorOverlayer >> 7;
 							OG = (nColorOverlayer & 0x03e0) >> 2;
@@ -1974,7 +1974,7 @@ void DrawGray(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int offset
 		ptSourceDest = (DWORD*)(ddsdSource.lpSurface) + oy * surfacePitch1 + ox;
 		ptOverLayerDest = (DWORD*)(ddsdOverlayer.lpSurface) +dy * surfacePitch2 + dx;
 
-		// 565 显示模式
+		// 565 顯示模式
 		if(gBitRShift == 2){
 			for(j=0;j<h;j++){
 				if(oy >= 0){
@@ -2004,7 +2004,7 @@ void DrawGray(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int offset
 				}
 			}
 		}
-		// 555 显示模式
+		// 555 顯示模式
 		else{
 			for(j=0;j<h;j++){
 				if(oy >= 0){
@@ -2044,7 +2044,7 @@ void DrawGray(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int offset
 		ptSourceDest = (WORD*)(ddsdSource.lpSurface) + oy * surfacePitch1 + ox;
 		ptOverLayerDest = (WORD*)(ddsdOverlayer.lpSurface) +dy * surfacePitch2 + dx;
 		
-		// 565 显示模式
+		// 565 顯示模式
 		if(gBitRShift == 2){
 			for(j=0;j<h;j++){
 				if(oy >= 0){
@@ -2074,7 +2074,7 @@ void DrawGray(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int offset
 				}
 			}
 		}
-		// 555 显示模式
+		// 555 顯示模式
 		else{
 			for(j=0;j<h;j++){
 				if(oy >= 0){
@@ -2172,7 +2172,7 @@ void DrawAlphaChannel(SURFACE_INFO *surface_info,BYTE *AlphaData,int ox,int oy,i
 
 	int i,j,nColorSource,nColorOverlayer;
 	DWORD SR,SG,SB,OR,OG,OB,Alpha;
-	// 565 显示模式
+	// 565 顯示模式
 	if(gBitRShift == 2){
 #ifdef _HI_COLOR_32
 		if( displayBpp == 32 ){
@@ -2182,8 +2182,8 @@ void DrawAlphaChannel(SURFACE_INFO *surface_info,BYTE *AlphaData,int ox,int oy,i
 					nColorOverlayer = *(DWORD*)ptOverLayerDest32;
 					Alpha = (DWORD)(*AlphaData);
 					if(nColorOverlayer != DEF_COLORKEY){
-						SR = (nColorSource & 0xff0000) >> 8; // 原本要右移11左移3,简化成右移8
-						SG = (nColorSource & 0x00ff00) >> 3; // 原本要右移5左移2,简化成右移3
+						SR = (nColorSource & 0xff0000) >> 8; // 原本要右移11左移3,簡化成右移8
+						SG = (nColorSource & 0x00ff00) >> 3; // 原本要右移5左移2,簡化成右移3
 						SB = (nColorSource & 0x0000ff) << 3;
 						OR = (nColorOverlayer & 0xff0000) >> 8;
 						OG = (nColorOverlayer & 0x00ff00) >> 3;
@@ -2209,8 +2209,8 @@ void DrawAlphaChannel(SURFACE_INFO *surface_info,BYTE *AlphaData,int ox,int oy,i
 					nColorOverlayer = *(WORD*)ptOverLayerDest;
 					Alpha = (WORD)(*AlphaData);
 					if(nColorOverlayer != DEF_COLORKEY){
-						SR = (nColorSource & 0xf800) >> 8; // 原本要右移11左移3,简化成右移8
-						SG = (nColorSource & 0x07e0) >> 3; // 原本要右移5左移2,简化成右移3
+						SR = (nColorSource & 0xf800) >> 8; // 原本要右移11左移3,簡化成右移8
+						SG = (nColorSource & 0x07e0) >> 3; // 原本要右移5左移2,簡化成右移3
 						SB = (nColorSource & 0x001f) << 3;
 						OR = (nColorOverlayer & 0xf800) >> 8;
 						OG = (nColorOverlayer & 0x07e0) >> 3;
@@ -2229,7 +2229,7 @@ void DrawAlphaChannel(SURFACE_INFO *surface_info,BYTE *AlphaData,int ox,int oy,i
 				AlphaData += SURFACE_WIDTH - w;
 			}
 	}
-	// 555 显示模式
+	// 555 顯示模式
 	else{
 #ifdef _HI_COLOR_32
 		if( displayBpp == 32 ){
@@ -2239,8 +2239,8 @@ void DrawAlphaChannel(SURFACE_INFO *surface_info,BYTE *AlphaData,int ox,int oy,i
 					nColorOverlayer = *(DWORD*)ptOverLayerDest32;
 					Alpha = (DWORD)(*AlphaData);
 					if(nColorOverlayer != DEF_COLORKEY){
-						SR = (nColorSource & 0xff0000) >> 8; // 原本要右移11左移3,简化成右移8
-						SG = (nColorSource & 0x00ff00) >> 3; // 原本要右移5左移2,简化成右移3
+						SR = (nColorSource & 0xff0000) >> 8; // 原本要右移11左移3,簡化成右移8
+						SG = (nColorSource & 0x00ff00) >> 3; // 原本要右移5左移2,簡化成右移3
 						SB = (nColorSource & 0x0000ff) << 3;
 						OR = (nColorOverlayer & 0xff0000) >> 8;
 						OG = (nColorOverlayer & 0x00ff00) >> 3;
@@ -2268,8 +2268,8 @@ void DrawAlphaChannel(SURFACE_INFO *surface_info,BYTE *AlphaData,int ox,int oy,i
 					nColorOverlayer = *(WORD*)ptOverLayerDest;
 					Alpha = (WORD)(*AlphaData);
 					if(nColorOverlayer != DEF_COLORKEY){
-						SR = nColorSource >> 7;							// 原本要右移10左移3,简化成右移7
-						SG = (nColorSource & 0x03e0) >> 2;	// 原本要右移5左移3,简化成右移2
+						SR = nColorSource >> 7;							// 原本要右移10左移3,簡化成右移7
+						SG = (nColorSource & 0x03e0) >> 2;	// 原本要右移5左移3,簡化成右移2
 						SB = (nColorSource & 0x001f) << 3;
 						OR = nColorOverlayer >> 7;
 						OG = (nColorOverlayer & 0x03e0) >> 2;
@@ -2353,7 +2353,7 @@ void DrawSfumato(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int off
 		ptSourceDest = (DWORD*)(ddsdSource.lpSurface) + oy * surfacePitch1 + ox;
 		ptOverLayerDest = (DWORD*)(ddsdOverlayer.lpSurface) +dy * surfacePitch2 + dx;
 
-		// 565 显示模式
+		// 565 顯示模式
 		if(gBitRShift == 2){
 			for(j=0;j<h;j++){
 				if(oy >= 0){
@@ -2383,7 +2383,7 @@ void DrawSfumato(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int off
 				}
 			}
 		}
-		// 555 显示模式
+		// 555 顯示模式
 		else{
 			for(j=0;j<h;j++){
 				if(oy >= 0){
@@ -2400,8 +2400,8 @@ void DrawSfumato(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int off
 									int x = G - R;
 									int y = G - B;
 									if((R > 0x30 && G > 0x30 && B > 0x30)/* &&(R < 0xf0 && G < 0xf0 && B < 0xf0) */&& (x > -40 && x < 40) && (y > -40 && y < 40)){
-										R = (nColorOverlayer & 0xff0000) >> 8; // 原本要右移11左移3,简化成右移8
-										G = (nColorOverlayer & 0x00ff00) >> 3; // 原本要右移5左移2,简化成右移3
+										R = (nColorOverlayer & 0xff0000) >> 8; // 原本要右移11左移3,簡化成右移8
+										G = (nColorOverlayer & 0x00ff00) >> 3; // 原本要右移5左移2,簡化成右移3
 										B = (nColorOverlayer & 0x0000ff) << 3;
 
 										int OR = (sfumato & 0xff0000) >> 8;
@@ -2445,7 +2445,7 @@ void DrawSfumato(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int off
 			ptSourceDest = (WORD*)(ddsdSource.lpSurface) + oy * surfacePitch1 + ox;
 			ptOverLayerDest = (WORD*)(ddsdOverlayer.lpSurface) +dy * surfacePitch2 + dx;
 
-			// 565 显示模式
+			// 565 顯示模式
 			if(gBitRShift == 2){
 				for(j=0;j<h;j++){
 					if(oy >= 0){
@@ -2475,7 +2475,7 @@ void DrawSfumato(LPDIRECTDRAWSURFACE lpSurface,int ox,int oy,int offsetx,int off
 					}
 				}
 			}
-			// 555 显示模式
+			// 555 顯示模式
 			else{
 				for(j=0;j<h;j++){
 					if(oy >= 0){
@@ -2828,17 +2828,17 @@ void ablend_565(unsigned char *lpAlpha, unsigned int iAlpPitch,
 }
 
 
-//mmx ARGB混合
+//mmx ARGB混閤
 void DrawAlpha32(
-	unsigned long*   lpDst,			// 目标缓冲
-	unsigned long    iDstX,			// 目标位置
-	unsigned long    iDstY,			// 目标位置
-	unsigned long    iDstPitch,		// 目标缓冲的pitch
-	unsigned long*   lpSrc,			// 原色彩缓冲
+	unsigned long*   lpDst,			// 目標緩衝
+	unsigned long    iDstX,			// 目標位置
+	unsigned long    iDstY,			// 目標位置
+	unsigned long    iDstPitch,		// 目標緩衝的pitch
+	unsigned long*   lpSrc,			// 原色彩緩衝
 	unsigned long    iSrcX,			// 原色彩位置
 	unsigned long    iSrcY,			// 原色彩位置
-	unsigned long    iSrcW,			// 原缓冲的尺寸
-	unsigned long    iSrcH,			// 原缓冲的尺寸
+	unsigned long    iSrcW,			// 原緩衝的尺寸
+	unsigned long    iSrcH,			// 原緩衝的尺寸
 	unsigned long    iSrcPitch		// 原色彩pitch
 	)
 {
@@ -2850,23 +2850,23 @@ _asm{
 	pxor mm7,mm7;	//MM7清0
 	movd mm6,edx;	//MM6=FFFFFFFF
 
-	mov esi, lpLinearSrcBp;                    // 移入源像素缓冲地址
-	mov edi, lpLinearDstBp;                    // 移入目标像素缓冲地址
-	mov ecx, iSrcH;                            // 下面两步操作是移入原缓冲的高度和宽度
+	mov esi, lpLinearSrcBp;                    // 移入源像素緩衝地址
+	mov edi, lpLinearDstBp;                    // 移入目標像素緩衝地址
+	mov ecx, iSrcH;                            // 下麵兩步操作是移入原緩衝的高度和寬度
 	mov ebx, iSrcW;
 
 MainLoop:
-	//目标：0xFF585C58     源：0x71000008
+	//目標：0xFF585C58     源：0x71000008
 	movd mm0,[esi];	//mm0=SRC        MM0=0000 0000 7100 0008
 	punpcklbw mm0,mm7;	//SRC:32位Bit到64位Bit   MM0=0071 0000 0000 0008
 	movq mm2,mm0;	//mm2=SRC MM2=0071 0000 0000 0008
 	punpckhwd mm0,mm0;	//高位是ALPHA  原0071 0000 0000 0008 移 0071 0071 0000 0000
-	punpckhdq mm0,mm0;	//双字移动到四字,现在有八个像素的Alpha了!  0071 0071 0071 0071
+	punpckhdq mm0,mm0;	//雙字移動到四字,現在有八個像素的Alpha瞭!  0071 0071 0071 0071
 
 	movd edx,mm0;
 	cmp edx,0x00ff00ff;
 	je CopySrc;
-	test edx, 0xffffffff;						// 如果alpha为0 ，那么会影响寄存器的标志位,ZF=1
+	test edx, 0xffffffff;						// 如果alpha為0 ，那麼會影響寄存器的標誌位,ZF=1
 	jz BeginPixel;
 
 	movq mm1,mm6;       //MM1=0000 0000 FFFF FFFF
@@ -2883,18 +2883,18 @@ MainLoop:
 	movd [edi],mm3;
 	jmp BeginPixel;
 CopySrc:
-	packuswb  mm2, mm2;							// 紧缩到低
+	packuswb  mm2, mm2;							// 緊縮到低
 	movd[edi], mm2;			
 BeginPixel:
-	add edi, 4;									// 目标像素向前移动4个像素
-	add esi, 4;                                 // 源像素向前移动4个像素    
-	sub ebx, 1;                                 // 宽度减4
+	add edi, 4;									// 目標像素嚮前移動4個像素
+	add esi, 4;                                 // 源像素嚮前移動4個像素    
+	sub ebx, 1;                                 // 寬度減4
 	test ebx, 0xffffffff;						// check if only 0 pixels left
-	jz NextLine;								// 如果只有0个像素，跳转到NextLine处理
-	jmp MainLoop;								// 跳转到开始处，重新计算
+	jz NextLine;								// 如果隻有0個像素，跳轉到NextLine處理
+	jmp MainLoop;								// 跳轉到開始處，重新計算
 NextLine:
 	dec ecx;
-	jz  Done;									// 处理完成
+	jz  Done;									// 處理完成
 	mov esi, lpLinearSrcBp;						// src
 	mov edi, lpLinearDstBp;						// dst
 	add esi, iSrcPitch;							// inc src ptr by 1 line
@@ -2910,7 +2910,7 @@ Done:
 
 
 
-BOOL 获取动画尺寸(ACTION* a0,S2 *wx,S2* wy)
+BOOL 獲取動畫尺寸(ACTION* a0,S2 *wx,S2* wy)
 {
 	int chrNo = ATR_CHR_NO(a0) - SPRSTART;
 	if(chrNo < 0){

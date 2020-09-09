@@ -1,4 +1,4 @@
-﻿/**** SYSTEM INCLUDE ****/
+/**** SYSTEM INCLUDE ****/
 #include<stdlib.h>
 #include<stdio.h>
 #include<time.h>
@@ -51,7 +51,7 @@ BOOL g_bUseAlpha = FALSE;
 extern BOOL g_bUseAlpha = FALSE;
 #endif
 
-#ifdef _READ16BITBMPVARIABLES	//关 _READ16BITBMP 后还须要的参数
+#ifdef _READ16BITBMPVARIABLES	//關 _READ16BITBMP 後還須要的參數
 BOOL g_bUseAlpha = FALSE;
 #endif
 
@@ -102,7 +102,7 @@ BOOL InitDirectDraw(void)
 		WriteFile(hErrorLogFile, szErrMsg, sizeof(szErrMsg), &dwWriteByte, NULL);
 		CloseHandle(hErrorLogFile);
 		if ((hResult = DirectDrawCreate((GUID *)DDCREATE_EMULATIONONLY, &lpDraw->lpDD, NULL)) != DD_OK){
-			MessageBoxNew(hWnd, "DirectDrawCreate Error", "确定", MB_OK | MB_ICONSTOP);
+			MessageBoxNew(hWnd, "DirectDrawCreate Error", "確定", MB_OK | MB_ICONSTOP);
 			hErrorLogFile = CreateFile("ErrorLog.txt", GENERIC_WRITE, FILE_SHARE_READ, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 			sprintf_s(szErrMsg, "DirectDrawCreate error(2):error result (%x)", hResult);
 			WriteFile(hErrorLogFile, szErrMsg, sizeof(szErrMsg), &dwWriteByte, NULL);
@@ -111,7 +111,7 @@ BOOL InitDirectDraw(void)
 		}
 	}
 	if ((hResult = lpDraw->lpDD->QueryInterface(IID_IDirectDraw2, (LPVOID *)&lpDraw->lpDD2)) != DD_OK){
-		MessageBoxNew(hWnd, "QueryInterface Error", "确定", MB_OK | MB_ICONSTOP);
+		MessageBoxNew(hWnd, "QueryInterface Error", "確定", MB_OK | MB_ICONSTOP);
 		hErrorLogFile = CreateFile("ErrorLog.txt", GENERIC_WRITE, FILE_SHARE_READ, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 		sprintf_s(szErrMsg, "QueryInterface error:error result (%x)", hResult);
 		WriteFile(hErrorLogFile, szErrMsg, sizeof(szErrMsg), &dwWriteByte, NULL);
@@ -158,7 +158,7 @@ BOOL InitDirectDraw(void)
 		}
 #endif
 		if (lpDraw->lpDD2->SetCooperativeLevel(hWnd, DDSCL_NORMAL) != DD_OK){
-			MessageBoxNew(hWnd, "SetCooperativeLevel Error", "确定", MB_OK | MB_ICONSTOP);
+			MessageBoxNew(hWnd, "SetCooperativeLevel Error", "確定", MB_OK | MB_ICONSTOP);
 			return FALSE;
 		}
 
@@ -167,7 +167,7 @@ BOOL InitDirectDraw(void)
 		lpDraw->ddsd.dwFlags = DDSD_CAPS;
 		lpDraw->ddsd.ddsCaps.dwCaps = DDSCAPS_PRIMARYSURFACE;
 		if ((hResult = lpDraw->lpDD2->CreateSurface(&lpDraw->ddsd, &lpDraw->lpFRONTBUFFER, NULL)) != DD_OK){
-			MessageBoxNew(hWnd, "主画面处理失败。", "确定", MB_OK | MB_ICONSTOP);
+			MessageBoxNew(hWnd, "主畫麵處理失敗。", "確定", MB_OK | MB_ICONSTOP);
 			hErrorLogFile = CreateFile("ErrorLog.txt", GENERIC_WRITE, FILE_SHARE_READ, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 			sprintf_s(szErrMsg, "Create frontbuffer error(1):error result (%x)", hResult);
 			WriteFile(hErrorLogFile, szErrMsg, sizeof(szErrMsg), &dwWriteByte, NULL);
@@ -175,7 +175,7 @@ BOOL InitDirectDraw(void)
 			return FALSE;
 		}
 		if (lpDraw->lpDD2->CreateClipper(0, &lpDraw->lpCLIPPER, NULL) != DD_OK){
-			MessageBoxNew(hWnd, "clipper处理失败。", "确定", MB_OK | MB_ICONSTOP);
+			MessageBoxNew(hWnd, "clipper處理失敗。", "確定", MB_OK | MB_ICONSTOP);
 			return FALSE;
 		}
 		lpDraw->lpCLIPPER->SetHWnd(0, hWnd);
@@ -187,7 +187,7 @@ BOOL InitDirectDraw(void)
 		lpDraw->ddsd.dwWidth = lpDraw->xSize;
 		lpDraw->ddsd.dwHeight = lpDraw->ySize;
 		if ((hResult = lpDraw->lpDD2->CreateSurface(&lpDraw->ddsd, &lpDraw->lpBACKBUFFER, NULL)) != DD_OK){
-			MessageBoxNew(hWnd, "暂存区处理失败", "确定", MB_OK | MB_ICONSTOP);
+			MessageBoxNew(hWnd, "暫存區處理失敗", "確定", MB_OK | MB_ICONSTOP);
 			hErrorLogFile = CreateFile("ErrorLog.txt", GENERIC_WRITE, FILE_SHARE_READ, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 			sprintf_s(szErrMsg, "Create backbuffer error:error result (%x)", hResult);
 			WriteFile(hErrorLogFile, szErrMsg, sizeof(szErrMsg), &dwWriteByte, NULL);
@@ -198,7 +198,7 @@ BOOL InitDirectDraw(void)
 		if(g_bUseAlpha){
 			lpDraw->ddsd.ddsCaps.dwCaps    = DDSCAPS_OFFSCREENPLAIN | DDSCAPS_SYSTEMMEMORY;
 			if((hResult = lpDraw->lpDD2->CreateSurface(&lpDraw->ddsd,&lpDraw->lpBACKBUFFERSYS,NULL)) != DD_OK){
-				MessageBoxNew(hWnd,"暂存区处理失败(sys)","确定",MB_OK | MB_ICONSTOP);
+				MessageBoxNew(hWnd,"暫存區處理失敗(sys)","確定",MB_OK | MB_ICONSTOP);
 				hErrorLogFile = CreateFile("ErrorLog.txt",GENERIC_WRITE,FILE_SHARE_READ,NULL,CREATE_ALWAYS,FILE_ATTRIBUTE_NORMAL,NULL);
 				sprintf_s(szErrMsg,"Create backbuffer error:error result (%x)",hResult);
 				WriteFile(hErrorLogFile,szErrMsg,sizeof(szErrMsg),&dwWriteByte,NULL);
@@ -215,7 +215,7 @@ BOOL InitDirectDraw(void)
 #endif
 	{
 		if (lpDraw->lpDD2->SetCooperativeLevel(hWnd, DDSCL_EXCLUSIVE | DDSCL_FULLSCREEN | DDSCL_ALLOWMODEX) != DD_OK){
-			MessageBoxNew(hWnd, "SetCooperativeLevel Error", "确定", MB_OK | MB_ICONSTOP);
+			MessageBoxNew(hWnd, "SetCooperativeLevel Error", "確定", MB_OK | MB_ICONSTOP);
 			return FALSE;
 		}
 		lpDraw->lpDD2->SetDisplayMode(lpDraw->xSize, lpDraw->ySize, displayBpp, 0, 0);
@@ -225,7 +225,7 @@ BOOL InitDirectDraw(void)
 		lpDraw->ddsd.ddsCaps.dwCaps = DDSCAPS_PRIMARYSURFACE | DDSCAPS_FLIP | DDSCAPS_COMPLEX;
 		lpDraw->ddsd.dwBackBufferCount = 1;
 		if ((hResult = lpDraw->lpDD2->CreateSurface(&lpDraw->ddsd, &lpDraw->lpFRONTBUFFER, NULL)) != DD_OK){
-			MessageBoxNew(hWnd, "主画面处理失败二。", "确定", MB_OK | MB_ICONSTOP);
+			MessageBoxNew(hWnd, "主畫麵處理失敗二。", "確定", MB_OK | MB_ICONSTOP);
 			hErrorLogFile = CreateFile("ErrorLog.txt", GENERIC_WRITE, FILE_SHARE_READ, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 			sprintf_s(szErrMsg, "Create frontbuffer error(2):error result (%x)", hResult);
 			WriteFile(hErrorLogFile, szErrMsg, sizeof(szErrMsg), &dwWriteByte, NULL);
@@ -244,7 +244,7 @@ BOOL InitDirectDraw(void)
 			lpDraw->ddsd.dwHeight          = lpDraw->ySize;
 			lpDraw->ddsd.ddsCaps.dwCaps = DDSCAPS_OFFSCREENPLAIN | DDSCAPS_SYSTEMMEMORY;
 			if((hResult = lpDraw->lpDD2->CreateSurface(&lpDraw->ddsd,&lpDraw->lpBACKBUFFERSYS,NULL)) != DD_OK){
-				MessageBoxNew(hWnd,"暂存区处理失败二(sys)","确定",MB_OK | MB_ICONSTOP);
+				MessageBoxNew(hWnd,"暫存區處理失敗二(sys)","確定",MB_OK | MB_ICONSTOP);
 				hErrorLogFile = CreateFile("ErrorLog.txt",GENERIC_WRITE,FILE_SHARE_READ,NULL,CREATE_ALWAYS,FILE_ATTRIBUTE_NORMAL,NULL);
 				sprintf_s(szErrMsg,"Create backbuffer error:error result (%x)",hResult);
 				WriteFile(hErrorLogFile,szErrMsg,sizeof(szErrMsg),&dwWriteByte,NULL);
@@ -306,17 +306,17 @@ BOOL InitDirectDraw(void)
 	// ??????????
 	if ((lpBattleSurface = CreateSurface(DEF_APPSIZEX, DEF_APPSIZEY, DEF_COLORKEY, DDSCAPS_VIDEOMEMORY)) == NULL){
 #ifdef _STONDEBUG_
-		MessageBoxNew( hWnd ,"建立VideoRam BattleSurface失败！" ,"确定",MB_OK | MB_ICONSTOP );
+		MessageBoxNew( hWnd ,"建立VideoRam BattleSurface失敗！" ,"確定",MB_OK | MB_ICONSTOP );
 #endif
 		if ((lpBattleSurface = CreateSurface(DEF_APPSIZEX, DEF_APPSIZEY, DEF_COLORKEY, DDSCAPS_SYSTEMMEMORY)) == NULL){
-			MessageBoxNew(hWnd, "建立BattleSurface失败！", "确定", MB_OK | MB_ICONSTOP);
+			MessageBoxNew(hWnd, "建立BattleSurface失敗！", "確定", MB_OK | MB_ICONSTOP);
 			return FALSE;
 		}
 	}
 #ifdef _READ16BITBMP
 	if(g_bUseAlpha){
 		if((lpBattleSurfaceSys = CreateSurface(DEF_APPSIZEX,DEF_APPSIZEY,DEF_COLORKEY,DDSCAPS_SYSTEMMEMORY)) == NULL){
-			MessageBoxNew(hWnd,"建立BattleSurface(sys)失败！","确定",MB_OK | MB_ICONSTOP);
+			MessageBoxNew(hWnd,"建立BattleSurface(sys)失敗！","確定",MB_OK | MB_ICONSTOP);
 			return FALSE;
 		}
 	}
@@ -352,7 +352,7 @@ BOOL InitPalette(void)
 		{ 0xc0, 0xdc, 0xc0, PC_NOCOLLAPSE | PC_RESERVED }, // 8:?
 		{ 0xa6, 0xca, 0xf0, PC_NOCOLLAPSE | PC_RESERVED }, // 9:?
 
-		//新系统色盘// ????????
+		//新係統色盤// ????????
 		{ 0xde, 0x00, 0x00, PC_NOCOLLAPSE | PC_RESERVED },
 		{ 0xff, 0x5f, 0x00, PC_NOCOLLAPSE | PC_RESERVED },
 		{ 0xff, 0xff, 0xa0, PC_NOCOLLAPSE | PC_RESERVED },
@@ -360,7 +360,7 @@ BOOL InitPalette(void)
 		{ 0x50, 0xd2, 0xff, PC_NOCOLLAPSE | PC_RESERVED },
 		{ 0x28, 0xe1, 0x28, PC_NOCOLLAPSE | PC_RESERVED },
 
-		//新系统色盘// ????????
+		//新係統色盤// ????????
 		{ 0xf5, 0xc3, 0x96, PC_NOCOLLAPSE | PC_RESERVED },
 		{ 0xe1, 0xa0, 0x5f, PC_NOCOLLAPSE | PC_RESERVED },
 		{ 0xc3, 0x7d, 0x46, PC_NOCOLLAPSE | PC_RESERVED },
@@ -408,17 +408,17 @@ BOOL InitPalette(void)
 		Palette[i + 240].peFlags = PC_NOCOLLAPSE | PC_RESERVED;
 	}
 
-	//只有第一次才作(没有初始化时)// ????????????????
+	//隻有第一次纔作(沒有初始化時)// ????????????????
 	if (PalState.flag == FALSE){
 		fp = fopen(palFileName[0], "rb");
 		if (fp == NULL){
-			MessageBoxNew(hWnd, "色盘档读取失败", "Error", MB_OK | MB_ICONSTOP);
+			MessageBoxNew(hWnd, "色盤檔讀取失敗", "Error", MB_OK | MB_ICONSTOP);
 			return FALSE;
 		}
 		else{
-			//可自由使用的调色盘设定// ?????????
+			//可自由使用的調色盤設定// ?????????
 			for (i = 16; i < 240; i++){
-				//档案读入// ????????
+				//檔案讀入// ????????
 				Palette[i].peBlue = fgetc(fp);
 				Palette[i].peGreen = fgetc(fp);
 				Palette[i].peRed = fgetc(fp);
@@ -450,7 +450,7 @@ BOOL InitPalette(void)
 #endif
 	lpDraw->lpDD2->CreatePalette(DDPCAPS_8BIT, Palette, &lpDraw->lpPALETTE, NULL);
 	if (lpDraw->lpPALETTE == NULL){
-		MessageBoxNew(hWnd, "调色盘处理失败", "Error", MB_OK | MB_ICONSTOP);
+		MessageBoxNew(hWnd, "調色盤處理失敗", "Error", MB_OK | MB_ICONSTOP);
 		return FALSE;
 	}
 	// WON REM 
@@ -458,8 +458,8 @@ BOOL InitPalette(void)
 	//#ifdef _STONDEBUG_
 	if (displayBpp == 8){
 		if (lpDraw->lpFRONTBUFFER->SetPalette(lpDraw->lpPALETTE) != DD_OK){
-			MessageBoxNew(hWnd, "调色盘处理失败", "Error", MB_OK);
-			MessageBoxNew(hWnd, "请使用１６位元高彩色或３２位元高彩色模示", "Error", MB_OK);
+			MessageBoxNew(hWnd, "調色盤處理失敗", "Error", MB_OK);
+			MessageBoxNew(hWnd, "請使用１６位元高彩色或３２位元高彩色模示", "Error", MB_OK);
 			return FALSE;
 		}
 	}
@@ -467,13 +467,13 @@ BOOL InitPalette(void)
 	// Robin 05/02
 #ifdef SWITCH_MODE
 	if( lpDraw->lpFRONTBUFFER->SetPalette( lpDraw->lpPALETTE ) != DD_OK ){
-		if( MessageBoxNew(hWnd, "请使用２５６色的显示模示", "确定", MB_RETRYCANCEL | MB_ICONEXCLAMATION ) == IDCANCEL)
+		if( MessageBoxNew(hWnd, "請使用２５６色的顯示模示", "確定", MB_RETRYCANCEL | MB_ICONEXCLAMATION ) == IDCANCEL)
 			return FALSE;
 		return FALSE;
 	}
 #else
 	while( lpDraw->lpFRONTBUFFER->SetPalette( lpDraw->lpPALETTE ) != DD_OK ){
-		if( MessageBoxNew(hWnd, "请使用２５６色的显示模示", "确定", MB_RETRYCANCEL | MB_ICONEXCLAMATION ) == IDCANCEL)
+		if( MessageBoxNew(hWnd, "請使用２５６色的顯示模示", "確定", MB_RETRYCANCEL | MB_ICONEXCLAMATION ) == IDCANCEL)
 			return FALSE;
 	}
 #endif
@@ -532,7 +532,7 @@ BOOL IsSurfaceExpired(SURFACE_INFO *surface)
 
 #endif
 
-// 色盘处理 ***************************************************************/
+// 色盤處理 ***************************************************************/
 void PaletteProc(void)
 {
 	FILE *fp; // ????????
@@ -762,7 +762,7 @@ LPBITMAPINFO LoadDirectDrawBitmap(char *pFile)
 
 	//??????????
 	if ((lpBmpInfo = (LPBITMAPINFO)HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, BmpFileHeader.bfSize)) == NULL){
-		MessageBoxNew(hWnd, "Heap的配置记忆体失败！", "确定", MB_OK | MB_ICONSTOP);
+		MessageBoxNew(hWnd, "Heap的配置記憶體失敗！", "確定", MB_OK | MB_ICONSTOP);
 		return (LPBITMAPINFO)NULL; //Memory Error
 	}
 
@@ -780,8 +780,8 @@ LPBITMAPINFO LoadDirectDrawBitmap(char *pFile)
 
 //---------------------------------------------------------------------------//
 // ?? ：????????????                                         //
-// ?? ：short bxsize           : ?赶怐???巍纰)                       //
-//        short bysize           : ?赶怐?c?(巍纰)                       //
+// ?? ：short bxsize           : ?趕怐???巍紕)                       //
+//        short bysize           : ?趕怐?c?(巍紕)                       //
 //        DWORD ColorKey         : ????(0?255)                //
 // ??：? ... ?????????? /  ... NULL                 //
 //---------------------------------------------------------------------------//
@@ -854,15 +854,15 @@ void DrawBitmapToSurface2(SURFACE_INFO *surface_info,LPDIRECTDRAWSURFACE lpSurfa
 
 	LPDIRECTDRAWSURFACE lpSurface = surface_info->lpSurface;
 	DDSURFACEDESC ddsd;	// ??????
-	char *pDest;			//目的地指标// ??????
-	char *pSource; 		//来源指标// ???????
-	short *pDest2;		//目的地指标(WORD type)// ????????????
-	int surfacePitch;	//source face 宽度// ??????????
-	int bmpWidth;			//bmp图的宽度// ????????
+	char *pDest;			//目的地指標// ??????
+	char *pSource; 		//來源指標// ???????
+	short *pDest2;		//目的地指標(WORD type)// ????????????
+	int surfacePitch;	//source face 寬度// ??????????
+	int bmpWidth;			//bmp圖的寬度// ????????
 	int i;
 #ifdef _READ16BITBMP
 	DDSURFACEDESC ddsdsys;
-	short *pDestSys;			//目的地指标 systemmemory
+	short *pDestSys;			//目的地指標 systemmemory
 	int surfacePitchSys;	//source face
 #endif
 #ifdef _HI_COLOR_32
@@ -1108,7 +1108,7 @@ void DrawBitmapToSurface2(SURFACE_INFO *surface_info,LPDIRECTDRAWSURFACE lpSurfa
 
 	// ???????????????????
 	if( lpSurface->Unlock( NULL ) != DD_OK ){
-		//MessageBoxNew( hWnd, "Surface的Unlock失败！", "确定", MB_OK | MB_ICONSTOP );
+		//MessageBoxNew( hWnd, "Surface的Unlock失敗！", "確定", MB_OK | MB_ICONSTOP );
 		return; 
 	}	
 #ifdef _READ16BITBMP
@@ -1123,12 +1123,12 @@ void DrawSurfaceFromPalette(SURFACE_INFO* surface_info)
 {
 	int sizeX, sizeY;
 	DDSURFACEDESC ddsd;
-	BYTE *pSource; 			//来源指标//
+	BYTE *pSource; 			//來源指標//
 	LPDIRECTDRAWSURFACE lpSurface = surface_info->lpSurface;
 	if (lpSurface == NULL) return;
-	//如果不为256色补丁
+	//如果不為256色補丁
 	if (surface_info->colordepth > 0)	return;
-	//如果调试板未改变并且不是切换调色板过程，那么就返回，使用缓存中的数据
+	//如果調試闆未改變並且不是切換調色闆過程，那麼就返迴，使用緩存中的數據
 	if (surface_info->palNo == PalState.palNo && PalState.time == 1) return;
 	sizeX = surface_info->sizeX;
 	sizeY = surface_info->sizeY;
@@ -1177,12 +1177,12 @@ void DrawBitmapToSurface2(SURFACE_INFO *surface_info, int offsetX, int offsetY, 
 #ifdef _CACHE_SURFACE_
 	LPDIRECTDRAWSURFACE lpSurface = surface_info->lpSurface;
 	DDSURFACEDESC ddsd;
-	char *pDest;			//目的地指标//
-	char *pCache;			//缓存
-	char *pSource; 			//来源指标//
+	char *pDest;			//目的地指標//
+	char *pCache;			//緩存
+	char *pSource; 			//來源指標//
 	BYTE *alphatemp;
-	int surfacePitch;		//source face 宽度//
-	int bmpWidth;			//bmp图的宽度//
+	int surfacePitch;		//source face 寬度//
+	int bmpWidth;			//bmp圖的寬度//
 	int i;
 
 	if (lpSurface == NULL) return;
@@ -1281,7 +1281,7 @@ void DrawBitmapToSurface2(SURFACE_INFO *surface_info, int offsetX, int offsetY, 
 #endif
 					}
 				}
-				else //256色 缓存数据
+				else //256色 緩存數據
 				{
 					memcpy(pCache, pSource, sizeX);
 				}
@@ -1340,11 +1340,11 @@ void DrawBitmapToSurface2(SURFACE_INFO *surface_info, int offsetX, int offsetY, 
 #else
 	LPDIRECTDRAWSURFACE lpSurface = surface_info->lpSurface;
 	DDSURFACEDESC ddsd;
-	char *pDest;			//目的地指标//
-	char *pSource; 		//来源指标//
+	char *pDest;			//目的地指標//
+	char *pSource; 		//來源指標//
 	BYTE *alphatemp;
-	int surfacePitch;	//source face 宽度//
-	int bmpWidth;			//bmp图的宽度//
+	int surfacePitch;	//source face 寬度//
+	int bmpWidth;			//bmp圖的寬度//
 	int i;
 
 	if( lpSurface == NULL ) return;
@@ -1552,7 +1552,7 @@ void DrawBox(RECT *rect, unsigned char color, BOOL fill)
 
 	// ?????????????????( ?? ddsd ??????? )
 	if (lpDraw->lpBACKBUFFER->Lock(NULL, &ddsd, DDLOCK_WAIT, NULL) != DD_OK){
-		//MessageBoxNew( hWnd, "Surface的lock失败！", "确定", MB_OK | MB_ICONSTOP );
+		//MessageBoxNew( hWnd, "Surface的lock失敗！", "確定", MB_OK | MB_ICONSTOP );
 		return;
 	}
 #ifdef _READ16BITBMP
@@ -1968,7 +1968,7 @@ void DrawAutoMapping(int x, int y, unsigned char *autoMap, int w, int h)
 	// ?????????????????( ?? ddsd ??????? )
 	if (lpDraw->lpBACKBUFFER->Lock(NULL, &ddsd, DDLOCK_WAIT, NULL) != DD_OK)
 	{
-		//MessageBoxNew( hWnd, "Surface的lock失败！", "确定", MB_OK | MB_ICONSTOP );
+		//MessageBoxNew( hWnd, "Surface的lock失敗！", "確定", MB_OK | MB_ICONSTOP );
 		return;
 	}
 	// ??????????
@@ -2054,7 +2054,7 @@ void DrawAutoMapping(int x, int y, unsigned char *autoMap, int w, int h)
 	// ???????????????????
 	if (lpDraw->lpBACKBUFFER->Unlock(NULL) != DD_OK)
 	{
-		//MessageBoxNew( hWnd, "Surface的Unlock失败！", "确定", MB_OK | MB_ICONSTOP );
+		//MessageBoxNew( hWnd, "Surface的Unlock失敗！", "確定", MB_OK | MB_ICONSTOP );
 		return;
 	}
 
@@ -2098,7 +2098,7 @@ int getAutoMapColor(unsigned int GraphicNo)
 //---------------------------------------------------------------------------//
 // ?entry?????palette?????color???????index???
 //---------------------------------------------------------------------------//
-//ref 寻找色盘中最接近的颜色
+//ref 尋找色盤中最接近的顔色
 int getNearestColorIndex(COLORREF color, PALETTEENTRY *palette, int entry)
 {
 	double distance, mindist;
@@ -2125,7 +2125,7 @@ int getNearestColorIndex(COLORREF color, PALETTEENTRY *palette, int entry)
 //---------------------------------------------------------------------------//
 // ??????????                                                    //
 //---------------------------------------------------------------------------//
-//ref 画出地图的特效 
+//ref 畫齣地圖的特效 
 void DrawMapEffect(void)
 {
 	DDSURFACEDESC ddsd;
@@ -2595,7 +2595,7 @@ void DrawDebugLine(unsigned char color)
 
 	// ?????????????????( ?? ddsd ??????? )
 	if (lpDraw->lpFRONTBUFFER->Lock(NULL, &ddsd, DDLOCK_WAIT, NULL) != DD_OK){
-		//MessageBoxNew( hWnd, "Surface的lock失败！", "确定", MB_OK | MB_ICONSTOP );
+		//MessageBoxNew( hWnd, "Surface的lock失敗！", "確定", MB_OK | MB_ICONSTOP );
 		return;
 	}
 	//??
@@ -2671,14 +2671,14 @@ void DrawDebugLine(unsigned char color)
 
 	// ???????????????????
 	if (lpDraw->lpFRONTBUFFER->Unlock(NULL) != DD_OK){
-		MessageBoxNew(hWnd, "Surface的Unlock失败！", "确定", MB_OK | MB_ICONSTOP);
+		MessageBoxNew(hWnd, "Surface的Unlock失敗！", "確定", MB_OK | MB_ICONSTOP);
 		return;
 	}
 
 	return;
 }
 //---------------------------------------------------------------------------//
-// ?? ：RECT???忣帮搎匏直??忤站赶怐????]?                    //
+// ?? ：RECT???忣幫搎匏直??忤站趕怐????]?                    //
 // ?? ：DIRECT_DRAW *lpDraw : DirectDraw???                         //
 //        short  bx           : ???                                 //
 //        short  by           : ??                                 //
@@ -2775,7 +2775,7 @@ HRESULT DrawSurfaceFast(short bx, short by, LPDIRECTDRAWSURFACE lpSurface)
 }
 
 //---------------------------------------------------------------------------//
-// ?? ：RECT???忣帮搎匏直??忤站赶怐????]?                    //
+// ?? ：RECT???忣幫搎匏直??忤站趕怐????]?                    //
 // ?? ：DIRECT_DRAW *lpDraw : DirectDraw???                         //
 //        short  bx           : ???                                 //
 //        short  by           : ??                                 //
@@ -2972,12 +2972,12 @@ BOOL CheckSurfaceLost(void)
 // ???????????? *************************************************/
 void InitFont(int fontNo)
 {
-	//宋体
-	//char *fontName[] = { "Microsoft JhengHei","楷体_GB2312" };
+	//宋體
+	//char *fontName[] = { "Microsoft JhengHei","楷體_GB2312" };
 #ifdef _NEWFONT_
-	extern int 编码;
+	extern int 編碼;
 	char fontName[2][128];
-	if(编码==950){
+	if(編碼==950){
 		sprintf(fontName[0],"Microsoft JhengHei");
 		sprintf(fontName[1],"Microsoft JhengHei");
 	}else{
@@ -2985,17 +2985,17 @@ void InitFont(int fontNo)
 		sprintf(fontName[1],"Microsoft JhengHei");
 	}
 #else
-	extern int 编码;
+	extern int 編碼;
 	char fontName[2][128];
-	if(编码==950){
+	if(編碼==950){
 		sprintf(fontName[0],"Microsoft JhengHei");
 		sprintf(fontName[1],"Microsoft JhengHei");
 	}else{
-		sprintf(fontName[0],"宋体");
-		sprintf(fontName[1],"楷体_GB2312");
+		sprintf(fontName[0],"宋體");
+		sprintf(fontName[1],"楷體_GB2312");
 	}
 
-	//char *fontName[] = { "宋体", "楷体_GB2312" };
+	//char *fontName[] = { "宋體", "楷體_GB2312" };
 #endif
 	// ?????????
 	if (hFont != NULL){
@@ -3040,7 +3040,7 @@ void InitFont(int fontNo)
 	else {
 #ifdef _NEWFONT_
 		char strfame[128];
-		if(编码==950){
+		if(編碼==950){
 			sprintf(strfame,"Microsoft JhengHei");
 		}else{
 			sprintf(strfame,"Microsoft JhengHei");
@@ -3051,7 +3051,7 @@ void InitFont(int fontNo)
 #else
 
 		char strfame[128];
-		if(编码==950){
+		if(編碼==950){
 			sprintf(strfame,"Microsoft JhengHei");
 			hFont = CreateFont(FONT_SIZE2,0,0,0,FW_NORMAL,FALSE,FALSE,FALSE,1,
 			0,0,0,17,(LPCTSTR)strfame
@@ -3079,9 +3079,9 @@ void InitFont(int fontNo)
 }
 
 #ifdef _CHANNEL_MODIFY
-char g_szChannelTitle[][13] = { "[普]", "[密]", "[队]", "[族]"
+char g_szChannelTitle[][13] = { "[普]", "[密]", "[隊]", "[族]"
 #ifdef _CHAR_PROFESSION
-,"[职]"
+,"[職]"
 #endif
 #ifdef _CHATROOMPROTOCOL
 ,"[聊]"
@@ -3499,7 +3499,7 @@ void snapShot(void)
 	ddsdDesc.dwSize = sizeof(DDSURFACEDESC);
 	if (lpDraw->lpFRONTBUFFER->Lock(NULL, &ddsdDesc, 0, NULL) != DD_OK){
 #ifdef _STONDEBUG_
-		MessageBoxNew(hWnd,"前景缓冲区锁定失败！", "确定", MB_OK | MB_ICONSTOP );
+		MessageBoxNew(hWnd,"前景緩衝區鎖定失敗！", "確定", MB_OK | MB_ICONSTOP );
 #endif
 		return;
 	}
@@ -3518,7 +3518,7 @@ void snapShot(void)
 		BYTE *mem = new BYTE[w * h * 3], *pmem, pR, pG, pB;
 		if (mem == NULL){
 #ifdef _STONDEBUG_
-			MessageBoxNew(hWnd,"记忆体配置失败失败！", "确定", MB_OK | MB_ICONSTOP );
+			MessageBoxNew(hWnd,"記憶體配置失敗失敗！", "確定", MB_OK | MB_ICONSTOP );
 #endif
 			return;
 		}
@@ -3526,20 +3526,20 @@ void snapShot(void)
 		pmem = mem;
 		pmem += w * h * 3;
 
-		// source face 一次移动二个byte
+		// source face 一次移動二個byte
 		ddsdDesc.lPitch >>= 1;
-		// work 是整个荧幕的位置,要作偏移
+		// work 是整個熒幕的位置,要作偏移
 		work += ddsdDesc.lPitch * g_clientPoint.y + g_clientPoint.x;
 		for (int y = 0; y < h; y++){
 			pmem -= w * 3;
 			for (int x = 0; x < w; x++){
-				// 565 显示模式
+				// 565 顯示模式
 				if (gBitRShift == 2){
 					pR = (BYTE)((((work[x] & 0xf800)) >> 11) << 3);
 					pG = (BYTE)((((work[x] & 0x07e0)) >> 5) << 2);
 					pB = (BYTE)((work[x] & 0x001f) << 3);
 				}
-				// 555 显示模式
+				// 555 顯示模式
 				else{
 					pR = (BYTE)((work[x] >> 10) << 3);
 					pG = (BYTE)(((work[x] & 0x03e0) >> 5) << 3);
@@ -3549,7 +3549,7 @@ void snapShot(void)
 				*pmem++ = pG;
 				*pmem++ = pR;
 			}
-			// 换行
+			// 換行
 			work += ddsdDesc.lPitch;
 			pmem -= w * 3;
 		}
@@ -3722,7 +3722,7 @@ void Draw16BitmapToSurface2(SURFACE_INFO *surface_info,LPDIRECTDRAWSURFACE lpSur
 					pDestSys32++;
 				}
 			}
-			// 换下一行
+			// 換下一行
 			pDest32 += surfacePitch32 - sizeX;
 			pSource += RealBinWidth - sizeX;
 			if(g_bUseAlpha) pDestSys32 += surfacePitchSys32 - sizeX;
@@ -3749,7 +3749,7 @@ void Draw16BitmapToSurface2(SURFACE_INFO *surface_info,LPDIRECTDRAWSURFACE lpSur
 					pDestSys++;
 				}
 			}
-			// 换下一行
+			// 換下一行
 			pDest += surfacePitch - sizeX;
 			pSource += RealBinWidth - sizeX;
 			if(g_bUseAlpha) pDestSys += surfacePitchSys - sizeX;
@@ -3758,7 +3758,7 @@ void Draw16BitmapToSurface2(SURFACE_INFO *surface_info,LPDIRECTDRAWSURFACE lpSur
 
 	surface_info->lpSurface->Unlock(NULL);
 	if(g_bUseAlpha) lpSurfaceSys->Unlock(NULL);
-	// 有带alpha channel
+	// 有帶alpha channel
 	static UCHAR a[1];
 
 	if(g_bUseAlpha){
@@ -3772,7 +3772,7 @@ void Draw16BitmapToSurface2(SURFACE_INFO *surface_info,LPDIRECTDRAWSURFACE lpSur
 					pAlphaDest++;
 					pAlphaSource++;
 				}
-				// 换下一行
+				// 換下一行
 				pAlphaDest += SurfaceSizeX - sizeX;
 				pAlphaSource += RealBinWidth - sizeX;
 			}
@@ -3921,23 +3921,23 @@ void SetAnimTbl()
 	else
 #endif
 	{
-		CG_PKSERVER_PANEL = 26192;							// 选取星系人物框
-		CG_BATTTLE_SKILLCHOICE = 26389;					// 战斗中选择技能
-		CG_FIELD_SKILL_PANEL = 26352;						// 职业技能介面
-		CG_FIELD_CHATROOM_PANEL = 26427;				// 聊天室介面
-		CG_FIELD_SV_SELL_PANEL = 35221;					// 摆摊介面(卖方)
-		CG_FIELD_SV_SELL_PRICE_PANEL = 35223;		// 输入售价视窗
+		CG_PKSERVER_PANEL = 26192;							// 選取星係人物框
+		CG_BATTTLE_SKILLCHOICE = 26389;					// 戰鬥中選擇技能
+		CG_FIELD_SKILL_PANEL = 26352;						// 職業技能介麵
+		CG_FIELD_CHATROOM_PANEL = 26427;				// 聊天室介麵
+		CG_FIELD_SV_SELL_PANEL = 35221;					// 擺攤介麵(賣方)
+		CG_FIELD_SV_SELL_PRICE_PANEL = 35223;		// 輸入售價視窗
 		CG_NEW_STATUS_WND = 26386;
 #ifdef _PET_ITEM
-		CG_NEWITEM_WND = 26455;									// 人物装备栏位视窗(有标签)
+		CG_NEWITEM_WND = 26455;									// 人物裝備欄位視窗(有標簽)
 #else
-		CG_NEWITEM_WND = 26388;									// 人物装备栏位视窗(左手、脚、手套)
+		CG_NEWITEM_WND = 26388;									// 人物裝備欄位視窗(左手、腳、手套)
 #endif
 
-		CG_TRADE_WND = 26328;										// 交易主视窗
+		CG_TRADE_WND = 26328;										// 交易主視窗
 
 		//end modified by lsh
-		CG_TRADE_VIEWWND = 26329;								// 交易检视视窗
+		CG_TRADE_VIEWWND = 26329;								// 交易檢視視窗
 		CG_WND_G_0 = 26001;
 		CG_WND_G_1 = 26002;
 		CG_WND_G_2 = 26003;
@@ -3993,8 +3993,8 @@ HFONT CreateNewFont(int size) {
 
 #ifdef _NEWFONT_
 		char strfame[128];
-		extern int 编码;
-		if(编码==950){
+		extern int 編碼;
+		if(編碼==950){
 			sprintf(strfame,"Microsoft JhengHei");
 		}else{
 			sprintf(strfame,"Microsoft JhengHei");
@@ -4004,14 +4004,14 @@ HFONT CreateNewFont(int size) {
 			0,0,0,17,(LPCTSTR)strfame);
 #else
 		char strfame[128];
-		extern int 编码;
-		if(编码==950){
+		extern int 編碼;
+		if(編碼==950){
 			sprintf(strfame,"Microsoft JhengHei");
 			return CreateFont(size,0,0,0,FW_NORMAL,FALSE,FALSE,FALSE,1,
 			0,0,0,17,(LPCTSTR)strfame);
 		}else{
 			return CreateFont(size,0,0,0,400,FALSE,FALSE,FALSE,134,
-			OUT_DEFAULT_PRECIS,CLIP_DEFAULT_PRECIS,DEFAULT_QUALITY,FIXED_PITCH|FF_ROMAN,(LPCTSTR)"宋体");
+			OUT_DEFAULT_PRECIS,CLIP_DEFAULT_PRECIS,DEFAULT_QUALITY,FIXED_PITCH|FF_ROMAN,(LPCTSTR)"宋體");
 		}
 
 #endif		

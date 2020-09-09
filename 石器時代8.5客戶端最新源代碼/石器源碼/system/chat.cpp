@@ -1,4 +1,4 @@
-﻿/************************/
+/************************/
 /*	chat.c				*/
 /************************/
 #include "../systeminc/version.h"
@@ -70,7 +70,7 @@ char chatLogFileName[256];
 void openChatLogFile( void );
 
 /*
-#ifdef _TELLCHANNEL				// (不可开) ROG ADD 密语频道
+#ifdef _TELLCHANNEL				// (不可開) ROG ADD 密語頻道
 char ReTellName[] = "";
 #endif 
 */
@@ -152,7 +152,7 @@ void InitChat( void )
 	if(!pc.etcFlag &PC_ETCFLAG_PARTY){
 		pc.etcFlag |= PC_ETCFLAG_PARTY;
 	}
-	//修复组队
+	//修復組隊
 	pc.etcFlag |= PC_ETCFLAG_PARTY;
 	if (bNewServer) lssproto_FS_send(sockfd,pc.etcFlag);
 	else old_lssproto_FS_send(sockfd,pc.etcFlag);
@@ -247,7 +247,7 @@ BOOL LoadChatHistoryStr( void )
 }
 
 /* ???????????? ****************************************************/
-//加载屏蔽字
+//加載屏蔽字
 void* EncryptFileName( LPCTSTR pszResFile,unsigned int &nSize )
 {
 	//ENCRYPTCONF	myConfFileCncryp;
@@ -289,15 +289,15 @@ void* EncryptFileName( LPCTSTR pszResFile,unsigned int &nSize )
 	return pBuffer;
 }
 
-BOOL MoveFilePointInt( const char * pBuffer ,unsigned int nSize , unsigned int &nRead, BOOL &bRead ,int nResult) // 移动文件指针 [11/27/2007]
+BOOL MoveFilePointInt( const char * pBuffer ,unsigned int nSize , unsigned int &nRead, BOOL &bRead ,int nResult) // 移動文件指針 [11/27/2007]
 {
-	unsigned int nReadCount = nRead;	// 记录上次指针的位置 [11/28/2007]
+	unsigned int nReadCount = nRead;	// 記錄上次指針的位置 [11/28/2007]
 	const char* pFind = strstr( pBuffer + nRead,"\n");//find \n
 	if( pFind )
 	{
-		nRead = ( pFind - pBuffer + 1 );	// 得到当前指针的位置 [11/28/2007]  //得到相对与文件开始位置的偏移位置// 最先的注释不准确 [杨文鸽 2007-12-14]
+		nRead = ( pFind - pBuffer + 1 );	// 得到當前指針的位置 [11/28/2007]  //得到相對與文件開始位置的偏移位置// 最先的注釋不準確 [楊文鴿 2007-12-14]
 	}
-	if ((2 == nRead - nReadCount && nResult !=0)|| nResult == 0)	// /	判断读到真实数据（2个字节表示“\r\n”）  [11/28/2007]
+	if ((2 == nRead - nReadCount && nResult !=0)|| nResult == 0)	// /	判斷讀到真實數據（2個字節錶示“\r\n”）  [11/28/2007]
 	{
 		bRead = FALSE;
 	}
@@ -318,7 +318,7 @@ BOOL LoadReadSayShield( void )
 	if( !pBuffer )
 		return FALSE;
 
-	unsigned int nRead = 0;		//已经读了的
+	unsigned int nRead = 0;		//已經讀瞭的
 	BOOL bRead = FALSE;
 	int i = 0;
 	static char szWord[20] = "";
@@ -354,7 +354,7 @@ BOOL LoadReadNameShield( void )
 	if( !pBuffer )
 		return FALSE;
 
-	unsigned int nRead = 0;		//已经读了的
+	unsigned int nRead = 0;		//已經讀瞭的
 	BOOL bRead = FALSE;
 	int i = 0;
 	static char szName_[20] = "";
@@ -393,7 +393,7 @@ bool CheckSay( const char* strSay, const char szReplace )
 	{
 		if ( const char *szRe = strstr( strSay,SayShieldList[i] ) )
 		{
-			//	g_objGameMsg.AddMsg( SayShieldList[i].c_str() );             // 测试时显示出来 
+			//	g_objGameMsg.AddMsg( SayShieldList[i].c_str() );             // 測試時顯示齣來 
 			//memset( (void*)szRe,szReplace,strlen(SayShieldList[i]) );
 			return false;
 		}
@@ -410,7 +410,7 @@ bool CheckName( const char* strSay )
 	{
 		if ( const char *szRe = strstr( strSay,NameShieldList[i] ) )
 		{
-			//	g_objGameMsg.AddMsg( SayShieldList[i].c_str() );             // 测试时显示出来 
+			//	g_objGameMsg.AddMsg( SayShieldList[i].c_str() );             // 測試時顯示齣來 
 			//	memset( (void*)szRe,szReplace,NameShieldList[i].length() );
 			//word = NameShieldList[i];
 			return false;
@@ -418,11 +418,11 @@ bool CheckName( const char* strSay )
 	}
 	return true;
 }
-extern int 编码;
-extern int 繁体开关;
+extern int 編碼;
+extern int 繁體開關;
 void StrToNowStrBuffer( char *str )
 {
-	if(编码 == 950 ){
+	if(編碼 == 950 ){
 		extern char* BIG5ToGB2312(const char* szBIG5String);
 		char *newstr;
 		newstr=BIG5ToGB2312((const char *)str);
@@ -455,19 +455,19 @@ void StrToNowStrBuffer( char *str )
 
 void StrToNowStrBuffer1( char *str )
 {
-	if(繁体开关){
+	if(繁體開關){
 		int strLen,i;
-		char 繁体[1024]={0};
-		LCMapString (0x804,0x4000000,str, strlen(str),繁体,1024);
-		strLen=strlen(繁体);
+		char 繁體[1024]={0};
+		LCMapString (0x804,0x4000000,str, strlen(str),繁體,1024);
+		strLen=strlen(繁體);
 		if(strLen>86)
 			strLen=86;
 		for(i=0;i<strLen;i++){
-			if(IsDBCSLeadByte(繁体[i])){
-				StockStrBufferDBChar(繁体+i);
+			if(IsDBCSLeadByte(繁體[i])){
+				StockStrBufferDBChar(繁體+i);
 				i++;
 			}else
-				StockStrBufferChar(繁体[i]);
+				StockStrBufferChar(繁體[i]);
 		}
 	}else{
 		int strLen,i;
@@ -528,7 +528,7 @@ void ChatProc( void )
 	if(OnlineGmFlag == TRUE)	TalkMode = 0;
 #endif
 	
-#ifdef _TELLCHANNEL				//ROG ADD 密语频道
+#ifdef _TELLCHANNEL				//ROG ADD 密語頻道
 	if( joy_trg[ 1 ] & JOY_CTRL_R 
 #ifdef __ONLINEGM
 		&& OnlineGmFlag == FALSE
@@ -712,7 +712,7 @@ void KeyboardTab( void )
 		switch(TalkMode){
 		case PC_ETCFLAG_CHAT_MODE_ID:
 			strcpy(secretName,"");
-			// 已在队伍频道切回一般频道
+			// 已在隊伍頻道切迴一般頻道
 			if(pc.etcFlag & PC_ETCFLAG_CHAT_MODE){
 				pc.etcFlag &= ~PC_ETCFLAG_CHAT_MODE;
 				if(bNewServer) lssproto_FS_send(sockfd,pc.etcFlag);
@@ -720,11 +720,11 @@ void KeyboardTab( void )
 			}
 			break;
 		case PC_ETCFLAG_CHAT_TELL_ID:
-			// 密语频道关闭,跳到下一个频道
+			// 密語頻道關閉,跳到下一個頻道
 			if(!(pc.etcFlag & PC_ETCFLAG_CHAT_TELL)) TalkMode++;
 			else break;
 		case PC_ETCFLAG_CHAT_PARTY_ID:
-			// 无队伍跳到下一个频道
+			// 無隊伍跳到下一個頻道
 			if(partyModeFlag == 0) TalkMode++;
 			else{
 				pc.etcFlag |= PC_ETCFLAG_CHAT_MODE;
@@ -733,25 +733,25 @@ void KeyboardTab( void )
 				break;
 			}
 		case PC_ETCFLAG_CHAT_FM_ID:
-			// 若队频有开,关掉队频
+			// 若隊頻有開,關掉隊頻
 			if(pc.etcFlag & PC_ETCFLAG_CHAT_MODE){
 				pc.etcFlag &= ~PC_ETCFLAG_CHAT_MODE;
 				if(bNewServer) lssproto_FS_send(sockfd,pc.etcFlag);
 				else old_lssproto_FS_send(sockfd,pc.etcFlag);
 			}
-			// 家族频道关闭,跳到下一个频道
+			// 傢族頻道關閉,跳到下一個頻道
 			if(!(pc.etcFlag & PC_ETCFLAG_CHAT_FM)) TalkMode++;
 			else break;
 #ifdef _CHAR_PROFESSION
 		case PC_ETCFLAG_CHAT_OCC_ID:
-			// 职业频道关闭,跳到下一个频道
+			// 職業頻道關閉,跳到下一個頻道
 			if(!(pc.etcFlag & PC_ETCFLAG_CHAT_OCC))	
 				TalkMode++;
 			break;
 #endif
 #ifdef _CHATROOMPROTOCOL
 		case PC_ETCFLAG_CHAT_CHAT_ID:
-			// 聊天室频道
+			// 聊天室頻道
 			if(!(pc.etcFlag & PC_ETCFLAG_CHAT_CHAT)){
 				secretFlag = FALSE;
 				selChar = -1;
@@ -761,7 +761,7 @@ void KeyboardTab( void )
 #endif
 #ifdef _CHANNEL_WORLD
 		case PC_ETCFLAG_CHAT_WORLD_ID:
-			// 世界频道
+			// 世界頻道
 			if(!(pc.etcFlag & PC_ETCFLAG_CHAT_WORLD)){
 				if((pc.etcFlag & PC_ETCFLAG_ALL_SERV)){
 					TalkMode++;
@@ -773,7 +773,7 @@ void KeyboardTab( void )
 #endif
 #ifdef _CHANNEL_ALL_SERV
 		case PC_ETCFLAG_ALL_SERV_ID:
-			// 星球频道
+			// 星球頻道
 			if(!(pc.etcFlag & PC_ETCFLAG_ALL_SERV)){
 				TalkMode = 0;
 			}
@@ -1038,9 +1038,9 @@ void KeyboardReturn( void )
 #endif
 
 		char *buffer=pNowStrBuffer->buffer;
-		//尚可放入新行时
+		//尚可放入新行時
 		if(pNowStrBuffer->cnt < pNowStrBuffer->len-pNowStrBuffer->lineLen){
-			//放入一行全部为space的新行
+			//放入一行全部為space的新行
 			if((pNowStrBuffer->cursor)%pNowStrBuffer->lineLen == 0)
 				StockStrBufferChar(' ');
 			while((pNowStrBuffer->cursor)%pNowStrBuffer->lineLen)
@@ -1076,7 +1076,7 @@ void KeyboardReturn( void )
 #endif
 
 #ifdef _TELLCHANNEL
-	if(TalkMode == 1){               //聊天密语显示人名
+	if(TalkMode == 1){               //聊天密語顯示人名
 		pNowStrBuffer->buffer[ 0 ] = NULL;
 		pNowStrBuffer->cursor=0;
 		pNowStrBuffer->cnt = 0;
@@ -1098,7 +1098,7 @@ void KeyboardReturn( void )
 extern STR_BUFFER idKey;
 extern STR_BUFFER passwd;
 extern STR_BUFFER selCharName;
-/*	将单一字元储放至目前的输入String buffer
+/*	將單一字元儲放至目前的輸入String buffer
 parameter:	c:	字元					*/
 void StockStrBufferChar(char c)
 {
@@ -1128,8 +1128,8 @@ void StockStrBufferChar(char c)
 	}
 }
 
-/*	将双位元字元储放至目前的输入String buffer
-parameter:	lpc:	双位元的字元			*/
+/*	將雙位元字元儲放至目前的輸入String buffer
+parameter:	lpc:	雙位元的字元			*/
 void StockStrBufferDBChar(char *lpc)
 {
 	int cnt,cursor;
@@ -1164,12 +1164,12 @@ void StockChatBufferLine( char *str_, unsigned char color )
 #endif
 {
 	char *str=str_;
-	extern int 编码;
-	extern int 繁体开关;
-	if(繁体开关){
-		char 繁体[1024]={0};
-		LCMapString (0x804,0x4000000,str_, strlen(str_),繁体,1024);
-		str = 繁体;
+	extern int 編碼;
+	extern int 繁體開關;
+	if(繁體開關){
+		char 繁體[1024]={0};
+		LCMapString (0x804,0x4000000,str_, strlen(str_),繁體,1024);
+		str = 繁體;
 	}else{
 		str = str_;
 	}
@@ -1375,57 +1375,57 @@ void ChatBufferToFontBuffer( void )
 	extern int focusGraId( int *id, int cnt );
 	extern int pushGraId( int *id, int cnt );
 	extern int selGraId( int *id, int cnt );
-	int 表情按钮ID = -1;
-	static int 表情图片索引 = 0;
-	static int 表情窗口状态=FALSE;
-	static int 表情当前页=0;
-	static int 表情总页 = (EXPRESSION_NOID_NUM)%48?(EXPRESSION_NOID_NUM)/48+1:(EXPRESSION_NOID_NUM)/48;
+	int 錶情按鈕ID = -1;
+	static int 錶情圖片索引 = 0;
+	static int 錶情窗口狀態=FALSE;
+	static int 錶情當前頁=0;
+	static int 錶情總頁 = (EXPRESSION_NOID_NUM)%48?(EXPRESSION_NOID_NUM)/48+1:(EXPRESSION_NOID_NUM)/48;
 	int chatBtnGraNo[] =
 	{
 		CG_FIELD_CHAT_BTN_OFF,
 		CG_FIELD_CHAT_BTN_ON
 	};
-	StockDispBuffer(40, 559, DISP_PRIO_IME3, chatBtnGraNo[表情图片索引], 1);
+	StockDispBuffer(40, 559, DISP_PRIO_IME3, chatBtnGraNo[錶情圖片索引], 1);
 
 	if( MakeHitBox(40-10, 559-10,40+10,559+10, DISP_PRIO_IME4 ) == TRUE )
 	{
-		ShowBottomLineString(FONT_PAL_WHITE, "聊天表情。");
+		ShowBottomLineString(FONT_PAL_WHITE, "聊天錶情。");
 		if(mouse.onceState & MOUSE_LEFT_CRICK){
-			表情当前页=1;
-			表情图片索引=1;
-			if(表情窗口状态) 表情窗口状态=FALSE;
-			else 表情窗口状态=TRUE;
+			錶情當前頁=1;
+			錶情圖片索引=1;
+			if(錶情窗口狀態) 錶情窗口狀態=FALSE;
+			else 錶情窗口狀態=TRUE;
 			play_se(203, 320, 240);
-		}else 表情图片索引=0;
+		}else 錶情圖片索引=0;
 	}
-	if(表情窗口状态){
+	if(錶情窗口狀態){
 		if( joy_trg[ 0 ] & JOY_ESC ) {
 			MenuToggleFlag|=JOY_ESC;
 			play_se(203, 320, 240);
-			表情窗口状态=FALSE;
+			錶情窗口狀態=FALSE;
 		}
-		int 方向按钮ID[2];
+		int 方嚮按鈕ID[2];
 		StockDispBuffer(120, 447, DISP_PRIO_IME3, 55103, 1);
-		方向按钮ID[0]=StockDispBuffer(89, 535, DISP_PRIO_IME4, 55104, 2);
-		方向按钮ID[1]=StockDispBuffer(152, 535, DISP_PRIO_IME4, 55105, 2);
-		int 按下ID= selGraId(方向按钮ID,2);
-		if(按下ID==0){//按方向左
-			if(表情当前页>1) 表情当前页--; 
-		}else if(按下ID==1){//按方向右
-			if(表情当前页 < 表情总页) 表情当前页++;
+		方嚮按鈕ID[0]=StockDispBuffer(89, 535, DISP_PRIO_IME4, 55104, 2);
+		方嚮按鈕ID[1]=StockDispBuffer(152, 535, DISP_PRIO_IME4, 55105, 2);
+		int 按下ID= selGraId(方嚮按鈕ID,2);
+		if(按下ID==0){//按方嚮左
+			if(錶情當前頁>1) 錶情當前頁--; 
+		}else if(按下ID==1){//按方嚮右
+			if(錶情當前頁 < 錶情總頁) 錶情當前頁++;
 		}
-		int start=(表情当前页-1)*48;
-		int end = (表情当前页*48 < EXPRESSION_NOID_NUM ?表情当前页*48:EXPRESSION_NOID_NUM);
+		int start=(錶情當前頁-1)*48;
+		int end = (錶情當前頁*48 < EXPRESSION_NOID_NUM ?錶情當前頁*48:EXPRESSION_NOID_NUM);
 		int x,y;
 		for(y=0;y<6;y++){
 			for(x=0;x<8;x++){
-				表情按钮ID=StockDispBuffer(19+x*29, 362+y*29, DISP_PRIO_IME4, EXPRESSION_NOID_START+start, 2);
-				if(selGraId(&表情按钮ID,1)!=-1){
-					表情窗口状态=FALSE;
+				錶情按鈕ID=StockDispBuffer(19+x*29, 362+y*29, DISP_PRIO_IME4, EXPRESSION_NOID_START+start, 2);
+				if(selGraId(&錶情按鈕ID,1)!=-1){
+					錶情窗口狀態=FALSE;
 					play_se(203, 320, 240);
-					char 表情内容[128];
-					sprintf_s(表情内容,"#%d",start+1);
-					strcat_s(MyChatBuffer.buffer,表情内容);
+					char 錶情內容[128];
+					sprintf_s(錶情內容,"#%d",start+1);
+					strcat_s(MyChatBuffer.buffer,錶情內容);
 					MyChatBuffer.cursor=strlen(MyChatBuffer.buffer);
 					MyChatBuffer.cnt=strlen(MyChatBuffer.buffer);
 				}

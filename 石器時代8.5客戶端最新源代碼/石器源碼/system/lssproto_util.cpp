@@ -1,4 +1,4 @@
-﻿#define _LSSPROTOUTIL_C_
+#define _LSSPROTOUTIL_C_
 
 #include <Windows.h>
 #include <stdio.h>
@@ -25,7 +25,7 @@ long lssproto_ringoDecompressor( unsigned char *text , long textlen , unsigned c
 
 int lssproto_AllocateCommonWork(int bufsiz)
 {
-// Terry add for 因为程式重覆呼叫此function会造成memory leak 所以要设一个旗标来了解是否已被呼叫过
+// Terry add for 因為程式重覆呼叫此function會造成memory leak 所以要設一個旗標來瞭解是否已被呼叫過
 	static BOOL bInit;
 // Terry end
 	// Nuke start
@@ -38,7 +38,7 @@ int lssproto_AllocateCommonWork(int bufsiz)
 	for (i=0;i<NJT_MAX;i++) if (NJT[i]) break;
 	if (i==NJT_MAX) return -1;*/
 	// Nuke end
-// Terry modify 把底下mark的code搬到这并修正
+// Terry modify 把底下mark的code搬到這並修正
 	if(bInit){
 		if(lssproto.work) FREE( lssproto.work);
 		if(lssproto.arraywork) FREE( lssproto.arraywork );
@@ -80,7 +80,7 @@ int lssproto_AllocateCommonWork(int bufsiz)
 	memset( lssproto.jencodecopy , 0, lssproto.workbufsize*3 );
 	memset( lssproto.jencodeout , 0, lssproto.workbufsize*3 );
 	memset( lssproto.compresswork , 0, lssproto.workbufsize*3 );
-// Terry modify 搬到上面并修正
+// Terry modify 搬到上麵並修正
 	bInit = !bInit;
 /*	if( lssproto.work == NULL ||
 	   lssproto.arraywork == NULL ||

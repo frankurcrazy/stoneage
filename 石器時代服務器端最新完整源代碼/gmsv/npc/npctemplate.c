@@ -15,7 +15,7 @@
 #include "configfile.h"
 #include "autil.h"
 
-/*É¬ÀÃÃ«¿ÃÇ©±åÔÊÔÂĞ×»§±åèúĞÑÀÃñø±¾ÓÀĞşÃ«×ÛÔÂ    */
+/*æ¾€çˆ›æ¯›æ£µç°½åå…æœˆå‡¶æˆ¶åæ¥®é†’çˆ›è’æœ¬æ°¸ç„æ¯›ç¶œæœˆ    */
 typedef struct tagFunctionNameSet
 {
     char*   id;
@@ -43,25 +43,25 @@ static FunctionNameSet  functionSet[]={
     { "Sample" , "", "", "",  "", "", "", "SampleLoop",
       "SampleDying" ,"","", "","","","","",""},
 
-	/* ÓñÊ§ */
+	/* ç‰å¤± */
     { "Door" , "DoorInit" , "","",
       "","DoorPostOver","DoorWatch","",
       "","DoorTalked","", "",
       "DoorOff","DoorLooked","","",""},
 
-	/* ÷Ò */
+	/* é¥• */
     { "SimpleShop" ,"SimpleShopInit","","",
       "","","","","",
       "SimpleShopTalked" , "","",
       "","","" ,"SimpleShopSpecialTalked" ,""},
 
-	/* ¶ªÓÀ±¾¡õ³â */
+	/* ä¸Ÿæ°¸æœ¬â–¡æ–¥ */
     { "Msg" , "MsgInit" , "","",
       "","","","",
       "","","", "",
       "","MsgLooked","","",""},
 
-	/* ·¥¡õÃóÔı¡õ¼ş */
+	/* ä¼â–¡çš¿åŠ„â–¡ä»¶ */
     { "Warp","WarpInit","","",
       "","","","",
       "","","","",
@@ -78,25 +78,25 @@ static FunctionNameSet  functionSet[]={
       "","", "","",""},
 
 
-	/* ±¾¡õÆ¤ºÌÄÌ¼şĞş */
+	/* æœ¬â–¡çš®ç¦¾å¥¶ä»¶ç„ */
     { "SavePoint","SavePointInit","","",
       "","","","",
       "","SavePointTalked","","",
       "","", "","","SavePointWindowTalked"},
 
-	/* ¼×¡õ·Â¡õ */
+	/* ç”²â–¡ä»¿â–¡ */
     { "Healer","HealerInit","","",
       "","","","",
       "","HealerTalked","","",
       "","", "","",""},
 
-        /* ¼Ò×åHealer add code by shan */  
+        /* å‚¢æ—Healer add code by shan */  
     { "FmHealer","FmHealerInit","","",
       "","","","",
       "","FmHealerTalked","","",
       "","", "","",""},
     
-        /* °×»¢¸øÓèÕß add code by shan */  
+        /* ç™½è™çµ¦äºˆè€… add code by shan */  
     { "PetMaker","PetMakerInit","","",
       "","","","",
       "","PetMakerTalked","","",
@@ -116,7 +116,7 @@ static FunctionNameSet  functionSet[]={
      "DengonInit", "", "", "", "", "", "", "", "",
      "", "", "", "DengonLooked", "", "","DengonWindowTalked"},
      
-     	/* ¼Ò×åÁôÑÔ°å add code by shan */
+     	/* å‚¢æ—ç•™è¨€é—† add code by shan */
     {"FmDengon",
      "FmDengonInit", "", "", "", "", "", "", "", "",
      "", "", "", "FmDengonLooked", "", "","FmDengonWindowTalked"},
@@ -126,13 +126,13 @@ static FunctionNameSet  functionSet[]={
       "" ,"ItemCompoTalked","",""
 	  ,"","","" , "",""},
 
-	/* ÒáÀÃ³Ä */
+	/* è£”çˆ›è¥¯ */
     { "NPCEnemy","NPCEnemyInit","","",
       "","","NPCEnemyWatch","",
       "","NPCEnemyTalked","","",
       "","", "","","NPCEnemyWindowTalked"},
 
-	/* Ê§ÛÍÆËÒà¼şé¬ */
+	/* å¤±å¼æ’²äº¦ä»¶æ¥ */
     { "Action","ActionInit","","",
       "","","ActionWatch","",
       "","ActionTalked","","",
@@ -207,31 +207,31 @@ static FunctionNameSet  functionSet[]={
       "","TimeManTalked","","",
       "","", "","",""},
 
-	/* Ê¾·¸Å«·Â¼ş±Ø¡õ³â */
+	/* ç¤ºçŠ¯å¥´ä»¿ä»¶å¿…â–¡æ–¥ */
     { "BodyLan","BodyLanInit","","",
       "","","BodyLanWatch","",
       "","BodyLanTalked","","",
       "","", "","","BodyLanWindowTalked"},
 
-	/* Ê¾·¸Å«·Â¼ş±Ø¡õ³â */
+	/* ç¤ºçŠ¯å¥´ä»¿ä»¶å¿…â–¡æ–¥ */
     { "Mic","MicInit","","",
       "","","","",
       "","MicTalked","","",
       "","", "","",""},
 
-	/* ·ÂÓÀÆ½¡õÑ¨¼ş */
+	/* ä»¿æ°¸å¹³â–¡ç©´ä»¶ */
     { "LuckyMan","LuckyManInit","","",
       "","","","",
       "","LuckyManTalked","","",
       "","", "","","LuckyManWindowTalked"},
 
-	/* Ñ¨¼şÆ¹µ©Ìïµ©é¬ */
+	/* ç©´ä»¶ä¹’æ—¦ç”°æ—¦æ¥ */
     { "Bus","BusInit","","",
       "","","","BusLoop",
       "","BusTalked","","",
       "","", "","",""},
 
-	/* ¼ÓÃÀº½¿Õ */	// Arminius 7.7 Ariplane
+	/* åŠ ç¾èˆªç©º */	// Arminius 7.7 Ariplane
     { "Airplane","AirInit","","",
       "","","","AirLoop",
       "","AirTalked","","",
@@ -242,7 +242,7 @@ static FunctionNameSet  functionSet[]={
       "","CharmTalked","","",
       "","", "","","CharmWindowTalked"},
 
-	/* ÛÍÄÌÊõé¬ */
+	/* å¼å¥¶è¡“æ¥ */
     { "Quiz","QuizInit","","",
       "","","","",
       "","QuizTalked","","",
@@ -253,19 +253,19 @@ static FunctionNameSet  functionSet[]={
       "","PoolItemShopTalked","","",
       "","", "","","PoolItemShopWindowTalked"},
 
-	/* ÄÌÃ¬¼şĞşÃñÄáÓÀÛÍÑ¨¼ş */
+	/* å¥¶çŸ›ä»¶ç„æ°‘å°¼æ°¸å¼ç©´ä»¶ */
     { "CheckMan","CheckManInit","","",
       "","","","",
       "","CheckManTalked","","",
       "","", "","","CheckManWindowTalked"},
 
-	/* ÔªÔúÊÏØêÊÏé¬ */
+	/* å…ƒç´®æ°ä»ƒæ°æ¥ */
     { "Janken","JankenInit","","",
       "","","","",
       "","JankenTalked","","",
       "","", "","","JankenWindowTalked"},
 
-	/* ±îÏ·ÚĞ */
+	/* é±‰æˆ²è«¦ */
     { "Transmigration","TransmigrationInit","","",
       "","","","",
       "","TransmigrationTalked","","",
@@ -339,7 +339,7 @@ static FunctionNameSet  functionSet[]={
       "GambleRouletteTalked","","","","","","",
 	  "GambleRouletteWindowTalked"
 	}
-	//Ö÷³ÖÈË
+	//ä¸»æŒäºº
 	,{
       "NPC_GambleMaster","GambleMasterInit","","","","","",
       "GambleMasterLoop","",
@@ -421,14 +421,14 @@ static FunctionNameSet  functionSet[]={
 #endif
 
 #ifdef _PETRACE
-	//Ö÷³ÖÈË
+	//ä¸»æŒäºº
 	,{
       "PetRaceMaster","PetRaceMasterInit","","","","","",
       "PetRaceMasterLoop","",
       "PetRaceMasterTalked","","","","","","",
 	  "PetRaceMasterWindowTalked"
 	}
-	// ³èÎï
+	// å¯µç‰©
 	,{
       "PetRacePet","PetRacePetInit","","","","","",
       "PetRacePetLoop","",
@@ -445,7 +445,7 @@ static FunctionNameSet  functionSet[]={
     }
 #endif
 
-#ifdef _ALLDOMAN   // (²»¿É¿ª) Syu ADD ÅÅĞĞ°ñNPC
+#ifdef _ALLDOMAN   // (ä¸å¯é–‹) Syu ADD æ’è¡Œæ¦œNPC
 	,{
 		"Alldoman","AlldomanInit","","",
       "","","","","","AlldomanTalked","","","","","","",
@@ -562,10 +562,10 @@ typedef enum
 }NPC_TYPECATEGORYATREADFILE;
 
 /*------------------------------------------------------------
- * Template index ÎçØÆ»¯¿ÒØÆÖĞ¾®Éıµ¤¾®checkÔÊÔÂ
- * Â¦ĞÑ
+ * Template index åˆä»„åŒ–æ‡‡ä»„ä¸­äº•å‡ä¸¹äº•checkå…æœˆ
+ * å©é†’
  *  index       int             index
- * ß¯Ô»°À
+ * å¿’æ›°è¥–
  *  valid       TRUE
  *  invalid     FALSE
  ------------------------------------------------------------*/
@@ -575,10 +575,10 @@ INLINE int NPC_CHECKTEMPLATEINDEX(int index)
     return TRUE;
 }
 /*------------------------------------------------------------
- * Template intdata index ÎçØÆ»¯¿ÒØÆÖĞ¾®Éıµ¤¾®checkÔÊÔÂ
- * Â¦ĞÑ
+ * Template intdata index åˆä»„åŒ–æ‡‡ä»„ä¸­äº•å‡ä¸¹äº•checkå…æœˆ
+ * å©é†’
  *  index     int             index
- * ß¯Ô»°À
+ * å¿’æ›°è¥–
  *  valid       TRUE
  *  invalid     FALSE
  ------------------------------------------------------------*/
@@ -588,10 +588,10 @@ static INLINE int NPC_CHECKTEMPLATEINTINDEX(int index)
     return TRUE;
 }
 /*------------------------------------------------------------
- * Template chardata index ÎçØÆ»¯¿ÒØÆÖĞ¾®Éıµ¤¾®checkÔÊÔÂ
- * Â¦ĞÑ
+ * Template chardata index åˆä»„åŒ–æ‡‡ä»„ä¸­äº•å‡ä¸¹äº•checkå…æœˆ
+ * å©é†’
  *  index     int             index
- * ß¯Ô»°À
+ * å¿’æ›°è¥–
  *  valid       TRUE
  *  invalid     FALSE
  ------------------------------------------------------------*/
@@ -604,9 +604,9 @@ static INLINE int NPC_CHECKTEMPLATECHARINDEX(int index)
 
 
 /*------------------------------------------------------------
- * Â¦ĞÑ
- *  filenum    int      °×ÑëÄÌ»ïĞÑ
- * ß¯Ô»°À
+ * å©é†’
+ *  filenum    int      ç™½å¤®å¥¶å¤¥é†’
+ * å¿’æ›°è¥–
  ------------------------------------------------------------*/
 BOOL NPC_initTemplateArray( int templatenum )
 {
@@ -619,9 +619,9 @@ BOOL NPC_initTemplateArray( int templatenum )
 }
 
 /*------------------------------------------------------------
- * Â¦ĞÑ
- * ß¯Ô»°À
- *  Ø¦ØÆ
+ * å©é†’
+ * å¿’æ›°è¥–
+ *  å…ä»„
  ------------------------------------------------------------*/
 void NPC_setDefaultNPCTemplate( NPC_Template*  temp )
 {
@@ -703,9 +703,9 @@ void NPC_templateallocitemdata( NPC_Template* one )
 
 
 /*------------------------------------------------------------
- * NPC_getRandomValue Îç¼°Â¦ĞÑ¼°Ñ¯¾§Áë¼°Ğ×»§¼°èúĞÑ
- * Â¦ĞÑ
- * ß¯Ô»°À
+ * NPC_getRandomValue åˆåŠå©é†’åŠè©¢æ™¶å¶ºåŠå‡¶æˆ¶åŠæ¥®é†’
+ * å©é†’
+ * å¿’æ›°è¥–
  ------------------------------------------------------------*/
 static int NPC_seekGraphicNumberFromString( char* string, int* unuse )
 {
@@ -713,8 +713,8 @@ static int NPC_seekGraphicNumberFromString( char* string, int* unuse )
 
 }
 /*------------------------------------------------------------
- * Â¦ĞÑ
- * ß¯Ô»°À
+ * å©é†’
+ * å¿’æ›°è¥–
  ------------------------------------------------------------*/
 static int NPC_getRandomValue( char*  string,int* randomwidth )
 {
@@ -725,11 +725,11 @@ static int NPC_getRandomValue( char*  string,int* randomwidth )
     minvalue = atoi( string );
     startmax = index( string,',' );
     if( startmax != NULL ){
-        /*  ·Â¼şÄ¸Ø©É¬ÀÃ»¥½ñÄ¾»¯ÖĞÔÂ    */
-        /*  +1 ·´ ","¼°Ğ×»§  */
+        /*  ä»¿ä»¶æ¯ä¸æ¾€çˆ›äº’ä»Šæœ¨åŒ–ä¸­æœˆ    */
+        /*  +1 å ","åŠå‡¶æˆ¶  */
         maxvalue = atoi(startmax+1);
 
-        /*  ÇĞÔúÊÏÎçØÆĞ×É¬ÀÃ·Ö  */
+        /*  åˆ‡ç´®æ°åˆä»„å‡¶æ¾€çˆ›åˆ†  */
         *randomwidth = ABS(maxvalue - minvalue);
         return min(minvalue,maxvalue);
     }
@@ -739,8 +739,8 @@ static int NPC_getRandomValue( char*  string,int* randomwidth )
 
 
 /*------------------------------------------------------------
- * Â¦ĞÑ
- * ß¯Ô»°À
+ * å©é†’
+ * å¿’æ›°è¥–
  ------------------------------------------------------------*/
 BOOL    NPC_readTemplateFile( char* filename )
 {
@@ -755,8 +755,8 @@ BOOL    NPC_readTemplateFile( char* filename )
     int     i;
 
     if( NPC_template_readindex >= NPC_templatenum ){
-        print("Ä£¿é³¬¹ıÅäÖÃÊıÄ¿\n" );
-        print("ÅäÖÃÄ£¿éÊıÄ¿ %d\n", NPC_templatenum);
+        print("æ¨¡å¡Šè¶…éé…ç½®æ•¸ç›®\n" );
+        print("é…ç½®æ¨¡å¡Šæ•¸ç›® %d\n", NPC_templatenum);
         return FALSE;
     }
 
@@ -781,7 +781,7 @@ BOOL    NPC_readTemplateFile( char* filename )
 		}
 #endif
     if( strcmp( NPC_TEMPLATEFILEMAGIC, line ) != 0 ){
-        print( "Õâ²»ÊÇÄ£¿éÎÄ¼ş.\n" );
+        print( "é€™ä¸æ˜¯æ¨¡å¡Šæ–‡ä»¶.\n" );
         goto FCLOSERETURNFALSE ;
     }
     linenum = 1;
@@ -798,7 +798,7 @@ BOOL    NPC_readTemplateFile( char* filename )
         switch( line[0] ){
         case '{':
             if( start == ON ){
-                fprint( "Find {. ÒÑ¾­¿ªÊ¼ÉùÃ÷. %s:%d\n",
+                fprint( "Find {. å·²ç¶“é–‹å§‹è²æ˜. %s:%d\n",
                         filename, linenum);
                 goto FCLOSERETURNFALSE;
 
@@ -810,7 +810,7 @@ BOOL    NPC_readTemplateFile( char* filename )
                 int err=FALSE;
                 if( strcmp(temp.chardata[NPC_TEMPLATENAME].string ,"")
                     == 0 ){
-                    fprint( "ÕâĞ©Ã»ÓĞÃû×Ö %s:%d\n",
+                    fprint( "é€™äº›æ²’æœ‰åå­— %s:%d\n",
                             filename, linenum );
                     err  = TRUE;
                 }else if( temp.intdata[NPC_TEMPLATETYPE] == -1 ){
@@ -832,8 +832,8 @@ BOOL    NPC_readTemplateFile( char* filename )
                             &temp, sizeof( NPC_Template ) );
                     NPC_template_readindex++;
                     if( NPC_template_readindex >= NPC_templatenum ){
-                        print("Ä£¿é³¬¹ıÅäÖÃÊıÄ¿\n" );
-                        print("ÅäÖÃÄ£¿éÊıÄ¿ÊÇ %d\n",
+                        print("æ¨¡å¡Šè¶…éé…ç½®æ•¸ç›®\n" );
+                        print("é…ç½®æ¨¡å¡Šæ•¸ç›®æ˜¯ %d\n",
                               NPC_templatenum);
                         goto FCLOSERETURNFALSE;
                     }
@@ -842,7 +842,7 @@ BOOL    NPC_readTemplateFile( char* filename )
                 itmreadindex=0;
                 start=OFF;
             }else{
-                fprint( "Î´½â¾ö '}' at %s:%d\n",filename,linenum);
+                fprint( "æœªè§£æ±º '}' at %s:%d\n",filename,linenum);
                 goto FCLOSERETURNFALSE;
             }
             break;
@@ -1037,31 +1037,31 @@ BOOL NPC_readNPCTemplateFiles( char* topdirectory ,int templatesize)
     filenames = (STRING64 *)allocateMemory( sizeof( STRING64 ) *
                                                (int)getFilesearchnum( ) );
 	if( filenames == NULL ){
-	    print( "¶ÁÈ¡NPC´´½¨ÎÄ¼ş... ÄÚ´æ³ö´í\n" );
+	    print( "è®€å–NPCå‰µå»ºæ–‡ä»¶... å…§å­˜é½£éŒ¯\n" );
 		return FALSE;
 	}
     filenum = rgetFileName( topdirectory ,filenames ,getFilesearchnum( ) );
     if( filenum == -1 ){
-        fprint("ÎŞ·¨´Ó %s µİ¹é»ñÈ¡ÎÄ¼şÃû\n",topdirectory);
+        fprint("ç„¡æ³•å¾ %s éæ­¸ç²å–æ–‡ä»¶å\n",topdirectory);
 	    freeMemory( filenames );
         return FALSE;
     }
 	if( filenum >= getFilesearchnum( ) ){
-		print( "ÎÄ¼şËÑË÷ÊıÄ¿Ê§°Ü %d\n", getFilesearchnum( ) );
+		print( "æ–‡ä»¶æœç´¢æ•¸ç›®å¤±æ•— %d\n", getFilesearchnum( ) );
 		while( 1 );
 	}else{
-		print( "ËÑË÷µ½ÎÄ¼ş = %d\n", filenum );
+		print( "æœç´¢åˆ°æ–‡ä»¶ = %d\n", filenum );
 	}
     if( !NPC_initTemplateArray( templatesize ) ){
-        fprint( "¿ªÆôÄ£¿éÊı×é´íÎó\n" );
+        fprint( "é–‹å•“æ¨¡å¡Šæ•¸çµ„éŒ¯èª¤\n" );
 	    freeMemory( filenames );
         return FALSE;
     }
-    print( "¶ÁÈ¡ÎÄ¼şÄ£¿éÊı×é´íÎó...." );
+    print( "è®€å–æ–‡ä»¶æ¨¡å¡Šæ•¸çµ„éŒ¯èª¤...." );
     for( i = 0 ; i < filenum ; i ++ )
         if( NPC_IsNPCTemplateFile( filenames[i].string ))
             NPC_readTemplateFile( filenames[i].string );
-    print( "ÕıÈ·Ä£¿é %d ...\n" , NPC_template_readindex );
+    print( "æ­£ç¢ºæ¨¡å¡Š %d ...\n" , NPC_template_readindex );
     NPC_templatenum=NPC_template_readindex;
     freeMemory( filenames );
     return TRUE;
@@ -1070,9 +1070,9 @@ BOOL NPC_readNPCTemplateFiles( char* topdirectory ,int templatesize)
 
 
 /*------------------------------------------------------------
- * Â¦ĞÑ
- * ß¯Ô»°À
- *  -1  ¼°Áİ¾Ş·Â¡õ
+ * å©é†’
+ * å¿’æ›°è¥–
+ *  -1  åŠå‡œå·¨ä»¿â–¡
  ------------------------------------------------------------*/
 int NPC_templateGetTemplateIndex( char* templatename )
 {

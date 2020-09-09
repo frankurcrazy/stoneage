@@ -1,16 +1,16 @@
-﻿//==========================================================================
-// 档名 : PhoneMsg.cpp
-// 功用 : 石器时代[简讯]按钮的功能实作(V3.0后新增的功能)
-// 撰写人   : 林 昌 磊  (Leiboy)
+//==========================================================================
+// 檔名 : PhoneMsg.cpp
+// 功用 : 石器時代[簡訊]按鈕的功能實作(V3.0後新增的功能)
+// 撰寫人   : 林 昌 磊  (Leiboy)
 // 初版完成日期 : 2002年01月26日
 // 第二版更新日期 : 2002年02月02日==>新增Multithread(函式五)
-// 第三版更新日期 : 2002年02月20日==>将MFC改写成Winsock方式!(本版为已完成版!)
+// 第三版更新日期 : 2002年02月20日==>將MFC改寫成Winsock方式!(本版為已完成版!)
 // 第四版完成日期 : 2002年02月26日==>新增DNS(函式七)
-// 线上正式运作日期 : 2002年03月04日
-// 补充说明 : 游戏中成功地传送一通简讯每次将扣WGS点数五点!
+// 綫上正式運作日期 : 2002年03月04日
+// 補充說明 : 遊戲中成功地傳送一通簡訊每次將扣WGS點數五點!
 //==========================================================================
 
-//先做版本的控制
+//先做版本的控製
 #include "../systeminc/version.h"
 #ifdef __PHONEMESSAGE
 
@@ -29,38 +29,38 @@
 #include "../wgs/descrypt.h"
 #include "../other/caryIme.h"
 
-#define MSG_SURE_D	     26288 //确定(按下)(黄色的)
-#define MSG_SURE_U	     26289 //确定(弹起)(黄色的)
+#define MSG_SURE_D	     26288 //確定(按下)(黃色的)
+#define MSG_SURE_U	     26289 //確定(彈起)(黃色的)
 #define MSG_CANCEL_U	 26284 //取消(未按下)
 #define MSG_CANCEL_D	 26285 //取消(按下)
-#define MSG_CLEAR_U      26298 //清除(弹起)
+#define MSG_CLEAR_U      26298 //清除(彈起)
 #define MSG_CLEAR_D      26299 //清除(按下)
 
-//Messsage 的Log 专用区 Begin
+//Messsage 的Log 專用區 Begin
 #ifdef _STONDEBUG_
 char    logstr[512];
 #define logfilename     "message.log"
 #endif
-//Messsage 的Log 专用区 End
+//Messsage 的Log 專用區 End
 
 BOOL QueryMyIP(char HostName[]);
-//石器简讯Server IP : 210.64.97.17
+//石器簡訊Server IP : 210.64.97.17
 char *MsgIP;
 #define SMSDomainName   "sms.hwaei.com.tw"
 //目前所采用的ASP filename
-#define ASPname   "//sms//stoneage.asp"  //2002 Feb. 20后启用!
+#define ASPname   "//sms//stoneage.asp"  //2002 Feb. 20後啓用!
 int     myvalue;
 char    seqno[14];        //Wayia_seqno
 //************************************************
-//函式一 : 处理主程式与ASP间沟通的专用函式
-//回传值 : 0 --- 处理完毕 & 简讯发送成功
-//         1 --- 简讯发送失败
-//         2 --- 手机号码参数错误
-//         3 --- 手机讯息参数错误(过长)
-//         4 --- 网路端错误
-//         5 --- WGS点数(或通数)已不足!!(小于五点)
-//         6 --- 连线逾时(或DNS失败)
-//         7 --- ASP回传错误
+//函式一 : 處理主程式與ASP間溝通的專用函式
+//迴傳值 : 0 --- 處理完畢 & 簡訊發送成功
+//         1 --- 簡訊發送失敗
+//         2 --- 手機號碼參數錯誤
+//         3 --- 手機訊息參數錯誤(過長)
+//         4 --- 網路端錯誤
+//         5 --- WGS點數(或通數)已不足!!(小於五點)
+//         6 --- 連綫逾時(或DNS失敗)
+//         7 --- ASP迴傳錯誤
 //************************************************
 int SendPhoneMsg(char pid[16], char ppw[16], char pps[], char pms[])
 {
@@ -74,8 +74,8 @@ int SendPhoneMsg(char pid[16], char ppw[16], char pps[], char pms[])
 		i++;
 	}while( dv && (i<8));
 	if(!dv)  return 2;
-	//和Jason讨论后,新订的文字上限为66bytes!!  Feb. 5,2002
-	//保留16bytes给玩家名称用!                 Feb.22,2002
+	//和Jason討論後,新訂的文字上限為66bytes!!  Feb. 5,2002
+	//保留16bytes給玩傢名稱用!                 Feb.22,2002
 	int x=0,mc=0;
 	do
 	{
@@ -91,7 +91,7 @@ int SendPhoneMsg(char pid[16], char ppw[16], char pps[], char pms[])
 		return 3;
 	else
 
-#ifdef _FIX_URLENCODE   // WON ADD	北京修正简讯无法加空格的问题
+#ifdef _FIX_URLENCODE   // WON ADD	北京修正簡訊無法加空格的問題
 	{
 		char OutTmp[768];
 		char *pInTmp,*pOutTmp;
@@ -242,7 +242,7 @@ int SendPhoneMsg(char pid[16], char ppw[16], char pps[], char pms[])
 		if(result[0]=='1')
 		{
 #ifdef _STONDEBUG_
-			lstrcpy(logstr,"失败 ");
+			lstrcpy(logstr,"失敗 ");
 			lstrcat(logstr,pps);
 			sprintf_s(logstr,"%s %s",logstr,extpms);
 #endif
@@ -278,9 +278,9 @@ int SendPhoneMsg(char pid[16], char ppw[16], char pps[], char pms[])
 }
 
 //************************************************
-//函式二 : 产生Log档(于Local端目录下)的专用函式
-//回传值 : None
-//附  注 : 只有Debug mode才在硬碟写入log档!!
+//函式二 : 産生Log檔(於Local端目錄下)的專用函式
+//迴傳值 : None
+//附  注 : 隻有Debug mode纔在硬碟寫入log檔!!
 //************************************************
 #ifdef _STONDEBUG_
 void WriteLog( char cData[], char cFile[])
@@ -309,8 +309,8 @@ STR_BUFFER  pno,ptext;
 static STR_BUFFER *MsgFocus[] ={ &pno, &ptext };
 static int MsgFocusSw;
 //************************************************
-//函式三 : 资料输入栏位的初始化函式
-//回传值 : None
+//函式三 : 資料輸入欄位的初始化函式
+//迴傳值 : None
 //************************************************
 void InitMsgInput()
 {
@@ -342,8 +342,8 @@ void InitMsgInput()
 }
 
 //************************************************
-//函式四 : 处理资料输入栏位的主函式
-//回传值 : None
+//函式四 : 處理資料輸入欄位的主函式
+//迴傳值 : None
 //************************************************
 int InputMsgData()
 {
@@ -400,8 +400,8 @@ HANDLE MHandle;
 extern short msgBtn;
 extern char szUser[],szPassword[];
 //************************************************
-//函式五 : 处理Multithread的主函式
-//回传值 : OL
+//函式五 : 處理Multithread的主函式
+//迴傳值 : OL
 //************************************************
 DWORD WINAPI MsgThread(LPVOID param)
 {
@@ -421,39 +421,39 @@ DWORD WINAPI MsgThread(LPVOID param)
 	switch(myvalue)
 	{
 				case 1:
-					StockChatBufferLine("本则简讯传送失败!",FONT_PAL_RED);
-					StockChatBufferLine("请您重新操作!!",FONT_PAL_WHITE);
+					StockChatBufferLine("本則簡訊傳送失敗!",FONT_PAL_RED);
+					StockChatBufferLine("請您重新操作!!",FONT_PAL_WHITE);
 					break;
 				case 2:
-					StockChatBufferLine("手机号码格式错误!!",FONT_PAL_RED);
-					StockChatBufferLine("无法发送本则简讯!",FONT_PAL_RED);
+					StockChatBufferLine("手機號碼格式錯誤!!",FONT_PAL_RED);
+					StockChatBufferLine("無法發送本則簡訊!",FONT_PAL_RED);
 					break;
 				case 3:
-					StockChatBufferLine("手机讯息过长!!",FONT_PAL_RED);
-					StockChatBufferLine("无法发送本则简讯!",FONT_PAL_RED);
+					StockChatBufferLine("手機訊息過長!!",FONT_PAL_RED);
+					StockChatBufferLine("無法發送本則簡訊!",FONT_PAL_RED);
 					break;
 				case 4:
-					StockChatBufferLine("网路发生错误!!",FONT_PAL_RED);
-					StockChatBufferLine("无法发送本则简讯!",FONT_PAL_RED);
+					StockChatBufferLine("網路發生錯誤!!",FONT_PAL_RED);
+					StockChatBufferLine("無法發送本則簡訊!",FONT_PAL_RED);
 					break;
 				case 5:
-					StockChatBufferLine("您的WGS点数(或通数)已不足!!",FONT_PAL_RED);
-					StockChatBufferLine("无法发送本则简讯!",FONT_PAL_RED);
+					StockChatBufferLine("您的WGS點數(或通數)已不足!!",FONT_PAL_RED);
+					StockChatBufferLine("無法發送本則簡訊!",FONT_PAL_RED);
 					break;
 				case 6:
-					StockChatBufferLine("简讯服务器无法连结!!",FONT_PAL_RED);
-					StockChatBufferLine("请您稍后再试...",FONT_PAL_WHITE);
+					StockChatBufferLine("簡訊服務器無法連結!!",FONT_PAL_RED);
+					StockChatBufferLine("請您稍後再試...",FONT_PAL_WHITE);
 					break;
 				case 7:
-					StockChatBufferLine("简讯服务器没有正确地回应!!",FONT_PAL_RED);
-					StockChatBufferLine("无法确定本则简讯是否成功?!",FONT_PAL_WHITE);
+					StockChatBufferLine("簡訊服務器沒有正確地迴應!!",FONT_PAL_RED);
+					StockChatBufferLine("無法確定本則簡訊是否成功?!",FONT_PAL_WHITE);
 					break;
 				case -1:
-					StockChatBufferLine("程式内部错误!!!",FONT_PAL_RED);
-					StockChatBufferLine("本则简讯传送失败!",FONT_PAL_RED);
+					StockChatBufferLine("程式內部錯誤!!!",FONT_PAL_RED);
+					StockChatBufferLine("本則簡訊傳送失敗!",FONT_PAL_RED);
 					break;
 				default:
-					StockChatBufferLine("简讯已经送出了!",FONT_PAL_YELLOW);
+					StockChatBufferLine("簡訊已經送齣瞭!",FONT_PAL_YELLOW);
 	}
 #ifdef _STONDEBUG_
 	if(logstr[0] != 0) WriteLog(logstr,logfilename);
@@ -466,10 +466,10 @@ DWORD WINAPI MsgThread(LPVOID param)
 
 int MsgID;
 //************************************************
-//函式六 : 手机简讯功能的主要函式
-//回传值 : 0 --- 视窗OPEN
-//         1 --- 视窗CLOSE
-//         2 --- 按下确定的结束
+//函式六 : 手機簡訊功能的主要函式
+//迴傳值 : 0 --- 視窗OPEN
+//         1 --- 視窗CLOSE
+//         2 --- 按下確定的結束
 //************************************************
 int MsgProc()
 {
@@ -478,7 +478,7 @@ int MsgProc()
 	static int btnState[2];
 	static DWORD dwPressTime;
 	static ACTION *pActMenuWin = NULL;
-	char MsgHint[][30] = {"对方的手机号码。","简讯内容(最多50中/英字)。","送出简讯。","关闭简讯视窗。","清空简讯内容。"};
+	char MsgHint[][30] = {"對方的手機號碼。","簡訊內容(最多50中/英字)。","送齣簡訊。","關閉簡訊視窗。","清空簡訊內容。"};
 
 	if(MsgID == 0)
 	{
@@ -533,7 +533,7 @@ int MsgProc()
 				btnState[id] = 1;
 				id = -1;
 				dwPressTime = TimeGetTime();
-				play_se( 217, 320, 240);  //按钮声
+				play_se( 217, 320, 240);  //按鈕聲
 			}
 		}
 
@@ -561,19 +561,19 @@ int MsgProc()
 		{
 			id = 99;
 		}
-		else //按Esc关闭
+		else //按Esc關閉
 			if( (joy_trg[ 0 ] & JOY_ESC) && GetImeString() == NULL)
 			{
 				id = 100;
-				play_se( 203, 320, 240);//视窗关闭声
+				play_se( 203, 320, 240);//視窗關閉聲
 			}
-			else //按下取消钮
+			else //按下取消鈕
 				if(btnState[1] == 1)
 				{
 					id = 100;
 					play_se( 203, 320, 240);
 				}
-		//关闭简讯视窗
+		//關閉簡訊視窗
 		if( id >= 0)
 		{
 			DeathAction( pActMenuWin);
@@ -584,8 +584,8 @@ int MsgProc()
 				MHandle = CreateThread(NULL, 0, MsgThread,&dwThrdParam,0,&dwThreadID);
 				if(MHandle == NULL)
 				{
-					StockChatBufferLine("您的作业系统资源已不足!!",FONT_PAL_RED);
-					StockChatBufferLine("本则简讯发送失败!",FONT_PAL_RED);
+					StockChatBufferLine("您的作業係統資源已不足!!",FONT_PAL_RED);
+					StockChatBufferLine("本則簡訊發送失敗!",FONT_PAL_RED);
 					return 1;
 				}				
 				return 2;
@@ -598,9 +598,9 @@ int MsgProc()
 }
 
 //************************************************
-//函式七 : DNS专用函式
-//回传值 : TRUE  --- 转换成功
-//         FALSE --- 转换失败
+//函式七 : DNS專用函式
+//迴傳值 : TRUE  --- 轉換成功
+//         FALSE --- 轉換失敗
 //************************************************
 BOOL QueryMyIP(char HostName[])
 {

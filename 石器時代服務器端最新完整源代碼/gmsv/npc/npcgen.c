@@ -23,22 +23,22 @@ typedef struct tagNPC_searchPoint
 }NPC_searchPoint;
 
 
-/*  窒荚NPC毛综月井 */
+/*  脰脧录脭NPC脙芦脳脹脭脗戮庐 */
 #define NPC_CREATECHALLENGETIME    1
-int all_nosee = 0;		/* ㄠ及凛｛蝈化及衬毛 no_see 卞 */
-int all_nobody = 0;		/* ㄠ及凛｛蝈化及衬毛 no_body 卞 */
-int one_loop_born = 1;	/* ㄠ伙□皿匹  嫖戏心请允醒 oneloop_born */
+int all_nosee = 0;		/* 篓脿录掳脕脻拢没貌氓禄炉录掳鲁脛脙芦 no_see 卤氓 */
+int all_nobody = 0;		/* 篓脿录掳脕脻拢没貌氓禄炉录掳鲁脛脙芦 no_body 卤氓 */
+int one_loop_born = 1;	/* 篓脿禄茂隆玫脙贸脝楼  忙脦脧路脨脛脟毛脭脢脨脩 oneloop_born */
 
 /*------------------------------------------------------------
- * 衬毛丹心分允桦赭毛瑁烂允月
- * 娄醒
- *  nobody  int                 1 及凛反簿手中卅中凛卞勾仁月
- *                                          (簿井中化手综月)
- *                                          (簿井中凶凛及心综月)
- *                                  毛仄卅仁卅月
- * 忒曰袄
- *  综木月凛反  TRUE
- *  综木卅中凛反  FALSE
+ * 鲁脛脙芦碌陇脨脛路脰脭脢猫毛么梅脙芦猫拢脌脙脭脢脭脗
+ * 脗娄脨脩
+ *  nobody  int                 1 录掳脕脻路麓虏戮脢脰脰脨脴娄脰脨脕脻卤氓鹿麓脠脢脭脗
+ *                                          (虏戮戮庐脰脨禄炉脢脰脳脹脭脗)
+ *                                          (虏戮戮庐脰脨脨脳脕脻录掳脨脛脳脹脭脗)
+ *                                  脙芦脴脝脴娄脠脢脴娄脭脗
+ * 脽炉脭禄掳脌
+ *  脳脹脛戮脭脗脕脻路麓  TRUE
+ *  脳脹脛戮脴娄脰脨脕脻路麓  FALSE
  ------------------------------------------------------------*/
 static BOOL NPC_searchCreatePoint( NPC_Create* cr,int  nobody,int nosee,
                             NPC_searchPoint* point, BOOL isflying )
@@ -175,11 +175,11 @@ static NPC_Correspondfunction   correspondfunction[]={
 #endif
 };
 /*------------------------------------------------------------
- * 楮醒戊疋□允月
- * 娄醒
- *  ch      Char*           平乓仿犯□正
- * 忒曰袄
- *  卅仄
+ * 猫煤脨脩脦矛帽芒隆玫脭脢脭脗
+ * 脗娄脨脩
+ *  ch      Char*           脝陆脜脪路脗路赂隆玫脮媒
+ * 脽炉脭禄掳脌
+ *  脴娄脴脝
  ------------------------------------------------------------*/
 static void NPC_copyFunction( Char* ch, NPC_Template*   temp )
 {
@@ -356,7 +356,7 @@ void NPC_generateLoop( BOOL checkall )
     int     i,j;
     int    CreateOk=0;
     int enemynum ;
-    static int  createcount = 0;        /* create及窒    井日蔺爵允月井 */
+    static int  createcount = 0;        /* create录掳脰脧    戮庐脠脮脻镁戮么脭脢脭脗戮庐 */
     static struct timeval _store_npc_generateloop_time;
 	if( checkall == FALSE) {
 	    if( time_diff_us( NowTime, _store_npc_generateloop_time ) < (1000*1000)){

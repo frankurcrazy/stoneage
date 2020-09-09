@@ -7,7 +7,7 @@ int SendData(SOCKET s, char * data)
 	return send(s, data, strlen(data), 0);
 }
 
-BOOL »ñÈ¡IP(char *IP)
+BOOL Â»Ã±ÃˆÂ¡IP(char *IP)
 { 
   WSAData wsaDat;
   short int Port = 80;
@@ -47,8 +47,8 @@ BOOL »ñÈ¡IP(char *IP)
     }
     p += iRet;
     iLen -= iRet;
-    if ((iIndex_Head = strstr(recvstr,"¡¾"))){
-		char* iIndex = strstr(recvstr,"¡¿");
+    if ((iIndex_Head = strstr(recvstr,"Â¡Â¾"))){
+		char* iIndex = strstr(recvstr,"Â¡Â¿");
 		if (!iIndex) {
           continue;
 		}

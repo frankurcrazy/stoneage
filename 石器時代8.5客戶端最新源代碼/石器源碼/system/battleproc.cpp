@@ -1,4 +1,4 @@
-﻿/************************/
+/************************/
 /*	battleProc.cpp		*/
 /************************/
 #include "../systeminc/version.h"
@@ -36,9 +36,9 @@ extern ACTION *boundary_2,*boundary_mark[2];
 #ifdef __ATTACK_MAGIC
 
 // Global vars
-extern int			g_iRunEarthQuake;			// 地震的状况: 0 --> 没地震 , 1 --> 初始化地震 , 2 --> 地震中
-extern int			g_iCurRunEarthQuake;		// 目前地震的位置线
-extern int			g_iNumRunEarthQuake;		// 地震的总次数
+extern int			g_iRunEarthQuake;			// 地震的狀況: 0 --> 沒地震 , 1 --> 初始化地震 , 2 --> 地震中
+extern int			g_iCurRunEarthQuake;		// 目前地震的位置綫
+extern int			g_iNumRunEarthQuake;		// 地震的總次數
 
 #endif
 
@@ -66,8 +66,8 @@ BOOL Battle1P2PFlag;
 ACTION* pActSurprisalWnd;
 ACTION* pActAudienceExitWnd;
 
-#ifdef _NEWDRAWBATTLEMAP		   // (不可开放) Syu ADD 自动产生BattleMap
-static ACTION *BattleWaterAct[8];   //环境动画
+#ifdef _NEWDRAWBATTLEMAP		   // (不可開放) Syu ADD 自動産生BattleMap
+static ACTION *BattleWaterAct[8];   //環境動畫
 #endif
 
 // ??????
@@ -124,7 +124,7 @@ void battle_quake( void )
 
 	switch( g_iRunEarthQuake )
 	{
-		// 没地震
+		// 沒地震
 		case 0:
 
 			break;
@@ -296,11 +296,11 @@ void SurprisalDisp( void )
 			}
 			// ???????????????
 			if( BattleBpFlag & BATTLE_BP_ENEMY_SURPRISAL ){
-				StockFontBuffer( pActSurprisalWnd->x + 38, pActSurprisalWnd->y + 40, FONT_PRIO_FRONT, 0, " 遭敌偷袭 ", 0 );
+				StockFontBuffer( pActSurprisalWnd->x + 38, pActSurprisalWnd->y + 40, FONT_PRIO_FRONT, 0, " 遭敵偷襲 ", 0 );
 			}
 			// ????????????
 			if( BattleBpFlag & BATTLE_BP_PLAYER_SURPRISAL ){
-				StockFontBuffer( pActSurprisalWnd->x + 38, pActSurprisalWnd->y + 40, FONT_PRIO_FRONT, 0, "出其不意的攻击", 0 );
+				StockFontBuffer( pActSurprisalWnd->x + 38, pActSurprisalWnd->y + 40, FONT_PRIO_FRONT, 0, "齣其不意的攻擊", 0 );
 			}
 		}
 	}
@@ -308,7 +308,7 @@ void SurprisalDisp( void )
 
 int xxx;
 
-/*Battle Process处理******************************************************************/
+/*Battle Process處理******************************************************************/
 #ifdef _AI_OTHER
 #ifdef _AI_CAPTURE
 extern int AI_OtherSetting[2];
@@ -329,7 +329,7 @@ void BattleProc( void )
 		skillBtn = 0 ; 
 	#endif
 #endif
-#ifdef _FRIENDCHANNEL      //ROG ADD 好友频道
+#ifdef _FRIENDCHANNEL      //ROG ADD 好友頻道
 	extern short chatRoomBtn ;
 	chatRoomBtn = 0;
 	SelRoomBtn = 0;
@@ -357,32 +357,32 @@ void BattleProc( void )
 				boundary_mark[1] = NULL;
 			}
 #endif
-			//Action消灭
+			//Action消滅
 			DeathAllAction();
 
-			// 战斗初始时释放掉水世界所有的动画
-#ifdef _AniRandom   // Syu ADD 随机产生环境动画
+			// 戰鬥初始時釋放掉水世界所有的動畫
+#ifdef _AniRandom   // Syu ADD 隨機産生環境動畫
 			extern void AniRandomRelease();
 			AniRandomRelease();
 #endif
 
-#ifdef _AniCrossFrame	   // Syu ADD 动画层游过画面生物
+#ifdef _AniCrossFrame	   // Syu ADD 動畫層遊過畫麵生物
 			extern void crossAniRelease();
 			crossAniRelease();
 #endif
-#ifdef _AniCharBubble	   // Syu ADD 动画层人物吐出气泡
+#ifdef _AniCharBubble	   // Syu ADD 動畫層人物吐齣氣泡
 			extern void CharbubbleRelease();
 			CharbubbleRelease();
 #endif
-#ifdef _AniImmobile	 // Syu ADD 定点产生特定动画
+#ifdef _AniImmobile	 // Syu ADD 定點産生特定動畫
 			extern void ImmobileAniRelease();
 			ImmobileAniRelease();
 #endif
-#ifdef _SPECIALSPACEANIM	// Syu ADD 特殊场景动画配置
+#ifdef _SPECIALSPACEANIM	// Syu ADD 特殊場景動畫配置
 			extern void ReleaseSpecAnim();
 			ReleaseSpecAnim();
 #endif
-#ifdef _NEWDRAWBATTLEMAP		   // Syu ADD 自动产生BattleMap
+#ifdef _NEWDRAWBATTLEMAP		   // Syu ADD 自動産生BattleMap
 			if ( nowFloor == 817 || nowFloor == 8007 || nowFloor == 8101 || nowFloor == 8100 || 
 				nowFloor == 8027 || nowFloor == 8028 || nowFloor == 8029 || nowFloor == 8015 || nowFloor == 8113 || nowFloor == 8114 )
 			{
@@ -411,20 +411,20 @@ void BattleProc( void )
 			pActAudienceExitWnd = NULL;
 			// Produce初始化
 			ProduceInitFlag = TRUE;
-			// 输入focus取得
+			// 輸入focus取得
 			GetKeyInputFocus( &MyChatBuffer );
 			// ?????
 			// Buffer初始化
 			DispBuffer.DispCnt = 0;
 			FontCnt = 0;
-			// BattleMap读取
+			// BattleMap讀取
 #ifdef _NEW_RESOMODE
 			//drawMap();
 			ReadBattleMap( BattleMapNo );
 #else
 			ReadBattleMap( BattleMapNo );
 #endif
-			ChatProc();				// Chat处理
+			ChatProc();				// Chat處理
 			ChatBufferToFontBuffer(); // ??????????????????????
 			// ???????????????
 			ClearBackSurface();	
@@ -444,35 +444,35 @@ void BattleProc( void )
 			//????????
 			if(DuelFlag == TRUE || eventEnemyFlag == 1 || vsLookFlag == 1)
 			{
-#ifdef _NEWMUSICFILE6_0		   // Syu ADD 6.0 新地图音乐
+#ifdef _NEWMUSICFILE6_0		   // Syu ADD 6.0 新地圖音樂
 				if ( nowFloor != 817 && nowFloor != 8007 && nowFloor != 8101 && nowFloor != 8100 && 
 					nowFloor != 8027 && nowFloor != 8028 && nowFloor != 8029 && nowFloor != 8015 && nowFloor != 8113 && nowFloor != 8114 )
 				{
 #endif
-					//Boss战BGM再生
+					//Boss戰BGM再生
 					if( map_bgm_no>=15 && map_bgm_no<=21)
 						play_bgm( 13 );
 					else
 						play_bgm( 6 );
 					if(nowFloor == 8519) play_bgm(14);
-#ifdef _NEWMUSICFILE6_0		   // Syu ADD 6.0 新地图音乐
+#ifdef _NEWMUSICFILE6_0		   // Syu ADD 6.0 新地圖音樂
 				}
 				else	play_bgm ( 24 ) ;
 #endif
 			}
 			else
 			{
-#ifdef _NEWMUSICFILE6_0		   // Syu ADD 6.0 新地图音乐
+#ifdef _NEWMUSICFILE6_0		   // Syu ADD 6.0 新地圖音樂
 				if ( nowFloor != 817 && nowFloor != 8007 && nowFloor != 8101 && nowFloor != 8100 && 
 					nowFloor != 8027 && nowFloor != 8028 && nowFloor != 8029 && nowFloor != 8015 && nowFloor != 8113 && nowFloor != 8114 )
 				{
 #endif
-					//通常战斗BGM再生
+					//通常戰鬥BGM再生
 					if( map_bgm_no>=15 && map_bgm_no<=21)
 						play_bgm( 12 );
 					else
 						play_bgm( 5 );
-#ifdef _NEWMUSICFILE6_0		   // Syu ADD 6.0 新地图音乐
+#ifdef _NEWMUSICFILE6_0		   // Syu ADD 6.0 新地圖音樂
 				}
 				else
 					play_bgm ( 24 ) ;
@@ -487,11 +487,11 @@ void BattleProc( void )
 			// ????
 			MenuProc();				// ??????
 			ImeProc();				// ???????
-			// 处理 field menu ???????????
+			// 處理 field menu ???????????
 			fieldProc2();
 			// menu flag on ????????? 
 			battleMenuFlag2 = TRUE;
-			// 检查宠物 ??????????
+			// 檢查寵物 ??????????
 			for( i = 0 ; i < 5 ; i++ ){
 				// ????????????
 				if( pet[ i ].useFlag == FALSE ){
@@ -510,7 +510,7 @@ void BattleProc( void )
 			break;
 			
 		case BATTLE_SUBPROC_IN_PRODUCE:			// ??????
-			// 转景 ??
+			// 轉景 ??
 			if( DrawProduce( PRODUCE_HAGARE_OCHI_IN ) == TRUE ){
 				// ???????
 				DispBuffer.DispCnt = 0;
@@ -563,7 +563,7 @@ void BattleProc( void )
 			}
 			break;
 			
-		case BATTLE_SUBPROC_RECEIVE_BC:			//每回合起始人物状态显示
+		case BATTLE_SUBPROC_RECEIVE_BC:			//每迴閤起始人物狀態顯示
 #ifdef _DEBUG__
 			if(offlineFlag == TRUE){
 
@@ -640,7 +640,7 @@ void BattleProc( void )
 					);
 #endif
 				//strcpy( BattleStatus, BattleBcDeb[ BattleDebTurnNo ] );
-				//设置BC封包
+				//設置BC封包
 				set_bc();
 				SubProcNo++;
 				break;
@@ -651,7 +651,7 @@ void BattleProc( void )
 			ChatProc();
 /*
 #ifndef __AI
-			//cary 清除暂停自动攻击
+			//cary 清除暫停自動攻擊
 			if( PauseAI == 2)
 				PauseAI = 0;
 			if( PauseAI == 1)
@@ -676,7 +676,7 @@ void BattleProc( void )
 			// ??
 			if( BattleBpFlag & BATTLE_BP_JOIN ){
 				// ??????
-				strcpy( OneLineInfoStr,"等待回合结束。");
+				strcpy( OneLineInfoStr,"等待迴閤結束。");
 			}
 			// ?????????????????
 			if( EncountFlag == FALSE ){
@@ -697,24 +697,24 @@ void BattleProc( void )
 				set_bc();
 				if( BattleMyNo < BATTLKPKPLYAERNUM )	{
 					if( p_party[ BattleMyNo ]->petFall == 2 )	{
-						lssproto_TK_recv( sockfd, 0, "P|你中了落马术，座骑已退出战斗。", FONT_PAL_YELLOW);
+						lssproto_TK_recv( sockfd, 0, "P|你中瞭落馬術，座騎已退齣戰鬥。", FONT_PAL_YELLOW);
 						p_party[ BattleMyNo ]->petFall = 0;
 					}else if( p_party[ BattleMyNo ]->onRide == -1 )	{
-						lssproto_TK_recv( sockfd, 0, "P|你的座骑受伤过重，已退出战斗。", FONT_PAL_YELLOW);
+						lssproto_TK_recv( sockfd, 0, "P|你的座騎受傷過重，已退齣戰鬥。", FONT_PAL_YELLOW);
 					}
 #ifdef _PETSKILL_BECOMEFOX
 					else if( p_party[ BattleMyNo ]->onRide == -2 )	{
-						lssproto_TK_recv( sockfd, 0, "P|你中了媚惑术，座骑已退出战斗。", FONT_PAL_YELLOW);				
+						lssproto_TK_recv( sockfd, 0, "P|你中瞭媚惑術，座騎已退齣戰鬥。", FONT_PAL_YELLOW);				
 					}
 #endif
 #ifdef _PETSKILL_BECOMEPIG
                     else if( p_party[ BattleMyNo ]->onRide == -3 )	{
-						lssproto_TK_recv( sockfd, 0, "P|你处于乌力化，座骑已退出战斗。", FONT_PAL_YELLOW);				
+						lssproto_TK_recv( sockfd, 0, "P|你處於烏力化，座騎已退齣戰鬥。", FONT_PAL_YELLOW);				
 					}
 #endif
 #ifdef _PETSKILL_EXPLODE
 					else if( p_party[ BattleMyNo ]->onRide == -4 )	{
-						lssproto_TK_recv( sockfd, 0, "P|你中了爆裂攻击，座骑已退出战斗。", FONT_PAL_YELLOW);				
+						lssproto_TK_recv( sockfd, 0, "P|你中瞭爆裂攻擊，座騎已退齣戰鬥。", FONT_PAL_YELLOW);				
 					}
 #endif 
 				}
@@ -922,7 +922,7 @@ void BattleProc( void )
 			// ???
 			if( Battle1P2PFlag == 2 ){
 				// ??????
-				strcpy( OneLineInfoStr,"等待其他玩家。");
+				strcpy( OneLineInfoStr,"等待其他玩傢。");
 			}
 			// ???
 			if( BattleMyNo >= BATTLKPKPLYAERNUM ){
@@ -1049,7 +1049,7 @@ void BattleProc( void )
 			// ??????????
 			BackBufferDrawType = DRAW_BACK_PRODUCE; 
 			SubProcNo++;
-#ifdef _NEWDRAWBATTLEMAP		   // (不可开放) Syu ADD 自动产生BattleMap
+#ifdef _NEWDRAWBATTLEMAP		   // (不可開放) Syu ADD 自動産生BattleMap
 			extern int RandBattleBg ; 
 			RandBattleBg = 0 ;
 			for ( z = 0 ; z < 8 ; z ++ ) 
@@ -1100,9 +1100,9 @@ void BattleProc( void )
 #else
 					for(int i=0;i<MAX_MAXHAVEITEM;i++){
 #endif
-						// 检查玩家身上的道具有没有肉
+						// 檢查玩傢身上的道具有沒有肉
 						if(pItem[i+9].useFlag && (pItem[i+9].graNo >= 24000 && pItem[i+9].graNo <= 24044)){
-							// 丢掉
+							// 丟掉
 							if(bNewServer) lssproto_DI_send(sockfd,nowGx,nowGy,i+9);
 							else old_lssproto_DI_send(sockfd,nowGx,nowGy,i+9);
 						}
@@ -1162,8 +1162,8 @@ void BattleProc( void )
 			// ?????????????????
 			if( pActAudienceExitWnd->hp > 0 ){
 				// ??
-				StockFontBuffer( pActAudienceExitWnd->x + 30, pActAudienceExitWnd->y + 28, FONT_PRIO_FRONT, 0, 	"按滑鼠右键", 0 );
-				StockFontBuffer( pActAudienceExitWnd->x + 30, pActAudienceExitWnd->y + 52, FONT_PRIO_FRONT, 0, 	"结束观战", 0 );
+				StockFontBuffer( pActAudienceExitWnd->x + 30, pActAudienceExitWnd->y + 28, FONT_PRIO_FRONT, 0, 	"按滑鼠右鍵", 0 );
+				StockFontBuffer( pActAudienceExitWnd->x + 30, pActAudienceExitWnd->y + 52, FONT_PRIO_FRONT, 0, 	"結束觀戰", 0 );
 			}
 		}
 	}

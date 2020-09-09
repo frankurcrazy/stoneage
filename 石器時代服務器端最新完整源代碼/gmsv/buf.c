@@ -63,12 +63,12 @@ BOOL memInit( void )
     }
     mem[0].pointer = calloc( 1, UNIT*UNITNUMBER );
     if( mem[0].pointer == NULL ){
-        print( "不可分配 %d byte\n" , UNIT*UNITNUMBER );
+        print( "虏禄驴脡路脰脜盲 %d byte\n" , UNIT*UNITNUMBER );
         free( mem );
         return FALSE;
     }
     memset( mem[0].pointer , 0 , sizeof( UNIT*UNITNUMBER ));
-		print( "内存已分配 %.2f MB..." ,UNIT*UNITNUMBER/1024.0/1024.0);
+		print( "脛脷麓忙脪脩路脰脜盲 %.2f MB..." ,UNIT*UNITNUMBER/1024.0/1024.0);
 #ifdef DEBUG
     print( "Allocate %d byte( %.2fK byte %.2fM byte )\n" ,
            UNIT*UNITNUMBER,
@@ -163,9 +163,9 @@ void* allocateMemory( const unsigned int nbyte )
 
 
 /*------------------------------------------------------------
- * 娄醒
- * 忒曰袄
- *  卅仄
+ * 脗娄脨脩
+ * 脽炉脭禄掳脌
+ *  脴娄脴脝
  ------------------------------------------------------------*/
 void freeMemory( void* freepointer )
 {

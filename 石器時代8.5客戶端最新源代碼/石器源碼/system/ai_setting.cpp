@@ -1,4 +1,4 @@
-﻿
+
 #include "../systeminc/version.h"
 #include "../systeminc/system.h"
 #include "../systeminc/pc.h"
@@ -13,17 +13,17 @@
 
 #define AI_FILE_NAME "data\\AISetting.dat"
 #define TARGET_MYSELF		1  //自己
-#define TARGET_MYPET		2   //宠物
+#define TARGET_MYPET		2   //寵物
 #define TARGET_MYSIDE		3   //我方
-#define TARGET_OTHERONE		4   //另一边
-#define TARGET_OTHERSIDE	5  //对方
-#define TARGET_ALL			6   //全体
+#define TARGET_OTHERONE		4   //另一邊
+#define TARGET_OTHERSIDE	5  //對方
+#define TARGET_ALL			6   //全體
 
-#define TARGET_1			7       //目标一
+#define TARGET_1			7       //目標一
 #define TARGET_2			8    
 #define TARGET_3			9
 #define TARGET_4			10
-#define TARGET_5			11      //目标五
+#define TARGET_5			11      //目標五
 
 #define TARGET_ONE_ROW	12
 
@@ -199,7 +199,7 @@ BOOL AI_Load( char *user)
 	}
 	fclose( fp );
 #ifdef _AI_NEW_FIRST
-	// 没有职业
+	// 沒有職業
 	if(pc.profession_class == 0) bFirstFlag = false;
 #endif
 	return ret;
@@ -288,39 +288,39 @@ int AI_CheckSkillSetting(int methodkind,int method,int UpDown)
 
 
 	switch(profession_skill[method].skillId){
-		case 1://火山泉			敌单人攻击型态
-		case 2://针针相对		敌多人攻击型态
-		case 3://世界末日  	敌多人攻击型态
-		case 4://冰爆术			敌多人攻击型态
-		case 5://附身术			敌单人攻击型态
-		case 6://召雷术			敌单人攻击型态
-		case 7://暴风雨			敌多人攻击型态
-		case 8://电流术			敌多人攻击型态
-		case 9://火星球			敌多人攻击型态
-		case 10://嗜血蛊		敌单人攻击型态
-		case 12://冰箭术		敌单人攻击型态		
-		case 13://火龙枪		敌多人攻击型态
-		case 14://冰镜术		敌单人攻击型态
-		case 22://爆击			敌单人攻击型态
-		case 23://连环攻击	敌单人攻击型态
-		case 24://双重攻击	敌单人攻击型态
-		case 38://盾击			敌单人攻击型态
-		case 39://贯穿攻击	敌单人攻击型态
-		case 40://濒死攻击	敌单人攻击型态
-		case 41://回旋攻击	敌多人攻击型态
-		case 42://混乱攻击	敌多人攻击型态
-		case 46://树根缠绕	敌单人攻击型态
-		case 48://天罗地网	敌单人攻击型态
-		case 49://尸体掠夺	敌单人攻击型态
-		case 50://毒素武器	敌单人攻击型态
-		case 51://弱点攻击	敌单人攻击型态
-		case 54://座骑攻击	敌单人攻击型态
-		case 72://破除结界  敌我单体
+		case 1://火山泉			敵單人攻擊型態
+		case 2://針針相對		敵多人攻擊型態
+		case 3://世界末日  	敵多人攻擊型態
+		case 4://冰爆術			敵多人攻擊型態
+		case 5://附身術			敵單人攻擊型態
+		case 6://召雷術			敵單人攻擊型態
+		case 7://暴風雨			敵多人攻擊型態
+		case 8://電流術			敵多人攻擊型態
+		case 9://火星球			敵多人攻擊型態
+		case 10://嗜血蠱		敵單人攻擊型態
+		case 12://冰箭術		敵單人攻擊型態		
+		case 13://火龍槍		敵多人攻擊型態
+		case 14://冰鏡術		敵單人攻擊型態
+		case 22://爆擊			敵單人攻擊型態
+		case 23://連環攻擊	敵單人攻擊型態
+		case 24://雙重攻擊	敵單人攻擊型態
+		case 38://盾擊			敵單人攻擊型態
+		case 39://貫穿攻擊	敵單人攻擊型態
+		case 40://瀕死攻擊	敵單人攻擊型態
+		case 41://迴鏇攻擊	敵多人攻擊型態
+		case 42://混亂攻擊	敵多人攻擊型態
+		case 46://樹根纏繞	敵單人攻擊型態
+		case 48://天羅地網	敵單人攻擊型態
+		case 49://屍體掠奪	敵單人攻擊型態
+		case 50://毒素武器	敵單人攻擊型態
+		case 51://弱點攻擊	敵單人攻擊型態
+		case 54://座騎攻擊	敵單人攻擊型態
+		case 72://破除結界  敵我單體
 			if(AI_target[methodkind] != TARGET_OTHERONE) AI_target[methodkind] = TARGET_OTHERONE;
 			break;
-		case 15://火附体		我一方使用
-		case 16://雷附体		我一方使用
-		case 17://冰附体		我一方使用
+		case 15://火附體		我一方使用
+		case 16://雷附體		我一方使用
+		case 17://冰附體		我一方使用
 			// down
 			if(UpDown){
 				if(AI_target[methodkind] == TARGET_MYPET || AI_target[methodkind] == TARGET_MYSIDE) AI_target[methodkind] = TARGET_OTHERONE;
@@ -334,41 +334,41 @@ int AI_CheckSkillSetting(int methodkind,int method,int UpDown)
 				if(AI_target[methodkind] == TARGET_ONE_ROW) AI_target[methodkind] = TARGET_5;
 			}
 			break;
-		case 21://移形换位	本体使用
-		case 35://激化攻击	本体使用
-		case 36://能量聚集	本体使用
-		case 37://专注战斗	本体使用
-		case 47://陷阱			本体使用
-		case 53://格档			本体使用
-		case 59://电抗			本体使用
-		case 60://火抗			本体使用
-		case 61://冰抗			本体使用
-		case 66://自然威能	本体使用
+		case 21://移形換位	本體使用
+		case 35://激化攻擊	本體使用
+		case 36://能量聚集	本體使用
+		case 37://專注戰鬥	本體使用
+		case 47://陷阱			本體使用
+		case 53://格檔			本體使用
+		case 59://電抗			本體使用
+		case 60://火抗			本體使用
+		case 61://冰抗			本體使用
+		case 66://自然威能	本體使用
 			if(AI_target[methodkind] != TARGET_MYSELF) AI_target[methodkind] = TARGET_MYSELF;
 			break;
-		case 34://舍已为友	我一方使用
+		case 34://捨已為友	我一方使用
 
 #ifdef _AI_SKILL_UPDATE
-		case 76://裂骨断筋
-			AI_target[methodkind] = TARGET_OTHERONE;	//顺序 敌方
+		case 76://裂骨斷筋
+			AI_target[methodkind] = TARGET_OTHERONE;	//順序 敵方
 			break;
-		case 77://战狼怒吼		
-			AI_target[methodkind] = TARGET_OTHERONE;	//顺序 敌方
+		case 77://戰狼怒吼		
+			AI_target[methodkind] = TARGET_OTHERONE;	//順序 敵方
 			break;
 		case 79://魔力咒印		
-			AI_target[methodkind] = TARGET_OTHERONE;	//顺序 敌方
+			AI_target[methodkind] = TARGET_OTHERONE;	//順序 敵方
 			break;
-		case 80://恶魔诅咒		
-			AI_target[methodkind] = TARGET_OTHERONE;	//顺序 敌方
+		case 80://惡魔詛咒		
+			AI_target[methodkind] = TARGET_OTHERONE;	//順序 敵方
 			break;
 		case 82://多重冰箭		
-			AI_target[methodkind] = TARGET_ONE_ROW;	    //顺序 敌一排
+			AI_target[methodkind] = TARGET_ONE_ROW;	    //順序 敵一排
 			break;
-		case 83://毒素之网		
-			AI_target[methodkind] = TARGET_OTHERONE;	//顺序 敌方
+		case 83://毒素之網		
+			AI_target[methodkind] = TARGET_OTHERONE;	//順序 敵方
 			break;
 
-		case 85://战场急救
+		case 85://戰場急救
 			//if (methodkind != 4) return 0;
 			// down
 			if(UpDown){
@@ -383,47 +383,47 @@ int AI_CheckSkillSetting(int methodkind,int method,int UpDown)
 				if(AI_target[methodkind] == TARGET_ONE_ROW) AI_target[methodkind] = TARGET_5;
 			}
 			break;
-		case 75://四方防御	
+		case 75://四方防禦	
 			if (methodkind != 2) return 0;
-			AI_target[methodkind] = TARGET_MYSELF;	    //顺序 自己
+			AI_target[methodkind] = TARGET_MYSELF;	    //順序 自己
 			break;
-		case 67://号召自然	我方全体
+		case 67://號召自然	我方全體
 			//if (methodkind != 4) return 0;
-			AI_target[methodkind] = TARGET_MYSIDE;	    //顺序 我方
+			AI_target[methodkind] = TARGET_MYSIDE;	    //順序 我方
 			break;
 #endif
-		case 68://地结界		我方全体
-		case 69://水结界		我方全体
-		case 70://火结界		我方全体
-		case 71://风结界		我方全体
+		case 68://地結界		我方全體
+		case 69://水結界		我方全體
+		case 70://火結界		我方全體
+		case 71://風結界		我方全體
 			if(AI_target[methodkind] != TARGET_MYSIDE) AI_target[methodkind] = TARGET_MYSIDE;
 			break;
-		case 52://挑拨			敌单人攻击型态(限宠物)
-		case 56://驯服宠物	我一方使用
-		case 62://遗忘			敌单人攻击型态(限宠物)
+		case 52://挑撥			敵單人攻擊型態(限寵物)
+		case 56://馴服寵物	我一方使用
+		case 62://遺忘			敵單人攻擊型態(限寵物)
 			if(AI_target[methodkind] != TARGET_OTHERONE) AI_target[methodkind] = TARGET_OTHERONE;
 			break;
-		case 57://激怒宠物	我一方使用
+		case 57://激怒寵物	我一方使用
 			if(AI_target[methodkind] != TARGET_MYPET) AI_target[methodkind] = TARGET_MYPET;
 			break;
-		case 11://嗜血成性	本体吸收
-		case 18://火熟练度	无法使用
-		case 19://雷熟练度	无法使用
-		case 20://冰熟练度	无法使用
-		case 25://回避			无法使用
-		case 26://精通枪		无法使用
-		case 27://精通斧		无法使用
-		case 28://精通棍		无法使用
-		case 33://状态回复	无法使用
-		case 43://二刀流		无法使用
-		case 44://追寻敌踪	非战斗使用
-		case 45://回避战斗	非战斗使用
+		case 11://嗜血成性	本體吸收
+		case 18://火熟練度	無法使用
+		case 19://雷熟練度	無法使用
+		case 20://冰熟練度	無法使用
+		case 25://迴避			無法使用
+		case 26://精通槍		無法使用
+		case 27://精通斧		無法使用
+		case 28://精通棍		無法使用
+		case 33://狀態迴復	無法使用
+		case 43://二刀流		無法使用
+		case 44://追尋敵蹤	非戰鬥使用
+		case 45://迴避戰鬥	非戰鬥使用
 		case 55://加工			?
-		case 58://自给自足	?
-		case 29://精通弓		无法使用
-		case 30://精通回力镖		无法使用
-		case 31://精通投掷石		无法使用
-		case 32://精通投掷斧		无法使用
+		case 58://自給自足	?
+		case 29://精通弓		無法使用
+		case 30://精通迴力鏢		無法使用
+		case 31://精通投擲石		無法使用
+		case 32://精通投擲斧		無法使用
 		default:
 			ret = 0;
 			break;
@@ -450,7 +450,7 @@ void AI_CheckSetting()
 			AI_limit[i] = 30;
 	}
 #ifdef _ATTACK_AI
-	// 确认玩家身上的 嗜血成性 在那个位置
+	// 確認玩傢身上的 嗜血成性 在那個位置
 	i = 0;
 	g_iPSindex = -1;
 	g_bUsePS = false;
@@ -466,38 +466,38 @@ void AI_CheckSetting()
 	if(AI_OtherSetting[0] < 0) AI_OtherSetting[0] = 0;
 #endif
 	method = AI_method[0];
-	if( method<MAX_MAGIC && method>=0){//使用精灵
-		if( magic[method].useFlag && (str=strstr( magic[method].memo, "耐久力")) && strstr( str, "回复")){//使用耐久力回复精灵
+	if( method<MAX_MAGIC && method>=0){//使用精靈
+		if( magic[method].useFlag && (str=strstr( magic[method].memo, "耐久力")) && strstr( str, "迴復")){//使用耐久力迴復精靈
 			switch( magic[method].target){
 			case MAGIC_TARGET_MYSELF:
 				AI_target[0] = TARGET_MYSELF;			//自己
 				break;
 			case MAGIC_TARGET_ALLMYSIDE:
 			case MAGIC_TARGET_WHOLEOTHERSIDE:
-				AI_target[0] = TARGET_MYSIDE;			//我方全体
+				AI_target[0] = TARGET_MYSIDE;			//我方全體
 				break;
 			case MAGIC_TARGET_OTHER:
 				/*
 				if( AI_target[0]!=TARGET_MYSELF && AI_target[0]!=TARGET_MYPET &&
-					(TARGET_1>AI_target[0] || AI_target[0]>TARGET_5))//检查对象是否错误
+					(TARGET_1>AI_target[0] || AI_target[0]>TARGET_5))//檢查對象是否錯誤
 					AI_target[0] = TARGET_MYSELF;	//自己
 					*/
 				break;
 			default:
-//			case MAGIC_TARGET_ALLOTHERSIDE:				//不该使用这种精灵回复
+//			case MAGIC_TARGET_ALLOTHERSIDE:				//不該使用這種精靈迴復
 //			case MAGIC_TARGET_ALL:
-				AI_method[0] = MAX_MAGIC;			//设为使用道具
+				AI_method[0] = MAX_MAGIC;			//設為使用道具
 				AI_target[0] = TARGET_MYSELF;
 				break;
 			}
-		}else{//没有耐久力回复精灵
+		}else{//沒有耐久力迴復精靈
 			AI_method[0] = MAX_MAGIC;
 			AI_target[0] = TARGET_MYSELF;
 		}
-	}else{//使用道具补耐久力
+	}else{//使用道具補耐久力
 		AI_method[0] = MAX_MAGIC;
 		if( AI_target[0]!=TARGET_MYSELF && AI_target[0]!=TARGET_MYPET &&
-			(TARGET_1>AI_target[0] || AI_target[0]>TARGET_5)){//使用道具但对象不对
+			(TARGET_1>AI_target[0] || AI_target[0]>TARGET_5)){//使用道具但對象不對
 			AI_target[0] = TARGET_MYSELF;
 		}
 	}
@@ -510,10 +510,10 @@ void AI_CheckSetting()
 
 	method = AI_method[2];
 #ifdef _AI_NEW_FIRST
-	// 首次精灵:使用精灵
+	// 首次精靈:使用精靈
 	if(bFirstFlag == false){
 #endif
-		if( method<MAX_MAGIC && method>=0 && magic[method].useFlag){//使用首次精灵
+		if( method<MAX_MAGIC && method>=0 && magic[method].useFlag){//使用首次精靈
 			switch( magic[method].target){
 			case MAGIC_TARGET_MYSELF:
 				if( AI_target[2] != TARGET_MYSELF)
@@ -541,17 +541,17 @@ void AI_CheckSetting()
 					AI_method[2] = -1;
 				break;
 #ifdef __ATTACK_MAGIC
-				// 敌军某一人
+				// 敵軍某一人
 			case MAGIC_TARGET_SINGLE:
 				if( AI_target[2] != TARGET_OTHERONE)
 					AI_method[2] = -1;
 				break;
-				// 敌军一整排
+				// 敵軍一整排
 			case MAGIC_TARGET_ONE_ROW:
 				if( AI_target[2]!=TARGET_ONE_ROW)
 					AI_method[2] = -1;
 				break;
-				// 敌军全体
+				// 敵軍全體
 			case MAGIC_TARGET_ALL_ROWS:
 				if( AI_target[2] != TARGET_OTHERSIDE)
 					AI_method[2] = -1;
@@ -561,24 +561,24 @@ void AI_CheckSetting()
 				AI_method[2] = -1;
 				break;
 			}
-		}else{//没有这个精灵
+		}else{//沒有這個精靈
 			AI_method[2] = -1;
 		}
 #ifdef _AI_NEW_FIRST
 	}
-	// 首次精灵:使用技能
+	// 首次精靈:使用技能
 	else{
-		if(pc.profession_class != 0 && // 有职业
+		if(pc.profession_class != 0 && // 有職業
 			(method < MAX_PROFESSION_SKILL && method >= 0) &&
 			AI_CheckSkillSetting(2,method,0) == 0) AI_method[2] = -1;
 	}
 #endif
 	method = AI_method[3];
-	if( method<MAX_MAGIC && method>=0){//使用精灵
-		if( !magic[method].useFlag || !(str=strstr( magic[method].memo, "气绝状态")) || !strstr( str, "回复")){//没有气绝状态回复精灵
+	if( method<MAX_MAGIC && method>=0){//使用精靈
+		if( !magic[method].useFlag || !(str=strstr( magic[method].memo, "氣絕狀態")) || !strstr( str, "迴復")){//沒有氣絕狀態迴復精靈
 			AI_method[3] = MAX_MAGIC;
 		}
-	}else{//使用道具回复气绝状态
+	}else{//使用道具迴復氣絕狀態
 		AI_method[3] = MAX_MAGIC;
 	}
 	if( AI_target[3]!=TARGET_MYSIDE && AI_target[3]!=TARGET_MYPET && (TARGET_1>AI_target[3] || AI_target[3]>TARGET_5))
@@ -586,14 +586,14 @@ void AI_CheckSetting()
 
 #ifdef _ATTACK_AI
 	method = AI_method[4];
-	if(pc.profession_class != 0 && // 有职业
-		(method < MAX_PROFESSION_SKILL && method >= 0)){// 使用职业技能
+	if(pc.profession_class != 0 && // 有職業
+		(method < MAX_PROFESSION_SKILL && method >= 0)){// 使用職業技能
 		if(AI_CheckSkillSetting(4,method,0) == 0){
 			AI_method[4] = MAX_PROFESSION_SKILL;
 			AI_target[4] = TARGET_OTHERONE;
 		}
 	}
-	else{// 普通攻击
+	else{// 普通攻擊
 		AI_method[4] = MAX_PROFESSION_SKILL;
 		AI_target[4] = TARGET_OTHERONE;
 	}
@@ -645,15 +645,15 @@ void AI_SetUpTarget( int which)
 			AI_target[which] = TARGET_MYSELF;			//自己
 			break;
 		case MAGIC_TARGET_ALLMYSIDE:
-			AI_target[which] = TARGET_MYSIDE;			//我方全体
+			AI_target[which] = TARGET_MYSIDE;			//我方全體
 			break;
 		case MAGIC_TARGET_WHOLEOTHERSIDE:
 			if( which !=0)
 			{
 				if( AI_target[which] == TARGET_MYSIDE)
-					AI_target[which] = TARGET_OTHERSIDE;	//敌方全体
+					AI_target[which] = TARGET_OTHERSIDE;	//敵方全體
 				else
-					AI_target[which] = TARGET_MYSIDE;		//我方全体
+					AI_target[which] = TARGET_MYSIDE;		//我方全體
 			}
 			break;
 		case MAGIC_TARGET_OTHER:
@@ -682,21 +682,21 @@ void AI_SetUpTarget( int which)
 			}
 			break;
 		case MAGIC_TARGET_ALLOTHERSIDE:
-			AI_target[which] = TARGET_OTHERSIDE;		//敌方全体
+			AI_target[which] = TARGET_OTHERSIDE;		//敵方全體
 			break;
 		case MAGIC_TARGET_ALL:
-			AI_target[which] = TARGET_ALL;				//全体
+			AI_target[which] = TARGET_ALL;				//全體
 			break;
 #ifdef __ATTACK_MAGIC
-		// 敌军某一人
+		// 敵軍某一人
 		case MAGIC_TARGET_SINGLE:
 			AI_target[which] = TARGET_OTHERONE;
 			break;
-		// 敌军一整排
+		// 敵軍一整排
 		case MAGIC_TARGET_ONE_ROW:
 			AI_target[which] = TARGET_ONE_ROW;
 			break;
-		// 敌军全体
+		// 敵軍全體
 		case MAGIC_TARGET_ALL_ROWS:
 			AI_target[which] = TARGET_OTHERSIDE;
 			break;
@@ -732,11 +732,11 @@ void AI_SetDownTarget( int which)
 		}
 /*		if( AI_target[which] == TARGET_MYSELF){
 			if( which == 2)
-				AI_target[which] = TARGET_OTHERONE;		//敌方
+				AI_target[which] = TARGET_OTHERONE;		//敵方
 			else
-				AI_target[which] = TARGET_MYPET;		//宠物
+				AI_target[which] = TARGET_MYPET;		//寵物
 		}else if( AI_target[which] == TARGET_OTHERONE)
-			AI_target[which] = TARGET_MYPET;			//宠物
+			AI_target[which] = TARGET_MYPET;			//寵物
 		else// if( AI_target[which] == TARGET_MYPET)
 			AI_target[which] = TARGET_MYSELF;			//自己*/
 	}else if( method >= 0){
@@ -745,14 +745,14 @@ void AI_SetDownTarget( int which)
 			AI_target[which] = TARGET_MYSELF;			//自己
 			break;
 		case MAGIC_TARGET_ALLMYSIDE:
-			AI_target[which] = TARGET_MYSIDE;			//我方全体
+			AI_target[which] = TARGET_MYSIDE;			//我方全體
 			break;
 		case MAGIC_TARGET_WHOLEOTHERSIDE:
 			if( which != 0){
 				if( AI_target[which] == TARGET_MYSIDE)
-					AI_target[which] = TARGET_OTHERSIDE;	//敌方全体
+					AI_target[which] = TARGET_OTHERSIDE;	//敵方全體
 				else
-					AI_target[which] = TARGET_MYSIDE;		//我方全体
+					AI_target[which] = TARGET_MYSIDE;		//我方全體
 			}
 			break;
 		case MAGIC_TARGET_OTHER:
@@ -775,30 +775,30 @@ void AI_SetDownTarget( int which)
 			}
 /*			if( AI_target[which] == TARGET_MYSELF){
 				if( which == 2)
-					AI_target[which] = TARGET_OTHERONE;	//敌方
+					AI_target[which] = TARGET_OTHERONE;	//敵方
 				else
-					AI_target[which] = TARGET_MYPET;	//宠物
+					AI_target[which] = TARGET_MYPET;	//寵物
 			}else if( AI_target[which] == TARGET_OTHERONE)
-				AI_target[which] = TARGET_MYPET;		//宠物
+				AI_target[which] = TARGET_MYPET;		//寵物
 			else// if( AI_target[which] == TARGET_MYPET)
 				AI_target[which] = TARGET_MYSELF;		//自己*/
 			break;
 		case MAGIC_TARGET_ALLOTHERSIDE:
-			AI_target[which] = TARGET_OTHERSIDE;		//敌方全体
+			AI_target[which] = TARGET_OTHERSIDE;		//敵方全體
 			break;
 		case MAGIC_TARGET_ALL:
-			AI_target[which] = TARGET_ALL;				//全体
+			AI_target[which] = TARGET_ALL;				//全體
 			break;
 #ifdef __ATTACK_MAGIC
-		// 敌军某一人
+		// 敵軍某一人
 		case MAGIC_TARGET_SINGLE:
 			AI_target[which] = TARGET_OTHERONE;
 			break;
-		// 敌军一整排
+		// 敵軍一整排
 		case MAGIC_TARGET_ONE_ROW:
 			AI_target[which] = TARGET_ONE_ROW;
 			break;
-		// 敌军全体
+		// 敵軍全體
 		case MAGIC_TARGET_ALL_ROWS:
 			AI_target[which] = TARGET_OTHERSIDE;
 			break;
@@ -815,31 +815,31 @@ void AI_SetMethod( int target, int which)
 	case MAGIC_TARGET_MYSELF:					//自己
 		AI_target[which] = TARGET_MYSELF;
 		break;
-	case MAGIC_TARGET_ALLMYSIDE:				//我方全体
+	case MAGIC_TARGET_ALLMYSIDE:				//我方全體
 		AI_target[which] = TARGET_MYSIDE;
 		break;
-	case MAGIC_TARGET_WHOLEOTHERSIDE:			//任何一方全体
+	case MAGIC_TARGET_WHOLEOTHERSIDE:			//任何一方全體
 		AI_target[which] = TARGET_MYSIDE;
 		break;
-	case MAGIC_TARGET_OTHER:					//任何一体
+	case MAGIC_TARGET_OTHER:					//任何一體
 		AI_target[which] = TARGET_MYSELF;
 		break;
-	case MAGIC_TARGET_ALLOTHERSIDE:				//敌方一体
+	case MAGIC_TARGET_ALLOTHERSIDE:				//敵方一體
 		AI_target[which] = TARGET_OTHERSIDE;
 		break;
-	case MAGIC_TARGET_ALL:						//全体
+	case MAGIC_TARGET_ALL:						//全體
 		AI_target[which] = TARGET_ALL;
 		break;
 #ifdef __ATTACK_MAGIC
-	// 敌军某一人
+	// 敵軍某一人
 	case MAGIC_TARGET_SINGLE:
 		AI_target[which] = TARGET_OTHERONE;
 		break;
-	// 敌军一整排
+	// 敵軍一整排
 	case MAGIC_TARGET_ONE_ROW:
 		AI_target[which] = TARGET_ONE_ROW;
 		break;
-	// 敌军全体
+	// 敵軍全體
 	case MAGIC_TARGET_ALL_ROWS:
 		AI_target[which] = TARGET_OTHERSIDE;
 		break;
@@ -856,7 +856,7 @@ void AI_SetUpCureMethod( int which)
 	AI_method[which] = MAX_MAGIC;
 	AI_target[which] = TARGET_MYSELF;
 	for( int i = method; i < MAX_MAGIC; i++){
-		if( magic[i].useFlag && (str=strstr( magic[i].memo, "耐久力")) && strstr( str, "回复")){
+		if( magic[i].useFlag && (str=strstr( magic[i].memo, "耐久力")) && strstr( str, "迴復")){
 			AI_method[which] = i;
 			AI_SetMethod( magic[i].target, which);
 			break;
@@ -864,7 +864,7 @@ void AI_SetUpCureMethod( int which)
 	}
 /*	if( i >= MAX_MAGIC){
 		for( i = 0; i < MAX_ITEM; i++){
-			if( pc.item[i].useFlag && (str=strstr( pc.item[i].memo, "耐久力")) && strstr( str, "回复")){
+			if( pc.item[i].useFlag && (str=strstr( pc.item[i].memo, "耐久力")) && strstr( str, "迴復")){
 				AI_method[which] = MAX_MAGIC;
 				AI_target[which] &= 1;
 				break;
@@ -882,7 +882,7 @@ void AI_SetDownCureMethod( int which)
 	AI_method[which] = MAX_MAGIC;
 	AI_target[which] = TARGET_MYSELF;
 	for( int i = (method-1); i >= 0; i--){
-		if( magic[i].useFlag && (str=strstr( magic[i].memo, "耐久力")) && strstr( str, "回复")){
+		if( magic[i].useFlag && (str=strstr( magic[i].memo, "耐久力")) && strstr( str, "迴復")){
 			AI_method[which] = i;
 			AI_SetMethod( magic[i].target, which);
 			break;
@@ -890,7 +890,7 @@ void AI_SetDownCureMethod( int which)
 	}
 /*	if( i < 0){
 		for( i = 0; i < MAX_ITEM; i++){
-			if( pc.item[i].useFlag && (str=strstr( pc.item[i].memo, "耐久力")) && strstr( str, "回复")){
+			if( pc.item[i].useFlag && (str=strstr( pc.item[i].memo, "耐久力")) && strstr( str, "迴復")){
 				AI_method[which] = MAX_MAGIC;
 				AI_target[which] &= 1;
 				break;
@@ -913,13 +913,13 @@ void AI_SetUpFirstMethod( int which)
 		}
 	}
 #else
-	// 首次用精灵
+	// 首次用精靈
 	if(bFirstFlag == false){
 		if(method > MAX_MAGIC){
-			if(pc.profession_class != 0){ // 有职业
+			if(pc.profession_class != 0){ // 有職業
 				AI_method[which] = -1;
 				AI_SetDownAttackMethod(which);
-				// 设定为用技能
+				// 設定為用技能
 				bFirstFlag = true;
 				return;
 			}
@@ -930,7 +930,7 @@ void AI_SetUpFirstMethod( int which)
 	else{
 		if(method > MAX_PROFESSION_SKILL){
 			method = -1;
-			// 设定为用精灵
+			// 設定為用精靈
 			bFirstFlag = false;
 		}
 		AI_SetDownAttackMethod(which);
@@ -946,7 +946,7 @@ void AI_SetUpFirstMethod( int which)
 		}
 		if(AI_method[which] == -1 && pc.profession_class != 0){
 			AI_SetDownAttackMethod(which);
-			// 设定为用技能
+			// 設定為用技能
 			bFirstFlag = true;
 		}
 	}
@@ -968,13 +968,13 @@ void AI_SetDownFirstMethod( int which)
 		}
 	}
 #else
-	// 首次用精灵
+	// 首次用精靈
 	if(bFirstFlag == false){
 		if(method < 0){
-			if(pc.profession_class != 0){ // 有职业
+			if(pc.profession_class != 0){ // 有職業
 				AI_method[which] = MAX_PROFESSION_SKILL;
 				AI_SetUpAttackMethod(which);
-				// 设定为用技能
+				// 設定為用技能
 				bFirstFlag = true;
 				return;
 			}
@@ -1011,7 +1011,7 @@ void AI_SetUpResurrectMethod( int which)
 	AI_method[which] = MAX_MAGIC;
 	AI_target[which] = TARGET_MYPET;
 	for( int i = method; i < MAX_MAGIC; i++){
-		if( magic[i].useFlag && (str=strstr( magic[i].memo, "气绝状态")) && strstr( str, "回复")){
+		if( magic[i].useFlag && (str=strstr( magic[i].memo, "氣絕狀態")) && strstr( str, "迴復")){
 			AI_method[which] = i;
 			break;
 		}
@@ -1027,7 +1027,7 @@ void AI_SetDownResurrectMethod( int which)
 	AI_method[which] = MAX_MAGIC;
 	AI_target[which] = TARGET_MYPET;
 	for( int i = (method-1); i >= 0; i--){
-		if( magic[i].useFlag && (str=strstr( magic[i].memo, "气绝状态")) && strstr( str, "回复")){
+		if( magic[i].useFlag && (str=strstr( magic[i].memo, "氣絕狀態")) && strstr( str, "迴復")){
 			AI_method[which] = i;
 			break;
 		}
@@ -1089,16 +1089,16 @@ void AI_SetDownAttackMethod(int which)
 #endif
 
 #define AIBtnNum 24
-//自动战斗设定
+//自動戰鬥設定
 BOOL AI_SettingProc()
 {
-	static char Notice[][32] = { "储存设定", "取消设定",
-		"选择回复精灵", "选择回复精灵", "选择优先顺序", "选择优先顺序", "增加耐久力忍受度", "减少耐久力忍受度",
-		"建议设定高于使用精灵所需MP", "建议设定高于使用精灵所需MP",
-		"选择首次精灵", "选择首次精灵", "选择使用目标", "选择使用目标",
-		"选择气绝回复方式", "选择气绝回复方式", "选择使用目标", "选择使用目标"
+	static char Notice[][32] = { "儲存設定", "取消設定",
+		"選擇迴復精靈", "選擇迴復精靈", "選擇優先順序", "選擇優先順序", "增加耐久力忍受度", "減少耐久力忍受度",
+		"建議設定高於使用精靈所需MP", "建議設定高於使用精靈所需MP",
+		"選擇首次精靈", "選擇首次精靈", "選擇使用目標", "選擇使用目標",
+		"選擇氣絕迴復方式", "選擇氣絕迴復方式", "選擇使用目標", "選擇使用目標"
 #ifdef _ATTACK_AI
-		,"选择攻击方式","选择攻击方式","选择使用目标","选择使用目标","选择回复方式","选择回复方式"
+		,"選擇攻擊方式","選擇攻擊方式","選擇使用目標","選擇使用目標","選擇迴復方式","選擇迴復方式"
 #endif
 	};
 	static int x = 0, y = 0;
@@ -1144,7 +1144,7 @@ BOOL AI_SettingProc()
 			if( dwPressTime){
 				if( TimeGetTime()>(dwPressTime+100)){
 					dwPressTime = 0;
-					if( btnState[0] == 1){//按下"确定"
+					if( btnState[0] == 1){//按下"確定"
 						btnState[0] = 0;
 						DeathAction( pAISettingWnd );
 						pAISettingWnd = NULL;
@@ -1171,63 +1171,63 @@ BOOL AI_SettingProc()
 #endif
 						play_se( 203, 320, 240 );
 						return TRUE;
-					}else if( btnState[2] == 1){//按下补血的精灵上一个
+					}else if( btnState[2] == 1){//按下補血的精靈上一個
 						btnState[2] = 0;
 						play_se( 217, 320, 240 );
 						AI_SetUpCureMethod( 0);
-					}else  if( btnState[3] == 1){//按下补血的精灵下一个
+					}else  if( btnState[3] == 1){//按下補血的精靈下一個
 						btnState[3] = 0;
 						play_se( 217, 320, 240 );
 						AI_SetDownCureMethod( 0);
-					}else if( btnState[4] == 1){//按下补血的顺序上一个
+					}else if( btnState[4] == 1){//按下補血的順序上一個
 						btnState[4] = 0;
 						play_se( 217, 320, 240 );
 						AI_SetUpTarget( 0);
-					}else if( btnState[5] == 1){//按下补血的顺序下一个
+					}else if( btnState[5] == 1){//按下補血的順序下一個
 						btnState[5] = 0;
 						play_se( 217, 320, 240 );
 						AI_SetDownTarget( 0);
-					}else if( btnState[6] == 1){//按下补血的数值上一个
+					}else if( btnState[6] == 1){//按下補血的數值上一個
 						btnState[6] = 0;
 						play_se( 217, 320, 240 );
 						AI_SetUpLimit( 0);
-					}else  if( btnState[7] == 1){//按下补血的数值下一个
+					}else  if( btnState[7] == 1){//按下補血的數值下一個
 						btnState[7] = 0;
 						play_se( 217, 320, 240 );
 						AI_SetDownLimit( 0);
-					}else if( btnState[8] == 1){//按下补气的数值上一个
+					}else if( btnState[8] == 1){//按下補氣的數值上一個
 						btnState[8] = 0;
 						play_se( 217, 320, 240 );
 						AI_SetUpLimit( 1);
-					}else  if( btnState[9] == 1){//按下补气的数值下一个
+					}else  if( btnState[9] == 1){//按下補氣的數值下一個
 						btnState[9] = 0;
 						play_se( 217, 320, 240 );
 						AI_SetDownLimit( 1);
-					}else if( btnState[10] == 1){//按下首次的精灵上一个
+					}else if( btnState[10] == 1){//按下首次的精靈上一個
 						btnState[10] = 0;
 						play_se( 217, 320, 240 );
 						AI_SetUpFirstMethod( 2);
-					}else  if( btnState[11] == 1){//按下首次的精灵下一个
+					}else  if( btnState[11] == 1){//按下首次的精靈下一個
 						btnState[11] = 0;
 						play_se( 217, 320, 240 );
 						AI_SetDownFirstMethod( 2);
-					}else if( btnState[12] == 1){//按下首次的顺序上一个
+					}else if( btnState[12] == 1){//按下首次的順序上一個
 						btnState[12] = 0;
 						play_se( 217, 320, 240 );
 						AI_SetUpTarget( 2);
-					}else  if( btnState[13] == 1){//按下首次的顺序下一个
+					}else  if( btnState[13] == 1){//按下首次的順序下一個
 						btnState[13] = 0;
 						play_se( 217, 320, 240 );
 						AI_SetDownTarget( 2);
-					}else if( btnState[14] == 1){//按下复活的精灵上一个
+					}else if( btnState[14] == 1){//按下復活的精靈上一個
 						btnState[14] = 0;
 						play_se( 217, 320, 240 );
 						AI_SetUpResurrectMethod( 3);
-					}else  if( btnState[15] == 1){//按下复活的精灵下一个
+					}else  if( btnState[15] == 1){//按下復活的精靈下一個
 						btnState[15] = 0;
 						play_se( 217, 320, 240 );
 						AI_SetDownResurrectMethod( 3);
-					}else if( btnState[16] == 1){//按下复活的顺序上一个
+					}else if( btnState[16] == 1){//按下復活的順序上一個
 						btnState[16] = 0;
 						play_se( 217, 320, 240 );
 						if( TARGET_1<=AI_target[3] && AI_target[3]<=TARGET_5){
@@ -1239,7 +1239,7 @@ BOOL AI_SettingProc()
 						}else{
 							AI_target[3] = TARGET_MYPET;
 						}
-					}else  if( btnState[17] == 1){//按下复活的顺序下一个
+					}else  if( btnState[17] == 1){//按下復活的順序下一個
 						btnState[17] = 0;
 						play_se( 217, 320, 240 );
 						if( TARGET_1<=AI_target[3] && AI_target[3]<=TARGET_5){
@@ -1253,36 +1253,36 @@ BOOL AI_SettingProc()
 						}
 					}
 #ifdef _ATTACK_AI
-					else if(btnState[18] == 1){// 按下攻击功能列的精灵栏的上一个
+					else if(btnState[18] == 1){// 按下攻擊功能列的精靈欄的上一個
 						btnState[18] = 0;
 						play_se( 217, 320, 240 );
 						AI_SetUpAttackMethod(4);
 					}
-					else if(btnState[19] == 1){// 按下攻击功能列的精灵栏的下一个
+					else if(btnState[19] == 1){// 按下攻擊功能列的精靈欄的下一個
 						btnState[19] = 0;
 						play_se( 217, 320, 240 );
 						AI_SetDownAttackMethod(4);
 					}
-					else if(btnState[20] == 1){// 按下攻击功能列的顺序栏的上一个
+					else if(btnState[20] == 1){// 按下攻擊功能列的順序欄的上一個
 						btnState[20] = 0;
 						play_se( 217, 320, 240 );
 						AI_SetUpTarget(4);
-					}else if(btnState[21] == 1){// 按下攻击功能列的顺序栏的下一个
+					}else if(btnState[21] == 1){// 按下攻擊功能列的順序欄的下一個
 						btnState[21] = 0;
 						play_se( 217, 320, 240 );
 						AI_SetDownTarget(4);
-					}else if( btnState[22] == 1){//按下补气的精灵上一个
+					}else if( btnState[22] == 1){//按下補氣的精靈上一個
 						btnState[22] = 0;
 						play_se( 217, 320, 240 );
-						// 若有补气技能
+						// 若有補氣技能
 						if(g_bUsePS){
 							if(AI_method[1] == -1) AI_method[1] = g_iPSindex;
 							else AI_method[1] = -1;
 						}
-					}else if( btnState[23] == 1){//按下补气的精灵下一个
+					}else if( btnState[23] == 1){//按下補氣的精靈下一個
 						btnState[23] = 0;
 						play_se( 217, 320, 240 );
-						// 若有补气技能
+						// 若有補氣技能
 						if(g_bUsePS){
 							if(AI_method[1] == -1) AI_method[1] = g_iPSindex;
 							else AI_method[1] = -1;
@@ -1291,7 +1291,7 @@ BOOL AI_SettingProc()
 #endif
 				}
 			}else{
-				//是否按下按钮
+				//是否按下按鈕
 				for( int i = 0; i < AIBtnNum; i++){
 					if( HitDispNo == btnId[i]){
 						if( mouse.onceState & MOUSE_LEFT_CRICK){
@@ -1307,7 +1307,7 @@ BOOL AI_SettingProc()
 					if(mouse.onceState & MOUSE_LEFT_CRICK) AI_Other_State = 1;
 #endif
 			}
-			//说明文字
+			//說明文字
 			for( int i = 0; i < AIBtnNum; i++){
 				if( HitDispNo == btnId[i]){
 					strcpy( OneLineInfoStr, Notice[i]);
@@ -1359,7 +1359,7 @@ BOOL AI_SettingProc()
 				if(i == 4){
 					if(MAX_PROFESSION_SKILL > AI_method[i] && AI_method[i] >= 0) str = profession_skill[AI_method[i]].name;
 					else if(AI_method[i] == MAX_PROFESSION_SKILL)
-						str = "普通攻击";
+						str = "普通攻擊";
 				}
 				else if(i == 1){
 					if(g_bUsePS && AI_method[1] != -1) str = profession_skill[g_iPSindex].name;
@@ -1388,42 +1388,42 @@ BOOL AI_SettingProc()
 						str = "自己";
 						break;
 					case TARGET_MYPET:
-						str = "宠物";
+						str = "寵物";
 						break;
 					case TARGET_MYSIDE:
-						str = "我方全体";
+						str = "我方全體";
 						break;
 					case TARGET_OTHERONE:
-						str = "敌人";
+						str = "敵人";
 						break;
 					case TARGET_OTHERSIDE:
-						str = "敌人全体";
+						str = "敵人全體";
 						break;
 					case TARGET_ALL:
-						str = "全体";
+						str = "全體";
 						break;
 					case TARGET_1:
-						str = "玩家一";
+						str = "玩傢一";
 						break;
 					case TARGET_2:
-						str = "玩家二";
+						str = "玩傢二";
 						break;
 					case TARGET_3:
-						str = "玩家三";
+						str = "玩傢三";
 						break;
 					case TARGET_4:
-						str = "玩家四";
+						str = "玩傢四";
 						break;
 					case TARGET_5:
-						str = "玩家五";
+						str = "玩傢五";
 						break;
 #ifdef __ATTACK_MAGIC
 					case TARGET_ONE_ROW:
-						str = "敌一排";
+						str = "敵一排";
 						break;
 #endif
 					default:
-						str = "错误请重设";
+						str = "錯誤請重設";
 						break;
 					}
 					_itoa_s( AI_limit[i], limit, 10);
@@ -1588,7 +1588,7 @@ void AI_ChooseAction()
 	int targetNo = -1;
 	char moji[64];
 	battlePlayerEscFlag = FALSE;
-	//观战中
+	//觀戰中
 	if( BattleMyNo >= 20 ){
 		if( bNewServer)
 			lssproto_B_send( sockfd, "N" );
@@ -1688,12 +1688,12 @@ void AI_ChooseAction()
 									break;
 						}
 						if( targetNo > -1){
-							AI_Choosen = "使用首次精灵";
+							AI_Choosen = "使用首次精靈";
 							sprintf_s( moji, "J|%X|%X", method, targetNo);
 							done = 1;
 						}
 					}else
-						StockChatBufferLine( "MP不足无法使用首次的精灵", FONT_PAL_WHITE);
+						StockChatBufferLine( "MP不足無法使用首次的精靈", FONT_PAL_WHITE);
 				}
 #ifdef _AI_NEW_FIRST
 			}
@@ -1701,16 +1701,16 @@ void AI_ChooseAction()
 				int ret;
 				ret = AttackAIProc(2,moji);
 				if(ret) done = 1;
-				else if(ret == 0) StockChatBufferLine("MP不足无法使用首次的技能", FONT_PAL_WHITE);
-				else if(ret == -1) StockChatBufferLine("技能代号错误", FONT_PAL_WHITE);
+				else if(ret == 0) StockChatBufferLine("MP不足無法使用首次的技能", FONT_PAL_WHITE);
+				else if(ret == -1) StockChatBufferLine("技能代號錯誤", FONT_PAL_WHITE);
 			}
 #endif
 		}
 		if( 0 == done){
 			int magic_id = -1, item_id = -1, target = -1, meat = -1;
-			//先找出是否有耐久力回复的道具
+			//先找齣是否有耐久力迴復的道具
 			for( int i = 0; i < MAX_ITEM; i++){
-				if( pc.item[i].useFlag && (str=strstr( pc.item[i].memo, "耐久力")) && strstr( str, "回复")){
+				if( pc.item[i].useFlag && (str=strstr( pc.item[i].memo, "耐久力")) && strstr( str, "迴復")){
 					item_id = i;
 					if( strstr( pc.item[i].name, "肉")){
 						meat = i;
@@ -1718,9 +1718,9 @@ void AI_ChooseAction()
 					}
 				}
 			}
-			//先找出是否有耐久力回复的精灵和mp是否足够
+			//先找齣是否有耐久力迴復的精靈和mp是否足夠
 			int method = AI_method[0];
-			if( (method>-1 && method<MAX_MAGIC) && magic[method].useFlag && (str=strstr( magic[method].memo, "耐久力")) && strstr( str, "回复")){
+			if( (method>-1 && method<MAX_MAGIC) && magic[method].useFlag && (str=strstr( magic[method].memo, "耐久力")) && strstr( str, "迴復")){
 				if( pc.familySprite == 0){
 					if( (magic[method].mp*80/100) <= p_party[BattleMyNo]->mp )
 						magic_id = method;
@@ -1729,18 +1729,18 @@ void AI_ChooseAction()
 						magic_id = method;
 				}
 			}
-			//找补耐久力的目标
+			//找補耐久力的目標
 			if( TARGET_1<=AI_target[0] && AI_target[0]<=TARGET_5){
 				target = GetCureTarget( AI_target[0]);
 			}
 			if( target == -1){
-				if( AI_target[0] == TARGET_MYSELF){//先补自己血
+				if( AI_target[0] == TARGET_MYSELF){//先補自己血
 					if( p_party[BattleMyNo]->maxHp*AI_limit[0]/100 > p_party[BattleMyNo]->hp){
 						target = BattleMyNo;
 					}else if( p_party[BattleMyNo+5]->func && pet[pc.battlePetNo].hp>0 && pet[pc.battlePetNo].maxHp*AI_limit[0]/100>pet[pc.battlePetNo].hp){
 						target = BattleMyNo + 5;
 					}
-				}else{// if( AI_target[0] == TARGET_MYPET){//先补宠物血
+				}else{// if( AI_target[0] == TARGET_MYPET){//先補寵物血
 					if( p_party[BattleMyNo+5]->func && pet[pc.battlePetNo].hp>0 && pet[pc.battlePetNo].maxHp*AI_limit[0]/100 > pet[pc.battlePetNo].hp){
 						target = BattleMyNo + 5;
 					}else if( p_party[BattleMyNo]->maxHp*AI_limit[0]/100>p_party[BattleMyNo]->hp){
@@ -1750,12 +1750,12 @@ void AI_ChooseAction()
 			}
 			if( target > -1){
 				if( item_id>-1 || magic_id>-1){
-					if( meat > -1){//使用肉补耐久力
+					if( meat > -1){//使用肉補耐久力
 						done = 1;
 						sprintf_s( moji,"I|%X|%X", meat, target);
-						AI_Choosen = "使用肉回复耐久力";
+						AI_Choosen = "使用肉迴復耐久力";
 					}else{
-						if( MAX_MAGIC>AI_method[0] && AI_method[0]>=0){//使用精灵补耐久力
+						if( MAX_MAGIC>AI_method[0] && AI_method[0]>=0){//使用精靈補耐久力
 							if( magic[AI_method[0]].target != MAGIC_TARGET_MYSELF || target==BattleMyNo){
 								if( magic_id > -1){
 									int method = AI_method[0];
@@ -1764,25 +1764,25 @@ void AI_ChooseAction()
 										else target = BATTLKPKPLYAERNUM + 1;
 									}
 									done = 1;
-									AI_Choosen = "使用耐久力回复精灵";
+									AI_Choosen = "使用耐久力迴復精靈";
 									sprintf_s( moji,"J|%X|%X", magic_id, target);
 								}else{
-									StockChatBufferLine( "无法使用耐久力回复的精灵", FONT_PAL_WHITE);
+									StockChatBufferLine( "無法使用耐久力迴復的精靈", FONT_PAL_WHITE);
 								}
 							}
 						}
-						if( !done){//使用道具补耐久力
+						if( !done){//使用道具補耐久力
 							if( item_id > -1){
 								done = 1;
 								sprintf_s( moji,"I|%X|%X", item_id, target);
-								AI_Choosen = "使用耐久力回复道具";
+								AI_Choosen = "使用耐久力迴復道具";
 							}else{
-								StockChatBufferLine( "没有耐久力回复的道具", FONT_PAL_WHITE);
+								StockChatBufferLine( "沒有耐久力迴復的道具", FONT_PAL_WHITE);
 							}
 						}
 					}
 				}else
-					StockChatBufferLine( "无法回复耐久力了", FONT_PAL_WHITE);
+					StockChatBufferLine( "無法迴復耐久力瞭", FONT_PAL_WHITE);
 			}
 		}
 		if( 0==done){
@@ -1820,22 +1820,22 @@ void AI_ChooseAction()
 				target = GetResurrectTarget( AI_target[3]);
 				break;
 			}
-			if( target > -1){//宠物死了
+			if( target > -1){//寵物死瞭
 				if( MAX_MAGIC == AI_method[3]){
 					int i;
 					for( i = 0; i < MAX_ITEM; i++){
-						if( pc.item[i].useFlag && strstr( pc.item[i].memo, "气绝回复")){
-							AI_Choosen = "使用气绝回复道具";
+						if( pc.item[i].useFlag && strstr( pc.item[i].memo, "氣絕迴復")){
+							AI_Choosen = "使用氣絕迴復道具";
 							done = 1;
 							sprintf_s( moji,"I|%X|%X", i, target);
 							break;
 						}
 					}
 					if( i >= MAX_ITEM)
-						StockChatBufferLine( "没有气绝回复的道具", FONT_PAL_WHITE);
+						StockChatBufferLine( "沒有氣絕迴復的道具", FONT_PAL_WHITE);
 				}else{
 					int method = AI_method[3];
-					if( method>-1 && magic[method].useFlag && (str=strstr( magic[method].memo, "气绝状态")) && strstr( str, "回复")){
+					if( method>-1 && magic[method].useFlag && (str=strstr( magic[method].memo, "氣絕狀態")) && strstr( str, "迴復")){
 						if( pc.familySprite == 0){
 							if( (magic[method].mp*80/100) <= p_party[BattleMyNo]->mp )
 								done = 1;
@@ -1844,21 +1844,21 @@ void AI_ChooseAction()
 								done = 1;
 						}
 						if( done == 1){
-							AI_Choosen = "使用气绝回复精灵";
+							AI_Choosen = "使用氣絕迴復精靈";
 							sprintf_s( moji,"J|%X|%X", method, target);
 						}
 						else
-							StockChatBufferLine( "MP不足无法使用气绝回复的精灵", FONT_PAL_WHITE);
+							StockChatBufferLine( "MP不足無法使用氣絕迴復的精靈", FONT_PAL_WHITE);
 					}
 					else
-						StockChatBufferLine( "没有设定气绝回复的精灵", FONT_PAL_WHITE);
+						StockChatBufferLine( "沒有設定氣絕迴復的精靈", FONT_PAL_WHITE);
 				}
 			}
 		}
 #ifndef _ATTACK_AI
-		if( 0==done && (/*p_party[BattleMyNo]->maxMp*/100*AI_limit[1]/100 > p_party[BattleMyNo]->mp) ){//补气
+		if( 0==done && (/*p_party[BattleMyNo]->maxMp*/100*AI_limit[1]/100 > p_party[BattleMyNo]->mp) ){//補氣
 #else
-		if(0 == done && ((p_party[BattleMyNo]->maxMp * AI_limit[1] / 100) > p_party[BattleMyNo]->mp) ){//补气
+		if(0 == done && ((p_party[BattleMyNo]->maxMp * AI_limit[1] / 100) > p_party[BattleMyNo]->mp) ){//補氣
 			if(g_bUsePS && AI_method[1] != -1){
 				sprintf_s( moji,"P|%X|%X",g_iPSindex,BattleMyNo);
 				done = 1;
@@ -1869,8 +1869,8 @@ void AI_ChooseAction()
 			{
 				int i;
 				for( i = 0; i < MAX_ITEM; i++){
-					if( pc.item[i].useFlag && (str=strstr( pc.item[i].memo, "气")) && strstr( str, "回复")){
-						AI_Choosen = "使用回复气力道具";
+					if( pc.item[i].useFlag && (str=strstr( pc.item[i].memo, "氣")) && strstr( str, "迴復")){
+						AI_Choosen = "使用迴復氣力道具";
 						done = 1;
 						sprintf_s( moji,"I|%X|%X", i, BattleMyNo);
 						break;
@@ -1884,7 +1884,7 @@ void AI_ChooseAction()
 					MyChatBuffer.cnt = strlen(MyChatBuffer.buffer);
 					KeyboardReturn();
 #endif
-					StockChatBufferLine( "没有回复气力的道具", FONT_PAL_WHITE);
+					StockChatBufferLine( "沒有迴復氣力的道具", FONT_PAL_WHITE);
 				}
 				*/
 			}
@@ -1892,14 +1892,14 @@ void AI_ChooseAction()
 		if( 0 == done){
 //			if( BattleBpFlag & BATTLE_BP_BOOMERANG ){
 //			}
-			//如自己或宠物没有血 且 没有气 就逃跑
+			//如自己或寵物沒有血 且 沒有氣 就逃跑
 			if( ( (p_party[BattleMyNo]->maxHp*AI_limit[0]/100 > p_party[BattleMyNo]->hp) ||
 				(p_party[BattleMyNo+5]->func &&		 
 				( (pet[pc.battlePetNo].hp>0 && pet[pc.battlePetNo].maxHp*AI_limit[0]/100>pet[pc.battlePetNo].hp) ||
 				pet[pc.battlePetNo].hp<=0) ) ) ){
 				int mp_enough = FALSE;
-				if( 0<=AI_method[0] && AI_method[0]<MAX_MAGIC){//有设定使用补血精灵
-					mp_enough = TRUE;//记录MP是否足够
+				if( 0<=AI_method[0] && AI_method[0]<MAX_MAGIC){//有設定使用補血精靈
+					mp_enough = TRUE;//記錄MP是否足夠
 					if( pc.familySprite == 0){
 						if( (magic[AI_method[0]].mp*80/100) > p_party[BattleMyNo]->mp )
 							mp_enough = FALSE;
@@ -1908,7 +1908,7 @@ void AI_ChooseAction()
 							mp_enough = FALSE;
 					}
 				}
-				if( mp_enough == FALSE){//没有设定使用补血精灵 或 MP不足
+				if( mp_enough == FALSE){//沒有設定使用補血精靈 或 MP不足
 					battlePlayerEscFlag = TRUE;
 					strcpy( moji, "E");
 					done = 1;
@@ -1927,9 +1927,9 @@ void AI_ChooseAction()
 					targetNo = GetBattelTarget();
 					if (p_party[targetNo]->level==1){
 						sprintf_s( moji, "T|%X", targetNo );
-						AI_Choosen = "自动抓宠";
+						AI_Choosen = "自動抓寵";
 					}else{
-					AI_Choosen = "抓宠逃跑";
+					AI_Choosen = "抓寵逃跑";
 					battlePlayerEscFlag = TRUE;
 					strcpy( moji, "E");
 					done = 1;
@@ -1938,7 +1938,7 @@ void AI_ChooseAction()
 #endif
 					targetNo = GetBattelTarget();
 					sprintf_s( moji, "H|%X", targetNo );
-					AI_Choosen = "自动攻击";
+					AI_Choosen = "自動攻擊";
 #ifdef _AI_CAPTURE
 				}
 #endif
@@ -2011,22 +2011,22 @@ void AI_ChooseAction()
 void AI_CloseWnd()
 {
 #ifdef _AIDENGLU_
-	extern BOOL 自动登陆窗口;
-	extern ACTION *p自动登陆窗口;
-	extern ACTION *方向动作;
-	extern ACTION *人物动作;
-	自动登陆窗口=0;
-	if(p自动登陆窗口){
-		DeathAction(p自动登陆窗口);
-		p自动登陆窗口=NULL;
+	extern BOOL 自動登陸窗口;
+	extern ACTION *p自動登陸窗口;
+	extern ACTION *方嚮動作;
+	extern ACTION *人物動作;
+	自動登陸窗口=0;
+	if(p自動登陸窗口){
+		DeathAction(p自動登陸窗口);
+		p自動登陸窗口=NULL;
 	}
-	if((int)方向动作){
-		if((int)方向动作>1000)
-			DeathAction(方向动作);
-		方向动作=NULL;
-		if((int)人物动作>1000)
-			DeathAction(人物动作);
-		人物动作=NULL;	
+	if((int)方嚮動作){
+		if((int)方嚮動作>1000)
+			DeathAction(方嚮動作);
+		方嚮動作=NULL;
+		if((int)人物動作>1000)
+			DeathAction(人物動作);
+		人物動作=NULL;	
 	}
 #endif
 	AI_State = 0;
@@ -2053,14 +2053,14 @@ void AI_OtherProc(){
 	static int btnId[AI_OTHER_BTN];
 	int x,y,i;
 #ifdef _AI_CAPTURE
-	static char szFunctionName[AI_OTHER_BTN][30] = {"","自动丢肉","自动抓宠"};
+	static char szFunctionName[AI_OTHER_BTN][30] = {"","自動丟肉","自動抓寵"};
 
 #else 
-	static char szFunctionName[AI_OTHER_BTN][30] = {"","自动丢肉"};
+	static char szFunctionName[AI_OTHER_BTN][30] = {"","自動丟肉"};
 #endif
 	static char szFunctionSwitch[2][12] = {" Ｎ  Ｏ "," ＹＥＳ "};
 	if(pAIOtherFunctionWnd == NULL){
-		// 若在战斗中
+		// 若在戰鬥中
 		pAIOtherFunctionWnd = MakeWindowDisp(413,lpDraw->ySize / 2 + 150,3,2,NULL,1, FALSE);
 		//if(ProcNo == PROC_BATTLE) pAIOtherFunctionWnd = MakeWindowDisp(413,150,3,2,NULL,1, FALSE);
 		//else pAIOtherFunctionWnd = MakeWindowDisp(413,0,3,2,NULL,1, FALSE);
@@ -2086,7 +2086,7 @@ void AI_OtherProc(){
 				int id;
 				id = selFontId(btnId,sizeof(btnId)/sizeof(int));
 				switch(id){
-				// 自动丢肉
+				// 自動丟肉
 				case 1:
 					AI_OtherSetting[0] = !AI_OtherSetting[0];
 					break;
@@ -2094,7 +2094,7 @@ void AI_OtherProc(){
 					AI_OtherSetting[1] = !AI_OtherSetting[1];
 					break;
 				}
-				// 关闭
+				// 關閉
 				if(HitDispNo == btnId[0]){
 					DeathAction(pAIOtherFunctionWnd);
 					pAIOtherFunctionWnd = NULL;

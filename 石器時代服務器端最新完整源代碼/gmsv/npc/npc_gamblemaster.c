@@ -46,60 +46,60 @@ typedef struct tagGambleMaster
 {
 	int m_fx;
 	int m_fy;
-	int m_type;	//∫≈¬Î 
-	int m_RG;	//∫Ï¬Ã1 2
-	int m_EO;	//µ•À´1 2
+	int m_type;	//ËôüÁ¢º 
+	int m_RG;	//Á¥ÖÁ∂†1 2
+	int m_EO;	//ÂñÆÈõô1 2
 	int m_SI;
 	int m_IN;
 	char str_type[56];
 	int m_nums;
 }GambleEndType;
 GambleEndType EndTypedef[60]={
-{22, 8 , roulette1 , roulette41, roulette43, roulette51, roulette61, "∫≈¬Î∫Ï£±", 0},
-{7 , 8 , roulette1 , roulette41, roulette43, roulette51, roulette61, "∫≈¬Î∫Ï£±", 0},
-{22, 10, roulette3 , roulette41, roulette43, roulette51, roulette61, "∫≈¬Î∫Ï£≥", 0},
-{7 , 6 , roulette3 , roulette41, roulette43, roulette51, roulette61, "∫≈¬Î∫Ï£≥", 0},
-{20, 11, roulette5 , roulette41, roulette43, roulette51, roulette61, "∫≈¬Î∫Ï£µ", 0},
-{9 , 5 , roulette5 , roulette41, roulette43, roulette51, roulette61, "∫≈¬Î∫Ï£µ", 0},
-{19, 5 , roulette6 , roulette41, roulette44, roulette53, roulette61, "∫≈¬Î∫Ï£∂", 0},
-{10, 11, roulette6 , roulette41, roulette44, roulette53, roulette61, "∫≈¬Î∫Ï£∂", 0},
-{17, 5 , roulette8 , roulette41, roulette44, roulette53, roulette61, "∫≈¬Î∫Ï£∏", 0},
-{12, 11, roulette8 , roulette41, roulette44, roulette53, roulette61, "∫≈¬Î∫Ï£∏", 0},
-{16, 5 , roulette9 , roulette41, roulette43, roulette53, roulette61, "∫≈¬Î∫Ï£π", 0},
-{13, 11, roulette9 , roulette41, roulette43, roulette53, roulette61, "∫≈¬Î∫Ï£π", 0},
-{15, 5 , roulette10, roulette41, roulette44, roulette53, roulette61, "∫≈¬Î∫Ï£±£∞", 0},
-{14, 11, roulette10, roulette41, roulette44, roulette53, roulette61, "∫≈¬Î∫Ï£±£∞", 0},
-{12, 5 , roulette13, roulette41, roulette43, roulette52, roulette62, "∫≈¬Î∫Ï£±£≥", 0},
-{17, 11, roulette13, roulette41, roulette43, roulette52, roulette62, "∫≈¬Î∫Ï£±£≥", 0},
-{22, 6 , roulette17, roulette41, roulette43, roulette53, roulette62, "∫≈¬Î∫Ï£±£∑", 0},
-{7 , 10, roulette17, roulette41, roulette43, roulette53, roulette62, "∫≈¬Î∫Ï£±£∑", 0},
-{22, 5 , roulette18, roulette41, roulette44, roulette52, roulette62, "∫≈¬Î∫Ï£±£∏", 0},
-{7 , 11, roulette18, roulette41, roulette44, roulette52, roulette62, "∫≈¬Î∫Ï£±£∏", 0},
+{22, 8 , roulette1 , roulette41, roulette43, roulette51, roulette61, "ËôüÁ¢ºÁ¥ÖÔºë", 0},
+{7 , 8 , roulette1 , roulette41, roulette43, roulette51, roulette61, "ËôüÁ¢ºÁ¥ÖÔºë", 0},
+{22, 10, roulette3 , roulette41, roulette43, roulette51, roulette61, "ËôüÁ¢ºÁ¥ÖÔºì", 0},
+{7 , 6 , roulette3 , roulette41, roulette43, roulette51, roulette61, "ËôüÁ¢ºÁ¥ÖÔºì", 0},
+{20, 11, roulette5 , roulette41, roulette43, roulette51, roulette61, "ËôüÁ¢ºÁ¥ÖÔºï", 0},
+{9 , 5 , roulette5 , roulette41, roulette43, roulette51, roulette61, "ËôüÁ¢ºÁ¥ÖÔºï", 0},
+{19, 5 , roulette6 , roulette41, roulette44, roulette53, roulette61, "ËôüÁ¢ºÁ¥ÖÔºñ", 0},
+{10, 11, roulette6 , roulette41, roulette44, roulette53, roulette61, "ËôüÁ¢ºÁ¥ÖÔºñ", 0},
+{17, 5 , roulette8 , roulette41, roulette44, roulette53, roulette61, "ËôüÁ¢ºÁ¥ÖÔºò", 0},
+{12, 11, roulette8 , roulette41, roulette44, roulette53, roulette61, "ËôüÁ¢ºÁ¥ÖÔºò", 0},
+{16, 5 , roulette9 , roulette41, roulette43, roulette53, roulette61, "ËôüÁ¢ºÁ¥ÖÔºô", 0},
+{13, 11, roulette9 , roulette41, roulette43, roulette53, roulette61, "ËôüÁ¢ºÁ¥ÖÔºô", 0},
+{15, 5 , roulette10, roulette41, roulette44, roulette53, roulette61, "ËôüÁ¢ºÁ¥ÖÔºëÔºê", 0},
+{14, 11, roulette10, roulette41, roulette44, roulette53, roulette61, "ËôüÁ¢ºÁ¥ÖÔºëÔºê", 0},
+{12, 5 , roulette13, roulette41, roulette43, roulette52, roulette62, "ËôüÁ¢ºÁ¥ÖÔºëÔºì", 0},
+{17, 11, roulette13, roulette41, roulette43, roulette52, roulette62, "ËôüÁ¢ºÁ¥ÖÔºëÔºì", 0},
+{22, 6 , roulette17, roulette41, roulette43, roulette53, roulette62, "ËôüÁ¢ºÁ¥ÖÔºëÔºó", 0},
+{7 , 10, roulette17, roulette41, roulette43, roulette53, roulette62, "ËôüÁ¢ºÁ¥ÖÔºëÔºó", 0},
+{22, 5 , roulette18, roulette41, roulette44, roulette52, roulette62, "ËôüÁ¢ºÁ¥ÖÔºëÔºò", 0},
+{7 , 11, roulette18, roulette41, roulette44, roulette52, roulette62, "ËôüÁ¢ºÁ¥ÖÔºëÔºò", 0},
 
-{22, 9 , roulette22, roulette42, roulette44, roulette51, roulette61, "∫≈¬Î¬Ã£≤", 0},
-{7 , 7 , roulette22, roulette42, roulette44, roulette51, roulette61, "∫≈¬Î¬Ã£≤", 0},
-{21, 11, roulette24, roulette42, roulette44, roulette51, roulette61, "∫≈¬Î¬Ã£¥", 0},
-{8 , 5 , roulette24, roulette42, roulette44, roulette51, roulette61, "∫≈¬Î¬Ã£¥", 0},
-{18, 5 , roulette27, roulette42, roulette43, roulette53, roulette61, "∫≈¬Î¬Ã£∑", 0},
-{11, 11, roulette27, roulette42, roulette43, roulette53, roulette61, "∫≈¬Î¬Ã£∑", 0},
-{19, 11, roulette31, roulette42, roulette43, roulette51, roulette62, "∫≈¬Î¬Ã£±£±", 0},
-{10, 5 , roulette31, roulette42, roulette43, roulette51, roulette62, "∫≈¬Î¬Ã£±£±", 0},
-{18, 11, roulette32, roulette42, roulette44, roulette51, roulette62, "∫≈¬Î¬Ã£±£≤", 0},
-{11, 5 , roulette32, roulette42, roulette44, roulette51, roulette62, "∫≈¬Î¬Ã£±£≤", 0},
-{16, 11, roulette34, roulette42, roulette44, roulette52, roulette62, "∫≈¬Î¬Ã£±£¥", 0},
-{14, 5 , roulette34, roulette42, roulette44, roulette52, roulette62, "∫≈¬Î¬Ã£±£¥", 0},
-{15, 11, roulette35, roulette42, roulette43, roulette52, roulette62, "∫≈¬Î¬Ã£±£µ", 0},
-{13, 5 , roulette35, roulette42, roulette43, roulette52, roulette62, "∫≈¬Î¬Ã£±£µ", 0},
-{22, 7 , roulette36, roulette42, roulette44, roulette53, roulette62, "∫≈¬Î¬Ã£±£∂", 0},
-{7 , 9 , roulette36, roulette42, roulette44, roulette53, roulette62, "∫≈¬Î¬Ã£±£∂", 0},
-{21, 5 , roulette39, roulette42, roulette43, roulette52, roulette62, "∫≈¬Î¬Ã£±£π", 0},
-{8 , 11, roulette39, roulette42, roulette43, roulette52, roulette62, "∫≈¬Î¬Ã£±£π", 0},
-{20, 5 , roulette40, roulette42, roulette44, roulette52, roulette62, "∫≈¬Î¬Ã£≤£∞", 0},
-{9 , 11, roulette40, roulette42, roulette44, roulette52, roulette62, "∫≈¬Î¬Ã£≤£∞", 0},
-{22,11, roulette45, 0, 0, roulette52, 0, "∫≈¬Î£∞£∞"},
+{22, 9 , roulette22, roulette42, roulette44, roulette51, roulette61, "ËôüÁ¢ºÁ∂†Ôºí", 0},
+{7 , 7 , roulette22, roulette42, roulette44, roulette51, roulette61, "ËôüÁ¢ºÁ∂†Ôºí", 0},
+{21, 11, roulette24, roulette42, roulette44, roulette51, roulette61, "ËôüÁ¢ºÁ∂†Ôºî", 0},
+{8 , 5 , roulette24, roulette42, roulette44, roulette51, roulette61, "ËôüÁ¢ºÁ∂†Ôºî", 0},
+{18, 5 , roulette27, roulette42, roulette43, roulette53, roulette61, "ËôüÁ¢ºÁ∂†Ôºó", 0},
+{11, 11, roulette27, roulette42, roulette43, roulette53, roulette61, "ËôüÁ¢ºÁ∂†Ôºó", 0},
+{19, 11, roulette31, roulette42, roulette43, roulette51, roulette62, "ËôüÁ¢ºÁ∂†ÔºëÔºë", 0},
+{10, 5 , roulette31, roulette42, roulette43, roulette51, roulette62, "ËôüÁ¢ºÁ∂†ÔºëÔºë", 0},
+{18, 11, roulette32, roulette42, roulette44, roulette51, roulette62, "ËôüÁ¢ºÁ∂†ÔºëÔºí", 0},
+{11, 5 , roulette32, roulette42, roulette44, roulette51, roulette62, "ËôüÁ¢ºÁ∂†ÔºëÔºí", 0},
+{16, 11, roulette34, roulette42, roulette44, roulette52, roulette62, "ËôüÁ¢ºÁ∂†ÔºëÔºî", 0},
+{14, 5 , roulette34, roulette42, roulette44, roulette52, roulette62, "ËôüÁ¢ºÁ∂†ÔºëÔºî", 0},
+{15, 11, roulette35, roulette42, roulette43, roulette52, roulette62, "ËôüÁ¢ºÁ∂†ÔºëÔºï", 0},
+{13, 5 , roulette35, roulette42, roulette43, roulette52, roulette62, "ËôüÁ¢ºÁ∂†ÔºëÔºï", 0},
+{22, 7 , roulette36, roulette42, roulette44, roulette53, roulette62, "ËôüÁ¢ºÁ∂†ÔºëÔºñ", 0},
+{7 , 9 , roulette36, roulette42, roulette44, roulette53, roulette62, "ËôüÁ¢ºÁ∂†ÔºëÔºñ", 0},
+{21, 5 , roulette39, roulette42, roulette43, roulette52, roulette62, "ËôüÁ¢ºÁ∂†ÔºëÔºô", 0},
+{8 , 11, roulette39, roulette42, roulette43, roulette52, roulette62, "ËôüÁ¢ºÁ∂†ÔºëÔºô", 0},
+{20, 5 , roulette40, roulette42, roulette44, roulette52, roulette62, "ËôüÁ¢ºÁ∂†ÔºíÔºê", 0},
+{9 , 11, roulette40, roulette42, roulette44, roulette52, roulette62, "ËôüÁ¢ºÁ∂†ÔºíÔºê", 0},
+{22,11, roulette45, 0, 0, roulette52, 0, "ËôüÁ¢ºÔºêÔºê"},
 
-{ 7, 5, -1, -1, -1, -1, -1, "∫≈¬Î£ÿ", 0},
-{ -1, -1, -1, -1, -1, -1, -1, "Œﬁ", 0},
+{ 7, 5, -1, -1, -1, -1, -1, "ËôüÁ¢ºÔº∏", 0},
+{ -1, -1, -1, -1, -1, -1, -1, "ÁÑ°", 0},
 };
 
 enum {
@@ -138,17 +138,17 @@ BOOL NPC_Gamble_MasterInit( int meindex )
 		return FALSE;
 	}
 	CHAR_setWorkInt( meindex, NPC_WORK_GAMBLECODE, atoi( buf1));
-	//”Œœ∑Ω◊∂Œ
+	//ÈÅäÊà≤ÈöéÊÆµ
 	CHAR_setWorkInt( meindex, NPC_WORK_GAMEFLG, 0);
 	CHAR_setInt( meindex , CHAR_WHICHTYPE , CHAR_GAMBLEMASTER );
-	// NPC_WORK_MODE ÷˜≥÷»À◊¥Ã¨ 0: µ»¥˝ 1:GAME START 2:GAME END
+	// NPC_WORK_MODE ‰∏ªÊåÅ‰∫∫ÁãÄÊÖã 0: Á≠âÂæÖ 1:GAME START 2:GAME END
 	CHAR_setWorkInt( meindex, NPC_WORK_MODE, 0);
 	CHAR_setWorkInt( meindex, NPC_WORK_MASTERFLG, 30);
 	CHAR_setWorkInt( meindex, NPC_WORK_MASTERSTONE, 0);
 	CHAR_setWorkInt( meindex, NPC_WORK_NPCAI, 0);
-	//…Ë∂®LOOP TIMER
+	//Ë®≠ÂÆöLOOP TIMER
 	CHAR_setInt( meindex, CHAR_LOOPINTERVAL, ROULETTE_LOOPTIME);
-	//”√¿¥º«¬º ±º‰µ„
+	//Áî®‰æÜË®òÈåÑÊôÇÈñìÈªû
 	CHAR_setWorkInt( meindex, NPC_WORK_SYSTIME, NowTime.tv_sec);
     return TRUE;
 }
@@ -168,7 +168,7 @@ void NPC_Gamble_MasterTalked( int meindex , int talkerindex , char *szMes , int 
 		print("\n not found argstr ");
 		return;
 	}
-	// 0 —°µ• 11 - 19 πÊ‘Ú 21 - 29 ª˝∑÷
+	// 0 ÈÅ∏ÂñÆ 11 - 19 Ë¶èÂâá 21 - 29 Á©çÂàÜ
 	CHAR_setWorkInt(talkerindex , CHAR_WORKSHOPRELEVANT,0);
 	NPC_GambleRoulette_selectWindow( meindex, talkerindex, ROULETTE_START, -1 );
 }
@@ -208,7 +208,7 @@ void NPC_GambleRoulette_selectWindow(int meindex,int toindex,int num,int select)
 		break;
 	break;
 	case ROULETTE_SELECT:
-		//“≥ select
+		//È†Å select
 		pagenum = CHAR_getWorkInt( toindex , CHAR_WORKSHOPRELEVANT);
 		strcpy( token, "\0");
 		if( select >= 0 )	{
@@ -236,7 +236,7 @@ void NPC_GambleRoulette_selectWindow(int meindex,int toindex,int num,int select)
 		}
 	break;
 	case ROULETTE_LOOK:
-		{	//œ‘ æ ±≤πªÿª˝∑÷
+		{	//È°ØÁ§∫ÊôÇË£úËø¥Á©çÂàÜ
 			int G_num = CHAR_getInt( toindex, CHAR_GAMBLENUM );
 
 			if( CHAR_getWorkInt( toindex, CHAR_WORKSTAKEFLAG) != FALSE)	{
@@ -246,7 +246,7 @@ void NPC_GambleRoulette_selectWindow(int meindex,int toindex,int num,int select)
 				}
 			}
 			if( G_num < 0 ) G_num = 0;
-			sprintf( token,"ƒ„µƒ”Œ¿÷≥°ª˝∑÷Œ™%d°£", G_num );
+			sprintf( token,"‰Ω†ÁöÑÈÅäÊ®ÇÂ†¥Á©çÂàÜÁÇ∫%d„ÄÇ", G_num );
 			windowno = WINDOWTYPE_GAMBLEROULETTE_END;
 			buttontype = WINDOW_BUTTONTYPE_OK;
 		}
@@ -312,22 +312,22 @@ void NPC_Gamble_MasterLoop( int meindex)
 	//int act;
 	objmeindex = CHAR_getWorkInt( meindex, CHAR_WORKOBJINDEX);
 	switch( CHAR_getWorkInt( meindex, NPC_WORK_MODE )) {
-	  case 0:	// µ»¥˝
+	  case 0:	// Á≠âÂæÖ
 		  full_time = ROULETTE_STANDBY1;
 		  timeNum = CHAR_getWorkInt( meindex, NPC_WORK_MASTERFLG );
 		  if( ( CHAR_getWorkInt( meindex, NPC_WORK_SYSTIME) + full_time) < NowTime.tv_sec )	{
-			  if( timeNum == 30 )	{	//µπ ˝20√Î
-				//0 null 1 ◊º±∏ 2 ≈‹ 3 Õ£
+			  if( timeNum == 30 )	{	//ÂÄíÊï∏20Áßí
+				//0 null 1 Ê∫ñÂÇô 2 Ë∑ë 3 ÂÅú
 				CHAR_setWorkInt( meindex, NPC_WORK_GAMEFLG, 1);
-				showString( meindex, "œ¬◊¢ ±º‰ £œ¬£≤£∞√Î°£", 0);
+				showString( meindex, "‰∏ãÊ≥®ÊôÇÈñìÂâ©‰∏ãÔºíÔºêÁßí„ÄÇ", 0);
 			  }else	if( timeNum == 10 )	{	
-				  showString( meindex, "standby_msg", 0);	//π„≤•
-				  SetCasinoMap( meindex, 0, 0);	//…Ë∂®µÿÕº≤ªø…œ¬◊¢
-			  }else	if( timeNum <= 6 )	{	//ø™ º
-				  //0 null 1 ◊º±∏ 2 ≈‹ 3 Õ£
+				  showString( meindex, "standby_msg", 0);	//Âª£Êí≠
+				  SetCasinoMap( meindex, 0, 0);	//Ë®≠ÂÆöÂú∞Âúñ‰∏çÂèØ‰∏ãÊ≥®
+			  }else	if( timeNum <= 6 )	{	//ÈñãÂßã
+				  //0 null 1 Ê∫ñÂÇô 2 Ë∑ë 3 ÂÅú
 				  CHAR_setWorkInt( meindex, NPC_WORK_GAMEFLG, 2);
 				  CHAR_setWorkInt( meindex, NPC_WORK_MODE, 1);
-				  showString( meindex, "start_msg", 0);	//π„≤•
+				  showString( meindex, "start_msg", 0);	//Âª£Êí≠
 			  }
 			  CHAR_setWorkInt( meindex, NPC_WORK_MASTERFLG, timeNum - 2 );
 		  }
@@ -339,7 +339,7 @@ void NPC_Gamble_MasterLoop( int meindex)
 		break;
 	  case 2:	// GAME END
 			CHAR_setWorkInt( meindex, NPC_WORK_MODE, 3);
-			defPlayerGold( meindex , TRUE);	//º∆À„ ‰”Æ
+			defPlayerGold( meindex , TRUE);	//Ë®àÁÆóËº∏Ë¥è
 			CHAR_setWorkInt( meindex, NPC_WORK_ENDPOINT, 0);
 			NPC_MAPCLEANGOLD( meindex , CHAR_getInt( meindex, CHAR_FLOOR ));
 
@@ -354,8 +354,8 @@ void NPC_Gamble_MasterLoop( int meindex)
 	  case 3:
 		  CHAR_setWorkInt( meindex, NPC_WORK_MODE, 0);
 		  CHAR_setWorkInt( meindex, NPC_WORK_GAMEFLG, 0);
-		  showString( meindex, "end_msg", 0);	//π„≤•
-		  SetCasinoMap( meindex, 0, 1);	//…Ë∂®µÿÕºø…œ¬◊¢
+		  showString( meindex, "end_msg", 0);	//Âª£Êí≠
+		  SetCasinoMap( meindex, 0, 1);	//Ë®≠ÂÆöÂú∞ÂúñÂèØ‰∏ãÊ≥®
 		  CHAR_setWorkInt( meindex, NPC_WORK_MASTERFLG, 30 );
 		  CHAR_setWorkInt( meindex, NPC_WORK_SYSTIME, NowTime.tv_sec);
 		break;
@@ -394,7 +394,7 @@ void defPlayerGold( int meindex , int flg)
 		return;
 	}
 /*Log=====================================
-	{	//º«¬º”√
+	{	//Ë®òÈåÑÁî®
 		FILE *fp;
 		int kp=0,pn=0;;
 		fp = fopen("./data/npc/roulette/lookgamble.txt","w+");
@@ -403,7 +403,7 @@ void defPlayerGold( int meindex , int flg)
 				EndTypedef[ End_type].m_nums = EndTypedef[ End_type].m_nums+1;
 			for( kp=0; kp<arraysizeof( EndTypedef)-1; kp++ )	{
 				if( EndTypedef[ kp].m_nums > 0 && EndTypedef[ kp].m_type > 0 )	{
-					fprintf( fp," %s ÷–Ω±¥Œ ˝ [%d] ", EndTypedef[ kp].str_type, EndTypedef[ kp].m_nums );
+					fprintf( fp," %s ‰∏≠Â•¨Ê¨°Êï∏ [%d] ", EndTypedef[ kp].str_type, EndTypedef[ kp].m_nums );
 					if( (pn+1)%2 == 0 )	{
 						fprintf( fp," \n");
 					}
@@ -416,22 +416,22 @@ void defPlayerGold( int meindex , int flg)
 //========================================*/
 
 	if( EndTypedef[ End_type].m_type <= 0 )	{
-		showString( meindex, "∫≈¬Î£ÿ£¨Õ®…±£°", 0);
+		showString( meindex, "ËôüÁ¢ºÔº∏ÔºåÈÄöÊÆ∫ÔºÅ", 0);
 	}else	{
-		sprintf( token ,"÷–Ω±∫≈¬Î £∫ %s ", EndTypedef[End_type].str_type );
+		sprintf( token ,"‰∏≠Â•¨ËôüÁ¢º Ôºö %s ", EndTypedef[End_type].str_type );
 		showString( meindex, token, 0 );
 	}
 	if( EndTypedef[ End_type].m_EO == roulette43 )	{
-		sprintf( buf1,"µ•");
+		sprintf( buf1,"ÂñÆ");
 	}else	{
-		sprintf( buf1,"À´");
+		sprintf( buf1,"Èõô");
 	}
 	if( EndTypedef[ End_type].m_RG == roulette41 )	{
-		sprintf( buf2,"∫Ï");
+		sprintf( buf2,"Á¥Ö");
 	}else	{
-		sprintf( buf2,"¬Ã");
+		sprintf( buf2,"Á∂†");
 	}
-	//’“‘⁄≥°µƒ»À
+	//ÊâæÂú®Â†¥ÁöÑ‰∫∫
 	toindex = -1;
 	master_floor = CHAR_getInt( meindex , CHAR_FLOOR);
 	while( toindex < 10000 )	{
@@ -440,78 +440,78 @@ void defPlayerGold( int meindex , int flg)
 			continue;
 		if( CHAR_getInt( toindex , CHAR_WHICHTYPE ) != CHAR_TYPEPLAYER )
 			continue;
-		if( master_floor != CHAR_getInt( toindex, CHAR_FLOOR ) )	// «∑Ò‘⁄∂ƒ≥°
+		if( master_floor != CHAR_getInt( toindex, CHAR_FLOOR ) )	//ÊòØÂê¶Âú®Ë≥≠Â†¥
 			continue;
-		if( CHAR_getWorkInt( toindex, CHAR_WORKSTAKEFLAG) == FALSE )	// «∑Ò”–œ¬◊¢
+		if( CHAR_getWorkInt( toindex, CHAR_WORKSTAKEFLAG) == FALSE )	//ÊòØÂê¶Êúâ‰∏ãÊ≥®
 			continue;
-		// «∑Ò∂ƒ÷–
+		//ÊòØÂê¶Ë≥≠‰∏≠
 		GAMBLE_YES = FALSE;
 		CHAR_setWorkInt( toindex, CHAR_WORKSTAKEFLAG, FALSE);
 		for( i=0; i<5; i++)	{
 			player_type = CHAR_getWorkInt( toindex, i+CHAR_WORKSTAKETYPE1);
 			gamble_num = 0;
 			if( player_type > 0 )	{
-				if( player_type == EndTypedef[End_type].m_type )	{	//÷–¡À∫≈¬Î
+				if( player_type == EndTypedef[End_type].m_type )	{	//‰∏≠Áû≠ËôüÁ¢º
 					if( EndTypedef[End_type].m_type == roulette45 )	{
 						gamble_num += 40;
 					}else	{
 						gamble_num += 20;
 					}
 					GAMBLE_YES = TRUE;
-					//À„«Æ
+					//ÁÆóÈå¢
 					Codef_Gold( meindex, toindex, gamble_num, 0, EndTypedef[End_type].str_type );
-				}else if( player_type == EndTypedef[End_type].m_RG )    {	//÷–¡À∫Ï¬Ã
+				}else if( player_type == EndTypedef[End_type].m_RG )    {	//‰∏≠Áû≠Á¥ÖÁ∂†
 					gamble_num += 1;
 					GAMBLE_YES = TRUE;
 					Codef_Gold( meindex, toindex, gamble_num, 0, buf2 );
-				}else if( player_type == EndTypedef[End_type].m_EO )	{	//÷–¡Àµ•À´
+				}else if( player_type == EndTypedef[End_type].m_EO )	{	//‰∏≠Áû≠ÂñÆÈõô
 					gamble_num += 1;
 					GAMBLE_YES = TRUE;
 					Codef_Gold( meindex, toindex, gamble_num, 0, buf1 );
-				}else if( player_type == EndTypedef[End_type].m_SI   )	{	//∫·¡–					
+				}else if( player_type == EndTypedef[End_type].m_SI   )	{	//Ê©´Âàó					
 					gamble_num += 2;
 					GAMBLE_YES = TRUE;
-					sprintf( token,"%s%d", "∫·¡–", EndTypedef[End_type].m_SI-100 );
+					sprintf( token,"%s%d", "Ê©´Âàó", EndTypedef[End_type].m_SI-100 );
 					Codef_Gold( meindex, toindex, gamble_num, 0, token );
 				}else if( player_type == EndTypedef[End_type].m_IN   )	{	//1-10 11-20
 					gamble_num += 1;
 					GAMBLE_YES = TRUE;
 					if( (EndTypedef[End_type].m_IN - 100 ) == 11 )	{
-						snprintf( buff, sizeof( buff),"£±£≠£±£∞");
+						snprintf( buff, sizeof( buff),"ÔºëÔºçÔºëÔºê");
 					}else if( (EndTypedef[End_type].m_IN - 100 ) == 12 )	{
-						snprintf( buff, sizeof( buff),"£±£±£≠£≤£∞");
+						snprintf( buff, sizeof( buff),"ÔºëÔºëÔºçÔºíÔºê");
 					}
-					sprintf( token,"%s%s", "∑∂Œß", buff );
+					sprintf( token,"%s%s", "ÁØÑÂúç", buff );
 					Codef_Gold( meindex, toindex, gamble_num, 0, token );
-				}else	{	//√ª÷–	ø€ª˝∑÷
+				}else	{	//Ê≤í‰∏≠	Êâ£Á©çÂàÜ
 					if( (player_type>>16) == EndTypedef[End_type].m_type || 
 						(player_type&0xffff) == EndTypedef[End_type].m_type
-						)	{	//÷–À´∫≈
+						)	{	//‰∏≠ÈõôËôü
 						gamble_num += 10;
 						GAMBLE_YES = TRUE;
-						sprintf( token,"%s%s", "À´∫≈£≠", EndTypedef[End_type].str_type );
+						sprintf( token,"%s%s", "ÈõôËôüÔºç", EndTypedef[End_type].str_type );
 						Codef_Gold( meindex, toindex, gamble_num, 0, token );
-					}else if( player_type > 0 ) {	//72 73 74 75 √ª÷–	ø€ª˝∑÷
+					}else if( player_type > 0 ) {	//72 73 74 75 Ê≤í‰∏≠	Êâ£Á©çÂàÜ
 						strcpy( token, "\0");
-						if( player_type >= roulette41 && player_type <= roulette44 )	{	//∫Ï¬Ãµ•À´
-							sprintf( token,"%s", "—∫◊¢ ∫Ï¬Ãµ•À´ √ª÷–");
-						}else if( player_type == roulette45 )	{	// ˝◊÷00
-							sprintf( token,"%s", "—∫◊¢  ˝◊÷00 √ª÷–");
-						}else if( player_type >= roulette51 && player_type <= roulette53 )	{	//∫·¡–
-							sprintf( token,"%s", "—∫◊¢ ∫·¡– √ª÷–");
-						}else if( player_type >= roulette61 && player_type <= roulette62 )	{	//∑∂Œß
-							sprintf( token,"%s", "—∫◊¢ ∑∂Œß √ª÷–");
-						}else if( player_type > (1<<16) )	{	//À´∫≈
-							sprintf( token,"%s", "—∫◊¢ À´∫≈ √ª÷–");
-						}else	{	// ˝◊÷
-							sprintf( token,"%s", "—∫◊¢  ˝◊÷ √ª÷–");
+						if( player_type >= roulette41 && player_type <= roulette44 )	{	//Á¥ÖÁ∂†ÂñÆÈõô
+							sprintf( token,"%s", "ÊäºÊ≥® Á¥ÖÁ∂†ÂñÆÈõô Ê≤í‰∏≠");
+						}else if( player_type == roulette45 )	{	//Êï∏Â≠ó00
+							sprintf( token,"%s", "ÊäºÊ≥® Êï∏Â≠ó00 Ê≤í‰∏≠");
+						}else if( player_type >= roulette51 && player_type <= roulette53 )	{	//Ê©´Âàó
+							sprintf( token,"%s", "ÊäºÊ≥® Ê©´Âàó Ê≤í‰∏≠");
+						}else if( player_type >= roulette61 && player_type <= roulette62 )	{	//ÁØÑÂúç
+							sprintf( token,"%s", "ÊäºÊ≥® ÁØÑÂúç Ê≤í‰∏≠");
+						}else if( player_type > (1<<16) )	{	//ÈõôËôü
+							sprintf( token,"%s", "ÊäºÊ≥® ÈõôËôü Ê≤í‰∏≠");
+						}else	{	//Êï∏Â≠ó
+							sprintf( token,"%s", "ÊäºÊ≥® Êï∏Â≠ó Ê≤í‰∏≠");
 						}
 						gamble_num -= 1;
 						Codef_Gold( meindex, toindex, gamble_num, 1, token );
 					}
 				}
 			}
-			//«Âø’
+			//Ê∏ÖÁ©∫
 			CHAR_setWorkInt( toindex, i+CHAR_WORKSTAKETYPE1, 0);
 		}
 		if( CHAR_getInt( toindex, CHAR_GAMBLENUM) < 0 )	{
@@ -519,11 +519,11 @@ void defPlayerGold( int meindex , int flg)
 		}else if( CHAR_getInt( toindex, CHAR_GAMBLENUM) > 10000 )	{
 			CHAR_setInt( toindex, CHAR_GAMBLENUM, 10000 );
 		}
-		sprintf( token, "ƒ„µƒ”Œ¿÷≥°ª˝∑÷¿€º∆Œ™%d∑÷°£", CHAR_getInt( toindex, CHAR_GAMBLENUM));
+		sprintf( token, "‰Ω†ÁöÑÈÅäÊ®ÇÂ†¥Á©çÂàÜÁ∫çË®àÁÇ∫%dÂàÜ„ÄÇ", CHAR_getInt( toindex, CHAR_GAMBLENUM));
 		CHAR_talkToCli( toindex, meindex, token,  CHAR_COLORYELLOW);
 
 		if( GAMBLE_YES == FALSE )	{
-			sprintf( token, "ƒ„À˘”–—∫◊¢∂º√ª÷–Ω±£°");
+			sprintf( token, "‰Ω†ÊâÄÊúâÊäºÊ≥®ÈÉΩÊ≤í‰∏≠Â•¨ÔºÅ");
 			CHAR_talkToCli( toindex, meindex, token,  CHAR_COLORYELLOW);		
             continue;
 		}
@@ -540,10 +540,10 @@ void Codef_Gold( int meindex, int toindex, int stone,int flg, char *token)
 	Master_gnum = CHAR_getWorkInt( meindex, NPC_WORK_MASTERSTONE);
 	Master_gnum += stone;
 	if( !flg )	{
-		sprintf( buf1,"πßœ≤ƒ„÷–¡À£∫%s£¨ø…ƒ√µ√ %d µ„ª˝∑÷", token, stone);
+		sprintf( buf1,"ÊÅ≠Âñú‰Ω†‰∏≠Áû≠Ôºö%sÔºåÂèØÊãøÂæó %d ÈªûÁ©çÂàÜ", token, stone);
 		CHAR_talkToCli( toindex, meindex, buf1,  CHAR_COLORYELLOW);
 #ifdef _FIX_GAMBLENUM
-		stone += 1;	//º”…œ“ªø™ ºœ¬◊¢ø€µƒª˝∑÷
+		stone += 1;	//Âä†‰∏ä‰∏ÄÈñãÂßã‰∏ãÊ≥®Êâ£ÁöÑÁ©çÂàÜ
 #endif
 		CHAR_setInt( toindex, CHAR_GAMBLENUM, CHAR_getInt( toindex, CHAR_GAMBLENUM) + stone);
 
@@ -553,7 +553,7 @@ void Codef_Gold( int meindex, int toindex, int stone,int flg, char *token)
 			dnum = (dnum*(-1));
 		}
 
-		sprintf( buf1,"%s£¨ø€ %d µ„ª˝∑÷", token, dnum);
+		sprintf( buf1,"%sÔºåÊâ£ %d ÈªûÁ©çÂàÜ", token, dnum);
 		CHAR_talkToCli( toindex, meindex, buf1,  CHAR_COLORYELLOW);
 #ifdef _FIX_GAMBLENUM
 #else
@@ -575,20 +575,20 @@ void Codef_Gold( int meindex, int toindex, int stone,int flg, char *token)
 		1
 	);
 	
-	//ºÕ¬º”Øø˜
+	//Á¥ÄÈåÑÁõàËôß
 	if( Master_gnum > 5000000 )	Master_gnum = 5000000;
 	if( Master_gnum < 0 ) Master_gnum = 0;
 	CHAR_setWorkInt( meindex, NPC_WORK_MASTERSTONE, Master_gnum);
 	return;
 }
-//÷ÿ÷√ ¥ÌŒÛ¥¶¿Ì
+//ÈáçÁΩÆ ÈåØË™§ËôïÁêÜ
 void NPC_GAMBLEMASTER_RESET( int meindex)
 {
-	//¥ÌŒÛ¥¶¿Ì
-	print("\n ¥ÌŒÛ¥¶¿Ì");
-	CHAR_setWorkInt( meindex, NPC_WORK_GAMEFLG, 0);//0 null 1 ◊º±∏ 2 ≈‹
+	//ÈåØË™§ËôïÁêÜ
+	print("\n ÈåØË™§ËôïÁêÜ");
+	CHAR_setWorkInt( meindex, NPC_WORK_GAMEFLG, 0);//0 null 1 Ê∫ñÂÇô 2 Ë∑ë
 	CHAR_setWorkInt( meindex, NPC_WORK_MODE, 0);
-	showString( meindex, "±æªÿ∫œ≤ªÀ„£°µ»£µ∑÷÷”··÷ÿ–¬ø™ º£°£°", 1);
+	showString( meindex, "Êú¨Ëø¥Èñ§‰∏çÁÆóÔºÅÁ≠âÔºïÂàÜÈçæÂæåÈáçÊñ∞ÈñãÂßãÔºÅÔºÅ", 1);
 	NPC_MAPCLEANGOLD( meindex , CHAR_getInt( meindex, CHAR_FLOOR ));
 	//defPlayerGold( meindex , FALSE);
 	CHAR_setWorkInt( meindex, NPC_WORK_SYSTIME, NowTime.tv_sec + ROULETTE_ERRTIME);

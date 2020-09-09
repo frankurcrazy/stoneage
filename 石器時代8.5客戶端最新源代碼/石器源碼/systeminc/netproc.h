@@ -1,21 +1,21 @@
-﻿#ifndef _NETPROC_H_
+#ifndef _NETPROC_H_
 #define _NETPROC_H_
 
 #ifdef _THEATER
 enum
 {
-    E_DATA_TYPE_PLAYER,		// 玩家
-    E_DATA_TYPE_TALK,		// 台词 
+    E_DATA_TYPE_PLAYER,		// 玩傢
+    E_DATA_TYPE_TALK,		// 颱詞 
     E_DATA_TYPE_ASIDE,		// 旁白
-    E_DATA_TYPE_ACTION,		// 动作
-    E_DATA_TYPE_MOVE,		// 移动
+    E_DATA_TYPE_ACTION,		// 動作
+    E_DATA_TYPE_MOVE,		// 移動
     E_DATA_TYPE_SCENERY,	// 布景
-    E_DATA_TYPE_CHANGE,		// 变身
-    E_DATA_TYPE_DIR,		// 方向
+    E_DATA_TYPE_CHANGE,		// 變身
+    E_DATA_TYPE_DIR,		// 方嚮
     E_DATA_TYPE_EFFECT,		// 特效
-    E_DATA_TYPE_FACE,		// 表情
+    E_DATA_TYPE_FACE,		// 錶情
     E_DATA_TYPE_NOTE,		// 注解
-    E_DATA_TYPE_BGM,		// 背景音乐
+    E_DATA_TYPE_BGM,		// 背景音樂
 	E_DATA_TYPE_NPC,		// NPC
     E_DATA_TYPE_END
 };
@@ -23,8 +23,8 @@ enum
 // lssproto_TheaterData_recv 使用
 enum
 {
-	E_THEATER_SEND_DATA_THEATER_MODE = E_DATA_TYPE_END + 1,	// 剧院模式 参数: 0:取消剧场模式 1:观众 2:表演者
-	E_THEATER_SEND_DATA_DISPLAY_SCORE,						// 显示分数 参数: 分数
+	E_THEATER_SEND_DATA_THEATER_MODE = E_DATA_TYPE_END + 1,	// 劇院模式 參數: 0:取消劇場模式 1:觀眾 2:錶演者
+	E_THEATER_SEND_DATA_DISPLAY_SCORE,						// 顯示分數 參數: 分數
 	E_THEATER_SEND_DATA_END
 };
 #endif
@@ -52,7 +52,7 @@ extern char netprocErrmsg[];
 
 extern int connectServer2Counter;
 /*
-#ifdef _TELLCHANNEL				// (不可开) ROG ADD 密语频道
+#ifdef _TELLCHANNEL				// (不可開) ROG ADD 密語頻道
 extern char ReTellName[];
 #endif
 */

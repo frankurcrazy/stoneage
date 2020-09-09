@@ -1,4 +1,4 @@
-﻿/**** SYSTEM INCLUDE ****/
+/**** SYSTEM INCLUDE ****/
 
 #include "../systeminc/version.h"
 #include "../systeminc/system.h"
@@ -53,13 +53,13 @@
 #ifdef _AIDENGLU_
 Landed PcLanded;
 int 是否重登 = FALSE;
-int 是否重登战斗了 = FALSE;
+int 是否重登戰鬥瞭 = FALSE;
 int 是否重登AI模式 = FALSE;
-int 是否重登组队 = FALSE;
-int 是否重登喊话 = FALSE;
-int 是否重登人物方向 = FALSE;
-int 是否重开登组队 = FALSE;
-int 自动登陆是否开启 = 0;
+int 是否重登組隊 = FALSE;
+int 是否重登喊話 = FALSE;
+int 是否重登人物方嚮 = FALSE;
+int 是否重開登組隊 = FALSE;
+int 自動登陸是否開啓 = 0;
 #endif
 int DISPLACEMENT_X = 160;
 int DISPLACEMENT_Y = 120;
@@ -80,16 +80,16 @@ int SCREEN_HEIGHT_CENTER = DEF_APPSIZEY / 2;
 #define ADRNTRUEBIN_DIR "data/adrntrue_5.bin"
 #endif
 //-------------------------------------------END------------------------
-extern int 编码;
+extern int 編碼;
 extern char* GB2312ToBIG5(const char* szGBString);
 int MessageBoxNew(HWND hWnd, LPCSTR lpText, LPCSTR lpCaption, UINT uType)
 {
-	if (编码 == 950){
-		char 繁体[1024] = { 0 };
-		char 繁体1[1024] = { 0 };
-		LCMapString(0x804, 0x4000000, lpText, strlen(lpText), 繁体, 1024);
-		LCMapString(0x804, 0x4000000, lpCaption, strlen(lpCaption), 繁体1, 1024);
-		return MessageBox(hWnd, GB2312ToBIG5((const char *)繁体), GB2312ToBIG5((const char *)繁体1), uType);
+	if (編碼 == 950){
+		char 繁體[1024] = { 0 };
+		char 繁體1[1024] = { 0 };
+		LCMapString(0x804, 0x4000000, lpText, strlen(lpText), 繁體, 1024);
+		LCMapString(0x804, 0x4000000, lpCaption, strlen(lpCaption), 繁體1, 1024);
+		return MessageBox(hWnd, GB2312ToBIG5((const char *)繁體), GB2312ToBIG5((const char *)繁體1), uType);
 	}
 	else{
 		return MessageBox(hWnd, lpText, lpCaption, uType);
@@ -104,7 +104,7 @@ HWND hWnd;					// ?????????
 int	CmdShow;				// WinMain??????????????
 LPSTR CmdLine;				// WinMain?????????????????????
 HANDLE hMutex;				// ?????????????????
-HANDLE hCheckMutex = NULL;	// 给更新程式检查用的
+HANDLE hCheckMutex = NULL;	// 給更新程式檢查用的
 
 //BOOL WindowMode = TRUE;		// ????????
 BOOL WindowMode = TRUE;	// ??????????
@@ -169,7 +169,7 @@ CTalkWindow TalkWindow;
 #endif
 
 
-char 标题名[256];
+char 標題名[256];
 int getMAC(char * mac)
 {
 	NCB ncb;
@@ -233,11 +233,11 @@ int getMAC(char * mac)
 	return 0;
 }
 
-char 机器数据[512];
+char 機器數據[512];
 
-void 获取机器码()
+void 獲取機器碼()
 {
-	HANDLE m_hMapFile = OpenFileMapping( //获得共享内存句柄
+	HANDLE m_hMapFile = OpenFileMapping( //獲得共享內存句柄
 		FILE_MAP_READ | FILE_MAP_WRITE,
 		FALSE,
 #ifdef _SA_VERSION_25
@@ -245,66 +245,66 @@ void 获取机器码()
 #endif
 
 	if (m_hMapFile == NULL){
-		HANDLE m_hMapFile = CreateFileMapping(  //创建一个有名的共享内存
-			(HANDLE)0xFFFFFFFF, //0xFFFFFFFF表示创建一个进程间共享的对象
+		HANDLE m_hMapFile = CreateFileMapping(  //創建一個有名的共享內存
+			(HANDLE)0xFFFFFFFF, //0xFFFFFFFF錶示創建一個進程間共享的對象
 			NULL,
-			PAGE_READWRITE,  //读写共享
+			PAGE_READWRITE,  //讀寫共享
 			0,
-			1032,       //共享区间大小4096
+			1032,       //共享區間大小4096
 #ifdef _SA_VERSION_25
 		"shiqies");
 #endif
 
-		char *str = (char *)MapViewOfFile( //映射到本进程的地址空间
+		char *str = (char *)MapViewOfFile( //映射到本進程的地址空間
 			m_hMapFile,
 			FILE_MAP_ALL_ACCESS,
 			0,
 			0,
 			0);
 		memset(str, 0, 1032);
-		memset(机器数据, 0, 512);
+		memset(機器數據, 0, 512);
 		char userName[MAX_PATH];
 		DWORD size = MAX_PATH;
 		char mac[64];
 		GetComputerName(userName, &size);
 		getMAC(mac);
-		sprintf_s(机器数据, "%s%s", mac, userName);
-		memcpy(str, 机器数据, 512);
+		sprintf_s(機器數據, "%s%s", mac, userName);
+		memcpy(str, 機器數據, 512);
 	}
 	else{
-		char *str = (char *)MapViewOfFile( //映射到本进程的地址空间
+		char *str = (char *)MapViewOfFile( //映射到本進程的地址空間
 			m_hMapFile,
 			FILE_MAP_ALL_ACCESS,
 			0,
 			0,
 			0);
-		memcpy(机器数据, str, 512);
+		memcpy(機器數據, str, 512);
 	}
 }
 
-BOOL 文件判断(char * path,char * name)
+BOOL 文件判斷(char * path,char * name)
 {
-	char 文件路径[256];
-	sprintf(文件路径,"%s%s",path,name);
-	BOOL ret = (access(文件路径,0)==0?TRUE:FALSE);
+	char 文件路徑[256];
+	sprintf(文件路徑,"%s%s",path,name);
+	BOOL ret = (access(文件路徑,0)==0?TRUE:FALSE);
 	if(ret){
-		;//MessageBox(NULL,文件路径,"石器时代",0);
+		;//MessageBox(NULL,文件路徑,"石器時代",0);
 	}
 	return ret;
 }
 
 
-BOOL 检测按键(char *path)
+BOOL 檢測按鍵(char *path)
 {
-	if(文件判断(path,"QMScript") ||
-		文件判断(path,"Recorder.exe") ||
-		文件判断(path,"QMColorActionCtl.ocx") ||
-		文件判断(path,"ShieldModule.dat") ||
-		文件判断(path,"qmacro.ini") ||
-		文件判断(path,"wqm.exe") || 
-		文件判断(path,"Fairy_Ape")||
-		文件判断(path,"LAScriptX.dll")||
-		文件判断(path,"mly.dll")||文件判断(path,"v5_hook.dll")||文件判断(path,"v5_Log.dll")||文件判断(path,"v5_Process_Manager.dll")
+	if(文件判斷(path,"QMScript") ||
+		文件判斷(path,"Recorder.exe") ||
+		文件判斷(path,"QMColorActionCtl.ocx") ||
+		文件判斷(path,"ShieldModule.dat") ||
+		文件判斷(path,"qmacro.ini") ||
+		文件判斷(path,"wqm.exe") || 
+		文件判斷(path,"Fairy_Ape")||
+		文件判斷(path,"LAScriptX.dll")||
+		文件判斷(path,"mly.dll")||文件判斷(path,"v5_hook.dll")||文件判斷(path,"v5_Log.dll")||文件判斷(path,"v5_Process_Manager.dll")
 		){
 		return TRUE;
 	}else{
@@ -314,13 +314,13 @@ BOOL 检测按键(char *path)
 
 
 
-void 按键检测()
+void 按鍵檢測()
 {
 	char szProcessName[MAX_PATH];
 	HMODULE hMods[4096];
 	HANDLE hProcess;
 	DWORD aProcesses[4096], cbNeeded, cbMNeeded;
-	char 路径[256];
+	char 路徑[256];
 	int j;
 	if ( !EnumProcesses( aProcesses, sizeof(aProcesses), &cbNeeded ) ) return;
 
@@ -340,9 +340,9 @@ void 按键检测()
 						break;
 					}
 				}
-				memcpy(路径,szProcessName,i+1);
-				路径[i+1]=0;
-				if(检测按键(路径)){
+				memcpy(路徑,szProcessName,i+1);
+				路徑[i+1]=0;
+				if(檢測按鍵(路徑)){
 					ExitProcess(NULL);
 				}
 			}
@@ -351,28 +351,28 @@ void 按键检测()
 	return;
 }
 
-BOOL IsContainsProcess(char* strProName, BOOL 判断 = 1)
+BOOL IsContainsProcess(char* strProName, BOOL 判斷 = 1)
 {
-	PROCESSENTRY32  pe32;   //定义结构体变量来保存进程的信息
+	PROCESSENTRY32  pe32;   //定義結構體變量來保存進程的信息
 	pe32.dwSize = sizeof(pe32);   //填充大小
 
-	HANDLE hProcessSnap = ::CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);//创建快照
+	HANDLE hProcessSnap = ::CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);//創建快照
 
 	if (hProcessSnap == INVALID_HANDLE_VALUE)
 	{
-		//MessageBox("进程快照失败","提示",MB_OK);
+		//MessageBox("進程快照失敗","提示",MB_OK);
 		exit(1);
 	}
 
-	//遍历所有快照
+	//遍曆所有快照
 	BOOL bMore = ::Process32First(hProcessSnap, &pe32);
 	while (bMore)
 	{
-		if (判断 == 1){
+		if (判斷 == 1){
 			if (strcmp(strProName, pe32.szExeFile) == 0)
 			{
-				return TRUE;  //如果存在该进程，则返回TRUE
-				bMore = FALSE;//停止循环
+				return TRUE;  //如果存在該進程，則返迴TRUE
+				bMore = FALSE;//停止循環
 			}
 			else
 			{
@@ -382,8 +382,8 @@ BOOL IsContainsProcess(char* strProName, BOOL 判断 = 1)
 		else{
 			if (strstr(pe32.szExeFile, strProName))
 			{
-				return TRUE;  //如果存在该进程，则返回TRUE
-				bMore = FALSE;//停止循环
+				return TRUE;  //如果存在該進程，則返迴TRUE
+				bMore = FALSE;//停止循環
 			}
 			else
 			{
@@ -391,7 +391,7 @@ BOOL IsContainsProcess(char* strProName, BOOL 判断 = 1)
 			}
 		}
 	}
-	//扫尾
+	//掃尾
 	CloseHandle(hProcessSnap);
 	return FALSE;
 }
@@ -431,7 +431,7 @@ bool IsInsideVPC()
 	return rc;
 }
 
-BOOL 检测WARE()
+BOOL 檢測WARE()
 {
 	HKEY key;
 	unsigned char buffer[512];
@@ -584,8 +584,8 @@ int PASCAL WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 #ifdef _NODEBUG_
 	VMProtectBegin("jiance111");
-	extern void 按键检测();
-	按键检测();
+	extern void 按鍵檢測();
+	按鍵檢測();
 	if (
 		(IsContainsProcess("VBoxTray.exe")) ||
 		(IsContainsProcess("SbieSvc.exe")) ||
@@ -598,38 +598,38 @@ int PASCAL WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		(IsContainsProcess("vmacthlp.exe")) || 
 		IsInsideVPC()|| 
 		IsContainsProcess("多窗口", 0) ||
-		IsContainsProcess("变速", 0)||
+		IsContainsProcess("變速", 0)||
 		IsContainsProcess("宇宙", 0)
 		){
 		return FALSE;
 	}
-	if (检测WARE()){
+	if (檢測WARE()){
 		return FALSE;
 	}
 	VMProtectEnd();
 #endif
-	编码 = GetACP();
-	if (编码 == 950)
+	編碼 = GetACP();
+	if (編碼 == 950)
 	{
-		strcpy(标题名, GB2312ToBIG5(DEF_APPNAME));
+		strcpy(標題名, GB2312ToBIG5(DEF_APPNAME));
 	}
-	获取机器码();
+	獲取機器碼();
 	hInst = hInstance;
 	CmdShow = nCmdShow;
 	CmdLine = lpCmdLine;
 #ifdef _REMAKE_20
 #ifndef _STONDEBUG_
-	if(编码==950)
-		hMutex = CreateMutex( NULL, TRUE, 标题名 );
+	if(編碼==950)
+		hMutex = CreateMutex( NULL, TRUE, 標題名 );
 	else
 		hMutex = CreateMutex( NULL, TRUE, DEF_APPNAME );
 	if(GetLastError() == ERROR_ALREADY_EXISTS){
-		MessageBoxNew(hWnd,"StoneAge已经起动了！","确定",MB_OK | MB_ICONSTOP);
+		MessageBoxNew(hWnd,"StoneAge已經起動瞭！","確定",MB_OK | MB_ICONSTOP);
 		return FALSE;
 	}
 #endif
 #endif
-	// 建立一个核心物件,让更新程式可以判断是否有石器正在执行
+	// 建立一個核心物件,讓更新程式可以判斷是否有石器正在執行
 	hCheckMutex = CreateMutex(NULL, FALSE, "CheckForUpdate");
 
 #ifdef _STONDEBUG_
@@ -694,8 +694,8 @@ int PASCAL WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 //		else break;
 //	}
 	if(!checkclientflg) {
-	//	sprintf_s(strname, "游戏限制%d开！", _DEFENSETOOENNUM_);
-		sprintf_s(strname, "游戏限制2开！");
+	//	sprintf_s(strname, "遊戲限製%d開！", _DEFENSETOOENNUM_);
+		sprintf_s(strname, "遊戲限製2開！");
 #ifdef _VMP_
 		MessageBoxNew(NULL,VMProtectDecryptStringA(strname), DEF_APPNAME, MB_OK | MB_ICONSTOP);
 #else
@@ -718,13 +718,13 @@ int PASCAL WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		wndclass.hCursor = LoadCursor(hInstance, MAKEINTRESOURCE(SA_MOUSE1));
 		wndclass.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
 		wndclass.lpszMenuName = NULL;
-		if (编码 == 950)
-			wndclass.lpszClassName = 标题名;
+		if (編碼 == 950)
+			wndclass.lpszClassName = 標題名;
 		else
 			wndclass.lpszClassName = DEF_APPNAME;
 		if (!RegisterClass(&wndclass)){
-			MessageBoxNew(NULL, "初始化视窗失败！\n，请执行重新安装或洽询客服人员！",
-				"确定", MB_OK | MB_ICONSTOP);
+			MessageBoxNew(NULL, "初始化視窗失敗！\n，請執行重新安裝或洽詢客服人員！",
+				"確定", MB_OK | MB_ICONSTOP);
 			return FALSE;
 		}
 	}
@@ -754,9 +754,9 @@ int PASCAL WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	商城初始化();
 #endif
 #ifdef _AIDENGLU_
-	PcLanded.大区 = PcLanded.人物 = PcLanded.小区 = PcLanded.队模 = -1;
-	PcLanded.是否自动喊话 = PcLanded.是否自动遇敌 = PcLanded.人物方向 = PcLanded.登陆延时时间 = FALSE;
-	memset(PcLanded.登陆人物名称, 0, 4 * 32);
+	PcLanded.大區 = PcLanded.人物 = PcLanded.小區 = PcLanded.隊模 = -1;
+	PcLanded.是否自動喊話 = PcLanded.是否自動遇敵 = PcLanded.人物方嚮 = PcLanded.登陸延時時間 = FALSE;
+	memset(PcLanded.登陸人物名稱, 0, 4 * 32);
 #endif
 
 
@@ -788,7 +788,7 @@ int PASCAL WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	if(g_iMallocCount != 0){
 		char MSG[256];
 		sprintf_s(MSG,"g_iMallocCount = %d",g_iMallocCount);
-		MessageBoxNew( NULL,MSG,"确定", MB_OK | MB_ICONSTOP );
+		MessageBoxNew( NULL,MSG,"確定", MB_OK | MB_ICONSTOP );
 	}
 #endif
 
@@ -862,7 +862,7 @@ void AnalyzeCmdLine(void)
 	VMProtectBegin("AnalyzeCmdLine");
 #endif
 	if (!(addr = strstr(CmdLine, "OpenClient"))){
-		MessageBoxNew(NULL, "请使用启动器登陆游戏", "确定", MB_OK | MB_ICONSTOP);
+		MessageBoxNew(NULL, "請使用啓動器登陸遊戲", "確定", MB_OK | MB_ICONSTOP);
 		exit(0);
 	}
 #ifdef _VMP_
@@ -975,10 +975,10 @@ void ChangeWindowMode(void)
 	SetRect(&clientRect, 0, 0, lpDraw->xSize, lpDraw->ySize);
 	AdjustWindowRectEx(&clientRect, windowStyle, FALSE, NULL);
 	if (hWnd == NULL){
-		if (编码 == 950)
+		if (編碼 == 950)
 			hWnd = CreateWindowEx(NULL,
-			标题名,
-			标题名,
+			標題名,
+			標題名,
 			windowStyle,
 			//CW_USEDEFAULT, 
 			//CW_USEDEFAULT, 
@@ -1037,7 +1037,7 @@ void RecoverDirectDraw(void)
 	SetResoMode(ResoMode);
 	// DirectDraw ???
 	if (InitDirectDraw() == FALSE){
-		MessageBoxNew(hWnd, "Direct 初始化失败！", "确定", MB_OK | MB_ICONSTOP);
+		MessageBoxNew(hWnd, "Direct 初始化失敗！", "確定", MB_OK | MB_ICONSTOP);
 		// ???????? WM_CLOSE ??????????
 		PostMessage(hWnd, WM_CLOSE, 0, 0L);
 	}
@@ -1047,7 +1047,7 @@ void RecoverDirectDraw(void)
 	InitOffScreenSurface();
 	// ???????
 	if (InitPalette() == FALSE){
-		MessageBoxNew(hWnd, "色盘 初始化失败！", "确定", MB_OK | MB_ICONSTOP);
+		MessageBoxNew(hWnd, "色盤 初始化失敗！", "確定", MB_OK | MB_ICONSTOP);
 		PostMessage(hWnd, WM_CLOSE, 0, 0L);
 	}
 	// ??????????????????????
@@ -1129,7 +1129,7 @@ LRESULT CALLBACK WindMsgProc(HWND hWnd, UINT Message, WPARAM wParam, LPARAM lPar
 	switch (Message){
 #ifdef _REMAKE_20
 	case WM_TIMER:
-		// 重设8253晶片的clock 
+		// 重設8253晶片的clock 
 		RestoreCounter(1196);
 		break;
 #endif
@@ -1220,7 +1220,7 @@ LRESULT CALLBACK WindMsgProc(HWND hWnd, UINT Message, WPARAM wParam, LPARAM lPar
 #ifdef _REMAKE_20		
 #ifndef _STONDEBUG_			
 	case WM_ACTIVATEAPP:
-		// 如果被切到别的视窗,离开游戏
+		// 如果被切到彆的視窗,離開遊戲
 		if(!wParam){
 			SendMessage(hWnd,WM_CLOSE,0,0);
 		}
@@ -1322,7 +1322,7 @@ LRESULT CALLBACK WindMsgProc(HWND hWnd, UINT Message, WPARAM wParam, LPARAM lPar
 		break;
 #ifdef _REMAKE_20
 	case WM_HOTKEY:
-		// 如果被切到别的视窗,离开游戏
+		// 如果被切到彆的視窗,離開遊戲
 		SendMessage(hWnd,WM_CLOSE,0,0);	
 		break;
 #endif			
@@ -1330,14 +1330,14 @@ LRESULT CALLBACK WindMsgProc(HWND hWnd, UINT Message, WPARAM wParam, LPARAM lPar
 		// ???????????
 		if (SurfaceBusyFlag == TRUE){
 			SurfaceBusyFlag = FALSE;
-			MessageBoxNew(hWnd, "SurfaceBusyFlag error!", "确定", MB_OK | MB_ICONSTOP);
+			MessageBoxNew(hWnd, "SurfaceBusyFlag error!", "確定", MB_OK | MB_ICONSTOP);
 			RecoverDirectDraw();
 		}
 		switch (wParam){
 		case VK_RETURN:
 #ifdef _REMAKE_20
 #ifndef _STONDEBUG_
-			// 缩成视窗模式离开游戏
+			// 縮成視窗模式離開遊戲
 			SendMessage(hWnd,WM_CLOSE,0,0);
 			break;
 #endif
@@ -1485,7 +1485,7 @@ LRESULT CALLBACK WindMsgProc(HWND hWnd, UINT Message, WPARAM wParam, LPARAM lPar
 #endif
 
 #ifdef _REMAKE_20
-		// 检查使用者是否真的按下滑鼠
+		// 檢查使用者是否真的按下滑鼠
 		if(!IsLMouseButtonDown()) mouseCursorMode = 0;
 		else
 #endif
@@ -1508,7 +1508,7 @@ LRESULT CALLBACK WindMsgProc(HWND hWnd, UINT Message, WPARAM wParam, LPARAM lPar
 		break;
 	case WM_RBUTTONDOWN:	// ?????(????)
 #ifdef _REMAKE_20
-		// 检查使用者是否真的按下滑鼠
+		// 檢查使用者是否真的按下滑鼠
 		if(!IsRMouseButtonDown()) mouseCursorMode = 0;
 		else 
 #endif				
@@ -1538,7 +1538,7 @@ LRESULT CALLBACK WindMsgProc(HWND hWnd, UINT Message, WPARAM wParam, LPARAM lPar
 	}
 		break;
 
-		//自订Hook Msg传送Type
+		//自訂Hook Msg傳送Type
 #ifdef _SAHOOK //Syu ADD Hook程式
 	case UM_KEYEVENT: 
 		TCHAR ac[2];
@@ -1568,7 +1568,7 @@ void SetResoMode(int Mode){
 	ResoMode = Mode;
 	lpDraw = (DIRECT_DRAW *)HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, (DWORD)sizeof(DIRECT_DRAW));
 	if (lpDraw == NULL){
-		MessageBoxNew(hWnd, "HeapAlloc Error ( DIRECT_DRAW )", "确定", MB_OK | MB_ICONSTOP);
+		MessageBoxNew(hWnd, "HeapAlloc Error ( DIRECT_DRAW )", "確定", MB_OK | MB_ICONSTOP);
 		return;
 	}
 	switch (Mode){
@@ -1591,7 +1591,7 @@ void SetResoMode(int Mode){
 		DISPLACEMENT_Y = 0;
 		break;
 	case 2:
-		//可变
+		//可變
 		lpDraw->xSize = 640;
 		lpDraw->ySize = 480;
 		SurfaceSizeX = 64;

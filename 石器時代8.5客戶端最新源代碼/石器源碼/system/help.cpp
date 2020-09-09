@@ -1,4 +1,4 @@
-﻿#include "../systeminc/version.h"
+#include "../systeminc/version.h"
 #include"../systeminc/system.h"
 #include"../systeminc/loadrealbin.h"
 #include"../systeminc/anim_tbl.h"
@@ -22,8 +22,8 @@ extern JOBDAILY jobdaily[MAXMISSION];
 extern int JobdailyGetMax;
 #endif
 short HelpProcNo;
-//  return: 0 ... 处理中
-//          !0 ... 处理完毕
+//  return: 0 ... 處理中
+//          !0 ... 處理完畢
 ACTION *ptActMenuWinHelp = NULL;
 int HelpProc()
 {
@@ -54,18 +54,18 @@ int HelpProc()
 #endif
 		}
 	}
-	//初始化了
+	//初始化瞭
 	if( ptActMenuWinHelp != NULL){
 		if(ptActMenuWinHelp->hp>0){
 			pageMax = JobdailyGetMax%10?JobdailyGetMax/10:JobdailyGetMax/10-1;
 			if( CheckMenuFlag()||((joy_trg[ 0 ] & JOY_ESC) && GetImeString() == NULL)||HelpProcNo == 1000){
 				DeathAction( ptActMenuWinHelp);
 				ptActMenuWinHelp = NULL;
-				play_se( 203, 320, 240);	//视窗关闭声
+				play_se( 203, 320, 240);	//視窗關閉聲
 
 				return 1;
 			}
-			//秀视窗底图
+			//秀視窗底圖
 			StockDispBuffer( ((WINDOW_DISP *)ptActMenuWinHelp->pYobi)->mx, ((WINDOW_DISP *)ptActMenuWinHelp->pYobi)->my, DISP_PRIO_MENU, CG_FIELD_HELP_WND, 1);
 			int i;
 
@@ -113,12 +113,12 @@ int HelpProc()
 					}
 				}
 			}
-			StockFontBuffer( x+20, y+35, FONT_PRIO_FRONT, FONT_PAL_GREEN, "任务日志", 0);
-			StockFontBuffer(x+34     ,y+70,FONT_PRIO_FRONT,FONT_PAL_YELLOW,"编号              ─ 任务说明 ─                状态",0);
+			StockFontBuffer( x+20, y+35, FONT_PRIO_FRONT, FONT_PAL_GREEN, "任務日誌", 0);
+			StockFontBuffer(x+34     ,y+70,FONT_PRIO_FRONT,FONT_PAL_YELLOW,"編號              ─ 任務說明 ─                狀態",0);
 			for( i = 0; i < 10; i++){
 				char buf[10];
 				sprintf_s(buf,"%d",jobdaily[i+page*10].JobId);
-				if(!atoi(buf))	buf[0] = '\0'; //不印0出来
+				if(!atoi(buf))	buf[0] = '\0'; //不印0齣來
 				StockFontBuffer(x+34     ,y+(i+1)*25+70,FONT_PRIO_FRONT,FONT_PAL_WHITE,buf,0);
 				StockFontBuffer(x+34+30  ,y+(i+1)*25+70,FONT_PRIO_FRONT,FONT_PAL_WHITE,jobdaily[i+page*10].explain,0);
 				StockFontBuffer(x+34+328 ,y+(i+1)*25+70,FONT_PRIO_FRONT,FONT_PAL_WHITE,jobdaily[i+page*10].state,0);
@@ -129,7 +129,7 @@ int HelpProc()
 	if( CheckMenuFlag()||((joy_trg[ 0 ] & JOY_ESC) && GetImeString() == NULL)||HelpProcNo == 1000){
 		DeathAction( ptActMenuWinHelp);
 		ptActMenuWinHelp = NULL;
-		play_se( 203, 320, 240);	//视窗关闭声
+		play_se( 203, 320, 240);	//視窗關閉聲
 
 		return 1;
 	}

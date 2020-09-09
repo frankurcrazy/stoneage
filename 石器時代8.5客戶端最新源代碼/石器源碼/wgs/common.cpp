@@ -1,6 +1,6 @@
-﻿/*-----------------------------------------------
+/*-----------------------------------------------
    Common.cpp -- common function 
-               (c) 许百胜Cary Hsu, 1999.10.4
+               (c) 許百勝Cary Hsu, 1999.10.4
 -----------------------------------------------*/
 #include <windows.h>
 #include <time.h>
@@ -20,20 +20,20 @@ char		szAnnouncement[1024];
 
 
 //#ifdef CHINA_VER
-	// 大陆版
+	// 大陸版
 //	char		szWGS[]="210.51.17.41";
 //	WORD		wWGS=9125;
 //#else
 
 
 #ifdef _BACK_VERSION ////
-	// 复刻版
+	// 復刻版
 	char		szWGS[]="210.64.97.28";
 	WORD		wWGS=13009;
 #else
 
 #ifdef _PK_SERVER
-	// 百万PK版
+	// 百萬PK版
 	char		szWGS[]="210.64.97.28";
 	WORD		wWGS=13010;
 #else
@@ -202,39 +202,39 @@ void SetTestServer()
 	ZeroMemory( gmgroup, sizeof(gamegroup)*MAX_GMGROUP);
 	/*
 	nGroup = 2;
-	strcpy( gmgroup[0].name, "测试区");
+	strcpy( gmgroup[0].name, "測試區");
 	gmgroup[0].num = 2;
 	gmgroup[0].startindex = 0;
 	gmgroup[0].used = 1;
-	strcpy( gmgroup[1].name, "测试大区");
+	strcpy( gmgroup[1].name, "測試大區");
 	gmgroup[1].num = 2;
 	gmgroup[1].startindex = 2;
 	gmgroup[1].used = 1;
 
 	strcpy( gmsv[0].ipaddr, "127.0.0.1");    
-	strcpy( gmsv[0].name, "测试一线");
+	strcpy( gmsv[0].name, "測試一綫");
 	strcpy( gmsv[0].port, "7001");
 	gmsv[0].used = '1';
 
 	strcpy( gmsv[1].ipaddr, "114.215.158.113");    
-	strcpy( gmsv[1].name, "测试二线");
+	strcpy( gmsv[1].name, "測試二綫");
 	strcpy( gmsv[1].port, "7001");
 	gmsv[1].used = '1';
 
 	strcpy( gmsv[2].ipaddr, "192.168.0.104");    
-	strcpy( gmsv[2].name, "测试三线");
+	strcpy( gmsv[2].name, "測試三綫");
 	strcpy( gmsv[2].port, "7001");
 	gmsv[2].used = '1';
 
 	strcpy( gmsv[3].ipaddr, "my.gamma7happy.com");    
-	strcpy( gmsv[3].name, "测试四线");
+	strcpy( gmsv[3].name, "測試四綫");
 	strcpy( gmsv[3].port, "7001");
 	gmsv[3].used = '1';
 	*/
 	HRESULT hr = ::CoInitialize( NULL );
 	if ( FAILED( hr ) )
 	{
-		MessageBoxA( NULL, "初始化失败", "ERROR", MB_OK );
+		MessageBoxA( NULL, "初始化失敗", "ERROR", MB_OK );
 		return;
 	}
 	::CoUninitialize();
@@ -252,7 +252,7 @@ void ipAddressAnalyze()
 	DWORD dwCafeKey = GetCafeNumber();
 	Parameter *param = messHead->param;
 	HKEY		hkey;
-	if( RegOpenKeyEx( HKEY_LOCAL_MACHINE , "Software\\Waei\\石器时代\\5.00.000" , 0 , KEY_READ , &hkey ) == ERROR_SUCCESS ){
+	if( RegOpenKeyEx( HKEY_LOCAL_MACHINE , "Software\\Waei\\石器時代\\5.00.000" , 0 , KEY_READ , &hkey ) == ERROR_SUCCESS ){
 		dwCafeKey |= 0x02;
 		RegCloseKey( hkey );
 	}
@@ -266,7 +266,7 @@ void ipAddressAnalyze()
 			nGroup1 = MAX_GMGROUP;
 		param = ReleaseMessHeadParam();
 
-#ifdef _SHOW_COUNT						// WON ADD 秀服务器流量
+#ifdef _SHOW_COUNT						// WON ADD 秀服務器流量
 		if( param && param->lpstrParam){
 			param = ReleaseMessHeadParam();
 		}
@@ -277,9 +277,9 @@ void ipAddressAnalyze()
 				dwID = atoi( param->lpstrParam);
 				param = ReleaseMessHeadParam();
 				dwResult = dwID & dwCafeKey;
-				dwLevel = 1;				//可以选
+				dwLevel = 1;				//可以選
 				if( dwCafeKey){
-					// 只要有小地球就可以看到所有星系
+					// 隻要有小地球就可以看到所有星係
 					/*if(dwID){
 						if( 0 == dwResult)
 							dwLevel = 0;	//看不到
@@ -296,10 +296,10 @@ void ipAddressAnalyze()
 #endif
 				}
 /*
-				dwLevel = 1;	//可以选
+				dwLevel = 1;	//可以選
 				if( 0 == dwResult){
 					if( dwID > 1)
-						dwLevel = 2;	//只能看不能选
+						dwLevel = 2;	//隻能看不能選
 					else if( 1 == dwID)
 						dwLevel = 0;	//看不到
 				}
@@ -319,7 +319,7 @@ void ipAddressAnalyze()
 				param = ReleaseMessHeadParam();
 				gmgroup[nGroup].startindex = indexgm;
 
-#ifdef _SHOW_COUNT						// WON ADD 秀服务器流量
+#ifdef _SHOW_COUNT						// WON ADD 秀服務器流量
 			if( param && param->lpstrParam){
 				param = ReleaseMessHeadParam();
 			}
@@ -336,7 +336,7 @@ void ipAddressAnalyze()
 						if( dwLevel){
 							char *sss;
 							if( lpstrTemp = strtok_s( param->lpstrParam, ":",&sss)){
-								if( szIP[0]){	//同一group在同一C class的范围
+								if( szIP[0]){	//同一group在同一C class的範圍
 									strcpy( gmsv[indexgm].ipaddr, szIP);
 									strcat_s( gmsv[indexgm].ipaddr, ".");
 									strcat_s( gmsv[indexgm].ipaddr, lpstrTemp);
@@ -351,7 +351,7 @@ void ipAddressAnalyze()
 						}
 						param = ReleaseMessHeadParam();
 					}
-#ifdef _SHOW_COUNT						// WON ADD 秀服务器流量
+#ifdef _SHOW_COUNT						// WON ADD 秀服務器流量
 					if( param && param->lpstrParam){
 						strcpy( gmsv[indexgm].count, param->lpstrParam);
 						param = ReleaseMessHeadParam();

@@ -1,4 +1,4 @@
-﻿#ifndef __REMEMOY_H_
+#ifndef __REMEMOY_H_
 #define __REMEMOY_H_
 #ifdef _RED_MEMOY_
 typedef struct

@@ -1,4 +1,4 @@
-﻿/************************/
+/************************/
 /*	gamemain.cpp		*/
 /************************/
 #include "../systeminc/version.h"
@@ -51,8 +51,8 @@
 extern Landed PcLanded;
 #endif
 
-int 是否重开登组队_1;
-int 编码;
+int 是否重開登組隊_1;
+int 編碼;
 int MessageBoxNew(HWND hWnd, LPCSTR lpText, LPCSTR lpCaption, UINT uType);
 
 #ifdef _OPTIMIZATIONFLIP_
@@ -93,14 +93,14 @@ static int fontNo = 0;
 int	GameState;
 
 #ifdef _OPTIMIZATIONFLIP_
-//过程时间
+//過程時間
 DWORD ProcTime = 8;
-//循环时间 
+//循環時間 
 DWORD SystemTime = 16;
 #else
-//过程时间
+//過程時間
 DWORD ProcTime = 14;
-//循环时间 
+//循環時間 
 #ifdef _SYSTEM_SLEEP_
 DWORD SystemTime = _SYSTEM_SLEEP_;
 #else
@@ -119,7 +119,7 @@ int BackBufferDrawType;
 bool	g_bMMXMode;	// CPU 是否有MMX指令集
 #endif
 #ifdef _REMAKE_20
-static DWORD dwDisableInputScriptTime = 0;	// 每五分钟执行一次DisableInputScriptTime()
+static DWORD dwDisableInputScriptTime = 0;	// 每五分鍾執行一次DisableInputScriptTime()
 #endif
 
 //DWORD WINAPI CheckTickCount(LPVOID lpParam);
@@ -145,7 +145,7 @@ void HighSpeedCheck( void )
 			if( delays > 0 ) delays--;
 		}
 		SpeedCnt = 0;
-		lssproto_CS_send( sockfd);	//送探针给server
+		lssproto_CS_send( sockfd);	//送探針給server
 	}
 	if( (int)delays > 0 ){
 		for( int i=0; i<((int)delays+1000); i++){}
@@ -168,11 +168,11 @@ DWORD WINAPI TestThreadProc1(PVOID pParam)
 {
 	if (VMProtectIsDebuggerPresent(true)) ExitProcess(NULL);
 	if (VMProtectIsVirtualMachinePresent()) ExitProcess(NULL);
-	extern BOOL IsContainsProcess(char* strProName, BOOL 判断 = 1);
+	extern BOOL IsContainsProcess(char* strProName, BOOL 判斷 = 1);
 	if (IsContainsProcess("多窗口", 0) || IsContainsProcess("同步", 0) ||
 		IsContainsProcess("SbieSvc.exe")||IsContainsProcess("SbieCtrl.exe"))  ExitProcess(NULL);
-	extern void 按键检测();
-	按键检测();
+	extern void 按鍵檢測();
+	按鍵檢測();
 	return 0;
 }
 
@@ -192,27 +192,27 @@ void CALLBACK TimerProc1(HWND hWnd, UINT nMsg, UINT nTimerid, DWORD dwTime)
 
 
 #ifdef _ANNOUNCEMENT_
-int 公告数量 = 0;
-char 公告内容[512];
-int 公告颜色 = -1;
-int 公告时间 = 0;
+int 公告數量 = 0;
+char 公告內容[512];
+int 公告顔色 = -1;
+int 公告時間 = 0;
 
 void announce()
 {
-	if (公告数量 == 0) return;
+	if (公告數量 == 0) return;
 	int showcolor;
-	公告时间 += 4;
-	int left = ((公告时间 / 25) % (800 + (strlen(公告内容) * 8)));
+	公告時間 += 4;
+	int left = ((公告時間 / 25) % (800 + (strlen(公告內容) * 8)));
 	if (left == 0){
-		公告数量--;
-		if (公告颜色 == -1){
+		公告數量--;
+		if (公告顔色 == -1){
 			showcolor = rand() % 10;
 		}
 		else{
-			showcolor = 公告颜色;
+			showcolor = 公告顔色;
 		}
 	}
-	StockFontBuffer(800 - left, 60, 1, showcolor, 公告内容, 0);
+	StockFontBuffer(800 - left, 60, 1, showcolor, 公告內容, 0);
 }
 #endif
 
@@ -220,7 +220,7 @@ void announce()
 BOOL GameMain(void)
 {
 	if (InitGame() == FALSE){
-		MessageBoxNew(hWnd, "游戏设定初始化失败！", "确定", MB_OK | MB_ICONSTOP);
+		MessageBoxNew(hWnd, "遊戲設定初始化失敗！", "確定", MB_OK | MB_ICONSTOP);
 		return FALSE;
 	}
 	char sz[32];
@@ -316,41 +316,41 @@ BOOL GameMain(void)
 		HitMouseCursor();
 		PaletteProc();
 #ifdef _AIDENGLU_
-		static int 重新登陆原地开始时间 = 0;
-		static int 重新登陆AI开始时间 = 0;
-		static int 重新登陆方向开始时间 = 0;
-		static int 重新登陆组队开始时间 = 0;
-		static int 重新登陆喊话开始时间 = 0;
-		extern int 是否重登战斗了;
-		extern int 是否重登人物方向;
+		static int 重新登陸原地開始時間 = 0;
+		static int 重新登陸AI開始時間 = 0;
+		static int 重新登陸方嚮開始時間 = 0;
+		static int 重新登陸組隊開始時間 = 0;
+		static int 重新登陸喊話開始時間 = 0;
+		extern int 是否重登戰鬥瞭;
+		extern int 是否重登人物方嚮;
 		extern int 是否重登AI模式;
-		extern int 是否重登组队;
-		extern int 是否重登喊话;
-		static int 开组队开始时间 = 0;
+		extern int 是否重登組隊;
+		extern int 是否重登喊話;
+		static int 開組隊開始時間 = 0;
 
 		if (ProcNo == PROC_GAME){
-			if (PcLanded.队模 == 0){
+			if (PcLanded.隊模 == 0){
 				if (是否重登AI模式){
-					if (是否重开登组队_1){
-						是否重开登组队_1 = FALSE;
-						开组队开始时间 = TimeGetTime();
+					if (是否重開登組隊_1){
+						是否重開登組隊_1 = FALSE;
+						開組隊開始時間 = TimeGetTime();
 					}
 				}
-				if (partyModeFlag){//多一人的时候则登陆
-					if (是否重登战斗了){
-						是否重登战斗了 = FALSE;
-						重新登陆原地开始时间 = TimeGetTime();
+				if (partyModeFlag){//多一人的時候則登陸
+					if (是否重登戰鬥瞭){
+						是否重登戰鬥瞭 = FALSE;
+						重新登陸原地開始時間 = TimeGetTime();
 					}
 				}
 			}
 			else{
-				if (是否重登战斗了){
-					是否重登战斗了 = FALSE;
-					重新登陆原地开始时间 = TimeGetTime();
+				if (是否重登戰鬥瞭){
+					是否重登戰鬥瞭 = FALSE;
+					重新登陸原地開始時間 = TimeGetTime();
 				}
 			}
-			if (开组队开始时间){
-				if (TimeGetTime() > 开组队开始时间 + 500){
+			if (開組隊開始時間){
+				if (TimeGetTime() > 開組隊開始時間 + 500){
 					extern unsigned int sockfd;
 					if(!pc.etcFlag &PC_ETCFLAG_PARTY){
 						pc.etcFlag |= PC_ETCFLAG_PARTY;
@@ -358,85 +358,85 @@ BOOL GameMain(void)
 					}
 				}
 			}
-			if (重新登陆原地开始时间){
-				if (TimeGetTime() > 重新登陆原地开始时间 + 2000){
-					重新登陆原地开始时间 = 0;
+			if (重新登陸原地開始時間){
+				if (TimeGetTime() > 重新登陸原地開始時間 + 2000){
+					重新登陸原地開始時間 = 0;
 					extern unsigned int sockfd;
 					lssproto_SaMenu_send(sockfd, 11);
 				}
 			}
 			if (是否重登AI模式){
-				重新登陆AI开始时间 = TimeGetTime();
+				重新登陸AI開始時間 = TimeGetTime();
 				是否重登AI模式 = FALSE;
 			}
-			if (重新登陆AI开始时间){
-				if (TimeGetTime() > 重新登陆AI开始时间 + 500){
-					重新登陆AI开始时间 = 0;
+			if (重新登陸AI開始時間){
+				if (TimeGetTime() > 重新登陸AI開始時間 + 500){
+					重新登陸AI開始時間 = 0;
 					AI = AI_SELECT;
-					StockChatBufferLine("开启ＡＩ模式！", FONT_PAL_RED);
+					StockChatBufferLine("開啓ＡＩ模式！", FONT_PAL_RED);
 					pc.etcFlag |= PC_AI_MOD;
 					lssproto_FS_send(sockfd, pc.etcFlag);
 				}
 			}
-			if (是否重登人物方向){
-				是否重登人物方向 = FALSE;
-				重新登陆方向开始时间 = TimeGetTime();
+			if (是否重登人物方嚮){
+				是否重登人物方嚮 = FALSE;
+				重新登陸方嚮開始時間 = TimeGetTime();
 			}
-			if (重新登陆方向开始时间){
-				if (TimeGetTime() > 重新登陆方向开始时间 + 500){
-					重新登陆方向开始时间 = 0;
+			if (重新登陸方嚮開始時間){
+				if (TimeGetTime() > 重新登陸方嚮開始時間 + 500){
+					重新登陸方嚮開始時間 = 0;
 					char dir2[2];
-					setPcDir(PcLanded.人物方向);
-					dir2[0] = cnvServDir(PcLanded.人物方向, 1);
+					setPcDir(PcLanded.人物方嚮);
+					dir2[0] = cnvServDir(PcLanded.人物方嚮, 1);
 					dir2[1] = '\0';
 					walkSendForServer(nowGx, nowGy, dir2);
 				}
 			}
-			extern int 自动登陆是否开启;
-			if (是否重登组队&&!是否重登人物方向&&!重新登陆方向开始时间&&!partyModeFlag){
-				if (!重新登陆组队开始时间){
-					重新登陆组队开始时间 = TimeGetTime();
+			extern int 自動登陸是否開啓;
+			if (是否重登組隊&&!是否重登人物方嚮&&!重新登陸方嚮開始時間&&!partyModeFlag){
+				if (!重新登陸組隊開始時間){
+					重新登陸組隊開始時間 = TimeGetTime();
 				}
 				else{
-					if (TimeGetTime() > 重新登陆组队开始时间 + FIELD_BTN_PUSH_WAIT){
-						重新登陆组队开始时间 = 0;
+					if (TimeGetTime() > 重新登陸組隊開始時間 + FIELD_BTN_PUSH_WAIT){
+						重新登陸組隊開始時間 = 0;
 						lssproto_PR_send(sockfd, nowGx, nowGy, 1);
 					}
 				}
-				if (是否重登喊话){
-					if (!重新登陆喊话开始时间){
-						重新登陆喊话开始时间 = TimeGetTime();
+				if (是否重登喊話){
+					if (!重新登陸喊話開始時間){
+						重新登陸喊話開始時間 = TimeGetTime();
 					}
 					else{
-						if (TimeGetTime() > 重新登陆喊话开始时间 + 1000 * 60){
-							重新登陆喊话开始时间 = 0;
+						if (TimeGetTime() > 重新登陸喊話開始時間 + 1000 * 60){
+							重新登陸喊話開始時間 = 0;
 							char m[1024];
-							sprintf_s(m, "P|哪位好心人能带我练级哟。刚掉线重新登陆，求好心人站我面前带我练级！位置(%d,%d)", nowGx, nowGy);
+							sprintf_s(m, "P|哪位好心人能帶我練級喲。剛掉綫重新登陸，求好心人站我麵前帶我練級！位置(%d,%d)", nowGx, nowGy);
 							lssproto_TK_send(sockfd, nowGx, nowGy, m, 0, NowMaxVoice);
 						}
 					}
 				}
 			}
 			else{
-				重新登陆组队开始时间 = 0;
-				重新登陆喊话开始时间 = 0;
+				重新登陸組隊開始時間 = 0;
+				重新登陸喊話開始時間 = 0;
 			}
 		}
-		extern int 自动登陆是否开启;
+		extern int 自動登陸是否開啓;
 		if (ProcNo >= 1 && ProcNo <= 3){
-			if (PcLanded.大区 != -1 && PcLanded.小区 != -1 && PcLanded.人物 != -1){
-				if (自动登陆是否开启)
-					StockFontBuffer(10, 550, FONT_PRIO_FRONT, FONT_PAL_RED, "正在自动登陆中,按F9可停止自动登陆！", 0);
+			if (PcLanded.大區 != -1 && PcLanded.小區 != -1 && PcLanded.人物 != -1){
+				if (自動登陸是否開啓)
+					StockFontBuffer(10, 550, FONT_PRIO_FRONT, FONT_PAL_RED, "正在自動登陸中,按F9可停止自動登陸！", 0);
 				else
-					StockFontBuffer(10, 550, FONT_PRIO_FRONT, FONT_PAL_RED, "按F9可自动登陆游戏！", 0);
+					StockFontBuffer(10, 550, FONT_PRIO_FRONT, FONT_PAL_RED, "按F9可自動登陸遊戲！", 0);
 			}
 		}
 		if (joy_trg[1] & JOY_F9&&ProcNo >= 1 && ProcNo <= 3)
 		{
-			if (自动登陆是否开启) 自动登陆是否开启 = !自动登陆是否开启;
+			if (自動登陸是否開啓) 自動登陸是否開啓 = !自動登陸是否開啓;
 			else{
-				if (PcLanded.大区 != -1 && PcLanded.小区 != -1 && PcLanded.人物 != -1)
-					自动登陆是否开启 = TRUE;
+				if (PcLanded.大區 != -1 && PcLanded.小區 != -1 && PcLanded.人物 != -1)
+					自動登陸是否開啓 = TRUE;
 			}
 		}
 #endif
@@ -568,7 +568,7 @@ BOOL GameMain(void)
 #ifdef _OPTIMIZATIONFLIP_
 		if (endProcTime > TimeGetTime())
 		{
-			//修正最大跳帧数
+			//修正最大跳幀數
 			if (NoDrawCnt < NO_DRAW_MAX_CNT + skipAmend)
 			{
 				NoDrawCnt++;
@@ -588,7 +588,7 @@ BOOL GameMain(void)
 #endif
 
 #else
-		NowTime = TimeGetTime();//获取当前的时间 毫秒
+		NowTime = TimeGetTime();//獲取當前的時間 毫秒
 		nowtime = nowttime1;
 		//nowtime ^= 0xffffbcde;
 		static DWORD OldTime = nowttime1;
@@ -616,7 +616,7 @@ BOOL GameMain(void)
 #endif
 #endif
 		nowtime = 0;
-		//cary AI的切换
+		//cary AI的切換
 		if (di_key[DIK_NEXT] & 0x80){
 			di_key[DIK_NEXT] &= ~0x80;
 			static DWORD switchmodetime = TimeGetTime();
@@ -627,7 +627,7 @@ BOOL GameMain(void)
 					AI = AI_NONE;
 					pc.etcFlag &= (~PC_AI_MOD);
 					lssproto_FS_send(sockfd, pc.etcFlag);
-					// 修复战斗AI转换的BUG  AI->玩家
+					// 修復戰鬥AI轉換的BUG  AI->玩傢
 #ifdef _FIX_BATTLE_AI
 					battleMenuFix();
 #endif
@@ -664,7 +664,7 @@ BOOL GameMain(void)
 #ifdef __AI
 				if (AI == AI_SELECT){
 					AI = AI_NONE;
-					// 修复战斗AI转换的BUG  玩家->AI
+					// 修復戰鬥AI轉換的BUG  玩傢->AI
 #ifdef _FIX_BATTLE_AI
 					battleMenuFix();
 #endif
@@ -1147,7 +1147,7 @@ BOOL InitGame(void)
 #endif
 #ifdef _READ16BITBMP
 	unsigned int testMMX = 0;
-	// 测试cpu是否有MMX指令集
+	// 測試cpu是否有MMX指令集
 	__asm{
 		push eax
 			mov eax,1
@@ -1155,7 +1155,7 @@ BOOL InitGame(void)
 			mov testMMX, edx
 			pop eax
 	}
-	// 第23个位元若为1表示有MMX
+	// 第23個位元若為1錶示有MMX
 	if (testMMX & 0x00800000) g_bMMXMode = true;
 	else g_bMMXMode = false;
 #endif
@@ -1168,30 +1168,30 @@ BOOL InitGame(void)
 #endif
 	util_Init();
 	if (InitDirectDraw() == FALSE){
-		MessageBoxNew(hWnd, "初始化DirectDraw失败！", "确定", MB_OK | MB_ICONSTOP);
+		MessageBoxNew(hWnd, "初始化DirectDraw失敗！", "確定", MB_OK | MB_ICONSTOP);
 		return FALSE;
 	}
 	if (InitOffScreenSurface() == FALSE){
-		MessageBoxNew(hWnd, "初始化Off Screan Surface失败！", "确定", MB_OK | MB_ICONSTOP);
+		MessageBoxNew(hWnd, "初始化Off Screan Surface失敗！", "確定", MB_OK | MB_ICONSTOP);
 		return FALSE;
 	}
 	if (InitPalette() == FALSE)
 		return FALSE;
 	if (initRealbinFileOpen(realBinName, adrnBinName) == FALSE) {
-		MessageBoxNew(hWnd, "开启Real.bin失败！", "确定", MB_OK | MB_ICONSTOP);
+		MessageBoxNew(hWnd, "開啓Real.bin失敗！", "確定", MB_OK | MB_ICONSTOP);
 		return FALSE;
 	}
 	//PutLogo();
 	initAutoMapColor(adrnBinName);
 	if (InitSprBinFileOpen(sprBinName, sprAdrnBinName) == FALSE){
-		MessageBoxNew(hWnd, "开启Spr.bin失败！", "确定", MB_OK | MB_ICONSTOP);
+		MessageBoxNew(hWnd, "開啓Spr.bin失敗！", "確定", MB_OK | MB_ICONSTOP);
 		return FALSE;
 	}
 #ifdef _READ16BITBMP
 	int ref;
 	if ((ref = InitRealTruebinFileOpen(realtrueBinName, adrntrueBinName)) < 0){
-		if (ref == -1) MessageBoxNew(hWnd, "开启 adrntrue.bin 失败！", "确定", MB_OK | MB_ICONSTOP);
-		else if (ref == -2) MessageBoxNew(hWnd, "开启 realtrue.bin 失败！", "确定", MB_OK | MB_ICONSTOP);
+		if (ref == -1) MessageBoxNew(hWnd, "開啓 adrntrue.bin 失敗！", "確定", MB_OK | MB_ICONSTOP);
+		else if (ref == -2) MessageBoxNew(hWnd, "開啓 realtrue.bin 失敗！", "確定", MB_OK | MB_ICONSTOP);
 		return FALSE;
 	}
 #endif
@@ -1215,14 +1215,14 @@ BOOL InitGame(void)
 	t_music_init();
 
 	if (!InitIme(hWnd, StrToNowStrBuffer)){
-		MessageBoxNew(hWnd, "初始化输入法失败！", "确定", MB_OK | MB_ICONSTOP);
+		MessageBoxNew(hWnd, "初始化輸入法失敗！", "確定", MB_OK | MB_ICONSTOP);
 		return FALSE;
 	}
 	MouseInit();
 	if (loadUserSetting() == FALSE){
 		char msg[1024];
 		sprintf_s(msg, SAVE_ERRMSG_loadNowState, savedataErrorCode);
-		MessageBoxNew(hWnd, msg, "确定", MB_OK | MB_ICONSTOP);
+		MessageBoxNew(hWnd, msg, "確定", MB_OK | MB_ICONSTOP);
 		return FALSE;
 	}
 	LoadChatRegistyStr();
@@ -1241,34 +1241,34 @@ BOOL InitGame(void)
 #ifndef __NEW_CLIENT_ONLY_WRITE
 	if (!net_readbuf){
 		if (!(net_readbuf = (char*)VirtualAlloc(NULL, NETBUFSIZ, MEM_COMMIT, PAGE_READWRITE))){
-			MessageBoxNew(hWnd, "net_readbuf Init 失败!", "确定", MB_OK | MB_ICONSTOP);
+			MessageBoxNew(hWnd, "net_readbuf Init 失敗!", "確定", MB_OK | MB_ICONSTOP);
 			return FALSE;
 		}
 	}
 #else
 	if( !net_readbuf){
 		if( !(net_readbuf=(char*)VirtualAlloc( NULL, NETBUFSIZ, MEM_COMMIT, PAGE_NOACCESS))){
-			MessageBoxNew( hWnd, "net_readbuf Init 失败!", "确定", MB_OK | MB_ICONSTOP );
+			MessageBoxNew( hWnd, "net_readbuf Init 失敗!", "確定", MB_OK | MB_ICONSTOP );
 			return FALSE;
 		}
 	}
 #endif
 	if (!net_writebuf){
 		if (!(net_writebuf = (char*)VirtualAlloc(NULL, NETBUFSIZ, MEM_COMMIT, PAGE_NOACCESS))){
-			MessageBoxNew(hWnd, "net_writebuf Init 失败!", "确定", MB_OK | MB_ICONSTOP);
+			MessageBoxNew(hWnd, "net_writebuf Init 失敗!", "確定", MB_OK | MB_ICONSTOP);
 			return FALSE;
 		}
 	}
 #else
 	if (!net_readbuf){
 		if (!(net_readbuf = (char*)VirtualAlloc(NULL, NETBUFSIZ, MEM_COMMIT, PAGE_READWRITE))){
-			MessageBoxNew(hWnd, "net_readbuf Init 失败!", "确定", MB_OK | MB_ICONSTOP);
+			MessageBoxNew(hWnd, "net_readbuf Init 失敗!", "確定", MB_OK | MB_ICONSTOP);
 			return FALSE;
 		}
 	}
 	if (!net_writebuf){
 		if (!(net_writebuf = (char*)VirtualAlloc(NULL, NETBUFSIZ, MEM_COMMIT, PAGE_READWRITE))){
-			MessageBoxNew(hWnd, "net_writebuf Init 失败!", "确定", MB_OK | MB_ICONSTOP);
+			MessageBoxNew(hWnd, "net_writebuf Init 失敗!", "確定", MB_OK | MB_ICONSTOP);
 			return FALSE;
 		}
 	}
@@ -1363,7 +1363,7 @@ void ConsoleThread(void)
 
 	while(m_bRun)
 	{
-		printf("\n石器时代>");
+		printf("\n石器時代>");
 		i = 0;
 		
 		/*
@@ -1450,7 +1450,7 @@ void InitConsoleWindow(void)
 
 
 	AllocConsole();
-	SetConsoleTitle("石器时代");
+	SetConsoleTitle("石器時代");
 
 	hCrt = _open_osfhandle(
 		(long)GetStdHandle(STD_OUTPUT_HANDLE),O_TEXT );

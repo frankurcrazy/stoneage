@@ -1,4 +1,4 @@
-﻿#ifndef _PC_H_ 
+#ifndef _PC_H_ 
 #define _PC_H_
 
 #include "action.h"
@@ -16,13 +16,13 @@
 #define ITEM_MEMO_LEN			84
 #define PET_NAME_LEN			16
 #define PET_FREENAME_LEN		32
-#define CHAR_FMNAME_LEN			33      // 家族名称
+#define CHAR_FMNAME_LEN			33      // 傢族名稱
 
-#ifdef _CHAR_PROFESSION			// WON ADD 人物职业
+#ifdef _CHAR_PROFESSION			// WON ADD 人物職業
 #define PROFESSION_MEMO_LEN		84
 #endif
 
-#ifdef _GM_IDENTIFY		// Rog ADD GM识别
+#ifdef _GM_IDENTIFY		// Rog ADD GM識彆
 #define GM_NAME_LEN		        32
 #endif
 
@@ -62,13 +62,13 @@ typedef enum
 #endif
     CHAR_EQUIPPLACENUM,
 #ifdef _PET_ITEM
-	PET_HEAD = 0,	// 头
+	PET_HEAD = 0,	// 頭
 	PET_WING,		// 翼
 	PET_TOOTH,		// 牙
-	PET_PLATE,		// 身体
+	PET_PLATE,		// 身體
 	PET_BACK,		// 背
 	PET_CLAW,		// 爪
-	PET_FOOT,		// 脚(鳍)
+	PET_FOOT,		// 腳(鰭)
 	PET_EQUIPNUM
 #endif
 }CHAR_EquipPlace;
@@ -76,16 +76,16 @@ typedef enum
 #ifdef _PET_ITEM
 typedef enum
 {
-// 宠物道具,共九种
-	ITEM_PET_HEAD = 29,		// 头
+// 寵物道具,共九種
+	ITEM_PET_HEAD = 29,		// 頭
 	ITEM_PET_WING,			// 翼
 	ITEM_PET_TOOTH,			// 牙
-	ITEM_PET_PLATE,			// 身体护甲
-	ITEM_PET_BACK,			// 背部护甲
+	ITEM_PET_PLATE,			// 身體護甲
+	ITEM_PET_BACK,			// 背部護甲
 	ITEM_PET_CLAW,			// 爪
-	ITEM_PET_1_FOOT,		// 脚部,双足
-	ITEM_PET_2_FOOT,		// 脚部,四足
-	ITEM_PET_FIN,			// 脚部,鳍
+	ITEM_PET_1_FOOT,		// 腳部,雙足
+	ITEM_PET_2_FOOT,		// 腳部,四足
+	ITEM_PET_FIN,			// 腳部,鰭
 	ITEM_CATEGORYNUM  
 }ITEM_CATEGORY;
 #define MAX_PET_ITEM	7
@@ -95,7 +95,7 @@ typedef enum
 #define MAX_MAXHAVEITEM	15
 #ifdef _NEW_ITEM_
 #define MAX_ITEM (MAX_ITEMSTART+MAX_MAXHAVEITEM*3)
-int 判断玩家道具数量();
+int 判斷玩傢道具數量();
 #else
 #define MAX_ITEM (MAX_ITEMSTART+MAX_MAXHAVEITEM)
 #endif
@@ -123,34 +123,34 @@ int 判断玩家道具数量();
 #define MAX_PERSONAL_BANKGOLD 50000000
 
 #ifdef _FMVER21
-#define FAMILY_MAXMEMBER                100     // 家族人数
+#define FAMILY_MAXMEMBER                100     // 傢族人數
 #else
-#define FAMILY_MAXMEMBER                50     // 家族人数
+#define FAMILY_MAXMEMBER                50     // 傢族人數
 #endif
 
 enum
 {
 	PC_ETCFLAG_PARTY		= (1 << 0),
 	PC_ETCFLAG_DUEL			= (1 << 1),
-	PC_ETCFLAG_CHAT_MODE	= (1 << 2),		//队伍频道开关
-	PC_ETCFLAG_MAIL			= (1 << 3),       //名片频道
+	PC_ETCFLAG_CHAT_MODE	= (1 << 2),		//隊伍頻道開關
+	PC_ETCFLAG_MAIL			= (1 << 3),       //名片頻道
 	PC_ETCFLAG_TRADE		= (1 << 4)
 #ifdef _CHANNEL_MODIFY
-	,PC_ETCFLAG_CHAT_TELL = (1 << 5)			//密语频道开关
-	,PC_ETCFLAG_CHAT_FM		= (1 << 6)			//家族频道开关
+	,PC_ETCFLAG_CHAT_TELL = (1 << 5)			//密語頻道開關
+	,PC_ETCFLAG_CHAT_FM		= (1 << 6)			//傢族頻道開關
 #ifdef _CHAR_PROFESSION
-	,PC_ETCFLAG_CHAT_OCC	= (1 << 7)			//职业频道开关
+	,PC_ETCFLAG_CHAT_OCC	= (1 << 7)			//職業頻道開關
 #endif
-	,PC_ETCFLAG_CHAT_SAVE	=	(1 << 8)			//对话储存开关
+	,PC_ETCFLAG_CHAT_SAVE	=	(1 << 8)			//對話儲存開關
 #ifdef _CHATROOMPROTOCOL
-	,PC_ETCFLAG_CHAT_CHAT	=	(1 << 9)			//聊天室开关
+	,PC_ETCFLAG_CHAT_CHAT	=	(1 << 9)			//聊天室開關
 #endif
 #endif
 #ifdef _CHANNEL_WORLD
-	,PC_ETCFLAG_CHAT_WORLD	=	(1 << 10)			//世界频道开关
+	,PC_ETCFLAG_CHAT_WORLD	=	(1 << 10)			//世界頻道開關
 #endif
 #ifdef _CHANNEL_ALL_SERV
-	,PC_ETCFLAG_ALL_SERV	=	(1 << 11)			//星球频道开关
+	,PC_ETCFLAG_ALL_SERV	=	(1 << 11)			//星球頻道開關
 #endif
 	,PC_AI_MOD = (1 << 12)
 };
@@ -160,23 +160,23 @@ enum
 	PC_ETCFLAG_CHAT_MODE_ID = 0
 	
 #ifdef _CHANNEL_MODIFY
-	,PC_ETCFLAG_CHAT_TELL_ID		//密语频道
-	,PC_ETCFLAG_CHAT_PARTY_ID		//队伍频道
-	,PC_ETCFLAG_CHAT_FM_ID			//家族频道
+	,PC_ETCFLAG_CHAT_TELL_ID		//密語頻道
+	,PC_ETCFLAG_CHAT_PARTY_ID		//隊伍頻道
+	,PC_ETCFLAG_CHAT_FM_ID			//傢族頻道
 #ifdef _CHAR_PROFESSION
-	,PC_ETCFLAG_CHAT_OCC_ID			//职业频道
+	,PC_ETCFLAG_CHAT_OCC_ID			//職業頻道
 #endif
 #ifdef _CHATROOMPROTOCOL
 	,PC_ETCFLAG_CHAT_CHAT_ID		//聊天室
 #endif
 #else
-	,PC_ETCFLAG_CHAT_PARTY_ID		//队伍频道
+	,PC_ETCFLAG_CHAT_PARTY_ID		//隊伍頻道
 #endif
 #ifdef _CHANNEL_WORLD
-	,PC_ETCFLAG_CHAT_WORLD_ID			//世界频道
+	,PC_ETCFLAG_CHAT_WORLD_ID			//世界頻道
 #endif
 #ifdef _CHANNEL_ALL_SERV
-	,PC_ETCFLAG_ALL_SERV_ID			//星球频道开关
+	,PC_ETCFLAG_ALL_SERV_ID			//星球頻道開關
 #endif
 	,PC_ETCFLAG_CHAT_WORLD_NUM
 };
@@ -184,14 +184,14 @@ enum
 #define ITEM_FLAG_PET_MAIL		( 1 << 0 )
 #define ITEM_FLAG_MIX			( 1 << 1 )
 #define ITEM_FLAG_COOKING_MIX	( 1 << 2 )
-#define ITEM_FLAG_METAL_MIX		( 1 << 3 )	//金属
-#define ITEM_FLAG_JEWEL_MIX		( 1 << 4 )	//宝石
-#define ITEM_FLAG_FIX_MIX		( 1 << 5 )	//修复
+#define ITEM_FLAG_METAL_MIX		( 1 << 3 )	//金屬
+#define ITEM_FLAG_JEWEL_MIX		( 1 << 4 )	//寶石
+#define ITEM_FLAG_FIX_MIX		( 1 << 5 )	//修復
 #ifdef _ITEM_INTENSIFY
-#define ITEM_FLAG_INTENSIFY_MIX ( 1 << 6 )	//强化
+#define ITEM_FLAG_INTENSIFY_MIX ( 1 << 6 )	//強化
 #endif
 #ifdef _ITEM_UPINSLAY
-#define ITEM_FLAG_UPINSLAY_MIX ( 1 << 7 )	//凿孔
+#define ITEM_FLAG_UPINSLAY_MIX ( 1 << 7 )	//鑿孔
 #endif
 
 typedef struct
@@ -227,7 +227,7 @@ typedef struct
 	int counttime;
 #endif
 #ifdef _MAGIC_ITEM_
-	int 道具类型;
+	int 道具類型;
 #endif
 } ITEM;
 
@@ -280,7 +280,7 @@ typedef struct
 	int channel;
 	int quickChannel;
 	int personal_bankgold;
-	int ridePetNo;//宠物形像
+	int ridePetNo;//寵物形像
 	int learnride;
 	unsigned int lowsride;
 	char ridePetName[CHAR_FREENAME_LEN+1];
@@ -290,78 +290,78 @@ typedef struct
 	ITEM itempool[MAX_ITEM];
 	int big4fm;
 	int trade_confirm;         // 1 -> 初始值
-	                           // 2 -> 慬我方按下确定键
-	                           // 3 -> 仅对方按下确定键
-	                           // 4 -> 双方皆按下确定键
+	                           // 2 -> 慬我方按下確定鍵
+	                           // 3 -> 僅對方按下確定鍵
+	                           // 4 -> 雙方皆按下確定鍵
 
-#ifdef _CHAR_PROFESSION			// WON ADD 人物职业
+#ifdef _CHAR_PROFESSION			// WON ADD 人物職業
 	int profession_class;
 	int profession_level;
 //	int profession_exp;
 	int profession_skill_point;	
 	char profession_class_name[32];
 #endif	
-#ifdef _ALLDOMAN // (不可开) Syu ADD 排行榜NPC
+#ifdef _ALLDOMAN // (不可開) Syu ADD 排行榜NPC
 	int herofloor;
 #endif
 
-#ifdef _GM_IDENTIFY		// Rog ADD GM识别
+#ifdef _GM_IDENTIFY		// Rog ADD GM識彆
 	char gm_name[GM_NAME_LEN+1];
 #endif
 
-#ifdef _FRIENDCHANNEL  // ROG ADD 好友频道
+#ifdef _FRIENDCHANNEL  // ROG ADD 好友頻道
 	char  chatRoomNum[4];
 #endif
 #ifdef _STREET_VENDOR
-	int iOnStreetVendor;		// 摆摊模式
+	int iOnStreetVendor;		// 擺攤模式
 #endif
 	int skywalker; // GM天行者??
 #ifdef _MOVE_SCREEN
-	BOOL	bMoveScreenMode;	// 移动荧幕模式
-	BOOL	bCanUseMouse;		// 是否可以使用滑鼠移动
-	int		iDestX;				// 目标点 X 座标
-	int		iDestY;				// 目标点 Y 座标
+	BOOL	bMoveScreenMode;	// 移動熒幕模式
+	BOOL	bCanUseMouse;		// 是否可以使用滑鼠移動
+	int		iDestX;				// 目標點 X 座標
+	int		iDestY;				// 目標點 Y 座標
 #endif
 #ifdef _THEATER
-	int		iTheaterMode;		// 剧场模式
-	int		iSceneryNumber;		// 记录剧院背景图号
-	ACTION	*pActNPC[5];		// 记录剧场中临时产生出来的NPC
+	int		iTheaterMode;		// 劇場模式
+	int		iSceneryNumber;		// 記錄劇院背景圖號
+	ACTION	*pActNPC[5];		// 記錄劇場中臨時産生齣來的NPC
 #endif
 #ifdef _NPC_DANCE
-	int     iDanceMode;			// 动一动模式
+	int     iDanceMode;			// 動一動模式
 #endif
 #ifdef _EVIL_KILL
-	int     newfame; // 讨伐魔军积分
+	int     newfame; // 討伐魔軍積分
 	short   ftype;
 #endif
 
 	int debugmode;
 #ifdef _SFUMATO
-	int sfumato;		// 二次渲染图层色彩
+	int sfumato;		// 二次渲染圖層色彩
 #endif
 #ifdef _NEW_ITEM_
-	int 道具栏状态;
+	int 道具欄狀態;
 #endif
 #ifdef _CHARSIGNADY_NO_
-	int 签到标记;
+	int 簽到標記;
 #endif
 #ifdef _MAGIC_ITEM_
-	int 法宝道具状态;
-	int 道具光环效果;
+	int 法寶道具狀態;
+	int 道具光環效果;
 #endif
 } PC;
 
 #ifdef _FMVER21
 enum
 {
-	FMMEMBER_NONE   = -1,  // 未加入任何家族
-    FMMEMBER_MEMBER = 1,   // 一般成员
-	FMMEMBER_APPLY,        // 申请加入家族
-    FMMEMBER_LEADER,       // 家族族长        
-	FMMEMBER_ELDER,        // 长老
+	FMMEMBER_NONE   = -1,  // 未加入任何傢族
+    FMMEMBER_MEMBER = 1,   // 一般成員
+	FMMEMBER_APPLY,        // 申請加入傢族
+    FMMEMBER_LEADER,       // 傢族族長        
+	FMMEMBER_ELDER,        // 長老
     //FMMEMBER_INVITE,     // 祭司
-    //FMMEMBER_BAILEE,     // 财务长
-    //FMMEMBER_VICELEADER, // 副族长
+    //FMMEMBER_BAILEE,     // 財務長
+    //FMMEMBER_VICELEADER, // 副族長
 	FMMEMBER_NUMBER,
 };
 #endif
@@ -385,9 +385,9 @@ enum
 	MAGIC_TARGET_WITHOUTMYSELFANDPET,
 	MAGIC_TARGET_WHOLEOTHERSIDE,
 	#ifdef __ATTACK_MAGIC
-	MAGIC_TARGET_SINGLE,				// 针对敌方某一方
-	MAGIC_TARGET_ONE_ROW,				// 针对敌方某一列
-	MAGIC_TARGET_ALL_ROWS,				// 针对敌方所有人
+	MAGIC_TARGET_SINGLE,				// 針對敵方某一方
+	MAGIC_TARGET_ONE_ROW,				// 針對敵方某一列
+	MAGIC_TARGET_ALL_ROWS,				// 針對敵方所有人
 	#endif
 };
 
@@ -408,13 +408,13 @@ enum
 	PETSKILL_TARGET_NONE,
 	PETSKILL_TARGET_OTHERWITHOUTMYSELF,
 	PETSKILL_TARGET_WITHOUTMYSELFANDPET
-#ifdef _BATTLESKILL				// (不可开) Syu ADD 战斗技能介面
+#ifdef _BATTLESKILL				// (不可開) Syu ADD 戰鬥技能介麵
 	,PETSKILL_TARGET_ONE_ROW
 	,PETSKILL_TARGET_ONE_LINE
 	,PETSKILL_TARGER_DEATH
 #endif
 #ifdef _SKILL_ADDBARRIER
-	,PETSKILL_TARGET_ONE_ROW_ALL //选我方的单排
+	,PETSKILL_TARGET_ONE_ROW_ALL //選我方的單排
 #endif
 };
 
@@ -453,9 +453,9 @@ typedef struct
 	int ai;							// ?
 	int earth, water, fire, wind;	// 佋???
 	int maxSkill;					// ?????
-	int trn;						// 宠物转生数
+	int trn;						// 寵物轉生數
 #ifdef _SHOW_FUSION
-	int fusion;						// low word: 宠蛋旗标, hi word: 物种编码
+	int fusion;						// low word: 寵蛋旗標, hi word: 物種編碼
 #endif
 #ifdef _ANGEL_SUMMON
 	unsigned status;
@@ -467,7 +467,7 @@ typedef struct
 	short useFlag;					// ??????????????
 	short changeNameFlag;			// ?????????
 #ifdef _PET_ITEM
-	ITEM item[MAX_PET_ITEM];		// 宠物道具
+	ITEM item[MAX_PET_ITEM];		// 寵物道具
 #endif
 #ifdef _PETCOM_
 	int oldlevel,oldhp,oldatk,oldquick,olddef;
@@ -519,7 +519,7 @@ typedef struct
 	int dp;
 	int graNo;
 	char name[CHAR_NAME_LEN+1];
-#ifdef _MAILSHOWPLANET				// (可开放) Syu ADD 显示名片星球
+#ifdef _MAILSHOWPLANET				// (可開放) Syu ADD 顯示名片星球
 	char planetname[64];
 #endif
 } ADDRESS_BOOK;
@@ -550,7 +550,7 @@ typedef struct
 	char memo[SKILL_MEMO_LEN+1];
 } PET_SKILL;
 
-#ifdef _CHAR_PROFESSION			// WON ADD 人物职业
+#ifdef _CHAR_PROFESSION			// WON ADD 人物職業
 typedef struct
 {
 	short useFlag;
@@ -587,15 +587,15 @@ typedef struct
 #ifdef _AIDENGLU_
 typedef struct
 {
-	int 大区;
-	int 队模;
-	int 小区;
+	int 大區;
+	int 隊模;
+	int 小區;
 	int 人物;
-	int 是否自动喊话;
-	int 是否自动遇敌;
-	int 人物方向;
-	char 登陆人物名称[4][32];
-	int 登陆延时时间;
+	int 是否自動喊話;
+	int 是否自動遇敵;
+	int 人物方嚮;
+	char 登陸人物名稱[4][32];
+	int 登陸延時時間;
 }Landed;
 #endif
 
@@ -661,19 +661,19 @@ void setPcAction( int );
 #endif
 int getPcAction( void );
 
-#ifdef _CHAR_PROFESSION			// WON ADD 人物职业
+#ifdef _CHAR_PROFESSION			// WON ADD 人物職業
 #ifdef _PRO3_ADDSKILL
     #define MAX_PROFESSION_SKILL	30
 #else
     #define MAX_PROFESSION_SKILL	26
 #endif
     extern PROFESSION_SKILL profession_skill[];
-//    #ifdef _GM_IDENTIFY		// Rog ADD GM识别
+//    #ifdef _GM_IDENTIFY		// Rog ADD GM識彆
 //      void setPcParam( char *, char *, int, char *, int, int, int, int, int, int, int, int, char *);
 //        void setPcParam( char *, char *, int, char *, int, int, int, int, int, int, int, char *);    
 //	#else
 //      void setPcParam( char *, char *, int, char *, int, int, int, int, int, int, int, int );
-#ifdef _ALLDOMAN // (不可开) Syu ADD 排行榜NPC
+#ifdef _ALLDOMAN // (不可開) Syu ADD 排行榜NPC
 	void setPcParam( char *, char *, int, char *, int, int, int, int, int, int, int , int );
 #else
     void setPcParam( char *, char *, int, char *, int, int, int, int, int, int, int );

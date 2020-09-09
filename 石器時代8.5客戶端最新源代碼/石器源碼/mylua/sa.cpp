@@ -1,4 +1,4 @@
-﻿#include "../systeminc/version.h"
+#include "../systeminc/version.h"
 #include "../systeminc/system.h"
 #include "winlua.h"
 #include "../systeminc/menu.h"

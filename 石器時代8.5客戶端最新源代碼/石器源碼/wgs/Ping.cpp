@@ -1,4 +1,4 @@
-﻿//ping.cpp
+//ping.cpp
 #include <Winsock2.h>
 #include <Windows.h>
 #include "ping.h"
@@ -6,7 +6,7 @@
 
 bool CPing::Ping(LPCSTR pstrHost, UINT nRetries)
 {
-	//创建一个Raw套节字
+	//創建一個Raw套節字
 	SOCKET rawSocket = socket(AF_INET, SOCK_RAW, IPPROTO_ICMP);
 	if (rawSocket == INVALID_SOCKET)
 	{
@@ -14,18 +14,18 @@ bool CPing::Ping(LPCSTR pstrHost, UINT nRetries)
 		return false;
 	}
 	int nNetTimeout = 1000;//1秒 
-						   //发送时限
+						   //發送時限
 	setsockopt(rawSocket, SOL_SOCKET, SO_SNDTIMEO, (char *)&nNetTimeout, sizeof(int));
-	//接收时限
+	//接收時限
 	setsockopt(rawSocket, SOL_SOCKET, SO_RCVTIMEO, (char *)&nNetTimeout, sizeof(int));
 
-	//获得主机信息
+	//獲得主機信息
 	LPHOSTENT lpHost = gethostbyname(pstrHost);
 	if (lpHost == NULL)
 	{
 		return false;
 	}
-	//构造目标套节字地址信息
+	//構造目標套節字地址信息
 	struct    sockaddr_in saDest;
 	struct    sockaddr_in saSrc;
 	saDest.sin_addr.s_addr = *((u_long FAR *) (lpHost->h_addr));
@@ -41,7 +41,7 @@ bool CPing::Ping(LPCSTR pstrHost, UINT nRetries)
 	//多次ping
 	for (UINT nLoop = 0; nLoop < nRetries; ++nLoop)
 	{
-		//发送ICMP回应请求
+		//發送ICMP迴應請求
 		if ((nRet = SendEchoRequest(rawSocket, &saDest)) < 0)
 		{
 			break;
@@ -54,14 +54,14 @@ bool CPing::Ping(LPCSTR pstrHost, UINT nRetries)
 
 		if (nRet)
 		{
-			//获得回应
+			//獲得迴應
 			if ((dwTimeSent = RecvEchoReply(rawSocket, &saSrc, &cTTL)) < 0)
 			{
 				nRet = dwTimeSent;
 				break;
 			}
 
-			//计算时间
+			//計算時間
 			nTotalTime += GetTickCount() - dwTimeSent;
 			++nRecvNum;
 		}
@@ -81,7 +81,7 @@ bool CPing::Ping(LPCSTR pstrHost, UINT nRetries)
 
 
 
-//发送ICMPECHO数据包请求
+//發送ICMPECHO數據包請求
 int CPing::SendEchoRequest(SOCKET s, LPSOCKADDR_IN lpstToAddr)
 {
 	static ECHOREQUEST echoReq;
@@ -89,7 +89,7 @@ int CPing::SendEchoRequest(SOCKET s, LPSOCKADDR_IN lpstToAddr)
 	static int nSeq = 1;
 	int nRet;
 
-	//构造回应请求
+	//構造迴應請求
 	echoReq.icmpHdr.Type = ICMP_ECHOREQ;
 	echoReq.icmpHdr.Code = 0;
 	echoReq.icmpHdr.Checksum = 0;
@@ -99,19 +99,19 @@ int CPing::SendEchoRequest(SOCKET s, LPSOCKADDR_IN lpstToAddr)
 	for (nRet = 0; nRet < REQ_DATASIZE; nRet++)
 		echoReq.cData[nRet] = ' ' + nRet;
 
-	//保存发送时间
+	//保存發送時間
 	echoReq.dwTime = GetTickCount();
 
 	echoReq.icmpHdr.Checksum = in_cksum((u_short *)&echoReq, sizeof(ECHOREQUEST));
 
-	//发送请求
+	//發送請求
 	nRet = sendto(s,
 		(LPSTR)&echoReq,
 		sizeof(ECHOREQUEST),
 		0,
 		(LPSOCKADDR)lpstToAddr,
 		sizeof(SOCKADDR_IN));
-	//检查返回值
+	//檢查返迴值
 	if (nRet == SOCKET_ERROR)
 	{
 
@@ -122,14 +122,14 @@ int CPing::SendEchoRequest(SOCKET s, LPSOCKADDR_IN lpstToAddr)
 
 
 
-//接收ICMPECHO数据包回应
+//接收ICMPECHO數據包迴應
 DWORD CPing::RecvEchoReply(SOCKET s, LPSOCKADDR_IN lpsaFrom, u_char *pTTL)
 {
 	ECHOREPLY echoReply;
 	int nRet;
 	int nAddrLen = sizeof(struct sockaddr_in);
 
-	//接收请求回应
+	//接收請求迴應
 	nRet = recvfrom(s,
 		(LPSTR)&echoReply,
 		sizeof(ECHOREPLY),
@@ -137,13 +137,13 @@ DWORD CPing::RecvEchoReply(SOCKET s, LPSOCKADDR_IN lpsaFrom, u_char *pTTL)
 		(LPSOCKADDR)lpsaFrom,
 		&nAddrLen);
 
-	//检查返回值
+	//檢查返迴值
 	if (nRet == SOCKET_ERROR)
 	{
 		return nRet;
 	}
 
-	//返回发送的时间
+	//返迴發送的時間
 	*pTTL = echoReply.ipHdr.TTL;
 
 	return(echoReply.echoRequest.dwTime);
@@ -151,7 +151,7 @@ DWORD CPing::RecvEchoReply(SOCKET s, LPSOCKADDR_IN lpsaFrom, u_char *pTTL)
 
 
 
-//等待回应
+//等待迴應
 int CPing::WaitForEchoReply(SOCKET s)
 {
 	struct timeval Timeout;
@@ -169,7 +169,7 @@ int CPing::WaitForEchoReply(SOCKET s)
 
 
 
-//转换地址
+//轉換地址
 u_short CPing::in_cksum(u_short *addr, int len)
 {
 	register int nleft = len;

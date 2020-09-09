@@ -1,4 +1,4 @@
-﻿
+
 #include "../systeminc/version.h"
 #include "../systeminc/system.h"
 #include "../systeminc/loadrealbin.h"
@@ -12,7 +12,7 @@ LPDIRECTDRAWSURFACE lpsurLand = NULL;
 LPDIRECTDRAWSURFACE lpsurCloud1 = NULL;
 LPDIRECTDRAWSURFACE lpsurCloud2 = NULL;
 
-#ifdef _MOON_FAIRYLAND				// (不可开) ROG ADD 月之仙境
+#ifdef _MOON_FAIRYLAND				// (不可開) ROG ADD 月之仙境
 BOOL moonFlag  = FALSE;
 #endif
 #ifdef _NEW_CLOUD
@@ -47,38 +47,38 @@ void LoadBmpToSurface( int noFrom, LPDIRECTDRAWSURFACE lpsurTo, int w, int h)
 							( unsigned char **)&pRealBinBits, 
 							&RealBinWidth, 
 							&RealBinHeight ) ){
-			// realbin档图素要倒着读
+			// realbin檔圖素要倒著讀
 			pRealBinBits += (w * (h-1));
 			if( displayBpp == 32){
 				extern unsigned int highColor32Palette[256];
 				int* surface;
 				surface = (int *)ddsd.lpSurface;
-				// 高彩一个点要用2个byte,所以pitch除2方便填颜色值
+				// 高彩一個點要用2個byte,所以pitch除2方便填顔色值
 				ddsd.lPitch >>= 2; // ddsd.lPitch /= 2;
 				unsigned int pixel;
 				for( int i = 0; i < h; i++){
 					for( int j = 0; j < w; j++){
 						pixel = highColor32Palette[(unsigned char)pRealBinBits[j]];
-						// 透明色不处理
+						// 透明色不處理
 						if( pixel) surface[j] = pixel;
 					}
-					// 换下一行
+					// 換下一行
 					surface += ddsd.lPitch;
 					pRealBinBits -= w;
 				}
 			}else if( displayBpp == 16){
 				LPWORD surface;
 				surface = (LPWORD)ddsd.lpSurface;
-				// 高彩一个点要用2个byte,所以pitch除2方便填颜色值
+				// 高彩一個點要用2個byte,所以pitch除2方便填顔色值
 				ddsd.lPitch >>= 1; // ddsd.lPitch /= 2;
 				unsigned short pixel;
 				for( short i = 0; i < h; i++){
 					for( short j = 0; j < w; j++){
 						pixel = highColorPalette[(unsigned char)pRealBinBits[j]];
-						// 透明色不处理
+						// 透明色不處理
 						if( pixel) surface[j] = pixel;
 					}
-					// 换下一行
+					// 換下一行
 					surface += ddsd.lPitch;
 					pRealBinBits -= w;
 				}
@@ -197,14 +197,14 @@ void SkyIslandSetNo( int fl)
 	sky_island_no_bak = sky_island_no;
 	sky_island_no = 0;
 
-#ifdef _MOON_FAIRYLAND				// (不可开) ROG ADD 月之仙境
+#ifdef _MOON_FAIRYLAND				// (不可開) ROG ADD 月之仙境
 	moonFlag =	FALSE;
 #endif
 #ifdef _NEW_CLOUD
 	NCLOUD_Flag = FALSE;
 #endif
 	switch( fl){
-//避免重复的loadmap动作
+//避免重復的loadmap動作
 	case 30691:
 		sky_island_no = (1<<16) | 40510;
 		break;
@@ -223,10 +223,10 @@ void SkyIslandSetNo( int fl)
 	case 30689:
 		sky_island_no = (6<<16) | 40510;
 		break;
-	case 5581://金飞航空
+	case 5581://金飛航空
 		sky_island_no = (1<<16) | 40511;
 		break;
-#ifdef _MOON_FAIRYLAND				// (不可开) ROG ADD 月之仙境
+#ifdef _MOON_FAIRYLAND				// (不可開) ROG ADD 月之仙境
 	case 8255:
 		sky_island_no = (1<<16) | 40512;
 		moonFlag =	TRUE;
@@ -247,7 +247,7 @@ void SkyIslandSetNo( int fl)
 		sky_island_no = (1<<16);
 		break;
 #endif
-	// 神台
+	// 神颱
 	case 104:
 		sky_island_no = (2<<16) | 40511;
 		break;
@@ -343,7 +343,7 @@ void SkyIslandDraw()
 #ifdef _READ16BITBMP
 		if(g_bUseAlpha) lpDraw->lpBACKBUFFERSYS->BltFast( 0, 0, lpsurLand, &rc, DDBLTFAST_WAIT);	
 #endif
-#ifdef _MOON_FAIRYLAND				// (不可开) ROG ADD 月之仙境
+#ifdef _MOON_FAIRYLAND				// (不可開) ROG ADD 月之仙境
 		if(moonFlag == TRUE) return;
 #endif
 
@@ -352,7 +352,7 @@ void SkyIslandDraw()
 			iCloudX1 += iCloudDX;
 			iCloudY1 += iCloudDY;
 			if(((iCloudX1>=DEF_APPSIZEX) || (iCloudY1>=DEF_APPSIZEY)) ){
-				//产生一朵新的云
+				//産生一朵新的雲
 #ifdef __CARYTEST
 				iCloudNo1 = 40500+(rand()&0x3);
 				DWORD no;
@@ -428,7 +428,7 @@ void SkyIslandDraw2( int fl )
 void SkyIslandDraw2()
 #endif
 {
-#ifdef _MOON_FAIRYLAND				// (不可开) ROG ADD 月之仙境
+#ifdef _MOON_FAIRYLAND				// (不可開) ROG ADD 月之仙境
 	if(moonFlag == TRUE)
 	return;
 #endif
@@ -449,7 +449,7 @@ void SkyIslandDraw2()
 				iCloudY2 += iCloudDY;
 				if( (iCloudX2>=DEF_APPSIZEX) || //((iCloudX2+CloudWidth2)<0) ||
 					(iCloudY2>=DEF_APPSIZEY) /*|| ((iCloudY2+CloudHeight2)<0)*/){
-					//产生一朵新的云
+					//産生一朵新的雲
 					DWORD no;
 #ifdef _NEW_CLOUD
 					if( fl == 61000 || fl == 61100 ){

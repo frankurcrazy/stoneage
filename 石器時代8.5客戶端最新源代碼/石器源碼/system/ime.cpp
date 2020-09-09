@@ -1,4 +1,4 @@
-﻿/************************/
+/************************/
 /*	ime.cpp				*/
 /************************/
 #include "../systeminc/version.h"
@@ -23,19 +23,19 @@ void ShowBottomLineString(int iColor,LPSTR lpstr)
 	}
 }
 
-// Terry add 2003/12/16 for 交易视窗开启时,显示物品说明不显示输入法
+// Terry add 2003/12/16 for 交易視窗開啓時,顯示物品說明不顯示輸入法
 extern BOOL bShowItemExplain;
 #ifdef _MO_SHOW_FPS
 extern int framesToShow;
 extern int skipFramesToShow;
 #endif
 // end
-//	输入法的处理
+//	輸入法的處理
 void ImeProc()
 {
-	// 显示输入法的名称
-// Terry fix 2003/12/16 for 交易视窗开启时,显示物品说明不显示输入法
-	//if( TaskBarFlag == FALSE ){ 这行改成下一行
+	// 顯示輸入法的名稱
+// Terry fix 2003/12/16 for 交易視窗開啓時,顯示物品說明不顯示輸入法
+	//if( TaskBarFlag == FALSE ){ 這行改成下一行
 	if(TaskBarFlag == FALSE && bShowItemExplain == FALSE){
 // end
 		LPSTR lpstr=GetImeString();
@@ -54,17 +54,17 @@ void ImeProc()
 		if( 1!=dwInfo){
 			if( lpstr1){
 				char* BIG5ToGB2312(const char* szBIG5String);
-				extern int 编码;
-				extern int 繁体开关;
-				if(繁体开关){
-					char 繁体[1024]={0};
-					LCMapString(0x804,0x4000000,lpstr1, strlen(lpstr1),繁体,1024);
-					if(编码==950)
-						StockFontBuffer(530-strlen(lpstr1)*(FONT_SIZE>>1) + DISPLACEMENT_X,460 + DISPLACEMENT_Y ,FONT_PRIO_FRONT,0,BIG5ToGB2312((const char *)繁体),0);
+				extern int 編碼;
+				extern int 繁體開關;
+				if(繁體開關){
+					char 繁體[1024]={0};
+					LCMapString(0x804,0x4000000,lpstr1, strlen(lpstr1),繁體,1024);
+					if(編碼==950)
+						StockFontBuffer(530-strlen(lpstr1)*(FONT_SIZE>>1) + DISPLACEMENT_X,460 + DISPLACEMENT_Y ,FONT_PRIO_FRONT,0,BIG5ToGB2312((const char *)繁體),0);
 					else
-						StockFontBuffer(530-strlen(lpstr1)*(FONT_SIZE>>1) + DISPLACEMENT_X,460 + DISPLACEMENT_Y ,FONT_PRIO_FRONT,0,繁体,0);
+						StockFontBuffer(530-strlen(lpstr1)*(FONT_SIZE>>1) + DISPLACEMENT_X,460 + DISPLACEMENT_Y ,FONT_PRIO_FRONT,0,繁體,0);
 				}else{
-					if(编码==950)
+					if(編碼==950)
 						StockFontBuffer(530-strlen(lpstr1)*(FONT_SIZE>>1) + DISPLACEMENT_X,460 + DISPLACEMENT_Y ,FONT_PRIO_FRONT,0,BIG5ToGB2312((const char *)lpstr1),0);
 					else
 						StockFontBuffer(530-strlen(lpstr1)*(FONT_SIZE>>1) + DISPLACEMENT_X,460 + DISPLACEMENT_Y ,FONT_PRIO_FRONT,0,lpstr1,0);
@@ -82,13 +82,13 @@ void ImeProc()
 				wsprintf( tmp, " %d", dwPingTime);
 			StockFontBuffer( 605 + DISPLACEMENT_X, 460 + DISPLACEMENT_Y , FONT_PRIO_FRONT, FONT_PAL_WHITE, tmp, 0 );
 #ifndef _REMAKE_20
-			lpstr = "玩家模式";
+			lpstr = "玩傢模式";
 			switch( AI){
 			case AI_ATTACK:
-				lpstr = "强制攻击";
+				lpstr = "強製攻擊";
 				break;
 			case AI_GUARD:
-				lpstr = "强制防御";
+				lpstr = "強製防禦";
 				break;
 			case AI_SELECT:
 				lpstr = "ＡＩ模式";
@@ -100,41 +100,41 @@ void ImeProc()
 			int FontColor = 0 ;
 			switch(TalkMode){
 			case 0:
-				lpstr1 = "一般频道";
+				lpstr1 = "一般頻道";
 				break;
 			case 1:
 				FontColor = FONT_PAL_GREEN;
-				lpstr1 = "密语频道";
+				lpstr1 = "密語頻道";
 				break;
 			case 2:
 				FontColor = FONT_PAL_AQUA;
-				lpstr1 = "队伍频道";
+				lpstr1 = "隊伍頻道";
 				break;
 			case 3:
 				FontColor = FONT_PAL_PURPLE;
-				lpstr1 = "家族频道";
+				lpstr1 = "傢族頻道";
 				break;
 #ifdef _CHAR_PROFESSION
 			case 4:
 				FontColor = FONT_PAL_BLUE2;
-				lpstr1 = "职业频道";
+				lpstr1 = "職業頻道";
 				break;
 #else
 			case 4:
 				FontColor = FONT_PAL_PURPLE;
-				lpstr1 = "聊天室频道";
+				lpstr1 = "聊天室頻道";
 				break;
 #endif
 #ifdef _CHANNEL_WORLD  
 			case 5:
 				FontColor = FONT_PAL_YELLOW;
-				lpstr1 = "世界频道";
+				lpstr1 = "世界頻道";
 				break;
 #endif
 #ifdef _CHANNEL_ALL_SERV
 			case 6:
 				FontColor = FONT_PAL_GREEN2;
-				lpstr1 = "星球频道";
+				lpstr1 = "星球頻道";
 				break;
 #endif
 			}
@@ -148,12 +148,12 @@ void ImeProc()
 				break;
 			case 1:
 				FontColor = FONT_PAL_GREEN;
-				lpstr1 = "密语模式";
+				lpstr1 = "密語模式";
 				break;
 	#ifdef _FRIENDCHANNEL
 			case 2:
 				FontColor = FONT_PAL_PURPLE;
-				lpstr1 = "频道模式";
+				lpstr1 = "頻道模式";
 				break;
 	#endif
 #ifdef _CHANNEL_WORLD
@@ -174,12 +174,12 @@ void ImeProc()
 #endif
 #ifdef _MO_SHOW_FPS
 			
-			wsprintf(tmp, "当前FPS:%3d帧/秒 , 跳帧数: %d帧/秒", framesToShow, skipFramesToShow);
+			wsprintf(tmp, "當前FPS:%3d幀/秒 , 跳幀數: %d幀/秒", framesToShow, skipFramesToShow);
 			StockFontBuffer( 270, 460 + DISPLACEMENT_Y, FONT_PRIO_FRONT, FONT_PAL_YELLOW, tmp, 0 );
 #endif
 		}
 	}
-// Terry add 2003/12/16 for 交易视窗开启时,显示物品说明不显示输入法
+// Terry add 2003/12/16 for 交易視窗開啓時,顯示物品說明不顯示輸入法
 	bShowItemExplain = FALSE;
 // end
 }

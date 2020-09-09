@@ -1,4 +1,4 @@
-﻿#include "../systeminc/version.h"
+#include "../systeminc/version.h"
 #include 	"../systeminc/system.h"
 
 #include	"../oft/vg410.h"
@@ -251,7 +251,7 @@ void radar(ACTION *a0,int *d1,int *d2)
 *
 *      OUT    d1     ??  ( 0 ? ??? )
 *
-*      ???( 0 ? 31 )? a0->crs ?向? 
+*      ???( 0 ? 31 )? a0->crs ?嚮? 
 *
 ********************************************************************/
 int radar2(ACTION *pAct,int x,int y, int cnt )

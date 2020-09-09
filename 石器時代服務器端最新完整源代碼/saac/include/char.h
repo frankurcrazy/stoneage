@@ -2,7 +2,7 @@
 #define _CHAR_H_
 #include "version.h"
 
-/* 1╫╩║У╟гь╓пвт╩╪╟    ф╫ер╥бпя(╟вяКдл╩Опя) */
+/* 1б╫б╩б║ц╣б╟ц┤ц≤б╓ц░ц≈ц■б╩б╪б╟    ц├б╫ц┘ц▓б╥ц┌ц░ц▒(б╟ц≈ц▒ц╚ц└ц▄б╩ц╞ц░ц▒) */
 #ifdef _MORECHARACTERS_
 #define MAXCHAR_PER_USER 4
 #else

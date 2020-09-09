@@ -1,4 +1,4 @@
-﻿#include <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
 
 /* WIN32_LEAN_AND_MEAN?define???WINDOWS.H???
@@ -44,12 +44,12 @@ int tailCharObj;	// ????????
 int freeCharObj;	// ???????
 int searchCharObj;	// ???
 
-#ifdef _AniCharBubble	   // Syu ADD 动画层人物吐出气泡
+#ifdef _AniCharBubble	   // Syu ADD 動畫層人物吐齣氣泡
 #define RAND(x,y)   ((x-1)+1+ (int)( (double)(y-(x-1))*rand()/(RAND_MAX+1.0)) )
-bool popflag = false;		//人物产生气泡与否旗标
-bool waittimeflag = false;  //气泡结束后等待时间旗标
-int waittime = 0 ;			//气泡结束后等待时间
-static ACTION *popAct;		//气泡动画
+bool popflag = false;		//人物産生氣泡與否旗標
+bool waittimeflag = false;  //氣泡結束後等待時間旗標
+int waittime = 0 ;			//氣泡結束後等待時間
+static ACTION *popAct;		//氣泡動畫
 #endif
 
 // ???????????????
@@ -77,21 +77,21 @@ int battleIconTbl[][2] =
 #ifdef _NPC_MAGICCARD
 struct Posstruct Positiontable[]=
 {	
-	{19,12,17,12,18,11},	//0 玩家
-	{18,17,16,15,17,14},	//1 玩家
-	{13,18,13,16,14,15},	//2 玩家
-	{ 9,14,11,14,12,13},	//3 玩家
-	{10, 9,12,11,13,10},	//4 玩家
-	{15, 8,15,10,16, 9},	//5 玩家
-	{15,12,14,13,15,12},	//6 庄家
+	{19,12,17,12,18,11},	//0 玩傢
+	{18,17,16,15,17,14},	//1 玩傢
+	{13,18,13,16,14,15},	//2 玩傢
+	{ 9,14,11,14,12,13},	//3 玩傢
+	{10, 9,12,11,13,10},	//4 玩傢
+	{15, 8,15,10,16, 9},	//5 玩傢
+	{15,12,14,13,15,12},	//6 莊傢
 /*
-	{23, 9,21, 9,22, 8},	//0 玩家
-	{22,14,20,12,21,11},	//1 玩家
-	{17,15,17,13,18,12},	//2 玩家
-	{13,11,15,11,16,10},	//3 玩家
-	{14, 6,16, 8,17, 7},	//4 玩家
-	{19, 5,19, 7,20, 6},	//5 玩家
-	{18,10,18,10,19, 9},	//6 庄家	
+	{23, 9,21, 9,22, 8},	//0 玩傢
+	{22,14,20,12,21,11},	//1 玩傢
+	{17,15,17,13,18,12},	//2 玩傢
+	{13,11,15,11,16,10},	//3 玩傢
+	{14, 6,16, 8,17, 7},	//4 玩傢
+	{19, 5,19, 7,20, 6},	//5 玩傢
+	{18,10,18,10,19, 9},	//6 莊傢	
 */
 };
 
@@ -114,13 +114,13 @@ int fonttbl[60]={
 };
 #endif
 /*
-	{23, 9,21, 9,22, 8, 5,-1},	//0 玩家
-	{22,14,20,12,21,11, 4, 4},//1 玩家
-	{17,15,17,13,18,12,-1, 5},	//2 玩家
-	{13,11,15,11,16,10,-5, 1},	//3 玩家
-	{18,10,16, 8,17, 7,-4,-4},	//4 玩家
-	{19, 5,19, 7,20, 6, 1,-5},	//5 玩家
-	{18,18,18,10,19, 9, 0, 0},	//6 庄家	
+	{23, 9,21, 9,22, 8, 5,-1},	//0 玩傢
+	{22,14,20,12,21,11, 4, 4},//1 玩傢
+	{17,15,17,13,18,12,-1, 5},	//2 玩傢
+	{13,11,15,11,16,10,-5, 1},	//3 玩傢
+	{18,10,16, 8,17, 7,-4,-4},	//4 玩傢
+	{19, 5,19, 7,20, 6, 1,-5},	//5 玩傢
+	{18,18,18,10,19, 9, 0, 0},	//6 莊傢	
 */
 
 short nameOverTheHeadFlag = 1;
@@ -239,7 +239,7 @@ void charProc( ACTION *ptAct )
 	}
 }
 //水世界Action套用Char的Action修改
-#ifdef _WATERANIMATION //Syu ADD 泪之海动画层
+#ifdef _WATERANIMATION //Syu ADD 淚之海動畫層
 void waterAniProc( ACTION *ptAct )
 {
 	float mx, my;
@@ -272,7 +272,7 @@ void waterAniProc( ACTION *ptAct )
 	ptAct->x = (int)(mx+.5);
 	ptAct->y = (int)(my+.5);
 	// ??????????
-	//  不取消掉人物状态会被复制到其他ACTION
+	//  不取消掉人物狀態會被復製到其他ACTION
 	//	drawCharStatus( ptAct );
 	// ?????????
 	if( ptAct->anim_no == ANIM_HAND
@@ -325,7 +325,7 @@ void waterAniProc( ACTION *ptAct )
 		// ??????????
 		if( !itemOverlapCheck( ptAct->bmpNo, ptAct->gx, ptAct->gy ) ){
 			// ??????????????
-#ifdef _SPECIALSPACEANIM_FIX  //ROG ADD 修改图层
+#ifdef _SPECIALSPACEANIM_FIX  //ROG ADD 修改圖層
 			setPartsPrio( ptAct->bmpNo, ptAct->x, ptAct->y, 0, 0, ptAct->mx, ptAct->my,ptAct->dispPrio);
 #else
 			setCharPrio( ptAct->bmpNo, ptAct->x, ptAct->y, 0, 0, ptAct->mx, ptAct->my
@@ -340,7 +340,7 @@ void waterAniProc( ACTION *ptAct )
 	}else{
 		// ????????
 		// ??????????????
-#ifdef _SPECIALSPACEANIM_FIX  //ROG ADD 修改图层
+#ifdef _SPECIALSPACEANIM_FIX  //ROG ADD 修改圖層
 		setPartsPrio( ptAct->bmpNo, ptAct->x, ptAct->y, 0, 0, ptAct->mx, ptAct->my,ptAct->dispPrio);
 #else
 		setCharPrio( ptAct->bmpNo, ptAct->x, ptAct->y, 0, 0, ptAct->mx, ptAct->my
@@ -351,10 +351,10 @@ void waterAniProc( ACTION *ptAct )
 #endif
 	}
 }
-/* graNo	 Spr图号
-   gx		 产生的x座标
-   gy	  	 产生的y座标
-   dispprio  图案的覆盖顺序
+/* graNo	 Spr圖號
+   gx		 産生的x座標
+   gy	  	 産生的y座標
+   dispprio  圖案的覆蓋順序
 */
 
 ACTION *createWaterAnimation( int graNo, int gx, int gy, int dispprio )
@@ -768,9 +768,9 @@ void setCharLeader( ACTION *ptAct )
 
 int getCharType(ACTION *ptAct)
 {
-	extern int 人物屏蔽开关;
+	extern int 人物屏蔽開關;
 	if(ProcNo!=PROC_GAME) return 0;
-	if(!人物屏蔽开关 ) return 0;
+	if(!人物屏蔽開關 ) return 0;
 	CHAREXTRA *ext;
 	int no;
 	if( ptAct == NULL )
@@ -1107,7 +1107,7 @@ void setCharUseMagic( ACTION *ptAct )
 
 // ???????????????????
 // ???????
-extern int 人物屏蔽开关;
+extern int 人物屏蔽開關;
 
 void delCharUseMagic( ACTION *ptAct )
 {
@@ -1147,7 +1147,7 @@ void drawCharStatus( ACTION *ptAct )
 	int sideNo;
 	int helpMode;
 	char msg[256];
-#ifdef _AniCharBubble	   // Syu ADD 动画层人物吐出气泡
+#ifdef _AniCharBubble	   // Syu ADD 動畫層人物吐齣氣泡
 	int RandAnimate;
 #endif
 
@@ -1175,7 +1175,7 @@ void drawCharStatus( ACTION *ptAct )
 #ifdef _CHAR_MANOR_
 	if( ext->ptmManorIcon ){
 		{
-			if(人物屏蔽开关 && ProcNo==PROC_GAME  && pc.ptAct != ptAct ){
+			if(人物屏蔽開關 && ProcNo==PROC_GAME  && pc.ptAct != ptAct ){
 				if(ATR_PAT_NO(ext->ptmManorIcon)){
 					ATR_PAT_BAK_NO(ext->ptmManorIcon) = ATR_PAT_NO(ext->ptmManorIcon);
 					ATR_PAT_NO(ext->ptmManorIcon) = 0;
@@ -1187,7 +1187,7 @@ void drawCharStatus( ACTION *ptAct )
 					}
 				}
 				short x1,y1;
-				if(获取动画尺寸(ptAct,&x1,&y1)){
+				if(獲取動畫尺寸(ptAct,&x1,&y1)){
 					ext->ptmManorIcon->x  = ptAct->x;
 					ext->ptmManorIcon->y  = ptAct->y;
 					ext->ptmManorIcon->mx = ptAct->mx;
@@ -1204,13 +1204,13 @@ void drawCharStatus( ACTION *ptAct )
 
 
 	if( (status & CHR_STATUS_BATTLE) != 0 ){
-		if(人物屏蔽开关 && ProcNo==PROC_GAME  && pc.ptAct != ptAct ){
+		if(人物屏蔽開關 && ProcNo==PROC_GAME  && pc.ptAct != ptAct ){
 			;//ATR_PAT_NO(ptAct) = 0;
 		}else{
 			int no;
 			U4 bmpNo;
 			short x1,y1;
-			if(获取动画尺寸(ptAct,&x1,&y1)){
+			if(獲取動畫尺寸(ptAct,&x1,&y1)){
 				realGetNo( battleIconTbl[(battleNo%10)][(sideNo%1)], &bmpNo );
 				// ??????????????
 				setCharPrio( bmpNo, ptAct->x, ptAct->y, 0,ptAct->sFamilyIcon?-(y1/2+_OTHERTEXIAOY_):-(y1/2+_FANILYTEXIAOY_), ptAct->mx, ptAct->my
@@ -1226,13 +1226,13 @@ void drawCharStatus( ACTION *ptAct )
 
 	// Trade Mark
 	if( (status & CHR_STATUS_TRADE) != 0 ){
-		if(人物屏蔽开关 && ProcNo==PROC_GAME  && pc.ptAct != ptAct ){
+		if(人物屏蔽開關 && ProcNo==PROC_GAME  && pc.ptAct != ptAct ){
 			;//ATR_PAT_NO(ptAct) = 0;
 		}else{
 
 			U4 bmpNo;
 			short x1,y1;
-			if(获取动画尺寸(ptAct,&x1,&y1)){
+			if(獲取動畫尺寸(ptAct,&x1,&y1)){
 				realGetNo( CG_TRADE_MARK, &bmpNo );		
 				setCharPrio( bmpNo, ptAct->x, ptAct->y, 0,ptAct->sFamilyIcon?-(y1/2+_OTHERTEXIAOY_):-(y1/2+_FANILYTEXIAOY_), ptAct->mx, ptAct->my
 	#ifdef _SFUMATO
@@ -1260,7 +1260,7 @@ void drawCharStatus( ACTION *ptAct )
 		//no %= 12;	// ?????????
 		// ???????????????
 		short x1,y1;
-		if(获取动画尺寸(ptAct,&x1,&y1)){
+		if(獲取動畫尺寸(ptAct,&x1,&y1)){
 			ext->ptActAngelMark->x  = ptAct->x;
 			ext->ptActAngelMark->y  = ptAct->y + ptAct->anim_y + 140;
 			ext->ptActAngelMark->mx = ptAct->mx;
@@ -1282,13 +1282,13 @@ void drawCharStatus( ACTION *ptAct )
 
 	// ????
 	if( (status & CHR_STATUS_WATCH) != 0 ){
-		if(人物屏蔽开关 && ProcNo==PROC_GAME  && pc.ptAct != ptAct ){
+		if(人物屏蔽開關 && ProcNo==PROC_GAME  && pc.ptAct != ptAct ){
 			;//ATR_PAT_NO(ptAct) = 0;
 		}else{
 			int no;
 			U4 bmpNo;
 			short x1,y1;
-			if(获取动画尺寸(ptAct,&x1,&y1)){
+			if(獲取動畫尺寸(ptAct,&x1,&y1)){
 				realGetNo( CG_ICON_WATCHING, &bmpNo );
 				// ??????????????
 				setCharPrio( bmpNo, ptAct->x, ptAct->y, 0,ptAct->sFamilyIcon?-(y1/2+_OTHERTEXIAOY_):-(y1/2+_FANILYTEXIAOY_), ptAct->mx, ptAct->my
@@ -1302,13 +1302,13 @@ void drawCharStatus( ACTION *ptAct )
 	}
 	// ??????
 	if( (status & CHR_STATUS_HELP) != 0 ){
-		if(人物屏蔽开关 && ProcNo==PROC_GAME  && pc.ptAct != ptAct ){
+		if(人物屏蔽開關 && ProcNo==PROC_GAME  && pc.ptAct != ptAct ){
 			;//ATR_PAT_NO(ptAct) = 0;
 		}else{
 			int no;
 			U4 bmpNo;
 			short x1,y1;
-			if(获取动画尺寸(ptAct,&x1,&y1)){
+			if(獲取動畫尺寸(ptAct,&x1,&y1)){
 				realGetNo( CG_SPEECH_HELP, &bmpNo );
 				// ??????????????
 				setCharPrio( bmpNo, ptAct->x, ptAct->y, 0,ptAct->sFamilyIcon?-(y1/2+_OTHERTEXIAOY_-20):-(y1/2+_FANILYTEXIAOY_-20), ptAct->mx, ptAct->my
@@ -1334,7 +1334,7 @@ void drawCharStatus( ACTION *ptAct )
 		DeathAction( ext->ptActLeaderMark );
 		ext->ptActLeaderMark = NULL;
 	}else if( (status & CHR_STATUS_LEADER) != 0 && ext->ptActLeaderMark != NULL ){
-		if(人物屏蔽开关 && ProcNo==PROC_GAME  && pc.ptAct != ptAct){
+		if(人物屏蔽開關 && ProcNo==PROC_GAME  && pc.ptAct != ptAct){
 			if(ATR_PAT_NO(ext->ptActLeaderMark)){
 				ATR_PAT_BAK_NO(ext->ptActLeaderMark) = ATR_PAT_NO(ext->ptActLeaderMark);
 				ATR_PAT_NO(ext->ptActLeaderMark) = 0;
@@ -1346,7 +1346,7 @@ void drawCharStatus( ACTION *ptAct )
 				}
 			}
 			short x1,y1;
-			if(获取动画尺寸(ptAct,&x1,&y1)){
+			if(獲取動畫尺寸(ptAct,&x1,&y1)){
 				ext->ptActLeaderMark->x  = ptAct->x;
 				ext->ptActLeaderMark->y  = ptAct->y;
 				ext->ptActLeaderMark->mx = ptAct->mx;
@@ -1404,11 +1404,11 @@ void drawCharStatus( ACTION *ptAct )
 			U4 bmpNo;
 			realGetNo( CG_ICON_FUKIDASI, &bmpNo );
 			if( SPR_001em <= ptAct->anim_chr_no && ptAct->anim_chr_no <= SPR_114bw ){
-				if(人物屏蔽开关 && ProcNo==PROC_GAME  && pc.ptAct != ptAct){
+				if(人物屏蔽開關 && ProcNo==PROC_GAME  && pc.ptAct != ptAct){
 					;//ATR_PAT_NO(ptAct) = 0;
 				}else{
 					short x1,y1;
-					if(获取动画尺寸(ptAct,&x1,&y1)){
+					if(獲取動畫尺寸(ptAct,&x1,&y1)){
 						setCharPrio( bmpNo, ptAct->x, ptAct->y, 20,ptAct->sFamilyIcon?-(y1/2+_OTHERTEXIAOY_):-(y1/2+_FANILYTEXIAOY_), ptAct->mx, ptAct->my
 	#ifdef _SFUMATO
 							, ptAct->sfumato
@@ -1435,7 +1435,7 @@ void drawCharStatus( ACTION *ptAct )
 		if(!ext1->ptStreetVendor){
 			if(ptAct->TitleText.flg==1){
 				short x1,y1;
-				if(获取动画尺寸(ptAct,&x1,&y1)){
+				if(獲取動畫尺寸(ptAct,&x1,&y1)){
 					PutTitleText(ptAct->x-ptAct->TitleText.len/2,ptAct->y-(y1/2+45)-12,0,ptAct->TitleText,0);
 				}
 			}	
@@ -1456,11 +1456,11 @@ void drawCharStatus( ACTION *ptAct )
 		StockFontBuffer( ptAct->x-GetStrWidth( msg )/2, ptAct->y-10, FONT_PRIO_BACK, ptAct->charNameColor, msg, 0 );
 	}
 
-#ifdef _GM_MARK				   // WON ADD GM 识别
+#ifdef _GM_MARK				   // WON ADD GM 識彆
 	{
 		int graNo = ptAct->anim_chr_no ;
 
-		//三种ＧＭ造形
+		//三種ＧＭ造形
 		if( (graNo == 100420) || (graNo == 100425) || (graNo == 100445) ){
 			static count1=1, count2=0;
 			char msg[256];
@@ -1478,14 +1478,14 @@ void drawCharStatus( ACTION *ptAct )
 	}
 #endif
 
-#ifdef _GM_IDENTIFY		// Rog ADD GM识别
+#ifdef _GM_IDENTIFY		// Rog ADD GM識彆
 		int i;
 		sprintf_s( msg , ptAct->gm_name);
         for(i=2;i>0;i--)
 	        StockFontBuffer( ptAct->x-GetStrWidth( msg )/2, ptAct->y-110-i, FONT_PRIO_BACK, i , msg, 1);
 #endif
 
-#ifdef _CHAR_PROFESSION			// WON ADD 人物职业
+#ifdef _CHAR_PROFESSION			// WON ADD 人物職業
 
 //	if( ptAct->profession_class != 0 ){
 	{
@@ -1494,8 +1494,8 @@ void drawCharStatus( ACTION *ptAct )
 		switch(pc.profession_class){
 		case 0:		sprintf_s( msg , "");	break;
 		case 1:		sprintf_s( msg , "白狼勇士");	break;
-		case 2:		sprintf_s( msg , "闇灵巫师");	break;
-		case 3:		sprintf_s( msg , "追猎者");	break;
+		case 2:		sprintf_s( msg , "闇靈巫師");	break;
+		case 3:		sprintf_s( msg , "追獵者");	break;
 		}
 		sprintf_s( pc.profession_class_name , "%s" , msg ) ; 
 		//StockFontBuffer( ptAct->x-GetStrWidth( msg )/2, ptAct->y-110, FONT_PRIO_BACK, FONT_PAL_YELLOW, msg, 1);
@@ -1506,15 +1506,15 @@ void drawCharStatus( ACTION *ptAct )
 
 #endif
 
-#ifdef _AniCharBubble	   // Syu ADD 动画层人物吐出气泡
+#ifdef _AniCharBubble	   // Syu ADD 動畫層人物吐齣氣泡
 	if ( ( (nowFloor == 817) || (nowFloor == 8007) || (nowFloor == 8101) || (nowFloor == 8100) ||
 		(nowFloor == 8027) || (nowFloor == 8028) || (nowFloor == 8029) || nowFloor == 8113 || nowFloor == 8114 ||
 		(nowFloor == 8015) ) && (popflag == false) && (waittimeflag == false))
 	{
-		RandAnimate = RAND ( 101508 , 101509 );  //随机选取左气泡或右气泡
+		RandAnimate = RAND ( 101508 , 101509 );  //隨機選取左氣泡或右氣泡
 		if ( popAct == NULL )  
 		{
-			//做左、右气泡产生时需要的偏移值
+			//做左、右氣泡産生時需要的偏移值
 			if( RandAnimate == 101508 )  
 				popAct = createWaterAnimation( RandAnimate , nowGx + 2 , nowGy - 1 , 30 );
 			if( RandAnimate == 101509 )
@@ -1523,7 +1523,7 @@ void drawCharStatus( ACTION *ptAct )
 		}
 	}
 	if ( waittimeflag == false && popAct != NULL)
-	if ( popAct->anim_cnt == 6 ) //拨放到最后一张
+	if ( popAct->anim_cnt == 6 ) //撥放到最後一張
 	{
 		if ( popAct != NULL)
 		{
@@ -1533,7 +1533,7 @@ void drawCharStatus( ACTION *ptAct )
 		popflag = false;
 		waittimeflag = true;
 	}
-	if ( waittimeflag == true ) //计时等待下一次产生时间
+	if ( waittimeflag == true ) //計時等待下一次産生時間
 	{
 		waittime ++ ;
 		if (waittime > 350 ) 
@@ -1565,7 +1565,7 @@ void drawCharStatus( ACTION *ptAct )
 			ext->ptActEmotion = NULL;
 			//pattern( ext->ptActEmotion, ANM_NOMAL_SPD, ANM_LOOP );
 		}else{
-			if(人物屏蔽开关 && ProcNo==PROC_GAME  && pc.ptAct != ptAct){
+			if(人物屏蔽開關 && ProcNo==PROC_GAME  && pc.ptAct != ptAct){
 				if(ATR_PAT_NO(ext->ptActEmotion)){
 					ATR_PAT_BAK_NO(ext->ptActEmotion) = ATR_PAT_NO(ext->ptActEmotion);
 					ATR_PAT_NO(ext->ptActEmotion) = 0;
@@ -1577,7 +1577,7 @@ void drawCharStatus( ACTION *ptAct )
 					}
 				}
 				short x1,y1;
-				if(获取动画尺寸(ptAct,&x1,&y1)){
+				if(獲取動畫尺寸(ptAct,&x1,&y1)){
 					pattern( ext->ptActEmotion, ANM_NOMAL_SPD, ANM_LOOP );
 					setCharPrio( ext->ptActEmotion->bmpNo,
 						ext->ptActEmotion->x, ext->ptActEmotion->y, 0,ptAct->sFamilyIcon?-(y1/2+_OTHERTEXIAOY_):-(y1/2+_FANILYTEXIAOY_),
@@ -1592,11 +1592,11 @@ void drawCharStatus( ACTION *ptAct )
 	}
 #endif
 #ifdef _STREET_VENDOR
-	extern int 人物屏蔽开关;
+	extern int 人物屏蔽開關;
 	if(ext->ptStreetVendor){
 		BOOL pand = FALSE;
 
-		if(人物屏蔽开关){
+		if(人物屏蔽開關){
 			if(pc.ptAct == ptAct) pand = TRUE;
 		}else pand = TRUE;
 		if(pand){
@@ -1622,7 +1622,7 @@ void drawCharStatus( ACTION *ptAct )
 #ifdef _MIND_ICON
 	if( ext->ptMindIcon){
 		
-	//这里删除掉就可以走动显示
+	//這裏刪除掉就可以走動顯示
 		if( ((ptAct->sMindIcon != SPR_asleep) &&
 		     (ptAct->sMindIcon != SPR_cafe) &&
 		     (ptAct->sMindIcon != SPR_accent) ) &&
@@ -1632,7 +1632,7 @@ void drawCharStatus( ACTION *ptAct )
 			ext->ptMindIcon = NULL;
 		}
 		else{
-			if(人物屏蔽开关 && ProcNo==PROC_GAME  && pc.ptAct != ptAct){
+			if(人物屏蔽開關 && ProcNo==PROC_GAME  && pc.ptAct != ptAct){
 				if(ATR_PAT_NO(ext->ptMindIcon)){
 					ATR_PAT_BAK_NO(ext->ptMindIcon) = ATR_PAT_NO(ext->ptMindIcon);
 					ATR_PAT_NO(ext->ptMindIcon) = 0;
@@ -1644,7 +1644,7 @@ void drawCharStatus( ACTION *ptAct )
 					}
 				}
 				short x1,y1;
-				if(获取动画尺寸( ptAct,&x1,&y1)){
+				if(獲取動畫尺寸( ptAct,&x1,&y1)){
 					ext->ptMindIcon->x  = ptAct->x;
 					ext->ptMindIcon->y  = ptAct->y;
 					ext->ptMindIcon->mx = ptAct->mx;
@@ -1664,7 +1664,7 @@ void drawCharStatus( ACTION *ptAct )
 #endif
 
 #ifdef _NPC_EVENT_NOTICE
-	if( ext->ptNoticeIcon){//这里删除掉就可以走动显示
+	if( ext->ptNoticeIcon){//這裏刪除掉就可以走動顯示
 		{
 {
 				if(!ATR_PAT_NO(ext->ptNoticeIcon) ){
@@ -1674,7 +1674,7 @@ void drawCharStatus( ACTION *ptAct )
 				}
 				short x1,y1,x2,y2;
 				y2=x2=0;
-				if(获取动画尺寸(ptAct,&x1,&y1)){
+				if(獲取動畫尺寸(ptAct,&x1,&y1)){
 					ext->ptNoticeIcon->x  = ptAct->x;
 					ext->ptNoticeIcon->y  = ptAct->y;
 					ext->ptNoticeIcon->mx = ptAct->mx;
@@ -1696,9 +1696,9 @@ void drawCharStatus( ACTION *ptAct )
 #endif
 
 #ifdef _SHOWFAMILYBADGE_
-	if( ext->ptFamilyIcon){//这里删除掉就可以走动显示
+	if( ext->ptFamilyIcon){//這裏刪除掉就可以走動顯示
 		{
-			if(人物屏蔽开关 && ProcNo==PROC_GAME  && pc.ptAct != ptAct ){
+			if(人物屏蔽開關 && ProcNo==PROC_GAME  && pc.ptAct != ptAct ){
 				if(ATR_PAT_NO(ext->ptFamilyIcon)){
 					ATR_PAT_BAK_NO(ext->ptFamilyIcon) = ATR_PAT_NO(ext->ptFamilyIcon);
 					ATR_PAT_NO(ext->ptFamilyIcon) = 0;
@@ -1711,7 +1711,7 @@ void drawCharStatus( ACTION *ptAct )
 				}
 				short x1,y1,x2,y2;
 				y2=x2=0;
-				if(获取动画尺寸(ptAct,&x1,&y1)){
+				if(獲取動畫尺寸(ptAct,&x1,&y1)){
 					ext->ptFamilyIcon->x  = ptAct->x;
 					ext->ptFamilyIcon->y  = ptAct->y;
 					ext->ptFamilyIcon->mx = ptAct->mx;
@@ -1719,7 +1719,7 @@ void drawCharStatus( ACTION *ptAct )
 					pattern( ext->ptFamilyIcon, ANM_NOMAL_SPD, ANM_LOOP );
 #ifdef _CHARTITLE_
 					if(ext->ptTitleIcon){
-						获取动画尺寸(ext->ptTitleIcon,&x2,&y2);
+						獲取動畫尺寸(ext->ptTitleIcon,&x2,&y2);
 						x2=x2/2;
 					}
 #endif
@@ -1753,9 +1753,9 @@ void drawCharStatus( ACTION *ptAct )
 #endif
 
 #ifdef FAMILY_MANOR_
-	if( ext->ptmFamilyIcon ){//这里删除掉就可以走动显示
+	if( ext->ptmFamilyIcon ){//這裏刪除掉就可以走動顯示
 		{
-			if(人物屏蔽开关 && ProcNo==PROC_GAME  && pc.ptAct != ptAct ){
+			if(人物屏蔽開關 && ProcNo==PROC_GAME  && pc.ptAct != ptAct ){
 				if(ATR_PAT_NO(ext->ptmFamilyIcon)){
 					ATR_PAT_BAK_NO(ext->ptmFamilyIcon) = ATR_PAT_NO(ext->ptmFamilyIcon);
 					ATR_PAT_NO(ext->ptmFamilyIcon) = 0;
@@ -1767,7 +1767,7 @@ void drawCharStatus( ACTION *ptAct )
 					}
 				}
 				short x1,y1;
-				if(获取动画尺寸(ptAct,&x1,&y1)){
+				if(獲取動畫尺寸(ptAct,&x1,&y1)){
 					ext->ptmFamilyIcon->x  = ptAct->x;
 					ext->ptmFamilyIcon->y  = ptAct->y;
 					ext->ptmFamilyIcon->mx = ptAct->mx;
@@ -1788,9 +1788,9 @@ void drawCharStatus( ACTION *ptAct )
 #endif
 
 #ifdef _CHARTITLE_
-	if( ext->ptTitleIcon ){//这里删除掉就可以走动显示
+	if( ext->ptTitleIcon ){//這裏刪除掉就可以走動顯示
 		{
-			if(人物屏蔽开关 && ProcNo==PROC_GAME && pc.ptAct != ptAct ){
+			if(人物屏蔽開關 && ProcNo==PROC_GAME && pc.ptAct != ptAct ){
 				if(ATR_PAT_NO(ext->ptTitleIcon)){
 					ATR_PAT_BAK_NO(ext->ptTitleIcon) = ATR_PAT_NO(ext->ptTitleIcon);
 					ATR_PAT_NO(ext->ptTitleIcon) = 0;
@@ -1803,7 +1803,7 @@ void drawCharStatus( ACTION *ptAct )
 				}
 				short x1,y1,x2,y2;
 				y2=x2=0;
-				if(获取动画尺寸(ptAct,&x1,&y1)){
+				if(獲取動畫尺寸(ptAct,&x1,&y1)){
 					ext->ptTitleIcon->x  = ptAct->x;
 					ext->ptTitleIcon->y  = ptAct->y;
 					ext->ptTitleIcon->mx = ptAct->mx;
@@ -1828,17 +1828,17 @@ void drawCharStatus( ACTION *ptAct )
 
 
 #ifdef _ITEM_FIREWORK
-	if (ext->pActFirework[0])	// 有要放烟火
+	if (ext->pActFirework[0])	// 有要放煙火
 	{
 		float	fX, fY;
 
 		camMapToGamen((float)ext->pActFirework[0]->gx * GRID_SIZE, (float)ext->pActFirework[0]->gy * GRID_SIZE, &fX, &fY);
 		ext->pActFirework[0]->x	= (int)fX;
 		ext->pActFirework[0]->y	= (int)fY;
-		// 如果第一个烟火放完了,再来以type来决定接下来要怎么放
+		// 如果第一個煙火放完瞭,再來以type來決定接下來要怎麼放
 		if (pattern(ext->pActFirework[0], ANM_NOMAL_SPD, ANM_NO_LOOP))
 		{
-			if (ext->pActFirework[0]->damage == 0)	// 一个放中间二个左右
+			if (ext->pActFirework[0]->damage == 0)	// 一個放中間二個左右
 			{
 				int nGX, nGY;
 				
@@ -1859,7 +1859,7 @@ void drawCharStatus( ACTION *ptAct )
 				ext->pActFirework[1]->gy				= nGY + 2;
 				ext->pActFirework[0]->damage			= -1;
 			}
-			else if (ext->pActFirework[0]->damage == 1)	// 中间三次
+			else if (ext->pActFirework[0]->damage == 1)	// 中間三次
 			{
 				ext->pActFirework[1] = GetAction(PRIO_CHR, 0);
 				ext->pActFirework[1]->anim_chr_no	= ext->pActFirework[0]->anim_chr_no;
@@ -1867,14 +1867,14 @@ void drawCharStatus( ACTION *ptAct )
 				ext->pActFirework[1]->anim_ang		= 1;
 				ext->pActFirework[1]->actNo			= 0;
 				ext->pActFirework[1]->dispPrio		= DISP_PRIO_RESERVE;
-				ext->pActFirework[1]->level			= 1;					// level 拿来当计数用
+				ext->pActFirework[1]->level			= 1;					// level 拿來當計數用
 				ext->pActFirework[1]->gx			= ext->pActFirework[0]->gx;
 				ext->pActFirework[1]->gy			= ext->pActFirework[0]->gy;
 				ext->pActFirework[0]->damage		= -2;
 			}
 			else if (ext->pActFirework[0]->damage == 2 || ext->pActFirework[0]->damage == -1)
 				ext->pActFirework[0]->damage = -2;
-			else if (ext->pActFirework[0]->damage == 3)	// 绕人物四周一圈, 共三次
+			else if (ext->pActFirework[0]->damage == 3)	// 繞人物四周一圈, 共三次
 			{
 				ext->pActFirework[1] = GetAction(PRIO_CHR, 0);
 				ext->pActFirework[1]->anim_chr_no	= ext->pActFirework[0]->anim_chr_no;
@@ -1882,7 +1882,7 @@ void drawCharStatus( ACTION *ptAct )
 				ext->pActFirework[1]->anim_ang		= 1;
 				ext->pActFirework[1]->actNo			= 0;
 				ext->pActFirework[1]->dispPrio		= DISP_PRIO_RESERVE;
-				ext->pActFirework[1]->level			= 10;					// level 拿来当计数用
+				ext->pActFirework[1]->level			= 10;					// level 拿來當計數用
 				ext->pActFirework[1]->damage		= ext->pActFirework[0]->damage;
 				ext->pActFirework[1]->gx			= ext->pActFirework[0]->bufGx[0] - 2;
 				ext->pActFirework[1]->gy			= ext->pActFirework[0]->bufGy[0] - 2;
@@ -1906,7 +1906,7 @@ void drawCharStatus( ACTION *ptAct )
 		ext->pActFirework[1]->y	= (int)fY;
 		if (pattern(ext->pActFirework[1], ANM_NOMAL_SPD, ANM_NO_LOOP))
 		{
-			if (--ext->pActFirework[1]->level >= 0)	// 计算还要跑几次
+			if (--ext->pActFirework[1]->level >= 0)	// 計算還要跑幾次
 			{
 				ext->pActFirework[1]->anim_frame_cnt	= 0;
 				ext->pActFirework[1]->anim_cnt			= 0;
@@ -1996,7 +1996,7 @@ void drawCharStatus( ACTION *ptAct )
 						sprintf_s( buf,"成功");
 						color = FONT_PAL_BLUE;
 					}else if( iShowdamage[i] == 2222 ){
-						sprintf_s( buf,"失败");
+						sprintf_s( buf,"失敗");
 						color = FONT_PAL_PURPLE;
 					}else{
 						sprintf_s( buf,"-%d",iShowdamage[i]);
@@ -2116,7 +2116,7 @@ void drawCharStatus( ACTION *ptAct )
 
 
 			short x1,y1;
-			if(获取动画尺寸(ptAct,&x1,&y1)){
+			if(獲取動畫尺寸(ptAct,&x1,&y1)){
 				ext->ptActPicture->x  = ptAct->x;
 				ext->ptActPicture->y  = ptAct->y + ptAct->anim_y + 140;
 				ext->ptActPicture->mx = ptAct->mx;
@@ -2153,7 +2153,7 @@ void drawCharStatus( ACTION *ptAct )
 #endif
 
 }
-#ifdef _AniCharBubble	   // Syu ADD 动画层人物吐出气泡
+#ifdef _AniCharBubble	   // Syu ADD 動畫層人物吐齣氣泡
 void CharbubbleRelease()
 {
 	if ( popAct != NULL )
@@ -2598,7 +2598,7 @@ void changeCharAct( ACTION *ptAct, int x, int y, int dir, int action,
 				ext->pActFirework[1] = NULL;
 			}
 			ext->pActFirework[0] = GetAction(PRIO_CHR, 0);
-			ext->pActFirework[0]->damage		= effectno;	// 借用 damage 来储存 type (effectno = type)
+			ext->pActFirework[0]->damage		= effectno;	// 藉用 damage 來儲存 type (effectno = type)
 			ext->pActFirework[0]->anim_chr_no	= effectparam1;
 			ext->pActFirework[0]->anim_no		= ANIM_STAND;
 			ext->pActFirework[0]->anim_ang		= 1;
@@ -2638,7 +2638,7 @@ void changeCharAct( ACTION *ptAct, int x, int y, int dir, int action,
 				}
 				//changePcAct(x, y, dir, 60 , giver , actionNum , petaction)
 				//changePcAct( card , damage , dir, 60 , player , actionNum , action);
-				//effectno 传来的值代表施放者的位置编号
+				//effectno 傳來的值代錶施放者的位置編號
 				if( effectparam2 == 3 ){ //魔法牌
 					ext->pActMagiccard[0] = GetAction(PRIO_CHR,0);
 					ext->pActMagiccard[0]->anim_chr_no	= effectparam1;
@@ -2650,7 +2650,7 @@ void changeCharAct( ACTION *ptAct, int x, int y, int dir, int action,
 						ext->pActMagiccard[0]->gx		= Positiontable[effectno].petX+1 + x; 
 						ext->pActMagiccard[0]->gy		= Positiontable[effectno].petY-1 + y; 
 					}
-				}else if( effectparam2 == 0 ){ //被封印或是放弃出牌 
+				}else if( effectparam2 == 0 ){ //被封印或是放棄齣牌 
 					ext->pActMagiccard[0] = GetAction(PRIO_CHR,0);
 					ext->pActMagiccard[0]->anim_chr_no	= 101290;
 					ext->pActMagiccard[0]->dispPrio	= DISP_PRIO_RESERVE;
@@ -2669,14 +2669,14 @@ void changeCharAct( ACTION *ptAct, int x, int y, int dir, int action,
 						ext->pActMagiccard[i]->gx		= Positiontable[effectno].petX + x; 
 						ext->pActMagiccard[i]->gy		= Positiontable[effectno].petY + y; 
 						ext->pActMagiccard[i]->dispPrio	= DISP_PRIO_RESERVE;
-						ext->pActMagiccard[i]->anim_ang	= dir;//1;	//方向
+						ext->pActMagiccard[i]->anim_ang	= dir;//1;	//方嚮
 					}
 					
 					ext->pActMagiccard[1]->anim_no		= ANIM_STAND;
 
-					if( effectparam2 == 1 )	//宠牌攻击			
+					if( effectparam2 == 1 )	//寵牌攻擊			
 						ext->pActMagiccard[2]->anim_no		= ANIM_ATTACK;
-					else if( effectparam2 == 2 )	//宠牌防御	
+					else if( effectparam2 == 2 )	//寵牌防禦	
 					 	ext->pActMagiccard[2]->anim_no		= ANIM_GUARD;
 				}
 #ifdef _MOVE_SCREEN				
@@ -2781,8 +2781,8 @@ int checkCharObjPointNotStatus( int gx, int gy, short type, unsigned short statu
 	return 0;
 }
 
-#ifdef _CHAR_PROFESSION			// WON ADD 人物职业
-#ifdef _GM_IDENTIFY		// Rog ADD GM识别
+#ifdef _CHAR_PROFESSION			// WON ADD 人物職業
+#ifdef _GM_IDENTIFY		// Rog ADD GM識彆
 void setNpcCharObj( int id, int graNo, int gx, int gy, int dir, char *fmname,
 	                        char *name, char *freeName, int level, char *petname, int petlevel,
 	                        int nameColor, int walk, int height, int charType, int profession_class, char *gm_name )
@@ -2909,7 +2909,7 @@ void setNpcCharObj( int id, int graNo, int gx, int gy, int dir, char *fmname,
 
 	charObj[no].ptAct->itemNameColor = nameColor;
 
-#ifdef _CHAR_PROFESSION			// WON ADD 人物职业
+#ifdef _CHAR_PROFESSION			// WON ADD 人物職業
 	charObj[no].ptAct->profession_class = profession_class;
 #endif
 #ifdef _NPC_PICTURE
@@ -2917,7 +2917,7 @@ void setNpcCharObj( int id, int graNo, int gx, int gy, int dir, char *fmname,
 	charObj[no].ptAct->picturetemp = ((((picture)&0x00ff0000)>>16)&0x000000ff);//(picture&0x0000ffff);
 	//charObj[no].ptAct->anim_no = ((((picture)&0x0000ff00)>>8 )&0x000000ff);
 #endif
-#ifdef _GM_IDENTIFY		// Rog ADD GM识别
+#ifdef _GM_IDENTIFY		// Rog ADD GM識彆
     if( strlen( gm_name ) <= GM_NAME_LEN )
 	    strcpy( charObj[no].ptAct->gm_name, gm_name );	
 #endif
@@ -4030,7 +4030,7 @@ ACTION *createPetAction( int graNo, int gx, int gy, int dir, int mode, int moveD
 
 
 
-void 设置静止的动作为站立( void )
+void 設置靜止的動作為站立( void )
 {
 	int i=0;
 	for(i;i<MAX_CHAROBJ;i++){

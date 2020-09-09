@@ -1,4 +1,4 @@
-﻿/* output by ./lsgen.perl 0.41 ( 1998 May)
+/* output by ./lsgen.perl 0.41 ( 1998 May)
  * made Mon Jun 12 11:17:33 2000
  * user kawata
  * host unicorn.lan.titan.co.jp

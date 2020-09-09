@@ -22,12 +22,12 @@ typedef enum
     E_T_WATERAT,
     E_T_FIREAT,
     E_T_WINDAT,
-    E_T_POISON,               /*   ������̫��ĸ������          */
-    E_T_PARALYSIS,            /* ��̫ľ��1  ����  ��ƥ��ئ�У� */
-    E_T_SLEEP,                /* ��Ի�۵�  ƥ��ئ��            */
-    E_T_STONE,                /* �ޣ۵�  ƥ��ئ��              */
-    E_T_DRUNK,                /* �쵤��      ��Ʊ����     */
-    E_T_CONFUSION,            /* ���٣�  ��    ë����     */
+    E_T_POISON,               /*   ÐÚÈÊÐ×Ì«±åÄ¸¶ª¡õ³â          */
+    E_T_PARALYSIS,            /* ØÆÌ«Ä¾£ý1  ¼°µæ  »¥Æ¥ÎåØ¦ÖÐ£Û */
+    E_T_SLEEP,                /* ìæÔ»£Ûµæ  Æ¥ÎåØ¦ÖÐ            */
+    E_T_STONE,                /* éÞ£Ûµæ  Æ¥ÎåØ¦ÖÐ              */
+    E_T_DRUNK,                /* °ìµ¤£Û      »¥Æ±»¥ÔÂ     */
+    E_T_CONFUSION,            /* ÓæØÙ£Û  »«    Ã«êßÔÂ     */
     E_T_PETSKILL1,
     E_T_PETSKILL2,
     E_T_PETSKILL3,
@@ -88,7 +88,7 @@ typedef enum
 	ENEMY_EXP,
     ENEMY_DUELPOINT,
 	ENEMY_STYLE,
-    ENEMY_PETFLG,               /* ʸ������ئ�¾������� */
+    ENEMY_PETFLG,               /* Ê¸ÓÀÐþ±åØ¦ÔÂ¾®Éýµ¤¾® */
 
     ENEMY_ITEM1,
     ENEMY_ITEM2,
@@ -128,8 +128,8 @@ typedef enum
 typedef enum
 {
     GROUP_ID,
-	GROUP_APPEARBYITEMID,		/* ��ʧ��  ةë  �Ȼ��������������� -1 ��  ��*/
-	GROUP_NOTAPPEARBYITEMID,	/* ��ʧ��  ةë  �Ȼ�������������ئ�� -1 ��  ��*/
+	GROUP_APPEARBYITEMID,		/* ³ð¼°Ê§ÄÌ  Ø©Ã«  ÔÈ»¯ÖÐÐ×ÈÕÇëòØÔÊÔÂ -1 ·´  ÷»*/
+	GROUP_NOTAPPEARBYITEMID,	/* ³ð¼°Ê§ÄÌ  Ø©Ã«  ÔÈ»¯ÖÐÐ×ÈÕÇëòØØÆØ¦ÖÐ -1 ·´  ÷»*/
     ENEMY_ID1,
     ENEMY_ID2,
     ENEMY_ID3,

@@ -1,4 +1,4 @@
-﻿#ifndef _LOGIN_H_
+#ifndef _LOGIN_H_
 #define _LOGIN_H_
 #include "version.h"
 #include "action.h"
@@ -66,7 +66,7 @@ enum
 #ifdef _BLACK_MARKET
     WINDOW_MESSAGETYPE_BLACKMARKET,
 #endif
-#ifdef _ADD_FAMILY_TAX			   // WON ADD 增加庄园税收	
+#ifdef _ADD_FAMILY_TAX			   // WON ADD 增加莊園稅收	
 	WINDOWS_MESSAGETYPE_FAMILY_TAX,
 #endif
 #ifdef _NPC_FUSION
@@ -82,16 +82,16 @@ enum
 	WINDOWS_MESSAGETYPE_SELLSTHSELL,
 #endif
 
-#ifdef _CHAR_PROFESSION			// WON ADD 人物职业技能
+#ifdef _CHAR_PROFESSION			// WON ADD 人物職業技能
 	WINDOW_MESSAGETYPE_PROFESSIONSHOP,
 #endif
-#ifdef _NPC_WELFARE_2				// WON ADD 职业NPC-2
+#ifdef _NPC_WELFARE_2				// WON ADD 職業NPC-2
 	WINDOW_MESSAGETYPE_PROFESSIONSHOP2,
 #endif
 #ifdef _NEW_MANOR_LAW
-	WINDOW_FMMESSAGETYPE_10_MEMONTUM,	// 十大气势家族
-	WINDOW_FMMESSAGETYPE_FM_MEMONTUM,	// 自己家族气势排名
-	WINDOW_FMMESSAGETYPE_MANOR_SCHEDULE,	// 挑战庄园排行
+	WINDOW_FMMESSAGETYPE_10_MEMONTUM,	// 十大氣勢傢族
+	WINDOW_FMMESSAGETYPE_FM_MEMONTUM,	// 自己傢族氣勢排名
+	WINDOW_FMMESSAGETYPE_MANOR_SCHEDULE,	// 挑戰莊園排行
 #endif
 
 #ifdef _ANGEL_SUMMON
@@ -194,8 +194,8 @@ void selectpkProc( void );
 
 #ifdef _NEWSHOP_
 typedef struct {
-	char MD5码[64];
-	char * 商城数据;
+	char MD5碼[64];
+	char * 商城數據;
 }商城文件_;
 #endif
 

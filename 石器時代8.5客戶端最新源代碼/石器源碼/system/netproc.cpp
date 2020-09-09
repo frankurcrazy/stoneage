@@ -1,4 +1,4 @@
-﻿#include <stdio.h>
+#include <stdio.h>
 #include <winsock.h>
 #include <time.h>
 #include <tchar.h>
@@ -83,11 +83,11 @@ short newCharStatus = 0;
 short charLoginStatus = 0;
 short charLogoutStatus = 0;
 
-#ifdef _MAILSHOWPLANET				// (可开放) Syu ADD 显示名片星球
+#ifdef _MAILSHOWPLANET				// (可開放) Syu ADD 顯示名片星球
 extern struct gameserver gmsv[];
 #endif
 
-#ifdef _NEW_WGS_MSG				// WON ADD WGS的新视窗
+#ifdef _NEW_WGS_MSG				// WON ADD WGS的新視窗
 int ERROR_MESSAGE = 0;
 #endif
 
@@ -126,15 +126,15 @@ void SortSkill()
 	{
 		switch (profession_skill[i].kind)
 		{
-		case 1: // 战斗技能
+		case 1: // 戰鬥技能
 			BattleSkill[count1] = i;
 			count1++;
 			break;
-		case 2: // 辅助
+		case 2: // 輔助
 			AssitSkill[count2] = i;
 			count2++;
 			break;
-		case 3: // 进阶
+		case 3: // 進階
 			AdvanceSkill[count3] = i;
 			count3++;
 			break;
@@ -144,7 +144,7 @@ void SortSkill()
 #endif
 
 #ifdef _CHANNEL_MODIFY
-// 储存对话内容
+// 儲存對話內容
 void SaveChatData(char *msg,char KindOfChannel,bool bCloseFile);
 #endif
 void initConnectServer(void)
@@ -189,7 +189,7 @@ int ConnectWGS()
 			if (INVALID_SOCKET == (sockfd = socket(AF_INET, SOCK_STREAM, 0)))
 			{
 #ifdef _AIDENGLU_
-				PcLanded.登陆延时时间 = TimeGetTime() + 2000;
+				PcLanded.登陸延時時間 = TimeGetTime() + 2000;
 #endif
 				sprintf_s(netprocErrmsg, NET_ERRMSG_SOCKETERROR);
 				return -3;
@@ -203,7 +203,7 @@ int ConnectWGS()
 				if (!(h = gethostbyname(szWGS)))
 				{
 #ifdef _AIDENGLU_
-					PcLanded.登陆延时时间 = TimeGetTime() + 2000;
+					PcLanded.登陸延時時間 = TimeGetTime() + 2000;
 #endif
 					sprintf_s(netprocErrmsg, NET_ERRMSG_NOTGETADDR);
 					closesocket(sockfd);
@@ -220,7 +220,7 @@ int ConnectWGS()
 					closesocket(sockfd);
 					dwServer = NULL;
 #ifdef _AIDENGLU_
-					PcLanded.登陆延时时间 = TimeGetTime() + 2000;
+					PcLanded.登陸延時時間 = TimeGetTime() + 2000;
 #endif
 					sprintf_s(netprocErrmsg, NET_ERRMSG_NOTCONNECT_S);
 					return -5;
@@ -233,7 +233,7 @@ int ConnectWGS()
 		else
 		{
 #ifdef _AIDENGLU_
-			PcLanded.登陆延时时间 = TimeGetTime() + 2000;
+			PcLanded.登陸延時時間 = TimeGetTime() + 2000;
 #endif
 			strcpy(netprocErrmsg, NET_ERRMSG_SOCKLIBERROR);
 			return -1;
@@ -262,13 +262,13 @@ int ConnectWGS()
 		}
 #ifdef _OMIT_WGS
 		testtest();
-		connectServerCounter = 143;   // 暂定
+		connectServerCounter = 143;   // 暫定
 		iWGS = 7;
 #endif
 		if (FD_ISSET(sockfd, &efds))
 		{
 #ifdef _AIDENGLU_
-			PcLanded.登陆延时时间 = TimeGetTime() + 2000;
+			PcLanded.登陸延時時間 = TimeGetTime() + 2000;
 #endif
 			sprintf_s(netprocErrmsg, NET_ERRMSG_NOTCONNECT);
 			closesocket(sockfd);
@@ -289,7 +289,7 @@ int ConnectWGS()
 			if (INVALID_SOCKET == (sockfd = socket(AF_INET, SOCK_STREAM, 0)))
 			{
 #ifdef _AIDENGLU_
-				PcLanded.登陆延时时间 = TimeGetTime() + 2000;
+				PcLanded.登陸延時時間 = TimeGetTime() + 2000;
 #endif
 				sprintf_s(netprocErrmsg, NET_ERRMSG_SOCKETERROR);
 				return -3;
@@ -303,7 +303,7 @@ int ConnectWGS()
 				if (!(h = gethostbyname(szCSIP)))
 				{
 #ifdef _AIDENGLU_
-					PcLanded.登陆延时时间 = TimeGetTime() + 2000;
+					PcLanded.登陸延時時間 = TimeGetTime() + 2000;
 #endif
 					sprintf_s(netprocErrmsg, NET_ERRMSG_NOTGETADDR);
 					closesocket(sockfd);
@@ -320,7 +320,7 @@ int ConnectWGS()
 					closesocket(sockfd);
 					dwServer = NULL;
 #ifdef _AIDENGLU_
-					PcLanded.登陆延时时间 = TimeGetTime() + 2000;
+					PcLanded.登陸延時時間 = TimeGetTime() + 2000;
 #endif
 					sprintf_s(netprocErrmsg, NET_ERRMSG_NOTCONNECT_S);
 					return -5;
@@ -355,7 +355,7 @@ int ConnectWGS()
 		if (FD_ISSET(sockfd, &efds))
 		{
 #ifdef _AIDENGLU_
-			PcLanded.登陆延时时间 = TimeGetTime() + 2000;
+			PcLanded.登陸延時時間 = TimeGetTime() + 2000;
 #endif
 			sprintf_s(netprocErrmsg, NET_ERRMSG_NOTCONNECT);
 			closesocket(sockfd);
@@ -422,7 +422,7 @@ int connectServer(void)
 		{
 			count = 0;
 #ifdef _AIDENGLU_
-			PcLanded.登陆延时时间 = TimeGetTime() + 2000;
+			PcLanded.登陸延時時間 = TimeGetTime() + 2000;
 #endif
 			sprintf_s(netprocErrmsg, NET_ERRMSG_BADNAME);
 			return -2;
@@ -432,7 +432,7 @@ int connectServer(void)
 		{
 			count = 0;
 #ifdef _AIDENGLU_
-			PcLanded.登陆延时时间 = TimeGetTime() + 2000;
+			PcLanded.登陸延時時間 = TimeGetTime() + 2000;
 #endif
 			sprintf_s(netprocErrmsg, NET_ERRMSG_SOCKETERROR);
 			return -3;
@@ -461,7 +461,7 @@ int connectServer(void)
 			{
 				count = 0;
 #ifdef _AIDENGLU_
-				PcLanded.登陆延时时间 = TimeGetTime() + 2000;
+				PcLanded.登陸延時時間 = TimeGetTime() + 2000;
 #endif
 				sprintf_s(netprocErrmsg, NET_ERRMSG_NOTGETADDR);
 				closesocket(sockfd); 
@@ -480,7 +480,7 @@ int connectServer(void)
 				closesocket(sockfd);
 				dwServer = NULL;
 #ifdef _AIDENGLU_
-				PcLanded.登陆延时时间 = TimeGetTime() + 2000;
+				PcLanded.登陸延時時間 = TimeGetTime() + 2000;
 #endif
 				sprintf_s(netprocErrmsg, NET_ERRMSG_NOTCONNECT_S);
 				return -5;
@@ -524,7 +524,7 @@ int connectServer(void)
 					if (c_temp[0] == 'E')
 					{
 #ifdef _AIDENGLU_
-						PcLanded.登陆延时时间 = TimeGetTime() + 2000;
+						PcLanded.登陸延時時間 = TimeGetTime() + 2000;
 #endif
 						count = 0;
 						sprintf_s(netprocErrmsg, c_temp + 1);
@@ -544,7 +544,7 @@ int connectServer(void)
 					else
 					{
 #ifdef _AIDENGLU_
-						PcLanded.登陆延时时间 = TimeGetTime() + 2000;
+						PcLanded.登陸延時時間 = TimeGetTime() + 2000;
 #endif
 						count = 0;
 						sprintf_s(netprocErrmsg, NET_ERRMSG_VERSIONERROR);
@@ -555,7 +555,7 @@ int connectServer(void)
 				}else
 				{
 #ifdef _AIDENGLU_
-					PcLanded.登陆延时时间 = TimeGetTime() + 2000;
+					PcLanded.登陸延時時間 = TimeGetTime() + 2000;
 #endif
 					count = 0;
 					sprintf_s(netprocErrmsg, NET_ERRMSG_NOTCONNECT);
@@ -568,7 +568,7 @@ int connectServer(void)
 			if (FD_ISSET(sockfd, &efds))
 			{
 #ifdef _AIDENGLU_
-				PcLanded.登陆延时时间 = TimeGetTime() + 2000;
+				PcLanded.登陸延時時間 = TimeGetTime() + 2000;
 #endif
 				count = 0;
 				sprintf_s(netprocErrmsg, NET_ERRMSG_NOTCONNECT);
@@ -583,7 +583,7 @@ int connectServer(void)
 			if(count >= 1500)
 			{
 #ifdef _AIDENGLU_
-				PcLanded.登陆延时时间 = TimeGetTime() + 2000;
+				PcLanded.登陸延時時間 = TimeGetTime() + 2000;
 #endif
 				count = 0;
 				sprintf_s(netprocErrmsg, NET_ERRMSG_NOTCONNECT);
@@ -606,10 +606,10 @@ int connectServer(void)
 			CopyMemory(userPassword, szPassword, 32);
 			ecb_crypt("f;encor1c", userPassword, 32, DES_DECRYPT);
 
-			extern char 机器数据[];
+			extern char 機器數據[];
 			unsigned char tmp[256];
 			CHAR mac[64];
-			MD5( (const unsigned char*)机器数据, strlen(机器数据), tmp );
+			MD5( (const unsigned char*)機器數據, strlen(機器數據), tmp );
 			size_t leng = 0;
 			for (int i = 0; i < 16; i ++)
 			{
@@ -621,8 +621,8 @@ int connectServer(void)
 			CHAR token[64];
 			sprintf_s(token, "%s-%s",_SA_MAC_VERSION, mac);
 #ifdef _LOGIP_
-			extern char 玩家公网IP[];
-			lssproto_ClientLogin_send(sockfd, userId,userPassword, token, selectServerIndex,玩家公网IP);
+			extern char 玩傢公網IP[];
+			lssproto_ClientLogin_send(sockfd, userId,userPassword, token, selectServerIndex,玩傢公網IP);
 #else
 			lssproto_ClientLogin_send(sockfd, userId,userPassword, token, selectServerIndex,"192.168.1.1");
 #endif
@@ -655,7 +655,7 @@ int connectServer(void)
 			else
 			{
 #ifdef _AIDENGLU_
-				PcLanded.登陆延时时间 = TimeGetTime() + 2000;
+				PcLanded.登陸延時時間 = TimeGetTime() + 2000;
 #endif
 				count = 0;
 				netproc_sending = NETPROC_NOTSEND;
@@ -714,8 +714,8 @@ void charListStart(void)
 	for (i = 0; i < MAXCHARACTER; i++)
 		resetCharacterList(i);
 #ifdef _MORECHARACTERS_
-	extern int 多人物当前页数;
-	多人物当前页数=0;
+	extern int 多人物當前頁數;
+	多人物當前頁數=0;
 #endif
 	charListStatus = 0;
 	if (bNewServer)
@@ -750,15 +750,15 @@ int charListProc(void)
 }
 
 
-TCHAR 登陆错误内容[1024];
+TCHAR 登陸錯誤內容[1024];
 
 void lssproto_CharList_recv(int fd, char *result, char *data)
 {
-	memset(登陆错误内容,0,1024);
+	memset(登陸錯誤內容,0,1024);
 	if(strcmp(result,_T("failed"))==0) {
-		strcpy(登陆错误内容,data);
+		strcpy(登陸錯誤內容,data);
 #ifdef _AIDENGLU_
-		PcLanded.登陆延时时间 = TimeGetTime()+2000;
+		PcLanded.登陸延時時間 = TimeGetTime()+2000;
 #endif
 	}
 	if (netproc_sending == NETPROC_SENDING)
@@ -796,7 +796,7 @@ void lssproto_CharList_recv(int fd, char *result, char *data)
 void charLoginStart(void)
 {
 	charLoginStatus = 0;
-#ifdef _NEW_WGS_MSG				// WON ADD WGS的新视窗
+#ifdef _NEW_WGS_MSG				// WON ADD WGS的新視窗
 	ERROR_MESSAGE = 0;
 #endif
 	if (bNewServer){
@@ -830,7 +830,7 @@ int charLoginProc(void)
 			return 1;
 		else
 
-#ifdef _NEW_WGS_MSG				// WON ADD WGS的新视窗
+#ifdef _NEW_WGS_MSG				// WON ADD WGS的新視窗
 			if (ERROR_MESSAGE != 0)
 				return ERROR_MESSAGE;
 			else
@@ -865,7 +865,7 @@ void lssproto_CharLogin_recv(int fd, char* result, char* data)
 		}
 
 #ifdef __NEW_CLIENT
-#ifdef _NEW_WGS_MSG				// WON ADD WGS的新视窗
+#ifdef _NEW_WGS_MSG				// WON ADD WGS的新視窗
 		if (strcmp(result, "failed" ) == 0 && !hPing)
 			ERROR_MESSAGE = atoi(data);
 #endif
@@ -915,19 +915,19 @@ void lssproto_CharLogout_recv(int fd, char *result, char *data)
 
 /*================================
 C warp 用
-D 修正时间
-X 骑宠
-P 人物状态
-F 家族状态
+D 修正時間
+X 騎寵
+P 人物狀態
+F 傢族狀態
 M HP,MP,EXP
-K 宠物状态
+K 寵物狀態
 E nowEncountPercentage
 J 魔法
-N 队伍资讯
+N 隊伍資訊
 I 道具
-W 宠物技能
-S 职业技能
-G 职业技能冷却时间
+W 寵物技能
+S 職業技能
+G 職業技能冷卻時間
 ================================*/
 void lssproto_S_recv(int fd, char *data)
 {
@@ -1042,20 +1042,20 @@ void lssproto_S_recv(int fd, char *data)
 					if (strlen(freeName) <= CHAR_FREENAME_LEN)
 						strcpy_s(pc.freeName, freeName);
 #ifdef _NEW_ITEM_
-					pc.道具栏状态 = getIntegerToken(data, S_DELIM, 32);
+					pc.道具欄狀態 = getIntegerToken(data, S_DELIM, 32);
 #endif
 #ifdef _SA_VERSION_25
 					int pointindex = getIntegerToken(data, S_DELIM, 33);
 					char pontname[][32]={
-						"萨姆吉尔村",
-						"玛丽娜丝村",
+						"薩姆吉爾村",
+						"瑪麗娜絲村",
 						"加加村",
-						"卡鲁它那村",
+						"卡魯它那村",
 					};
 					sprintf(pc.chusheng,"%s",pontname[pointindex]);
 #ifdef _MAGIC_ITEM_
-					pc.法宝道具状态 = getIntegerToken(data, S_DELIM, 34);
-					pc.道具光环效果 = getIntegerToken(data, S_DELIM, 35);
+					pc.法寶道具狀態 = getIntegerToken(data, S_DELIM, 34);
+					pc.道具光環效果 = getIntegerToken(data, S_DELIM, 35);
 #endif
 #endif
 
@@ -1227,7 +1227,7 @@ void lssproto_S_recv(int fd, char *data)
 #ifdef _CHARSIGNADY_NO_
 							else if (mask == 0x80000000) // ( 1 << 31 )
 							{
-								pc.签到标记 = getIntegerToken(data, S_DELIM, i);// 0x80000000
+								pc.簽到標記 = getIntegerToken(data, S_DELIM, i);// 0x80000000
 								i++;
 							}
 #endif
@@ -1245,7 +1245,7 @@ void lssproto_S_recv(int fd, char *data)
 
 #ifdef _STONDEBUG_
 				char title[128];
-				sprintf_s( title, "%s %s [%s  %s:%s]", DEF_APPNAME, "调试版本",
+				sprintf_s( title, "%s %s [%s  %s:%s]", DEF_APPNAME, "調試版本",
 					gmsv[selectServerIndex].name,
 					gmsv[selectServerIndex].ipaddr, gmsv[selectServerIndex].port );
 #else
@@ -1253,17 +1253,17 @@ void lssproto_S_recv(int fd, char *data)
 				extern int nServerGroup;
 				sprintf_s( title, "%s %s [%s] %s", DEF_APPNAME, gmgroup[nServerGroup].name, gmsv[selectServerIndex].name,pc.name );
 
-				extern int 繁体开关;	
-				if(繁体开关){
-					char 繁体[1024]={0};
-					LCMapString (0x804,0x4000000,title, strlen(title),繁体,1024);
-					sprintf(title,"%s",繁体);
+				extern int 繁體開關;	
+				if(繁體開關){
+					char 繁體[1024]={0};
+					LCMapString (0x804,0x4000000,title, strlen(title),繁體,1024);
+					sprintf(title,"%s",繁體);
 				}
 
 #endif
-				extern int 编码;
+				extern int 編碼;
 				extern char* GB2312ToBIG5(const char* szGBString);
-				if(编码==950){
+				if(編碼==950){
 					SetWindowText( hWnd, GB2312ToBIG5((const char *)title));
 				}else{
 
@@ -1820,7 +1820,7 @@ void lssproto_S_recv(int fd, char *data)
 					pc.item[i].level = getIntegerToken(data, '|', no + 8);
 					pc.item[i].sendFlag = getIntegerToken(data, '|', no + 9);
 
-					// 显示物品耐久度
+					// 顯示物品耐久度
 					getStringToken(data, '|', no + 10, sizeof(temp) - 1, temp);
 					makeStringFromEscaped(temp);
 					if (strlen(temp) <= 16)
@@ -1839,7 +1839,7 @@ void lssproto_S_recv(int fd, char *data)
 					pc.item[i].type = getIntegerToken(data, '|', no + 13);
 #else
 #ifdef _MAGIC_ITEM_
-					pc.item[i].道具类型 = getIntegerToken(data, '|', no + 13);
+					pc.item[i].道具類型 = getIntegerToken(data, '|', no + 13);
 #endif
 #endif
 #ifdef _ITEM_JIGSAW
@@ -1856,7 +1856,7 @@ void lssproto_S_recv(int fd, char *data)
 				}
 			}
 			break;
-		//接收到的宠物技能
+		//接收到的寵物技能
 		case 'W':
 			{
 				int i, no, no2;
@@ -1890,7 +1890,7 @@ void lssproto_S_recv(int fd, char *data)
 				}
 			}
 		break;
-#ifdef _CHAR_PROFESSION			// WON ADD 人物职业
+#ifdef _CHAR_PROFESSION			// WON ADD 人物職業
 		case 'S':
 			{
 				char name[CHAR_NAME_LEN + 1];
@@ -1970,7 +1970,7 @@ void lssproto_S_recv(int fd, char *data)
 #endif
 					getStringToken(data, '|', no + 1, sizeof(szData) - 1, szData);
 					makeStringFromEscaped(szData);
-					if (strlen(szData) == 0)	// 没道具
+					if (strlen(szData) == 0)	// 沒道具
 					{
 						memset(&pet[nPetIndex].item[i], 0, sizeof(pet[nPetIndex].item[i]));
 						continue;
@@ -2002,7 +2002,7 @@ void lssproto_S_recv(int fd, char *data)
 					pet[nPetIndex].item[i].level				= getIntegerToken(data, '|', no + 8);
 					pet[nPetIndex].item[i].sendFlag				= getIntegerToken(data, '|', no + 9);
 					
-					// 显示物品耐久度
+					// 顯示物品耐久度
 					getStringToken(data, '|', no + 10, sizeof(szData) - 1, szData);
 					makeStringFromEscaped(szData);
 					if (strlen(szData) <= 16)
@@ -2018,7 +2018,7 @@ void lssproto_S_recv(int fd, char *data)
 					getStringToken(data, '|', no + 14, sizeof(szData) - 1, szData);
 					makeStringFromEscaped(szData);
 					strcpy( pet[nPetIndex].item[i].jigsaw, szData );
-					//可拿给宠物装备的道具,就不会是拼图了,以下就免了
+					//可拿給寵物裝備的道具,就不會是拼圖瞭,以下就免瞭
 					//if( i == JigsawIdx )
 					//	SetJigsaw( pc.item[i].graNo, pc.item[i].jigsaw );
 #endif
@@ -2212,10 +2212,10 @@ void lssproto_C_recv(int fd, char *data)
 	*titlestr = 0;
 #endif
 	int petlevel;
-#ifdef _CHAR_PROFESSION			// WON ADD 人物职业
+#ifdef _CHAR_PROFESSION			// WON ADD 人物職業
 	int profession_class, profession_level, profession_skill_point;
 #endif
-#ifdef _ALLDOMAN // (不可开) Syu ADD 排行榜NPC
+#ifdef _ALLDOMAN // (不可開) Syu ADD 排行榜NPC
 	int herofloor;
 #endif
 #ifdef _NPC_PICTURE
@@ -2245,8 +2245,8 @@ void lssproto_C_recv(int fd, char *data)
 			getStringToken(bigtoken, '|', 3, sizeof(smalltoken) - 1, smalltoken);
 			id = a62toi(smalltoken);
 
-			extern BOOL 人物屏蔽开关;
-			if(人物屏蔽开关){
+			extern BOOL 人物屏蔽開關;
+			if(人物屏蔽開關){
 				if(id != pc.id){
 					if(charType <4 )
 						continue;
@@ -2294,7 +2294,7 @@ void lssproto_C_recv(int fd, char *data)
 				sprintf(titlestr,"%s",FreeGetTitleStr(titleindex));
 			}
 #endif
-#ifdef _CHAR_PROFESSION			// WON ADD 人物职业
+#ifdef _CHAR_PROFESSION			// WON ADD 人物職業
 			getStringToken(bigtoken, '|', 18, sizeof(smalltoken) - 1, smalltoken);
 			profession_class = atoi(smalltoken);
 			getStringToken(bigtoken, '|', 19, sizeof(smalltoken) - 1, smalltoken);
@@ -2311,7 +2311,7 @@ void lssproto_C_recv(int fd, char *data)
 			getStringToken(bigtoken, '|', 22, sizeof(smalltoken) - 1, smalltoken);
 			picture = atoi(smalltoken);
 #endif
-//    #ifdef _GM_IDENTIFY		// Rog ADD GM识别
+//    #ifdef _GM_IDENTIFY		// Rog ADD GM識彆
 //			getStringToken(bigtoken , '|', 23 , sizeof( gm_name ) - 1, gm_name );
 //			makeStringFromEscaped( gm_name );
 //  #endif
@@ -2332,8 +2332,8 @@ void lssproto_C_recv(int fd, char *data)
 				getCharTitleSplit(titlestr,&pc.ptAct->TitleText);
 #endif
 				updateMapArea();
-#ifdef _CHAR_PROFESSION			// WON ADD 人物职业
-//    #ifdef _GM_IDENTIFY		// Rog ADD GM识别
+#ifdef _CHAR_PROFESSION			// WON ADD 人物職業
+//    #ifdef _GM_IDENTIFY		// Rog ADD GM識彆
 //				setPcParam(name, freeName, level, petname, petlevel, nameColor, walkable, height, profession_class, profession_level, profession_exp, profession_skill_point , gm_name);
 //				setPcParam(name, freeName, level, petname, petlevel, nameColor, walkable, height, profession_class, profession_level, profession_skill_point , gm_name);
 //    #else
@@ -2371,8 +2371,8 @@ void lssproto_C_recv(int fd, char *data)
 			}
 			else
 			{
-#ifdef _CHAR_PROFESSION			// WON ADD 人物职业
-    #ifdef _GM_IDENTIFY		// Rog ADD GM识别
+#ifdef _CHAR_PROFESSION			// WON ADD 人物職業
+    #ifdef _GM_IDENTIFY		// Rog ADD GM識彆
 				setNpcCharObj(id, graNo, x, y, dir, fmname, name, freeName,
 					level, petname, petlevel, nameColor, walkable, height, charType, profession_class, gm_name);
     #else
@@ -2471,8 +2471,8 @@ void lssproto_C_recv(int fd, char *data)
 			getStringToken(bigtoken, '|', 7, sizeof(smalltoken) - 1, smalltoken);
 			y = atoi(smalltoken);
 
-#ifdef _CHAR_PROFESSION			// WON ADD 人物职业
-    #ifdef _GM_IDENTIFY		// Rog ADD GM识别
+#ifdef _CHAR_PROFESSION			// WON ADD 人物職業
+    #ifdef _GM_IDENTIFY		// Rog ADD GM識彆
 			setNpcCharObj( id, graNo, x, y, dir, "", name, "",
 				level, petname, petlevel, nameColor, 0, height, 2, 0, "");
     #else
@@ -2844,7 +2844,7 @@ void chatStrSendForServer( char *str, int color )
 #endif
 
 
-#ifdef _STONDEBUG_ // 手动送出封包
+#ifdef _STONDEBUG_ // 手動送齣封包
 	{
 		if ( !strncmp( str, "send ", 5) ) {
 			sendDataToServer( str+5);
@@ -2873,10 +2873,10 @@ void chatStrSendForServer( char *str, int color )
 	}
 #endif
 #ifdef _CHAR_MANOR_DEBUG
-	if(strstr(str,".光环")){
-		int 光环ID=0;
-		光环ID = getIntegerToken(str, ' ',2);
-		setCharmManor(pc.ptAct, 光环ID);
+	if(strstr(str,".光環")){
+		int 光環ID=0;
+		光環ID = getIntegerToken(str, ' ',2);
+		setCharmManor(pc.ptAct, 光環ID);
 		return;
 	}
 #endif
@@ -2894,14 +2894,14 @@ void chatStrSendForServer( char *str, int color )
 #ifdef _THEATER
 		if (pc.iTheaterMode & 0x00000001)
 		{
-			StockChatBufferLine("表演中请勿喧哗。。。", FONT_PAL_YELLOW);
+			StockChatBufferLine("錶演中請勿喧嘩。。。", FONT_PAL_YELLOW);
 			return;
 		}
 #endif
 #ifdef _NPC_DANCE
 		if( pc.iDanceMode )
 		{
-			StockChatBufferLine("嘘！你可能会吵到别人。", FONT_PAL_YELLOW);
+			StockChatBufferLine("噓！你可能會吵到彆人。", FONT_PAL_YELLOW);
 			return;
 		}
 #endif
@@ -2912,7 +2912,7 @@ void chatStrSendForServer( char *str, int color )
 		break;
 	case 1:
 		if ( strcmp ( tmp1 , str ) == 0 || strlen(tmp1) > 16) {
-			StockChatBufferLine(  "指令使用格式不正确！" , FONT_PAL_RED);
+			StockChatBufferLine(  "指令使用格式不正確！" , FONT_PAL_RED);
 			strcpy(secretName,"");
 			return ; 
 		}
@@ -2944,7 +2944,7 @@ void chatStrSendForServer( char *str, int color )
 			return;
 #endif
 			*/
-#ifdef _CHANNEL_WORLD  ///世界频道
+#ifdef _CHANNEL_WORLD  ///世界頻道
 		case 4:
 			sprintf_s(m,"P|/WD %s",dest);
 			break;
@@ -3005,7 +3005,7 @@ void lssproto_TK_recv( int fd, int index, char *message, int color )
 #ifndef _CHANNEL_MODIFY
 		getStringToken( message, '|', 2, 2022 - 1, msg );
 		makeStringFromEscaped( msg );
-	#ifdef _TRADETALKWND				// (不可开) Syu ADD 交易新增对话框架
+	#ifdef _TRADETALKWND				// (不可開) Syu ADD 交易新增對話框架
 		TradeTalk( msg ) ; 
 	#endif
 #endif
@@ -3032,12 +3032,12 @@ void lssproto_TK_recv( int fd, int index, char *message, int color )
 			}
 			else{
 				switch (szToken[0]){
-				// 密语频道
+				// 密語頻道
 				case 'M':
 					{
 						char tellName[32] = { "" };
 						char szMsgBuf[2024];
-						char temp[] = "告诉你：";
+						char temp[] = "告訴你：";
 						char *found;
 					
 						if (found = strstr(msg,temp)){
@@ -3050,11 +3050,11 @@ void lssproto_TK_recv( int fd, int index, char *message, int color )
 						}
 					}
 					break;
-				// 家族频道
+				// 傢族頻道
 				case 'F':
-				// 队伍频道
+				// 隊伍頻道
 				case 'T':
-				// 职业频道
+				// 職業頻道
 				case 'O':
 					break;
 				}
@@ -3066,7 +3066,7 @@ void lssproto_TK_recv( int fd, int index, char *message, int color )
 		if (!g_bTalkWindow)
 #endif
 		TradeTalk(msg);
-		if (strcmp(msg,"成立聊天室扣除２００石币") == 0)	pc.gold -= 200;
+		if (strcmp(msg,"成立聊天室扣除２００石幣") == 0)	pc.gold -= 200;
 #ifdef _FONT_SIZE
 #ifdef _MESSAGE_FRONT_
 		StockChatBufferLineExt( msg-2, color, fontsize );
@@ -3081,7 +3081,7 @@ void lssproto_TK_recv( int fd, int index, char *message, int color )
 #endif
 #endif
 #else
-	#ifdef _TELLCHANNEL		// (不可开) ROG ADD 密语频道
+	#ifdef _TELLCHANNEL		// (不可開) ROG ADD 密語頻道
 		char tellName[128] = { "" };
 		char tmpMsg[STR_BUFFER_SIZE + 32];
 		char TK[4];
@@ -3091,10 +3091,10 @@ void lssproto_TK_recv( int fd, int index, char *message, int color )
 			else if (strcmp(TK,"TE") == 0) InitSelectChar( msg, 1);
 		}
 		else{
-			char temp[] = "告诉你：";
+			char temp[] = "告訴你：";
 			char *found;
 
-			if (strcmp( msg, "成立聊天室扣除２００石币") == 0)	pc.gold -= 200;
+			if (strcmp( msg, "成立聊天室扣除２００石幣") == 0)	pc.gold -= 200;
 
 			if ( found = strstr( msg, temp )){
 				strncpy_s(tellName, msg, strlen(msg) - strlen(found));
@@ -3144,8 +3144,8 @@ void createNewCharStart(void)
 	// ??????????????????
 	if (bNewServer){
 #ifdef _MORECHARACTERS_
-		extern int 多人物当前页数;
-		lssproto_CreateNewChar_send(sockfd, selectPcNo+多人物当前页数*2, newCharacterName,
+		extern int 多人物當前頁數;
+		lssproto_CreateNewChar_send(sockfd, selectPcNo+多人物當前頁數*2, newCharacterName,
 			newCharacterGraNo, newCharacterFaceGraNo,
 			newCharacterVit, newCharacterStr, newCharacterTgh, newCharacterDex,
 			newCharacterEarth, newCharacterWater, newCharacterFire, newCharacterWind,
@@ -3204,7 +3204,7 @@ int createNewCharProc(void)
 	return 0;
 }
 
-char 创建人物内容提示[512];
+char 創建人物內容提示[512];
 void lssproto_CreateNewChar_recv( int fd, char *result, char *data ) 
 {
 	if ( netproc_sending == NETPROC_SENDING )
@@ -3215,7 +3215,7 @@ void lssproto_CreateNewChar_recv( int fd, char *result, char *data )
 		{
 			newCharStatus = 1;
 		}else{
-			sprintf(创建人物内容提示,data);
+			sprintf(創建人物內容提示,data);
 		}
     }
 }
@@ -3370,7 +3370,7 @@ void lssproto_AB_recv( int fd, char *data )
 	char name[256];
 	int flag;
 	int useFlag;
-#ifdef _MAILSHOWPLANET				// (可开放) Syu ADD 显示名片星球
+#ifdef _MAILSHOWPLANET				// (可開放) Syu ADD 顯示名片星球
 	char planetid[8];
 	int j ;
 #endif
@@ -3432,7 +3432,7 @@ void lssproto_AB_recv( int fd, char *data )
 		addressBook[i].onlineFlag = (short)getIntegerToken(data, '|', no+5 );
 		addressBook[i].graNo = getIntegerToken(data, '|', no+6 );
 		addressBook[i].transmigration = getIntegerToken(data, '|', no+7 );
-#ifdef _MAILSHOWPLANET				// (可开放) Syu ADD 显示名片星球
+#ifdef _MAILSHOWPLANET				// (可開放) Syu ADD 顯示名片星球
 		for ( j = 0 ; j < MAX_GMSV ; j ++ ) {
 			if ( gmsv[j].used == '1' ) {
 				getStringToken( gmsv[j].ipaddr, '.', 4, sizeof( planetid ) -1, planetid );
@@ -3453,7 +3453,7 @@ void lssproto_ABI_recv( int fd, int num, char* data )
 	char name[256];
 	int nameLen;
 	int useFlag;
-#ifdef _MAILSHOWPLANET				// (可开放) Syu ADD 显示名片星球
+#ifdef _MAILSHOWPLANET				// (可開放) Syu ADD 顯示名片星球
 	char planetid[8];
 	int j ;
 #endif
@@ -3508,7 +3508,7 @@ void lssproto_ABI_recv( int fd, int num, char* data )
 	addressBook[num].onlineFlag = (short)getIntegerToken(data, '|', 5 );
 	addressBook[num].graNo = getIntegerToken(data, '|', 6 );
 	addressBook[num].transmigration = getIntegerToken(data, '|', 7 );
-#ifdef _MAILSHOWPLANET				// (可开放) Syu ADD 显示名片星球
+#ifdef _MAILSHOWPLANET				// (可開放) Syu ADD 顯示名片星球
 	if ( addressBook[num].onlineFlag == 0 ) 
 		sprintf_s( addressBook[num].planetname , " ");
 	for ( j = 0 ; j < MAX_GMSV ; j ++ ) {
@@ -3538,7 +3538,7 @@ void lssproto_RS_recv( int fd, char *data )
 		return;
 
 	battleResultMsg.useFlag = 1;
-	//cary 确定 栏位 数
+	//cary 確定 欄位 數
 	int cols = RESULT_CHR_EXP;
 	getStringToken(data, ',', RESULT_CHR_EXP+1, sizeof( token ) - 1, token );
 	if ( token[0] == 0){
@@ -3612,8 +3612,8 @@ void lssproto_I_recv( int fd, char *data )
 	char name[256];
 	char name2[256];
 	char memo[256];
-	//char *data = "9|乌力斯坦的肉||0|耐久力10前後回复|24002|0|1|0|7|不会损坏|1|肉|20||10|乌力斯坦的肉||0|耐久力10前後回复|24002|0|1|0|7|不会损坏|1|肉|20|";
-	if ( logOutFlag )//人物未登陆则不接收这个封包
+	//char *data = "9|烏力斯坦的肉||0|耐久力10前後迴復|24002|0|1|0|7|不會損壞|1|肉|20||10|烏力斯坦的肉||0|耐久力10前後迴復|24002|0|1|0|7|不會損壞|1|肉|20|";
+	if ( logOutFlag )//人物未登陸則不接收這個封包
 		return;
 
 	for ( j = 0; ; j++ ){
@@ -3659,15 +3659,15 @@ void lssproto_I_recv( int fd, char *data )
 		if ( strlen(name) <= ITEM_NAME_LEN ){
 			strcpy( pc.item[i].name, name );
 		}
-		getStringToken(data, '|', no+3, sizeof( name2 ) - 1, name2 );//第二个道具名
+		getStringToken(data, '|', no+3, sizeof( name2 ) - 1, name2 );//第二個道具名
 		makeStringFromEscaped( name2 );
 		if ( strlen( name2 ) <= ITEM_NAME2_LEN ){
 			strcpy( pc.item[i].name2, name2 );
 		}
-		pc.item[i].color = getIntegerToken(data, '|', no+4 );//颜色
+		pc.item[i].color = getIntegerToken(data, '|', no+4 );//顔色
 		if ( pc.item[i].color < 0 )
 			pc.item[i].color = 0;
-		getStringToken(data, '|', no+5, sizeof( memo ) - 1, memo );//道具介绍
+		getStringToken(data, '|', no+5, sizeof( memo ) - 1, memo );//道具介紹
 		makeStringFromEscaped( memo );
 		if ( strlen( memo ) <= ITEM_MEMO_LEN ){
 			strcpy( pc.item[i].memo, memo );
@@ -3681,11 +3681,11 @@ void lssproto_I_recv( int fd, char *data )
 		}else{
 			pc.item[i].deadTargetFlag = 0;
 		}
-		pc.item[i].level = getIntegerToken(data, '|', no+9 );//等级
+		pc.item[i].level = getIntegerToken(data, '|', no+9 );//等級
 		pc.item[i].sendFlag = getIntegerToken(data, '|', no+10 );
 
 		{
-			// 显示物品耐久度
+			// 顯示物品耐久度
 			char damage[256];
 			getStringToken(data, '|', no+11, sizeof( damage ) - 1, damage );
 			makeStringFromEscaped( damage );
@@ -3719,7 +3719,7 @@ void lssproto_I_recv( int fd, char *data )
 		}
 #else
 #ifdef _MAGIC_ITEM_
-		pc.item[i].道具类型 = getIntegerToken(data, '|', no + 14);
+		pc.item[i].道具類型 = getIntegerToken(data, '|', no + 14);
 #endif
 #endif
 		/*
@@ -3751,7 +3751,7 @@ void lssproto_WN_recv( int fd,int windowtype,int buttontype,int seqno,int objind
 	if ( logOutFlag )
 		return;
 
-	if( strstr(data,"否则家族在七天之后会消失唷！") ){	
+	if( strstr(data,"否則傢族在七天之後會消失唷！") ){	
 		if( TimeGetTime() - MsgCooltime > 300000 )
 			MsgCooltime = TimeGetTime();  
 		else
@@ -4148,13 +4148,13 @@ void lssproto_MSG_recv( int fd,int aindex,char* text ,int color)
 		// ???????????????
 		MailHistory[ aindex ].itemGraNo[ MailHistory[ aindex ].newHistoryNo ] = getIntegerToken( text, '|', 6 );
 		// ????????????
-		sprintf_s( moji,"收到%s送来的宠物邮件！", addressBook[ aindex ].name );
+		sprintf_s( moji,"收到%s送來的寵物郵件！", addressBook[ aindex ].name );
 	}
 	// ??????
 	else{	
 		MailHistory[ aindex ].noReadFlag[ MailHistory[ aindex ].newHistoryNo ] = TRUE;
 		// ????????????
-		sprintf_s( moji,"收到%s送来的邮件！", addressBook[ aindex ].name );
+		sprintf_s( moji,"收到%s送來的郵件！", addressBook[ aindex ].name );
 	}
 	
 	// ??????????????????
@@ -4187,7 +4187,7 @@ void lssproto_PS_recv( int fd,int result,int havepetindex,int havepetskill,int t
 	// ???
 	if ( result == 0 ){
 		//???????
-		sprintf_s( moji,"失败！");
+		sprintf_s( moji,"失敗！");
 		// ??????????????????
 		StockChatBufferLine( moji, FONT_PAL_WHITE );
 	}
@@ -4314,12 +4314,12 @@ void lssproto_FM_recv( int fd, char* data )
 
 	if ( strcmp(FMType1,"S") ==0 )
 	{
-		if ( strcmp(FMType2,"F") ==0) // 家族列表
+		if ( strcmp(FMType2,"F") ==0) // 傢族列錶
 		{
 			initFamilyList(data );
 
 		}
-		if ( strcmp(FMType2,"D") ==0) // 家族详细
+		if ( strcmp(FMType2,"D") ==0) // 傢族詳細
 		{
 			initFamilyDetail(data );
 
@@ -4328,14 +4328,14 @@ void lssproto_FM_recv( int fd, char* data )
 	}
 	else if ( strcmp(FMType1,"C") ==0 )
 	{
-		if ( strcmp(FMType2,"J") ==0) // 加入频道
+		if ( strcmp(FMType2,"J") ==0) // 加入頻道
 		{
 			getStringToken(data, '|', 3, sizeof( FMType3 ) - 1, FMType3 );
 			pc.channel = atoi( FMType3 );
 			if ( pc.channel != -1 )
 				pc.quickChannel = pc.channel;
 		}
-		if ( strcmp(FMType2,"L") ==0) // 频道列表
+		if ( strcmp(FMType2,"L") ==0) // 頻道列錶
 		{
 			initJoinChannel2WN(data );
 
@@ -4374,7 +4374,7 @@ void lssproto_FM_recv( int fd, char* data )
 		}
 
 	}
-	else if ( strcmp(FMType1,"L") ==0 )	// 族长功能
+	else if ( strcmp(FMType1,"L") ==0 )	// 族長功能
 	{
 		if ( strcmp(FMType2,"CHANGE") ==0)
 		{
@@ -4572,27 +4572,27 @@ void lssproto_NC_recv( int fd, int flg )
 }
 #endif
 #ifdef _CHANNEL_MODIFY
-// 储存对话内容
+// 儲存對話內容
 FILE *pSaveChatDataFile[6]={NULL,NULL,NULL,NULL,NULL,NULL};
 void SaveChatData(char *msg,char KindOfChannel,bool bCloseFile){
 	static char szFileName[256];
 	static struct tm nowTime;
 	static time_t longTime;
 	static unsigned short Channel[] = {
-		PC_ETCFLAG_CHAT_MODE	//队伍频道开关
-		,PC_ETCFLAG_CHAT_TELL	//密语频道开关
-		,PC_ETCFLAG_CHAT_FM		//家族频道开关
+		PC_ETCFLAG_CHAT_MODE	//隊伍頻道開關
+		,PC_ETCFLAG_CHAT_TELL	//密語頻道開關
+		,PC_ETCFLAG_CHAT_FM		//傢族頻道開關
 #ifdef _CHAR_PROFESSION
-		,PC_ETCFLAG_CHAT_OCC	//职业频道开关
+		,PC_ETCFLAG_CHAT_OCC	//職業頻道開關
 #endif
 #ifdef _CHATROOMPROTOCOL
-		,PC_ETCFLAG_CHAT_CHAT	//聊天室开关
+		,PC_ETCFLAG_CHAT_CHAT	//聊天室開關
 #endif
 #ifdef _CHANNEL_WORLD
-		,PC_ETCFLAG_CHAT_WORLD	//世界频道开关
+		,PC_ETCFLAG_CHAT_WORLD	//世界頻道開關
 #endif
 #ifdef _CHANNEL_ALL_SERV
-		,PC_ETCFLAG_ALL_SERV	//星球频道开关
+		,PC_ETCFLAG_ALL_SERV	//星球頻道開關
 #endif
 	};
 	char ChannelType[] = {'T','M','F',
@@ -4608,7 +4608,7 @@ void SaveChatData(char *msg,char KindOfChannel,bool bCloseFile){
 #endif
 	};
 
-	// 储存对话内容选项开启
+	// 儲存對話內容選項開啓
 	if ((pc.etcFlag & PC_ETCFLAG_CHAT_SAVE) && !bCloseFile){
 		time(&longTime);
 		localtime_s(&nowTime,&longTime);
@@ -4656,26 +4656,26 @@ void lssproto_STREET_VENDOR_recv(int fd,char *data)
 
 	getStringToken(data,'|',1,sizeof(szMessage) - 1,szMessage);
 	switch (szMessage[0]){
-		// 开新摆摊介面
+		// 開新擺攤介麵
 		case 'O':
 			sStreetVendorBtn = 1;
 			pc.iOnStreetVendor = 1;
 			break;
-		// 设定摆摊内容
+		// 設定擺攤內容
 		case 'S':
 			sStreetVendorBtn = 3;
 			StreetVendorWndfunc(false,data);
 			break;
-		// server送来的卖方贩卖内容
+		// server送來的賣方販賣內容
 		case 'B':
 			sStreetVendorBuyBtn = 1;
 			StreetVendorBuyWndfunc(data);
 			break;
-		// server 送来关闭视窗
+		// server 送來關閉視窗
 		case 'C':
 			sStreetVendorBuyBtn = 0;
 			break;
-		// server 送来的单笔贩卖物详细资料
+		// server 送來的單筆販賣物詳細資料
 		case 'D':
 			StreetVendorBuyWndfunc(data);
 			break;
@@ -4684,9 +4684,9 @@ void lssproto_STREET_VENDOR_recv(int fd,char *data)
 #endif
 
 
-#ifdef _STONDEBUG_ // 手动送出封包功能 Robin
+#ifdef _STONDEBUG_ // 手動送齣封包功能 Robin
 /* 
-	(封包编号)`d`(数值资料)`s`(字串资料)`......
+	(封包編號)`d`(數值資料)`s`(字串資料)`......
 	例: 35`d`100`d`100`s`P|Hellp~~`d`1`d`1
 */
 void sendDataToServer( char* data)
@@ -4701,7 +4701,7 @@ void sendDataToServer( char* data)
 	int datakind;
 	int i =1;
 
-	strcat_s( showbuf, "手动送出 ");
+	strcat_s( showbuf, "手動送齣 ");
 
 	getStringToken(data, '`', i++, sizeof(token), token );
 	if ( token[0] == NULL )	return;
@@ -4718,7 +4718,7 @@ void sendDataToServer( char* data)
 
 		if ( !strcmp( token2, "d") ) {
 			checksum += util_mkint( sendbuf, atoi(token3));
-			sprintf_s( showsubbuf, "数=%d ", atoi(token3));
+			sprintf_s( showsubbuf, "數=%d ", atoi(token3));
 			strcat_s( showbuf, showsubbuf);
 		}
 		else if ( !strcmp( token2, "s") ) {
@@ -4740,18 +4740,18 @@ void sendDataToServer( char* data)
 }
 #endif
 #ifdef _FAMILYBADGE_
-extern int 徽章数据[];
-extern int 徽章个数;
-int 徽章价格;
+extern int 徽章數據[];
+extern int 徽章個數;
+int 徽章價格;
 void lssproto_FamilyBadge_recv(char *data)
 {
-	徽章个数=0;
+	徽章個數=0;
 	int  i=2;
-	徽章价格 = getIntegerToken(data,'|',1);
+	徽章價格 = getIntegerToken(data,'|',1);
 	for(i;i<201;i++){
-		徽章数据[i-2] = getIntegerToken(data,'|',i);
-		if(徽章数据[i-2]==-1) break;
-		徽章个数++;
+		徽章數據[i-2] = getIntegerToken(data,'|',i);
+		if(徽章數據[i-2]==-1) break;
+		徽章個數++;
 	}
 }
 #endif
@@ -4759,10 +4759,10 @@ void lssproto_FamilyBadge_recv(char *data)
 
 #ifdef _JOBDAILY
 extern JOBDAILY jobdaily[MAXMISSION];
-extern int JobdailyGetMax;  //是否有接收到资料
+extern int JobdailyGetMax;  //是否有接收到資料
 void lssproto_JOBDAILY_recv(int fd,char *data)
 {
-	//解读资料
+	//解讀資料
 	int  i=1,j=1;
 	char getdata[250];
 	char perdata[200];
@@ -4778,7 +4778,7 @@ void lssproto_JOBDAILY_recv(int fd,char *data)
 			case 1: jobdaily[i-1].JobId = atoi(perdata);break;
 			case 2: strcpy(jobdaily[i-1].explain,perdata); break;
 			case 3: strcpy(jobdaily[i-1].state,perdata); break;
-			default: StockChatBufferLine("每笔资料内参数有错误",FONT_PAL_RED); break;
+			default: StockChatBufferLine("每筆資料內參數有錯誤",FONT_PAL_RED); break;
 			}
 			perdata[0] = '\0';
 			j++;
@@ -4803,19 +4803,19 @@ void lssproto_TEACHER_SYSTEM_recv(int fd,char *data)
 
 	getStringToken(data,'|',1,sizeof(szMessage) - 1,szMessage);
 	switch (szMessage[0]){
-		// 显示说明
+		// 顯示說明
 		case 'M':sTeacherSystemBtn = 1;break;
-		// 询问是否要对方当你的导师
+		// 詢問是否要對方當你的導師
 		case 'C':
 			sTeacherSystemBtn = 2;
 			TeacherSystemWndfunc(0,data);
 			break;
-		// 超过一人,询问要找谁当导师
+		// 超過一人,詢問要找誰當導師
 		case 'A':
 			sTeacherSystemBtn = 3;
 			TeacherSystemWndfunc(1,data);
 			break;
-		// 显示导师资料
+		// 顯示導師資料
 		case 'V':
 			sTeacherSystemBtn = 4;
 			TeacherSystemWndfunc(2,data);
@@ -4878,7 +4878,7 @@ void lssproto_Firework_recv(int fd, int nCharaindex, int nType, int nActionNum)
 #endif
 
 #ifdef _MOVE_SCREEN
-// client 移动荧幕
+// client 移動熒幕
 void lssproto_MoveScreen_recv(int fd, BOOL bMoveScreenMode, int iXY)
 {
 	pc.bMoveScreenMode = bMoveScreenMode;
@@ -4910,25 +4910,25 @@ void lssproto_TheaterData_recv(int fd, char *pData)
 		pc.iTheaterMode = iData;
 		if (iData == 0)
 		{
-			pc.bCanUseMouse = FALSE;		// 表演完毕,可以正常使用滑鼠移动
+			pc.bCanUseMouse = FALSE;		// 錶演完畢,可以正常使用滑鼠移動
 			pc.iSceneryNumber = -1;
 		}
 		else
 		{
-			pc.bCanUseMouse = TRUE;	// 表演中
+			pc.bCanUseMouse = TRUE;	// 錶演中
 			pc.iSceneryNumber = 26558;
 		}
 		break;
-	case E_DATA_TYPE_MOVE:		// 移动
+	case E_DATA_TYPE_MOVE:		// 移動
 		camMapToGamen((float)(HIWORD(iData) * GRID_SIZE), float(LOWORD(iData) * GRID_SIZE), &fX, &fY);
 		MouseNowPoint((int)(fX + 0.5f), (int)(fY + 0.5f));
 		MouseCrickLeftDownPoint((int)(fX + 0.5f), (int)(fY + 0.5f));
 		MouseCrickLeftUpPoint((int)(fX + 0.5f), (int)(fY + 0.5f));
-		pc.bCanUseMouse = FALSE;			// 设为 FALSE,不然人物不能移动
+		pc.bCanUseMouse = FALSE;			// 設為 FALSE,不然人物不能移動
 		mouse.level = DISP_PRIO_TILE;
 		closeCharActionAnimeChange();
 		break;
-	case E_DATA_TYPE_DIR:		// 方向
+	case E_DATA_TYPE_DIR:		// 方嚮
 		setPcDir(iData);
 		szMessage[0] = cnvServDir(iData, 1 );
 		szMessage[1] = '\0';
@@ -4937,31 +4937,31 @@ void lssproto_TheaterData_recv(int fd, char *pData)
 	case E_DATA_TYPE_SCENERY:	// 布景
 		pc.iSceneryNumber = iData;
 		break;
-	case E_DATA_TYPE_BGM:		// 背景音乐
+	case E_DATA_TYPE_BGM:		// 背景音樂
 		play_bgm(iData);
 		break;
-	case E_THEATER_SEND_DATA_DISPLAY_SCORE:		// 显示分数
+	case E_THEATER_SEND_DATA_DISPLAY_SCORE:		// 顯示分數
 		pc.iTheaterMode |= 0x00000004;
-		pc.iTheaterMode |= iData << 16;			// iData 是分数值
+		pc.iTheaterMode |= iData << 16;			// iData 是分數值
 		break;
-	case E_DATA_TYPE_NPC:						// 产生或是消失或更改临时NPC
-		// 当 iType 为 E_DATA_TYPE_NPC 时取出来的 iData 是 NPC 编号
+	case E_DATA_TYPE_NPC:						// 産生或是消失或更改臨時NPC
+		// 當 iType 為 E_DATA_TYPE_NPC 時取齣來的 iData 是 NPC 編號
 		if (iData >= 0 && iData < 5)
 		{
 			int iSprNum, iGX, iGY, iAction, iDir;
 
-			getStringToken(pData, '|', 3, sizeof(szMessage) - 1, szMessage);	// 取出指令
+			getStringToken(pData, '|', 3, sizeof(szMessage) - 1, szMessage);	// 取齣指令
 			if (atoi(szMessage) == 1)
 			{
-				getStringToken(pData, '|', 4, sizeof(szMessage) - 1, szMessage);	// 取出图号
+				getStringToken(pData, '|', 4, sizeof(szMessage) - 1, szMessage);	// 取齣圖號
 				iSprNum = atoi(szMessage);
-				getStringToken(pData, '|', 5, sizeof(szMessage) - 1, szMessage);	// 取出座标
+				getStringToken(pData, '|', 5, sizeof(szMessage) - 1, szMessage);	// 取齣座標
 				iGX = atoi(szMessage);
-				getStringToken(pData, '|', 6, sizeof(szMessage) - 1, szMessage);	// 取出座标
+				getStringToken(pData, '|', 6, sizeof(szMessage) - 1, szMessage);	// 取齣座標
 				iGY = atoi(szMessage);
-				getStringToken(pData, '|', 7, sizeof(szMessage) - 1, szMessage);	// 取出动作
+				getStringToken(pData, '|', 7, sizeof(szMessage) - 1, szMessage);	// 取齣動作
 				iAction = atoi(szMessage);
-				getStringToken(pData, '|', 8, sizeof(szMessage) - 1, szMessage);	// 取出方向
+				getStringToken(pData, '|', 8, sizeof(szMessage) - 1, szMessage);	// 取齣方嚮
 				iDir = atoi(szMessage);
 				camMapToGamen((float)iGX * GRID_SIZE, (float)iGY * GRID_SIZE, &fX, &fY);
 				if (pc.pActNPC[iData] == NULL)
@@ -5042,7 +5042,7 @@ void lssproto_MagiccardAction_recv(int fd, char *data)
 	getStringToken(data, '|', 4, sizeof( token ) - 1, token );
 	dir = (atoi( token )+3)%8;
 	getStringToken(data, '|', 5, sizeof( token ) - 1, token );
-	actionNum = atoi( token );	//图号
+	actionNum = atoi( token );	//圖號
 	getStringToken(data, '|', 6, sizeof( token ) - 1, token );
 	action = atoi( token );
 	getStringToken(data, '|', 7, sizeof( token ) - 1, token );
@@ -5070,13 +5070,13 @@ void lssproto_DancemanOption_recv( int fd , int option )
 {
 	switch( option )
 	{
-	case 0:	//关闭视窗
+	case 0:	//關閉視窗
 		wnCloseFlag = 1;
 		break;
-	case 1: //开启动一动模式
+	case 1: //開啓動一動模式
 		pc.iDanceMode = 1;
 		break;
-	case 2: //关闭动一动模式
+	case 2: //關閉動一動模式
 		pc.iDanceMode = 0;
 		break;
 	}
@@ -5097,14 +5097,14 @@ void lssproto_hundredkill_recv( int fd, int flag ){
 
 void lssproto_DENGON_recv(char *data, int colors, int nums)
 {
-	extern int 公告数量;
-	extern char 公告内容[512];
-	extern int 公告颜色;
-	extern int 公告时间;
-	公告时间=0;
-	sprintf(公告内容, "%s", data);
-	公告颜色 = colors;
-	公告数量 = nums;
+	extern int 公告數量;
+	extern char 公告內容[512];
+	extern int 公告顔色;
+	extern int 公告時間;
+	公告時間=0;
+	sprintf(公告內容, "%s", data);
+	公告顔色 = colors;
+	公告數量 = nums;
 }
 #endif
 
@@ -5113,7 +5113,7 @@ void lssproto_DENGON_recv(char *data, int colors, int nums)
 
 void lssproto_PetSkins_recv(char *data)
 {
-	char *str = "宠物栏位置|当前使用皮肤图号|总皮肤数|皮肤图号|说明|皮肤图号|说明|...";
+	char *str = "寵物欄位置|當前使用皮膚圖號|總皮膚數|皮膚圖號|說明|皮膚圖號|說明|...";
 }
 
 #endif

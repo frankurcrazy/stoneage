@@ -7,22 +7,22 @@
 #include "npc_action.h"
 
 /* 
- * ÃóÒÁÄÌØÀ¡õ¼°Ê§ÛÍÆËÒà¼ş±å  É±ÔÊÔÂNPC£Û
- * Ç©±åÔÏÔ»ß¯ØÆĞ×Ô»ÔÊÔÂ·ÖØê·Ö»¥£Û
- * ĞÚÈÊ£İÒıĞ×·´  ÔÈ»¯ÖĞÔÂ¼°Ê§ÛÍÆËÒà¼ş±å·´  É±ØÆØ¦ÖĞ£Û
+ * çš¿ä¼Šå¥¶ä¹©â–¡åŠå¤±å¼æ’²äº¦ä»¶å  æ®ºå…æœˆNPCï¼»
+ * ç°½åéŸ»æ›°å¿’ä»„å‡¶æ›°å…æœˆåˆ†ä»ƒåˆ†äº’ï¼»
+ * æ´¶ä»ï¼½å¼•å‡¶å  å‹»åŒ–ä¸­æœˆåŠå¤±å¼æ’²äº¦ä»¶åå  æ®ºä»„å…ä¸­ï¼»
  *
- * Â¦ĞÑ¡°
- *      msgcol:		¶ªÓÀ±¾¡õ³â¼°çÆ£Û·¸°×ÇÉ»ïĞş·´´ÃçÆ
- *      normal:		  É§±åÔÏÔÈ»¯ÎåĞ×ÁİÖ§  ¶ãØ¦Ê§ÛÍÆËÒà¼ş±å¸²ØÆ»¯¼°ß¯²Ï
- *		attack:		  »«Ê§ÛÍÆËÒà¼ş±å¸²ÔÊÔÂß¯²Ï
- *		damage:		Ä¸¶ª¡õ³âÃ«°¾ØêĞ×Ê§ÛÍÆËÒà¼ş±å¸²ÔÊÔÂß¯²Ï
- *		down:		åÎÄ¾ÔÂÊ§ÛÍÆËÒà¼ş±å¸²ÔÊÔÂß¯²Ï
- *		sit:		ÕçÔÂÊ§ÛÍÆËÒà¼ş±å¸²ØÆ»¯¼°ß¯²Ï
- *		hand:		ÅìÃ«ÈïÔÂÊ§ÛÍÆËÒà¼ş±å¸²ØÆ»¯¼°ß¯²Ï
- *		pleasure:	¼õÉÙÊ§ÛÍÆËÒà¼ş±å¸²ØÆ»¯¼°ß¯²Ï
- *		angry:		±äÔÂÊ§ÛÍÆËÒà¼ş±å¸²ØÆ»¯¼°ß¯²Ï
- *		sad:		  ØÆ¸êÊ§ÛÍÆËÒà¼ş±å¸²ØÆ»¯¼°ß¯²Ï
- *		guard:		²¼¡õÓñÔÊÔÂÊ§ÛÍÆËÒà¼ş±å¸²ØÆ»¯¼°ß¯²Ï
+ * å©é†’â€œ
+ *      msgcol:		ä¸Ÿæ°¸æœ¬â–¡æ–¥åŠç¸‰ï¼»çŠ¯ç™½å·§å¤¥ç„åç–µç¸‰
+ *      normal:		  é¨·åéŸ»å‹»åŒ–äº”å‡¶å‡œæ”¯  èº²å…å¤±å¼æ’²äº¦ä»¶åè¦†ä»„åŒ–åŠå¿’è ¶
+ *		attack:		  çŒ¾å¤±å¼æ’²äº¦ä»¶åè¦†å…æœˆå¿’è ¶
+ *		damage:		æ¯ä¸Ÿâ–¡æ–¥æ¯›ç†¬ä»ƒå‡¶å¤±å¼æ’²äº¦ä»¶åè¦†å…æœˆå¿’è ¶
+ *		down:		é‚æœ¨æœˆå¤±å¼æ’²äº¦ä»¶åè¦†å…æœˆå¿’è ¶
+ *		sit:		ç”„æœˆå¤±å¼æ’²äº¦ä»¶åè¦†ä»„åŒ–åŠå¿’è ¶
+ *		hand:		æ¾æ¯›è•Šæœˆå¤±å¼æ’²äº¦ä»¶åè¦†ä»„åŒ–åŠå¿’è ¶
+ *		pleasure:	æ¸›å°‘å¤±å¼æ’²äº¦ä»¶åè¦†ä»„åŒ–åŠå¿’è ¶
+ *		angry:		è®Šæœˆå¤±å¼æ’²äº¦ä»¶åè¦†ä»„åŒ–åŠå¿’è ¶
+ *		sad:		  ä»„æˆˆå¤±å¼æ’²äº¦ä»¶åè¦†ä»„åŒ–åŠå¿’è ¶
+ *		guard:		å¸ƒâ–¡ç‰å…æœˆå¤±å¼æ’²äº¦ä»¶åè¦†ä»„åŒ–åŠå¿’è ¶
  */
  
 
@@ -33,7 +33,7 @@ enum {
 };
 
 /*********************************
-* âÙÓåÖÊ  
+* è³¡æ¸è³ª  
 *********************************/
 BOOL NPC_ActionInit( int meindex )
 {
@@ -54,7 +54,7 @@ BOOL NPC_ActionInit( int meindex )
 
 
 /*********************************
-*   ØÆ¾®ØêÈÕÄ¾Ğ×Áİ¼°ÖÊ  
+*   ä»„äº•ä»ƒæ—¥æœ¨å‡¶å‡œåŠè³ª  
 *********************************/
 void NPC_ActionTalked( int meindex , int talkerindex , char *szMes ,
                      int color )
@@ -62,11 +62,11 @@ void NPC_ActionTalked( int meindex , int talkerindex , char *szMes ,
 	char	argstr[NPC_UTIL_GETARGSTR_BUFSIZE];
 	char	buf[64];
 
-    /* ÃóÒÁÄÌØÀ¡õ±å¸²ØÆ»¯·ÖØê  É±ÔÊÔÂ */
+    /* çš¿ä¼Šå¥¶ä¹©â–¡åè¦†ä»„åŒ–åˆ†ä»ƒ  æ®ºå…æœˆ */
     if( CHAR_getInt( talkerindex , CHAR_WHICHTYPE ) != CHAR_TYPEPLAYER ) {
     	return;
     }
-	/* ¨àºëØøÓÀÓñ¶¯  ¼°ĞÄ */
+	/* ã„ å¼˜ä¼‰æ°¸ç‰å‹•  åŠå¿ƒ */
 	if( !NPC_Util_charIsInFrontOfChar( talkerindex, meindex, 1 )) return; 
 
 	NPC_Util_GetArgStr( meindex, argstr, sizeof( argstr));
@@ -82,7 +82,7 @@ void NPC_ActionTalked( int meindex , int talkerindex , char *szMes ,
 	
 }
 /*********************************
-* watchÖÊ  
+* watchè³ª  
 *********************************/
 void NPC_ActionWatch( int meobjindex, int objindex, CHAR_ACTION act,
                     int x,int y,int dir, int* opt,int optlen )
@@ -111,12 +111,12 @@ void NPC_ActionWatch( int meobjindex, int objindex, CHAR_ACTION act,
 	
 	if( OBJECT_getType( objindex) != OBJTYPE_CHARA) return;
 	index = OBJECT_getIndex( objindex);
-	/* ÃóÒÁÄÌØÀ¡õ±å¼°ĞÄ  É±ÔÊÔÂ */
+	/* çš¿ä¼Šå¥¶ä¹©â–¡ååŠå¿ƒ  æ®ºå…æœˆ */
 	if( CHAR_getInt( index, CHAR_WHICHTYPE) != CHAR_TYPEPLAYER) return;
     
     meindex = OBJECT_getIndex( meobjindex);
     
-    /* éùÎåÄşÔÈ»¯¨àºëØøÓÀÓñÆ¥Ø¦ÖĞÎç  É±ØÆØ¦ÖĞ */
+    /* è¼Šäº”å¯œå‹»åŒ–ã„ å¼˜ä¼‰æ°¸ç‰åŒ¹å…ä¸­åˆ  æ®ºä»„å…ä¸­ */
     if( NPC_Util_isFaceToFace( meindex, index, 1 ) != TRUE ) return;
 	
 	NPC_Util_GetArgStr( meindex, argstr, sizeof( argstr));

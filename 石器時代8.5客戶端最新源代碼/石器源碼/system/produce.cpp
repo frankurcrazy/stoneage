@@ -1,4 +1,4 @@
-﻿#include "../systeminc/version.h"
+#include "../systeminc/version.h"
 #include "../systeminc/system.h"
 #include "../systeminc/battleProc.h"
 #include "../systeminc/produce.h"
@@ -830,7 +830,7 @@ static int pos_tbl[( ( 800 ) /BRAN_SIZE_Y)*( ( 1024 )/BRAN_SIZE_X)*2];
 static int bran_flg = 0;
 //static int bran_flg = 0;
 
-//蚕賒醱笢陑砃侐源孺湮摯眈毀
+//蠶賒醱笢陑砃侐源孺湮摯眈毀
 BOOL Produce_bran_small(int ang)
 {
 	RECT rect;

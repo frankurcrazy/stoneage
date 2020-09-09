@@ -1,4 +1,4 @@
-﻿/************************/
+/************************/
 /*	chat.h				*/
 /************************/
 #ifndef _CHAT_H_
@@ -7,12 +7,12 @@
 #define STR_BUFFER_SIZE 	260 		// ???????????
 #ifdef _NEW_RESOMODE
 #ifdef _SA_LIAOTIAN_
-	#define MAX_CHAT_LINE 		200 			// 聊天行数限制
+	#define MAX_CHAT_LINE 		200 			// 聊天行數限製
 #else
-	#define MAX_CHAT_LINE 		20 			// 聊天行数限制
+	#define MAX_CHAT_LINE 		20 			// 聊天行數限製
 #endif
 #else
-	#define MAX_CHAT_LINE 		20 			// 聊天行数限制
+	#define MAX_CHAT_LINE 		20 			// 聊天行數限製
 #endif
 #define DEF_CHAT_LINE 		20 			// ?????????
 #define MAX_CHAT_HISTORY 	64			// ???????????
@@ -35,7 +35,7 @@ typedef struct{
 	unsigned char 	lineDist;	// ?????????????
 	unsigned char 	cnt;		// ??????
 	unsigned char 	color;		// ??
-	unsigned char	cursor;		//游标的位置
+	unsigned char	cursor;		//遊標的位置
 	int	x, y;					// ????
 	int	imeX, imeY;				// ????????
 	int	fontPrio;				// ??
@@ -64,7 +64,7 @@ typedef struct{
 	int nowNo;												// ?????????????
 }CHAT_HISTORY;
 
-// onlinegm问题输入纪录   
+// onlinegm問題輸入紀錄   
 typedef struct{
 	char str[115][STR_BUFFER_SIZE + 1 ];
 	int newNo;	  							
@@ -91,12 +91,12 @@ extern int NowMaxChatLine;
 // ?????
 extern int NowMaxVoice;
 
-/*	将单一字元储放至目前的输入String buffer
+/*	將單一字元儲放至目前的輸入String buffer
 parameter:	c:	字元					*/
 void StockStrBufferChar(char c);
 
-/*	将双位元字元储放至目前的输入String buffer
-parameter:	lpc:	双位元的字元			*/
+/*	將雙位元字元儲放至目前的輸入String buffer
+parameter:	lpc:	雙位元的字元			*/
 void StockStrBufferDBChar(char *lpc);
 
 /* ?????????????????????? */
@@ -145,7 +145,7 @@ void GetClipboad( void );
 void SetClipboad( void );
 int GetCharByte( char c );
 
-#ifdef _FRIENDCHANNEL			//ROG ADD 好友频道
+#ifdef _FRIENDCHANNEL			//ROG ADD 好友頻道
 void StrToNowStrBuffer( char *str );
 #endif
 

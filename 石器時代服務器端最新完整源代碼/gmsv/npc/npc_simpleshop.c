@@ -18,7 +18,7 @@
 /*
  *
  *
- * ½¡µ¤ÄÌÃ¬¼şĞş: init, talked, specialtalked
+ * Â½Â¡ÂµÂ¤Ã„ÃŒÃƒÂ¬Â¼Ã¾ÃÃ¾: init, talked, specialtalked
  *
  *
  */
@@ -47,7 +47,7 @@ static BOOL NPC_SimpleShopOpenShopOrNot( char *msg, char *openshopstr );
 #define NPC_SIMPLESHOPMAXBUYPRICE 9999
 #define SIMPLESHOPTALKBUFSIZE 256
 
-#define SIMPLESHOP_FATALERRSTR "ºÃÍ´£¡¶Ô²»Æğ,×î½ü×´¿ö²»Ì«¼Ñ¡£¡£¡£"
+#define SIMPLESHOP_FATALERRSTR "ÂºÃƒÃÂ´Â£Â¡Â¶Ã”Â²Â»Ã†Ã°,Ã—Ã®Â½Ã¼Ã—Â´Â¿Ã¶Â²Â»ÃŒÂ«Â¼Ã‘Â¡Â£Â¡Â£Â¡Â£"
 
 #define SIMPLESHOP_MAXINFINITITEM 40
 
@@ -301,8 +301,8 @@ void NPC_LimitBuyInShopSpecialTalked( int meindex, int talker, char *msg, int co
 
 
 /*
- * int meindex : ÷Ò¼°index
- * int playerindex : ËüÄÌ¼şÓñËüÃ«ÇëÔÊÃóÒÁÄÌØÀ¡õ¼°index
+ * int meindex : Ã·Ã’Â¼Â°index
+ * int playerindex : Ã‹Ã¼Ã„ÃŒÂ¼Ã¾Ã“Ã±Ã‹Ã¼ÃƒÂ«Ã‡Ã«Ã”ÃŠÃƒÃ³Ã’ÃÃ„ÃŒÃ˜Ã€Â¡ÃµÂ¼Â°index
  * char *str :
  */
 static void NPC_SimpleShopNormalWindow( int meindex, int playerindex,
@@ -321,9 +321,9 @@ static void NPC_SimpleShopNormalWindow( int meindex, int playerindex,
 }
 
 /*
- * Â¦ĞÑ
- * int charindex:Æ½ÅÒ·Â¼°ÄÌ¼ş·¸ÛÍµ©
- * ß¯Ô»°À
+ * Ã‚Â¦ÃÃ‘
+ * int charindex:Ã†Â½Ã…Ã’Â·Ã‚Â¼Â°Ã„ÃŒÂ¼Ã¾Â·Â¸Ã›ÃÂµÂ©
+ * ÃŸÂ¯Ã”Â»Â°Ã€
  */
 static int NPC_ShopWindowIndexToItemTableIndex( int charindex,
                                                 int shopwindowindex )
@@ -407,12 +407,12 @@ static BOOL NPC_SimpleShopProcessSellMsg(char *msg, int shopindex,
     id = ITEM_getInt(itemind,ITEM_ID);
 	{
 		LogItem(
-			CHAR_getChar( playerindex, CHAR_NAME ), /* Æ½ÅÒ·Â   */
+			CHAR_getChar( playerindex, CHAR_NAME ), /* Ã†Â½Ã…Ã’Â·Ã‚   */
 			CHAR_getChar( playerindex, CHAR_CDKEY ),
-#ifdef _add_item_log_name  // WON ADD ÔÚitemµÄlogÖĞÔö¼ÓitemÃû³Æ
+#ifdef _add_item_log_name  // WON ADD Ã”ÃšitemÂµÃ„logÃ–ÃÃ”Ã¶Â¼Ã“itemÃƒÃ»Â³Ã†
 			itemind,
 #else
-       		ITEM_getInt( itemind, ITEM_ID ),  /* Ê§ÄÌ  Ø©  Ä¯ */
+       		ITEM_getInt( itemind, ITEM_ID ),  /* ÃŠÂ§Ã„ÃŒ  Ã˜Â©  Ã„Â¯ */
 #endif
 			"Sell",
 			CHAR_getInt( playerindex,CHAR_FLOOR),
@@ -486,12 +486,12 @@ static BOOL NPC_LimitBuyInShopProcessSellMsg(char *msg,
 
 	{
 		LogItem(
-			CHAR_getChar( playerindex, CHAR_NAME ), /* Æ½ÅÒ·Â   */
+			CHAR_getChar( playerindex, CHAR_NAME ), /* Ã†Â½Ã…Ã’Â·Ã‚   */
 			CHAR_getChar( playerindex, CHAR_CDKEY ),
-#ifdef _add_item_log_name  // WON ADD ÔÚitemµÄlogÖĞÔö¼ÓitemÃû³Æ
+#ifdef _add_item_log_name  // WON ADD Ã”ÃšitemÂµÃ„logÃ–ÃÃ”Ã¶Â¼Ã“itemÃƒÃ»Â³Ã†
 			itemind,
 #else
-       		ITEM_getInt( itemind, ITEM_ID ),  /* Ê§ÄÌ  Ø©  Ä¯ */
+       		ITEM_getInt( itemind, ITEM_ID ),  /* ÃŠÂ§Ã„ÃŒ  Ã˜Â©  Ã„Â¯ */
 #endif
 			"Sell",
 			CHAR_getInt( playerindex,CHAR_FLOOR),
@@ -529,8 +529,8 @@ static int NPC_SimpleShopGetItemNum( int meindex )
 }
 
 /*
- * int meindex:·ßÛĞ¼°(÷Ò¼°)ÄÌ¼ş·¸ÛÍµ©
- * int cliindex:İÎ¼°ÄÌ¼ş·¸ÛÍµ©
+ * int meindex:Â·ÃŸÃ›ÃÂ¼Â°(Ã·Ã’Â¼Â°)Ã„ÃŒÂ¼Ã¾Â·Â¸Ã›ÃÂµÂ©
+ * int cliindex:ÃÃÂ¼Â°Ã„ÃŒÂ¼Ã¾Â·Â¸Ã›ÃÂµÂ©
  */
 static void NPC_SimpleShopOpenShopWindow( int meindex, int cliindex,
                                           char *npcarg )
@@ -655,11 +655,11 @@ static BOOL NPC_SimpleShopFillItem( int meindex, char *npcarg )
             }
             num=NPC_Util_countHaveItem(meindex,itemid);
             if( num < 0 ){
-                return FALSE;/* æØ¿ÒØ¦idØ¦Éı¼°fatal err */
-            }else if( num == 0 ){ /* ÊÖÔÈ»¯Ø¦¾®ÔÈĞ×ÈÕ  Ïº */
+                return FALSE;/* Ã¦Ã˜Â¿Ã’Ã˜Â¦idÃ˜Â¦Ã‰Ã½Â¼Â°fatal err */
+            }else if( num == 0 ){ /* ÃŠÃ–Ã”ÃˆÂ»Â¯Ã˜Â¦Â¾Â®Ã”ÃˆÃÃ—ÃˆÃ•  ÃÂº */
                 NPC_Util_createItemToChar( meindex,itemid, FALSE);
 
-            }else if( num>=2 ){ /* ÊÖÇĞÔÊ¿º¼°èëÄş´ÂÂÖ */
+            }else if( num>=2 ){ /* ÃŠÃ–Ã‡ÃÃ”ÃŠÂ¿ÂºÂ¼Â°Ã¨Ã«Ã„Ã¾Â´Ã‚Ã‚Ã– */
                 NPC_Util_RemoveItemByID(meindex,itemid,FALSE);
             }
         }else{
@@ -667,7 +667,7 @@ static BOOL NPC_SimpleShopFillItem( int meindex, char *npcarg )
         }
     }
 
-    /* Óò¼ÔØÆÎåÍÍ¹´½ñÄ¾Ğ×ÇÁÚØ±åÔÊÔÂ */
+    /* Ã“Ã²Â¼Ã”Ã˜Ã†ÃÃ¥ÃÃÂ¹Â´Â½Ã±Ã„Â¾ÃÃ—Ã‡ÃÃšÃ˜Â±Ã¥Ã”ÃŠÃ”Ã‚ */
     //NPC_SimpleShopSetLeakLevel( meindex );
 
     return TRUE;
@@ -695,8 +695,8 @@ BOOL NPC_SimpleShopInit( int meindex )
     CHAR_setInt( meindex , CHAR_STR , 0 );
     CHAR_setInt( meindex , CHAR_TOUGH, 0 );
     CHAR_setInt( meindex , CHAR_LV , 0 );
-    mlevel = ((100<<16)|(100<<0)); /* ÏşŞË2ÌïÄÌĞş»¥  µ¤ÎçÎå¼°    £ı
-                                    Æ±ŞË2ÌïÄÌĞş»¥  ÔÂÎçÎå¼°    £Û */
+    mlevel = ((100<<16)|(100<<0)); /* ÃÃ¾ÃÃ‹2ÃŒÃ¯Ã„ÃŒÃÃ¾Â»Â¥  ÂµÂ¤ÃÃ§ÃÃ¥Â¼Â°    Â£Ã½
+                                    Ã†Â±ÃÃ‹2ÃŒÃ¯Ã„ÃŒÃÃ¾Â»Â¥  Ã”Ã‚ÃÃ§ÃÃ¥Â¼Â°    Â£Ã› */
     CHAR_setInt( meindex, CHAR_MERCHANTLEVEL, mlevel );
 
     CHAR_setWorkInt( meindex, CHAR_WORKSHOPCLIENTINDEX, -1 );
@@ -719,12 +719,12 @@ BOOL NPC_SimpleShopInit( int meindex )
 }
 
 /*
- * npcarg¼°ÖĞÔÈ³ğ»§¼°Ğş¡õÛÍ¼ş±å
- * ³ğÊÏ±åÇĞ·´,ÈÔ»§ÊÏÈÊ·Ö½ñÖĞ,ÈÊ·Ö½ñÖĞØ¦
+ * npcargÂ¼Â°Ã–ÃÃ”ÃˆÂ³Ã°Â»Â§Â¼Â°ÃÃ¾Â¡ÃµÃ›ÃÂ¼Ã¾Â±Ã¥
+ * Â³Ã°ÃŠÃÂ±Ã¥Ã‡ÃÂ·Â´,ÃˆÃ”Â»Â§ÃŠÃÃˆÃŠÂ·Ã–Â½Ã±Ã–Ã,ÃˆÃŠÂ·Ã–Â½Ã±Ã–ÃÃ˜Â¦
  *
- * Â¦ĞÑ
- * ß¯Ô»°À
- * ·°ÈÊØ¦ÈÕTRUE, ·°¾®Ø¦ÖĞØ¦ÈÕFALSE
+ * Ã‚Â¦ÃÃ‘
+ * ÃŸÂ¯Ã”Â»Â°Ã€
+ * Â·Â°ÃˆÃŠÃ˜Â¦ÃˆÃ•TRUE, Â·Â°Â¾Â®Ã˜Â¦Ã–ÃÃ˜Â¦ÃˆÃ•FALSE
  */
 static BOOL NPC_SimpleShopOpenShopOrNot( char *msg, char *openshopstr )
 {

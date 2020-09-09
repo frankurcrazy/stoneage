@@ -1,40 +1,40 @@
-﻿
+
 #ifndef _ONLINEGM_
 #define _ONLINEGM_
 
-#define ONLINEGM_BACKGROUND		OLD_GRAPHICS_START+821  //背景图
-#define ONLINEGM_YES_OR_NO      35322                   //小长方石板背景图 26195有问题的图
-#define ONLINEGM_CHECK_U		OLD_GRAPHICS_START+820	//查询(弹起)
-#define ONLINEGM_CHECK_D		35319					//查询(按下)		
-#define ONLINEGM_DELETE_U		OLD_GRAPHICS_START+819	//删除(弹起)
-#define ONLINEGM_DELETE_D		35321					//删除(按下)
-#define ONLINEGM_ENTER_U		26099					//传送(弹起)
-#define ONLINEGM_ENTER_D		35320//传送(按下)
-#define	ONLINEGM_CLEAR_U		26298					//清除(弹起)
+#define ONLINEGM_BACKGROUND		OLD_GRAPHICS_START+821  //背景圖
+#define ONLINEGM_YES_OR_NO      35322                   //小長方石闆背景圖 26195有問題的圖
+#define ONLINEGM_CHECK_U		OLD_GRAPHICS_START+820	//查詢(彈起)
+#define ONLINEGM_CHECK_D		35319					//查詢(按下)		
+#define ONLINEGM_DELETE_U		OLD_GRAPHICS_START+819	//刪除(彈起)
+#define ONLINEGM_DELETE_D		35321					//刪除(按下)
+#define ONLINEGM_ENTER_U		26099					//傳送(彈起)
+#define ONLINEGM_ENTER_D		35320//傳送(按下)
+#define	ONLINEGM_CLEAR_U		26298					//清除(彈起)
 #define ONLINEGM_CLEAR_D		26299					//清除(按下)
-#define ONLINEGM_HELP_U			OLD_GRAPHICS_START+818	//注意事项(弹起)
-#define ONLINEGM_HELP_D			35318					//注意事项(按下)
-#define ONLINEGM_QUIT			26042					    //关闭
-#define ONLINEGM_UP_U			26064					//上卷(弹起)
-#define ONLINEGM_UP_D			26065					//上卷(按下)
-#define ONLINEGM_DOWN_U			26066					//下卷(弹起)
-#define ONLINEGM_DOWN_D			26067					//下卷(按下)
-#define ONLINEGM_SURE_D			26288					//确定(按下)(黄色的)
-#define ONLINEGM_SURE_U			26289					//确定(弹起)(黄色的)
+#define ONLINEGM_HELP_U			OLD_GRAPHICS_START+818	//注意事項(彈起)
+#define ONLINEGM_HELP_D			35318					//注意事項(按下)
+#define ONLINEGM_QUIT			26042					    //關閉
+#define ONLINEGM_UP_U			26064					//上捲(彈起)
+#define ONLINEGM_UP_D			26065					//上捲(按下)
+#define ONLINEGM_DOWN_U			26066					//下捲(彈起)
+#define ONLINEGM_DOWN_D			26067					//下捲(按下)
+#define ONLINEGM_SURE_D			26288					//確定(按下)(黃色的)
+#define ONLINEGM_SURE_U			26289					//確定(彈起)(黃色的)
 #define ONLINEGM_CHANCEL        26291					//取消
 
 
-#define DEF_UPDOWN_TOTAL        22						// 上下卷总数     
-#define DEF_BUTTON_TOTAL        28                      // 线上回报系统按钮总数
-#define DEF_CLASS_TOTAL         2                       // 问题类别总数
-#define DEF_C1_TOTAL			14						// 类别一细项总数
-#define DEF_C2_TOTAL			11 						// 类别二细项总数
+#define DEF_UPDOWN_TOTAL        22						// 上下捲總數     
+#define DEF_BUTTON_TOTAL        28                      // 綫上迴報係統按鈕總數
+#define DEF_CLASS_TOTAL         2                       // 問題類彆總數
+#define DEF_C1_TOTAL			14						// 類彆一細項總數
+#define DEF_C2_TOTAL			11 						// 類彆二細項總數
 
-#define DEF_MAX_ADD_VALUE     20   //目前设定玩家最多留20笔
+#define DEF_MAX_ADD_VALUE     20   //目前設定玩傢最多留20筆
 
-#define MAX_INPUT_LINE 		30 			// 问题输入行数限制
+#define MAX_INPUT_LINE 		30 			// 問題輸入行數限製
 
-#define DEF_INPUT_LINE 		4 			// 问题数入显示行数 chat是20
+#define DEF_INPUT_LINE 		4 			// 問題數入顯示行數 chat是20
 
 #define MAX_INPUT_HISTORY 	20			// ???????????
 

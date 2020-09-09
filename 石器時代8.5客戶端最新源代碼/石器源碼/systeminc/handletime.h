@@ -1,4 +1,4 @@
-﻿#ifndef __HANDLETIME_H__
+#ifndef __HANDLETIME_H__
 #define __HANDLETIME_H__
 
 //#undef EXTERN

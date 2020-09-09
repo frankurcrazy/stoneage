@@ -35,7 +35,7 @@ BOOL initObjectArray( int num )
         memset( &obj[i], 0 , sizeof( Object ));
         obj[i].type = OBJTYPE_NOUSE;
     }
-    print( "分配 %.2f MB MB 空间...", sizeof( Object ) * objnum / 1024.0 / 1024.0 );
+    print( "路脰脜盲 %.2f MB MB 驴脮录盲...", sizeof( Object ) * objnum / 1024.0 / 1024.0 );
     return TRUE;
 }
 
@@ -66,7 +66,7 @@ INLINE int _initObjectOne( char *file, int line, Object* ob )
                 return i;
             }else{
                 allocobjnum = ( i+1 >= objnum) ? 0:i+1;
-                fprint( "%d 地图不存在\n",ob->floor );
+                fprint( "%d 碌脴脥录虏禄麓忙脭脷\n",ob->floor );
                 return -1;
             }
         }else {
@@ -183,10 +183,10 @@ INLINE int OBJECT_setTime( int index, int newvalue )
 
 
 /*------------------------------------------------------------
- * index 毛  月
- * 娄醒
- *  index      int     奶件犯永弁旦
- * 忒曰袄
+ * index 脙芦  脭脗
+ * 脗娄脨脩
+ *  index      int     脛脤录镁路赂脫脌脹脥碌漏
+ * 脽炉脭禄掳脌
  *  int
  ------------------------------------------------------------*/
 INLINE int OBJECT_getIndex( int index )
@@ -194,12 +194,12 @@ INLINE int OBJECT_getIndex( int index )
     return obj[index].index;
 }
 /*------------------------------------------------------------
- * y 毛涩烂允月
- * 娄醒
- *  index      int     奶件犯永弁旦
- *  newvalue    int     蕙仄中袄
- * 忒曰袄
- *  int 樯及袄
+ * y 脙芦脡卢脌脙脭脢脭脗
+ * 脗娄脨脩
+ *  index      int     脛脤录镁路赂脫脌脹脥碌漏
+ *  newvalue    int     脼楼脴脝脰脨掳脌
+ * 脽炉脭禄掳脌
+ *  int 茅脡录掳掳脌
  ------------------------------------------------------------*/
 INLINE int OBJECT_setIndex( int index, int newvalue )
 {
@@ -211,10 +211,10 @@ INLINE int OBJECT_setIndex( int index, int newvalue )
 
 
 /*------------------------------------------------------------
- * 左皮斥尼弁玄及    醒毛菲户月
- * 娄醒
- *  卅仄
- * 忒曰袄
+ * 脳贸脝陇鲁芒脛谩脹脥脨镁录掳    脨脩脙芦路脝禄搂脭脗
+ * 脗娄脨脩
+ *  脴娄脴脝
+ * 脽炉脭禄掳脌
  *  int
  ------------------------------------------------------------*/
 INLINE int OBJECT_getNum( void )
@@ -223,17 +223,17 @@ INLINE int OBJECT_getNum( void )
 }
 
 /*------------------------------------------------------------
- *  左皮斥尼弁玄厌瞻  及丢件田毛蝈  娄醒卞  匀化
- *  左皮斥尼弁玄厌瞻  毛综曰请仄化｝瓒  允月［
+ *  脳贸脝陇鲁芒脛谩脹脥脨镁脩谩脮掳  录掳露陋录镁脤茂脙芦貌氓  脗娄脨脩卤氓  脭脠禄炉
+ *  脳贸脝陇鲁芒脛谩脹脥脨镁脩谩脮掳  脙芦脳脹脭禄脟毛脴脝禄炉拢媒猫露  脭脢脭脗拢脹
  *
- * 娄醒
- *  type    OBJTYPE     左皮斥尼弁玄及正奶皿
- *  index   int         公木冗木及    匹及index
- *  x       int         x甄
- *  y       int         y甄
+ * 脗娄脨脩
+ *  type    OBJTYPE     脳贸脝陇鲁芒脛谩脹脥脨镁录掳脮媒脛脤脙贸
+ *  index   int         鹿芦脛戮脠脽脛戮录掳    脝楼录掳index
+ *  x       int         x脮莽
+ *  y       int         y脮莽
  *  floor   int         floorid
- * 忒曰袄
- *   int  喃曰癫化木凶index, 撩  及凛反｝ -1
+ * 脽炉脭禄掳脌
+ *   int  脿芦脭禄帽虏禄炉脛戮脨脳index, 脕脙  录掳脕脻路麓拢媒 -1
  ------------------------------------------------------------*/
 int initObjectFromObjectMember(
     OBJTYPE type, int index, int x, int y , int floor )
@@ -317,15 +317,15 @@ BOOL storeObjects( char* dirname )
     	snprintf( igfilename ,sizeof( igfilename ) ,"%s/%s_extra" ,dirname ,
               ITEMGOLDSTOREFILENAME );
 
-                print( "\n---- 数据保存中，请别关闭GMSV ----- \n");
+                print( "\n---- 脢媒戮脻卤拢麓忙脰脨拢卢脟毛卤冒鹿脴卤脮GMSV ----- \n");
 	}
     igfile = fopen( igfilename , "w" );
     if( igfile == NULL ){
-        print( "\n\n---- 不能打开 (%s) 备份物品文件. ----- \n\n", igfilename );
+        print( "\n\n---- 虏禄脛脺麓貌驴陋 (%s) 卤赂路脻脦茂脝路脦脛录镁. ----- \n\n", igfilename );
     	return FALSE;
     }
 
-    print( "在线数据保存...");
+    print( "脭脷脧脽脢媒戮脻卤拢麓忙...");
     for( i = 0 ; i < objnum ; i ++ ){
         switch( obj[i].type ){
         case OBJTYPE_ITEM:
@@ -358,9 +358,9 @@ BOOL storeObjects( char* dirname )
         }
     }
     fclose( igfile );
-    print( "完成\n");
+    print( "脥锚鲁脡\n");
 //		system( "./itemda.pl" );
-    print( "数据保存结束\n");
+    print( "脢媒戮脻卤拢麓忙陆谩脢酶\n");
     return TRUE;
 }
 #endif
@@ -437,7 +437,7 @@ BOOL restoreObjects( char* dirname )
 					  int objindex;
 				    int petindex = PET_initCharOneArray( &ch );
 				    if( petindex < 0 ) {
-				     	print( "宠物制作失败。\n");
+				     	print( "鲁猫脦茂脰脝脳梅脢搂掳脺隆拢\n");
 				    }
 					  object.type = OBJTYPE_CHARA;
 					  object.index = petindex;
@@ -464,7 +464,7 @@ BOOL restoreObjects( char* dirname )
 }
 #endif
 #ifdef _MO_LNS_MAPSUOXU
-INLINE int get_mappointindex( int fl,int x, int y)//找出地图传送点索引
+INLINE int get_mappointindex( int fl,int x, int y)//脮脪鲁枚碌脴脥录麓芦脣脥碌茫脣梅脪媒
 {
 	int i;
 	for(i=0;i<objnum;i++)

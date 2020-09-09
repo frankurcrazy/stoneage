@@ -9,13 +9,13 @@
 #include "magic_field.h"
 
 /*
- * »©ÏşÆ¥¼°  Ü·¼°ÖÊ  
+ * Â»Â©ÃÃ¾Ã†Â¥Â¼Â°  ÃœÂ·Â¼Â°Ã–ÃŠ  
  */
 /*----------------------------------------------------------------------
- * ·ßÛĞ¼°ĞÄ¼Ôãâ
- * Â¦ĞÑ
- * charaindex		int		·ßÛĞ¼°index
- * magicindex		int		  Ü·¼°index
+ * Â·ÃŸÃ›ÃÂ¼Â°ÃÃ„Â¼Ã”Ã£Ã¢
+ * Ã‚Â¦ÃÃ‘
+ * charaindex		int		Â·ÃŸÃ›ÃÂ¼Â°index
+ * magicindex		int		  ÃœÂ·Â¼Â°index
  *---------------------------------------------------------------------*/
 int MAGIC_Recovery_Field( int charaindex, int magicindex)
 {
@@ -66,18 +66,18 @@ int MAGIC_Recovery_Field( int charaindex, int magicindex)
 			}
 		}
 	}
-	snprintf( msgbuf, sizeof( msgbuf), "ÄÍ¾ÃÁ¦»Ø¸´%d",
+	snprintf( msgbuf, sizeof( msgbuf), "Ã„ÃÂ¾ÃƒÃÂ¦Â»Ã˜Â¸Â´%d",
 			min( workhp, CHAR_getWorkInt( charaindex, CHAR_WORKMAXHP)) - prevhp);
 	CHAR_talkToCli( charaindex, -1, msgbuf, CHAR_COLORWHITE);
 	return TRUE;
 
 }
 /*----------------------------------------------------------------------
- * Ö°ÚĞÃ«¼Ôãâ
- * Â¦ĞÑ
- * charaindex		int		·ßÛĞ¼°index
- * toindex			int		¼ÔãâÔÊÔÂÚĞ¼°index
- * magicindex		int		  Ü·¼°index
+ * Ã–Â°ÃšÃÃƒÂ«Â¼Ã”Ã£Ã¢
+ * Ã‚Â¦ÃÃ‘
+ * charaindex		int		Â·ÃŸÃ›ÃÂ¼Â°index
+ * toindex			int		Â¼Ã”Ã£Ã¢Ã”ÃŠÃ”Ã‚ÃšÃÂ¼Â°index
+ * magicindex		int		  ÃœÂ·Â¼Â°index
  *---------------------------------------------------------------------*/
 int MAGIC_OtherRecovery_Field( int charaindex, int toindex, int magicindex)
 {
@@ -124,20 +124,20 @@ int MAGIC_OtherRecovery_Field( int charaindex, int toindex, int magicindex)
 	}
 
 	if( charaindex != toindex) {
-		snprintf( msgbuf, sizeof( msgbuf), "%sµÄÄÍ¾ÃÁ¦»Ø¸´%d",
+		snprintf( msgbuf, sizeof( msgbuf), "%sÂµÃ„Ã„ÃÂ¾ÃƒÃÂ¦Â»Ã˜Â¸Â´%d",
 				CHAR_getUseName( toindex ),
 				min( workhp, CHAR_getWorkInt( toindex, CHAR_WORKMAXHP)) - prevhp);
 		CHAR_talkToCli( charaindex, -1, msgbuf, CHAR_COLORWHITE);
 
 		if( CHAR_getInt( toindex, CHAR_WHICHTYPE) == CHAR_TYPEPLAYER) {
-			snprintf( msgbuf, sizeof( msgbuf), "½åÓÉ%sÄÍ¾ÃÁ¦»Ø¸´%d",
+			snprintf( msgbuf, sizeof( msgbuf), "Â½Ã¥Ã“Ã‰%sÃ„ÃÂ¾ÃƒÃÂ¦Â»Ã˜Â¸Â´%d",
 					CHAR_getUseName( charaindex ),
 					min( workhp,CHAR_getWorkInt( toindex, CHAR_WORKMAXHP)) - prevhp);
 			CHAR_talkToCli( toindex, -1, msgbuf, CHAR_COLORWHITE);
 		}
 	}
 	else {
-		snprintf( msgbuf, sizeof( msgbuf), "ÄÍ¾ÃÁ¦»Ø¸´%d",
+		snprintf( msgbuf, sizeof( msgbuf), "Ã„ÃÂ¾ÃƒÃÂ¦Â»Ã˜Â¸Â´%d",
 				min( workhp,CHAR_getWorkInt( charaindex, CHAR_WORKMAXHP)) - prevhp);
 		CHAR_talkToCli( charaindex, -1, msgbuf, CHAR_COLORWHITE);
 

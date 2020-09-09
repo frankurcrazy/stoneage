@@ -1,4 +1,4 @@
-﻿#include<stdio.h>
+#include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
 #include<direct.h>
@@ -65,7 +65,7 @@ unsigned short parts[MAP_X_SIZE * MAP_Y_SIZE];	// ???????
 unsigned short event[MAP_X_SIZE * MAP_Y_SIZE];	// ????
 unsigned short hitMap[MAP_X_SIZE * MAP_Y_SIZE];	// ??????
 
-// ??????䥺????????
+// ??????釾????????
 BOOL mapEmptyFlag;
 short mapEmptyDir;
 int mapEmptyGx, mapEmptyGy;
@@ -401,7 +401,7 @@ void createMap(int fl, int maxx, int maxy)
 	sprintf(floorname, "map\\%d.dat", fl);
 	if ((fp = fopen(floorname, "rb")) == NULL)
 	{
-		// ?????䥺??????
+		// ?????釾??????
 		_mkdir("map");
 		if ((fp = fopen(floorname, "wb")) == NULL)
 			return;
@@ -447,7 +447,7 @@ void createMap(int fl, int maxx, int maxy)
 	}
 }
 
-// ?䴘???????????????????????
+// ?鷉???????????????????????
 void setEventMemory(int x, int y, unsigned short ev)
 {
 	event[(y - mapAreaY1) * mapAreaWidth + (x - mapAreaX1)] = ev;
@@ -465,7 +465,7 @@ BOOL writeMap(int floor, int x1, int y1, int x2, int y2, unsigned short *tile, u
 	char filename[255];
 	int fWidth, fHeight, fOffset, mWidth, width, height, fx, fy, mx, my, len, len2, i, j;
 
-	// ???????䦶?
+	// ???????䦛?
 	sprintf_s(filename, "map\\%d.dat", floor);
 
 	// ????????
@@ -531,7 +531,7 @@ BOOL writeMap(int floor, int x1, int y1, int x2, int y2, unsigned short *tile, u
 		{
 			event[len2 + j] |= (MAP_SEE_FLAG | MAP_READ_FLAG);
 			if (nowFloor == floor && (mapAreaX1 <= x1 + j && x1 + j < mapAreaX2 && mapAreaY1 <= y1 + i && y1 + i < mapAreaY2))
-				// ?䴘???????????????????????
+				// ?鷉???????????????????????
 				setEventMemory(x1 + j, y1 + i, event[len2 + j]);
 		}
 		fseek(fp, sizeof(short) * len + fOffset, SEEK_SET);
@@ -552,12 +552,12 @@ BOOL readMap(int floor, int x1, int y1, int x2, int y2, unsigned short *tile, un
 {
 	FILE *fp;
 	char filename[255];
-#ifdef _FIX_DEL_MAP           // WON 修正玩家抽地图
+#ifdef _FIX_DEL_MAP           // WON 修正玩傢抽地圖
 	char list[10];
 #endif
 	int fWidth, fHeight, fOffset, mWidth, width, height, fx, fy, mx, my, len, len2, i;
 	//printf("floor=%d x1=%d y1=%d x2=%d y2=%d\n",floor,x1,y1,x2,y2);
-	// ???????䦶?
+	// ???????䦛?
 	sprintf_s(filename, "map\\%d.dat", floor);
 
 	// ????????
@@ -577,9 +577,9 @@ BOOL readMap(int floor, int x1, int y1, int x2, int y2, unsigned short *tile, un
 			return FALSE;
 	}
 
-#ifdef _FIX_DEL_MAP           // WON 修正玩家抽地图    
+#ifdef _FIX_DEL_MAP           // WON 修正玩傢抽地圖    
 	fseek(fp, 0, SEEK_SET);
-	if (!fread(list, sizeof(char), 1, fp)) {   // 玩家抽掉地图送监狱
+	if (!fread(list, sizeof(char), 1, fp)) {   // 玩傢抽掉地圖送監獄
 		//andy_add
 		memset(tile, 193, MAP_X_SIZE * MAP_Y_SIZE * sizeof(short));
 		//memset(parts, 193, MAP_X_SIZE * MAP_Y_SIZE * sizeof(short));
@@ -685,18 +685,18 @@ void setWarpMap(int gx, int gy)
 	viewPointX = nowX;
 	viewPointY = nowY;
 	wnCloseFlag = 1;
-#ifdef _AniCrossFrame	   // Syu ADD 动画层游过画面生物
+#ifdef _AniCrossFrame	   // Syu ADD 動畫層遊過畫麵生物
 	extern void crossAniRelease();
 	crossAniRelease();
 #endif
-#ifdef _SURFACE_ANIM       //ROG ADD 动态场景
+#ifdef _SURFACE_ANIM       //ROG ADD 動態場景
 	extern void ReleaseSpecAnim();
 	ReleaseSpecAnim();
 #endif
 }
 
-#ifdef _NEWDRAWBATTLEMAP		   // (不可开放) Syu ADD 自动产生BattleMap
-//ROG ADD 自动排序
+#ifdef _NEWDRAWBATTLEMAP		   // (不可開放) Syu ADD 自動産生BattleMap
+//ROG ADD 自動排序
 typedef struct {
 	int x;
 	int y;
@@ -799,11 +799,11 @@ void ddrawBattleMap(void)
 			// ???
 			if (tile[i * mapAreaWidth + j] > CG_INVISIBLE || parts[i * mapAreaWidth + j] > CG_INVISIBLE)
 			{
-				// ?䴘??????
+				// ?鷉??????
 				if (x >= (-SURFACE_WIDTH >> 1) && x < DEF_APPSIZEX + (SURFACE_WIDTH >> 1) &&
 					y >= (-SURFACE_HEIGHT >> 1) && y < DEF_APPSIZEY + (SURFACE_HEIGHT >> 1))
 				{
-					//ROG ADD 地上物显示
+					//ROG ADD 地上物顯示
 					if (parts[i * mapAreaWidth + j] > CG_INVISIBLE)
 					{
 						realGetNo(parts[i * mapAreaWidth + j], &bmpNo);
@@ -840,7 +840,7 @@ void ddrawBattleMap(void)
 			ty -= SURFACE_HEIGHT >> 1;
 		}
 	}
-	//ROG ADD 地上物显示
+	//ROG ADD 地上物顯示
 	if (partsCnt > 0)
 	{
 		qsort(tempParts, partsCnt, sizeof(PARTS), (CMPFUNC*)sort_parts);
@@ -947,11 +947,11 @@ void drawMap(void)
 			if (tile[i * mapAreaWidth + j] > CG_INVISIBLE)
 			{
 #if 0
-				// ??????䲡??(???)
+				// ??????鰌??(???)
 				if (193 <= tile[i * mapAreaWidth + j] && tile[i * mapAreaWidth + j] <= 196)
 					play_environment(0, x, y);
 #endif
-				// ?䴘??????
+				// ?鷉??????
 				if (x >= (-SURFACE_WIDTH >> 1) && x < DEF_APPSIZEX + (SURFACE_WIDTH >> 1) &&
 					y >= (-SURFACE_HEIGHT >> 1) && y < DEF_APPSIZEY + (SURFACE_HEIGHT >> 1))
 					StockDispBuffer(x, y, DISP_PRIO_TILE, tile[i * mapAreaWidth + j], 0);
@@ -959,10 +959,10 @@ void drawMap(void)
 			else
 			{
 				// ?????????
-				// ????????䲡??
+				// ????????鰌??
 				if (20 <= tile[i * mapAreaWidth + j] && tile[i * mapAreaWidth + j] <= 39)
 					play_environment(tile[i * mapAreaWidth + j], x, y);
-				else if (40 <= tile[i * mapAreaWidth + j] && tile[i * mapAreaWidth + j] <= 59)// ?????????䲡??
+				else if (40 <= tile[i * mapAreaWidth + j] && tile[i * mapAreaWidth + j] <= 59)// ?????????鰌??
 				{
 					play_map_bgm(tile[i * mapAreaWidth + j]);
 					draw_map_bgm_flg = 1;
@@ -972,7 +972,7 @@ void drawMap(void)
 			if (parts[i * mapAreaWidth + j] > CG_INVISIBLE)
 			{
 #if 0
-				// ??????䲡??(???)
+				// ??????鰌??(???)
 				if (parts[i * mapAreaWidth + j] == 10011)
 					play_environment(2, x, y);
 				else if (parts[i * mapAreaWidth + j] == 10012)
@@ -986,7 +986,7 @@ void drawMap(void)
 				}
 #endif
 				realGetNo(parts[i * mapAreaWidth + j], &bmpNo);
-				// ?䴘??????
+				// ?鷉??????
 				realGetPos(bmpNo, &xx, &yy);
 				realGetWH(bmpNo, &ww, &hh);
 				xx += x;
@@ -998,10 +998,10 @@ void drawMap(void)
 			else
 			{
 				// ?????????
-				// ????????䲡??
+				// ????????鰌??
 				if (20 <= parts[i * mapAreaWidth + j] && parts[i * mapAreaWidth + j] <= 39)
 					play_environment(parts[i * mapAreaWidth + j], x, y);
-				else if (40 <= parts[i * mapAreaWidth + j] && parts[i * mapAreaWidth + j] <= 59)// ?????????䲡??
+				else if (40 <= parts[i * mapAreaWidth + j] && parts[i * mapAreaWidth + j] <= 59)// ?????????鰌??
 				{
 					play_map_bgm(parts[i * mapAreaWidth + j]);
 					draw_map_bgm_flg = 1;
@@ -1046,7 +1046,7 @@ void drawMap(void)
 			// ???
 			if (tile[i * mapAreaWidth + j] > CG_INVISIBLE)
 			{
-				// ?䴘??????
+				// ?鷉??????
 				if (x >= (-SURFACE_WIDTH >> 1) && x < DEF_APPSIZEX + (SURFACE_WIDTH >> 1) &&
 					y >= (-SURFACE_HEIGHT >> 1) && y < DEF_APPSIZEY + (SURFACE_HEIGHT >> 1))
 					StockDispBuffer(x, y, DISP_PRIO_TILE, tile[i * mapAreaWidth + j], 0);
@@ -1055,7 +1055,7 @@ void drawMap(void)
 			if (parts[i * mapAreaWidth + j] > CG_INVISIBLE)
 			{
 				realGetNo(parts[i * mapAreaWidth + j], &bmpNo);
-				// ?䴘??????
+				// ?鷉??????
 				realGetPos(bmpNo, &xx, &yy);
 				realGetWH(bmpNo, &ww, &hh);
 				xx += x;
@@ -1180,7 +1180,7 @@ void drawMap2(void)
 			{
 				if (amountXFastDraw2 != 0 || amountYFastDraw2 != 0)
 				{
-					// ?䴘??????????????
+					// ?鷉??????????????
 					if ((-SURFACE_WIDTH >> 1) < x && x < DEF_APPSIZEX + (SURFACE_WIDTH >> 1) &&
 						(-SURFACE_HEIGHT >> 1) < y && y < DEF_APPSIZEY + (SURFACE_HEIGHT >> 1))
 					{
@@ -1213,10 +1213,10 @@ void drawMap2(void)
 			else
 			{
 				// ?????????
-				// ????????䲡??
+				// ????????鰌??
 				if (20 <= tile[i * mapAreaWidth + j] && tile[i * mapAreaWidth + j] <= 39)
 					play_environment(tile[i * mapAreaWidth + j], x, y);
-				else if (40 <= tile[i * mapAreaWidth + j] && tile[i * mapAreaWidth + j] <= 59)// ?????????䲡??
+				else if (40 <= tile[i * mapAreaWidth + j] && tile[i * mapAreaWidth + j] <= 59)// ?????????鰌??
 				{
 					play_map_bgm(tile[i * mapAreaWidth + j]);
 					draw_map_bgm_flg = 1;
@@ -1230,7 +1230,7 @@ void drawMap2(void)
 
 
 				realGetNo(parts[i * mapAreaWidth + j], &bmpNo);
-				// ?䴘??????
+				// ?鷉??????
 				realGetPos(bmpNo, &xx, &yy);
 				realGetWH(bmpNo, &ww, &hh);
 				xx += x;
@@ -1241,10 +1241,10 @@ void drawMap2(void)
 			else
 			{
 				// ?????????
-				// ????????䲡??
+				// ????????鰌??
 				if (20 <= parts[i * mapAreaWidth + j] && parts[i * mapAreaWidth + j] <= 39)
 					play_environment(parts[i * mapAreaWidth + j], x, y);
-				else if (40 <= parts[i * mapAreaWidth + j] && parts[i * mapAreaWidth + j] <= 59)// ?????????䲡??
+				else if (40 <= parts[i * mapAreaWidth + j] && parts[i * mapAreaWidth + j] <= 59)// ?????????鰌??
 				{
 					play_map_bgm(parts[i * mapAreaWidth + j]);
 					draw_map_bgm_flg = 1;
@@ -1315,7 +1315,7 @@ void drawTile(void)
 			// ???
 			if (tile[i * mapAreaWidth + j] > CG_INVISIBLE)
 			{
-				// ?䴘??????
+				// ?鷉??????
 				if (x >= (-SURFACE_WIDTH >> 1) && x < (DEF_APPSIZEX + (SURFACE_WIDTH >> 1)) &&
 					y >= (-SURFACE_HEIGHT >> 1) && y < (DEF_APPSIZEY + (SURFACE_HEIGHT >> 1)))
 					StockDispBuffer(x, y, DISP_PRIO_TILE, tile[i * mapAreaWidth + j], 0);
@@ -1462,7 +1462,7 @@ BOOL mapCheckSum(int floor, int x1, int y1, int x2, int y2, int tileSum, int par
 			lssproto_M_send(sockfd, floor, x1, y1, x2, y2);
 		else
 			old_lssproto_M_send(sockfd, floor, x1, y1, x2, y2);
-		//修正地图异常
+		//修正地圖異常
 		if (loginFlag)
 			loginFlag = FALSE;
 
@@ -1546,7 +1546,7 @@ void readHitMap(int x1, int y1, int x2, int y2, unsigned short *tile, unsigned s
 			if (tile[i * width + j] > CG_INVISIBLE || (60 <= tile[i * width + j] && tile[i * width + j] <= 79))
 			{
 				realGetNo(tile[i * width + j], &bmpNo);
-				// ?????䥺
+				// ?????釾
 				realGetHitFlag(bmpNo, &hit);
 				// ????????????
 				if (hit == 0 && hitMap[i * width + j] != 2)
@@ -1559,7 +1559,7 @@ void readHitMap(int x1, int y1, int x2, int y2, unsigned short *tile, unsigned s
 				// 0??11??????????????
 				switch (tile[i * width + j])
 				{
-				case 0:	// 0.bmp(䥺???)????????????
+				case 0:	// 0.bmp(釾???)????????????
 					// ????????????????????
 					if ((event[i * width + j] & MAP_SEE_FLAG) == 0)
 						break;
@@ -1591,7 +1591,7 @@ void readHitMap(int x1, int y1, int x2, int y2, unsigned short *tile, unsigned s
 			if (parts[i * width + j] > CG_INVISIBLE)
 			{
 				realGetNo(parts[i * width + j], &bmpNo);
-				// ?????䥺
+				// ?????釾
 				realGetHitFlag(bmpNo, &hit);
 				// ????????????
 				if (hit == 0)
@@ -1638,7 +1638,7 @@ void readHitMap(int x1, int y1, int x2, int y2, unsigned short *tile, unsigned s
 			else if (60 <= parts[i * width + j] && parts[i * width + j] <= 79)
 			{
 				realGetNo(parts[i * width + j], &bmpNo);
-				// ?????䥺
+				// ?????釾
 				realGetHitFlag(bmpNo, &hit);
 				// ????????????
 				if (hit == 0 && hitMap[i * width + j] != 2)
@@ -1706,7 +1706,7 @@ void readHitMap(int x1, int y1, int x2, int y2, unsigned short *tile, unsigned s
 #endif
 			{
 				realGetNo(tile[i * width + j], &bmpNo);
-				// ?????䥺
+				// ?????釾
 				realGetHitFlag(bmpNo, &hit);
 				// ????????????
 				if (hit == 0 && hitMap[i * width + j] != 2)
@@ -1721,7 +1721,7 @@ void readHitMap(int x1, int y1, int x2, int y2, unsigned short *tile, unsigned s
 				// 0??11??????????????
 				switch (tile[i * width + j])
 				{
-				case 0:	// 0.bmp(䥺???)????????????
+				case 0:	// 0.bmp(釾???)????????????
 				case 1:
 				case 2:
 				case 5:
@@ -1742,7 +1742,7 @@ void readHitMap(int x1, int y1, int x2, int y2, unsigned short *tile, unsigned s
 			if (parts[i * width + j] > CG_INVISIBLE)
 			{
 				realGetNo(parts[i * width + j], &bmpNo);
-				// ?????䥺
+				// ?????釾
 				realGetHitFlag(bmpNo, &hit);
 				// ????????????
 				if (hit == 0)
@@ -1776,7 +1776,7 @@ void readHitMap(int x1, int y1, int x2, int y2, unsigned short *tile, unsigned s
 			else if (60 <= parts[i * width + j] && parts[i * width + j] <= 79)
 			{
 				realGetNo(parts[i * width + j], &bmpNo);
-				// ?????䥺
+				// ?????釾
 				realGetHitFlag(bmpNo, &hit);
 				// ????????????
 				if (hit == 0 && hitMap[i * width + j] != 2)
@@ -1850,11 +1850,11 @@ BOOL checkHitMap(int gx, int gy)
 }
 
 //
-// ??????䥺??????????????????
+// ??????釾??????????????????
 //
 BOOL checkEmptyMap(int dir)
 {
-	// ????????11???????????䥺???TRUE??
+	// ????????11???????????釾???TRUE??
 	int i, gx, gy, tx, ty, len;
 	BOOL flag = FALSE;
 
@@ -1989,7 +1989,7 @@ void checkAreaLimit(short *x1, short *y1, short *x2, short *y2)
 }
 
 ///////////////////////////////////////////////////////////////////////////
-// ????䴘????????????
+// ????鷉????????????
 //
 void drawGrid(void)
 {
@@ -2044,11 +2044,11 @@ void drawGrid(void)
 		if ((mouse.onceState & MOUSE_LEFT_CRICK))
 		{
 #ifdef _MOVE_SCREEN
-			if (!pc.bCanUseMouse)	// 剧场模式时按滑鼠不能移动
+			if (!pc.bCanUseMouse)	// 劇場模式時按滑鼠不能移動
 #endif
 			{
 #ifdef _THEATER
-				// 当 pc.iTheaterMode 大于 0 时表示正在表演,所以要把 pc.bCanUseMouse 设定为 TRUE
+				// 當 pc.iTheaterMode 大於 0 時錶示正在錶演,所以要把 pc.bCanUseMouse 設定為 TRUE
 				if (pc.iTheaterMode > 0)
 					pc.bCanUseMouse = TRUE;
 #endif
@@ -2060,11 +2060,11 @@ void drawGrid(void)
 		if ((mouse.state & MOUSE_LEFT_CRICK))
 		{
 #ifdef _MOVE_SCREEN
-			if (!pc.bCanUseMouse)	// 剧场模式时按滑鼠不能移动
+			if (!pc.bCanUseMouse)	// 劇場模式時按滑鼠不能移動
 #endif
 			{
 #ifdef _THEATER
-				// 当 pc.iTheaterMode 大于 0 时表示正在表演,所以要把 pc.bCanUseMouse 设定为 TRUE
+				// 當 pc.iTheaterMode 大於 0 時錶示正在錶演,所以要把 pc.bCanUseMouse 設定為 TRUE
 				if (pc.iTheaterMode > 0)
 					pc.bCanUseMouse = TRUE;
 #endif
@@ -2390,14 +2390,14 @@ void updateMapArea(void)
 void onceMoveProc(void)
 {
 	int dir;
-	// ??????????????䥺?
+	// ??????????????釾?
 	nowSpdRate = 1.0F;
 	// ??????????????
 	if (mapEmptyFlag)
 		return;
 	if (sendEnFlag == 0 && eventWarpSendFlag == 0 && eventEnemySendFlag == 0)
 	{
-		//cary say 所有event的执行，送给server
+		//cary say 所有event的執行，送給server
 		if (_execEtcEvent())
 			return;
 		if ((float)nextGx * GRID_SIZE == nowX && (float)nextGy * GRID_SIZE == nowY)
@@ -2820,7 +2820,7 @@ void _etcEventCheck(void)
 		}
 		else if (_checkEncount())
 		{
-			//cary 旧版遇敌
+			//cary 舊版遇敵
 			if (!bNewServer)
 			{
 				_etcEventFlag = TRUE;
@@ -2858,7 +2858,7 @@ BOOL _execEtcEvent(void)
 				_sendWarpEvent();
 				break;
 			case etcEventMode_LocalEncount:
-				//cary 旧版遇敌
+				//cary 舊版遇敵
 				if (!bNewServer)
 					_sendEncount();
 				//end test
@@ -2998,7 +2998,7 @@ void _sendWarpEvent(void)
 	// ?????
 
 	SubProcNo = 200;
-	// ????䴘???
+	// ????鷉???
 	warpEffectProc();
 	warpEffectFlag = TRUE;
 	floorChangeFlag = TRUE;
@@ -3069,7 +3069,7 @@ void _checkEmptyMap(void)
 
 BOOL checkEmptyMapData(int _gx, int _gy, int dir)
 {
-	// ????????11???????????䥺???TRUE??
+	// ????????11???????????釾???TRUE??
 	int i, gx, gy, tx, ty, len, egx, egy;
 	BOOL flag = FALSE;
 
@@ -3204,7 +3204,7 @@ void goFrontPartyCharacter(int no, int x, int y)
 	int i, ox, oy;
 	ACTION *ptAct;
 	if (no <= 0) return;
-	// ????⿳?䥺?????????????
+	// ????⿳?釾?????????????
 	if (party[0].ptAct == NULL)
 		return;
 	// ??????????
@@ -3427,8 +3427,8 @@ void turnAround(void)
 		dir2[1] = '\0';
 		walkSendForServer(nowGx, nowGy, dir2);
 		turnSendTime = TimeGetTime();
-		extern int 右键攻击;
-		if (右键攻击) {
+		extern int 右鍵攻擊;
+		if (右鍵攻擊) {
 			lssproto_AC_send(sockfd, nowGx, nowGy, 0);
 			setPcAction(0);
 
@@ -3779,7 +3779,7 @@ void setPartsPrio(int graNo, int x, int y, int dx, int dy, float mx, float my, i
 	CHAR_PARTS_PRIORITY *ptc, *prePtc;
 	BOOL flag;
 
-	// ?????䥺?????
+	// ?????釾?????
 	if (charPrioCnt >= MAX_CHAR_PRIO_BUF)
 		return;
 
@@ -3838,7 +3838,7 @@ void setCharPrio(int graNo, int x, int y, int dx, int dy, float mx, float my)
 	CHAR_PARTS_PRIORITY *ptc, *prePtc;
 	BOOL flag;
 
-	// ?????䥺?????
+	// ?????釾?????
 	if (charPrioCnt >= MAX_CHAR_PRIO_BUF)
 		return;
 	// ?????????????
@@ -3890,7 +3890,7 @@ BOOL checkPrioPartsVsChar(CHAR_PARTS_PRIORITY *ptc, CHAR_PARTS_PRIORITY *ptp)
 
 	// ???????????
 	realGetPrioType(ptp->graNo, &prioType);
-	// ?????䥺
+	// ?????釾
 	realGetHitFlag(ptp->graNo, &hit);
 	// ??? prioType == 3 ??????
 	if (hit != 0 && prioType == 3)
@@ -4043,7 +4043,7 @@ void stockCharParts(void)
 // ???????????????????
 //
 //   ??：TRUE  ... ????
-//           FALSE ... ??䥺?
+//           FALSE ... ??釾?
 BOOL checkNpcEvent(int gx, int gy, int dx, int dy)
 {
 	int x, y, ev;
@@ -4167,7 +4167,7 @@ BOOL createAutoMap(int floor, int gx, int gy)
 	{
 		for (j = 0; j < AUTO_MAPPING_W; j++)
 		{
-			// ??????䥺?????????????
+			// ??????釾?????????????
 			if (event[i * AUTO_MAPPING_W + j] & MAP_SEE_FLAG)
 			{
 				autoMappingBuf[i][j] = autoMapColorTbl[tile[i * AUTO_MAPPING_W + j]];
@@ -4179,7 +4179,7 @@ BOOL createAutoMap(int floor, int gx, int gy)
 	{
 		for (j = 0; j < AUTO_MAPPING_W; j++)
 		{
-			// ??????䥺?????????????
+			// ??????釾?????????????
 			if (event[i*AUTO_MAPPING_W + j] & MAP_SEE_FLAG)
 			{
 				index = autoMapColorTbl[parts[i * AUTO_MAPPING_W + j]];
@@ -4190,7 +4190,7 @@ BOOL createAutoMap(int floor, int gx, int gy)
 					int k, l;
 
 					realGetNo(parts[i * AUTO_MAPPING_W + j], &bmpNo);
-					// ?????䥺
+					// ?????釾
 					realGetHitFlag(bmpNo, &hit);
 					// ????????????
 					if (hit == 0)
@@ -4231,7 +4231,7 @@ void readAutoMapSeeFlag(void)
 	int x1, y1, x2, y2;
 
 
-	// ???????䦶?
+	// ???????䦛?
 	sprintf_s(filename, "map\\%d.dat", nowFloor);
 
 	// ????????
@@ -4327,13 +4327,13 @@ void writeAutoMapSeeFlag(void)
 	int x1, y1, x2, y2;
 
 
-	// ?????????䥺?????????
+	// ?????????釾?????????
 	if (!autoMapSeeFlag)
 		return;
 
 	autoMapSeeFlag = FALSE;
 
-	// ???????䦶?
+	// ???????䦛?
 	sprintf_s(filename, "map\\%d.dat", autoMapSeeFloor);
 
 	// ????????
@@ -4549,7 +4549,7 @@ BOOL checkMapCacheFlag(int floor, int gxSize, int gySize, int x1, int y1, int x2
 		if (j >= MAX_MAP_CACHE_SIZE)
 			j = 0;
 	}
-	// ??????䥺??
+	// ??????釾??
 	if (!thisFloorCacheFlag)
 	{
 		BOOL flag;
@@ -4568,7 +4568,7 @@ BOOL checkMapCacheFlag(int floor, int gxSize, int gySize, int x1, int y1, int x2
 				break;
 			}
 		}
-		// ???䥺?????????????
+		// ???釾?????????????
 		if (!flag)
 		{
 			i = 0;
@@ -4624,7 +4624,7 @@ BOOL checkMapCacheFlag(int floor, int gxSize, int gySize, int x1, int y1, int x2
 		for (j = yByteStart; j <= yByteEnd; j++)
 		{
 			if ((mapCacheFlag[mapCacheUse][j * MAP_CACHE_X_BYTE + i] & bits) != bits)
-				// ???????䥺??????
+				// ???????釾??????
 				ret = FALSE;
 			mapCacheFlag[mapCacheUse][j * MAP_CACHE_X_BYTE + i] |= bits;
 		}
@@ -5064,7 +5064,7 @@ void setEffectStar(MAP_EFFECT *buf, int gx, int gy, int ggx, int ggy, int type)
 void calEffectStar(MAP_EFFECT *buf)
 {
 	float mx, my;
-	// ?䴘?
+	// ?鷉?
 	camMapToGamen((float)buf->gx * GRID_SIZE, (float)buf->gy * GRID_SIZE, &mx, &my);
 	buf->x = (int)(mx + .5) + buf->ggx;
 	buf->y = (int)(my + .5) + buf->ggy;
@@ -5940,7 +5940,7 @@ void mapEffectKamiFubuki(void)
 }
 
 ///////////////////////////////////////////////////////////////////////////
-// ??????????????????䴘?????
+// ??????????????????鷉?????
 //
 void camMapToGamen(float sx, float sy, float *ex, float *ey)
 {
@@ -5950,19 +5950,19 @@ void camMapToGamen(float sx, float sy, float *ex, float *ey)
 	y0 = (sy - viewPointY) / GRID_SIZE;
 	x = +x0 * tx + y0 * tx;
 	y = -x0 * ty + y0 * ty;
-	//?䴘?
+	//?鷉?
 	*ex = x + viewOffsetX;
 	*ey = y + viewOffsetY;
 }
 
 //
-// ?䴘????????(????????)????
+// ?鷉????????(????????)????
 //
 void camGamenToMap(float sx, float sy, float *ex, float *ey)
 {
 	float x0, y0, x, y;
 
-	// ?䴘?
+	// ?鷉?
 	x0 = sx - viewOffsetX;
 	y0 = sy - viewOffsetY;
 	x = x0 - (float)SURFACE_WIDTH / (float)SURFACE_HEIGHT * y0;
@@ -6000,8 +6000,8 @@ void mapEffectDice(void)
 		case 1:
 			if (TimeGetTime() - dwDiceTimer > 100)
 			{
-#ifdef _CHAR_PROFESSION			// WON ADD 人物职业
-#ifdef _GM_IDENTIFY		// Rog ADD GM识别
+#ifdef _CHAR_PROFESSION			// WON ADD 人物職業
+#ifdef _GM_IDENTIFY		// Rog ADD GM識彆
 				setNpcCharObj(0, 26400 + i, 13, 9, 0, "", "", "", 1, "", 1, 0, 1, 0, 48, 0, gm_name);
 #else
 #ifdef _NPC_PICTURE
@@ -6011,7 +6011,7 @@ void mapEffectDice(void)
 #endif
 #endif
 #else
-#ifdef _GM_IDENTIFY		// Rog ADD GM识别
+#ifdef _GM_IDENTIFY		// Rog ADD GM識彆
 				setNpcCharObj(0, 26400 + i, 13, 9, 0, "", "", "", 1, "", 1, 0, 1, 0, 48, gm_name);
 #else
 #ifdef _NPC_PICTURE
@@ -6030,8 +6030,8 @@ void mapEffectDice(void)
 			}
 			break;
 		case 2:
-#ifdef _CHAR_PROFESSION			// WON ADD 人物职业
-#ifdef _GM_IDENTIFY		// Rog ADD GM识别
+#ifdef _CHAR_PROFESSION			// WON ADD 人物職業
+#ifdef _GM_IDENTIFY		// Rog ADD GM識彆
 			setNpcCharObj(0, 26410 + d1, 12, 8, 0, "", "", "", 1, "", 1, 0, 1, 0, 48, 0, "");
 			setNpcCharObj(1, 26416 + d2, 13, 9, 0, "", "", "", 1, "", 1, 0, 1, 0, 48, 0, "");
 #else

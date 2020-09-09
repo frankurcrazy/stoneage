@@ -1,4 +1,4 @@
-﻿#define __HANDLETIME_C__
+#define __HANDLETIME_C__
 #include "../systeminc/version.h"
 #include "../systeminc/system.h"
 #include <time.h>
@@ -108,7 +108,7 @@ void LSTimeToRealTime( LSTIME *lstime, long *t)
 }
 
 /*******************************************************************
-	LS????????希?台?
+	LS????????希?颱?
 	??π int : ?0??1??2??3
 	LSTIME *lstime : LSTIME?﹨▍??????
 *******************************************************************/
@@ -131,7 +131,7 @@ LSTIME_SECTION getLSTime (LSTIME *lstime)
 void TimeZoneProc( void )
 {
 	int	timeZoneNo;
-	//??????????希?台?
+	//??????????希?颱?
 	timeZoneNo = getLSTime ( &SaTime );
 	// ??┼?阪????
 	if( SaTimeZoneNo != timeZoneNo ){

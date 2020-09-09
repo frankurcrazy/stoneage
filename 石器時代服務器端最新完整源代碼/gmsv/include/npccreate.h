@@ -16,24 +16,24 @@
 
 typedef enum
 {
-    NPC_CREATEFLOORID,      /*  ░╫╖Є╩зID    */
-    NPC_CREATEBORNLEFTUPX,        /*  ╢√╧■╝░X╒ч   */
-    NPC_CREATEBORNLEFTUPY,        /*  ╢√╧■╝░Y╒ч   */
-    NPC_CREATEBORNRIGHTDOWNX,     /*  уп╞▒╝░X╒ч   */
-    NPC_CREATEBORNRIGHTDOWNY,     /*  уп╞▒╝░Y╒ч   */
+    NPC_CREATEFLOORID,      /*  ┬░├Ч┬╖├▓├К┬зID    */
+    NPC_CREATEBORNLEFTUPX,        /*  ┬╢├╗├П├╛┬╝┬░X├Х├з   */
+    NPC_CREATEBORNLEFTUPY,        /*  ┬╢├╗├П├╛┬╝┬░Y├Х├з   */
+    NPC_CREATEBORNRIGHTDOWNX,     /*  ├г┬п├Ж┬▒┬╝┬░X├Х├з   */
+    NPC_CREATEBORNRIGHTDOWNY,     /*  ├г┬п├Ж┬▒┬╝┬░Y├Х├з   */
 
-    NPC_CREATEMOVELEFTUPX,        /*  ╢√╧■╝░X╒ч   */
-    NPC_CREATEMOVELEFTUPY,        /*  ╢√╧■╝░Y╒ч   */
-    NPC_CREATEMOVERIGHTDOWNX,     /*  уп╞▒╝░X╒ч   */
-    NPC_CREATEMOVERIGHTDOWNY,     /*  уп╞▒╝░Y╒ч   */
+    NPC_CREATEMOVELEFTUPX,        /*  ┬╢├╗├П├╛┬╝┬░X├Х├з   */
+    NPC_CREATEMOVELEFTUPY,        /*  ┬╢├╗├П├╛┬╝┬░Y├Х├з   */
+    NPC_CREATEMOVERIGHTDOWNX,     /*  ├г┬п├Ж┬▒┬╝┬░X├Х├з   */
+    NPC_CREATEMOVERIGHTDOWNY,     /*  ├г┬п├Ж┬▒┬╝┬░Y├Х├з   */
 
-    NPC_CREATEDIR,                /*  ╫█╘┬┴▌╝░  щ∙    */
-    NPC_CREATEBASEIMAGENUMBER,    /*  template ╝░╔м└├├л╧■╠д╬х╘╩╘┬
-                                        ьл  ─п    */
-    NPC_CREATETIME,               /* ┴▌├▐ */
-    NPC_CREATEBORNNUM,            /*    ╣л╝░╗й  ▒х╟ыЄ╪╜ё┴∙╘┬╨╤    */
+    NPC_CREATEDIR,                /*  ├Ч├Ы├Ф├В├Б├Э┬╝┬░  ├й├╣    */
+    NPC_CREATEBASEIMAGENUMBER,    /*  template ┬╝┬░├Й┬м├А├Г├Г┬л├П├╛├М┬д├О├е├Ф├К├Ф├В
+                                        ├м┬л  ├Д┬п    */
+    NPC_CREATETIME,               /* ├Б├Э├Г├Ю */
+    NPC_CREATEBORNNUM,            /*    ┬╣┬л┬╝┬░┬╗┬й  ┬▒├е├З├л├▓├Ш┬╜├▒├Б├╣├Ф├В├Р├С    */
 
-    NPC_CREATEENEMYNUM,           /*  │─╝░┼╦  ╨╤  */
+    NPC_CREATEENEMYNUM,           /*  ┬│├Д┬╝┬░├Е├Л  ├Р├С  */
     NPC_CREATEBOUNDARY,
     NPC_CREATEDATE,
     NPC_CREATEIGNOREINVINCIBLE,
@@ -56,7 +56,7 @@ typedef enum
 
 typedef enum
 {
-    NPC_CREATENAME,             /* template├л╧■╠д╬х╘╩╘┬╛о╩╓╪╞─╛╪ж╓╨  єб*/
+    NPC_CREATENAME,             /* template├Г┬л├П├╛├М┬д├О├е├Ф├К├Ф├В┬╛┬о├К├Ц├Ш├Ж├Д┬╛├Ш┬ж├Ц├Р  ├│┬б*/
     NPC_CREATECHARNUM,
 }NPC_CREATECHAR;
 

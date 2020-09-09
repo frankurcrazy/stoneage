@@ -1,4 +1,4 @@
-﻿/************************/
+/************************/
 /*	action.c			*/
 /************************/
 #include "../systeminc/version.h"
@@ -47,7 +47,7 @@ ACTION *GetAction( UCHAR prio, UINT yobiSize )
 	g_iMallocCount++;
 #endif
 	if( pAct == NULL ){
-		MessageBoxNew( hWnd, "pAct为空", "GetAction Erorr", MB_OK );
+		MessageBoxNew( hWnd, "pAct為空", "GetAction Erorr", MB_OK );
 		return NULL;
 	}
 	memset(pAct,0,sizeof(ACTION));
@@ -64,7 +64,7 @@ ACTION *GetAction( UCHAR prio, UINT yobiSize )
 #ifdef _STONDEBUG_
 			g_iMallocCount--;
 #endif
-			MessageBoxNew( hWnd, "Yobi为空", "GetYobi Erorr", MB_OK );
+			MessageBoxNew( hWnd, "Yobi為空", "GetYobi Erorr", MB_OK );
 			return NULL;
 		}
 		memset(pAct->pYobi,0,yobiSize);
@@ -96,7 +96,7 @@ ACTION *GetAction( UCHAR prio, UINT yobiSize )
 }
 
 /* ????????? *********************************************************/
-// 执行所有的动作，当deathFlag设定为TRUE时，会造成此动作的释放
+// 執行所有的動作，當deathFlag設定為TRUE時，會造成此動作的釋放
 
 void RunAction( void )
 {

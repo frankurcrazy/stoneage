@@ -1,4 +1,4 @@
-﻿#ifndef _CHARACTER_H_
+#ifndef _CHARACTER_H_
 #define _CHARACTER_H_
 
 #include"action.h"
@@ -23,7 +23,7 @@ enum
 	CHR_STATUS_WATCH	= 0x4000,			// ??
 	CHR_STATUS_TRADE	= 0x8000,			// 交易中
 #ifdef _ANGEL_SUMMON
-	CHR_STATUS_ANGEL	= 0x10000			// 使者任务中
+	CHR_STATUS_ANGEL	= 0x10000			// 使者任務中
 #endif
 };
 
@@ -108,12 +108,12 @@ typedef struct
 	ACTION *ptAct;
 	int charNameColor;		// ????????????    
 	// shan add
-	char fmname[CHAR_FMNAME_LEN+1];    // 家族名称
+	char fmname[CHAR_FMNAME_LEN+1];    // 傢族名稱
 	// Robin
 	char petName[CHAR_FREENAME_LEN+1];
 	int petLevel;
 
-//#ifdef _CHAR_PROFESSION			// WON ADD 人物职业
+//#ifdef _CHAR_PROFESSION			// WON ADD 人物職業
 //	int profession_class;
 //#endif
 
@@ -188,7 +188,7 @@ struct Posstruct
 	int petY;
 	int magic1X;	
 	int magic1Y;
-	//int offsetX;	//荧幕有位移时的量
+	//int offsetX;	//熒幕有位移時的量
 	//int offsetY;
 	
 };
@@ -203,7 +203,7 @@ void shiftBufCount( ACTION * );
 
 ACTION *createCharAction( int, int, int, int );
 
-#ifdef _WATERANIMATION //Syu ADD 泪之海动画层
+#ifdef _WATERANIMATION //Syu ADD 淚之海動畫層
 ACTION *createWaterAnimation( int , int , int , int );
 #endif
 
@@ -280,8 +280,8 @@ int checkCharObjPointStatus( int, int, short, unsigned short );
 int checkCharObjPointNotStatus( int, int, short, unsigned short );
 #endif
 
-#ifdef _CHAR_PROFESSION			// WON ADD 人物职业
-    #ifdef _GM_IDENTIFY		// Rog ADD GM识别
+#ifdef _CHAR_PROFESSION			// WON ADD 人物職業
+    #ifdef _GM_IDENTIFY		// Rog ADD GM識彆
         void setNpcCharObj( int, int, int, int, int, char *, char *, char *, int, char *, int, int, int, int, int, int, char *);
     #else
 		#ifdef _NPC_PICTURE

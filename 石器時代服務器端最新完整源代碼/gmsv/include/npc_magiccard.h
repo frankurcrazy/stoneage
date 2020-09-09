@@ -2,15 +2,15 @@
 #define __NPC_MAGICCARD_H__
 
 
-#define	BANKERTOTAL			2   // °­©J¹Ö¡õ
+#define	BANKERTOTAL			2   // Â°Â­Â©JÂ¹Ã–Â¡Ãµ
 
 struct BANKER
 {
 	short starttotal;
 	short playertotal;
 	short state;
-	int waittime;					//Æû¡õ¼ª¶µ¡õ¹©
-	int turntime;					//¡õÓÞ¡õ¹©
+	int waittime;					//Ã†Ã»Â¡ÃµÂ¼ÂªÂ¶ÂµÂ¡ÃµÂ¹Â©
+	int turntime;					//Â¡ÃµÃ“ÃžÂ¡ÃµÂ¹Â©
 	short turn;
 	int  hp[7]; 
 	char cdkey[6][CDKEYLEN];

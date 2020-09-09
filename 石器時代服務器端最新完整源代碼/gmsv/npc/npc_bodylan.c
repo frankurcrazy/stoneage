@@ -11,24 +11,24 @@
 
 
 /*
- *µü£ûÊ¾·¸Å«·Â¼þ±Ø¡õ³âÃ«ÒøÒüÈÉ  É±ÔÊÔÂNPC
- * ÒýÄÚ  ØÆ¾®ØêÈÕÄ¾Ð×ÈÕ£ý¹«¼°ÃóÒÁÄÌØÀ¡õ±å
- * ³ð¼°NPC¼°INDEXÃ«âçÐåÔÊÔÂ£Û
+ *è¿­ï½›ç¤ºçŠ¯å¥´ä»¿ä»¶å¿…â–¡æ–¥æ¯›éŠ€å°¹å£¬  æ®ºå…æœˆNPC
+ * å¼•å…§  ä»„äº•ä»ƒæ—¥æœ¨å‡¶æ—¥ï½å…¬åŠçš¿ä¼Šå¥¶ä¹©â–¡åž
+ * ä»‡åŠNPCåŠINDEXæ¯›å¿¡ç¶‰å…æœˆï¼»
  *
- *ÆÈ£ûNPC¼°Á§Ô»Æ¥Ê§ÛÍÆËÒà¼þ»¥Ø¤ÔÈÐ×ÈÕ£ýÊ§ÛÍÆËÒà¼þÃ«ËÚ³ðØÆÐ×ÃóÒÁÄÌØÀ¡õ»¥
- *NPC¼°INDEXÃ«âç  ØÆ»¯ÖÐÔÂ¾®ÃñÄáÓÀÛÍ
- *ÃñÄáÓÀÛÍ    Ø¦ÈÕÆÝ·´Ê§ÛÍÆËÒà¼þ¼°ÆË¡õ¸¥¼þµ©ÃñÄáÓÀÛÍÔÊÔÂ
- *ÎÐ¶±¼°Ê§ÛÍÆËÒà¼þÃ«ØÆ»¯ÖÐÐ×ÈÕÃóÒÁÄÌØÀ¡õ¼°ÊÐËü¼þÐþÃ«Ê§ÓÀÃó½ñÁùÔÂ£Û
- *ÊÐËü¼þÐþÊ§ÓÀÃó  £ýòåÆË¡õ¸¥¼þµ©    Ø¦ÈÕÏ¶ÀÃ¼°èëô÷³ß·¥¡õÃó½ñÁùÔÂ
+ *è¿«ï½›NPCåŠç’ƒæ›°åŒ¹å¤±å¼æ’²äº¦ä»¶äº’ä¸å‹»å‡¶æ—¥ï½å¤±å¼æ’²äº¦ä»¶æ¯›ç²Ÿä»‡ä»„å‡¶çš¿ä¼Šå¥¶ä¹©â–¡äº’
+ *NPCåŠINDEXæ¯›å¿¡  ä»„åŒ–ä¸­æœˆäº•æ°‘å°¼æ°¸å¼
+ *æ°‘å°¼æ°¸å¼    å…æ—¥æˆšåå¤±å¼æ’²äº¦ä»¶åŠæ’²â–¡å¼—ä»¶æ—¦æ°‘å°¼æ°¸å¼å…æœˆ
+ *æ¸¦ä¾—åŠå¤±å¼æ’²äº¦ä»¶æ¯›ä»„åŒ–ä¸­å‡¶æ—¥çš¿ä¼Šå¥¶ä¹©â–¡åŠå¸‚å®ƒä»¶çŽ„æ¯›å¤±æ°¸çš¿ä»Šå…­æœˆï¼»
+ *å¸‚å®ƒä»¶çŽ„å¤±æ°¸çš¿  ï½èŸˆæ’²â–¡å¼—ä»¶æ—¦    å…æ—¥éš™çˆ›åŠæ¨ºèµ­å°ºä¼â–¡çš¿ä»Šå…­æœˆ
  *
  */
 
 enum {
-	BODYLAN_E_COMMANDNUM = CHAR_NPCWORKINT1,	// ÎìÑ¨¼þÓñ¼°Ó®½ñ
+	BODYLAN_E_COMMANDNUM = CHAR_NPCWORKINT1,	// æˆŠç©´ä»¶çŽ‰åŠè´ä»Š
 };
 
 
-// ËüÄÌ¼þÓñËüÆ¹¡õÓñ
+// å®ƒå¥¶ä»¶çŽ‰å®ƒä¹’â–¡çŽ‰
 enum{
 	BODYLAN_WIN_FIRST,
 	BODYLAN_WIN_LAST_GOOD,
@@ -49,7 +49,7 @@ static void NPC_BodyLan_Window(
 
 
 /*********************************
-* âÙÓåÖÊ  
+* è³¡æ¸è³ª  
 *********************************/
 BOOL NPC_BodyLanInit( int meindex )
 {
@@ -61,38 +61,38 @@ BOOL NPC_BodyLanInit( int meindex )
     CHAR_setInt( meindex , CHAR_WHICHTYPE , CHAR_TYPEEVENT );
 
     if( NPC_Util_GetArgStr( meindex, szArg, sizeof( szArg ) ) == NULL ){
-    	print( "npc_bodylan.c:Ã»ÓÐÒýÊý(%s)\n",
+    	print( "npc_bodylan.c:æ²’æœ‰å¼•æ•¸(%s)\n",
     		CHAR_getChar(meindex,CHAR_NPCARGUMENT) );
     	return FALSE;
     }
 
 
-	// ÆË¡õ¸¥¼þµ©Ã«¼ëÔÊ
+	// æ’²â–¡å¼—ä»¶æ—¦æ¯›ç¹­å…
 	if( NPC_Util_GetStrFromStrWithDelim( szArg, "Act", szP, sizeof( szP ) ) == NULL ){
-		print( "npc_bodylan:¶¯×÷ÎÄ×ÖÁÐÉÐÎ´Éè¶¨(%s)\n",	szArg );
+		print( "npc_bodylan:å‹•ä½œæ–‡å­—åˆ—å°šæœªè¨­å®š(%s)\n",	szArg );
 		return FALSE;
 	}
 
 	for( i = 0 ; ; i ++ ){
-		//   Û¢Ø¦´Í  
+		//   é‚°å…è³œ  
 		if( getStringFromIndexWithDelim( szP, ",", i, buf, sizeof( buf)) != FALSE ){
 			needSeq = atoi(buf);
-			// Ñ¨ÄÌ¹Ïµ©»¥  Ð×ÈÕ³ð³ðÒýÆ¥
+			// ç©´å¥¶ç“œæ—¦äº’  å‡¶æ—¥ä»‡ä»‡å¼•åŒ¹
 			if( needSeq < 0 ){
 				if( i <= 0 ){
-					print( "npc_bodylan:¶¯×÷ÁÐÉÐÎ´Éè¶¨(%s)\n", szArg );
+					print( "npc_bodylan:å‹•ä½œåˆ—å°šæœªè¨­å®š(%s)\n", szArg );
 				}
-				//     ÐÑÃ«±¾ÓÀÐþ
+				//     é†’æ¯›æœ¬æ°¸çŽ„
 				CHAR_setWorkInt( meindex, BODYLAN_E_COMMANDNUM, i );
 				break;
 			}else{
-				// »ï¡õÃóØÆ»¯ÐÑÒüÔÂ
+				// å¤¥â–¡çš¿ä»„åŒ–é†’å°¹æœˆ
 			}
 		}else{
 			if( i <= 0 ){
-				print( "npc_bodylan:¶¯×÷ÁÐÉÐÎ´Éè¶¨(%s)\n", szArg );
+				print( "npc_bodylan:å‹•ä½œåˆ—å°šæœªè¨­å®š(%s)\n", szArg );
 			}
-			//     ÐÑÃ«±¾ÓÀÐþ
+			//     é†’æ¯›æœ¬æ°¸çŽ„
 			CHAR_setWorkInt( meindex, BODYLAN_E_COMMANDNUM, i );
 			break;
 		}
@@ -108,82 +108,82 @@ BOOL NPC_BodyLanInit( int meindex )
 
 
 /*********************************
-*   ØÆ¾®ØêÈÕÄ¾Ð×ÁÝ¼°ÖÊ  
+*   ä»„äº•ä»ƒæ—¥æœ¨å‡¶å‡œåŠè³ª  
 *********************************/
 void NPC_BodyLanTalked( int meindex , int talkerindex , char *szMes ,int color )
 {
 	char szP[256], szArg[4096];
 	int EventNo = -1,Pre_Event = -1;
 
-    /* ÃóÒÁÄÌØÀ¡õ±å¸²ØÆ»¯·ÖØê  É±ÔÊÔÂ */
+    /* çš¿ä¼Šå¥¶ä¹©â–¡åžè¦†ä»„åŒ–åˆ†ä»ƒ  æ®ºå…æœˆ */
     if( CHAR_getInt( talkerindex , CHAR_WHICHTYPE ) != CHAR_TYPEPLAYER ) {
     	return;
     }
 
-	/* ¨àºëØøÓÀÓñ¶¯  ¼°ÐÄ */
+	/* ã„ å¼˜ä¼‰æ°¸çŽ‰å‹•  åŠå¿ƒ */
 	if( NPC_Util_CharDistance( talkerindex, meindex ) > 2 )
 	{
 		return;
 	}
 
-	// Â¦ÐÑ  Ù¯  
+	// å©é†’  å„‚  
     if( NPC_Util_GetArgStr( meindex, szArg, sizeof( szArg ) ) == NULL ){
-    	print( "npc_bodylan.c:Ã»ÓÐÒýÊý(%s)\n",
+    	print( "npc_bodylan.c:æ²’æœ‰å¼•æ•¸(%s)\n",
     		CHAR_getChar(meindex,CHAR_NPCARGUMENT) );
     	return ;
     }else{
-		// ÄÌÃ¬¼þÐþ  Ä¯äú  
+		// å¥¶çŸ›ä»¶çŽ„  å¯žæ½¸  
 		if( NPC_Util_GetStrFromStrWithDelim( szArg, "EventNo", szP, sizeof( szP ) ) != NULL ){
 			EventNo = atoi(szP);
 		}
-		// ÒÇó¡  Û¢ÄÌÃ¬¼þÐþ  Ä¯äú  
+		// å„€èŸ†  é‚°å¥¶çŸ›ä»¶çŽ„  å¯žæ½¸  
 		if( NPC_Util_GetStrFromStrWithDelim( szArg, "Pre_Event", szP, sizeof( szP ) ) != NULL ){
 			Pre_Event = atoi(szP);
 		}
 	}
 
-	// ÒÇó¡±å  Û¢ÄÌÃ¬¼þÐþ  Ä¯»¥Ø¤Ä¾ÈÉ
+	// å„€èŸ†åž  é‚°å¥¶çŸ›ä»¶çŽ„  å¯žäº’ä¸æœ¨å£¬
 	if( Pre_Event >= 0 ){
-		// ÄÌÃ¬¼þÐþ±å¸²ØÆ»¯Éýµ¤ØÆ»¯ÖÐÔÂ¾®ÃñÄáÓÀÛÍ
+		// å¥¶çŸ›ä»¶çŽ„åžè¦†ä»„åŒ–å‡ä¸¹ä»„åŒ–ä¸­æœˆäº•æ°‘å°¼æ°¸å¼
 		if( NPC_EventCheckFlg( talkerindex, Pre_Event ) == FALSE ){
-			//   Û¢ÄÌÃ¬¼þÐþÃ«ÛÍØøÊ§ØÆ»¯ÖÐØ¦¾®ÔÈÐ×ÈÕ³ð¼°±¾Øø°×
+			//   é‚°å¥¶çŸ›ä»¶çŽ„æ¯›å¼ä¼‰å¤±ä»„åŒ–ä¸­å…äº•å‹»å‡¶æ—¥ä»‡åŠæœ¬ä¼‰ç™½
 			NPC_BodyLan_Window( meindex, talkerindex, BODYLAN_WIN_NOT_PREEVENT );
 			return;
 		}
 	}
-	// ÄÌÃ¬¼þÐþ  Ä¯»¥Ø¤Ä¾ÈÉ
+	// å¥¶çŸ›ä»¶çŽ„  å¯žäº’ä¸æœ¨å£¬
 	if( EventNo >= 0 ){
-		// ÄÌÃ¬¼þÐþ±å¸²ØÆ»¯Éýµ¤ØÆ»¯ÖÐÔÂ¾®ÃñÄáÓÀÛÍ
+		// å¥¶çŸ›ä»¶çŽ„åžè¦†ä»„åŒ–å‡ä¸¹ä»„åŒ–ä¸­æœˆäº•æ°‘å°¼æ°¸å¼
 		if( NPC_EventCheckFlg( talkerindex, EventNo ) == TRUE ){
-			//   ÔÈ»¯ÖÐÐ×ÈÕ³ð¼°±¾Øø°×
+			//   å‹»åŒ–ä¸­å‡¶æ—¥ä»‡åŠæœ¬ä¼‰ç™½
 			NPC_BodyLan_Window( meindex, talkerindex, BODYLAN_WIN_ALREADY );
 			return;
 		}
 	}
 
-	// ó¡¼Ô³ð¼°ÃóÒÁÄÌØÀ¡õ·´·ßÛÐÎçÔÏÔÈ»¯ÖÐÐ×¾®
+	// èŸ†èŽ¢ä»‡åŠçš¿ä¼Šå¥¶ä¹©â–¡åæ†¤åŒåˆéŸ»å‹»åŒ–ä¸­å‡¶äº•
 	if( CHAR_getWorkInt( talkerindex, CHAR_WORKTRADER ) == meindex ){
 
-		// ½ñÈÕ±åÎìÑ¨¼þÓñ»¥òå  ÔÀ  ØÆ»¯ÖÐÐ×ÈÕ
+		// ä»Šæ—¥åžæˆŠç©´ä»¶çŽ‰äº’èŸˆ  å¶½  ä»„åŒ–ä¸­å‡¶æ—¥
 		if( CHAR_getWorkInt( talkerindex, CHAR_WORKSHOPRELEVANT )
 		 >= CHAR_getWorkInt( meindex, BODYLAN_E_COMMANDNUM )
 		){
-			// ÔÀ  ¡å¡åÈÔ    ¾®£¢
+			// å¶½  â€³â€³ä»    äº•ï¼‚
 			NPC_BodyLan_Window( meindex, talkerindex, BODYLAN_WIN_LAST_GOOD );
 			return;
 		}else{
-			// ÁÃ  
+			// æ’©  
 			NPC_BodyLan_Window( meindex, talkerindex, BODYLAN_WIN_LAST_NG );
 			return;
 		}
 	}else{
-		// âÙ»§»¯Ø¦¼°Æ¥´´ÒüÔÂ
-		// ÃóÒÁÄÌØÀ¡õ±å·ßÛÐ¼°ÄÌ¼þ·¸ÓÀÛÍµ©Ã«âçÐå½ñÁùÔÂ
+		// è³¡æˆ¶åŒ–å…åŠåŒ¹å‰µå°¹æœˆ
+		// çš¿ä¼Šå¥¶ä¹©â–¡åžæ†¤åŒåŠå¥¶ä»¶çŠ¯æ°¸å¼æ—¦æ¯›å¿¡ç¶‰ä»Šå…­æœˆ
 		CHAR_setWorkInt( talkerindex, CHAR_WORKTRADER, meindex );
-		// ÆË¡õ¸¥¼þµ©·´  âÙ¾®ÈÕ±åâÙÓå¼À
+		// æ’²â–¡å¼—ä»¶æ—¦å  è³¡äº•æ—¥åžè³¡æ¸ç¥­
 		CHAR_setWorkInt( talkerindex, CHAR_WORKSHOPRELEVANT, 1 );
 
-		// ¹«¼°¶Ë±¾Øø°×Îç¾®ÔÏÔÂÍÍÎå¾®Ø¦Ø¤¡¯¡¯¡¯
+		// å…¬åŠç«¯æœ¬ä¼‰ç™½åˆäº•éŸ»æœˆå±¯äº”äº•å…ä¸â€™â€™â€™
 		NPC_BodyLan_Window( meindex, talkerindex, BODYLAN_WIN_FIRST );
 		return;
 	}
@@ -191,7 +191,7 @@ void NPC_BodyLanTalked( int meindex , int talkerindex , char *szMes ,int color )
 
 
 /*=======================================
- * watch ÖÊ  
+ * watch è³ª  
  *======================================*/
 void NPC_BodyLanWatch(
 	int objmeindex,
@@ -210,91 +210,91 @@ void NPC_BodyLanWatch(
 	int meindex;
 	int seqNo, needSeq;
 
-	// Æ½ÅÒ·ÂÛÍÕý¶¯Â½·´ØøÕý¡õ¼þ
+	// å¹³ä¹“ä»¿å¼æ­£å‹•é™¸åä¼‰æ­£â–¡ä»¶
 	if( OBJECT_getType(objmoveindex) != OBJTYPE_CHARA ) return;
 	actindex = OBJECT_getIndex(objmoveindex);
-	// ÃóÒÁÄÌØÀ¡õ¶¯Â½·´ØøÕý¡õ¼þ
+	// çš¿ä¼Šå¥¶ä¹©â–¡å‹•é™¸åä¼‰æ­£â–¡ä»¶
 	if( CHAR_getInt( actindex, CHAR_WHICHTYPE ) != CHAR_TYPEPLAYER ) return;
 
-	// ·ßÛÐ¼°ÄÌ¼þ·¸ÓÀÛÍµ©
+	// æ†¤åŒåŠå¥¶ä»¶çŠ¯æ°¸å¼æ—¦
 	meindex = OBJECT_getIndex(objmeindex);
 
-	// ·ßÛÐ¼°INDEXÃ«âç  ØÆ»¯ÖÐÔÂ¾®£¢ÖÐØ¦ØêÄ¾ÈÉØøÕý¡õ¼þ
+	// æ†¤åŒåŠINDEXæ¯›å¿¡  ä»„åŒ–ä¸­æœˆäº•ï¼‚ä¸­å…ä»ƒæœ¨å£¬ä¼‰æ­£â–¡ä»¶
 	if( CHAR_getWorkInt( actindex, CHAR_WORKTRADER ) != meindex ){
 		return;
 	}
 
-	// Éý³ðÒýÆ¥Ê§ÛÍÆËÒà¼þÃ«ØÆ»¯ÖÐÔÂ¾®
+	// å‡ä»‡å¼•åŒ¹å¤±å¼æ’²äº¦ä»¶æ¯›ä»„åŒ–ä¸­æœˆäº•
 	seqNo = CHAR_getWorkInt( actindex, CHAR_WORKSHOPRELEVANT );
-	//   Ø¦èëÄþ·´  âÙ¾®ÈÕ
+	//   å…æ¨ºå¯œå  è³¡äº•æ—¥
 	if( seqNo < 1 )seqNo = 1;
 
-	// Â¦ÐÑ  Ù¯  
+	// å©é†’  å„‚  
     if( NPC_Util_GetArgStr( meindex, szArg, sizeof( szArg ) ) == NULL ){
-    	print( "npc_bodylan.c:Ã»ÓÐÒýÊý(%s)\n",
+    	print( "npc_bodylan.c:æ²’æœ‰å¼•æ•¸(%s)\n",
     		CHAR_getChar(meindex,CHAR_NPCARGUMENT) );
     	return ;
     }
 
 
-	// ÆË¡õ¸¥¼þµ©Ã«¼ëÔÊ
+	// æ’²â–¡å¼—ä»¶æ—¦æ¯›ç¹­å…
 	if( NPC_Util_GetStrFromStrWithDelim( szArg, "Act", szP, sizeof( szP ) ) == NULL ){
-		print( "npc_bodylan:¶¯×÷ÎÄ×ÖÁÐÉÐÎ´Éè¶¨(%s)\n",	szArg );
+		print( "npc_bodylan:å‹•ä½œæ–‡å­—åˆ—å°šæœªè¨­å®š(%s)\n",	szArg );
 		return;
 	}
 
-	//   Û¢Ø¦´Í  
+	//   é‚°å…è³œ  
 	if(getStringFromIndexWithDelim( szP, ",", seqNo, buf, sizeof( buf)) != FALSE ){
 		needSeq = atoi(buf);
 	}else{
-		// Ø¦Ùâ¾®Ø¦¾®ÔÈÐ×ÈÕ  âÙ¾®ÈÕ
+		// å…å…®äº•å…äº•å‹»å‡¶æ—¥  è³¡äº•æ—¥
 		CHAR_setWorkInt( actindex, CHAR_WORKSHOPRELEVANT, 1 );
 
-//		print( "×ö¹ýÍ·ÁË¡£»Øµ½×î³õ¡£\n", seqNo, needSeq );
-		// ÖÏ¾®ÔÏÔÂÍÍÎå¾®¡¯¡¯¡¯
+//		print( "åšéŽé ­çž­ã€‚è¿´åˆ°æœ€åˆã€‚\n", seqNo, needSeq );
+		// çª’äº•éŸ»æœˆå±¯äº”äº•â€™â€™â€™
 		return;
 	}
 
-	// Æá¼Ô  Û¢Ø¦Ê§ÛÍÆËÒà¼þ»¥ÓòÚÛØÆÐ×
+	// æ¼†èŽ¢  é‚°å…å¤±å¼æ’²äº¦ä»¶äº’åŸŸè­™ä»„å‡¶
 	if( needSeq == act ){
-		// ÓòÚÛØÆÐ×£Û³ðÄ¾»¥    ¾®
-//		print( "³É¹¦\(%d´ÎÊýÊÇ%d)\n", seqNo, needSeq );
+		// åŸŸè­™ä»„å‡¶ï¼»ä»‡æœ¨äº’    äº•
+//		print( "æˆåŠŸ\(%dæ¬¡æ•¸æ˜¯%d)\n", seqNo, needSeq );
 		seqNo ++;
 		if( seqNo >= CHAR_getWorkInt( meindex, BODYLAN_E_COMMANDNUM ) ){
-//			print( "ÔÚ´Ë½áÊø¡£\n" );
+//			print( "åœ¨æ­¤çµæŸã€‚\n" );
 		}
-		// ³ð¼°ÞË  Ã«âçÐå
+		// ä»‡åŠåŒ  æ¯›å¿¡ç¶‰
 		CHAR_setWorkInt( actindex, CHAR_WORKSHOPRELEVANT, seqNo );
 	}else{
-		// ÁÃ  ØÆÐ×èëÄþ·´  âÙ¾®ÈÕÖ§Ô»  ØÆ
+		// æ’©  ä»„å‡¶æ¨ºå¯œå  è³¡äº•æ—¥æ”¯æ›°  ä»„
 		CHAR_setWorkInt( actindex, CHAR_WORKSHOPRELEVANT, 1 );
-//		print( "(%d´ÎÊýÊÇ%d)\n", seqNo, needSeq );
+//		print( "(%dæ¬¡æ•¸æ˜¯%d)\n", seqNo, needSeq );
 	}
 
 }
 
 
 
-//********* ÔÀ  ÁÝ¼°ÈÔ     *********
+//********* å¶½  å‡œåŠä»     *********
 static void NPC_BodyLan_Profit( int meindex, int playerindex )
 {
 	char szArg[4096], szP[256];
 	int fl, x, y, pmode, i, subindex, parent;
 
-	// Â¦ÐÑ  Ù¯  
+	// å©é†’  å„‚  
     if( NPC_Util_GetArgStr( meindex, szArg, sizeof( szArg ) ) == NULL ){
-    	print( "npc_bodylan.c:Ã»ÓÐÒýÊý(%s)\n",
+    	print( "npc_bodylan.c:æ²’æœ‰å¼•æ•¸(%s)\n",
     		CHAR_getChar(meindex,CHAR_NPCARGUMENT) );
     	return ;
     }
 
 	//*********************************************
 	//
-	//   ÈÔ    ¹«¼°¨à£Û·¥¡õÃóÉ¬ÀÃ
+	//   ä»    å…¬åŠã„ ï¼»ä¼â–¡çš¿æ¾€çˆ›
 	//
 	//*********************************************
 	if( NPC_Util_GetStrFromStrWithDelim( szArg, "Warp", szP, sizeof( szP ) ) != NULL ){
-		// ÈÔ    ±å·¥¡õÃó£ÛÕç  äúÔÂ
+		// ä»    åžä¼â–¡çš¿ï¼»ç”„  æ½¸æœˆ
 		if( sscanf( szP, "%d,%d,%d", &fl, &x, &y ) == 3 ){
 		}else{
 			return;
@@ -340,9 +340,9 @@ static void NPC_BodyLan_Window(
 	if( CHAR_CHECKINDEX( talkerindex ) == FALSE )return;
 	fd = getfdFromCharaIndex( talkerindex );
 
-	// Â¦ÐÑ  Ù¯  
+	// å©é†’  å„‚  
     if( NPC_Util_GetArgStr( meindex, szArg, sizeof( szArg ) ) == NULL ){
-    	print( "npc_bodylan.c:Ã»ÓÐÒýÊý(%s)\n",
+    	print( "npc_bodylan.c:æ²’æœ‰å¼•æ•¸(%s)\n",
     		CHAR_getChar(meindex,CHAR_NPCARGUMENT) );
     	return ;
     }
@@ -351,9 +351,9 @@ static void NPC_BodyLan_Window(
 
 	switch( mode ){
 	  case BODYLAN_WIN_FIRST:
-		//   âÙ±å  ½ñÄ¾Ð×èëÄþ¼°±¾Øø°×
+		//   è³¡åž  ä»Šæœ¨å‡¶æ¨ºå¯œåŠæœ¬ä¼‰ç™½
 		if( NPC_Util_GetStrFromStrWithDelim( szArg, "First", szP, sizeof( szP ) ) == NULL ){
-			print( "npc_bodylan:Ò»¿ªÊ¼½²»°µÄÎÄ×ÖÃ»ÓÐÊäÈë(%s)\n",	szArg );
+			print( "npc_bodylan:ä¸€é–‹å§‹è¬›è©±çš„æ–‡å­—æ²’æœ‰è¼¸å…¥(%s)\n",	szArg );
 			return;
 		}
 		sprintf( token,"%s", szP );
@@ -363,9 +363,9 @@ static void NPC_BodyLan_Window(
 	  	break;
 
 	  case BODYLAN_WIN_LAST_GOOD:
-		//     Æ¥¿ÒÝ©·ÖÔÈÐ×ÈÕ
+		//     åŒ¹æ‡‡è¸åˆ†å‹»å‡¶æ—¥
 		if( NPC_Util_GetStrFromStrWithDelim( szArg, "Good", szP, sizeof( szP ) ) == NULL ){
-			print( "npc_bodylan:´ð¶ÔÊ±ËµµÄÎÄ×ÖÃ»ÓÐÊäÈë(%s)\n",	szArg );
+			print( "npc_bodylan:ç­”å°æ™‚èªªçš„æ–‡å­—æ²’æœ‰è¼¸å…¥(%s)\n",	szArg );
 			return;
 		}
 		sprintf( token,"%s", szP );
@@ -375,9 +375,9 @@ static void NPC_BodyLan_Window(
 	  	break;
 
 	  case BODYLAN_WIN_LAST_NG:
-		//     Æ¥¿ÒÝ©·ÖÔÈÐ×ÈÕ
+		//     åŒ¹æ‡‡è¸åˆ†å‹»å‡¶æ—¥
 		if( NPC_Util_GetStrFromStrWithDelim( szArg, "Ng", szP, sizeof( szP ) ) == NULL ){
-			print( "npc_bodylan:´ð´íÊ±ËµµÄÎÄ×ÖÃ»ÓÐÊäÈë(%s)\n",	szArg );
+			print( "npc_bodylan:ç­”éŒ¯æ™‚èªªçš„æ–‡å­—æ²’æœ‰è¼¸å…¥(%s)\n",	szArg );
 			return;
 		}
 		sprintf( token,"%s", szP );
@@ -387,9 +387,9 @@ static void NPC_BodyLan_Window(
 	  	break;
 
 	  case BODYLAN_WIN_GOOD_NO:
-		// ¿ÒÝ©ÁÝ±å    Ã«Æ½ÅÒ¼þ±¾»ï
+		// æ‡‡è¸å‡œåž    æ¯›å¹³ä¹“ä»¶æœ¬å¤¥
 		if( NPC_Util_GetStrFromStrWithDelim( szArg, "Good_No", szP, sizeof( szP ) ) == NULL ){
-			print( "npc_bodylan:´ð¶ÔÊ±È¡Ïû½±Æ·µÄÎÄ×ÖÃ»ÓÐÊäÈë(%s)\n",	szArg );
+			print( "npc_bodylan:ç­”å°æ™‚å–æ¶ˆå¥¬å“çš„æ–‡å­—æ²’æœ‰è¼¸å…¥(%s)\n",	szArg );
 			return;
 		}
 		sprintf( token,"%s", szP );
@@ -399,9 +399,9 @@ static void NPC_BodyLan_Window(
 	  	break;
 
 	  case BODYLAN_WIN_ALREADY:
-		// ÔÊÆ¥±åÄÌÃ¬¼þÐþÃ«±Î  ØÆ»¯ÖÐÐ×èëÄþ
+		// å…åŒ¹åžå¥¶çŸ›ä»¶çŽ„æ¯›è”½  ä»„åŒ–ä¸­å‡¶æ¨ºå¯œ
 		if( NPC_Util_GetStrFromStrWithDelim( szArg, "Good_No", szP, sizeof( szP ) ) == NULL ){
-			print( "npc_bodylan:ÊÂ¼þ½áÊøÊ±µÄÎÄ×ÖÃ»ÓÐÊäÈë(%s)\n",	szArg );
+			print( "npc_bodylan:äº‹ä»¶çµæŸæ™‚çš„æ–‡å­—æ²’æœ‰è¼¸å…¥(%s)\n",	szArg );
 			return;
 		}
 		sprintf( token,"%s", szP );
@@ -411,9 +411,9 @@ static void NPC_BodyLan_Window(
 	  	break;
 
 	case BODYLAN_WIN_NOT_PREEVENT:
-		// ÒÇó¡±å  Û¢Ø¦ÄÌÃ¬¼þÐþÃ«³ðØ¦ØÆ»¯ÖÐØ¦ÖÐèëÄþ
+		// å„€èŸ†åž  é‚°å…å¥¶çŸ›ä»¶çŽ„æ¯›ä»‡å…ä»„åŒ–ä¸­å…ä¸­æ¨ºå¯œ
 		if( NPC_Util_GetStrFromStrWithDelim( szArg, "Pre_Not", szP, sizeof( szP ) ) == NULL ){
-			print( "npc_bodylan:?ÊÂÇ°ÊÂ¼þ½áÊøµÄÎÄ×ÖÃ»ÓÐÊäÈë(%s)\n",	szArg );
+			print( "npc_bodylan:?äº‹å‰äº‹ä»¶çµæŸçš„æ–‡å­—æ²’æœ‰è¼¸å…¥(%s)\n",	szArg );
 			return;
 		}
 		sprintf( token,"%s", szP );
@@ -426,7 +426,7 @@ static void NPC_BodyLan_Window(
 	}
 
 	makeEscapeString( token, escapedname, sizeof(escapedname));
-	/*-³ð³ðÆ¥ËªññÔÊÔÂ--*/
+	/*-ä»‡ä»‡åŒ¹éœœè€¨å…æœˆ--*/
 	lssproto_WN_send( fd, windowtype,
 					buttontype,
 					windowno,
@@ -439,7 +439,7 @@ static void NPC_BodyLan_Window(
 
 
 /*-----------------------------------------
-ÛÍ·ÂÄÌÊ§¼þÐþ¾®ÈÕß¯ÔÈ»¯ÎåÐ×ÁÝ±åôÄÌ«Çë½ñÄ¾ÔÂ£Û
+å¼ä»¿å¥¶å¤±ä»¶çŽ„äº•æ—¥å¿’å‹»åŒ–äº”å‡¶å‡œåžè£Ÿå¤ªè«‹ä»Šæœ¨æœˆï¼»
 -------------------------------------------*/
 void NPC_BodyLanWindowTalked(
 	int meindex,
@@ -454,20 +454,20 @@ void NPC_BodyLanWindowTalked(
 	if( NPC_Util_CharDistance( talkerindex, meindex ) > 2) return;
 
 	switch( seqno){
-	case BODYLAN_WIN_LAST_GOOD:	// ¿ÒÝ©ÁÝ±åOK´É½ñÄ¾Ð×ÈÕ
+	case BODYLAN_WIN_LAST_GOOD:	// æ‡‡è¸å‡œåžOKç“·ä»Šæœ¨å‡¶æ—¥
 		if(select==WINDOW_BUTTONTYPE_YES ){
 			NPC_BodyLan_Profit( meindex, talkerindex );
-			// ÃóÒÁÄÌØÀ¡õ±å·ßÛÐ¼°ÄÌ¼þ·¸ÓÀÛÍµ©Ã«Ù¨Ä¾½ñÁùÔÂ
+			// çš¿ä¼Šå¥¶ä¹©â–¡åžæ†¤åŒåŠå¥¶ä»¶çŠ¯æ°¸å¼æ—¦æ¯›ä¾‰æœ¨ä»Šå…­æœˆ
 			CHAR_setWorkInt( talkerindex, CHAR_WORKTRADER, -1 );
-			// ÆË¡õ¸¥¼þµ©·´  âÙ¾®ÈÕ±åâÙÓå¼À
+			// æ’²â–¡å¼—ä»¶æ—¦å  è³¡äº•æ—¥åžè³¡æ¸ç¥­
 			CHAR_setWorkInt( talkerindex, CHAR_WORKSHOPRELEVANT, 1 );
 		}else
 		if( select == WINDOW_BUTTONTYPE_NO ){
-			// ¿ÒÝ©ÁÝ±åÆ½ÅÒ¼þ±¾»ï½ñÄ¾Ð×ÈÕ
+			// æ‡‡è¸å‡œåžå¹³ä¹“ä»¶æœ¬å¤¥ä»Šæœ¨å‡¶æ—¥
 			NPC_BodyLan_Window( meindex, talkerindex, BODYLAN_WIN_GOOD_NO );
-			// ÃóÒÁÄÌØÀ¡õ±å·ßÛÐ¼°ÄÌ¼þ·¸ÓÀÛÍµ©Ã«Ù¨Ä¾½ñÁùÔÂ
+			// çš¿ä¼Šå¥¶ä¹©â–¡åžæ†¤åŒåŠå¥¶ä»¶çŠ¯æ°¸å¼æ—¦æ¯›ä¾‰æœ¨ä»Šå…­æœˆ
 			CHAR_setWorkInt( talkerindex, CHAR_WORKTRADER, -1 );
-			// ÆË¡õ¸¥¼þµ©·´  âÙ¾®ÈÕ±åâÙÓå¼À
+			// æ’²â–¡å¼—ä»¶æ—¦å  è³¡äº•æ—¥åžè³¡æ¸ç¥­
 			CHAR_setWorkInt( talkerindex, CHAR_WORKSHOPRELEVANT, 1 );
 		}
 		break;

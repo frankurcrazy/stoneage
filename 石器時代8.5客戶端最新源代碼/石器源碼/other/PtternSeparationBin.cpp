@@ -1,4 +1,4 @@
-﻿#include "../systeminc/version.h"
+#include "../systeminc/version.h"
 #ifdef _PTTERN_SEPARATION_BIN
 #include <windows.h> 
 #include "../systeminc/system.h"
@@ -26,13 +26,13 @@ void InitPteernSeparationBin(LPCTSTR lpszPath)
 	lstrcat(szFind, "*.*"); // 找所有文件 
 	WIN32_FIND_DATA wfd; 
 	HANDLE hFind = FindFirstFile(szFind, &wfd); 
-	if (hFind == INVALID_HANDLE_VALUE) // 如果没有找到或查找失败 
+	if (hFind == INVALID_HANDLE_VALUE) // 如果沒有找到或查找失敗 
 		return; 
 	int index = 2;
 	do 
 	{ 
 		if (wfd.cFileName[0] == '.') 
-			continue; // 过滤这两个目录 
+			continue; // 過濾這兩個目錄 
 		if (wfd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) 
 		{ 
 			TCHAR szFile[MAX_PATH]; 
@@ -62,14 +62,14 @@ void InitPteernSeparationBin(LPCTSTR lpszPath)
 				index++;
 				if(index>100)break;
 			}
-			InitPteernSeparationBin(szFile); // 如果找到的是目录，则进入此目录进行递归
+			InitPteernSeparationBin(szFile); // 如果找到的是目錄，則進入此目錄進行遞歸
 		}
 		else 
 		{ 
 
 		} 
 	} while (FindNextFile(hFind, &wfd)); 
-	FindClose(hFind); // 关闭查找句柄 
+	FindClose(hFind); // 關閉查找句柄 
 
 } 
 int nextMaxAdrnID=0;

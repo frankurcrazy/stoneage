@@ -1,4 +1,4 @@
-﻿#ifndef _SAVEDATA_H_
+#ifndef _SAVEDATA_H_
 #define _SAVEDATA_H_
 
 BOOL saveUserSetting( void );

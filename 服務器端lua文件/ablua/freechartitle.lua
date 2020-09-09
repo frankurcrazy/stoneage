@@ -3,15 +3,15 @@ function GetCharNewTitleNo(charaindex,id)
 		return 0
 	end
 	if id< 32 then
-		if other.DataAndData(char.getInt(charaindex,"³ÆºÅ×´Ì¬1"),id)~= 0 then
+		if other.DataAndData(char.getInt(charaindex,"ç¨±è™Ÿç‹€æ…‹1"),id)~= 0 then
 			return titleinfo[id+1][2]
 		end
 	elseif id< 64 then
-		if other.DataAndData(char.getInt(charaindex,"³ÆºÅ×´Ì¬2"),id-32)~= 0 then
+		if other.DataAndData(char.getInt(charaindex,"ç¨±è™Ÿç‹€æ…‹2"),id-32)~= 0 then
 			return titleinfo[id+1][2]
 		end
 	elseif id< 96 then
-		if other.DataAndData(char.getInt(charaindex,"³ÆºÅ×´Ì¬3"),id-64)~= 0 then
+		if other.DataAndData(char.getInt(charaindex,"ç¨±è™Ÿç‹€æ…‹3"),id-64)~= 0 then
 			return titleinfo[id+1][2]
 		end
 	end
@@ -23,15 +23,15 @@ function GetCharNewTitleString(charaindex,id)
 		return 0
 	end
 	if id< 32 then
-		if other.DataAndData(char.getInt(charaindex,"³ÆºÅ×´Ì¬1"),id)~= 0 then
+		if other.DataAndData(char.getInt(charaindex,"ç¨±è™Ÿç‹€æ…‹1"),id)~= 0 then
 			return titleinfo[id+1][2]
 		end
 	elseif id< 64 then
-		if other.DataAndData(char.getInt(charaindex,"³ÆºÅ×´Ì¬2"),id-32)~= 0 then
+		if other.DataAndData(char.getInt(charaindex,"ç¨±è™Ÿç‹€æ…‹2"),id-32)~= 0 then
 			return titleinfo[id+1][2]
 		end
 	elseif id< 96 then
-		if other.DataAndData(char.getInt(charaindex,"³ÆºÅ×´Ì¬3"),id-64)~= 0 then
+		if other.DataAndData(char.getInt(charaindex,"ç¨±è™Ÿç‹€æ…‹3"),id-64)~= 0 then
 			return titleinfo[id+1][2]
 		end
 	end
@@ -45,15 +45,15 @@ function GetCharNewTitleName(charaindex,id)
 	end
 
 	if id< 32 then
-		if other.DataAndData(char.getInt(charaindex,"³ÆºÅ×´Ì¬1"),id)~= 0 then
+		if other.DataAndData(char.getInt(charaindex,"ç¨±è™Ÿç‹€æ…‹1"),id)~= 0 then
 			return titleinfo[id+1][1]
 		end
 	elseif (id >=32 and id< 64) then
-		if other.DataAndData(char.getInt(charaindex,"³ÆºÅ×´Ì¬2"),id-32)~= 0 then
+		if other.DataAndData(char.getInt(charaindex,"ç¨±è™Ÿç‹€æ…‹2"),id-32)~= 0 then
 			return titleinfo[id+1][1]
 		end
 	elseif(id >=64 and id< 96) then
-		if other.DataAndData(char.getInt(charaindex,"³ÆºÅ×´Ì¬3"),id-64)~= 0 then
+		if other.DataAndData(char.getInt(charaindex,"ç¨±è™Ÿç‹€æ…‹3"),id-64)~= 0 then
 			return titleinfo[id+1][1]
 		end
 	end
@@ -66,15 +66,15 @@ function GetCharNewTitleMode(charaindex,id)
 	end
 
 	if id< 32 then
-		if other.DataAndData(char.getInt(charaindex,"³ÆºÅ×´Ì¬1"),id)~= 0 then
+		if other.DataAndData(char.getInt(charaindex,"ç¨±è™Ÿç‹€æ…‹1"),id)~= 0 then
 			return 1
 		end
 	elseif (id >=32 and id< 64) then
-		if other.DataAndData(char.getInt(charaindex,"³ÆºÅ×´Ì¬2"),id-32)~= 0 then
+		if other.DataAndData(char.getInt(charaindex,"ç¨±è™Ÿç‹€æ…‹2"),id-32)~= 0 then
 			return 1
 		end
 	elseif(id >=64 and id< 96) then
-		if other.DataAndData(char.getInt(charaindex,"³ÆºÅ×´Ì¬3"),id-64)~= 0 then
+		if other.DataAndData(char.getInt(charaindex,"ç¨±è™Ÿç‹€æ…‹3"),id-64)~= 0 then
 			return 1
 		end
 	end
@@ -99,9 +99,9 @@ function TitleListSend(charaindex)
 			indexdata = indexdata..(i-1).."|"
 		end
 	end
-	local data = string.format("%d|%d#@%s#@%s#@%s#@",char.getInt(charaindex,"ÎÄ×Ö³ÆºÅ"),num,Nodata,jiedata,indexdata)
+	local data = string.format("%d|%d#@%s#@%s#@%s#@",char.getInt(charaindex,"æ–‡å­—ç¨±è™Ÿ"),num,Nodata,jiedata,indexdata)
 	lssproto.CharTitleSend(fd,data)
---	print("CharTitleSend·¢ËÍ³É¹¦£¡"..data.."\n")
+--	print("CharTitleSendç™¼é€æˆåŠŸï¼"..data.."\n")
 end
 
 function GetTtileBuff(id)
@@ -112,43 +112,43 @@ function GetTtileBuff(id)
 end
 
 function data()
-	titleinfo =	{	--ÃèÊö ĞòºÅ Ìå ¹¥ ·À Ãô ¶¾ Âé Ë¯ Ê¯ »ì
-				 {"´óµØµÄ¾«Áé ·À+5",1,0,0,5,0,0,0,0,0,0}
-				,{"Ë®µÄ¾«Áé HP+20",2,20,0,0,0,0,0,0,0,0}
-				,{"»ğÑ×µÄ¾«Áé ¹¥+5",3,0,5,0,0,0,0,0,0,0}
-				,{"¼²·çµÄ¾«Áé Ãô+5",4,0,0,0,5,0,0,0,0,0}
-				,{"°ÂÂÜÀ­µÄ¾«Áé È«+1",5,1,1,1,1,0,0,0,0,0}
-				,{"²ÊºçµÄ¾«Áé È«+2",6,2,2,2,2,0,0,0,0,0}
-				,{"³õĞÄÊ¹Õß HP+10",7,10,0,0,0,0,0,0,0,0}
-				,{"ÎŞÃûµÄÂÃÈË È«+2",8,2,2,2,2,0,0,0,0,0}
-				,{"Â·±ßµÄÂäÒ¶ È«+4",9,4,4,4,4,0,0,0,0,0}
-				,{"Ë®ÃæµÄĞ¡²İ È«+6",10,6,6,6,6,0,0,0,0,0}
-				,{"ÄØà«µÄ¸èÉù È«+8",11,8,8,8,8,0,0,0,0,0}
-				,{"µØÉÏµÄÔÂÓ° È«+10",12,10,10,10,10,0,0,0,0,0}
-				,{"±¼ÅÜµÄ´º·ç È«+12",13,12,12,12,12,0,0,0,0,0}
-				,{"²Ôñ·µÄ·çÔÆ È«+14",14,14,14,14,14,0,0,0,0,0}
-				,{"Ò¡Ò·µÄ½ğĞÇ È«+16",15,16,16,16,16,0,0,0,0,0}
-				,{"»¶Ï²µÄ´ÈÓê È«+18",16,18,18,18,18,0,0,0,0,0}
-				,{"ÔÌº¬µÄÌ«Ñô È«+20",17,20,20,20,20,0,0,0,0,0}
-				,{"¾´Î·µÄ¼Å¾² È«+30",18,30,30,30,30,0,0,0,0,0}
-				,{"¾«ì`·âÓ¡Õß ¹¥+5",19,0,5,0,0,0,0,0,0,0}
-				,{"Îå×ªÂÖ»Ø ·À+20",20,0,0,20,0,0,0,0,0,0}
-				,{"µÁÔôÌÖ·¥Õß ¹¥+5",21,0,5,0,0,0,0,0,0,0}
-				,{"µÁÔô°ïÖÚ »ìÂÒ¿¹ĞÔ+5",22,0,0,0,0,0,0,0,0,5}
-				,{"¶á±¦Ææ±ø Ê¯»¯¿¹ĞÔ+5",23,0,0,0,0,0,0,0,5,0}
-				,{"ÓÂ´³¶á±¦µº Ë¯¿¹ĞÔ+5",24,0,0,0,0,0,0,5,0,0}
-				,{"ºÏ³É´ïÈË Ãô+5",25,0,0,0,5,0,0,0,0,0}
-				,{"ºÏ³É¸ßÊÖ Ãô+3",26,0,0,0,3,0,0,0,0,0}
-				,{"Á·³è´ïÈË ¹¥+5",27,0,5,0,0,0,0,0,0,0}
-				,{"Á·³è¸ßÊÖ ¹¥+3",28,0,3,0,0,0,0,0,0,0}
-				,{"ÈÎÎñ´ïÈË ·À+5",29,0,0,5,0,0,0,0,0,0}
-				,{"ÈÎÎñ¸ßÊÖ ·À+3",30,0,0,3,0,0,0,0,0,0}
-				,{"³õ¶¿Õ½Ê¿ HP+10",31,10,0,0,0,0,0,0,0,0}
-				,{"Ê¥ÁéÓÂÊ¿ HP+15",32,15,0,0,0,0,0,0,0,0}
-				,{"ÂêÀöÄÇË¿Ó¢ĞÛ HP+20",33,20,0,0,0,0,0,0,0,0}
-				,{"ÈøÄ·¼ª¶ûÓ¢ĞÛ HP+25",34,25,0,0,0,0,0,0,0,0}
-				,{"ÈøÒÁÄÇË¹Ê¹Õß HP+30",35,30,0,0,0,0,0,0,0,0}
-				,{"ÄáË¹´óÂ½Ó¢ĞÛ HP+100",36,100,0,0,0,0,0,0,0,0}
+	titleinfo =	{	--æè¿° åºè™Ÿ é«” æ”» é˜² æ• æ¯’ éº» ç¡ çŸ³ æ··
+				 {"å¤§åœ°çš„ç²¾éˆ é˜²+5",1,0,0,5,0,0,0,0,0,0}
+				,{"æ°´çš„ç²¾éˆ HP+20",2,20,0,0,0,0,0,0,0,0}
+				,{"ç«ç‚çš„ç²¾éˆ æ”»+5",3,0,5,0,0,0,0,0,0,0}
+				,{"ç–¾é¢¨çš„ç²¾éˆ æ•+5",4,0,0,0,5,0,0,0,0,0}
+				,{"å¥§è˜¿æ‹‰çš„ç²¾éˆ å…¨+1",5,1,1,1,1,0,0,0,0,0}
+				,{"å½©è™¹çš„ç²¾éˆ å…¨+2",6,2,2,2,2,0,0,0,0,0}
+				,{"åˆå¿ƒä½¿è€… HP+10",7,10,0,0,0,0,0,0,0,0}
+				,{"ç„¡åçš„æ—…äºº å…¨+2",8,2,2,2,2,0,0,0,0,0}
+				,{"è·¯é‚Šçš„è½è‘‰ å…¨+4",9,4,4,4,4,0,0,0,0,0}
+				,{"æ°´éºµçš„å°è‰ å…¨+6",10,6,6,6,6,0,0,0,0,0}
+				,{"å‘¢å–ƒçš„æ­Œè² å…¨+8",11,8,8,8,8,0,0,0,0,0}
+				,{"åœ°ä¸Šçš„æœˆå½± å…¨+10",12,10,10,10,10,0,0,0,0,0}
+				,{"å¥”è·‘çš„æ˜¥é¢¨ å…¨+12",13,12,12,12,12,0,0,0,0,0}
+				,{"è’¼ç©¹çš„é¢¨é›² å…¨+14",14,14,14,14,14,0,0,0,0,0}
+				,{"æ–æ›³çš„é‡‘æ˜Ÿ å…¨+16",15,16,16,16,16,0,0,0,0,0}
+				,{"æ­¡å–œçš„æ…ˆé›¨ å…¨+18",16,18,18,18,18,0,0,0,0,0}
+				,{"è˜Šå«çš„å¤ªé™½ å…¨+20",17,20,20,20,20,0,0,0,0,0}
+				,{"æ•¬ç•çš„å¯‚éœ å…¨+30",18,30,30,30,30,0,0,0,0,0}
+				,{"ç²¾`å°å°è€… æ”»+5",19,0,5,0,0,0,0,0,0,0}
+				,{"äº”è½‰è¼ªè¿´ é˜²+20",20,0,0,20,0,0,0,0,0,0}
+				,{"ç›œè³Šè¨ä¼è€… æ”»+5",21,0,5,0,0,0,0,0,0,0}
+				,{"ç›œè³Šå¹«çœ¾ æ··äº‚æŠ—æ€§+5",22,0,0,0,0,0,0,0,0,5}
+				,{"å¥ªå¯¶å¥‡å…µ çŸ³åŒ–æŠ—æ€§+5",23,0,0,0,0,0,0,0,5,0}
+				,{"å‹‡é—–å¥ªå¯¶å³¶ ç¡æŠ—æ€§+5",24,0,0,0,0,0,0,5,0,0}
+				,{"é–¤æˆé”äºº æ•+5",25,0,0,0,5,0,0,0,0,0}
+				,{"é–¤æˆé«˜æ‰‹ æ•+3",26,0,0,0,3,0,0,0,0,0}
+				,{"ç·´å¯µé”äºº æ”»+5",27,0,5,0,0,0,0,0,0,0}
+				,{"ç·´å¯µé«˜æ‰‹ æ”»+3",28,0,3,0,0,0,0,0,0,0}
+				,{"ä»»å‹™é”äºº é˜²+5",29,0,0,5,0,0,0,0,0,0}
+				,{"ä»»å‹™é«˜æ‰‹ é˜²+3",30,0,0,3,0,0,0,0,0,0}
+				,{"åˆçŠ¢æˆ°å£« HP+10",31,10,0,0,0,0,0,0,0,0}
+				,{"è–éˆå‹‡å£« HP+15",32,15,0,0,0,0,0,0,0,0}
+				,{"ç‘ªéº—é‚£çµ²è‹±é›„ HP+20",33,20,0,0,0,0,0,0,0,0}
+				,{"è–©å§†å‰çˆ¾è‹±é›„ HP+25",34,25,0,0,0,0,0,0,0,0}
+				,{"è–©ä¼Šé‚£æ–¯ä½¿è€… HP+30",35,30,0,0,0,0,0,0,0,0}
+				,{"å°¼æ–¯å¤§é™¸è‹±é›„ HP+100",36,100,0,0,0,0,0,0,0,0}
 				,{"","",0,0,0,0,0,0,0,0,0}
 				,{"","",0,0,0,0,0,0,0,0,0}
 				,{"","",0,0,0,0,0,0,0,0,0}
