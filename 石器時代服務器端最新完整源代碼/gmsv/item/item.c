@@ -1078,7 +1078,7 @@ static int ITEM_isstring1or0( char*  string,int* randomwidth, int num )
 
 static char* ITEM_checkString( char* string )
 {
-#define ITEM_STRINGLEN 64
+#define ITEM_STRINGLEN 128
 	if( strlen(string) >= ITEM_STRINGLEN )
 		print( "Over %d:[%s]\n",ITEM_STRINGLEN ,string );
 	return string;
@@ -1088,7 +1088,7 @@ static char* ITEM_checkString( char* string )
 BOOL ITEM_readItemConfFile( char* filename )
 {
 	FILE*   f;
-	char    line[512];
+	char    line[1024];
 	char	token[64];
 	int     linenum=0;
 	int     itemnum=0;
@@ -1201,15 +1201,15 @@ BOOL ITEM_readItemConfFile( char* filename )
 		replaceString( line, '\t' , ' ' );
 		itemnum ++;
 {
-		char    buf[256];
+		char    buf[1024];
 		for( i = 0; i < strlen( line); i ++) {
 			if( line[i] != ' ' ) {
 				break;
 			}
-			strcpy( buf, &line[i]);
+			strncpy( buf, &line[i], 1024);
 		}
 		if( i != 0 ) {
-			strcpy( line, buf);
+			strncpy( line, buf, 1024);
 		}
 }
 {

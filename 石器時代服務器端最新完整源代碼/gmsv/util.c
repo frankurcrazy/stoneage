@@ -19,6 +19,19 @@
 #include "configfile.h"
 #include <assert.h>
 #define IS_2BYTEWORD( _a_ ) ( (char)(0x80) <= (_a_) && (_a_) <= (char)(0xFF) )
+#define _USE_UTF8
+
+#ifdef _USE_UTF8
+/*----------------------------------------
+ * Get the encode size of utf-8
+ */
+inline int getUTF8EncodeSize(char *c) {
+	if (*c < 127) return 1;
+	if (*c < 224) return 2;
+	if (*c < 240) return 3;
+	return 4;
+}
+#endif
 
 /*-----------------------------------------
   仃勾及荼墊毛仇欠允
@@ -265,7 +278,6 @@ void strncpysafe( char* dest , const size_t n ,
 
     int Short;
     Short = min( strlen( src ) , length );
-
     /* NULL  儂 毛嗶  仄凶  勝 */
     if( n < Short + 1 ){
         /*
@@ -823,10 +835,19 @@ char   *makeStringFromEscaped( char* src )
     
     for( i = 0; i < srclen; i ++ )
     {
+#ifndef _USE_UTF8
     // for 2Byte Word
     if( IS_2BYTEWORD( src[i] ) ){
         src[searchindex++] = src[i++];
         src[searchindex++] = src[i];
+#else
+   if (src[i] > 127) {
+	for (int k=0; k < getUTF8EncodeSize(src); ++k) {
+		src[searchindex + k] = src[k];
+	}
+	searchindex += getUTF8EncodeSize(src);
+	i += getUTF8EncodeSize(src);
+#endif
     }else
             if( src[i] == '\\' )
             {	
@@ -859,8 +880,13 @@ char*  makeEscapeString( char* src , char* dest, int sizeofdest)
          int  j;
          char escapechar='\0';
 		if( destindex + 1 >= sizeofdest )break;
+#ifndef _USE_UTF8
          if( IS_2BYTEWORD( src[i] ) ){
                if( destindex + 2 >= sizeofdest )break;
+#else
+	 if (src[i] > 127) {
+	       if (destindex + getUTF8EncodeSize(&src[i]) >= sizeofdest) break;
+#endif
                
             dest[destindex] = src[i];
             dest[destindex+1] = src[i+1];
@@ -903,6 +929,7 @@ char * ScanOneByte( char *src, char delim ){
         //   儂  互卅仁卅月引匹腹綢
         for( ;src[0] != '\0'; src ++ ){
              // 蟈剩及ㄠ田奶玄  井升丹井毛民尼永弁
+#ifndef _USE_UTF8
           if( IS_2BYTEWORD( src[0] ) ){
               // 蟈剩分［公及樺寜反ㄠ田奶玄芴坌卞褡引六月［
               // 凶分仄ㄠ田奶玄仄井卅中樺寜反公丹仄卅中
@@ -911,6 +938,12 @@ char * ScanOneByte( char *src, char delim ){
               }
               continue;
           }
+#else
+	  if (*src > 127) {
+	  	src += getUTF8EncodeSize(src) - 1; // the loop will increment by one
+		continue;
+	  }
+#endif
           //   剩分勻凶［仇仇匹覆擂及  儂午  勝
           if( src[0] == delim ){
               return src;
@@ -954,8 +987,11 @@ BOOL getStringFromIndexWithDelim_body( char* src ,char* delim ,int index,
     int length =0;  /* 潸曰請仄凶  儂  及贏今 */
     int addlen=0;   /* 簫今木月贏今 */
     int oneByteMode = 0; /* ㄠ田奶玄乒□玉井＂ */
+    int delimLen = 0;
 
-    if( strlen( delim ) == 1 ){ // 腹綢互ㄠ田奶玄卅日ㄠ田奶玄乒□玉卞允月
+    delimLen = strlen(delim);
+
+    if( delimLen == 1 ){ // 腹綢互ㄠ田奶玄卅日ㄠ田奶玄乒□玉卞允月
         oneByteMode = 1;// 公及端ㄡ田奶玄  儂反民尼永弁仄卅中
     }
     for( i =  0 ; i < index ; i ++ ){
@@ -991,7 +1027,7 @@ BOOL getStringFromIndexWithDelim_body( char* src ,char* delim ,int index,
           /*
            * 戚及夥□皿及啃卞心勾井勻凶贏今午 delim 及贏今毛簫仄化雲仁
           */
-          addlen= length + strlen( delim );
+          addlen= length + delimLen;
        }
        strncpysafe( buf, buflen , src,length );
 

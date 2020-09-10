@@ -57,7 +57,7 @@
   #define   II(a,   b,   c,   d,   x,   s,   ac)   {     (a)   +=   I   ((b),   (c),   (d))   +   (x)   +   (UINT4)(ac);     (a)   =   ROTATE_LEFT   ((a),   (s));     (a)   +=   (b);   }   
     
     
-  inline   void   Encode(unsigned   char   *output,   UINT4   *input,   unsigned   int   len)   
+  INLINE void   Encode(unsigned   char   *output,   UINT4   *input,   unsigned   int   len)   
   {   
   unsigned   int   i,   j;   
     
@@ -69,7 +69,7 @@
   }   
   }   
     
-  inline   void   Decode(UINT4   *output,   unsigned   char   *input,   unsigned   int   len)   
+  INLINE   void   Decode(UINT4   *output,   unsigned   char   *input,   unsigned   int   len)   
   {   
   unsigned   int   i,   j;   
     
@@ -78,7 +78,7 @@
   (((UINT4)input[j+2])   <<   16)   |   (((UINT4)input[j+3])   <<   24);   
   }   
     
-  inline   void   MD5Transform   (UINT4   state[4],   unsigned   char   block[64])   
+  INLINE   void   MD5Transform   (UINT4   state[4],   unsigned   char   block[64])   
   {   
   UINT4   a   =   state[0],   b   =   state[1],   c   =   state[2],   d   =   state[3],   x[16];   
   Decode   (x,   block,   64);   
@@ -153,7 +153,7 @@
   memset   ((POINTER)x,   0,   sizeof   (x));   
   }   
     
-  inline   void   MD5Init(MD5_CTX   *context)   
+  INLINE   void   MD5Init(MD5_CTX   *context)   
   {   
       context->count[0]   =   context->count[1]   =   0;   
       context->state[0]   =   0x67452301;   
@@ -162,7 +162,7 @@
       context->state[3]   =   0x10325476;   
   }   
     
-  inline   void   MD5Update(MD5_CTX   *context,   unsigned   char   *input,   unsigned   int   inputLen)   
+  INLINE   void   MD5Update(MD5_CTX   *context,   unsigned   char   *input,   unsigned   int   inputLen)   
   {   
   unsigned   int   i,   index,   partLen;   
     
@@ -188,7 +188,7 @@
   memcpy((POINTER)&context->buffer[index],   (POINTER)&input[i],   inputLen-i);   
   }   
     
-  inline   void   MD5Final(unsigned   char   digest[16],   MD5_CTX   *context)   
+  INLINE   void   MD5Final(unsigned   char   digest[16],   MD5_CTX   *context)   
   {   
   unsigned   char   bits[8];   
   unsigned   int   index,   padLen;   

@@ -334,7 +334,7 @@ typedef enum
 typedef struct tagItem
 {
     int         data[ITEM_DATAINTNUM];
-    STRING64    string[ITEM_DATACHARNUM];
+    STRING128   string[ITEM_DATACHARNUM];
     int         workint[ITEM_WORKDATAINTNUM];
 
     void*       functable[ITEM_LASTFUNCTION-ITEM_FIRSTFUNCTION];

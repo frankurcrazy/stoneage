@@ -20,7 +20,7 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `capturepet` (
   `unicode` varchar(32) NOT NULL,
   `id` int(11) NOT NULL,
-  `name` varchar(32) CHARACTER SET gbk NOT NULL,
+  `name` varchar(32) CHARACTER SET utf8 NOT NULL,
   `type` int(11) NOT NULL,
   `lv` int(11) NOT NULL,
   `hp` int(11) NOT NULL,
@@ -28,12 +28,12 @@ CREATE TABLE IF NOT EXISTS `capturepet` (
   `def` int(11) NOT NULL,
   `quick` int(11) NOT NULL,
   `sum` double NOT NULL,
-  `author` varchar(32) CHARACTER SET gbk NOT NULL,
-  `cdkey` varchar(32) CHARACTER SET gb2312 NOT NULL,
+  `author` varchar(32) CHARACTER SET utf8 NOT NULL,
+  `cdkey` varchar(32) CHARACTER SET utf8 NOT NULL,
   `check` tinyint(1) NOT NULL DEFAULT '0',
   `inserttime` datetime NOT NULL,
   PRIMARY KEY (`unicode`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS `CashDraw` (
   `fixtime` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -59,18 +59,18 @@ CREATE TABLE IF NOT EXISTS `CashDraw` (
 CREATE TABLE IF NOT EXISTS `check` (
   `itemcode` varchar(64) NOT NULL,
   `cdkey` varchar(32) NOT NULL,
-  `name` varchar(32) CHARACTER SET gbk NOT NULL,
+  `name` varchar(32) CHARACTER SET utf8 NOT NULL,
   `mac` varchar(64) NOT NULL,
-  `type` varchar(32) CHARACTER SET gbk NOT NULL,
+  `type` varchar(32) CHARACTER SET utf8 NOT NULL,
   `value` int(11) NOT NULL,
   `time` datetime NOT NULL,
   `check` tinyint(4) NOT NULL DEFAULT '0',
   `usecdkey` varchar(32) DEFAULT NULL,
-  `usename` varchar(32) CHARACTER SET gbk DEFAULT NULL,
+  `usename` varchar(32) CHARACTER SET utf8 DEFAULT NULL,
   `usemac` varchar(64) DEFAULT NULL,
   `usetime` datetime DEFAULT NULL,
   PRIMARY KEY (`itemcode`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -80,13 +80,13 @@ CREATE TABLE IF NOT EXISTS `check` (
 
 CREATE TABLE IF NOT EXISTS `consignment` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `cdkey` varchar(32) COLLATE gb2312_bin NOT NULL,
-  `name` varchar(32) COLLATE gb2312_bin NOT NULL,
+  `cdkey` varchar(32) COLLATE utf8_general_ci NOT NULL,
+  `name` varchar(32) COLLATE utf8_general_ci NOT NULL,
   `alive` int(11) NOT NULL,
   `vippoint` int(11) NOT NULL,
   `time` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=gb2312 COLLATE=gb2312_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -97,14 +97,14 @@ CREATE TABLE IF NOT EXISTS `consignment` (
 CREATE TABLE IF NOT EXISTS `counter` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `cdkey` varchar(32) NOT NULL,
-  `name` varchar(32) CHARACTER SET gb2312 NOT NULL,
+  `name` varchar(32) CHARACTER SET utf8 NOT NULL,
   `type` int(11) NOT NULL,
   `vippoint` int(11) NOT NULL,
   `alive` int(11) NOT NULL,
   `fame` int(11) NOT NULL,
   `fixtime` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -113,10 +113,10 @@ CREATE TABLE IF NOT EXISTS `counter` (
 --
 
 CREATE TABLE IF NOT EXISTS `CSAinfo` (
-  `cdkey` varchar(32) CHARACTER SET gbk NOT NULL,
+  `cdkey` varchar(32) CHARACTER SET utf8 NOT NULL,
   `saveindex` int(11) NOT NULL,
-  `name` varchar(32) CHARACTER SET gbk NOT NULL,
-  `famename` varchar(32) CHARACTER SET gbk COLLATE gbk_bin NOT NULL,
+  `name` varchar(32) CHARACTER SET utf8 NOT NULL,
+  `famename` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `CE` int(16) NOT NULL DEFAULT '0',
   `level` int(11) NOT NULL,
   `trans` int(11) NOT NULL,
@@ -146,7 +146,7 @@ CREATE TABLE IF NOT EXISTS `CSAinfo` (
   `HUNTBIGFISHCOUNT` int(16) NOT NULL DEFAULT '0' COMMENT '大鱼次数',
   `vip` int(11) NOT NULL,
   `time` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=gb2312 COLLATE=gb2312_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -156,15 +156,15 @@ CREATE TABLE IF NOT EXISTS `CSAinfo` (
 
 CREATE TABLE IF NOT EXISTS `CSAlogin` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `Name` varchar(32) CHARACTER SET gbk NOT NULL,
-  `PassWord` varchar(32) CHARACTER SET gbk NOT NULL,
+  `Name` varchar(32) CHARACTER SET utf8 NOT NULL,
+  `PassWord` varchar(32) CHARACTER SET utf8 NOT NULL,
   `IP` varchar(16) NOT NULL DEFAULT '-',
   `MAC` varchar(64) NOT NULL,
   `RegTime` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `LoginTime` datetime DEFAULT '0000-00-00 00:00:00',
-  `OnlineName` varchar(32) CHARACTER SET gbk DEFAULT NULL,
-  `OnlineName1` varchar(30) CHARACTER SET gbk DEFAULT NULL,
-  `OnlineName2` varchar(32) CHARACTER SET gbk DEFAULT NULL,
+  `OnlineName` varchar(32) CHARACTER SET utf8 DEFAULT NULL,
+  `OnlineName1` varchar(30) CHARACTER SET utf8 DEFAULT NULL,
+  `OnlineName2` varchar(32) CHARACTER SET utf8 DEFAULT NULL,
   `Online` tinyint(4) DEFAULT '0',
   `Path` varchar(16) DEFAULT '',
   `CE` int(16) NOT NULL DEFAULT '0',
@@ -188,7 +188,7 @@ CREATE TABLE IF NOT EXISTS `CSAlogin` (
   `Trust` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `Name` (`Name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=gb2312;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -199,7 +199,7 @@ CREATE TABLE IF NOT EXISTS `CSAlogin` (
 CREATE TABLE IF NOT EXISTS `dice` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `cdkey` varchar(32) NOT NULL,
-  `name` varchar(32) CHARACTER SET gb2312 NOT NULL,
+  `name` varchar(32) CHARACTER SET utf8 NOT NULL,
   `type` int(11) NOT NULL,
   `vippoint` int(11) NOT NULL,
   `alive` int(11) NOT NULL,
@@ -207,7 +207,7 @@ CREATE TABLE IF NOT EXISTS `dice` (
   `dicenum` int(11) NOT NULL,
   `fixtime` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -220,7 +220,7 @@ CREATE TABLE IF NOT EXISTS `dicelog` (
   `winpoint` int(11) NOT NULL DEFAULT '0',
   `losepoint` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`type`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -230,19 +230,19 @@ CREATE TABLE IF NOT EXISTS `dicelog` (
 
 CREATE TABLE IF NOT EXISTS `loan` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `cdkey` varchar(32) CHARACTER SET gb2312 NOT NULL,
-  `name` varchar(32) CHARACTER SET gb2312 NOT NULL,
-  `PetName` varchar(32) CHARACTER SET gb2312 NOT NULL,
-  `PetInfo` varchar(512) CHARACTER SET gb2312 NOT NULL,
-  `PetString` varchar(2048) CHARACTER SET gb2312 NOT NULL,
+  `cdkey` varchar(32) CHARACTER SET utf8 NOT NULL,
+  `name` varchar(32) CHARACTER SET utf8 NOT NULL,
+  `PetName` varchar(32) CHARACTER SET utf8 NOT NULL,
+  `PetInfo` varchar(512) CHARACTER SET utf8 NOT NULL,
+  `PetString` varchar(2048) CHARACTER SET utf8 NOT NULL,
   `day` int(11) NOT NULL,
   `vippoint` int(11) NOT NULL,
   `stat` int(11) NOT NULL DEFAULT '0',
-  `loancdkey` varchar(32) CHARACTER SET gb2312 NOT NULL,
-  `loanname` varchar(32) CHARACTER SET gb2312 NOT NULL,
+  `loancdkey` varchar(32) CHARACTER SET utf8 NOT NULL,
+  `loanname` varchar(32) CHARACTER SET utf8 NOT NULL,
   `fixtime` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -254,7 +254,7 @@ CREATE TABLE IF NOT EXISTS `LOCK` (
   `Name` varchar(64) NOT NULL,
   `LockTime` datetime NOT NULL,
   PRIMARY KEY (`Name`)
-) ENGINE=MyISAM DEFAULT CHARSET=gb2312;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -269,7 +269,7 @@ CREATE TABLE IF NOT EXISTS `OnlineBuy` (
   `CostTime` datetime DEFAULT NULL,
   `check` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`CostPasswd`)
-) ENGINE=MyISAM DEFAULT CHARSET=gb2312;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -284,7 +284,7 @@ CREATE TABLE IF NOT EXISTS `OnlineCard` (
   `CostTime` datetime DEFAULT NULL,
   `check` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`CostPasswd`)
-) ENGINE=MyISAM DEFAULT CHARSET=gb2312;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -301,7 +301,7 @@ CREATE TABLE IF NOT EXISTS `OnlineCost` (
   `check` tinyint(1) NOT NULL DEFAULT '1',
   `creator` varchar(32) DEFAULT NULL,
   UNIQUE KEY `CostPasswd` (`CostPasswd`)
-) ENGINE=MyISAM DEFAULT CHARSET=gb2312;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -316,7 +316,7 @@ CREATE TABLE IF NOT EXISTS `OnlinePlayer` (
   `LoginTime` datetime NOT NULL,
   `ServerId` int(11) NOT NULL,
   PRIMARY KEY (`cdkey`)
-) ENGINE=InnoDB DEFAULT CHARSET=gb2312;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -326,16 +326,16 @@ CREATE TABLE IF NOT EXISTS `OnlinePlayer` (
 
 CREATE TABLE IF NOT EXISTS `PauctionInfo` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `cdkey` varchar(32) CHARACTER SET gbk NOT NULL,
-  `name` varchar(32) CHARACTER SET gbk NOT NULL,
-  `effect` varchar(1024) CHARACTER SET gbk NOT NULL,
+  `cdkey` varchar(32) CHARACTER SET utf8 NOT NULL,
+  `name` varchar(32) CHARACTER SET utf8 NOT NULL,
+  `effect` varchar(1024) CHARACTER SET utf8 NOT NULL,
   `cost` int(11) NOT NULL,
   `type` int(11) NOT NULL,
-  `info` varchar(1024) CHARACTER SET gbk NOT NULL,
-  `string` varchar(1024) CHARACTER SET gb2312 NOT NULL,
+  `info` varchar(1024) CHARACTER SET utf8 NOT NULL,
+  `string` varchar(1024) CHARACTER SET utf8 NOT NULL,
   `day` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -346,15 +346,15 @@ CREATE TABLE IF NOT EXISTS `PauctionInfo` (
 CREATE TABLE IF NOT EXISTS `petbilling` (
   `id` int(11) NOT NULL,
   `type` tinyint(4) NOT NULL,
-  `name` varchar(32) CHARACTER SET gb2312 NOT NULL,
+  `name` varchar(32) CHARACTER SET utf8 NOT NULL,
   `lv` int(11) NOT NULL,
   `hp` int(11) NOT NULL,
   `attack` int(11) NOT NULL,
   `def` int(11) NOT NULL,
   `quick` int(11) NOT NULL,
-  `author` varchar(32) CHARACTER SET gb2312 NOT NULL,
+  `author` varchar(32) CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`id`,`type`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -364,15 +364,15 @@ CREATE TABLE IF NOT EXISTS `petbilling` (
 
 CREATE TABLE IF NOT EXISTS `pklist` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `player1` varchar(32) CHARACTER SET gb2312 NOT NULL,
-  `player2` varchar(32) CHARACTER SET gb2312 NOT NULL,
-  `player3` varchar(32) CHARACTER SET gb2312 NOT NULL,
-  `player4` varchar(32) CHARACTER SET gb2312 NOT NULL,
-  `player5` varchar(32) CHARACTER SET gb2312 NOT NULL,
+  `player1` varchar(32) CHARACTER SET utf8 NOT NULL,
+  `player2` varchar(32) CHARACTER SET utf8 NOT NULL,
+  `player3` varchar(32) CHARACTER SET utf8 NOT NULL,
+  `player4` varchar(32) CHARACTER SET utf8 NOT NULL,
+  `player5` varchar(32) CHARACTER SET utf8 NOT NULL,
   `seesion` int(11) NOT NULL,
   `stat` int(11) NOT NULL DEFAULT '0',
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -387,7 +387,7 @@ CREATE TABLE IF NOT EXISTS `safedata` (
   `flg` int(1) NOT NULL,
   `FixTime` datetime NOT NULL,
   PRIMARY KEY (`cdkey`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -398,19 +398,19 @@ CREATE TABLE IF NOT EXISTS `safedata` (
 CREATE TABLE IF NOT EXISTS `SaleVipPoint` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `cdkey` varchar(32) NOT NULL,
-  `name` varchar(32) CHARACTER SET gb2312 NOT NULL,
+  `name` varchar(32) CHARACTER SET utf8 NOT NULL,
   `Vippoint` int(11) NOT NULL,
   `rate` int(11) NOT NULL,
   `price` int(11) NOT NULL,
   `stat` int(11) NOT NULL,
   `CreateTime` datetime NOT NULL,
   `PayTime` datetime NOT NULL,
-  `banktype` varchar(32) CHARACTER SET gb2312 NOT NULL DEFAULT '',
-  `bankcdkey` varchar(32) CHARACTER SET gb2312 NOT NULL,
-  `bankname` varchar(8) CHARACTER SET gb2312 NOT NULL,
-  `QQ` varchar(11) CHARACTER SET gb2312 NOT NULL,
+  `banktype` varchar(32) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `bankcdkey` varchar(32) CHARACTER SET utf8 NOT NULL,
+  `bankname` varchar(8) CHARACTER SET utf8 NOT NULL,
+  `QQ` varchar(11) CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -420,13 +420,13 @@ CREATE TABLE IF NOT EXISTS `SaleVipPoint` (
 
 CREATE TABLE IF NOT EXISTS `SuperStar` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `cdkey` varchar(32) CHARACTER SET gb2312 NOT NULL,
-  `name` varchar(32) CHARACTER SET gbk NOT NULL,
-  `award` varchar(32) CHARACTER SET gb2312 NOT NULL,
+  `cdkey` varchar(32) CHARACTER SET utf8 NOT NULL,
+  `name` varchar(32) CHARACTER SET utf8 NOT NULL,
+  `award` varchar(32) CHARACTER SET utf8 NOT NULL,
   `check` int(11) NOT NULL,
   `datatime` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -443,7 +443,7 @@ CREATE TABLE IF NOT EXISTS `transpointlog` (
   `outpoint` int(11) DEFAULT '0',
   `datetime` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=gb2312;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -452,14 +452,14 @@ CREATE TABLE IF NOT EXISTS `transpointlog` (
 --
 
 CREATE TABLE IF NOT EXISTS `VipShop` (
-  `cdkey` varchar(32) COLLATE gb2312_bin NOT NULL,
-  `name` varchar(32) CHARACTER SET gbk NOT NULL,
+  `cdkey` varchar(32) COLLATE utf8_general_ci NOT NULL,
+  `name` varchar(32) CHARACTER SET utf8 NOT NULL,
   `itemid` int(11) NOT NULL,
-  `itemname` varchar(32) CHARACTER SET gb2312 NOT NULL,
+  `itemname` varchar(32) CHARACTER SET utf8 NOT NULL,
   `itemnum` int(11) NOT NULL,
   `totalcost` int(16) NOT NULL,
   `time` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=gb2312 COLLATE=gb2312_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -474,7 +474,7 @@ CREATE TABLE IF NOT EXISTS `weekpay` (
   `itemid` int(11) NOT NULL,
   `check` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -484,16 +484,16 @@ CREATE TABLE IF NOT EXISTS `weekpay` (
 
 CREATE TABLE IF NOT EXISTS `YamaKing` (
   `index` int(13) NOT NULL AUTO_INCREMENT,
-  `cdkey` varchar(32) CHARACTER SET gbk NOT NULL,
-  `name` varchar(32) CHARACTER SET gbk NOT NULL,
+  `cdkey` varchar(32) CHARACTER SET utf8 NOT NULL,
+  `name` varchar(32) CHARACTER SET utf8 NOT NULL,
   `floor` int(16) NOT NULL,
   `itemid` int(16) NOT NULL,
-  `itemname` varchar(16) CHARACTER SET gbk NOT NULL,
+  `itemname` varchar(16) CHARACTER SET utf8 NOT NULL,
   `time` datetime NOT NULL,
-  `mac` varchar(64) CHARACTER SET gbk NOT NULL,
-  `servername` varchar(32) CHARACTER SET gbk NOT NULL,
+  `mac` varchar(64) CHARACTER SET utf8 NOT NULL,
+  `servername` varchar(32) CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`index`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -503,14 +503,14 @@ CREATE TABLE IF NOT EXISTS `YamaKing` (
 
 CREATE TABLE IF NOT EXISTS `yuxiaxie` (
   `date` date NOT NULL,
-  `cdkey` varchar(32) CHARACTER SET gb2312 NOT NULL,
-  `name` varchar(32) CHARACTER SET gb2312 NOT NULL,
+  `cdkey` varchar(32) CHARACTER SET utf8 NOT NULL,
+  `name` varchar(32) CHARACTER SET utf8 NOT NULL,
   `type` int(11) NOT NULL,
   `vippoint` int(11) NOT NULL,
   `fame` int(11) NOT NULL,
   `alive` int(11) NOT NULL,
   `fixtime` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -528,7 +528,7 @@ CREATE TABLE IF NOT EXISTS `yuxiaxielog` (
   `sumalive` int(11) NOT NULL,
   `sumfame` int(11) NOT NULL,
   `fixtime` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

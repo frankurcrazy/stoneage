@@ -21,10 +21,11 @@ void LoadAllbluesLUA(char *path)
 	DIR *pDir;
 	pDir=opendir(path);
 
+	fprintf(stderr, "Loading lua directory: %s\n", path);
 	while(NULL != (ent=readdir(pDir)))
 	{
 		if(ent->d_name[0] == '.')continue;
-		if (ent->d_type==8){
+		if (ent->d_type==DT_REG){ // regular file
 		  if( strcmptail( ent->d_name, ".allblues" ) == 0
 #ifndef _NOT_NOCRYPTO_LUA
 		  	|| strcmptail( ent->d_name, ".lua" ) == 0
@@ -37,7 +38,7 @@ void LoadAllbluesLUA(char *path)
       	myluaload(filename);
 
     	}
-		}else{
+		}else if (ent->d_type==DT_DIR){
 			sprintf(filename, "%s/%s", path, ent->d_name);
 			LoadAllbluesLUA(filename);
 		}

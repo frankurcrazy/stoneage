@@ -59,6 +59,7 @@ extern int snprintf (char* , size_t, const char* , ...)
 #define BOOL int
 #define FALSE 0
 #define TRUE  1
-#define INLINE inline
+//#define INLINE inline
+#define INLINE
 
 #endif

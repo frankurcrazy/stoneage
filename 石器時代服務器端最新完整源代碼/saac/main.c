@@ -978,7 +978,6 @@ char todayaward[256]="-1,-1,-1,-1,-1,-1,-1";
 							char debugfun[256];
                 buf[l]=0;
                 if( saacproto_ServerDispatchMessage( i , buf, debugfun)<0){
-                		printf("buf:%s;%d\n", buf, strlen(buf));
                 		char token[256];
                 		char tmp[256];
                 		struct tm now;
@@ -1001,7 +1000,7 @@ char todayaward[256]="-1,-1,-1,-1,-1,-1,-1";
                 logerr(token);
                 logout_game_server( i );
             } else if( l < 0 ){
-                log( "關閉:%d 服務器名:%s\n", i , gs[i].name );
+                log( "關閉:%d 服務器名:%s Error: %d\n", i , gs[i].name, l);
                 logout_game_server(i);
             } else if( l == 0 ){
                 ;
