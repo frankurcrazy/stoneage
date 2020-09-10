@@ -651,7 +651,7 @@ static int NPC_TransmigrationCheck(int meindex, int talker)
 			lasttalkelder = 34;//威伯
 		print("\npetid:%d",lasttalkelder);*/
 
-		//找看看有沒有帶2轉齣生寵物
+		//找看看有沒有帶2轉出生寵物
 		for(i=0 ; i < CHAR_MAXPETHAVE ; i++){
 			petindex = CHAR_getCharPet( talker, i);
 			if( petindex == -1  )  continue;
@@ -663,7 +663,7 @@ static int NPC_TransmigrationCheck(int meindex, int talker)
 			//if(CHAR_getInt( petindex, CHAR_TRANSMIGRATION) != 2 || CHAR_getInt( petindex, CHAR_PETID) != lasttalkelder ) continue;		
 		}
 		if(i == CHAR_MAXPETHAVE){
-			CHAR_talkToCli( talker,-1,"你沒有帶2轉的齣生寵哦!",CHAR_COLORWHITE);
+			CHAR_talkToCli( talker,-1,"你沒有帶2轉的出生寵哦!",CHAR_COLORWHITE);
 			return -1;
 		}
 
@@ -952,7 +952,7 @@ int NPC_TransCalculation(int toindex, int para)
 	//tttom
 	//print("\n this test equ=%d,quest=%f,level=%f",equ,quest,level);
 	//鱉戲莢醒
-	num = CHAR_getInt(toindex, CHAR_TRANSMIGRATION); // 前麵已加1,故0轉1時為1
+	num = CHAR_getInt(toindex, CHAR_TRANSMIGRATION); // 前面已加1,故0轉1時為1
 	tmp = (float)para / 100;
 #ifdef _TRANS_6
 	if (num == 6) tmp = 620; // 六轉生時舊點數不計
@@ -1276,13 +1276,13 @@ int NPC_TransmigrationFlg_CLS(int meindex, int toindex)
 			int iPlayernum = CHAR_getPlayerMaxNum();
 			char szMsg[128];
 
-			// 檢查導師在不在綫上
+			// 檢查導師在不在線上
 			for(i=0;i<iPlayernum;i++){
 				if(CHAR_getCharUse(i) == FALSE) continue;
 				if(strcmp(CHAR_getChar(toindex,CHAR_TEACHER_ID),CHAR_getChar(i,CHAR_CDKEY)) == 0 &&
 					strcmp(CHAR_getChar(toindex,CHAR_TEACHER_NAME),CHAR_getChar(i,CHAR_NAME)) == 0){
 					float fGetFame = (float)iGetFame/100;
-					// 導師在綫上
+					// 導師在線上
 					CHAR_setWorkInt(i,CHAR_WORK_GET_TEACHER_FAME,CHAR_getWorkInt(i,CHAR_WORK_GET_TEACHER_FAME) + iGetFame);
 					sprintf(szMsg,"獲得學生 %s %.2f 點聲望",CHAR_getChar(toindex,CHAR_NAME),fGetFame);
 					CHAR_talkToCli(i,-1,szMsg,CHAR_COLORYELLOW);
@@ -1335,7 +1335,7 @@ BOOL NPC_TransmigrationDelPetDel(int meindex,int talker,int petsel)
 		lssproto_KS_send( fd, -1, TRUE);
 	}
 
-	snprintf( msgbuf,sizeof( msgbuf), "交齣%s。",
+	snprintf( msgbuf,sizeof( msgbuf), "交出%s。",
 									CHAR_getChar( petindex, CHAR_NAME));	CHAR_talkToCli( talker, -1, msgbuf,  CHAR_COLORWHITE);
 	LogPet(
 		CHAR_getChar( talker, CHAR_NAME ), /* 平乓仿o */
@@ -1578,10 +1578,10 @@ void NPC_PetTransMan_selectWindow(int meindex,int toindex,int num,int select)
 #ifdef _PET_FUSION
 #ifdef _FUSIONBEIT_TRANS
 			if( CHAR_getInt( petindex, CHAR_FUSIONBEIT ) > getFusionbeitTrans()) {
-				sprintf(token, "\n\n融閤過的寵物已經接受過祝福瞭喔！");
+				sprintf(token, "\n\n融合過的寵物已經接受過祝福了喔！");
 #else
 			if( CHAR_getInt( petindex, CHAR_FUSIONBEIT ) == 1 ) {
-				sprintf(token, "\n\n融閤過的寵物不能轉生喔！");
+				sprintf(token, "\n\n融合過的寵物不能轉生喔！");
 #endif
 				CHAR_setWorkInt( toindex, CHAR_WORKSHOPRELEVANT, 0);
 			}else
@@ -1611,7 +1611,7 @@ void NPC_PetTransMan_selectWindow(int meindex,int toindex,int num,int select)
 #else
 			}else if( CHAR_getInt( petindex, CHAR_TRANSMIGRATION ) > 0 )	{
 #endif
-				sprintf(token, "\n\n這隻寵物已經接受過祝福瞭喔！");
+				sprintf(token, "\n\n這隻寵物已經接受過祝福了喔！");
 				CHAR_setWorkInt( toindex, CHAR_WORKSHOPRELEVANT, 0);
 				//檢查寵物是否重復轉生
 			}else	{	//	轉生ＯＫ
@@ -1878,7 +1878,7 @@ BOOL NPC_PetTransManStatus( int meindex, int toindex, int petNo)
 			CHAR_send_K_StatusString(toindex,count,CHAR_K_STRING_HP|CHAR_K_STRING_AI);
 		}
 	}
-	sprintf(token,"%s 接受瞭精靈王的祝福！", CHAR_getUseName( ret));
+	sprintf(token,"%s 接受了精靈王的祝福！", CHAR_getUseName( ret));
 	CHAR_talkToCli( toindex, -1,token,CHAR_COLORWHITE);
 	sprintf( token, "K%d", i );
 	CHAR_sendStatusString( toindex , token );

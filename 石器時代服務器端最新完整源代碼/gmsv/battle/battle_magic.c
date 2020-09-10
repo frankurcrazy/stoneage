@@ -44,14 +44,14 @@ typedef struct tagToCallMagic
   int           siSx;                   // 顯示的位置 - X軸
   int           siSy;                   // 顯示的位置 - Y軸
   unsigned int  uiShowBehindChar;       // 顯示在人物的前方或下方
-  unsigned int  uiShakeScreen;          // 是否震動畫麵
-  unsigned int  uiShakeFrom;            // 震動畫麵的起始時間( 毫秒 )
-  unsigned int  uiShakeTo;              // 震動畫麵的結束時間( 毫秒 _
-  unsigned int  uiPrevMagicNum;         // 前置咒術的索引號( 0XFFFFFFFFFF 錶示無前置咒術 )
+  unsigned int  uiShakeScreen;          // 是否震動畫面
+  unsigned int  uiShakeFrom;            // 震動畫面的起始時間( 毫秒 )
+  unsigned int  uiShakeTo;              // 震動畫面的結束時間( 毫秒 _
+  unsigned int  uiPrevMagicNum;         // 前置咒術的索引號( 0XFFFFFFFFFF 表示無前置咒術 )
   int           siPrevMagicSx;          // 前置咒術的顯示位置 - X軸
   int           siPrevMagicSy;          // 前置咒術的顯示位置 - Y軸
   int           siPrevMagicOnChar;      // 前置咒術顯示在人物的前方或下方
-  unsigned int  uiPostMagicNum;         // 後置咒術的索引號( 0XFFFFFFFF 錶示無後置咒術 )
+  unsigned int  uiPostMagicNum;         // 後置咒術的索引號( 0XFFFFFFFF 表示無後置咒術 )
   int           siPostMagicSx;          // 後置咒術的顯示位置 - X軸
   int           siPostMagicSy;          // 後置咒術的顯示位置 - Y軸
   int           siPostMagicOnChar;      // 後置咒術顯示在人物的前方或下方
@@ -324,7 +324,7 @@ void BATTLE_MultiRecovery(
 				CHAR_complianceParameter( toindex );
 		        CHAR_sendCToArroundCharacter( CHAR_getWorkInt( toindex , CHAR_WORKOBJINDEX ));
 		        CHAR_send_P_StatusString( toindex , CHAR_P_STRING_BASEBASEIMAGENUMBER);
-		        CHAR_talkToCli( toindex,-1,"烏力化失效瞭。",CHAR_COLORWHITE);
+		        CHAR_talkToCli( toindex,-1,"烏力化失效了。",CHAR_COLORWHITE);
 			}
 		break;
 #endif 
@@ -1252,7 +1252,7 @@ void BATTLE_MultiAttMagic( int battleindex, int attackNo, int toNo , int attIdx,
           if( ( pethp -= attvalue ) < 0 )
           {
             pethp = 0;
-						// 寵物沒血瞭退齣戰場
+						// 寵物沒血了退出戰場
 						CHAR_setInt(charaidx,CHAR_RIDEPET,-1);
 						BATTLE_changeRideImage(charaidx);
 						CHAR_setWorkInt(charaidx,CHAR_WORKPETFALL,1);
@@ -1294,7 +1294,7 @@ void BATTLE_MultiAttMagic( int battleindex, int attackNo, int toNo , int attIdx,
 	}
 	for(i=0; i<listidx; i++){
 		if( !CHAR_CHECKINDEX( def_be_hit[i]) )continue;
-		// 如果被攻擊者中瞭睡眠
+		// 如果被攻擊者中了睡眠
 		if(CHAR_getWorkInt(def_be_hit[i],CHAR_WORKSLEEP) > 0) {
 			CHAR_setWorkInt(def_be_hit[i],CHAR_WORKSLEEP,0);
 			z = BATTLE_Index2No(battleindex,def_be_hit[i]);
@@ -1318,22 +1318,22 @@ void BATTLE_MultiAttMagic( int battleindex, int attackNo, int toNo , int attIdx,
 			att_magic_exp_sub -= getexp;
 			lv_up_exp = Magic_Level_Table[att_magic_lv[FieldAttr]];
 			while(att_magic_exp_add >= lv_up_exp || att_magic_exp_sub < 0){
-				// 如果玩傢所用的魔法的經驗值現在可以升級瞭
+				// 如果玩傢所用的魔法的經驗值現在可以升級了
 				if(att_magic_exp_add >= lv_up_exp){
-					// 如果超過瞭100級
+					// 如果超過了100級
 					if(att_magic_lv[FieldAttr] + 1 > 100){
 						att_magic_lv[FieldAttr] = 100;
 						// 經驗值清為0
 						att_magic_exp_add = 0;
 					}else{
 						att_magic_lv[FieldAttr]++;
-						// 把現在的經驗值扣掉升瞭級所用的經驗值
+						// 把現在的經驗值扣掉升了級所用的經驗值
 						att_magic_exp_add -= lv_up_exp;
 						snprintf(msgbuf,sizeof(msgbuf),"你的 %s 魔法熟練度升級為 %d。",kind[FieldAttr],att_magic_lv[FieldAttr]);
 		        CHAR_talkToCli(BATTLE_No2Index(battleindex,attackNo),-1,msgbuf,CHAR_COLORRED);
 					}
 				}
-				// 如果玩傢所用的魔法的相剋魔法的經驗值現在可以降級瞭
+				// 如果玩傢所用的魔法的相剋魔法的經驗值現在可以降級了
 				if(att_magic_exp_sub < 0 ){
 					// 如果等級已經是1級
 					if(att_magic_lv[DefFieldAttr] <= 1){
@@ -1374,9 +1374,9 @@ void BATTLE_MultiAttMagic( int battleindex, int attackNo, int toNo , int attIdx,
 				lv_up_exp = Magic_Level_Table[def_magic_resist[FieldAttr]];
 				
 				while(def_magic_exp_add >= lv_up_exp || def_magic_exp_sub < 0){
-					// 如果防守方玩傢對此魔法的抗性的經驗值現在可以升級瞭
+					// 如果防守方玩傢對此魔法的抗性的經驗值現在可以升級了
 					if(def_magic_exp_add >= lv_up_exp){
-						// 如果超過瞭100級
+						// 如果超過了100級
 						if(def_magic_resist[FieldAttr] + 1 > 100) def_magic_resist[FieldAttr] = 100;
 						else {
 							def_magic_resist[FieldAttr]++;
@@ -1386,7 +1386,7 @@ void BATTLE_MultiAttMagic( int battleindex, int attackNo, int toNo , int attIdx,
 						// 經驗值清為0
 						def_magic_exp_add = 0;
 					}
-					// 如果防守方玩傢對此魔法的抗性的相剋魔法的經驗值現在可以降級瞭
+					// 如果防守方玩傢對此魔法的抗性的相剋魔法的經驗值現在可以降級了
 					if(def_magic_exp_sub < 0 ) {
 						// 如果等級已經是1級
 						if(def_magic_resist[DefFieldAttr] <= 1) def_magic_exp_sub = 0; // 經驗值清為0
@@ -1406,7 +1406,7 @@ void BATTLE_MultiAttMagic( int battleindex, int attackNo, int toNo , int attIdx,
 				CHAR_setInt(charaidx,CHAR_EARTH_DEFMAGIC_EXP+DefFieldAttr,def_magic_exp_sub);
 			}
 			if( CHAR_CHECKINDEX( def_be_hit[i]) ){
-				// 如果被攻擊者中瞭睡眠
+				// 如果被攻擊者中了睡眠
 				if(CHAR_getWorkInt(def_be_hit[i],CHAR_WORKSLEEP) > 0) {
 					CHAR_setWorkInt(def_be_hit[i],CHAR_WORKSLEEP,0);
 					z = BATTLE_Index2No(battleindex,def_be_hit[i]);
@@ -1562,7 +1562,7 @@ void BATTLE_MultiToCallDragonMagic( int battleindex, int attackNo, int toNo,
 				if( ( pethp -= attvalue ) < 0)
 				{
 					pethp = 0;
-					// 寵物沒血瞭退齣戰場
+					// 寵物沒血了退出戰場
 					CHAR_setInt(charaidx,CHAR_RIDEPET,-1);
 					BATTLE_changeRideImage(charaidx);
 					CHAR_setWorkInt(charaidx,CHAR_WORKPETFALL,1);
@@ -1929,10 +1929,10 @@ void BATTLE_MultiStatusRecovery(
 			lssproto_NC_send( getfdFromCharaIndex( toindex ), 0);//沉默解除
 			}
 #endif
-//	print("\n vincent--解除瞭:%d",tostatus);
+//	print("\n vincent--解除了:%d",tostatus);
 			// 嶽  凜
 			//snprintf( szBuffer, sizeof(szBuffer),
-			//	"(%s)解除瞭(%s)的(%s)",
+			//	"(%s)解除了(%s)的(%s)",
 			//	CHAR_getUseName( charaindex ),
 			//	CHAR_getUseName( toindex ),
 			//	aszStatusFull[tostatus]
@@ -3291,14 +3291,14 @@ typedef struct tagToCallMagic
   int           siSx;                   // 顯示的位置 - X軸
   int           siSy;                   // 顯示的位置 - Y軸
   unsigned int  uiShowBehindChar;       // 顯示在人物的前方或下方
-  unsigned int  uiShakeScreen;          // 是否震動畫麵
-  unsigned int  uiShakeFrom;            // 震動畫麵的起始時間( 毫秒 )
-  unsigned int  uiShakeTo;              // 震動畫麵的結束時間( 毫秒 _
-  unsigned int  uiPrevMagicNum;         // 前置咒術的索引號( 0XFFFFFFFFFF 錶示無前置咒術 )
+  unsigned int  uiShakeScreen;          // 是否震動畫面
+  unsigned int  uiShakeFrom;            // 震動畫面的起始時間( 毫秒 )
+  unsigned int  uiShakeTo;              // 震動畫面的結束時間( 毫秒 _
+  unsigned int  uiPrevMagicNum;         // 前置咒術的索引號( 0XFFFFFFFFFF 表示無前置咒術 )
   int           siPrevMagicSx;          // 前置咒術的顯示位置 - X軸
   int           siPrevMagicSy;          // 前置咒術的顯示位置 - Y軸
   int           siPrevMagicOnChar;      // 前置咒術顯示在人物的前方或下方
-  unsigned int  uiPostMagicNum;         // 後置咒術的索引號( 0XFFFFFFFF 錶示無後置咒術 )
+  unsigned int  uiPostMagicNum;         // 後置咒術的索引號( 0XFFFFFFFF 表示無後置咒術 )
   int           siPostMagicSx;          // 後置咒術的顯示位置 - X軸
   int           siPostMagicSy;          // 後置咒術的顯示位置 - Y軸
   int           siPostMagicOnChar;      // 後置咒術顯示在人物的前方或下方
@@ -3403,7 +3403,7 @@ void PROFESSION_MAGIC_ATTAIC( int battleindex, int attackNo, int toNo, int attId
 
 	power = hp_power;
 
-	// 取齣攻擊 list
+	// 取出攻擊 list
 	PROFESSION_MAGIC_TOLIST_SORT( list, &listidx, charaindex );
 
 	for( i = 0 ; i < listidx ; i++ ) {
@@ -3493,7 +3493,7 @@ void PROFESSION_MAGIC_ATTAIC( int battleindex, int attackNo, int toNo, int attId
 				pethp     = CHAR_getInt( petidx , CHAR_HP ); 
 				charahurt = attvalue * BATTLE_CalcCharaRatio( FieldAttr , charaidx ) / 10;
 
-				//以下的計算,若人物被打死,血不夠扣的話,會將多齣來的傷害再纍加至寵物身上
+				//以下的計算,若人物被打死,血不夠扣的話,會將多出來的傷害再纍加至寵物身上
 				charahurt_temp = charahurt;
 				if( ( charahp -= charahurt ) < 0 )
 				{
@@ -3505,7 +3505,7 @@ void PROFESSION_MAGIC_ATTAIC( int battleindex, int attackNo, int toNo, int attId
 				if( ( pethp -= attvalue ) < 0)
 				{
 					pethp = 0;
-					// 寵物沒血瞭退齣戰場
+					// 寵物沒血了退出戰場
 					CHAR_setInt(charaidx,CHAR_RIDEPET,-1);
 					BATTLE_changeRideImage(charaidx);
 					CHAR_setWorkInt(charaidx,CHAR_WORKPETFALL,1);
@@ -3529,7 +3529,7 @@ void PROFESSION_MAGIC_ATTAIC( int battleindex, int attackNo, int toNo, int attId
 				aAttackList[1] = -1;
 				BATTLE_AddProfit( battleindex, aAttackList);
 			}
-			//change fix 讓替身娃娃可正常運作   (這樣做所有法術類職技戰鬥後都拿不到DP值,不過上麵先拿到,所以沒關係)
+			//change fix 讓替身娃娃可正常運作   (這樣做所有法術類職技戰鬥後都拿不到DP值,不過上面先拿到,所以沒關係)
 			if( CHAR_getInt( charaidx, CHAR_HP ) <= 0 
 				&& CHAR_getInt( charaidx, CHAR_WHICHTYPE ) == CHAR_TYPEPLAYER 
 				/*&& !BattleArray[battleindex].dpbattle*/ )
@@ -3617,9 +3617,9 @@ void PROFESSION_MAGIC_ATTAIC( int battleindex, int attackNo, int toNo, int attId
 
 		BATTLESTR_ADD( szcommand );
 	}
-// Terry fix 2003/11/17 修正睡眠者中瞭攻擊性法術不會醒
+// Terry fix 2003/11/17 修正睡眠者中了攻擊性法術不會醒
 	for(i=0; i<listidx; i++){
-		// 如果被攻擊者中瞭睡眠
+		// 如果被攻擊者中了睡眠
 		if(def_be_hit[i] < 0) continue;
 		if(CHAR_getWorkInt(def_be_hit[i],CHAR_WORKSLEEP) > 0) {
 			CHAR_setWorkInt(def_be_hit[i],CHAR_WORKSLEEP,0);
@@ -3721,7 +3721,7 @@ int analysis_profession_parameter( int attIdx, int skill, int toNo, int charaind
 
 	}
 
-	// 顯示的位置方式 0人物 1畫麵中央
+	// 顯示的位置方式 0人物 1畫面中央
 	memset( temp, 0, sizeof(temp) );
 	if( !getStringFromIndexWithDelim(pszOption,"|",2,temp,sizeof(temp)) )	return -1;
 	place = atoi(temp);
@@ -3743,12 +3743,12 @@ int analysis_profession_parameter( int attIdx, int skill, int toNo, int charaind
 	if( !getStringFromIndexWithDelim(pszOption,"|",5,temp,sizeof(temp)) )	return -1;
 	y = atoi(temp);
 
-	// 震動畫麵的開始毫秒數
+	// 震動畫面的開始毫秒數
 	memset( temp, 0, sizeof(temp) );
 	if( !getStringFromIndexWithDelim(pszOption,"|",6,temp,sizeof(temp)) )	return -1;
 	shake_s_time = atoi(temp);
 
-	// 震動畫麵的結束毫秒數
+	// 震動畫面的結束毫秒數
 	memset( temp, 0, sizeof(temp) );
 	if( !getStringFromIndexWithDelim(pszOption,"|",7,temp,sizeof(temp)) )	return -1;
 	shake_e_time = atoi(temp);
@@ -3766,7 +3766,7 @@ int analysis_profession_parameter( int attIdx, int skill, int toNo, int charaind
 	image_2 = PROFESSION_SKILL_getInt( skill, PROFESSION_SKILL_IMG_2);
 	PROFESSION_magic[attIdx].uiSpriteNum	= image_2;	// 後置動畫 
 
-	// 顯示在畫麵的 x,y座標
+	// 顯示在畫面的 x,y座標
 	PROFESSION_magic[attIdx].siSx = x;
 	PROFESSION_magic[attIdx].siSy = y;
 	
@@ -5216,7 +5216,7 @@ void BATTLE_MultiAttMagic_Fire( int battleindex, int attackNo, int defNo,
 	else 
 		f_num = 15;
 
-	// 取齣戰場上存活的人
+	// 取出戰場上存活的人
 	for( i=f_num; i<f_num+5; i++ ){			
 		if( BATTLE_TargetCheck(battleindex, i) != FALSE ){
 		    list[listidx]	= i;
@@ -5331,7 +5331,7 @@ charaidx = BATTLE_No2Index( battleindex , list[i] );
 				print( "Player:%s\n", CHAR_getUseName( charaidx));
 				print( "ANDY Magic Power:%d Amagic:%f APower:%d \n", Power, Amagic, APower);
 */               
-				def_be_hit[getexp++] = charaidx;	// 記下被打的人的index 給後麵 "被攻擊者中瞭睡眠"那一段使用
+				def_be_hit[getexp++] = charaidx;	// 記下被打的人的index 給後面 "被攻擊者中了睡眠"那一段使用
 
 				attvalue = BATTLE_getMagicAdjustInt( BATTLE_No2Index(battleindex,attackNo), charaidx,
 					                                     MagicLv, FieldAttr, APower);
@@ -5401,7 +5401,7 @@ charaidx = BATTLE_No2Index( battleindex , list[i] );
           if( ( pethp -= attvalue ) < 0 )
           {
             pethp = 0;
-						// 寵物沒血瞭退齣戰場
+						// 寵物沒血了退出戰場
 						CHAR_setInt(charaidx,CHAR_RIDEPET,-1);
 						BATTLE_changeRideImage(charaidx);
 						CHAR_setWorkInt(charaidx,CHAR_WORKPETFALL,1);
@@ -5426,7 +5426,7 @@ charaidx = BATTLE_No2Index( battleindex , list[i] );
 		Magic_ComputeAttExp( BATTLE_No2Index(battleindex,attackNo), FieldAttr, MagicLv, getexp);
 	}
 	for(i=0; i<listidx; i++)	{
-		// 如果被攻擊者中瞭睡眠
+		// 如果被攻擊者中了睡眠
 		if(def_be_hit[i] < 0) continue;
 		if(CHAR_getWorkInt(def_be_hit[i],CHAR_WORKSLEEP) > 0) {
 			CHAR_setWorkInt(def_be_hit[i],CHAR_WORKSLEEP,0);

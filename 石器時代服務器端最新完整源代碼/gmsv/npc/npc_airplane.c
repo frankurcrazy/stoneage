@@ -55,7 +55,7 @@ NPC_AIR_MSG		airmsg[] = {
 	{ "msg_level",		"PAPAON！！你的等級還不夠唷！"},
 	{ "msg_stone",		"PAPAON！！金錢不足唷！"},
 	{ "msg_event",		"PAON！！你無法加入唷！"},
-	{ "msg_start",		"哇喔~(齣發進行)"},
+	{ "msg_start",		"哇喔~(出發進行)"},
 	{ "msg_end",		"哇喔~(到羅)"}
 };
 
@@ -198,8 +198,8 @@ void NPC_AirTalked( int meindex , int talkerindex , char *szMes ,
 		if( CHAR_getWorkInt( meindex, NPC_WORK_MODE) == 0 ) {
 			int i;
 	//		#define NPC_AIR_DEBUGROUTINTG	"routingtable:"
-			if( strstr( szMes, "齣發" )  ||
-				strstr( szMes, "齣發" )  ||
+			if( strstr( szMes, "出發" )  ||
+				strstr( szMes, "出發" )  ||
 				strstr( szMes, "Go" )  ||
 				strstr( szMes, "go" ))
 			{
@@ -747,7 +747,7 @@ BOOL NPC_AirCheckJoinParty( int meindex, int charaindex, BOOL msgflg)
 					CHAR_getInt( charaindex, CHAR_GOLD) - ret);
 		/* 霜耨 */
 		CHAR_send_P_StatusString( charaindex, CHAR_P_STRING_GOLD);
-		snprintf( msgbuf, sizeof( msgbuf), "支付瞭%d Stone！", ret);
+		snprintf( msgbuf, sizeof( msgbuf), "支付了%d Stone！", ret);
 		CHAR_talkToCli( charaindex, -1, msgbuf, CHAR_COLORYELLOW);
 	}
 	/* 由□  奴卞  月 */

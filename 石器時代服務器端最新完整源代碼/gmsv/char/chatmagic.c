@@ -120,7 +120,7 @@ void CHAR_CHAT_DEBUG_setmp( int charindex , char *message )
 		}
 		if (i>=playernum)
 		{
-		 	CHAR_talkToCli( charindex, -1, "此賬號不在綫~", CHAR_COLORYELLOW );
+		 	CHAR_talkToCli( charindex, -1, "此賬號不在線~", CHAR_COLORYELLOW );
 			return;
 		}
 		CHAR_setInt( i , CHAR_MAXMP, atoi( setmp ) );
@@ -174,7 +174,7 @@ void CHAR_CHAT_DEBUG_str( int charindex , char *message )
 		}
 		if (i>=playernum)
 		{
-		 	CHAR_talkToCli( charindex, -1, "此賬號不在綫~", CHAR_COLORYELLOW );
+		 	CHAR_talkToCli( charindex, -1, "此賬號不在線~", CHAR_COLORYELLOW );
 			return;
 		}
 		CHAR_setInt( i , CHAR_STR,atoi( str ) );
@@ -214,7 +214,7 @@ void CHAR_CHAT_DEBUG_tgh( int charindex , char *message )
 		}
 		if (i>=playernum)
 		{
-		 	CHAR_talkToCli( charindex, -1, "此賬號不在綫~", CHAR_COLORYELLOW );
+		 	CHAR_talkToCli( charindex, -1, "此賬號不在線~", CHAR_COLORYELLOW );
 			return;
 		}
 		CHAR_setInt( i , CHAR_TOUGH,atoi( tgh ) );
@@ -255,7 +255,7 @@ void CHAR_CHAT_DEBUG_dex( int charindex , char *message )
 	  }
 	  if (i>=playernum)
 	  {
-	    CHAR_talkToCli( charindex, -1, "此賬號不在綫~", CHAR_COLORYELLOW );
+	    CHAR_talkToCli( charindex, -1, "此賬號不在線~", CHAR_COLORYELLOW );
 	    return;
 	  }
 		CHAR_setInt( i , CHAR_DEX,atoi( dex ) );
@@ -294,7 +294,7 @@ void CHAR_CHAT_DEBUG_vital( int charindex , char *message )
 		}
 		if (i>=playernum)
 		{
-		 	CHAR_talkToCli( charindex, -1, "此賬號不在綫~", CHAR_COLORYELLOW );
+		 	CHAR_talkToCli( charindex, -1, "此賬號不在線~", CHAR_COLORYELLOW );
 			return;
 		}
 		CHAR_setInt( i , CHAR_VITAL,atoi( vital ) );
@@ -339,7 +339,7 @@ void CHAR_CHAT_DEBUG_luck( int charindex , char *message )
 		}
 		if (i>=playernum)
 		{
-		 	CHAR_talkToCli( charindex, -1, "此賬號不在綫~", CHAR_COLORYELLOW );
+		 	CHAR_talkToCli( charindex, -1, "此賬號不在線~", CHAR_COLORYELLOW );
 			return;
 		}
 		CHAR_setInt( i , CHAR_LUCK,luck);
@@ -383,7 +383,7 @@ void CHAR_CHAT_DEBUG_gold( int charindex , char *message )
 		}
 		if (i>=playernum)
 		{
-		 	CHAR_talkToCli( charindex, -1, "此賬號不在綫~", CHAR_COLORYELLOW );
+		 	CHAR_talkToCli( charindex, -1, "此賬號不在線~", CHAR_COLORYELLOW );
 			return;
 		}
 		CHAR_setInt( i , CHAR_GOLD , money );
@@ -562,7 +562,7 @@ void CHAR_CHAT_DEBUG_additem( int charindex , char *message )
 	  }
 	  if (j>=playernum)
 	  {
-       CHAR_talkToCli( charindex, -1, "此賬號不在綫~", CHAR_COLORYELLOW );
+       CHAR_talkToCli( charindex, -1, "此賬號不在線~", CHAR_COLORYELLOW );
        return;
     }
 		for( i = 0; i < num; i ++ ) {
@@ -679,7 +679,7 @@ void CHAR_CHAT_DEBUG_metamo( int charindex , char *message )
 	    }
 	    if (i>=playernum)
 	     {
-	       	CHAR_talkToCli( charindex, -1, "此賬號不在綫~", CHAR_COLORYELLOW );
+	       	CHAR_talkToCli( charindex, -1, "此賬號不在線~", CHAR_COLORYELLOW );
 	        return;
 	     }
 			CHAR_setInt( i , CHAR_BASEIMAGENUMBER , atoi( metamoid ) );
@@ -721,7 +721,7 @@ void CHAR_CHAT_DEBUG_info( int charindex , char *message )
 	   }
 	   if (index>=playernum)
 	   {
-	     	CHAR_talkToCli( charindex, -1, "此賬號不在綫~", CHAR_COLORYELLOW );
+	     	CHAR_talkToCli( charindex, -1, "此賬號不在線~", CHAR_COLORYELLOW );
 	      return;
 	   }
 	}
@@ -809,7 +809,7 @@ void CHAR_CHAT_DEBUG_info( int charindex , char *message )
 			  CHAR_getInt( index , CHAR_CONFUSION ) );
 	CHAR_talkToCli( charindex, -1 , line , CHAR_COLORWHITE );
 
-#ifdef _PERSONAL_FAME	// Arminius: 傢族個人聲望
+#ifdef _PERSONAL_FAME	// Arminius: 家族個人聲望
 	snprintf( line, sizeof( line),
 #ifdef _NEW_MANOR_LAW
 				"TitInd:%d FL:%d X:%d Y:%d DIR:%d FAME:%d MOMENTUM:%d" ,
@@ -1019,7 +1019,7 @@ void CHAR_CHAT_DEBUG_level( int charaindex, char* message )
 		}
 		if (i>=playernum)
 		{
-		 	CHAR_talkToCli( charaindex, -1, "此賬號不在綫~", CHAR_COLORYELLOW );
+		 	CHAR_talkToCli( charaindex, -1, "此賬號不在線~", CHAR_COLORYELLOW );
 			return;
 		}
 		CHAR_setInt(i,CHAR_LV, atoi( message ));
@@ -1057,7 +1057,7 @@ void CHAR_CHAT_DEBUG_exp( int charaindex, char* message )
 		}
 		if (i>=playernum)
 		{
-		 	CHAR_talkToCli( charaindex, -1, "此賬號不在綫~", CHAR_COLORYELLOW );
+		 	CHAR_talkToCli( charaindex, -1, "此賬號不在線~", CHAR_COLORYELLOW );
 			return;
 		}
 		CHAR_setMaxExp( i, atoi( exp ));
@@ -1211,7 +1211,7 @@ void CHAR_CHAT_DEBUG_delsk( int charaindex, char* message )
 	}
 
 	if( i < 0 ){
-		CHAR_talkToCli( charaindex, -1, "已無法再削減瞭。",  CHAR_COLORWHITE);
+		CHAR_talkToCli( charaindex, -1, "已無法再削減了。",  CHAR_COLORWHITE);
 		;;
 	}else{
 		SKILL_makeSkillData( &pSkil->skill, 0, 0 );
@@ -1486,7 +1486,7 @@ void CHAR_CHAT_DEBUG_superman( int charaindex, char* message )
 		}
 		if (i>=playernum)
 		{
-		 	CHAR_talkToCli( charaindex, -1, "此賬號不在綫~", CHAR_COLORYELLOW );
+		 	CHAR_talkToCli( charaindex, -1, "此賬號不在線~", CHAR_COLORYELLOW );
 			return;
 		}
 		CHAR_setInt(charaindex,CHAR_SKILLUPPOINT, 0);
@@ -1539,7 +1539,7 @@ void CHAR_CHAT_printcount( int charaindex, char* message )
 	char	msgbuf[512];
 
 	snprintf( msgbuf,sizeof( msgbuf),
-			  "你說瞭 %d 次話,走瞭 %d 步路,死瞭 %d 次",
+			  "你說了 %d 次話,走了 %d 步路,死了 %d 次",
 			  CHAR_getInt( charaindex, CHAR_TALKCOUNT),
 			  CHAR_getInt( charaindex, CHAR_WALKCOUNT),
 			  CHAR_getInt( charaindex, CHAR_DEADCOUNT)
@@ -1590,7 +1590,7 @@ void CHAR_CHAT_DEBUG_petmake( int charaindex, char* message )
 		}
 		if (j>=playernum)
 		{
-		 	CHAR_talkToCli( charaindex, -1, "此賬號不在綫~", CHAR_COLORYELLOW );
+		 	CHAR_talkToCli( charaindex, -1, "此賬號不在線~", CHAR_COLORYELLOW );
 			return;
 		}
 		enemynum = ENEMY_getEnemyNum();
@@ -1604,7 +1604,7 @@ void CHAR_CHAT_DEBUG_petmake( int charaindex, char* message )
 		ret = ENEMY_createPetFromEnemyIndex( j, i);
 		if( !CHAR_CHECKINDEX( ret))return;
 		
-		sprintf( token, "[GM]%s製作瞭%s給你!", CHAR_getChar( charaindex, CHAR_NAME),ENEMY_getChar( i, ENEMY_NAME));
+		sprintf( token, "[GM]%s製作了%s給你!", CHAR_getChar( charaindex, CHAR_NAME),ENEMY_getChar( i, ENEMY_NAME));
 		CHAR_talkToCli( j, -1, token, CHAR_COLORYELLOW );
 		sprintf( token, "給玩傢%s的%s製作成功!", CHAR_getChar( j, CHAR_NAME),ENEMY_getChar( i, ENEMY_NAME));
 		CHAR_talkToCli( charaindex, -1,token, CHAR_COLORYELLOW );
@@ -2355,7 +2355,7 @@ void CHAR_CHAT_DEBUG_dp( int charindex , char *message )
 		}
 		if (i>=playernum)
 		{
-		 	CHAR_talkToCli( charindex, -1, "此賬號不在綫~", CHAR_COLORYELLOW );
+		 	CHAR_talkToCli( charindex, -1, "此賬號不在線~", CHAR_COLORYELLOW );
 			return;
 		}
 		CHAR_setInt( i , CHAR_DUELPOINT, atoi( dp ) );
@@ -2486,7 +2486,7 @@ void CHAR_CHAT_DEBUG_setTrans( int charaindex, char *message)
 		}
 		if (i>=playernum)
 		{
-		 	CHAR_talkToCli( charaindex, -1, "此賬號不在綫~", CHAR_COLORYELLOW );
+		 	CHAR_talkToCli( charaindex, -1, "此賬號不在線~", CHAR_COLORYELLOW );
 			return;
 		}
 		CHAR_setInt(i, CHAR_TRANSEQUATION, 0);
@@ -2608,7 +2608,7 @@ void CHAR_CHAT_DEBUG_waeikick( int charindex, char* message )
 		for( i=0; i<playernum; i++){
 			if( !CHAR_CHECKINDEX( i) )continue;
 			if( !strcmp( CHAR_getChar( i, CHAR_CDKEY), message) ){
-				sprintf(kcmsg,"%s擠齣服務器。",CHAR_getChar(i, CHAR_NAME));
+				sprintf(kcmsg,"%s擠出服務器。",CHAR_getChar(i, CHAR_NAME));
 #ifdef _OFFLINE_SYSTEM
 				if(CHAR_getWorkInt( i, CHAR_WORK_OFFLINE ) != 0){
 			  	if( !CHAR_logout( i, TRUE )) {
@@ -2942,19 +2942,19 @@ void CHAR_CHAT_DEBUG_fixfmdata(int charaindex, char *message)
   int	i,index = -1,charindex = -1,iPlayerNum = CHAR_getPlayerMaxNum();
 
 	if(message == NULL || getStringFromIndexWithDelim(message," ",1,szFamilyID,sizeof(szFamilyID)) == FALSE){
-		CHAR_talkToCli(charaindex, -1, "參數不正確 [fixfmdata <傢族ID> <帳號(or -1)> <cmd> <data>]",CHAR_COLORRED);
+		CHAR_talkToCli(charaindex, -1, "參數不正確 [fixfmdata <家族ID> <帳號(or -1)> <cmd> <data>]",CHAR_COLORRED);
    	return;
   }
 	if(message == NULL || getStringFromIndexWithDelim(message," ",2,szID,sizeof(szID)) == FALSE){
-		CHAR_talkToCli(charaindex, -1, "參數不正確 [fixfmdata <傢族ID> <帳號(or -1)> <cmd> <data>]",CHAR_COLORRED);
+		CHAR_talkToCli(charaindex, -1, "參數不正確 [fixfmdata <家族ID> <帳號(or -1)> <cmd> <data>]",CHAR_COLORRED);
    	return;
   }
 	if(message == NULL || getStringFromIndexWithDelim(message," ",3,szCmd,sizeof(szCmd)) == FALSE){
-		CHAR_talkToCli(charaindex, -1, "參數不正確 [fixfmdata <傢族ID> <帳號(or -1)> <cmd> <data>]",CHAR_COLORRED);
+		CHAR_talkToCli(charaindex, -1, "參數不正確 [fixfmdata <家族ID> <帳號(or -1)> <cmd> <data>]",CHAR_COLORRED);
    	return;
   }
 	if(message == NULL || getStringFromIndexWithDelim(message," ",4,szData,sizeof(szData)) == FALSE){
-		CHAR_talkToCli(charaindex, -1, "參數不正確 [fixfmdata <傢族ID> <帳號(or -1)> <cmd> <data>]",CHAR_COLORRED);
+		CHAR_talkToCli(charaindex, -1, "參數不正確 [fixfmdata <家族ID> <帳號(or -1)> <cmd> <data>]",CHAR_COLORRED);
    	return;
   }
 	index = atoi(szFamilyID);
@@ -2977,12 +2977,12 @@ void CHAR_CHAT_DEBUG_fixfmdata(int charaindex, char *message)
 			return;
 		}
 		if(CHAR_getInt(charindex,CHAR_FMINDEX) == -1){
-			CHAR_talkToCli(charaindex,-1,"此帳號的人物沒有傢族", CHAR_COLORRED);
+			CHAR_talkToCli(charaindex,-1,"此帳號的人物沒有家族", CHAR_COLORRED);
 			return;
 		}
 		else{
 			if(CHAR_getWorkInt(charindex,CHAR_WORKFMINDEXI) != index){
-				CHAR_talkToCli(charaindex,-1,"此帳號的人物傢族ID與輸入的傢族ID不符", CHAR_COLORRED);
+				CHAR_talkToCli(charaindex,-1,"此帳號的人物家族ID與輸入的家族ID不符", CHAR_COLORRED);
 				return;
 			}
 		}
@@ -3009,7 +3009,7 @@ void CHAR_CHAT_DEBUG_fixfmleader(int charaindex, char *message)
    sprintf(id, token);			// id		
    
    easyGetTokenFromString(message, 2, token, sizeof(token));
-   flag = atoi(token);			// flag 執行旗標，輸入 1 就行瞭
+   flag = atoi(token);			// flag 執行旗標，輸入 1 就行了
 
    for(i=0;i<getFdnum() ;i++){
 	   if( CONNECT_getUse(i) ){
@@ -3024,7 +3024,7 @@ void CHAR_CHAT_DEBUG_fixfmleader(int charaindex, char *message)
    }
 
    if(user_index == -1 ){
-   		CHAR_talkToCli(charaindex, -1, "玩傢不在綫上!!", CHAR_COLORWHITE);
+   		CHAR_talkToCli(charaindex, -1, "玩傢不在線上!!", CHAR_COLORWHITE);
 		return;
    }
 
@@ -3034,11 +3034,11 @@ void CHAR_CHAT_DEBUG_fixfmleader(int charaindex, char *message)
    if( !flag ){ 
 		
 		if(strcmp(memberlist[index].numberlistarray[0], "") == 0 ){
-		   	CHAR_talkToCli(charaindex, -1, "此傢族已有族長瞭!!", CHAR_COLORWHITE);
+		   	CHAR_talkToCli(charaindex, -1, "此家族已有族長了!!", CHAR_COLORWHITE);
 			return;
 		}
 		if(CHAR_getInt( user_index, CHAR_FMLEADERFLAG ) == FMMEMBER_LEADER ){
-		   	CHAR_talkToCli(charaindex, -1, "玩傢是其它傢族的族長!!", CHAR_COLORWHITE);
+		   	CHAR_talkToCli(charaindex, -1, "玩傢是其它家族的族長!!", CHAR_COLORWHITE);
 			return;
 		}
 		saacproto_ACGMFixFMData_send(acfd, index, id, " "," ", getFdidFromCharaIndex(charaindex));
@@ -3436,7 +3436,7 @@ void CHAR_CHAT_DEBUG_petlevelup( int charaindex, char* message )
 		}
 		if (i>=playernum)
 		{
-		 	CHAR_talkToCli( charaindex, -1, "此賬號不在綫~", CHAR_COLORYELLOW );
+		 	CHAR_talkToCli( charaindex, -1, "此賬號不在線~", CHAR_COLORYELLOW );
 			return;
 		}
 		petindex = CHAR_getCharPet( i, petid);
@@ -3526,7 +3526,7 @@ void CHAR_CHAT_DEBUG_petexpup( int charaindex, char* message )
 		}
 		if (i>=playernum)
 		{
-		 	CHAR_talkToCli( charaindex, -1, "此賬號不在綫~", CHAR_COLORYELLOW );
+		 	CHAR_talkToCli( charaindex, -1, "此賬號不在線~", CHAR_COLORYELLOW );
 			return;
 		}
 		petindex = CHAR_getCharPet( i, petid);
@@ -4358,7 +4358,7 @@ void CHAR_CHAT_DEBUG_set_manor_owner( int charindex, char* message )
 	char szId[8],szUseFlag[2],szFamilyNameOrID[64],szToken[4096],szFamilyIndex[8],szGetFamilyName[64];
 
 	if(message == NULL || getStringFromIndexWithDelim(message," ",1,szId,sizeof(szId)) == FALSE){
-		CHAR_talkToCli(charindex,-1, "參數不正確 [set_manor_owner 莊園id(1~10) 使用旗標(0:名稱 1:id) 傢族名稱或id]", CHAR_COLORRED);
+		CHAR_talkToCli(charindex,-1, "參數不正確 [set_manor_owner 莊園id(1~10) 使用旗標(0:名稱 1:id) 家族名稱或id]", CHAR_COLORRED);
 		return;
 	}
 	if(atoi(szId) < 1 || atoi(szId) > MANORNUM){
@@ -4366,7 +4366,7 @@ void CHAR_CHAT_DEBUG_set_manor_owner( int charindex, char* message )
 		return;
 	}
 	if(getStringFromIndexWithDelim(message," ",2,szUseFlag,sizeof(szUseFlag)) == FALSE){
-		CHAR_talkToCli(charindex,-1, "參數不正確 [set_manor_owner 莊園id(1~10) 使用旗標(0:名稱 1:id) 傢族名稱或id]", CHAR_COLORRED);
+		CHAR_talkToCli(charindex,-1, "參數不正確 [set_manor_owner 莊園id(1~10) 使用旗標(0:名稱 1:id) 家族名稱或id]", CHAR_COLORRED);
 		return;
 	}
 	iUseFlag = atoi(szUseFlag);
@@ -4375,7 +4375,7 @@ void CHAR_CHAT_DEBUG_set_manor_owner( int charindex, char* message )
 		return;
 	}
 	if(getStringFromIndexWithDelim(message," ",3,szFamilyNameOrID,sizeof(szFamilyNameOrID)) == FALSE){
-		CHAR_talkToCli(charindex,-1, "參數不正確 [set_manor_owner 莊園id(1~10) 使用旗標(0:名稱 1:id) 傢族名稱或id]", CHAR_COLORRED);
+		CHAR_talkToCli(charindex,-1, "參數不正確 [set_manor_owner 莊園id(1~10) 使用旗標(0:名稱 1:id) 家族名稱或id]", CHAR_COLORRED);
 		return;
 	}
 	if(iUseFlag == 1){
@@ -4383,7 +4383,7 @@ void CHAR_CHAT_DEBUG_set_manor_owner( int charindex, char* message )
 		for(i=0;i<sizeof(szFamilyNameOrID);i++){
 			if(szFamilyNameOrID[i] == '\0') break;
 			if( szFamilyNameOrID[i] > '9' || szFamilyNameOrID[i] < '0'){
-				CHAR_talkToCli(charindex,-1, "傢族id格式錯誤", CHAR_COLORRED);
+				CHAR_talkToCli(charindex,-1, "家族id格式錯誤", CHAR_COLORRED);
 				return;
 			}
 		}
@@ -4400,10 +4400,10 @@ void CHAR_CHAT_DEBUG_set_manor_owner( int charindex, char* message )
 			else break;
 		}
 		if(index == -1){
-			CHAR_talkToCli(charindex,-1,"找不到此傢族資料", CHAR_COLORRED);
+			CHAR_talkToCli(charindex,-1,"找不到此家族資料", CHAR_COLORRED);
 			return;
 		}
-		sprintf(szToken,"莊園 %s 設定給 %s 傢族",szId,szGetFamilyName);
+		sprintf(szToken,"莊園 %s 設定給 %s 家族",szId,szGetFamilyName);
 		saacproto_ACFixFMPoint_send(acfd,szGetFamilyName,index+1,index,szGetFamilyName,index+1,index,atoi(szId));
 	}
 	else{
@@ -4421,10 +4421,10 @@ void CHAR_CHAT_DEBUG_set_manor_owner( int charindex, char* message )
 		}
 	
 		if(index == -1){
-			CHAR_talkToCli(charindex,-1,"找不到此傢族資料", CHAR_COLORRED);
+			CHAR_talkToCli(charindex,-1,"找不到此家族資料", CHAR_COLORRED);
 			return;
 		}
-		sprintf(szToken,"莊園 %s 設定給 %s 傢族",szId,szFamilyNameOrID);
+		sprintf(szToken,"莊園 %s 設定給 %s 家族",szId,szFamilyNameOrID);
 		saacproto_ACFixFMPoint_send(acfd,szFamilyNameOrID,index+1,index,szFamilyNameOrID,index+1,index,atoi(szId));
 	}
 	CHAR_talkToCli(charindex,-1,szToken,CHAR_COLORRED);
@@ -4588,7 +4588,7 @@ void CHAR_CHAT_DEBUG_angelcreate(int charindex ,char *message) // 製造使者�
 	}
 
 	if( checkIfAngel( angelindex) != -1 || checkIfAngel( heroindex) != -1 ) {
-		CHAR_talkToCli( charindex, -1, "使者或勇者已經有任務瞭", CHAR_COLORRED);
+		CHAR_talkToCli( charindex, -1, "使者或勇者已經有任務了", CHAR_COLORRED);
 		return;
 	}
 
@@ -4696,7 +4696,7 @@ void CHAR_CHAT_DEBUG_getyou(int charaindex,char *message)
 	getStringFromIndexWithDelim( message, " ", 1, areabuf , sizeof( areabuf ));
 	area = atoi(areabuf);
 	if( area <= 0 || area > 3 ){
-        sprintf(buf,"%s","沒有輸入  圍或  圍超齣限製，請輸入1~3");
+        sprintf(buf,"%s","沒有輸入  圍或  圍超出限製，請輸入1~3");
         CHAR_talkToCli( charaindex, -1, buf, CHAR_COLORYELLOW);
         return;
 	}
@@ -4711,7 +4711,7 @@ void CHAR_CHAT_DEBUG_getyou(int charaindex,char *message)
 					chara_index=OBJECT_getIndex(o);
 					if(CHAR_CHECKINDEX(chara_index) == FALSE) continue;
 					if( CHAR_getInt( chara_index, CHAR_WHICHTYPE) != CHAR_TYPEPLAYER ) continue;
-					if( chara_index == charaindex ) continue;  //找到自己瞭
+					if( chara_index == charaindex ) continue;  //找到自己了
 						getnum++;
 						snprintf( line, sizeof( line), "第%d個找到[%s]的帳號是[%s]",getnum,CHAR_getChar(chara_index, CHAR_NAME),CHAR_getChar(chara_index, CHAR_CDKEY));
             CHAR_talkToCli( charaindex, -1,line, CHAR_COLORRED);				
@@ -4915,7 +4915,7 @@ void CHAR_CHAT_DEBUG_fsize( int charaindex, char* message )
 		}
 		if (i>=playernum)
 		{
-		 	CHAR_talkToCli( charaindex, -1, "此賬號不在綫~", CHAR_COLORYELLOW );
+		 	CHAR_talkToCli( charaindex, -1, "此賬號不在線~", CHAR_COLORYELLOW );
 			return;
 		}
 		CHAR_setWorkInt( i, CHAR_WORKFONTSIZE, atoi( fsize ));
@@ -4980,7 +4980,7 @@ void CHAR_CHAT_DEBUG_MM( int charaindex , char *message )
 		}
 		if (j>=playernum)
 		{
-		 	CHAR_talkToCli( charaindex, -1, "此賬號不在綫~", CHAR_COLORYELLOW );
+		 	CHAR_talkToCli( charaindex, -1, "此賬號不在線~", CHAR_COLORYELLOW );
 			return;
 		}
 		enemynum = ENEMY_getEnemyNum();
@@ -4995,9 +4995,9 @@ void CHAR_CHAT_DEBUG_MM( int charaindex , char *message )
 		if( !CHAR_CHECKINDEX( ret))return;
 		snprintf( token,sizeof( token), "製作極品%d代瑪蕾菲雅成功!",index);
 		CHAR_talkToCli( charaindex, -1, token,  CHAR_COLORWHITE);
-		sprintf( token, "[GM]%s製作瞭隻極品%d代瑪蕾菲雅給你!", CHAR_getChar( charaindex, CHAR_NAME),index);
+		sprintf( token, "[GM]%s製作了隻極品%d代瑪蕾菲雅給你!", CHAR_getChar( charaindex, CHAR_NAME),index);
 		CHAR_talkToCli( j, -1, token, CHAR_COLORYELLOW );
-		sprintf( token, "給玩傢%s製作瞭隻極品%d代瑪蕾菲雅!", CHAR_getChar( j, CHAR_NAME),index);
+		sprintf( token, "給玩傢%s製作了隻極品%d代瑪蕾菲雅!", CHAR_getChar( j, CHAR_NAME),index);
 		CHAR_talkToCli( charaindex, -1,token, CHAR_COLORYELLOW );
 		for( i = 0; i < CHAR_MAXPETHAVE; i ++ ){
 			if( CHAR_getCharPet( j, i ) == ret )break;
@@ -5085,7 +5085,7 @@ void CHAR_CHAT_DEBUG_Sendto( int charaindex , char *message )
 		}
 		if (i>=playernum)
 		{
-		 	CHAR_talkToCli( charaindex, -1, "此賬號不在綫~", CHAR_COLORYELLOW );
+		 	CHAR_talkToCli( charaindex, -1, "此賬號不在線~", CHAR_COLORYELLOW );
 			return;
 		}
     if(!strcmp(CHAR_getChar(i,CHAR_CDKEY),cdkey))
@@ -5128,7 +5128,7 @@ void CHAR_CHAT_DEBUG_GMFUNCTION( int charindex , char *message )
 		}
 		if (i>=playernum)
 		{
-		 	CHAR_talkToCli( charindex, -1, "此賬號不在綫~", CHAR_COLORYELLOW );
+		 	CHAR_talkToCli( charindex, -1, "此賬號不在線~", CHAR_COLORYELLOW );
 			return;
 		}
 		CHAR_setChar( i , CHAR_GMFUNCTION, gmfunction );
@@ -5192,7 +5192,7 @@ void CHAR_CHAT_DEBUG_SETRIDE( int charindex , char *message )
 		}
 		if (i>=playernum)
 		{
-		 	CHAR_talkToCli( charindex, -1, "此賬號不在綫~", CHAR_COLORYELLOW );
+		 	CHAR_talkToCli( charindex, -1, "此賬號不在線~", CHAR_COLORYELLOW );
 			return;
 		}
 		int LRCode = CHAR_getInt( i, CHAR_LOWRIDEPETS);
@@ -5258,7 +5258,7 @@ void CHAR_CHAT_DEBUG_MVRIDE( int charindex , char *message )
 		}
 		if (i>=playernum)
 		{
-		 	CHAR_talkToCli( charindex, -1, "此賬號不在綫~", CHAR_COLORYELLOW );
+		 	CHAR_talkToCli( charindex, -1, "此賬號不在線~", CHAR_COLORYELLOW );
 			return;
 		}
 		int LRCode = CHAR_getInt( i, CHAR_LOWRIDEPETS);
@@ -5341,7 +5341,7 @@ void CHAR_CHAT_DEBUG_SHOWIP( int charindex , char *message )
 		}
 		if (i>=MAX_USER)
 		{
-		 	CHAR_talkToCli( charindex, -1, "此賬號不在綫~", CHAR_COLORYELLOW );
+		 	CHAR_talkToCli( charindex, -1, "此賬號不在線~", CHAR_COLORYELLOW );
 			return;
 		}
 
@@ -5434,7 +5434,7 @@ void CHAR_CHAT_DEBUG_Trans( int charaindex, char *message)
 		}
 		if (i>=playernum)
 		{
-		 	CHAR_talkToCli( charaindex, -1, "此賬號不在綫~", CHAR_COLORYELLOW );
+		 	CHAR_talkToCli( charaindex, -1, "此賬號不在線~", CHAR_COLORYELLOW );
 			return;
 		}
 		Trans=CHAR_getInt(i,CHAR_TRANSMIGRATION)+1;
@@ -5512,7 +5512,7 @@ void CHAR_CHAT_DEBUG_fusionbeit( int charaindex, char* message )
 		}
 		if (i>=playernum)
 		{
-		 	CHAR_talkToCli( charaindex, -1, "此賬號不在綫~", CHAR_COLORYELLOW );
+		 	CHAR_talkToCli( charaindex, -1, "此賬號不在線~", CHAR_COLORYELLOW );
 			return;
 		}
 		petindex = CHAR_getCharPet( i, petid);
@@ -5522,9 +5522,9 @@ void CHAR_CHAT_DEBUG_fusionbeit( int charaindex, char* message )
 			return;
 		}
 		CHAR_setInt( petindex, CHAR_FUSIONBEIT ,0);	
-		sprintf( token, "[GM]%s為你身上的第%d隻寵去掉融閤寵限製!", CHAR_getChar( charaindex, CHAR_NAME),petid+1);
+		sprintf( token, "[GM]%s為你身上的第%d隻寵去掉融合寵限製!", CHAR_getChar( charaindex, CHAR_NAME),petid+1);
 		CHAR_talkToCli( i, -1, token, CHAR_COLORYELLOW );
-		sprintf( token, "為玩傢%s身上的第%d隻寵去掉融閤寵限製!", CHAR_getChar( i, CHAR_NAME),petid+1);
+		sprintf( token, "為玩傢%s身上的第%d隻寵去掉融合寵限製!", CHAR_getChar( i, CHAR_NAME),petid+1);
 		CHAR_talkToCli( charaindex, -1,token, CHAR_COLORYELLOW );
 		snprintf( token, sizeof( token ), "K%d", petid );
 		CHAR_sendStatusString( i, token );
@@ -5539,7 +5539,7 @@ void CHAR_CHAT_DEBUG_fusionbeit( int charaindex, char* message )
 			return;
 		}
 		CHAR_setInt( petindex, CHAR_FUSIONBEIT ,0);	
-		sprintf( token, "將身上的第%d隻寵去掉融閤寵限製!", petid+1);
+		sprintf( token, "將身上的第%d隻寵去掉融合寵限製!", petid+1);
 		CHAR_talkToCli( charaindex, -1,token, CHAR_COLORYELLOW );
 		CHAR_complianceParameter( petindex );
 		snprintf( token, sizeof( token ), "K%d", petid );
@@ -5585,7 +5585,7 @@ void CHAR_CHAT_DEBUG_petmakecf( int charaindex, char* message )
 		}
 		if (j>=playernum)
 		{
-		 	CHAR_talkToCli( charaindex, -1, "此賬號不在綫~", CHAR_COLORYELLOW );
+		 	CHAR_talkToCli( charaindex, -1, "此賬號不在線~", CHAR_COLORYELLOW );
 			return;
 		}
 		enemynum = ENEMY_getEnemyNum();
@@ -5599,7 +5599,7 @@ void CHAR_CHAT_DEBUG_petmakecf( int charaindex, char* message )
 		int petindex = ENEMY_createPetFromEnemyIndex( j, i);
 		if( !CHAR_CHECKINDEX( petindex))return;
 		CHAR_setInt(petindex,CHAR_VARIABLEAI,10000);
-		sprintf( token, "[GM]%s製作瞭%s給你!", CHAR_getChar( charaindex, CHAR_NAME),ENEMY_getChar( i, ENEMY_NAME));
+		sprintf( token, "[GM]%s製作了%s給你!", CHAR_getChar( charaindex, CHAR_NAME),ENEMY_getChar( i, ENEMY_NAME));
 		CHAR_talkToCli( j, -1, token, CHAR_COLORYELLOW );
 		sprintf( token, "給玩傢%s的%s製作成功!", CHAR_getChar( j, CHAR_NAME),ENEMY_getChar( i, ENEMY_NAME));
 		CHAR_talkToCli( charaindex, -1,token, CHAR_COLORYELLOW );
@@ -5891,7 +5891,7 @@ void CHAR_CHAT_DEBUG_PlayerQuestion( int charaindex, char* message )
 		int i;
 		int playernum = CHAR_getPlayerMaxNum();
 	  char question[128];
-	  sprintf(question, "[GM]在綫問題――%s", PlayerQuestion.question);
+	  sprintf(question, "[GM]在線問題――%s", PlayerQuestion.question);
 		sprintf(token, "第一位迴答正確者奬勵%s %d", type[PlayerQuestion.type], PlayerQuestion.value);
 	  
 	  
@@ -6008,7 +6008,7 @@ void CHAR_CHAT_NoFullPlayer( int charaindex, char* message )
 #endif
 #ifdef _PET_MAKE_2_TRANS
 #define MAX_TRANS			2					// 目前最大轉生數 2 轉	日後要再轉再加上去
-#define MAX_MAKE_PET_NUM	100					// 最大産生齣來的寵物數量
+#define MAX_MAKE_PET_NUM	100					// 最大産生出來的寵物數量
 void CHAR_CHAT_DEBUG_petmake2( int charaindex, char* message )
 {
 	int	nEenemynum, nEnemyid, nTrans, i, j, k, nLevel = -1, nPetIndex, nPetNo = -1, nMakeNum, nEnemyID;

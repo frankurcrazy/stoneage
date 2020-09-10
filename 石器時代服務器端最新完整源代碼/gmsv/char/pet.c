@@ -75,19 +75,19 @@ static int _PET_dropPet( int charaindex, int havepetindex, int tofl, int tox, in
     if( !CHAR_CHECKINDEX( charaindex ) )return FALSE;
     if( CHAR_CHECKINDEX( petindex) == FALSE ) return FALSE;
 
-#ifdef _AVID_TRADETRYBUG //丟齣寵物
+#ifdef _AVID_TRADETRYBUG //丟出寵物
 	if( CHAR_getWorkInt( charaindex, CHAR_WORKTRADEMODE) == CHAR_TRADE_TRADING ){
-		CHAR_talkToCli( charaindex, -1, "交易狀態中無法丟齣寵物。", CHAR_COLORYELLOW );
+		CHAR_talkToCli( charaindex, -1, "交易狀態中無法丟出寵物。", CHAR_COLORYELLOW );
 		return FALSE;
 	}
 #endif
     // CoolFish: Family 2001/6/13
     if (CHAR_getInt(petindex, CHAR_PETFAMILY) == 1){
-    	CHAR_talkToCli(charaindex, -1, "傢族守護獸無法丟齣！", CHAR_COLORYELLOW);
+    	CHAR_talkToCli(charaindex, -1, "家族守護獸無法丟出！", CHAR_COLORYELLOW);
     	return	FALSE;
     }
     if (CHAR_getInt(charaindex, CHAR_RIDEPET) == havepetindex ){
-    	CHAR_talkToCli(charaindex, -1, "騎乘中的寵物無法丟齣！", CHAR_COLORYELLOW);
+    	CHAR_talkToCli(charaindex, -1, "騎乘中的寵物無法丟出！", CHAR_COLORYELLOW);
     	return	FALSE;
     }    
 #ifdef _LOCK_PET_ITEM
@@ -96,7 +96,7 @@ static int _PET_dropPet( int charaindex, int havepetindex, int tofl, int tox, in
 		char *owntile = CHAR_getChar(petindex, CHAR_OWNTITLE);
 
 		if(name[0] == '*' || owntile[0] == '*' ){
-			CHAR_talkToCli( charaindex, -1, "綁定寵物無法丟齣！", CHAR_COLORYELLOW);
+			CHAR_talkToCli( charaindex, -1, "綁定寵物無法丟出！", CHAR_COLORYELLOW);
 			return FALSE;
 		}
 }
@@ -123,7 +123,7 @@ static int _PET_dropPet( int charaindex, int havepetindex, int tofl, int tox, in
 		}
 	}
 		if( count_item > 80 || count_chara > 80 ) {
-			CHAR_talkToCli( charaindex, -1, "這裏已經太擁擠瞭，不能再丟瞭。", CHAR_COLORYELLOW );
+			CHAR_talkToCli( charaindex, -1, "這裏已經太擁擠了，不能再丟了。", CHAR_COLORYELLOW );
 			return FALSE;
 		}
 	}
@@ -435,7 +435,7 @@ BOOL PET_SelectBattleEntryPet( int charaindex, int petarray)
 
 #ifdef _PET_VALIDITY
 	if(CHAR_getInt ( pindex, CHAR_PETVALIDITY) > 0 && CHAR_getInt ( pindex, CHAR_PETVALIDITY) < time(NULL) ){
-		CHAR_talkToCli(charaindex, -1, "該寵物已經失效瞭！", CHAR_COLORYELLOW);
+		CHAR_talkToCli(charaindex, -1, "該寵物已經失效了！", CHAR_COLORYELLOW);
 		int s_pet = CHAR_getWorkInt( charaindex, CHAR_WORKSTANDBYPET);
 		s_pet ^= ( 1 << petarray );
 		CHAR_setWorkInt( charaindex, CHAR_WORKSTANDBYPET, s_pet);
@@ -474,7 +474,7 @@ int PET_dropPetFollow( int charaindex, int havepetindex, int tofl, int tox, int 
     if( CHAR_CHECKINDEX( petindex) == FALSE ) return FALSE;
 
 	if (CHAR_getInt(petindex, CHAR_PETFAMILY) == 1){
-     	CHAR_talkToCli(charaindex, -1, "傢族守護獸無法丟齣！", CHAR_COLORYELLOW);
+     	CHAR_talkToCli(charaindex, -1, "家族守護獸無法丟出！", CHAR_COLORYELLOW);
     	return	FALSE;  
     }
     if (CHAR_getInt(charaindex, CHAR_RIDEPET) == havepetindex){
@@ -603,10 +603,10 @@ void PET_showEditBaseMsg( int charaindex, int toindex, int itemindex, int *work)
 		work[i] += type;
 		strcpy( buf1,"\0");
 		if( work[i] > maxnums )	{
-			sprintf(buf1,"%s 已經達到最高瞭。", buf2[i]);
+			sprintf(buf1,"%s 已經達到最高了。", buf2[i]);
 			work[i] = maxnums;
 		}else if( work[i] < 0 )	{
-			sprintf(buf1,"%s 已經為零瞭。", buf2[i]);
+			sprintf(buf1,"%s 已經為零了。", buf2[i]);
 			work[i] = 0;
 		}else	{
 			if( type > 0 )	{
@@ -667,7 +667,7 @@ BOOL CHAR_DelPetForIndex( int charaindex, int petindex)
 		snprintf( szPet, sizeof( szPet ), "K%d", i);
 		CHAR_sendStatusString( charaindex, szPet );
 
-		snprintf( msgbuf,sizeof( msgbuf), "交齣%s。", CHAR_getChar( petindex, CHAR_NAME));
+		snprintf( msgbuf,sizeof( msgbuf), "交出%s。", CHAR_getChar( petindex, CHAR_NAME));
 		CHAR_talkToCli( charaindex, -1, msgbuf,  CHAR_COLORYELLOW);
 		CHAR_endCharOneArray( petindex );
 	}

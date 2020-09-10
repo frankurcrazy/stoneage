@@ -24,10 +24,10 @@ extern  struct  FM_POINTLIST fmpointlist;
 #ifdef _NEW_ITEM_
 extern int CheckCharMaxItem(int charindex);
 #endif
-#ifdef _PERSONAL_FAME	// Arminius 8.30: 傢族個人聲望
+#ifdef _PERSONAL_FAME	// Arminius 8.30: 家族個人聲望
 
 // Arminius: 我把聲望值減半
-int FMAdvTbl[] = {	// 傢族冒險 Table
+int FMAdvTbl[] = {	// 家族冒險 Table
 	0,	// 0
 	1,	// 1
 	1,	// 2
@@ -1354,13 +1354,13 @@ void  NPC_EventSetFlg(int talker,int shiftbit)
 			int iPlayernum = CHAR_getPlayerMaxNum(),i;
 			char szMsg[128];
 			
-			// 檢查導師在不在綫上
+			// 檢查導師在不在線上
 			for(i=0;i<iPlayernum;i++){
 				if(CHAR_getCharUse(i) == FALSE) continue;
 				if(strcmp(CHAR_getChar(talker,CHAR_TEACHER_ID),CHAR_getChar(i,CHAR_CDKEY)) == 0 &&
 					strcmp(CHAR_getChar(talker,CHAR_TEACHER_NAME),CHAR_getChar(i,CHAR_NAME)) == 0){
 					float fGetFame = (float)iGetFame/100;
-					// 導師在綫上
+					// 導師在線上
 					CHAR_setWorkInt(i,CHAR_WORK_GET_TEACHER_FAME,CHAR_getWorkInt(i,CHAR_WORK_GET_TEACHER_FAME) + iGetFame);
 					sprintf(szMsg,"獲得學生 %s %.2f 點聲望",CHAR_getChar(talker,CHAR_NAME),fGetFame);
 					CHAR_talkToCli(i,-1,szMsg,CHAR_COLORYELLOW);
@@ -1487,7 +1487,7 @@ void AddFMAdv(int talker, int shiftbit)
 	FreeAddFMAdv(talker, shiftbit);
 #endif
 	sprintf(buf, "%d", fmadv);
-	#ifdef _PERSONAL_FAME	// Arminius 8.30: 傢族個人聲望
+	#ifdef _PERSONAL_FAME	// Arminius 8.30: 家族個人聲望
 	  CHAR_earnFame(talker, fmadv);
 	#endif
 	#ifdef _NEW_MANOR_LAW

@@ -331,7 +331,7 @@ int ITEM_initItemAtom( char *fn )
 	fclose(fp);
 
 	if( count >= MAX_ITEM_ATOMS_SIZE ){
-		print( "初始化物品成份: 物品成份太多瞭\n" );
+		print( "初始化物品成份: 物品成份太多了\n" );
 		return FALSE;
 	}
 			   
@@ -981,7 +981,7 @@ int ITEM_mergeItem( int charaindex, ITEM_Item *items, int num , int money, int p
 									ITEMTBL_getInt( created, ITEM_INGVALUE3) +
 									ITEMTBL_getInt( created, ITEM_INGVALUE4);
 #ifndef _NEW_MANOR_LAW
-	#ifdef _PERSONAL_FAME	// Arminius: 傢族個人聲望
+	#ifdef _PERSONAL_FAME	// Arminius: 家族個人聲望
 								fooddp = sqrt(fooddp) * pow(2,kind_num-2) * RAND(0,6) / 200;
 	#else		                             
 								fooddp = sqrt(fooddp) * pow(2,kind_num-2) * RAND(0,6) / 100;
@@ -990,7 +990,7 @@ int ITEM_mergeItem( int charaindex, ITEM_Item *items, int num , int money, int p
 								//print("FoodDP: num->%d sumdp->%d", kind_num, fooddp);
 								sprintf(buf, "%d", fooddp);
 
-	#ifdef _PERSONAL_FAME	// Arminius 8.30: 傢族個人聲望
+	#ifdef _PERSONAL_FAME	// Arminius 8.30: 家族個人聲望
 								CHAR_earnFame(ownerindex, fooddp);
 	#endif
 								
@@ -1026,7 +1026,7 @@ int ITEM_mergeItem( int charaindex, ITEM_Item *items, int num , int money, int p
 									ITEMTBL_getInt( created, ITEM_INGVALUE3) +
 									ITEMTBL_getInt( created, ITEM_INGVALUE4);
 #ifndef _NEW_MANOR_LAW								
-	#ifdef _PERSONAL_FAME	// Arminius: 傢族個人聲望
+	#ifdef _PERSONAL_FAME	// Arminius: 家族個人聲望
 								syndp = syndp / 400;
 	#else
 								syndp = syndp / 200;
@@ -1035,7 +1035,7 @@ int ITEM_mergeItem( int charaindex, ITEM_Item *items, int num , int money, int p
 
 								sprintf(buf, "%d", syndp);
 								
-	#ifdef _PERSONAL_FAME	// Arminius 8.30: 傢族個人聲望
+	#ifdef _PERSONAL_FAME	// Arminius 8.30: 家族個人聲望
 								CHAR_earnFame(ownerindex, syndp);
 	#endif
 								
@@ -1282,7 +1282,7 @@ int ITEM_mergeItem_merge( int charaindex, int petid, char *data, int petindex, i
 									else if( arg2 != 0){
 										sprintf( charbuf1, "體%d", arg2);
 									}
-									sprintf( charbuf, "(傢族料理)");
+									sprintf( charbuf, "(家族料理)");
 									strcpy( charbuf2, ITEM_getChar( createitemindex, ITEM_EFFECTSTRING));
 									strncat( charbuf2, charbuf, 10);
 									ITEM_setChar( createitemindex, ITEM_ARGUMENT, charbuf1);
@@ -1306,7 +1306,7 @@ int ITEM_mergeItem_merge( int charaindex, int petid, char *data, int petindex, i
 #else
 							ITEM_getInt( createitemindex, ITEM_ID),
 #endif
-							"mergeadd(閤成齣來的道具)",
+							"mergeadd(閤成出來的道具)",
 							CHAR_getInt( charaindex,CHAR_FLOOR),
 							CHAR_getInt( charaindex,CHAR_X ),
 							CHAR_getInt( charaindex,CHAR_Y ),

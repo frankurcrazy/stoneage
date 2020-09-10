@@ -144,12 +144,12 @@ lua_const M_Lua_RegConstList[] = {
 	{"寵模_尺寸%", sizeof("寵模_尺寸%"), LUA_DATALINE0 + E_T_SIZE},
 	{"寵模_級限%", sizeof("寵模_級限%"), LUA_DATALINE0 + E_T_LIMITLEVEL},
 #ifdef _PET_FUSION	
-	{"寵模_融閤碼%", sizeof("寵模_融閤碼%"), LUA_DATALINE0 + E_T_FUSIONCODE},
+	{"寵模_融合碼%", sizeof("寵模_融合碼%"), LUA_DATALINE0 + E_T_FUSIONCODE},
 #endif	
 	{"寵模_原名%", sizeof("寵模_原名%"), LUA_DATALINE1 + E_T_NAME},
 #endif
 
-	{"對像_齣生%", sizeof("對像_齣生%"), LUA_DATALINE0 + CHAR_LASTTALKELDER},
+	{"對像_出生%", sizeof("對像_出生%"), LUA_DATALINE0 + CHAR_LASTTALKELDER},
 	{"對像_配點%", sizeof("對像_配點%"), LUA_DATALINE0 + CHAR_SKILLUPPOINT},
 	{"對像_LT%", sizeof("對像_LT%"), LUA_DATALINE0 + CHAR_LEVELUPPOINT},
 	{"對像_圖類%", sizeof("對像_圖類%"), LUA_DATALINE0 + CHAR_IMAGETYPE},
@@ -199,7 +199,7 @@ lua_const M_Lua_RegConstList[] = {
   {"對像_任務鏈時間%", sizeof("對像_任務鏈時間%"), LUA_DATALINE0 + CHAR_MISSIONTRAIN_TIME},
   {"對像_環數%", sizeof("對像_環數%"), LUA_DATALINE0 + CHAR_MISSIONTRAIN_NUM}, // 跑環數
   {"對像_進化%",       sizeof("對像_進化%"), LUA_DATALINE0 + CHAR_EVOLVE},
-  {"對像_在綫時間%",   sizeof("對像_在綫時間%"), LUA_DATALINE0 + CHAR_ONLINE_TIME},
+  {"對像_在線時間%",   sizeof("對像_在線時間%"), LUA_DATALINE0 + CHAR_ONLINE_TIME},
   {"對像_樓層時間%",   sizeof("對像_樓層時間%"), LUA_DATALINE0 + CHAR_FLOORDIFI_TIME},
   {"對像_極品%",       sizeof("對像_極品%"), LUA_DATALINE0 + CHAR_SUPER},
   {"對像_稱號等級%",   sizeof("對像_稱號等級%"), LUA_DATALINE0 + CHAR_TITLE_LV},
@@ -318,7 +318,7 @@ lua_const M_Lua_RegConstList[] = {
 	{"對像_帳號%", sizeof("對像_帳號%"), LUA_DATALINE1 + CHAR_CDKEY},
 	{"對像_屬帳%", sizeof("對像_屬帳%"), LUA_DATALINE1 + CHAR_OWNERCDKEY},
 	{"對像_屬人%", sizeof("對像_屬人%"), LUA_DATALINE1 + CHAR_OWNERCHARANAME},
-	{"對像_傢族名%", sizeof("對像_傢族名%"), LUA_DATALINE1 + CHAR_FMNAME},
+	{"對像_家族名%", sizeof("對像_家族名%"), LUA_DATALINE1 + CHAR_FMNAME},
 #ifdef _TEACHER_SYSTEM
 	{"對像_導師帳%", sizeof("對像_導師帳%"), LUA_DATALINE1 + CHAR_TEACHER_ID},
 	{"對像_導師名%", sizeof("對像_導師名%"), LUA_DATALINE1 + CHAR_TEACHER_NAME},
@@ -557,14 +557,14 @@ lua_const M_Lua_RegConstList[] = {
 	{"IT_寵鰭套%", sizeof("IT_寵鰭套%"), ITEM_PET_FIN},
 #endif
 
-	{"傢族_沒%", sizeof("傢族_沒%"), FMMEMBER_NONE},
-	{"傢族_一般%", sizeof("傢族_一般%"), FMMEMBER_MEMBER},
-	{"傢族_申請%", sizeof("傢族_申請%"), FMMEMBER_APPLY},
-	{"傢族_族長%", sizeof("傢族_族長%"), FMMEMBER_LEADER},
-	{"傢族_長老%", sizeof("傢族_長老%"), FMMEMBER_ELDER},
-	//{"傢族_祭司", sizeof("傢族_祭司"), FMMEMBER_INVITE},
-	//{"傢族_財務", sizeof("傢族_財務"), FMMEMBER_BAILEE},
-	//{"傢族_副族", sizeof("傢族_副族"), FMMEMBER_VICELEADER},
+	{"家族_沒%", sizeof("家族_沒%"), FMMEMBER_NONE},
+	{"家族_一般%", sizeof("家族_一般%"), FMMEMBER_MEMBER},
+	{"家族_申請%", sizeof("家族_申請%"), FMMEMBER_APPLY},
+	{"家族_族長%", sizeof("家族_族長%"), FMMEMBER_LEADER},
+	{"家族_長老%", sizeof("家族_長老%"), FMMEMBER_ELDER},
+	//{"家族_祭司", sizeof("家族_祭司"), FMMEMBER_INVITE},
+	//{"家族_財務", sizeof("家族_財務"), FMMEMBER_BAILEE},
+	//{"家族_副族", sizeof("家族_副族"), FMMEMBER_VICELEADER},
 
 	{"戰類_普%", sizeof("戰類_普%"), BATTLE_TYPE_NONE},
 	{"戰類_人怪%", sizeof("戰類_人怪%"), BATTLE_TYPE_P_vs_E},

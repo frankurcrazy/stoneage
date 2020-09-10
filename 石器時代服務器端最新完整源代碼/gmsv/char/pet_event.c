@@ -428,7 +428,7 @@ BOOL PetTalk_AddItem(int meindex, int talker, char *buf)
 			i == CHAR_MAXITEMHAVE
 #endif
 			)	{
-			snprintf( msgbuf,sizeof( msgbuf), "主人，你的物品欄已經滿瞭！！");
+			snprintf( msgbuf,sizeof( msgbuf), "主人，你的物品欄已經滿了！！");
 			CHAR_talkToCli( talker, meindex, msgbuf,  CHAR_COLORWHITE);
 			return FALSE;
 		}
@@ -931,7 +931,7 @@ void PET_Watchfunc( int objmeindex, int objmoveindex, CHAR_ACTION act, int x, in
 					if( CHAR_pickupFollowPet( ownerindex, petindex ) )	{
 						return;
 					}
-					CHAR_talkToCli( ownerindex, -1, "溜寵太久，寵物走失瞭！！", CHAR_COLORYELLOW );
+					CHAR_talkToCli( ownerindex, -1, "溜寵太久，寵物走失了！！", CHAR_COLORYELLOW );
 				}
 #ifdef _PET_LOSTPET
 				CHAR_CharSaveLostPet( petindex, 1);

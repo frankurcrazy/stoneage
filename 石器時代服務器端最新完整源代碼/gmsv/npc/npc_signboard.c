@@ -88,7 +88,7 @@ static void NPC_SignBoard_Window( int meindex, int toindex, int num,int select)
   	          sprintf(tmp,"%s%s%s",npcarg,token,q+1);
 	          strcpy(npcarg, tmp);
 	        } else {
-	          sprintf(tmp,"%s沒有任何傢族%s",npcarg,q+1);
+	          sprintf(tmp,"%s沒有任何家族%s",npcarg,q+1);
 	          strcpy(npcarg, tmp);
 	        }
 	      }

@@ -2612,7 +2612,7 @@ BOOL NPC_EventAdd(int meindex,int talker,int mode)
 
 		/*--由仿丟□正霜曰--*/
 		CHAR_send_P_StatusString( talker, CHAR_P_STRING_GOLD);
-		sprintf(token, "付齣%d的stone。", stone);
+		sprintf(token, "付出%d的stone。", stone);
 		CHAR_talkToCli( talker, -1, token, CHAR_COLORWHITE);
 	}
 
@@ -2861,7 +2861,7 @@ BOOL NPC_RandItemGet(int meidex,int talker,int rand_j,char *buf)
 	char token[128];
 
 	if(rand_j == 0) {
-		print("Event:由於０的介入，齣現錯誤。");
+		print("Event:由於０的介入，出現錯誤。");
  		return FALSE;
  	}
  	
@@ -2900,7 +2900,7 @@ BOOL NPC_RandItemGet(int meidex,int talker,int rand_j,char *buf)
 		);
 	}
 					
-	sprintf(token,"收下瞭%s",ITEM_getChar( itemindex, ITEM_NAME));
+	sprintf(token,"收下了%s",ITEM_getChar( itemindex, ITEM_NAME));
 	CHAR_talkToCli( talker, -1, token, CHAR_COLORWHITE);
 
 	CHAR_sendItemDataOne( talker, ret);
@@ -3243,7 +3243,7 @@ BOOL NPC_AcceptDel(int meindex,int talker,int mode )
 		CHAR_setInt(talker,CHAR_GOLD,CHAR_getInt( talker, CHAR_GOLD) - stone);
 		/*--由仿丟□正霜曰--*/
 		CHAR_send_P_StatusString( talker, CHAR_P_STRING_GOLD);
-		sprintf( token, "付齣%d的stone。", stone);
+		sprintf( token, "付出%d的stone。", stone);
 		CHAR_talkToCli( talker, -1, token, CHAR_COLORWHITE);
 	}
 
@@ -3311,7 +3311,7 @@ BOOL NPC_EventDelPet(int  meindex,int  talker, int petsel)
 
 	if( CHAR_getInt( talker, CHAR_RIDEPET) == petsel ) {
 
-		//CHAR_talkToCli( talker, -1, "騎乘中的寵物無法交齣！", CHAR_COLORYELLOW );
+		//CHAR_talkToCli( talker, -1, "騎乘中的寵物無法交出！", CHAR_COLORYELLOW );
     	//return	FALSE;
 
 		CHAR_setInt( talker, CHAR_RIDEPET, -1);
@@ -3332,7 +3332,7 @@ BOOL NPC_EventDelPet(int  meindex,int  talker, int petsel)
 		lssproto_KS_send( fd, -1, TRUE);
 	}
 
-	snprintf( msgbuf,sizeof( msgbuf), "交齣%s。",
+	snprintf( msgbuf,sizeof( msgbuf), "交出%s。",
 									CHAR_getChar( petindex, CHAR_NAME));
 	CHAR_talkToCli( talker, -1, msgbuf,  CHAR_COLORWHITE);
 
@@ -3544,7 +3544,7 @@ BOOL NPC_EventAddEgg(int meindex, int talker, char *buff2,int mode)
 	getStringFromIndexWithDelim( buf2, ";", 1, buf3, sizeof( buf3));
 	enemyid = atoi( buf3); // 寵物蛋ID
 	getStringFromIndexWithDelim( buf2, ";", 2, buf3, sizeof( buf3));
-	petid = atoi( buf3); // 孵齣的寵物ID
+	petid = atoi( buf3); // 孵出的寵物ID
 	getStringFromIndexWithDelim( buf2, ";", 3, buf3, sizeof( buf3));
 	raise = atoi( buf3); //   養次數
 
@@ -3691,10 +3691,10 @@ BOOL NPC_EventDelItem(int meindex,int talker,char *buf,int breakflg)
 	     					);
 	 
 		    				if(breakflg == 1){
-			    			    sprintf(token,"%s 壞瞭",ITEM_getChar( itemindex, ITEM_NAME));
+			    			    sprintf(token,"%s 壞了",ITEM_getChar( itemindex, ITEM_NAME));
 							    CHAR_talkToCli( talker, -1, token, CHAR_COLORWHITE);
 							}else{
-							    sprintf(token,"交齣%s",ITEM_getChar( itemindex, ITEM_NAME));
+							    sprintf(token,"交出%s",ITEM_getChar( itemindex, ITEM_NAME));
 							    CHAR_talkToCli( talker, -1, token, CHAR_COLORWHITE);
 							}
 						    //--失奶  丞毛坫誚--
@@ -3734,10 +3734,10 @@ BOOL NPC_EventDelItem(int meindex,int talker,char *buf,int breakflg)
 							ITEM_getInt( itemindex, ITEM_ID)
 						);
 						if(breakflg == 1){
-								sprintf(token,"%s 壞瞭",ITEM_getChar( itemindex, ITEM_NAME));
+								sprintf(token,"%s 壞了",ITEM_getChar( itemindex, ITEM_NAME));
 							CHAR_talkToCli( talker, -1, token, CHAR_COLORWHITE);
 						}else{
-							sprintf( token, "交齣%s。",
+							sprintf( token, "交出%s。",
 											ITEM_getChar( itemindex, ITEM_NAME));
 							CHAR_talkToCli( talker, -1, token, CHAR_COLORWHITE);
 						}
@@ -3819,10 +3819,10 @@ BOOL NPC_EventDelItemEVDEL(int meindex,int talker,char *buf,char *nbuf,int break
 							ITEM_getInt( itemindex, ITEM_ID)
 						);
 						if(breakflg == 1){
-							sprintf(token,"%s 壞瞭",ITEM_getChar( itemindex, ITEM_NAME));
+							sprintf(token,"%s 壞了",ITEM_getChar( itemindex, ITEM_NAME));
 							CHAR_talkToCli( talker, -1, token, CHAR_COLORWHITE);
 						}else{
-							sprintf(token,"交齣%s",ITEM_getChar( itemindex, ITEM_NAME));
+							sprintf(token,"交出%s",ITEM_getChar( itemindex, ITEM_NAME));
 							CHAR_talkToCli( talker, -1, token, CHAR_COLORWHITE);
 						}
 						CHAR_setItemIndex( talker, i ,-1);
@@ -3876,10 +3876,10 @@ BOOL NPC_EventDelItemEVDEL(int meindex,int talker,char *buf,char *nbuf,int break
 							ITEM_getInt( itemindex, ITEM_ID)
 						);
 						if(breakflg == 1){
-							sprintf(token,"%s 壞瞭",ITEM_getChar( itemindex, ITEM_NAME));
+							sprintf(token,"%s 壞了",ITEM_getChar( itemindex, ITEM_NAME));
 							CHAR_talkToCli( talker, -1, token, CHAR_COLORWHITE);
 						}else{
-							sprintf( token, "交齣%s。",
+							sprintf( token, "交出%s。",
 										ITEM_getChar( itemindex, ITEM_NAME));
 							CHAR_talkToCli( talker, -1, token, CHAR_COLORWHITE);
 						}

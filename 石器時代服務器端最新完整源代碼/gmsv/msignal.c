@@ -137,7 +137,7 @@ void sigshutdown( int number)
 #endif
 			printf( "\n\n\nGMSV被CTRL+C手動中斷\n" );
 		}else{
-			sprintf( buff, "\n=========以下是服務器齣錯原因=========\n");
+			sprintf( buff, "\n=========以下是服務器出錯原因=========\n");
 			logerr(buff);
 	    sprintf( buff, "標準信息: %d\n" , number  );
 	    logerr(buff);
@@ -145,9 +145,9 @@ void sigshutdown( int number)
 			sprintf( buff, "主 函 數: %s\n", DebugMainFunction );
 			logerr(buff);
 #endif
-			sprintf( buff, "在綫人數: %d\n", player_online);
+			sprintf( buff, "在線人數: %d\n", player_online);
 			logerr(buff);
-			sprintf( buff, "最高在綫: %d\n", player_maxonline);
+			sprintf( buff, "最高在線: %d\n", player_maxonline);
 			logerr(buff);
 			sprintf( buff, "SAAC接收: %s\n", saacretfunc);
 			logerr(buff);
@@ -175,13 +175,13 @@ void sigshutdown( int number)
 			logerr(buff);
 			dump();
 
-			sprintf( buff, "=========以上是服務器齣錯原因=========\n");
+			sprintf( buff, "=========以上是服務器出錯原因=========\n");
 			logerr(buff);
 
 		}
 		if( number == 0 || number == 2 ){
-			printf( "在綫人數: %d\n", player_online);
-			printf( "最高在綫: %d\n", player_maxonline);
+			printf( "在線人數: %d\n", player_online);
+			printf( "最高在線: %d\n", player_maxonline);
 			printf( "當前版本: %s\n", SERVER_VERSION);
 		}
 		
@@ -202,11 +202,11 @@ void sigshutdown( int number)
 		      ss=(int) new_t;
 		      
 					if (dd>0) {
-		      	snprintf( buf, sizeof( buf ) , "服務器共運行瞭 %d 日 %d 小時 %d 分 %d 秒。",dd,hh,mm,ss);
+		      	snprintf( buf, sizeof( buf ) , "服務器共運行了 %d 日 %d 小時 %d 分 %d 秒。",dd,hh,mm,ss);
 		      } else if (hh>0) {
-		      	snprintf( buf, sizeof( buf ) , "服務器共運行瞭 %d 小時 %d 分 %d 秒。",hh,mm,ss);
+		      	snprintf( buf, sizeof( buf ) , "服務器共運行了 %d 小時 %d 分 %d 秒。",hh,mm,ss);
 		      } else {
-		       	snprintf( buf, sizeof( buf ) , "服務器共運行瞭 %d 分 %d 秒。",mm,ss);
+		       	snprintf( buf, sizeof( buf ) , "服務器共運行了 %d 分 %d 秒。",mm,ss);
 		      }
 		      if( number == 0 || number == 2 ){
 		      	printf( "運行時間: %s\n", buf );

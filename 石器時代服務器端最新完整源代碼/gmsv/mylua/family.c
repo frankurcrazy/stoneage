@@ -12,7 +12,7 @@
 
 extern char	familyListBuf[MAXFAMILYLIST];
 #ifdef _MO_LUA_FMPOINT
-extern struct  FM_POINTLIST fmpointlist;                   // 傢族據點
+extern struct  FM_POINTLIST fmpointlist;                   // 家族據點
 #endif
 
 static int ShowFamilyList(lua_State *L) 

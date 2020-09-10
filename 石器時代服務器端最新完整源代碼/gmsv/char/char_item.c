@@ -239,7 +239,7 @@ static void CHAR_sendItemDetachEvent( int charaindex,int itemindex )
 		CHAR_complianceParameter( charaindex);
 		CHAR_sendCToArroundCharacter( CHAR_getWorkInt( charaindex , CHAR_WORKOBJINDEX ));
 		CHAR_send_P_StatusString( charaindex , CHAR_P_STRING_BASEBASEIMAGENUMBER);
-		CHAR_talkToCli( charaindex, -1, "變身失效瞭！", CHAR_COLORWHITE);
+		CHAR_talkToCli( charaindex, -1, "變身失效了！", CHAR_COLORWHITE);
 	}
 #endif
 #ifdef _ITEM_RIDE
@@ -380,7 +380,7 @@ int CHAR_findEmptyItemBox( int index )
 #define CANNOTEXCHANGE {CHAR_talkToCli(index,-1,"無法交換此兩項物品。",CHAR_COLORWHITE);}
 #define CANNOTMOVE  {CHAR_talkToCli(index,-1,"無法移動該項物品。",CHAR_COLORWHITE);}
 #ifdef _ROOKIE_ITEM
-#define ROOKIEITEM  {CHAR_talkToCli(index,-1,"您已經超過120級，此裝備已經不適閤您瞭。",CHAR_COLORWHITE);}
+#define ROOKIEITEM  {CHAR_talkToCli(index,-1,"您已經超過120級，此裝備已經不適閤您了。",CHAR_COLORWHITE);}
 #endif
 #ifdef _TRUMP_EQUIPMENT
 #define NOTRUMP  {CHAR_talkToCli(index,-1,"您的法寶道具欄尚未開啓。",CHAR_COLORWHITE);}
@@ -967,7 +967,7 @@ BOOL CHAR_DropItemFXY( int charaindex, int itemcharaindex, int fl,
 #else
 				ITEM_getInt( itemindex, ITEM_ID ),  /* 失奶  丞  寞 */
 #endif
-				"Drop(丟齣道具)",
+				"Drop(丟出道具)",
 			   	CHAR_getInt( charaindex,CHAR_FLOOR),
 				CHAR_getInt( charaindex,CHAR_X ),
  	      		CHAR_getInt( charaindex,CHAR_Y ),
@@ -1017,7 +1017,7 @@ void CHAR_DropStakeByDropItem( int charaindex, int itemcharaindex, int itemindex
 	char tmpbuf[256];
 	dropflag = CHAR_getWorkInt( charaindex, CHAR_WORKSTAKEFLAG);
 	if( dropflag >= MAXSTAKENUM){
-		snprintf( tmpbuf, sizeof( tmpbuf), "你已經下注五次瞭，無法再下注！");
+		snprintf( tmpbuf, sizeof( tmpbuf), "你已經下注五次了，無法再下注！");
 		CHAR_talkToCli(charaindex, -1, tmpbuf, CHAR_COLORYELLOW);
 		return;
 	}
@@ -1034,7 +1034,7 @@ void CHAR_DropStakeByDropItem( int charaindex, int itemcharaindex, int itemindex
 			ITEM_setInt( itemindex, ITEM_PUTTIME, NowTime.tv_sec+30*60);
 			CHAR_sendWatchEvent( objindex, CHAR_ACTSTAND, NULL, 0, TRUE);
 			casinoflag = 1;
-			snprintf(tmpbuf, sizeof(tmpbuf), "你在 %s 下注瞭一張彩券", casinomap[j].casinoinfo);
+			snprintf(tmpbuf, sizeof(tmpbuf), "你在 %s 下注了一張彩券", casinomap[j].casinoinfo);
 			for(k = 0; k < MAXSTAKENUM; k++){//下注設定
 				if(CHAR_getWorkInt(charaindex, CHAR_WORKSTAKETYPE1 + k) != 0) continue;
 				CHAR_setWorkInt(charaindex, CHAR_WORKSTAKETYPE1 + k, casinomap[j].casinotype);
@@ -1063,7 +1063,7 @@ void CHAR_DropStakeByDropItem( int charaindex, int itemcharaindex, int itemindex
 #else
 				ITEM_getInt(itemindex, ITEM_ID),
 #endif
-				"StakeDrop(丟齣彩券)",
+				"StakeDrop(丟出彩券)",
 				CHAR_getInt(charaindex,CHAR_FLOOR),
 				CHAR_getInt(charaindex,CHAR_X),
  				CHAR_getInt(charaindex,CHAR_Y),
@@ -1160,9 +1160,9 @@ void CHAR_DropItem( int charaindex,  int itemcharaindex )
 		CHAR_DropStakeByDropItem( charaindex, itemcharaindex, itemindex, dropfl, dropx, dropy);
 		return;
 	}
-	//找齣周圍空間
+	//找出周圍空間
 	if( CHAR_FindAroundUsabilitySpace( charaindex, itemindex, &fl, &x, &y) == FALSE ){
-		CHAR_talkToCli( charaindex, -1, "周圍的地麵已經滿瞭。", CHAR_COLORYELLOW );
+		CHAR_talkToCli( charaindex, -1, "周圍的地面已經滿了。", CHAR_COLORYELLOW );
 		return;
 	}
 	
@@ -1200,7 +1200,7 @@ void CHAR_DropItem( int charaindex,  int itemcharaindex )
 #else
 				ITEM_getInt( itemindex, ITEM_ID ),  /* 失奶  丞  寞 */
 #endif
-				"Drop(丟齣道具)",
+				"Drop(丟出道具)",
 		   		CHAR_getInt( charaindex,CHAR_FLOOR),
 				CHAR_getInt( charaindex,CHAR_X ),
  	    		CHAR_getInt( charaindex,CHAR_Y ),
@@ -1276,7 +1276,7 @@ void CHAR_DropItem( int charaindex,  int itemcharaindex )
 			if(casinodropflag == 0){
 #endif
 		if( count_item > 80 || count_chara > 80 ) {
-			CHAR_talkToCli( charaindex, -1, "這裏的物品已經太多瞭，不能再丟瞭。", CHAR_COLORYELLOW );
+			CHAR_talkToCli( charaindex, -1, "這裏的物品已經太多了，不能再丟了。", CHAR_COLORYELLOW );
 			return;
 		}
 #ifdef _DROPSTAKENEW
@@ -1332,9 +1332,9 @@ void CHAR_DropItem( int charaindex,  int itemcharaindex )
 							CHAR_talkToCli(charaindex, -1, "現在無法下注！", CHAR_COLORYELLOW);
 							return;
 						}else{
-							snprintf(tmpbuf, sizeof(tmpbuf), "你在 %s 下注瞭一張彩券", casinomap[j].casinoinfo);
+							snprintf(tmpbuf, sizeof(tmpbuf), "你在 %s 下注了一張彩券", casinomap[j].casinoinfo);
 							if(dropflag >= MAXSTAKENUM){
-								snprintf(tmpbuf, sizeof(tmpbuf), "你已經下注五次瞭，無法再下注！");
+								snprintf(tmpbuf, sizeof(tmpbuf), "你已經下注五次了，無法再下注！");
 								CHAR_talkToCli(charaindex, -1, tmpbuf, CHAR_COLORYELLOW);
 								return;
 							}
@@ -1386,7 +1386,7 @@ void CHAR_DropItem( int charaindex,  int itemcharaindex )
 #else
 						ITEM_getInt(itemindex, ITEM_ID),
 #endif
-						"StakeDrop(丟齣彩券)",
+						"StakeDrop(丟出彩券)",
 						CHAR_getInt(charaindex,CHAR_FLOOR),
 						CHAR_getInt(charaindex,CHAR_X),
  						CHAR_getInt(charaindex,CHAR_Y),
@@ -1430,7 +1430,7 @@ void CHAR_DropItem( int charaindex,  int itemcharaindex )
 	}
 #ifdef _DROPCHECK	
 	if( droped != 1 ) {
-		CHAR_talkToCli( charaindex, -1, "周圍的地麵已經滿瞭。", CHAR_COLORYELLOW );
+		CHAR_talkToCli( charaindex, -1, "周圍的地面已經滿了。", CHAR_COLORYELLOW );
 		return;
 	}
 #endif
@@ -1540,7 +1540,7 @@ static int CHAR_PickUpItemFXY( int charaindex, int fl ,int x , int y ,
 							int pickupflag = 0;
 							casinoflag = 1;
 							if(casinomap[i].dropflag == 0){
-								CHAR_talkToCli(charaindex, -1, "現在已經無法取迴下注彩券瞭！", CHAR_COLORYELLOW);
+								CHAR_talkToCli(charaindex, -1, "現在已經無法取迴下注彩券了！", CHAR_COLORYELLOW);
 								return -1;
 							}
 							stakeflag = CHAR_getWorkInt(charaindex, CHAR_WORKSTAKEFLAG);
@@ -1853,7 +1853,7 @@ void CHAR_PickUpItem( int charaindex, int dir )
 			{
 				char    mesg[256];
 				if( contents == 0 ) {
-					snprintf( mesg,sizeof(mesg), "無法再拾獲Stone瞭。" );
+					snprintf( mesg,sizeof(mesg), "無法再拾獲Stone了。" );
 				}else {
 					snprintf( mesg,sizeof(mesg), "拾獲 %d Stone",contents );
 				}
@@ -2089,9 +2089,9 @@ void CHAR_DropMoney( int charaindex,  int amount )
 
 	if( !CHAR_CHECKINDEX( charaindex ) )return;
 
-#ifdef _AVID_TRADETRYBUG //丟齣石幣
+#ifdef _AVID_TRADETRYBUG //丟出石幣
 	if( CHAR_getWorkInt( charaindex, CHAR_WORKTRADEMODE) == CHAR_TRADE_TRADING ){
-		CHAR_talkToCli( charaindex, -1, "交易狀態中無法丟齣石幣。", CHAR_COLORYELLOW );
+		CHAR_talkToCli( charaindex, -1, "交易狀態中無法丟出石幣。", CHAR_COLORYELLOW );
 		return;
 	}
 #endif
@@ -2557,7 +2557,7 @@ int CasinoPay(int npcindex, int wincasinotype)
 			CasinoAccumulation(i, npcindex, npcfloor, wincasinotype);
 		}
 	}
-	// 清除此層地麵彩券
+	// 清除此層地面彩券
 	for (i = 0; i < arraysizeof(casinomap); i++)
 	{
 		OBJECT object;
@@ -2720,7 +2720,7 @@ void CHAR_CheckUserItem( int charaindex ){
 									||ITEM_getInt(itemindex, ITEM_ID) == getRookieItem(3)
 									||ITEM_getInt(itemindex, ITEM_ID) == getRookieItem(4)) {
 							char itemname[128];
-							sprintf(itemname, "您的道具:%s，由於您已脫離瞭新手階段，係統自動收迴。",
+							sprintf(itemname, "您的道具:%s，由於您已脫離了新手階段，係統自動收迴。",
 									ITEM_getChar(itemindex, ITEM_NAME));
 							CHAR_talkToCli(charaindex, -1, itemname,
 									CHAR_COLORYELLOW);

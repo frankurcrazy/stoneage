@@ -7,15 +7,15 @@
 #include "net.h"
 #include "time.h"
 
-#define FAMILY_MAXNUM			1000	// 傢族數量
+#define FAMILY_MAXNUM			1000	// 家族數量
 #ifdef _FMVER21
-#define FAMILY_MAXMEMBER		FAMILY_MAX_MEMBER	// 傢族人數
+#define FAMILY_MAXMEMBER		FAMILY_MAX_MEMBER	// 家族人數
 #define FAMILY_MAXCHANNELMEMBER		50	// 頻道人數
 #else
-#define FAMILY_MAXMEMBER		50	// 傢族人數
+#define FAMILY_MAXMEMBER		50	// 家族人數
 #define FAMILY_MAXCHANNELMEMBER		10	// 頻道人數
 #endif
-#define FAMILY_MAXCHANNEL 		5	// 傢族頻道
+#define FAMILY_MAXCHANNEL 		5	// 家族頻道
 
 #define CHAR_MAXNAME			32
 #define CHAR_MAXID			20
@@ -23,12 +23,12 @@
 #define FMLEADERLV			30	// 族長等級
 
 #ifdef _FAMILY_MANORNUM_CHANGE
-#define FAMILY_FMPKFLOOR		15	// 傢族ＰＫ圖層
+#define FAMILY_FMPKFLOOR		15	// 家族ＰＫ圖層
 #else
-#define FAMILY_FMPKFLOOR		9	// 傢族ＰＫ圖層
-#define FMPOINTNUM			4       // 有據點傢族的最大數量
+#define FAMILY_FMPKFLOOR		9	// 家族ＰＫ圖層
+#define FMPOINTNUM			4       // 有據點家族的最大數量
 #define MANORNUM                	4
-#define FAMILY_MAXHOME			4	// 傢族據點
+#define FAMILY_MAXHOME			4	// 家族據點
 #endif
 
 enum
@@ -92,7 +92,7 @@ void ACShowDpTop(int result,int num, char *data, int kindflag);
 void ACShowPointList(int result, char *data);
 void ACShowFMMemo(int result, int index, int num, int dataindex, char *data);
 
-#ifdef _PERSONAL_FAME   // Arminius: 傢族個人聲望
+#ifdef _PERSONAL_FAME   // Arminius: 家族個人聲望
 void ACFMCharLogin(int fd, int ret, int index, int floor, int fmdp,
 	int joinflag, int fmsetupflag, int flag, int charindex, int charfame
 	#ifdef _NEW_MANOR_LAW
@@ -155,26 +155,26 @@ struct FMMEMBER_LIST
 	int badge;
 #endif
 };
-// 傢族之間的留言闆
+// 家族之間的留言闆
 struct FMS_MEMO
 {
     char memo[140][220];
     int  memonum;
     int  memoindex;
 };
-// 傢族強者錶
+// 家族強者錶
 struct FMS_DPTOP
 {
-    int  num;															// 記錄有多少個傢族(綜閤)
+    int  num;															// 記錄有多少個家族(綜閤)
     char topmemo[FAMILY_MAXNUM][128];
-    int  fmtopid[FAMILY_MAXNUM];          // 傢族索引
+    int  fmtopid[FAMILY_MAXNUM];          // 家族索引
 #ifdef _FMVER21    
-    int  fmtopdp[FAMILY_MAXNUM];          // 傢族綜閤聲望
+    int  fmtopdp[FAMILY_MAXNUM];          // 家族綜閤聲望
 #endif    
 #ifdef _NEW_MANOR_LAW
-		int	fmMomentum[FAMILY_MAXNUM];		// 傢族氣勢
-		char	momentum_topmemo[FAMILY_MAXNUM][96];			// 傢族氣勢 top
-		int	momentum_topid[FAMILY_MAXNUM];	// 傢族氣勢 top id 索引
+		int	fmMomentum[FAMILY_MAXNUM];		// 家族氣勢
+		char	momentum_topmemo[FAMILY_MAXNUM][96];			// 家族氣勢 top
+		int	momentum_topid[FAMILY_MAXNUM];	// 家族氣勢 top id 索引
 #endif
     int  adv_num;                // 冒險
     char adv_topmemo[30][96];    
@@ -187,16 +187,16 @@ struct FMS_DPTOP
     int  pk_num;                 // ＰＫ
     char pk_topmemo[30][96];        
 };
-// 傢族據點
+// 家族據點
 struct FM_POINTLIST
 {
   char pointlistarray[FAMILY_MAXHOME][1024];	// Arminius: 32->1024
 #ifdef _NEW_MANOR_LAW
-	int fm_momentum[FAMILY_MAXHOME];	// 記錄挑戰時期開始時的守莊傢族氣勢值
+	int fm_momentum[FAMILY_MAXHOME];	// 記錄挑戰時期開始時的守莊家族氣勢值
 	BOOL fm_inwar[FAMILY_MAXHOME];		// 此莊園是否進行莊園排程中
 #endif
 };
-// 傢族PK圖層
+// 家族PK圖層
 struct FM_PKFLOOR
 {
     int fl;
@@ -205,11 +205,11 @@ struct FM_PKFLOOR
 
 #ifdef _NEW_MANOR_LAW
 typedef struct _ManorSchedule_t{
-	int iFmIndex[10];						// 排入挑戰排程的傢族索引
-	int iFmMomentum[10];				// 傢族氣勢
+	int iFmIndex[10];						// 排入挑戰排程的家族索引
+	int iFmMomentum[10];				// 家族氣勢
 	int iSort[10];							// 排名用
-	char szMemo[10][256];				// 記錄: 傢族名稱|約戰時間|傢族氣勢
-	char szFmName[10][32];			// 傢族名稱
+	char szMemo[10][256];				// 記錄: 家族名稱|約戰時間|家族氣勢
+	char szFmName[10][32];			// 家族名稱
 	struct tm tm1[10];							// 記錄挑戰時間
 }ManorSchedule_t;
 

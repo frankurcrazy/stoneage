@@ -198,10 +198,10 @@ void NPC_FamilymanWindowTalked( int meindex, int talkerindex,
 		if( newwin == 5 )	{
 			if( CHAR_getInt( talkerindex, CHAR_FMINDEX ) > 0 )
 			{
-				//CHAR_talkToCli( talkerindex, -1, "資格不符！已經加入傢族。", CHAR_COLORWHITE );
+				//CHAR_talkToCli( talkerindex, -1, "資格不符！已經加入家族。", CHAR_COLORWHITE );
 				lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 					WINDOW_BUTTONTYPE_OK, -1, -1,
-					makeEscapeString( "\n很抱歉喔！你已經加入傢族瞭！", buf, sizeof(buf)));
+					makeEscapeString( "\n很抱歉喔！你已經加入家族了！", buf, sizeof(buf)));
 				return;
 			}		
 			if( (CHAR_getInt( talkerindex, CHAR_TRANSMIGRATION ) == 0)
@@ -261,14 +261,14 @@ void NPC_FamilymanWindowTalked( int meindex, int talkerindex,
 			return;
 				  
 		}
-		// 退齣
+		// 退出
 		if( newwin == 7 )
 		{
 			if( CHAR_getInt( talkerindex, CHAR_FMINDEX ) == -1 ) {
-				// CHAR_talkToCli( talkerindex, -1, "你還未加入任何傢族呀。", CHAR_COLORWHITE );
+				// CHAR_talkToCli( talkerindex, -1, "你還未加入任何家族呀。", CHAR_COLORWHITE );
 				lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 					WINDOW_BUTTONTYPE_OK, -1, -1,
-					makeEscapeString( "\n很抱歉喔！你還沒有加入任何傢族呀！", buf, sizeof(buf)));
+					makeEscapeString( "\n很抱歉喔！你還沒有加入任何家族呀！", buf, sizeof(buf)));
 				return;
 			}
 						
@@ -285,7 +285,7 @@ void NPC_FamilymanWindowTalked( int meindex, int talkerindex,
 				lssproto_WN_send(fd, WINDOW_MESSAGETYPE_MESSAGE,
 					WINDOW_BUTTONTYPE_YESNO, CHAR_WINDOWTYPE_FAMILYMAN_OUT,
 					CHAR_getWorkInt(meindex, CHAR_WORKOBJINDEX),
-					makeEscapeString("\n您現在是這個傢族的族長喔...\n\n傢族解散瞭就無法再救迴唷！～\n\n確定要解散傢族嗎？",buf, sizeof(buf)));		
+					makeEscapeString("\n您現在是這個家族的族長喔...\n\n家族解散了就無法再救迴唷！～\n\n確定要解散家族嗎？",buf, sizeof(buf)));		
 				return;
 			}
 			else

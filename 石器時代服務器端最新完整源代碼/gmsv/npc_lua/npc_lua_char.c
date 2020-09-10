@@ -989,7 +989,7 @@ int NPC_Lua_Char_VipPoint(lua_State *_NLL)
 	int TM_MyPoint = sasql_vippoint(TM_Cdkey,TM_Point,TM_Flag);
 	
 	if(TM_MyPoint<0){
-		LRetErrInt(_NLL, -2, "數據齣錯");
+		LRetErrInt(_NLL, -2, "數據出錯");
 	}
 	LRetInt(_NLL, TM_MyPoint);
 }
@@ -1038,7 +1038,7 @@ int NPC_Lua_Char_GetItemId(lua_State *_NLL)
 		if( ITEM_CHECKINDEX(TM_ItemIndex) == FALSE ) LRetErrInt(_NLL, -2, "該道具欄沒有道具。");
 		LRetInt(_NLL, ITEM_getInt(TM_ItemIndex, ITEM_ID));
 	}
-	LRetErrInt(_NLL, -3, "傳入的位置超齣道具欄範圍。");
+	LRetErrInt(_NLL, -3, "傳入的位置超出道具欄範圍。");
 }
 
 int NPC_Lua_Char_GetItemIndex(lua_State *_NLL)
@@ -1060,7 +1060,7 @@ int NPC_Lua_Char_GetItemIndex(lua_State *_NLL)
 		if( ITEM_CHECKINDEX(TM_ItemIndex) == FALSE ) LRetErrInt(_NLL, -2, "該道具欄沒有道具。");
 		LRetInt(_NLL, TM_ItemIndex);
 	}
-	LRetErrInt(_NLL, -3, "傳入的位置超齣道具欄範圍。");
+	LRetErrInt(_NLL, -3, "傳入的位置超出道具欄範圍。");
 }
 
 int NPC_Lua_Char_GetPetEnemyId(lua_State *_NLL)
@@ -1082,7 +1082,7 @@ int NPC_Lua_Char_GetPetEnemyId(lua_State *_NLL)
 		if( CHAR_CHECKINDEX(TM_PetIndex) == FALSE ) LRetErrInt(_NLL, -2, "該寵物欄沒有寵物。");
 		LRetInt(_NLL, CHAR_getInt(TM_PetIndex, CHAR_PETID));
 	}
-	LRetErrInt(_NLL, -3, "傳入的位置超齣寵物欄範圍。");
+	LRetErrInt(_NLL, -3, "傳入的位置超出寵物欄範圍。");
 }
 
 int NPC_Lua_Char_GetPetIndex(lua_State *_NLL)
@@ -1104,7 +1104,7 @@ int NPC_Lua_Char_GetPetIndex(lua_State *_NLL)
 		if( CHAR_CHECKINDEX(TM_PetIndex) == FALSE ) LRetErrInt(_NLL, -2, "該寵物欄沒有寵物。");
 		LRetInt(_NLL, TM_PetIndex);
 	}
-	LRetErrInt(_NLL, -3, "傳入的位置超齣寵物欄範圍。");
+	LRetErrInt(_NLL, -3, "傳入的位置超出寵物欄範圍。");
 }
 
 int NPC_Lua_Char_GetTeamIndex(lua_State *_NLL)
@@ -1126,7 +1126,7 @@ int NPC_Lua_Char_GetTeamIndex(lua_State *_NLL)
 		if( CHAR_CHECKINDEX(TM_ParIndex) == FALSE ) LRetErrInt(_NLL, -2, "該位置沒有隊員。");
 		LRetInt(_NLL, TM_ParIndex);
 	}
-	LRetErrInt(_NLL, -3, "傳入的位置超齣隊員位置範圍。");
+	LRetErrInt(_NLL, -3, "傳入的位置超出隊員位置範圍。");
 }
 
 int NPC_Lua_Char_HealAll(lua_State *_NLL)
@@ -1306,7 +1306,7 @@ int NPC_Lua_Char_RandMsg(lua_State *_NLL)
 					sprintf(randtmpbuf[2],"%s",hanzibuf[RAND(1,5000)-1]);
 					sprintf(randtmpbuf[3],"%s",hanzibuf[RAND(1,5000)-1]);
 					sprintf(randquestion,"%s",str_hanzi_ganrao(randtmpbuf[0],randtmpbuf[1],randtmpbuf[2],randtmpbuf[3],0,0,0,0,0,0));
-					strcat(randquestion,"（請找齣相同詞組）");
+					strcat(randquestion,"（請找出相同詞組）");
 					int newrand1 = RAND(1,100)-1;
 					int newrand2 = RAND(1,100)-1;
 					int newrand3 = RAND(1,100)-1;
@@ -1339,7 +1339,7 @@ int NPC_Lua_Char_RandMsg(lua_State *_NLL)
 			sprintf(randwronganswer2,"[%c%c%c%c%c]",tempbuf[0],tempbuf[1],tempbuf[4],tempbuf[2],tempbuf[3]);
 			sprintf(randwronganswer3,"[%c%c%c%c%c]",tempbuf[4],tempbuf[1],tempbuf[2],tempbuf[0],tempbuf[3]);
 			sprintf(randwronganswer4,"[%c%c%c%c%c]",tempbuf[1],tempbuf[0],tempbuf[2],tempbuf[3],tempbuf[4]);
-			sprintf(randquestion,"[%s]（請找齣相同英文）",tempbuf);
+			sprintf(randquestion,"[%s]（請找出相同英文）",tempbuf);
 			sprintf(randrightanswer,"[%s]",tempbuf);
 			char* randstr = NULL;
 			randstr = str_ganrao(randquestion);
@@ -1487,7 +1487,7 @@ int NPC_Lua_Char_getVipPoint(lua_State *_NLL)
 	}  
    int TM_point = sasql_getVipPoint(TM_Index);
 	if(TM_point<0){
-		LRetErrInt(_NLL, -2, "Char_getVipPoint數據齣錯");
+		LRetErrInt(_NLL, -2, "Char_getVipPoint數據出錯");
 	}
   LRetInt(_NLL, TM_point);
 }
@@ -1503,7 +1503,7 @@ int NPC_Lua_Char_getjfPoint(lua_State *_NLL)
 	}  
    int TM_point = sasql_jifenPoint(TM_Index);
 	if(TM_point<0){
-		LRetErrInt(_NLL, -2, "Char_getjfPoint數據齣錯");
+		LRetErrInt(_NLL, -2, "Char_getjfPoint數據出錯");
 	}
   LRetInt(_NLL, TM_point);
 }
@@ -1518,7 +1518,7 @@ int NPC_Lua_Char_getxjPoint(lua_State *_NLL)
 	}  
    int TM_point = sasql_xjPoint(TM_Index);
 	if(TM_point<0){
-		LRetErrInt(_NLL, -2, "Char_getxjPoint數據齣錯");
+		LRetErrInt(_NLL, -2, "Char_getxjPoint數據出錯");
 	}
   LRetInt(_NLL, TM_point);
 }
@@ -1535,7 +1535,7 @@ int NPC_Lua_Char_setVipPoint(lua_State *_NLL)
 	}  
    int TM_kouj = sasql_setVipPoint(TM_Index,TM_point);
 	if(TM_point<0){
-		LRetErrInt(_NLL, -2, "Char_setVipPoint數據齣錯");
+		LRetErrInt(_NLL, -2, "Char_setVipPoint數據出錯");
 	}
   LRetInt(_NLL, TM_kouj);
 }
@@ -1551,7 +1551,7 @@ int NPC_Lua_Char_setjfPoint(lua_State *_NLL)
 	}  
    int TM_kouj = sasql_setJfPoint(TM_Index,TM_point);
 	if(TM_point<0){
-		LRetErrInt(_NLL, -2, "Char_setjfPoint數據齣錯");
+		LRetErrInt(_NLL, -2, "Char_setjfPoint數據出錯");
 	}
   LRetInt(_NLL, TM_kouj);
 }
@@ -1567,7 +1567,7 @@ int NPC_Lua_Char_setxjPoint(lua_State *_NLL)
 	}  
    int TM_kouj = sasql_setxjPoint(TM_Index,TM_point);
 	if(TM_point<0){
-		LRetErrInt(_NLL, -2, "Char_setxjPoint數據齣錯");
+		LRetErrInt(_NLL, -2, "Char_setxjPoint數據出錯");
 	}
   LRetInt(_NLL, TM_kouj);
 }
@@ -1749,7 +1749,7 @@ int NPC_Lua_Char_GetPetSkill(lua_State *_NLL)
 	if(CHAR_CHECKPETSKILLINDEX(TM_PetSkillIndex)){	
 		LRetInt(_NLL, CHAR_getPetSkill(TM_PetIndex,TM_PetSkillIndex));
 	}else{
-		LRetErrInt(_NLL, -1, "傳入的位置超齣寵物技能範圍。");
+		LRetErrInt(_NLL, -1, "傳入的位置超出寵物技能範圍。");
 	}
 }
 
@@ -1765,7 +1765,7 @@ int NPC_Lua_Char_GetPetSkillNo(lua_State *_NLL)
 	if(CHAR_CHECKPETSKILLINDEX(TM_PetSkillIndex)){	
 		LRetInt(_NLL, CHAR_getPetSkill(TM_PetIndex,TM_PetSkillIndex));
 	}else{
-		LRetErrInt(_NLL, -1, "傳入的位置超齣寵物技能範圍。");
+		LRetErrInt(_NLL, -1, "傳入的位置超出寵物技能範圍。");
 	}
 }
 
@@ -1893,7 +1893,7 @@ int NPC_Lua_Char_SetPetSkill(lua_State *_NLL)
 	if(CHAR_CHECKPETSKILLINDEX(TM_PetSkillIndex)){	
 		LRetInt(_NLL, CHAR_setPetSkill(TM_PetIndex,TM_PetSkillIndex,TM_PetSkillNo));
 	}else{
-		LRetErrInt(_NLL, -1, "傳入的位置超齣寵物技能範圍。");
+		LRetErrInt(_NLL, -1, "傳入的位置超出寵物技能範圍。");
 	}
 }
 */
@@ -1912,7 +1912,7 @@ int NPC_Lua_Char_SetPetSkillNo(lua_State *_NLL)
 	if(CHAR_CHECKPETSKILLINDEX(TM_PetSkillIndex)){	
 		LRetInt(_NLL, CHAR_setPetSkill(TM_PetIndex,TM_PetSkillIndex,TM_PetSkillNo));
 	}else{
-		LRetErrInt(_NLL, -1, "傳入的位置超齣寵物技能範圍。");
+		LRetErrInt(_NLL, -1, "傳入的位置超出寵物技能範圍。");
 	}
 }
 
@@ -2331,13 +2331,13 @@ int NPC_Lua_Char_getFamilyPlayIndex(lua_State *_NLL)
 	int familymode = (int)lua_tointeger(_NLL, 2);
 	int familycharaindex = (int)lua_tointeger(_NLL, 3);
 	if(familyindex > FAMILY_MAXNUM){
-		LRetErrInt(_NLL, -1, "傳入的傢族索引是無效的。");
+		LRetErrInt(_NLL, -1, "傳入的家族索引是無效的。");
 	}else if (familymode > FAMILY_MAXCHANNEL)
 	{
-		LRetErrInt(_NLL, -1, "傳入的傢族頻道是無效的。");
+		LRetErrInt(_NLL, -1, "傳入的家族頻道是無效的。");
 	}else if (familycharaindex > FAMILY_MAXMEMBER)
 	{
-		LRetErrInt(_NLL, -1, "傳入的傢族人物索引無效。");
+		LRetErrInt(_NLL, -1, "傳入的家族人物索引無效。");
 	}
 	int playindex =  channelMember[familyindex][familymode][familycharaindex];
 	LRetInt(_NLL,playindex);

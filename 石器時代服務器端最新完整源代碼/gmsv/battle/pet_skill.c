@@ -368,7 +368,7 @@ BOOL PETSKILL_initPetskill( char *filename)
         if( line[0] == '\n' )continue;       /* none    */
         chomp( line );
         PETSKILL_petskillnum++;
-#ifdef _PETSKILL_OPTIMUM // Robin 取齣最大寵技ID
+#ifdef _PETSKILL_OPTIMUM // Robin 取出最大寵技ID
 		if( getStringFromIndexWithDelim( line, ",", PETSKILL_STARTINTNUM, token, sizeof(token)) == FALSE )
 			continue;
 		//print("\n 寵技ID:%d %s ", atoi( token), line);
@@ -1536,7 +1536,7 @@ int PETSKILL_Abduct(
 	int badindex = CHAR_getWorkInt(charaindex, CHAR_WORKPLAYERINDEX);
 	if(CHAR_getWorkInt( badindex, CHAR_WORKBATTLECOM1) == BATTLE_COM_PETOUT ){
 		CHAR_setWorkInt( badindex, CHAR_WORKBATTLECOM1, BATTLE_COM_NONE );
-		CHAR_talkToCli( badindex, -1,"使用旅程夥伴無法同時換寵齣來！", CHAR_COLORYELLOW );
+		CHAR_talkToCli( badindex, -1,"使用旅程夥伴無法同時換寵出來！", CHAR_COLORYELLOW );
 	}
 }
 #endif

@@ -131,7 +131,7 @@ static void NPC_FMPKMan_selectWindow( int meindex, int toindex, int num,int sele
 	  	if(NPC_Util_GetStrFromStrWithDelim( npcarg, "MainMsg", buf,
 	  		sizeof( buf)) == NULL)
 	  			return;
-			sprintf(token, "3\n　　    　　★傢族ＰＫ場★\n"
+			sprintf(token, "3\n　　    　　★家族ＰＫ場★\n"
 				"%s"
 				"\n           《 察看雙方人數 》"
 				"\n            《 離開ＰＫ場 》",

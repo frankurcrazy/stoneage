@@ -190,7 +190,7 @@ void NPC_Duelranking_PrintRanking( char *data, int count_start, int fdid, int ms
 		cnt ++;
 	}
 	if( cnt == 0 ) {
-		strcpy( message, "\n      沒有其他的資料瞭。");
+		strcpy( message, "\n      沒有其他的資料了。");
 		button = WINDOW_BUTTONTYPE_PREV|WINDOW_BUTTONTYPE_OK;
 	}else if( cnt < NPC_DUELRANKING_WINDOWLINENUM ) {
 		if( count_start >= NPC_DUELRANKING_WINDOWLINENUM) {

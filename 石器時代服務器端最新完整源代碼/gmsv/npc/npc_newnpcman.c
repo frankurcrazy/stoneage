@@ -667,7 +667,7 @@ BOOL CHECK_ReplacePET( int toindex)
 			lssproto_KS_send( fd, -1, TRUE);
 		}
 
-		snprintf( szPet,sizeof( szPet), "交齣%s。", CHAR_getUseName( petindex) );
+		snprintf( szPet,sizeof( szPet), "交出%s。", CHAR_getUseName( petindex) );
 		CHAR_talkToCli( toindex, -1, szPet, CHAR_COLORYELLOW);
 		LogPet(
 			CHAR_getChar( toindex, CHAR_NAME ),
@@ -1146,7 +1146,7 @@ int NPC_NewNpcManDelPet(int meindex,int talker, int petsel)
 		CHAR_setInt( talker, CHAR_DEFAULTPET, -1);
 		lssproto_KS_send( fd, -1, TRUE);
 	}
-	snprintf( msgbuf,sizeof( msgbuf), "交齣%s。", CHAR_getChar( petindex, CHAR_NAME));
+	snprintf( msgbuf,sizeof( msgbuf), "交出%s。", CHAR_getChar( petindex, CHAR_NAME));
 	
 	// shan
 	if(CHAR_getChar( petindex, CHAR_UNIQUECODE)!=NULL){

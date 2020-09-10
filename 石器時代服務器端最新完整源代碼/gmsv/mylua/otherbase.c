@@ -89,9 +89,9 @@ static int CallFunction(lua_State *L)
 	int TM_Ret = lua_pcall(lua, n, 1, 0);
 	if(TM_Ret != 0)
 	{
-		//失敗-輸齣錯誤信息
+		//失敗-輸出錯誤信息
 		print("CallFunction Lua Err :%d(%s)\n", TM_Ret, lua_tostring(lua, -1));
-		//齣棧
+		//出棧
 		lua_pop(lua, 1);
 		return FALSE;
 	}

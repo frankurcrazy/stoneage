@@ -17,7 +17,7 @@
 #include "log.h"
 #include "pet.h"
 #include "enemy.h"
-#ifdef _PERSONAL_FAME	// Arminius: 傢族個人聲望
+#ifdef _PERSONAL_FAME	// Arminius: 家族個人聲望
 #include "char_base.h"
 #include "configfile.h"
 #endif
@@ -1504,7 +1504,7 @@ void CHAR_CheckPetDoLimitlevel( int petindex , int toindex, int level)
 }
 #endif
 
-int CHAR_PetTakeDrop( int petindex, int floor, int ox, int oy)	//強製丟棄寵物升級
+int CHAR_PetTakeDrop( int petindex, int floor, int ox, int oy)	//強制丟棄寵物升級
 {
 	int x, y, objindex;
 
@@ -1525,7 +1525,7 @@ int CHAR_PetTakeDrop( int petindex, int floor, int ox, int oy)	//強製丟棄寵
 	return floor;
 }
 
-int CHAR_PetTakeLevelUp( int petindex, int lv)//強製寵物升級
+int CHAR_PetTakeLevelUp( int petindex, int lv)//強制寵物升級
 {
 	int k;
 	for( k = 1; k < lv; k ++ ){
@@ -1609,7 +1609,7 @@ int CHAR_PetLevelUp( int petindex )
 	CHAR_setInt( petindex, CHAR_DEX,
 		CHAR_getInt( petindex, CHAR_DEX ) + max(0, (int)dex) );
 		
-	// CoolFish: 飼育傢族聲望更新
+	// CoolFish: 飼育家族聲望更新
 	{
 		int level = CHAR_getInt(petindex, CHAR_LV);
 		int exp1 = 0, exp2 = 0;
@@ -1629,7 +1629,7 @@ int CHAR_PetLevelUp( int petindex )
 				exp1 = CHAR_GetLevelExp( petindex, level);
 				exp2 = CHAR_GetLevelExp( petindex, level - 1);
 				 
-//#ifdef _PERSONAL_FAME	// Arminius 8.30: 傢族個人聲望
+//#ifdef _PERSONAL_FAME	// Arminius 8.30: 家族個人聲望
 //				feedpoint = (exp1 - exp2) / 20000;	// 減半
 //#else
 //				feedpoint = (exp1 - exp2) / 10000;
@@ -1645,7 +1645,7 @@ int CHAR_PetLevelUp( int petindex )
 						feedpoint=feedpoint / 2;
 					}
 #endif	
-#ifdef _PERSONAL_FAME	// Arminius 8.30: 傢族個人聲望
+#ifdef _PERSONAL_FAME	// Arminius 8.30: 家族個人聲望
 					CHAR_earnFame(ownerindex, feedpoint);
 					sprintf(tmpbuf, "%d", feedpoint);
 #endif
@@ -1713,13 +1713,13 @@ int CHAR_PetLevelUp( int petindex )
 							int iPlayernum = CHAR_getPlayerMaxNum(),i;
 							char szMsg[128];
 							
-							// 檢查導師在不在綫上
+							// 檢查導師在不在線上
 							for(i=0;i<iPlayernum;i++){
 								if(CHAR_getCharUse(i) == FALSE) continue;
 								if(strcmp(CHAR_getChar(ownerindex,CHAR_TEACHER_ID),CHAR_getChar(i,CHAR_CDKEY)) == 0 &&
 									strcmp(CHAR_getChar(ownerindex,CHAR_TEACHER_NAME),CHAR_getChar(i,CHAR_NAME)) == 0){
 									float fGetFame = (float)iGetFame/100;
-									// 導師在綫上
+									// 導師在線上
 									CHAR_setWorkInt(i,CHAR_WORK_GET_TEACHER_FAME,CHAR_getWorkInt(i,CHAR_WORK_GET_TEACHER_FAME) + iGetFame);
 									sprintf(szMsg,"獲得學生 %s %.2f 點聲望",CHAR_getChar(ownerindex,CHAR_NAME),fGetFame);
 									CHAR_talkToCli(i,-1,szMsg,CHAR_COLORYELLOW);
@@ -1753,7 +1753,7 @@ int PETFUSION_FusionPetSub( int charaindex, int Subindex1, int Subindex2, int *w
 	}
 
 	if( CHAR_getInt( Subindex1, CHAR_FUSIONBEIT) == 1 ||
-		CHAR_getInt( Subindex1, CHAR_FUSIONRAISE) > 0 )return 0;//檢查是否為融閤寵
+		CHAR_getInt( Subindex1, CHAR_FUSIONRAISE) > 0 )return 0;//檢查是否為融合寵
 	for( i=0; i<4; i++)	{
 		work[i] = 0;
 	}
@@ -1780,7 +1780,7 @@ int PETFUSION_FusionPetSub( int charaindex, int Subindex1, int Subindex2, int *w
 	}
 
 	if( CHAR_getInt( Subindex2, CHAR_FUSIONBEIT) == 1 ||
-		CHAR_getInt( Subindex2, CHAR_FUSIONRAISE) > 0 )return 0;//檢查是否為融閤寵
+		CHAR_getInt( Subindex2, CHAR_FUSIONRAISE) > 0 )return 0;//檢查是否為融合寵
 
 	if( PET_getBaseAndSkill( charaindex, Subindex2, base, NULL, 0) == FALSE )
 		return 0;
@@ -1809,7 +1809,7 @@ BOOL PETFUSION_FusionPetMain( int charaindex, int Mainindex, int *work, int *ski
 		return 0;
 	}
 	if( CHAR_getInt( Mainindex, CHAR_FUSIONBEIT) == 1 ||
-		CHAR_getInt( Mainindex, CHAR_FUSIONRAISE) > 0 )return FALSE;//檢查是否為融閤寵
+		CHAR_getInt( Mainindex, CHAR_FUSIONRAISE) > 0 )return FALSE;//檢查是否為融合寵
 
 	if( PET_getBaseAndSkill( charaindex, Mainindex, base, petskill, 0) == FALSE )
 		return -1;
@@ -1859,7 +1859,7 @@ BOOL PETFUSION_DelPet( int toindex, int Mainindex, int Subindex1, int Subindex2,
 			snprintf( szPet, sizeof( szPet ), "K%d", j);
 			CHAR_sendStatusString( toindex, szPet );
 
-			snprintf( msgbuf,sizeof( msgbuf), "交齣%s。", CHAR_getChar( petindex[i], CHAR_NAME));
+			snprintf( msgbuf,sizeof( msgbuf), "交出%s。", CHAR_getChar( petindex[i], CHAR_NAME));
 			CHAR_talkToCli( toindex, -1, msgbuf,  CHAR_COLORYELLOW);
 				LogPet(			
 					CHAR_getChar( toindex, CHAR_NAME ),

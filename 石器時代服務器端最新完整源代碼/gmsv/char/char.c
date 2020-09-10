@@ -141,7 +141,7 @@ static BOOL CHAR_makeCharFromOptionAtCreate( Char* ch ,
 #define PKMAXPARAMETER 300
 	parasum = 0;
 	/*
-	 * すべてのデ〖タの麵に - はあってはならないし
+	 * すべてのデ〖タの面に - はあってはならないし
 	 * 峰あふれの禍を雇えておいて嗬絡の猛も畝えない
 	 */
 
@@ -149,7 +149,7 @@ static BOOL CHAR_makeCharFromOptionAtCreate( Char* ch ,
 		if( para[i] < 0 || para[i] > MAXPARAMETER )return FALSE;
 		parasum += para[i];
 	}
-#ifdef _NEW_PLAYER_CF	//新手齣生配置
+#ifdef _NEW_PLAYER_CF	//新手出生配置
 	if( parasum > MAXPARAMETER ) return FALSE;
 #else
 	if( parasum != MAXPARAMETER ) return FALSE;
@@ -195,7 +195,7 @@ static BOOL CHAR_makeCharFromOptionAtCreate( Char* ch ,
 	ch->data[CHAR_EXP] = 0;
 	
 	
-#ifdef _NEW_PLAYER_CF	//新手齣生配置
+#ifdef _NEW_PLAYER_CF	//新手出生配置
 	ch->data[CHAR_TRANSMIGRATION] = getNewplayertrans();
 	ch->data[CHAR_GOLD] = getNewplayergivegold();;
 	ch->data[CHAR_LV] = getNewplayerlv();
@@ -262,7 +262,7 @@ void CHAR_createNewChar( int clifd, int dataplacenum, char* charname ,
 	int		charaindex;
 	char szKey[256];
 
-#ifdef _NEW_PLAYER_CF	//新手齣生配置
+#ifdef _NEW_PLAYER_CF	//新手出生配置
 	int add_pet[]={-1,-1,-1,-1,-1};
 #endif
 
@@ -331,7 +331,7 @@ void CHAR_createNewChar( int clifd, int dataplacenum, char* charname ,
 		ch.data[CHAR_LOWRIDEPETS] = 0;
 #endif
 
-#ifdef _PERSONAL_FAME	// Arminius: 傢族個人聲望
+#ifdef _PERSONAL_FAME	// Arminius: 家族個人聲望
 	ch.data[CHAR_FAME] = 0;
 #endif
 #ifdef _NEW_MANOR_LAW
@@ -403,7 +403,7 @@ void CHAR_createNewChar( int clifd, int dataplacenum, char* charname ,
 	FreeCharCreate(charaindex);
 #endif
 #ifndef _CANCEL_BORN_PET
-#ifdef _NEW_PLAYER_CF	//新手齣生配置
+#ifdef _NEW_PLAYER_CF	//新手出生配置
 		int petNum=0;
 		int k=0;
 		int mylevel,level;
@@ -478,7 +478,7 @@ void CHAR_createNewChar( int clifd, int dataplacenum, char* charname ,
 	//CHAR_endCharData(&ch);
 	//CHAR_endCharOneArray( charaindex);
 	
-#ifdef _NEW_PLAYER_CF	//新手齣生配置
+#ifdef _NEW_PLAYER_CF	//新手出生配置
 	{
 		int k=0;
 		for( k=0;k<arraysizeof( add_pet); k++)	{
@@ -1915,25 +1915,25 @@ void CHAR_login( int clifd, char* data, int saveindex )
 #ifdef _PLAYER_TITLE      
 	char titletoken[256];
 	if ( CHAR_getInt( charaindex, CHAR_TITLE_LV) >= 130 ){
-	 		sprintf(titletoken, "『%s』尼斯大陸戰士Lv:%d【%s】上綫瞭，大傢熱烈歡迎", getGameservername(), CHAR_getInt( charaindex, CHAR_TITLE_LV), CHAR_getChar( charaindex,CHAR_NAME ));
+	 		sprintf(titletoken, "『%s』尼斯大陸戰士Lv:%d【%s】上綫了，大傢熱烈歡迎", getGameservername(), CHAR_getInt( charaindex, CHAR_TITLE_LV), CHAR_getChar( charaindex,CHAR_NAME ));
 	}else if ( CHAR_getInt( charaindex, CHAR_TITLE_LV) >= 125 ){
-	 		sprintf(titletoken, "『%s』尼斯大陸勇士Lv:%d【%s】上綫瞭，大傢熱烈歡迎", getGameservername(), CHAR_getInt( charaindex, CHAR_TITLE_LV), CHAR_getChar( charaindex,CHAR_NAME ));
+	 		sprintf(titletoken, "『%s』尼斯大陸勇士Lv:%d【%s】上綫了，大傢熱烈歡迎", getGameservername(), CHAR_getInt( charaindex, CHAR_TITLE_LV), CHAR_getChar( charaindex,CHAR_NAME ));
 	}else if ( CHAR_getInt( charaindex, CHAR_TITLE_LV) >= 120 ){
-	 		sprintf(titletoken, "『%s』薩伊那斯英雄Lv:%d【%s】上綫瞭，大傢熱烈歡迎", getGameservername(), CHAR_getInt( charaindex, CHAR_TITLE_LV), CHAR_getChar( charaindex,CHAR_NAME ));
+	 		sprintf(titletoken, "『%s』薩伊那斯英雄Lv:%d【%s】上綫了，大傢熱烈歡迎", getGameservername(), CHAR_getInt( charaindex, CHAR_TITLE_LV), CHAR_getChar( charaindex,CHAR_NAME ));
 	}else if ( CHAR_getInt( charaindex, CHAR_TITLE_LV) >= 115 ){
-	 		sprintf(titletoken, "『%s』斯巴達戰士Lv:%d【%s】上綫瞭，大傢熱烈歡迎", getGameservername(), CHAR_getInt( charaindex, CHAR_TITLE_LV), CHAR_getChar( charaindex,CHAR_NAME ));
+	 		sprintf(titletoken, "『%s』斯巴達戰士Lv:%d【%s】上綫了，大傢熱烈歡迎", getGameservername(), CHAR_getInt( charaindex, CHAR_TITLE_LV), CHAR_getChar( charaindex,CHAR_NAME ));
 	}else if ( CHAR_getInt( charaindex, CHAR_TITLE_LV) >= 110 ){
-	 		sprintf(titletoken, "『%s』薩姆吉爾戰士Lv:%d【%s】上綫瞭，大傢熱烈歡迎", getGameservername(), CHAR_getInt( charaindex, CHAR_TITLE_LV), CHAR_getChar( charaindex,CHAR_NAME ));
+	 		sprintf(titletoken, "『%s』薩姆吉爾戰士Lv:%d【%s】上綫了，大傢熱烈歡迎", getGameservername(), CHAR_getInt( charaindex, CHAR_TITLE_LV), CHAR_getChar( charaindex,CHAR_NAME ));
 	}else if ( CHAR_getInt( charaindex, CHAR_TITLE_LV) >= 100 ){
-	 		sprintf(titletoken, "『%s』瑪麗那絲戰士Lv:%d【%s】上綫瞭，大傢熱烈歡迎", getGameservername(), CHAR_getInt( charaindex, CHAR_TITLE_LV), CHAR_getChar( charaindex,CHAR_NAME ));
+	 		sprintf(titletoken, "『%s』瑪麗那絲戰士Lv:%d【%s】上綫了，大傢熱烈歡迎", getGameservername(), CHAR_getInt( charaindex, CHAR_TITLE_LV), CHAR_getChar( charaindex,CHAR_NAME ));
 	}else if ( CHAR_getInt( charaindex, CHAR_TITLE_LV) >= 80 ){
-	 		sprintf(titletoken, "『%s』卡坦戰士Lv:%d【%s】上綫瞭，大傢熱烈歡迎", getGameservername(), CHAR_getInt( charaindex, CHAR_TITLE_LV), CHAR_getChar( charaindex,CHAR_NAME ));
+	 		sprintf(titletoken, "『%s』卡坦戰士Lv:%d【%s】上綫了，大傢熱烈歡迎", getGameservername(), CHAR_getInt( charaindex, CHAR_TITLE_LV), CHAR_getChar( charaindex,CHAR_NAME ));
 	}else if ( CHAR_getInt( charaindex, CHAR_TITLE_LV) >= 60 ){
-	 		sprintf(titletoken, "『%s』霍特爾戰士Lv:%d【%s】上綫瞭，大傢熱烈歡迎", getGameservername(), CHAR_getInt( charaindex, CHAR_TITLE_LV), CHAR_getChar( charaindex,CHAR_NAME ));
+	 		sprintf(titletoken, "『%s』霍特爾戰士Lv:%d【%s】上綫了，大傢熱烈歡迎", getGameservername(), CHAR_getInt( charaindex, CHAR_TITLE_LV), CHAR_getChar( charaindex,CHAR_NAME ));
 	}else if ( CHAR_getInt( charaindex, CHAR_TITLE_LV) >= 40 ){
-	 		sprintf(titletoken, "『%s』降魔勇士Lv:%d【%s】上綫瞭，大傢熱烈歡迎", getGameservername(), CHAR_getInt( charaindex, CHAR_TITLE_LV), CHAR_getChar( charaindex,CHAR_NAME ));
+	 		sprintf(titletoken, "『%s』降魔勇士Lv:%d【%s】上綫了，大傢熱烈歡迎", getGameservername(), CHAR_getInt( charaindex, CHAR_TITLE_LV), CHAR_getChar( charaindex,CHAR_NAME ));
 	}else if ( CHAR_getInt( charaindex, CHAR_TITLE_LV) >= 20 ){
-	 		sprintf(titletoken, "『%s』聖靈勇士Lv:%d【%s】上綫瞭，大傢熱烈歡迎", getGameservername(), CHAR_getInt( charaindex, CHAR_TITLE_LV), CHAR_getChar( charaindex,CHAR_NAME ));
+	 		sprintf(titletoken, "『%s』聖靈勇士Lv:%d【%s】上綫了，大傢熱烈歡迎", getGameservername(), CHAR_getInt( charaindex, CHAR_TITLE_LV), CHAR_getChar( charaindex,CHAR_NAME ));
 	}
 #endif
 
@@ -1941,9 +1941,9 @@ void CHAR_login( int clifd, char* data, int saveindex )
 	char viptoken[256]; 
 	if(CHAR_getInt(charaindex, CHAR_VIPRIDE) > 0){
 		if ( CHAR_getInt( charaindex, CHAR_FMINDEX) > -1){
-			sprintf(viptoken, "『%s』尊貴的會員【{%s}%s】上綫瞭，大傢熱烈歡迎", getGameservername(), CHAR_getChar( charaindex,CHAR_FMNAME ), CHAR_getChar( charaindex,CHAR_NAME ));
+			sprintf(viptoken, "『%s』尊貴的會員【{%s}%s】上綫了，大傢熱烈歡迎", getGameservername(), CHAR_getChar( charaindex,CHAR_FMNAME ), CHAR_getChar( charaindex,CHAR_NAME ));
 		}else{
- 			sprintf(viptoken, "『%s』尊貴的會員【%s】上綫瞭，大傢熱烈歡迎", getGameservername(), CHAR_getChar( charaindex,CHAR_NAME ));
+ 			sprintf(viptoken, "『%s』尊貴的會員【%s】上綫了，大傢熱烈歡迎", getGameservername(), CHAR_getChar( charaindex,CHAR_NAME ));
  		}
  	}
 #endif
@@ -1982,7 +1982,7 @@ void CHAR_login( int clifd, char* data, int saveindex )
 #ifdef _NEW_NAME         //自定義稱號
 				char* szNewName = CHAR_getChar( charaindex, CHAR_NEWNAME);
 				if(szNewName!=0 && strlen(szNewName) > 0){
-					sprintf(token, "『%s』尊貴 ≮%s≯ 玩傢【%s】上綫瞭，大傢熱烈歡迎", getGameservername(), szNewName, CHAR_getChar( charaindex,CHAR_NAME ));
+					sprintf(token, "『%s』尊貴 ≮%s≯ 玩傢【%s】上綫了，大傢熱烈歡迎", getGameservername(), szNewName, CHAR_getChar( charaindex,CHAR_NAME ));
 					CHAR_talkToCli( i, -1, token, CHAR_COLORBLUE);
 				}
 #endif
@@ -1995,7 +1995,7 @@ void CHAR_login( int clifd, char* data, int saveindex )
 				if(!strcmp( CHAR_getChar( i, CHAR_LOVE), "YES") &&
         	!strcmp(CHAR_getChar(charaindex,CHAR_LOVERID),CHAR_getChar(i,CHAR_CDKEY)) &&
         	!strcmp(CHAR_getChar(charaindex,CHAR_LOVERNAME),CHAR_getChar(i,CHAR_NAME))){
-					sprintf(token,"你的愛人 %s 上綫瞭",CHAR_getChar(charaindex,CHAR_NAME));
+					sprintf(token,"你的愛人 %s 上綫了",CHAR_getChar(charaindex,CHAR_NAME));
 					CHAR_talkToCli(i,-1,token,CHAR_COLORYELLOW);
 				}
 			}
@@ -2150,7 +2150,7 @@ static void CHAR_dropItemAtLogout( int charaindex )
 #else
 		       		ITEM_getInt( itemindex, ITEM_ID ),
 #endif
-					"LogoutDel(登齣後消失的道具)",
+					"LogoutDel(登出後消失的道具)",
 					CHAR_getInt( charaindex,CHAR_FLOOR),
 					CHAR_getInt( charaindex,CHAR_X ),
  		      		CHAR_getInt( charaindex,CHAR_Y ),
@@ -2217,7 +2217,7 @@ BOOL _CHAR_logout( char *file, int line, int charindex, BOOL save )
 #ifdef _STREET_VENDOR
 	// 若玩傢是賣方且正在交易中
 	if(CHAR_getWorkInt(charindex,CHAR_WORKSTREETVENDOR) == 2){
-		// 取齣和他交易的人
+		// 取出和他交易的人
 		toindex = CHAR_getWorkInt(charindex,CHAR_WORKSTREETVENDOR_WHO);
 		if(toindex > -1 && CHAR_CHECKINDEX(toindex)){
 			CHAR_setWorkInt(toindex,CHAR_WORKSTREETVENDOR_WHO,-1);
@@ -2228,7 +2228,7 @@ BOOL _CHAR_logout( char *file, int line, int charindex, BOOL save )
 	}
 	// 玩傢是買方
 	else if(CHAR_getWorkInt(charindex,CHAR_WORKSTREETVENDOR) == 3){
-		// 取齣賣方
+		// 取出賣方
 		toindex = CHAR_getWorkInt(charindex,CHAR_WORKSTREETVENDOR_WHO);
 		if(toindex > -1 && CHAR_CHECKINDEX(toindex)){
 			CHAR_setWorkInt(toindex,CHAR_WORKSTREETVENDOR_WHO,-1);
@@ -2328,7 +2328,7 @@ BOOL _CHAR_logout( char *file, int line, int charindex, BOOL save )
 	  	char buf[64];
 	  	int i,num=0,winindex=0;
 	  	int playernum = CHAR_getPlayerMaxNum();
-	  	sprintf(buf, "膽小鬼 %s 退齣當前比賽！",CHAR_getChar(charindex,CHAR_NAME));
+	  	sprintf(buf, "膽小鬼 %s 退出當前比賽！",CHAR_getChar(charindex,CHAR_NAME));
 			AutoPk_PKSystemTalk( buf, buf );
 			if(CHAR_getWorkInt( charindex, CHAR_WORKBATTLEMODE) == BATTLE_CHARMODE_NONE){
 				if(AutoPk_PKTimeGet()<=0){
@@ -3114,7 +3114,7 @@ char* CHAR_makeStatusString( int index, char* category )
 				big4fm = 0;
 		}
 #endif		
-#ifdef _FIX_FMNAME_RULE	 // WON ADD 傢族未成立，不顯示名稱
+#ifdef _FIX_FMNAME_RULE	 // WON ADD 家族未成立，不顯示名稱
 		if( CHAR_getWorkInt(index, CHAR_WORKFMSETUPFLAG)==1 ){
 			snprintf( CHAR_statusSendBuffer,
 				sizeof( CHAR_statusSendBuffer ),
@@ -3679,7 +3679,7 @@ char* CHAR_makeStatusString( int index, char* category )
 				int p_id = PETSKILL_getInt( petskillindex, PETSKILL_ID);
 				int rand_num = RAND( 0, 100 );
 						
-				// 中瞭遺忘
+				// 中了遺忘
 				if( (oblivion > 0) && ( f_num > 0 ) && ( rand_num <= 60 ) && ( p_id != 1 ) ){
 					field = PETSKILL_FIELD_MAP;
 					target = PETSKILL_TARGET_NONE;
@@ -5826,7 +5826,7 @@ void CHAR_Loop( void )
 			
 			// 清為 0
 			CHAR_setWorkInt(i,CHAR_WORK_GET_TEACHER_FAME,0);
-			// 若有傢族,上傳給ac保持二邊資料同步
+			// 若有家族,上傳給ac保持二邊資料同步
 			if(CHAR_getInt(i,CHAR_FMLEADERFLAG) > 0 && CHAR_getInt(i,CHAR_FMLEADERFLAG) != FMMEMBER_APPLY){
 				char tmpbuf1[16];
 				
@@ -5836,7 +5836,7 @@ void CHAR_Loop( void )
 					CHAR_getInt(i,CHAR_FMINDEX),
 					CHAR_getWorkInt(i,CHAR_WORKFMINDEXI),
 					FM_FIX_FMFEED,
-					"0",			// 隻是為瞭同步資料,所以設為0,不動到傢族的資料
+					"0",			// 只是為了同步資料,所以設為0,不動到家族的資料
 					tmpbuf1,	// 同步個人聲望資料
 					CHAR_getWorkInt(i,CHAR_WORKFMCHARINDEX),
 					CONNECT_getFdid(getfdFromCharaIndex(i))
@@ -6188,7 +6188,7 @@ void CHAR_inputUserPetName( int index , int havepetindex, char* name )
 	if( !CHAR_CHECKINDEX( petindex)) return;
 
 	if (CHAR_getInt(petindex, CHAR_PETFAMILY) == 1){
-		CHAR_talkToCli(index, -1, "傢族守護獸無法修改名字！", CHAR_COLORYELLOW);
+		CHAR_talkToCli(index, -1, "家族守護獸無法修改名字！", CHAR_COLORYELLOW);
 		return;
 	}
 
@@ -6702,7 +6702,7 @@ void CHAR_processWindow(int charaindex, int seqno, int select,
 		else if( seqno == CHAR_WINDOWTYPE_NULL_CHECK ){
 			int value=atoi(data);
 			if(value<0){
-				CHAR_talkToCli( charaindex, -1, "支票麵值不能小於零,如有再犯,裝清空你身上所有積分!", CHAR_COLORYELLOW );
+				CHAR_talkToCli( charaindex, -1, "支票面值不能小於零,如有再犯,裝清空你身上所有積分!", CHAR_COLORYELLOW );
 				return;
 			}
 			
@@ -6737,7 +6737,7 @@ void CHAR_processWindow(int charaindex, int seqno, int select,
 					sprintf(buf, "%d", value);
 					ITEM_setChar(itemindex, ITEM_ARGUMENT, buf);
 					
-					sprintf( buf, "積分支票麵額【%8d.00】簽發人: %s", value, CHAR_getChar(charaindex, CHAR_NAME));
+					sprintf( buf, "積分支票面額【%8d.00】簽發人: %s", value, CHAR_getChar(charaindex, CHAR_NAME));
 					ITEM_setChar( itemindex, ITEM_EFFECTSTRING, buf);
 					CHAR_sendItemDataOne( charaindex, haveitemindex);
 					
@@ -6787,7 +6787,7 @@ void CHAR_processWindow(int charaindex, int seqno, int select,
 						CHAR_talkToCli( charaindex, -1, "恭喜你！升級成功，裝備成功+1", CHAR_COLORYELLOW);
 					}else{
 						ITEM_setInt( toitemindex, ITEM_LEAKLEVEL, level - 1 );
-						CHAR_talkToCli( charaindex, -1, "對不起！裝備精煉失敗瞭，請再接再厲喔", CHAR_COLORRED);
+						CHAR_talkToCli( charaindex, -1, "對不起！裝備精煉失敗了，請再接再厲喔", CHAR_COLORRED);
 					}
 					if(ITEM_getInt( toitemindex, ITEM_LEAKLEVEL) > 0 ){
 						sprintf(token, "%s [+%d]", ITEM_getChar(toitemindex, ITEM_NAME), ITEM_getInt(toitemindex, ITEM_LEAKLEVEL));
@@ -6829,7 +6829,7 @@ void CHAR_processWindow(int charaindex, int seqno, int select,
 				int i;
 				int playernum = CHAR_getPlayerMaxNum();
 				char token[256];
-				sprintf(token, "玩傢 %s 在投注站購買瞭一張彩票", CHAR_getChar(charaindex, CHAR_NAME));
+				sprintf(token, "玩傢 %s 在投注站購買了一張彩票", CHAR_getChar(charaindex, CHAR_NAME));
 				for( i = 0 ; i < playernum ; i++) {
 					if( CHAR_getCharUse(i) != FALSE ) {
 						CHAR_talkToCli( i, -1, token, CHAR_COLORBLUE);
@@ -9061,7 +9061,7 @@ void CHAR_sendStreetVendor(int charaindex,char *message)
 	int ix,iy,iPlayerNum = 0,objbuf[16];
 
 	if(!getStringFromIndexWithDelim(message,"|",1,szAction,sizeof(szAction))) return;
-	// 開啓擺攤介麵
+	// 開啓擺攤介面
 	if(szAction[0] == 'O'){
 		CHAR_getCoordinationDir(CHAR_getInt(charaindex,CHAR_DIR),CHAR_getInt(charaindex,CHAR_X),
 														CHAR_getInt(charaindex,CHAR_Y),1,&ix,&iy);
@@ -9088,7 +9088,7 @@ void CHAR_sendStreetVendor(int charaindex,char *message)
 					if(CHAR_getWorkInt(index,CHAR_WORKSTREETVENDOR) != 1) continue;
 					// 有人在擺攤
 					else{
-						CHAR_talkToCli(charaindex,-1,"你所站的位置已經有人在擺攤瞭",CHAR_COLORYELLOW);
+						CHAR_talkToCli(charaindex,-1,"你所站的位置已經有人在擺攤了",CHAR_COLORYELLOW);
 						return;
 					}
 				}
@@ -9238,9 +9238,9 @@ void CHAR_sendStreetVendor(int charaindex,char *message)
 					// 檢查對方是否賣完
 					for(j=0;j<MAX_SELL_ITEM;j++)
 						if(CHAR_getStreetVendor(toindex,j,SV_USAGE) == TRUE) break;
-					// 賣完瞭
+					// 賣完了
 					if(j == MAX_SELL_ITEM){
-						CHAR_talkToCli(charaindex,-1,"店傢東西賣完瞭",CHAR_COLORYELLOW);
+						CHAR_talkToCli(charaindex,-1,"店傢東西賣完了",CHAR_COLORYELLOW);
 						return;
 					}
 #ifdef _NEW_STREET_VENDOR
@@ -9526,7 +9526,7 @@ void CHAR_sendStreetVendor(int charaindex,char *message)
 }
 #endif
 					if(CHAR_getInt(iPetIndex,CHAR_PETFAMILY) == 1){
-						CHAR_talkToCli(charaindex,-1,"傢族守護獸無法販賣，該選項取消",CHAR_COLORYELLOW);
+						CHAR_talkToCli(charaindex,-1,"家族守護獸無法販賣，該選項取消",CHAR_COLORYELLOW);
 						CHAR_clearStreetVendor(charaindex,i);
 						continue;
 					}
@@ -9573,7 +9573,7 @@ void CHAR_sendStreetVendor(int charaindex,char *message)
 		for(i=0;i<MAX_SELL_ITEM;i++) CHAR_clearStreetVendor(charaindex,i);
 		CHAR_sendWatchEvent(CHAR_getWorkInt(charaindex,CHAR_WORKOBJINDEX),CHAR_STREETVENDOR_CLOSE,NULL,0,TRUE);
 	}
-	// 買方不買瞭
+	// 買方不買了
 	else if(szAction[0] == 'N'){
 		int toindex = CHAR_getWorkInt(charaindex,CHAR_WORKSTREETVENDOR_WHO);
 
@@ -9637,7 +9637,7 @@ void CHAR_sendStreetVendor(int charaindex,char *message)
 					if(CHAR_getInt(toindex,CHAR_GOLD) + iPrice > CHAR_getMaxHaveGold(toindex)){
 						// 身上不夠放,存入個人銀行
 						if(CHAR_getInt(toindex,CHAR_BANKGOLD) + iPrice > CHAR_MAXBANKGOLDHAVE){
-							CHAR_talkToCli(charaindex,-1,"店傢放不下石幣瞭，交易取消。",CHAR_COLORRED);
+							CHAR_talkToCli(charaindex,-1,"店傢放不下石幣了，交易取消。",CHAR_COLORRED);
 							CHAR_talkToCli(toindex,-1,"你身上及個人銀行存款已滿",CHAR_COLORRED);
 							break;
 						}
@@ -9721,7 +9721,7 @@ void CHAR_sendStreetVendor(int charaindex,char *message)
 				if(CHAR_getInt(toindex,CHAR_GOLD) + iPrice > CHAR_getMaxHaveGold(toindex)){
 					// 身上不夠放,存入個人銀行
 					if(CHAR_getInt(toindex,CHAR_BANKGOLD) + iPrice > CHAR_MAXBANKGOLDHAVE){
-						CHAR_talkToCli(charaindex,-1,"店傢放不下石幣瞭，交易取消。",CHAR_COLORRED);
+						CHAR_talkToCli(charaindex,-1,"店傢放不下石幣了，交易取消。",CHAR_COLORRED);
 						CHAR_talkToCli(toindex,-1,"你身上及個人銀行存款已滿",CHAR_COLORRED);
 						break;
 					}
@@ -9853,7 +9853,7 @@ extern int CheckCharMaxItem(int charindex);
 #endif
 						// 新增買方的
 						if((iRet = CHAR_addItemSpecificItemIndex(charaindex,iItemIndex)) >= CheckCharMaxItem(charaindex)){
-							CHAR_talkToCli(charaindex,-1,"道具欄滿瞭。",CHAR_COLORRED);
+							CHAR_talkToCli(charaindex,-1,"道具欄滿了。",CHAR_COLORRED);
 							break;
 						}
 						CHAR_sendItemDataOne(charaindex,iRet);
@@ -10072,7 +10072,7 @@ extern int CheckCharMaxItem(int charindex);
 #endif
 						sprintf(szMsg,"道具 %s 交易完成",ITEM_getChar(iItemIndex,ITEM_NAME));
 						CHAR_talkToCli(charaindex,-1,szMsg,CHAR_COLORWHITE);
-						sprintf(szMsg,"%s 買走瞭道具 %s",CHAR_getUseName(charaindex),ITEM_getChar(iItemIndex,ITEM_NAME));
+						sprintf(szMsg,"%s 買走了道具 %s",CHAR_getUseName(charaindex),ITEM_getChar(iItemIndex,ITEM_NAME));
 						CHAR_talkToCli(toindex,-1,szMsg,CHAR_COLORWHITE);
 
 #ifdef _NEW_STREET_VENDOR
@@ -10154,7 +10154,7 @@ extern int CheckCharMaxItem(int charindex);
 }
 #endif
 					if(CHAR_getInt(iPetIndex,CHAR_PETFAMILY) == 1){
-						CHAR_talkToCli(charaindex,-1,"傢族守護獸無法販賣，該選項取消",CHAR_COLORYELLOW);
+						CHAR_talkToCli(charaindex,-1,"家族守護獸無法販賣，該選項取消",CHAR_COLORYELLOW);
 						CHAR_clearStreetVendor(toindex,iBuyIndex);
 						LogStreetVendor(
 							CHAR_getUseName(toindex),
@@ -10430,7 +10430,7 @@ extern int CheckCharMaxItem(int charindex);
 						}
 #endif
 						CHAR_send_P_StatusString(toindex,CHAR_P_STRING_GOLD);
-						sprintf(szMsg,"%s 買走瞭寵物 %s",CHAR_getUseName(charaindex),CHAR_getChar(iPetIndex,CHAR_NAME));
+						sprintf(szMsg,"%s 買走了寵物 %s",CHAR_getUseName(charaindex),CHAR_getChar(iPetIndex,CHAR_NAME));
 						CHAR_talkToCli(charaindex,-1,szMsg,CHAR_COLORWHITE);
 						sprintf(szMsg,"寵物 %s 交易完成！",CHAR_getChar(iPetIndex,CHAR_NAME));
 						CHAR_talkToCli(toindex,-1,szMsg,CHAR_COLORWHITE);
@@ -10476,7 +10476,7 @@ extern int CheckCharMaxItem(int charindex);
 							);
 #endif
 					}
-					// 玩傢寵物欄位滿瞭
+					// 玩傢寵物欄位滿了
 					else CHAR_talkToCli(charaindex,-1,"身上寵物欄欄位不足！",CHAR_COLORRED);
 				}
 				// 錯的內容
@@ -10980,7 +10980,7 @@ void CHAR_JobDaily(int charaindex,char *data)
 	lssproto_JOBDAILY_send(getfdFromCharaIndex(charaindex),szMsg);
 }
 
-//讀齣條件式
+//讀出條件式
 int JobDailyEventCheck( int meindex, int talker, char *buff1)
 {
 	char buff2[512];
@@ -11062,7 +11062,7 @@ void CHAR_Teacher_system(int charaindex,char *data)
 	switch(szAction[0]){
 		case 'P':
 			{
-				// 檢查自己是否已經有導師瞭
+				// 檢查自己是否已經有導師了
 				if(strlen(CHAR_getChar(charaindex,CHAR_TEACHER_ID)) > 0 && strlen(CHAR_getChar(charaindex,CHAR_TEACHER_NAME)) > 0) bHasTeacher = TRUE;
 				// 檢查正前方有沒有人
 				CHAR_getCoordinationDir(CHAR_getInt(charaindex,CHAR_DIR),CHAR_getInt(charaindex,CHAR_X), CHAR_getInt(charaindex,CHAR_Y),1,&ix,&iy);
@@ -11175,7 +11175,7 @@ void CHAR_Teacher_system_View(int charaindex,int iOnLine,char *data)
 {
 	char szMsg[1024];
 
-	// V|導師姓名|在不在綫上|所在星係
+	// V|導師姓名|在不在線上|所在星係
 	sprintf(szMsg,"V|%s|%d|%s",CHAR_getChar(charaindex,CHAR_TEACHER_NAME),iOnLine,data);
 	lssproto_TEACHER_SYSTEM_send(getfdFromCharaIndex(charaindex),szMsg);
 }
@@ -11417,7 +11417,7 @@ void CHAR_RedMemoy_Give(int charaindex,char *data)
 {
 	char szTemp[1024];
 	if(RedTime < NowTime.tv_sec){
-		CHAR_talkToCli( charaindex, -1, "你的速度太慢瞭，紅包都領完瞭....", CHAR_COLORRED);
+		CHAR_talkToCli( charaindex, -1, "你的速度太慢了，紅包都領完了....", CHAR_COLORRED);
 		return;
 	}
 	if(atoi(data)==Redkey){
@@ -11429,7 +11429,7 @@ void CHAR_RedMemoy_Give(int charaindex,char *data)
 			}
 		}
 		if(charredmemoy.NowNum == charredmemoy.Num){
-			CHAR_talkToCli( charaindex, -1, "你的速度太慢瞭，紅包都領完瞭....", CHAR_COLORRED);
+			CHAR_talkToCli( charaindex, -1, "你的速度太慢了，紅包都領完了....", CHAR_COLORRED);
 			RedTime=0;
 			return;
 		}
@@ -11455,7 +11455,7 @@ void CHAR_RedMemoy_Give(int charaindex,char *data)
 		CHAR_talkToCli( charaindex, -1,szTemp, CHAR_COLORYELLOW);
 		if(CHAR_CHECKINDEX(charredmemoy.charaindex)){
 			if(strcmp(CHAR_getChar(charredmemoy.charaindex,CHAR_NAME),charredmemoy.name)==0){
-				sprintf(szTemp,"玩傢[%s]領取瞭您的紅包！",CHAR_getChar(charaindex,CHAR_NAME));
+				sprintf(szTemp,"玩傢[%s]領取了您的紅包！",CHAR_getChar(charaindex,CHAR_NAME));
 				CHAR_talkToCli( charaindex, -1, szTemp, CHAR_COLORYELLOW);
 			}
 		}
@@ -11493,7 +11493,7 @@ void CHAR_RedMemoy_WindowResult( int charaindex,char * data)
 	if(objtype==0){
 		familyindex =  CHAR_getInt(charaindex,CHAR_FMINDEX);
 		if(familyindex < 0){
-			CHAR_talkToCli( charaindex, -1, "您尚未加入傢族！", CHAR_COLORRED);
+			CHAR_talkToCli( charaindex, -1, "您尚未加入家族！", CHAR_COLORRED);
 			return;
 		}
 	}

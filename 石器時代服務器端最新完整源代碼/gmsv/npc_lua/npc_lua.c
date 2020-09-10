@@ -92,7 +92,7 @@ static luaL_Reg Map_RegList[] = {
 	{"UpMap",NPC_Lua_Map_Upmap},
 #endif
 	{"檢測範圍",NPC_Lua_Map_CheckCoordinates},
-	{"檢測地圖是否登齣",NPC_Lua_Map_GetExitFloorXY},
+	{"檢測地圖是否登出",NPC_Lua_Map_GetExitFloorXY},
 	{"取X",NPC_Lua_Map_GetfloorX},
 	{"取Y",NPC_Lua_Map_GetfloorY},
 	{"取x",NPC_Lua_Map_GetfloorX},
@@ -109,7 +109,7 @@ static luaL_Reg Map_RegList[] = {
 	{"檢測地圖",NPC_Lua_Map_CheckIndex},
 	{"製作地圖",NPC_Lua_Map_MakeNewMap},
 	{"刪除地圖",NPC_Lua_Map_DelNewMap},
-	{"置退齣傳送點",NPC_Lua_Map_SetExWarp},
+	{"置退出傳送點",NPC_Lua_Map_SetExWarp},
 	{"置傳送點",NPC_Lua_Map_SetMapPoint},
 	{"刪除傳送點",NPC_Lua_Map_DelMapPoint},
 	{"取原名",NPC_Lua_Map_getFloorName},
@@ -156,8 +156,8 @@ static luaL_Reg NL_RegList[] = {
 		{"CreateSpecialNpc", NPC_Lua_NL_CreateSpecialNpc},
 		{"DelNpc", NPC_Lua_NL_DelNpc},
 		{"GetStringFromIndexWithDelim", NPC_Lua_NL_GetStringFromIndexWithDelim},//拆分字符
-		{"ANSI_PlayerLoop", NPC_Lua_NL_ANSI_PlayerLoop},//遍曆所有在綫寵物 返迴所有索引編號
-		{"PetLoopGetNext", NPC_Lua_NL_PetLoopGetNext},//遍曆所有在綫寵物 返迴所有索引編號
+		{"ANSI_PlayerLoop", NPC_Lua_NL_ANSI_PlayerLoop},//遍曆所有在線寵物 返迴所有索引編號
+		{"PetLoopGetNext", NPC_Lua_NL_PetLoopGetNext},//遍曆所有在線寵物 返迴所有索引編號
 		{"ItemLoopGetNext", NPC_Lua_NL_ItemLoopGetNext},//遍曆所有道具 返迴所有索引編號
 		{"PlayerLoopGetNext", NPC_Lua_NL_PlayerLoopGetNext},//遍曆所有人物 返迴所有索引編號
 		{"GetConfigLineType", NPC_Lua_NL_GetConfigLineType},//返迴CF字段類型
@@ -181,12 +181,12 @@ static luaL_Reg NL_RegList[] = {
 		{"取錯誤信息", NPC_Lua_NL_GetErrorStr},
 		{"創建NPC", NPC_Lua_NL_CreateNpc},
 		{"創建npc", NPC_Lua_NL_CreateNpc},
-		{"創建特彆NPC", NPC_Lua_NL_CreateSpecialNpc},
-		{"創建特彆npc", NPC_Lua_NL_CreateSpecialNpc},
+		{"創建特別NPC", NPC_Lua_NL_CreateSpecialNpc},
+		{"創建特別npc", NPC_Lua_NL_CreateSpecialNpc},
 		{"刪除NPC", NPC_Lua_NL_DelNpc},
 		{"刪除npc", NPC_Lua_NL_DelNpc},
 		{"分割字符", NPC_Lua_NL_GetStringFromIndexWithDelim},//拆分字符
-		{"注冊寵物迴調", NPC_Lua_NL_PetLoopGetNext},//遍曆所有在綫寵物 返迴所有索引編號
+		{"注冊寵物迴調", NPC_Lua_NL_PetLoopGetNext},//遍曆所有在線寵物 返迴所有索引編號
 		{"注冊道具迴調", NPC_Lua_NL_ItemLoopGetNext},//遍曆所有道具 返迴所有索引編號
 		{"注冊人物迴調", NPC_Lua_NL_PlayerLoopGetNext},//遍曆所有人物 返迴所有索引編號
 		{"取CF類型", NPC_Lua_NL_GetConfigLineType},//返迴CF字段類型
@@ -200,7 +200,7 @@ static luaL_Reg NL_RegList[] = {
 		{"刪除定時器", NPC_Lua_NL_DelTimer},//刪除一個定時器ID
 		{"調用函數II", NPC_Lua_NL_RunSaFuncII},//調用一個服務端內定義好的2個INT參數的函數。
 		{"調用函數III", NPC_Lua_NL_RunSaFuncIII},//調用一個服務端內定義好的3個INT參數的函數。
-		{"遍曆玩傢索引", NPC_Lua_NL_ANSI_PlayerLoop},//遍曆所有在綫寵物 返迴所有索引編號
+		{"遍曆玩傢索引", NPC_Lua_NL_ANSI_PlayerLoop},//遍曆所有在線寵物 返迴所有索引編號
 		{"遍曆寵物索引", NPC_Lua_NL_ANSI_PetLoop},//遍曆下一個寵物索引
 		{"遍曆道具索引", NPC_Lua_NL_ANSI_ItemLoop},//遍曆下一個道具索引
 		{"清空封包數據", NPC_Lua_NL_ClsMk},
@@ -311,7 +311,7 @@ static luaL_Reg Char_RegList[] = {
 	{"RandRandWalk", RandRandWalk},
 	{"隨機走路", RandRandWalk},
 	{"logout", NPC_Lua_Char_logout},
-	{"登齣", NPC_Lua_Char_logout},
+	{"登出", NPC_Lua_Char_logout},
 	{"copyChar", copyChar},
 	{"復製人物數據", copyChar},
 //取數據的接口
@@ -373,7 +373,7 @@ static luaL_Reg Char_RegList[] = {
 	{"尋找道具索引", NPC_Lua_Char_FindItemIndex},
 	{"取道具數量", NPC_Lua_Char_HcItemId},
 	{"刪除道具", NPC_Lua_Char_DelHcItem},
-	{"取傢族信息", NPC_Lua_Char_GETFM},
+	{"取家族信息", NPC_Lua_Char_GETFM},
 	{"尋找寵物原型ID", NPC_Lua_Char_FindPetEnemyBaseId},
 	{"尋找寵物原型id", NPC_Lua_Char_FindPetEnemyBaseId},
 	{"創建寵物", createPet},
@@ -413,7 +413,7 @@ static luaL_Reg Char_RegList[] = {
 	{"檢測道具索引", NPC_Lua_Char_CheckItemIndex},
 	{"加入隊伍", NPC_Lua_Char_JoinParty},
 
-	{"取傢族人物索引", NPC_Lua_Char_getFamilyPlayIndex},
+	{"取家族人物索引", NPC_Lua_Char_getFamilyPlayIndex},
 	{"取人物最大數", NPC_ABLua_char_getPlayerMaxNum},
 //	{"取虛擬人物最大數", getOnlinePlayer_},
 	{"取戰鬥經驗倍數", NPC_ABLua_char_getBattleexp},
@@ -434,9 +434,9 @@ static luaL_Reg GAME_RegList[] = {
 	{"FMPOINT_ACFixFMPoint",NPC_Lua_Game_FMPOINT_ACFixFMPoint},
 //	{"FMPOINT_ACCleanFMPoint",NPC_Lua_Game_FMPOINT_ACCleanFMPoint},
 	{"取數據",NPC_Lua_Game_FMPOINT_GetData},
-	{"申請傢族據點",NPC_Lua_Game_FMPOINT_ACSetFMPoint},
-	{"設定傢族據點",NPC_Lua_Game_FMPOINT_ACFixFMPoint},
-//	{"清除傢族據點",NPC_Lua_Game_FMPOINT_ACCleanFMPoint},
+	{"申請家族據點",NPC_Lua_Game_FMPOINT_ACSetFMPoint},
+	{"設定家族據點",NPC_Lua_Game_FMPOINT_ACFixFMPoint},
+//	{"清除家族據點",NPC_Lua_Game_FMPOINT_ACCleanFMPoint},
 
 	{NULL, NULL},
 };
@@ -640,7 +640,7 @@ static luaL_Reg NLG_RegList[] = {
 //	{"GetPetTransRange", NPC_Lua_NLG_GetPetTransRange},
 	{"TalkToGlobal", talkToAllServer },
 	{"CreateVsEnemyAB", NPC_Lua_NLG_CreateVsEnemyAB},
-	{"檢測是否麵對", NPC_Lua_NLG_CheckInFront},
+	{"檢測是否面對", NPC_Lua_NLG_CheckInFront},
 	{"檢測地圖是否有物件", NPC_Lua_NLG_CheckObj},
 	{"改變方嚮", NPC_Lua_NLG_CharLook},
 	{"創建戰鬥", NPC_Lua_NLG_CreateBattle},
@@ -657,7 +657,7 @@ static luaL_Reg NLG_RegList[] = {
 	{"給道具", NPC_Lua_NLG_GiveItem},
 	{"給道具返索引", NPC_Lua_NLG_GiveOneItem},
 	{"隨機給道具", NPC_Lua_NLG_GiveRandItem},
-	{"在綫人數", NPC_Lua_Char_GetOnLinePlayer},
+	{"在線人數", NPC_Lua_Char_GetOnLinePlayer},
 
 	{"發送對話框", NPC_Lua_NLG_ShowWindowTalked},
 	{"置動作", NPC_Lua_NLG_SetAction},
@@ -744,7 +744,7 @@ static SCRIPTREGLIB M_RegLib[] = {
 	{"道具", &Item_RegList},
 	{"物件", &Obj_RegList},
 	{"戰鬥", &Battle_RegList},
-	{"傢族", &GAME_RegList},
+	{"家族", &GAME_RegList},
 	{"地圖",&Map_RegList},
 	{"技能", &Spell_RegList},
 	{"數據庫",&SQL_RegList},
@@ -820,7 +820,7 @@ int NPC_Lua_Init(const char *_DoFile)
 	TM_Ret = luaL_loadfile(M_Script_Lua, _DoFile);
 	if(TM_Ret != 0)
 	{
-		//失敗-輸齣錯誤信息
+		//失敗-輸出錯誤信息
 	///	char token1[1024]={0};
 	//	code_convert1("UTF-8","GBK",(char *)lua_tostring(M_Script_Lua, -1),strlen(lua_tostring(M_Script_Lua, -1)),token1,1024);
 		print("NPC_Lua_Init LoadFile Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
@@ -835,7 +835,7 @@ int NPC_Lua_Init(const char *_DoFile)
 		//char token1[1024]={0};
 		//code_convert1("UTF-8","GBK",(char *)lua_tostring(M_Script_Lua, -1),strlen(lua_tostring(M_Script_Lua, -1)),token1,1024);
 		print("NPC_Lua_Init Pcall:%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
-		//齣棧
+		//出棧
 		lua_pop(M_Script_Lua, 1);
 		return M_Create_Num;
 	}
@@ -866,11 +866,11 @@ int pcall_callback_err_fun(lua_State* L,const char *_InitFuncName)
 	}
 	lua_getstack(L, level, &debug);
 	lua_getinfo(L, "Sln", &debug);
-	lua_pop(L, 1);//齣棧
+	lua_pop(L, 1);//出棧
 	if(_InitFuncName != NULL && _InitFuncName[0] != '\0'){
-		print("路徑(%s)%d行代碼調用函數(%s)齣錯。\n",debug.short_src,debug.currentline,_InitFuncName);
+		print("路徑(%s)%d行代碼調用函數(%s)出錯。\n",debug.short_src,debug.currentline,_InitFuncName);
 	}else{
-		print("路徑(%s)%d代碼齣錯。\n",debug.short_src,debug.currentline);
+		print("路徑(%s)%d代碼出錯。\n",debug.short_src,debug.currentline);
 	}
 	return 1;
 }
@@ -900,7 +900,7 @@ int NPC_Lua_DoFile(const char *_DoFile)
 	TM_Ret = lua_pcall(M_Script_Lua, 0, LUA_MULTRET, 0);
 	if(TM_Ret != 0)
 	{
-		//失敗-輸齣錯誤信息
+		//失敗-輸出錯誤信息
 		print("NPC_Lua_DoFile pcall Do Lua Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
 		return 1;
 	}
@@ -983,9 +983,9 @@ void NPC_Lua_BattleEndCallBack(int _battleindex)
 
 	if(TM_Ret != 0)
 	{
-		//失敗-輸齣錯誤信息
+		//失敗-輸出錯誤信息
 		print("NPC_Lua_BattleEndCallBack Lua Err :%d(%s)  迴調名[%s]\n", TM_Ret, lua_tostring(M_Script_Lua, -1),TM_Battle->EndLuaFuncName);
-		//齣棧
+		//出棧
 		lua_pop(M_Script_Lua, 1);
 		return ;
 	}
@@ -1014,9 +1014,9 @@ BOOL NPC_Lua_InitCallBack(int _meindex)
 	TM_Ret = lua_pcall(M_Script_Lua, 1, 1, 0);
 	if(TM_Ret != 0)
 	{
-		//失敗-輸齣錯誤信息
+		//失敗-輸出錯誤信息
 		print("NPC_Lua_InitCallBack Lua Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
-		//齣棧
+		//出棧
 		lua_pop(M_Script_Lua, 1);
 		return FALSE;
 	}
@@ -1048,9 +1048,9 @@ BOOL NPC_Lua_WalkPreCallBack(int _meindex, int *_dir, int *_mode)
 	TM_Ret = lua_pcall(M_Script_Lua, 3, 3, 0);
 	if(TM_Ret != 0)
 	{
-		//失敗-輸齣錯誤信息
+		//失敗-輸出錯誤信息
 		print("NPC_Lua_WalkPreCallBack Lua Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
-		//齣棧
+		//出棧
 		lua_pop(M_Script_Lua, 1);
 		return FALSE;
 	}
@@ -1083,9 +1083,9 @@ void NPC_Lua_WalkPostCallBack(int _meindex)
 	TM_Ret = lua_pcall(M_Script_Lua, 1, 0, 0);
 	if(TM_Ret != 0)
 	{
-		//失敗-輸齣錯誤信息
+		//失敗-輸出錯誤信息
 		print("NPC_Lua_WalkPostCallBack Lua Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
-		//齣棧
+		//出棧
 		lua_pop(M_Script_Lua, 1);
 		return ;
 	}
@@ -1114,9 +1114,9 @@ void NPC_Lua_PreOverCallBack(int _meindex, int _desindex)
 	TM_Ret = lua_pcall(M_Script_Lua, 2, 0, 0);
 	if(TM_Ret != 0)
 	{
-		//失敗-輸齣錯誤信息
+		//失敗-輸出錯誤信息
 		print("NPC_Lua_PreOverCallBack Lua Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
-		//齣棧
+		//出棧
 		lua_pop(M_Script_Lua, 1);
 		return ;
 	}
@@ -1145,9 +1145,9 @@ void NPC_Lua_PostOverCallBack(int _meindex, int _desindex)
 	TM_Ret = lua_pcall(M_Script_Lua, 2, 0, 0);
 	if(TM_Ret != 0)
 	{
-		//失敗-輸齣錯誤信息
+		//失敗-輸出錯誤信息
 		print("NPC_Lua_PostOverCallBack Lua Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
-		//齣棧
+		//出棧
 		lua_pop(M_Script_Lua, 1);
 		return ;
 	}
@@ -1219,9 +1219,9 @@ void NPC_Lua_WatchCallBack(int _meindex, int _objindex, int _chac, int _x, int _
 	TM_Ret = lua_pcall(M_Script_Lua, 7, 0, 0);
 	if(TM_Ret != 0)
 	{
-		//失敗-輸齣錯誤信息
+		//失敗-輸出錯誤信息
 		print("NPC_Lua_WatchCallBack Lua Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
-		//齣棧
+		//出棧
 		lua_pop(M_Script_Lua, 1);
 		return ;
 	}
@@ -1249,9 +1249,9 @@ int NPC_Lua_LoopCallBack(int _meindex)
 	TM_Ret = lua_pcall(M_Script_Lua, 1, 1, 0);
 	if(TM_Ret != 0)
 	{
-		//失敗-輸齣錯誤信息
+		//失敗-輸出錯誤信息
 		print("NPC_Lua_LoopCallBack Lua Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
-		//齣棧
+		//出棧
 		lua_pop(M_Script_Lua, 1);
 		return FALSE;
 	}
@@ -1314,9 +1314,9 @@ void NPC_Lua_TalkedCallBack(int _meindex, int _tomeindex, const char *_messageer
 	TM_Ret = lua_pcall(M_Script_Lua, 5, 0, 0);
 	if(TM_Ret != 0)
 	{
-		//失敗-輸齣錯誤信息
+		//失敗-輸出錯誤信息
 		print("NPC_Lua_TalkedCallBack Lua Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
-		//齣棧
+		//出棧
 		lua_pop(M_Script_Lua, 1);
 		return ;
 	}
@@ -1345,9 +1345,9 @@ void NPC_Lua_OFFCallBack(int _meindex, int _desindex)
 	TM_Ret = lua_pcall(M_Script_Lua, 2, 0, 0);
 	if(TM_Ret != 0)
 	{
-		//失敗-輸齣錯誤信息
+		//失敗-輸出錯誤信息
 		print("NPC_Lua_OFFCallBack Lua Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
-		//齣棧
+		//出棧
 		lua_pop(M_Script_Lua, 1);
 		return ;
 	}
@@ -1376,9 +1376,9 @@ void NPC_Lua_LookedCallBack(int _meindex, int _desindex)
 	TM_Ret = lua_pcall(M_Script_Lua, 2, 0, 0);
 	if(TM_Ret != 0)
 	{
-		//失敗-輸齣錯誤信息
+		//失敗-輸出錯誤信息
 		print("NPC_Lua_LookedCallBack Lua Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
-		//齣棧
+		//出棧
 		lua_pop(M_Script_Lua, 1);
 		return ;
 	}
@@ -1408,9 +1408,9 @@ BOOL NPC_Lua_ItemPutCallBack(int _meindex, int _itemindex)
 	TM_Ret = lua_pcall(M_Script_Lua, 2, 1, 0);
 	if(TM_Ret != 0)
 	{
-		//失敗-輸齣錯誤信息
+		//失敗-輸出錯誤信息
 		print("NPC_Lua_ItemPutCallBack Lua Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
-		//齣棧
+		//出棧
 		lua_pop(M_Script_Lua, 1);
 		return FALSE;
 	}
@@ -1443,9 +1443,9 @@ void NPC_Lua_WindowTalkedCallBack(int _meindex, int _talkindex, int _seqno, int 
 	TM_Ret = lua_pcall(M_Script_Lua, 5, 0, 0);
 	if(TM_Ret != 0)
 	{
-		//失敗-輸齣錯誤信息
+		//失敗-輸出錯誤信息
 		print("NPC_Lua_WindowTalkedCallBack Lua Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
-		//齣棧
+		//出棧
 		lua_pop(M_Script_Lua, 1);
 		return ;
 	}
@@ -1474,9 +1474,9 @@ int NPC_Lua_CharLoopsCallBack( int _meindex)
 	TM_Ret = lua_pcall(M_Script_Lua, 1, 1, 0);
 	if(TM_Ret != 0)
 	{
-		//失敗-輸齣錯誤信息
+		//失敗-輸出錯誤信息
 		print("NPC_Lua_CharLoopsCallBack Lua Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
-		//齣棧
+		//出棧
 		lua_pop(M_Script_Lua, 1);
 		return 0;
 	}
@@ -1548,9 +1548,9 @@ int NPC_Lua_BattleProPertyCallBack(int _attackindex, int _defindex, int *_damage
 	TM_Ret = lua_pcall(M_Script_Lua, 4, 1, 0);
 	if(TM_Ret != 0)
 	{
-		//失敗-輸齣錯誤信息
+		//失敗-輸出錯誤信息
 		print("NPC_Lua_BattleProPertyCallBack Lua Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
-		//齣棧
+		//出棧
 		lua_pop(M_Script_Lua, 1);
 		return 0;
 	}
@@ -1585,9 +1585,9 @@ void NPC_Lua_ItemPerOverCallBack(int _itemindex, int _playindex)
 	TM_Ret = lua_pcall(M_Script_Lua, 2, 0, 0);
 	if(TM_Ret != 0)
 	{
-		//失敗-輸齣錯誤信息
+		//失敗-輸出錯誤信息
 		print("NPC_Lua_ItemPerOverCallBack Lua Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
-		//齣棧
+		//出棧
 		lua_pop(M_Script_Lua, 1);
 		return ;
 	}
@@ -1616,9 +1616,9 @@ void NPC_Lua_ItemPostOverCallBack(int _itemindex, int _playindex)
 	TM_Ret = lua_pcall(M_Script_Lua, 2, 0, 0);
 	if(TM_Ret != 0)
 	{
-		//失敗-輸齣錯誤信息
+		//失敗-輸出錯誤信息
 		print("NPC_Lua_ItemPostOverCallBack Lua Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
-		//齣棧
+		//出棧
 		lua_pop(M_Script_Lua, 1);
 		return ;
 	}
@@ -1690,9 +1690,9 @@ void NPC_Lua_ItemWatchCallBack(int _meindex, int _objindex, int _chac, int _x, i
 	TM_Ret = lua_pcall(M_Script_Lua, 7, 0, 0);
 	if(TM_Ret != 0)
 	{
-		//失敗-輸齣錯誤信息
+		//失敗-輸出錯誤信息
 		print("NPC_Lua_ItemWatchCallBack Lua Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
-		//齣棧
+		//出棧
 		lua_pop(M_Script_Lua, 1);
 		return ;
 	}
@@ -1721,9 +1721,9 @@ void NPC_Lua_ItemUseCallBack(int _playindex, int _to_charindex, int _haveitemind
 	TM_Ret = lua_pcall(M_Script_Lua, 3, 0, 0);
 	if(TM_Ret != 0)
 	{
-		//失敗-輸齣錯誤信息
+		//失敗-輸出錯誤信息
 		print("NPC_Lua_ItemUseCallBack Lua Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
-		//齣棧
+		//出棧
 		lua_pop(M_Script_Lua, 1);
 		return ;
 	}
@@ -1752,9 +1752,9 @@ void NPC_Lua_ItemAttachCallBack(int _playindex, int _itemindex)
 	TM_Ret = lua_pcall(M_Script_Lua, 2, 0, 0);
 	if(TM_Ret != 0)
 	{
-		//失敗-輸齣錯誤信息
+		//失敗-輸出錯誤信息
 		print("NPC_Lua_ItemAttachCallBack Lua Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
-		//齣棧
+		//出棧
 		lua_pop(M_Script_Lua, 1);
 		return ;
 	}
@@ -1783,9 +1783,9 @@ void NPC_Lua_ItemDetachCallBack(int _playindex, int _itemindex)
 	TM_Ret = lua_pcall(M_Script_Lua, 2, 0, 0);
 	if(TM_Ret != 0)
 	{
-		//失敗-輸齣錯誤信息
+		//失敗-輸出錯誤信息
 		print("NPC_Lua_ItemDetachCallBack Lua Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
-		//齣棧
+		//出棧
 		lua_pop(M_Script_Lua, 1);
 		return ;
 	}
@@ -1814,9 +1814,9 @@ void NPC_Lua_ItemDropCallBack(int _playindex, int _itemindex)
 	TM_Ret = lua_pcall(M_Script_Lua, 2, 0, 0);
 	if(TM_Ret != 0)
 	{
-		//失敗-輸齣錯誤信息
+		//失敗-輸出錯誤信息
 		print("NPC_Lua_ItemDropCallBack Lua Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
-		//齣棧
+		//出棧
 		lua_pop(M_Script_Lua, 1);
 		return ;
 	}
@@ -1845,9 +1845,9 @@ void NPC_Lua_ItemPickUPCallBack(int _playindex, int _itemindex)
 	TM_Ret = lua_pcall(M_Script_Lua, 2, 0, 0);
 	if(TM_Ret != 0)
 	{
-		//失敗-輸齣錯誤信息
+		//失敗-輸出錯誤信息
 		print("NPC_Lua_ItemPickUPCallBack Lua Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
-		//齣棧
+		//出棧
 		lua_pop(M_Script_Lua, 1);
 		return ;
 	}
@@ -1878,9 +1878,9 @@ void NPC_Lua_ItemDieReLifeCallBack(int _playindex, int _itemindex, int _haveitem
 	TM_Ret = lua_pcall(M_Script_Lua, 3, 0, 0);
 	if(TM_Ret != 0)
 	{
-		//失敗-輸齣錯誤信息
+		//失敗-輸出錯誤信息
 		print("NPC_Lua_ItemDieReLifeCallBack Lua Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
-		//齣棧
+		//出棧
 		lua_pop(M_Script_Lua, 1);
 		return ;
 	}
@@ -1917,9 +1917,9 @@ void NPC_Lua_BattleWinCallBack(int _battleindex, int _createindex)
 	TM_Ret = lua_pcall(M_Script_Lua, 2, 0, 0);
 	if(TM_Ret != 0)
 	{
-		//失敗-輸齣錯誤信息
+		//失敗-輸出錯誤信息
 		print("NPC_Lua_BattleWinCallBack Lua Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
-		//齣棧
+		//出棧
 		lua_pop(M_Script_Lua, 1);
 		return ;
 	}
@@ -2066,7 +2066,7 @@ int NPC_DelPet(int charaindex, int petsel)
 
 	{
 		char TM_MsgBuff[128];
-		snprintf( TM_MsgBuff,sizeof( TM_MsgBuff), "交齣%s。",	CHAR_getChar( TM_PetIndex, CHAR_NAME));
+		snprintf( TM_MsgBuff,sizeof( TM_MsgBuff), "交出%s。",	CHAR_getChar( TM_PetIndex, CHAR_NAME));
 		CHAR_talkToCli( charaindex, -1, TM_MsgBuff,  CHAR_COLORWHITE);
 	}
 
@@ -2261,9 +2261,9 @@ int NPC_Lua_CreateVsEnemy(lua_State *_NLL, int _CharaIndex, int _NpcIndex, const
 		TM_CallRet = lua_pcall(_NLL, 1, 1, 0);
 		if(TM_CallRet != 0)
 		{
-			//失敗-輸齣錯誤信息
+			//失敗-輸出錯誤信息
 			print("NPC_Lua_CreateVsEnemy Lua Err :%d(%s)\n", TM_CallRet, lua_tostring(_NLL, -1));
-			//齣棧
+			//出棧
 			lua_pop(_NLL, 1);
 			goto BATTLE_CreateVsEnemy_End;
 		}
@@ -2629,7 +2629,7 @@ void NPC_Lua_SQLPushAdvCallBack(int luaresult,int luaflg,int luaerrno,char* luae
 	lua_pushinteger(M_Script_Lua, (lua_Integer)rowAt);
 	int i;
 	char buf[128] = "";
-	if (luaflg != 4) {//flg==4時 隻釋放結果集，不需要放入參數結果的數組瞭。
+	if (luaflg != 4) {//flg==4時 隻釋放結果集，不需要放入參數結果的數組了。
 		lua_newtable( M_Script_Lua );
 		for (i=0;i<luafieldCount;i++)
 		{
@@ -2677,9 +2677,9 @@ void NPC_Lua_SQLPushCallBack(char* _result,char* _filename,char* _function,int _
 		TM_Ret = lua_pcall(M_Script_Lua, 4, 0, 0);
 		if(TM_Ret != 0)
 		{
-			//失敗-輸齣錯誤信息
+			//失敗-輸出錯誤信息
 			print("NPC_Lua_SQLPushCallBack Lua Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
-			//齣棧
+			//出棧
 			lua_pop(M_Script_Lua, 1);
 			return ;
 		}

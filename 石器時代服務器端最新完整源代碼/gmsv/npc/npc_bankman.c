@@ -178,14 +178,14 @@ void NPC_BankmanWindowTalked( int meindex, int talkerindex,
 			    	lssproto_WN_send(fd, WINDOW_MESSAGETYPE_MESSAGE,
 			    		WINDOW_BUTTONTYPE_OK, -1, -1,
 			    		makeEscapeString("\n您的資格不符閤！"
-			    				 "\n請先加入傢族！", buff, sizeof(buff)));
+			    				 "\n請先加入家族！", buff, sizeof(buff)));
 			else {
 				sprintf(buf, "B|G|%d", CHAR_getInt( talkerindex, CHAR_BANKGOLD) );
 				lssproto_FM_send( fd, buf );
 			}
 			return;
 		}
-		// 傢族帳戶
+		// 家族帳戶
 		if( newwin == 6 )
 		{
 			if( CHAR_getInt( talkerindex, CHAR_FMINDEX ) > 0 )
@@ -199,17 +199,17 @@ void NPC_BankmanWindowTalked( int meindex, int talkerindex,
 			    	lssproto_WN_send(fd, WINDOW_MESSAGETYPE_MESSAGE,
 			    		WINDOW_BUTTONTYPE_OK, -1, -1,
 			    		makeEscapeString("\n您的資格不符閤！"
-			    				 "\n請先加入傢族！", buff, sizeof(buff)));
+			    				 "\n請先加入家族！", buff, sizeof(buff)));
 			return;
 		}
-		// 退齣
+		// 退出
 		if( newwin == 7 )
 		{
 			if( CHAR_getInt( talkerindex, CHAR_FMINDEX ) == -1 ) {
 			    	lssproto_WN_send(fd, WINDOW_MESSAGETYPE_MESSAGE,
 			    		WINDOW_BUTTONTYPE_OK, -1, -1,
 			    		makeEscapeString("\n您的資格不符閤！"
-			    				 "\n請先加入傢族！", buff, sizeof(buff)));
+			    				 "\n請先加入家族！", buff, sizeof(buff)));
 				return;
 			}
 			

@@ -12,33 +12,33 @@
 #include "npc_scheduleman.h"
 
 #define DENGONFILELINENUM      35     // 整個公布欄的資料筆數
-#define FMSDENGONFILELINENUM   140    // 傢族間的留言闆資料筆數
+#define FMSDENGONFILELINENUM   140    // 家族間的留言闆資料筆數
 #define DENGONFILEENTRYSIZE    128    // 本文大小
 #ifdef _NEW_MANOR_LAW
 #define MESSAGEINONEWINDOW     10     // 每頁所顯示的筆數
 #else
 #define MESSAGEINONEWINDOW     7      // 每頁所顯示的筆數
 #endif
-#define FMMAXNUM               1000   // 傢族數量的最大值
-#define FM_MEMBERLIST          1      // 傢族成員列錶    (主功能錶的按鍵)
-#define FM_MEMBERMEMO          2      // 傢族留言        (主功能錶的按鍵)
-#define FM_FMMEMO              3      // 傢族之間留言闆  (主功能錶的按鍵)
-#define FM_FMPOINT             4      // 申請傢族據點    (主功能錶的按鍵)
-#define FM_FMDPTOP             5      // 傢族間強者錶    (主功能錶的按鍵)
+#define FMMAXNUM               1000   // 家族數量的最大值
+#define FM_MEMBERLIST          1      // 家族成員列錶    (主功能錶的按鍵)
+#define FM_MEMBERMEMO          2      // 家族留言        (主功能錶的按鍵)
+#define FM_FMMEMO              3      // 家族之間留言闆  (主功能錶的按鍵)
+#define FM_FMPOINT             4      // 申請家族據點    (主功能錶的按鍵)
+#define FM_FMDPTOP             5      // 家族間強者錶    (主功能錶的按鍵)
 #ifdef _FM_FMPOINTPK_LIST
 #define FM_FMPOINTPK           6      // 莊園族戰時間錶  (主功能錶的按鍵)
 #endif
 #define FM_FMPOINTTIME         7      // 莊園占據時間錶  (主功能錶的按鍵)
 #define FM_WAITTIME            (3*60)
-#define FMSDENGON_SN           10000  // 傢族之間的留言闆的識彆碼
+#define FMSDENGON_SN           10000  // 家族之間的留言闆的識彆碼
 
 extern struct  FMMEMBER_LIST memberlist[FMMAXNUM];         // 接收 AC 成員列錶資料的 ARRAY
-extern struct  FMS_MEMO fmsmemo;                           // 傢族之間的留言闆
-extern struct  FM_POINTLIST fmpointlist;                   // 傢族據點
-extern struct  FMS_DPTOP fmdptop;                          // 傢族強者錶
-extern int leaderdengonindex;                              // 777 傢族公布欄 index
+extern struct  FMS_MEMO fmsmemo;                           // 家族之間的留言闆
+extern struct  FM_POINTLIST fmpointlist;                   // 家族據點
+extern struct  FMS_DPTOP fmdptop;                          // 家族強者錶
+extern int leaderdengonindex;                              // 777 家族公布欄 index
 char NPC_sendbuf[DENGONFILEENTRYSIZE*MESSAGEINONEWINDOW];  // 一整頁的大小
-char enlistbuf[4096];                                        // 傢族成員召募 BUF(顯示用的)
+char enlistbuf[4096];                                        // 家族成員召募 BUF(顯示用的)
 
 unsigned long READTIME1 = 0,
               READTIME2 = 0,
@@ -62,12 +62,12 @@ BOOL NPC_FmDengonInit( int meindex)
         READTIME3 = NowTime.tv_sec+FM_WAITTIME,
         READTIME4 = NowTime.tv_sec+FM_WAITTIME;
        
-        // 取得傢族的成員列錶(memberlist struct)，以及傢族的留言闆
+        // 取得家族的成員列錶(memberlist struct)，以及家族的留言闆
         for( i=0; i<FMMAXNUM; i++){
             saacproto_ACShowMemberList_send( acfd, i);
             saacproto_ACFMReadMemo_send( acfd, i);
         }
-        // 傢族之間的留言闆所傳的值預設為 FMSDENGON_SN
+        // 家族之間的留言闆所傳的值預設為 FMSDENGON_SN
         saacproto_ACFMReadMemo_send( acfd, FMSDENGON_SN);
         saacproto_ACFMPointList_send(acfd);
         saacproto_ACShowTopFMList_send(acfd, FM_TOP_INTEGRATE);
@@ -100,13 +100,13 @@ void NPC_FmDengonWindowTalked( int index, int talker, int seqno, int select, cha
     
     CONNECT_setLastrecvtime_D( getfdFromCharaIndex( talker), &NowTime);
 #ifndef _FM_MODIFY
-    // 距離超齣 DENGONDISTANCE 的  圍內時，即取消動作
+    // 距離超出 DENGONDISTANCE 的  圍內時，即取消動作
 #define DENGONDISTANCE 3	
     if( CHAR_getInt(index, CHAR_FLOOR) != 777 )
         if(NPC_Util_CharDistance( index, talker) > DENGONDISTANCE) return;
 #endif
     
-    // 傢族留言闆
+    // 家族留言闆
     if( seqno == CHAR_WINDOWTYPE_FM_DENGON)
     {
 			int dengonindex;
@@ -265,7 +265,7 @@ void NPC_FmDengonWindowTalked( int index, int talker, int seqno, int select, cha
       }  // Switch End
     }  // If End
         
-    // 傢族之間留言闆
+    // 家族之間留言闆
     else if(seqno == CHAR_WINDOWTYPE_FM_FMSDENGON)
     {
 			int dengonindex;
@@ -437,7 +437,7 @@ void NPC_FmDengonWindowTalked( int index, int talker, int seqno, int select, cha
       }  // Switch End
     }  // If End
         
-    // 說明視窗(傢族據點)
+    // 說明視窗(家族據點)
     else if( seqno == CHAR_WINDOWTYPE_FM_MESSAGE1)
     {
 			int fd;
@@ -499,7 +499,7 @@ void NPC_FmDengonWindowTalked( int index, int talker, int seqno, int select, cha
 						strcat( numberlistbuf, "\n");
 					}
 					// 增加程式碼(嚮AC要召募人員的值)
-					sprintf(enlistbuf, "是否繼續召募傢族人員|0|%d",memberlist[fmindex_wk].accept);
+					sprintf(enlistbuf, "是否繼續召募家族人員|0|%d",memberlist[fmindex_wk].accept);
 					strcat( numberlistbuf, enlistbuf);
 					strcat( numberlistbuf, "\n");
 					lssproto_WN_send( fd, WINDOW_FMMESSAGETYPE_SELECT,
@@ -534,7 +534,7 @@ void NPC_FmDengonWindowTalked( int index, int talker, int seqno, int select, cha
 			
 			buttonevent = atoi(data);
 			switch( buttonevent ){
-			case 1:				// 前叁十大傢族綜閤聲望列錶
+			case 1:				// 前叁十大家族綜閤聲望列錶
 				{
 					int  fd,i;
 					char listbuf[4096];
@@ -564,7 +564,7 @@ void NPC_FmDengonWindowTalked( int index, int talker, int seqno, int select, cha
 						makeEscapeString( listbuf, buf, sizeof(buf)));
 				}
 				break;
-			case 2:				// 前十大傢族冒險列錶
+			case 2:				// 前十大家族冒險列錶
 				{
 					int  fd,i;
 					char listbuf[4096];
@@ -590,7 +590,7 @@ void NPC_FmDengonWindowTalked( int index, int talker, int seqno, int select, cha
 						makeEscapeString( listbuf, buf, sizeof(buf)));
 				}
 				break;
-			case 3:				// 前十大傢族伺育列錶
+			case 3:				// 前十大家族伺育列錶
 				{
 					int  fd,i;
 					char listbuf[4096];
@@ -617,7 +617,7 @@ void NPC_FmDengonWindowTalked( int index, int talker, int seqno, int select, cha
 				}
 				break;
 #ifndef _NEW_MANOR_LAW
-			case 4:				// 前十大傢族閤成列錶
+			case 4:				// 前十大家族閤成列錶
 				{
 					int  fd,i;
 					char listbuf[4096];
@@ -643,7 +643,7 @@ void NPC_FmDengonWindowTalked( int index, int talker, int seqno, int select, cha
 						makeEscapeString( listbuf, buf, sizeof(buf)));
 				}
 				break;
-			case 5:				// 前十大傢族料理列錶
+			case 5:				// 前十大家族料理列錶
 				{
 					int  fd,i;
 					char listbuf[4096];
@@ -671,9 +671,9 @@ void NPC_FmDengonWindowTalked( int index, int talker, int seqno, int select, cha
 				break;
 #endif
 #ifdef _NEW_MANOR_LAW
-			case 4:				// 前十大傢族ＰＫ列錶
+			case 4:				// 前十大家族ＰＫ列錶
 #else
-			case 6:				// 前十大傢族ＰＫ列錶
+			case 6:				// 前十大家族ＰＫ列錶
 #endif
 				{
 					int  fd,i;
@@ -701,7 +701,7 @@ void NPC_FmDengonWindowTalked( int index, int talker, int seqno, int select, cha
 				}
 				break;
 #ifdef _NEW_MANOR_LAW
-			case 5:						// 十大氣勢傢族
+			case 5:						// 十大氣勢家族
 				{
 					int  fd,i;
 					char listbuf[4096];
@@ -729,7 +729,7 @@ void NPC_FmDengonWindowTalked( int index, int talker, int seqno, int select, cha
 				break;
 #endif
 #ifndef _NEW_MANOR_LAW
-			case 7:				// 自己傢族聲望排行榜
+			case 7:				// 自己家族聲望排行榜
 #else
 			case 6:
 #endif
@@ -742,7 +742,7 @@ void NPC_FmDengonWindowTalked( int index, int talker, int seqno, int select, cha
 					
 					fmid = CHAR_getWorkInt(talker, CHAR_WORKFMINDEXI);
 					if( fmid < 0 ){
-						sprintf( NPC_sendbuf, "              『警       告』\n 抱歉！你不是傢族人員，無法查看。");
+						sprintf( NPC_sendbuf, "              『警       告』\n 抱歉！你不是家族人員，無法查看。");
 						lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE, WINDOW_BUTTONTYPE_OK,
 							-1,
 							-1,
@@ -784,7 +784,7 @@ void NPC_FmDengonWindowTalked( int index, int talker, int seqno, int select, cha
 				}
 				break;
 #ifdef _NEW_MANOR_LAW
-			case 7:		// 自己傢族氣勢排名
+			case 7:		// 自己家族氣勢排名
 				{
 					int  fd,h,fmid;
 					char listbuf[4096];
@@ -795,7 +795,7 @@ void NPC_FmDengonWindowTalked( int index, int talker, int seqno, int select, cha
 					
 					fmid = CHAR_getWorkInt(talker, CHAR_WORKFMINDEXI);
 					if( fmid < 0 ){
-						sprintf( NPC_sendbuf, "              『警       告』\n 抱歉！你不是傢族人員，無法查看。");
+						sprintf( NPC_sendbuf, "              『警       告』\n 抱歉！你不是家族人員，無法查看。");
 						lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE, WINDOW_BUTTONTYPE_OK,
 							-1,
 							-1,
@@ -850,7 +850,7 @@ void NPC_FmDengonWindowTalked( int index, int talker, int seqno, int select, cha
 					if( fd == -1 )  return;
 					
 					if( CHAR_getInt(talker, CHAR_FMINDEX) <= 0){  
-						sprintf( NPC_sendbuf, "              『警       告』\n 抱歉！你不是傢族人員，不得使用公布欄。");
+						sprintf( NPC_sendbuf, "              『警       告』\n 抱歉！你不是家族人員，不得使用公布欄。");
 						lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE, WINDOW_BUTTONTYPE_OK,
 							-1, -1, makeEscapeString( NPC_sendbuf, buf, sizeof(buf)));
 						return;
@@ -952,20 +952,20 @@ void NPC_FmDengonWindowTalked( int index, int talker, int seqno, int select, cha
 						READTIME3 = NowTime.tv_sec+FM_WAITTIME;
 					}
 					memset(NPC_sendbuf,0,sizeof(NPC_sendbuf));
-					strcpy( NPC_sendbuf, "\n              三十大傢族聲望列錶\n");
-					strcat( NPC_sendbuf, "              十大冒險傢族\n");
-					strcat( NPC_sendbuf, "              十大飼育傢族\n");
+					strcpy( NPC_sendbuf, "\n              三十大家族聲望列錶\n");
+					strcat( NPC_sendbuf, "              十大冒險家族\n");
+					strcat( NPC_sendbuf, "              十大飼育家族\n");
 #ifndef _NEW_MANOR_LAW
-					strcat( NPC_sendbuf, "              十大閤成傢族\n");
-					strcat( NPC_sendbuf, "              十大料理傢族\n");
+					strcat( NPC_sendbuf, "              十大閤成家族\n");
+					strcat( NPC_sendbuf, "              十大料理家族\n");
 #endif
-					strcat( NPC_sendbuf, "              十大戰鬥傢族\n");
+					strcat( NPC_sendbuf, "              十大戰鬥家族\n");
 #ifdef _NEW_MANOR_LAW
-					strcat( NPC_sendbuf, "              十大氣勢傢族\n");
+					strcat( NPC_sendbuf, "              十大氣勢家族\n");
 #endif
-					strcat( NPC_sendbuf, "              自己傢族聲望列錶\n");
+					strcat( NPC_sendbuf, "              自己家族聲望列錶\n");
 #ifdef _NEW_MANOR_LAW
-					strcat( NPC_sendbuf, "              自己傢族氣勢排名\n");
+					strcat( NPC_sendbuf, "              自己家族氣勢排名\n");
 #endif					
 						
 					lssproto_WN_send( fd, WINDOW_MESSAGETYPE_SELECT,
@@ -989,7 +989,7 @@ void NPC_FmDengonWindowTalked( int index, int talker, int seqno, int select, cha
 					if( fd == -1 )  return;
 					
 					if( CHAR_getInt(talker, CHAR_FMINDEX) <= 0){  
-						sprintf( NPC_sendbuf, "              『警       告』\n 抱歉！你不是傢族人員，不得使用公布欄。");
+						sprintf( NPC_sendbuf, "              『警       告』\n 抱歉！你不是家族人員，不得使用公布欄。");
 						
 						lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 							WINDOW_BUTTONTYPE_OK,
@@ -1257,7 +1257,7 @@ void NPC_FmDengonWindowTalked( int index, int talker, int seqno, int select, cha
 					
 					int_status = atoi(getstatus);
 					
-					// 傢族的加入、退齣、申請等選項
+					// 家族的加入、退出、申請等選項
 					if( buttonevent!=11 )
 #ifdef _FMVER21            
 						strcpy( memberlist[fmindex_wk].numberlistarray[numberlistindex+buttonevent - 1]
@@ -1277,7 +1277,7 @@ void NPC_FmDengonWindowTalked( int index, int talker, int seqno, int select, cha
 						break;
 					}              
 #endif                 
-					// 傢族的召募選項
+					// 家族的召募選項
 					if( buttonevent == 11 )
 					{
 						strcpy( getstatus, enlistbuf + (strlen(enlistbuf) - 1));
@@ -1286,11 +1286,11 @@ void NPC_FmDengonWindowTalked( int index, int talker, int seqno, int select, cha
 						switch( int_status ){
 						case 1:
 							memberlist[fmindex_wk].accept = 0;
-							sprintf(enlistbuf, "是否繼續召募傢族人員|%d|%d",numberlistindex,memberlist[fmindex_wk].accept);
+							sprintf(enlistbuf, "是否繼續召募家族人員|%d|%d",numberlistindex,memberlist[fmindex_wk].accept);
 							break;
 						case 0:
 							memberlist[fmindex_wk].accept = 1;
-							sprintf(enlistbuf, "是否繼續召募傢族人員|%d|%d",numberlistindex,memberlist[fmindex_wk].accept);
+							sprintf(enlistbuf, "是否繼續召募家族人員|%d|%d",numberlistindex,memberlist[fmindex_wk].accept);
 							break;
 						default:
 							break;    
@@ -1303,7 +1303,7 @@ void NPC_FmDengonWindowTalked( int index, int talker, int seqno, int select, cha
 						strcat( numberlistbuf, memberlist[fmindex_wk].numberlistarray[i]);
 						strcat( numberlistbuf, "\n");
 					}
-					sprintf(enlistbuf, "是否繼續召募傢族人員|%d|%d",numberlistindex,memberlist[fmindex_wk].accept);
+					sprintf(enlistbuf, "是否繼續召募家族人員|%d|%d",numberlistindex,memberlist[fmindex_wk].accept);
 					strcat( numberlistbuf, enlistbuf);
 					strcat( numberlistbuf, "\n");
 					
@@ -1359,7 +1359,7 @@ void NPC_FmDengonWindowTalked( int index, int talker, int seqno, int select, cha
 							strcat( numberlistbuf, memberlist[fmindex_wk].numberlistarray[i]);
 							strcat( numberlistbuf, "\n");
 						}
-						sprintf(enlistbuf, "是否繼續召募傢族人員|%d|%d",numberlistindex,memberlist[fmindex_wk].accept);
+						sprintf(enlistbuf, "是否繼續召募家族人員|%d|%d",numberlistindex,memberlist[fmindex_wk].accept);
 						strcat( numberlistbuf, enlistbuf);
 						strcat( numberlistbuf, "\n");
 						lssproto_WN_send( fd, WINDOW_FMMESSAGETYPE_SELECT,
@@ -1380,7 +1380,7 @@ void NPC_FmDengonWindowTalked( int index, int talker, int seqno, int select, cha
         }
     }
     
-    // 傢族強者錶(前叁十)
+    // 家族強者錶(前叁十)
     else if( seqno == CHAR_WINDOWTYPE_FM_DPTOP)
     {
 			char listbuf[4096],tmp_buffer[4096];
@@ -1508,7 +1508,7 @@ void NPC_FmDengonWindowTalked( int index, int talker, int seqno, int select, cha
 			}
     }        
 
-    // 傢族強者錶(自己及前十大)
+    // 家族強者錶(自己及前十大)
     else if( seqno == CHAR_WINDOWTYPE_FM_DPME )
     {
 			switch( select ){
@@ -1532,20 +1532,20 @@ void NPC_FmDengonWindowTalked( int index, int talker, int seqno, int select, cha
 						READTIME3 = NowTime.tv_sec+FM_WAITTIME;
 					}
 					
-					strcpy( NPC_sendbuf, "\n              三十大傢族聲望列錶\n");
-					strcat( NPC_sendbuf, "              十大冒險傢族\n");
-					strcat( NPC_sendbuf, "              十大飼育傢族\n");
+					strcpy( NPC_sendbuf, "\n              三十大家族聲望列錶\n");
+					strcat( NPC_sendbuf, "              十大冒險家族\n");
+					strcat( NPC_sendbuf, "              十大飼育家族\n");
 #ifndef _NEW_MANOR_LAW
-					strcat( NPC_sendbuf, "              十大閤成傢族\n");
-					strcat( NPC_sendbuf, "              十大料理傢族\n");
+					strcat( NPC_sendbuf, "              十大閤成家族\n");
+					strcat( NPC_sendbuf, "              十大料理家族\n");
 #endif
-					strcat( NPC_sendbuf, "              十大戰鬥傢族\n");
+					strcat( NPC_sendbuf, "              十大戰鬥家族\n");
 #ifdef _NEW_MANOR_LAW
-					strcat( NPC_sendbuf, "              十大氣勢傢族\n");
+					strcat( NPC_sendbuf, "              十大氣勢家族\n");
 #endif
-					strcat( NPC_sendbuf, "              自己傢族聲望列錶\n");
+					strcat( NPC_sendbuf, "              自己家族聲望列錶\n");
 #ifdef _NEW_MANOR_LAW
-					strcat( NPC_sendbuf, "              自己傢族氣勢排名\n");
+					strcat( NPC_sendbuf, "              自己家族氣勢排名\n");
 #endif					
 					lssproto_WN_send( fd, WINDOW_MESSAGETYPE_SELECT,
 						WINDOW_BUTTONTYPE_NONE,
@@ -1580,15 +1580,15 @@ void NPC_FmDengonLooked( int meindex, int lookedindex )
     fd = getfdFromCharaIndex( lookedindex );
     if( fd == -1 )  return;
     
-    // 必須站在布告欄的前麵一格
+    // 必須站在布告欄的前面一格
     if( NPC_Util_CharDistance( lookedindex, meindex ) > 1) return;
     // 空白處請勿更動
-    strcpy( menubuf, "                  『傢族布告欄』");
-	strcat( menubuf, "\n                   傢族成員列錶");
-	strcat( menubuf, "\n                     傢族留言");
-	strcat( menubuf, "\n                  傢族之間留言闆");
-	strcat( menubuf, "\n                   申請傢族據點");
-	strcat( menubuf, "\n                  傢族之間強者錶");
+    strcpy( menubuf, "                  『家族布告欄』");
+	strcat( menubuf, "\n                   家族成員列錶");
+	strcat( menubuf, "\n                     家族留言");
+	strcat( menubuf, "\n                  家族之間留言闆");
+	strcat( menubuf, "\n                   申請家族據點");
+	strcat( menubuf, "\n                  家族之間強者錶");
 #ifdef _FM_FMPOINTPK_LIST
 	strcat( menubuf, "\n                  莊園族戰時間錶");
 #endif
@@ -1612,12 +1612,12 @@ void NPC_FmDengonLooked( int meindex, int lookedindex )
     if( fd == -1 )  return;
     
     // 空白處請勿更動
-    strcpy( menubuf, "                  『傢族布告欄』");
-	strcat( menubuf, "\n                   傢族成員列錶");
-	strcat( menubuf, "\n                     傢族留言");
-	strcat( menubuf, "\n                  傢族之間留言闆");
-	strcat( menubuf, "\n                   申請傢族據點");
-	strcat( menubuf, "\n                  傢族之間強者錶");
+    strcpy( menubuf, "                  『家族布告欄』");
+	strcat( menubuf, "\n                   家族成員列錶");
+	strcat( menubuf, "\n                     家族留言");
+	strcat( menubuf, "\n                  家族之間留言闆");
+	strcat( menubuf, "\n                   申請家族據點");
+	strcat( menubuf, "\n                  家族之間強者錶");
 #ifdef _FM_FMPOINTPK_LIST
 	strcat( menubuf, "\n                  莊園族戰時間錶");
 #endif

@@ -48,7 +48,7 @@ void NPC_AlldomanWindowTalked(int meindex, int talkerindex, int seqno, int selec
 			NPC_Alldoman_selectWindow(meindex , talkerindex , 4 ,"");
 		}
 		if ( select == WINDOW_BUTTONTYPE_OK ) {
-			//CHAR_talkToCli(talkerindex,meindex,"看清楚瞭！",CHAR_COLORRED);
+			//CHAR_talkToCli(talkerindex,meindex,"看清楚了！",CHAR_COLORRED);
 			showpage = 1 ; 
 			NPC_Alldoman_selectWindow(meindex , talkerindex, 5 ,"");
 		}
@@ -66,12 +66,12 @@ void NPC_AlldomanWindowTalked(int meindex, int talkerindex, int seqno, int selec
 				CHAR_talkToCli(talkerindex,-1,"這裏隻能給真正的英雄刻寫！",CHAR_COLORRED);
 				break;
 			}
-			sprintf( buf2 , "你拿齣瞭打敗守靈者%3d的證明，試圖將自己的姓名刻上石碑！" ,	 CHAR_getWorkInt( talkerindex  , CHAR_WORKHEROFLOOR ) );
+			sprintf( buf2 , "你拿出了打敗守靈者%3d的證明，試圖將自己的姓名刻上石碑！" ,	 CHAR_getWorkInt( talkerindex  , CHAR_WORKHEROFLOOR ) );
 			CHAR_talkToCli(talkerindex,-1,buf2,CHAR_COLORRED);
 			if ( CHAR_getWorkInt( talkerindex  , CHAR_WORKHEROFLOOR ) == 132 ) {
 				sprintf( buf2 , "%s" , "尼斯大陸英雄" ) ;
 				//到達頂層對全星係廣播
-				sprintf( buf , "%s徵服瞭英雄戰場，由風之精靈將這個消息通知全世界，新的英雄誕生瞭!!" , CHAR_getChar( talkerindex, CHAR_NAME ) );
+				sprintf( buf , "%s徵服了英雄戰場，由風之精靈將這個消息通知全世界，新的英雄誕生了!!" , CHAR_getChar( talkerindex, CHAR_NAME ) );
 				for( i = 0 ; i < playernum ; i++) {
 					if( CHAR_getCharUse(i) != FALSE ) {
 						CHAR_talkToCli( i, -1, buf, CHAR_COLORBLUE2);
@@ -155,7 +155,7 @@ static void NPC_Alldoman_selectWindow( int meindex, int talker, int num, char *d
 	 case 4:
 		 if ( showpage == 1 ) {
 			 buttontype = WINDOW_BUTTONTYPE_NEXT;
-			 sprintf( token, "４８５４４７聖餅時，吉魯齣現大批機暴橫行，所到之處皆無一幸免，尼斯各村的長老達成共識，調集各村勇士，前往消滅這群發狂的機暴，這群勇士在海底隧道入口跟這群機暴激戰，不料，實力相差懸殊，勇士們傷亡慘重，殘餘的勇士，選擇在霍特爾海底通路的入口做最");
+			 sprintf( token, "４８５４４７聖餅時，吉魯出現大批機暴橫行，所到之處皆無一幸免，尼斯各村的長老達成共識，調集各村勇士，前往消滅這群發狂的機暴，這群勇士在海底隧道入口跟這群機暴激戰，不料，實力相差懸殊，勇士們傷亡慘重，殘餘的勇士，選擇在霍特爾海底通路的入口做最");
 		 }
 		 else if ( showpage == 2 ) {
 			 buttontype = WINDOW_BUTTONTYPE_NEXT;
@@ -163,7 +163,7 @@ static void NPC_Alldoman_selectWindow( int meindex, int talker, int num, char *d
 		 }
 		 else if ( showpage == 3) {
 			 buttontype = WINDOW_BUTTONTYPE_OK;
-			 sprintf( token, "族為目的，讓尼斯大陸的人們生生不息，上麵的英雄是最近勇闖“英雄戰場”所留下來的，特此詔告全尼斯英雄！\n\n                      英雄戰場製作委員會");
+			 sprintf( token, "族為目的，讓尼斯大陸的人們生生不息，上面的英雄是最近勇闖“英雄戰場”所留下來的，特此詔告全尼斯英雄！\n\n                      英雄戰場製作委員會");
 		 }
 		 windowtype = WINDOW_MESSAGETYPE_MESSAGE;
 		 windowno = NPC_ALLDOMAN_MAIN_WND;

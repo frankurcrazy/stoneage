@@ -125,7 +125,7 @@ int NPC_Lua_NLG_CreateBattle(lua_State *_NLL)
 	}
 //然後再調用創建戰鬥的函數
 	int TM_Ret = NPC_Lua_CreateVsEnemy(_NLL, TM_CharIndex, TM_NpcIndex, TM_DoFunc, &TM_CreateEnemy, TM_ArLen, TM_Flg);
-//返迴負數錶示失敗
+//返迴負數表示失敗
 	LRetInt(_NLL, TM_Ret);
 }
 
@@ -245,7 +245,7 @@ int NPC_Lua_NLG_DelItemByPos(lua_State *_NLL)
 	}
 	TM_ItemIndex = CHAR_getItemIndex(TM_Index,TM_ItemPos);
 	char TM_Buff[128];
-	snprintf(TM_Buff, sizeof(TM_Buff), "交齣 1 個 %s。", ITEM_getChar( TM_ItemIndex, ITEM_NAME));
+	snprintf(TM_Buff, sizeof(TM_Buff), "交出 1 個 %s。", ITEM_getChar( TM_ItemIndex, ITEM_NAME));
 	CHAR_talkToCli( TM_Index, -1, TM_Buff, CHAR_COLORYELLOW);
 	CHAR_DelItem( TM_Index, TM_ItemPos);
 	LRetBool(_NLL, TRUE);
@@ -1620,7 +1620,7 @@ int NPC_Lua_NLG_StayEncount(lua_State *_NLL)
 	int fd,charaindex = (int)lua_tointeger(_NLL, 1);
 	fd = CHAR_getWorkInt( charaindex, CHAR_WORKFD);
 	setStayEncount(fd);
-	CHAR_talkToCli(charaindex, -1, "你感受到周邊突然充滿瞭殺氣！", CHAR_COLORYELLOW);
+	CHAR_talkToCli(charaindex, -1, "你感受到周邊突然充滿了殺氣！", CHAR_COLORYELLOW);
 #ifdef _USER_CHARLOOPS
 	{
 		Char 	*ch;

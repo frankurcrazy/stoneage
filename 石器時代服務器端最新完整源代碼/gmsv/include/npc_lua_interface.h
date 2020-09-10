@@ -58,7 +58,7 @@ int NPC_Lua_Close(void);
 //動態加載腳本文件
 int NPC_Lua_DoFile(const char *_DoFile);
 
-//從LUA腳本引擎齣棧一個參數
+//從LUA腳本引擎出棧一個參數
 const char *NPC_Lua_popstring(int _ArgNum);
 
 //調用指定的腳本函數

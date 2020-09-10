@@ -64,7 +64,7 @@ static CharBase ItemBaseInt[] = {
 	,{{"混耐"},							ITEM_CONFUSION}
 	,{{"會心"},							ITEM_CRITICAL}
 	,{{"動作"},							ITEM_USEACTION}
-	,{{"登齣消失"},					ITEM_DROPATLOGOUT}
+	,{{"登出消失"},					ITEM_DROPATLOGOUT}
 	,{{"丟棄消失"},					ITEM_VANISHATDROP}
 	,{{""},									ITEM_ISOVERED}
 	,{{"郵寄"},							ITEM_CANPETMAIL}

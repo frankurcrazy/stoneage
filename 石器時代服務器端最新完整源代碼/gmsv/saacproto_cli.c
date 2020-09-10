@@ -364,7 +364,7 @@ void saacproto_ACAddFM_send(int fd, char *fmname, char *fmleadername,
 #endif
 	saacproto_Send(fd, saacproto.work);
 }
-#ifdef _PERSONAL_FAME	// Arminius: 傢族個人聲望
+#ifdef _PERSONAL_FAME	// Arminius: 家族個人聲望
 void saacproto_ACJoinFM_send(int fd, char *fmname, int fmindex, char *charname,
         char *charid, int charlv, int index, int fame, int charfdid)
 #else
@@ -379,7 +379,7 @@ void saacproto_ACJoinFM_send(int fd, char *fmname, int fmindex, char *charname,
 	saacproto_strcatsafe(saacproto.work, saacproto_mkstr_string(charid), saacproto.workbufsize);
 	saacproto_strcatsafe(saacproto.work, saacproto_mkstr_int(charlv), saacproto.workbufsize);
 	saacproto_strcatsafe(saacproto.work, saacproto_mkstr_int(index), saacproto.workbufsize);
-// #ifdef _PERSONAL_FAME	// Arminius: 傢族個人聲望
+// #ifdef _PERSONAL_FAME	// Arminius: 家族個人聲望
 	saacproto_strcatsafe(saacproto.work, saacproto_mkstr_int(fame), saacproto.workbufsize);
 // #endif
 	saacproto_strcatsafe(saacproto.work, saacproto_mkstr_int(charfdid), saacproto.workbufsize);
@@ -1351,7 +1351,7 @@ int saacproto_ClientDispatchMessage(int fd ,char*line)
 	}
 	if( strcmp( funcname, "ACFMCharLogin") == 0){
 		int charfdid, index, floor, fmdp, joinflag, fmsetupflag, flag, charindex;
-#ifdef _PERSONAL_FAME   // Arminius: 傢族個人聲望
+#ifdef _PERSONAL_FAME   // Arminius: 家族個人聲望
 		int charfame;
 #endif
 #ifdef _NEW_MANOR_LAW
@@ -1366,7 +1366,7 @@ int saacproto_ClientDispatchMessage(int fd ,char*line)
 		fmsetupflag = saacproto_demkstr_int(saacproto.token_list[7]);
 		flag = saacproto_demkstr_int(saacproto.token_list[8]);
 		charindex = saacproto_demkstr_int(saacproto.token_list[9]);
-#ifdef _PERSONAL_FAME   // Arminius: 傢族個人聲望
+#ifdef _PERSONAL_FAME   // Arminius: 家族個人聲望
 		charfame = saacproto_demkstr_int(saacproto.token_list[10]);
 		charfdid = saacproto_demkstr_int(saacproto.token_list[11]);
 	#ifdef _NEW_MANOR_LAW

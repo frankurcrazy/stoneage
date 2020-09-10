@@ -807,7 +807,7 @@ char* sasql_LuaAdv_QueryR(char *sqlstr,int flg)
 		num_row=mysql_num_rows(mysql_result);//結果集行數
 		if (mysql_eof(mysql_result))
 		{
-			retlua.result = -3;//已達到尾端，先給你提個醒，如果還繼續查詢，下麵將會自動釋放。
+			retlua.result = -3;//已達到尾端，先給你提個醒，如果還繼續查詢，下面將會自動釋放。
 		}
 		if (num_row == rowAtt) {
 			mysql_free_result(mysql_result);//釋放結果集

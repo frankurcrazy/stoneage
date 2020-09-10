@@ -407,7 +407,7 @@ void lssproto_CharLogout_recv( int fd, int flg)
 			  	char buf[64];
 			  	int i,num=0,winindex=-1;
 			  	int playernum = CHAR_getPlayerMaxNum();
-			  	sprintf(buf, "膽小鬼 %s 退齣當前比賽！",CHAR_getChar(charaindex,CHAR_NAME));
+			  	sprintf(buf, "膽小鬼 %s 退出當前比賽！",CHAR_getChar(charaindex,CHAR_NAME));
 					AutoPk_PKSystemTalk( buf, buf );
 					if(AutoPk_PKTimeGet()<=0){
 						for(i=0;i<playernum;i++){
@@ -907,7 +907,7 @@ void lssproto_DI_recv( int fd,int x, int y, int itemindex )
 	if(CHAR_getInt(charaindex,CHAR_LOCKED)==1){
 		char message[256];
 		char	buf[256];
-		sprintf( message, "為瞭確保你的物品安全，請輸入你的安全密碼進行解鎖！\n");
+		sprintf( message, "為了確保你的物品安全，請輸入你的安全密碼進行解鎖！\n");
 	
 		lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGEANDLINEINPUT, 
 						WINDOW_BUTTONTYPE_OKCANCEL,
@@ -937,7 +937,7 @@ void lssproto_DP_recv( int fd,int x, int y, int petindex )
 		if(CHAR_getInt(fd_charaindex,CHAR_LOCKED)==1){
 			char message[256];
 			char	buf[256];
-			sprintf( message, "為瞭確保你的物品安全，請輸入你的安全密碼進行解鎖！\n");
+			sprintf( message, "為了確保你的物品安全，請輸入你的安全密碼進行解鎖！\n");
 	
 			lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGEANDLINEINPUT, 
 							WINDOW_BUTTONTYPE_OKCANCEL,
@@ -1083,7 +1083,7 @@ void lssproto_PETITEM_recv( int fd,int x,int y,int petindex,int fromindex,int to
 	if(CHAR_getInt(fd_charaindex,CHAR_LOCKED)==1){
 		char message[256];
 		char	buf[256];
-		sprintf( message, "為瞭確保你的物品安全，請輸入你的安全密碼進行解鎖！\n");
+		sprintf( message, "為了確保你的物品安全，請輸入你的安全密碼進行解鎖！\n");
 	
 		lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGEANDLINEINPUT, 
 						WINDOW_BUTTONTYPE_OKCANCEL,
@@ -1117,7 +1117,7 @@ void lssproto_SKUP_recv( int fd,int skillid )
     CHECKFDANDTIME;
     fd_charaindex = CONNECT_getCharaindex(fd);
 
-	/* 裏飄麵は近く ∈ラグでこれに苞っかかる材牆拉あり∷*/
+	/* 裏飄面は近く ∈ラグでこれに苞っかかる材牆拉あり∷*/
 	if( CHAR_getWorkInt( fd_charaindex, CHAR_WORKBATTLEMODE)
 		!= BATTLE_CHARMODE_NONE) return ;
     CHAR_SkillUp(fd_charaindex,skillid);
@@ -1231,7 +1231,7 @@ void lssproto_TK_recv( int fd,int x, int y,char* message,int color, int area )
 			if( (int)NowTime.tv_sec - lastTalkTime < 10 ) {
 				CHAR_setInt( fd_charaindex,CHAR_SILENT, 60 );
 				CHAR_setWorkInt( fd_charaindex, CHAR_WORKLOGINTIME, (int)NowTime.tv_sec );
-				CHAR_talkToCli( fd_charaindex, -1, "你太多話瞭唷，請你的嘴巴先休息個一分鍾吧！", color);
+				CHAR_talkToCli( fd_charaindex, -1, "你太多話了唷，請你的嘴巴先休息個一分鍾吧！", color);
 				CHAR_setWorkInt(fd_charaindex, CHAR_WORKTALKCOUNT, 0 );
 				return;
 			}else {
@@ -1871,7 +1871,7 @@ void lssproto_DU_recv( int fd , int x,int y )
 			strcpy( msgbuf, "1\n要和誰戰鬥？\n");
 			strlength = strlen( msgbuf);
 			/* ウィンドウのメッセ〖ジ侯喇。
-			 * 裏飄麵のキャラの辦枉
+			 * 裏飄面のキャラの辦枉
 			 */
 			for( i = 0;
 				CONNECT_getDuelcharaindex( fd,i) != -1
@@ -2037,7 +2037,7 @@ void lssproto_FS_recv( int fd,int flg )
 #ifdef _CHANNEL_MODIFY
 	//密語頻道開關
 	CHAR_setFlg(fd_charaindex,CHAR_ISTELL,(flg & CHAR_FS_TELL )? TRUE:FALSE);
-	//傢族頻道開關
+	//家族頻道開關
 	CHAR_setFlg(fd_charaindex,CHAR_ISFM,(flg & CHAR_FS_FM )? TRUE:FALSE);
 	//職業頻道開關
 	CHAR_setFlg(fd_charaindex,CHAR_ISOCC,(flg & CHAR_FS_OCC )? TRUE:FALSE);
@@ -2356,7 +2356,7 @@ void lssproto_WN_recv( int fd,int x,int y,int seqno,
 
 			lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 			WINDOW_BUTTONTYPE_OK, -1, -1,
-			"真是遺憾。\n少瞭你的幫助，看來魔族會繼續危害大陸的人民瞭。" );
+			"真是遺憾。\n少了你的幫助，看來魔族會繼續危害大陸的人民了。" );
 
 			//CHAR_talkToCli( fd_charaindex, -1, "天之聲：真是可惜，這可是難得的機會呀。", CHAR_COLORYELLOW);
 			
@@ -2609,7 +2609,7 @@ void lssproto_PMSG_recv( int fd,int index,int petindex,int itemindex,
 	if(CHAR_getInt(fd_charaindex,CHAR_LOCKED)==1){
 		char message[256];
 		char	buf[256];
-		sprintf( message, "為瞭確保你的物品安全，請輸入你的安全密碼進行解鎖！\n");
+		sprintf( message, "為了確保你的物品安全，請輸入你的安全密碼進行解鎖！\n");
 	
 		lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGEANDLINEINPUT, 
 						WINDOW_BUTTONTYPE_OKCANCEL,
@@ -2819,7 +2819,7 @@ void lssproto_KTEAM_recv( int fd, int si)
 		char buf1[256];
 		sprintf( buf1, "隊長[%s]將你踢除！", CHAR_getUseName( charaindex ));
 		CHAR_talkToCli( pindex, -1, buf1, CHAR_COLORYELLOW);
-		sprintf( buf1, "將[%s]踢除齣團隊！", CHAR_getUseName( pindex ));
+		sprintf( buf1, "將[%s]踢除出團隊！", CHAR_getUseName( pindex ));
 		CHAR_talkToCli( charaindex, -1, buf1, CHAR_COLORYELLOW);
 	}
 }
@@ -2904,7 +2904,7 @@ void lssproto_STREET_VENDOR_recv(int fd,char *message)
 	if(CHAR_getInt(charaindex,CHAR_LOCKED)==1){
 		char message[256];
 		char	buf[256];
-		sprintf( message, "為瞭確保你的物品安全，請輸入你的安全密碼進行解鎖！\n");
+		sprintf( message, "為了確保你的物品安全，請輸入你的安全密碼進行解鎖！\n");
 	
 		lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGEANDLINEINPUT, 
 						WINDOW_BUTTONTYPE_OKCANCEL,

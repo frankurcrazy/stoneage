@@ -88,7 +88,7 @@ void BattleCommandDispach( int fd,	char *command )
 		EscapeFree = 0; 
 		if (CHAR_getWorkInt( charaindex, CHAR_WORKBATTLEWATCH )!=TRUE){
 			CHAR_talkToCli( charaindex, -1,
-                "華義大魔王使齣定身法，定定定定定定把你定在戰鬥裏。", CHAR_COLORYELLOW );
+                "華義大魔王使出定身法，定定定定定定把你定在戰鬥裏。", CHAR_COLORYELLOW );
             CHAR_setWorkInt( charaindex, CHAR_WORKBATTLECOM1, BATTLE_COM_GUARD );
             CHAR_setWorkInt( charaindex, CHAR_WORKBATTLEMODE, BATTLE_CHARMODE_C_OK );
             //sprintf( szBuffer, "Command(%s)(防禦)", CHAR_getUseName( charaindex ) );
@@ -111,7 +111,7 @@ void BattleCommandDispach( int fd,	char *command )
 		for(i=0;i<32;i++){
 			if(getNotEscape(i) == CHAR_getInt(charaindex, CHAR_FLOOR)){
 				CHAR_talkToCli( charaindex, -1,
-	                "大魔王使齣定身法，定定定定定定把你定在戰鬥裏。", CHAR_COLORYELLOW );
+	                "大魔王使出定身法，定定定定定定把你定在戰鬥裏。", CHAR_COLORYELLOW );
 				CHAR_setWorkInt( charaindex, CHAR_WORKBATTLECOM1, BATTLE_COM_GUARD );
 				break;
 			}
@@ -163,7 +163,7 @@ void BattleCommandDispach( int fd,	char *command )
 				}
 #endif
 #ifdef _PETSKILL_BECOMEPIG
-				if( CHAR_getInt( charaindex, CHAR_BECOMEPIG) > -1 ){//變成烏力瞭
+				if( CHAR_getInt( charaindex, CHAR_BECOMEPIG) > -1 ){//變成烏力了
 				    CHAR_setWorkInt( charaindex, CHAR_WORKBATTLECOM1, BATTLE_COM_ATTACK );
 				}
 #endif
@@ -260,7 +260,7 @@ void BattleCommandDispach( int fd,	char *command )
 #ifdef _STANDBYPET
 		//if( iNum >= 0) {
 		//	if( ! (CHAR_getWorkInt( charaindex, CHAR_WORKSTANDBYPET) & ( 1 << iNum)) ) {
-		//		print("\n 改封包!叫齣非待機寵!!:%s ", CHAR_getChar( charaindex, CHAR_CDKEY) );
+		//		print("\n 改封包!叫出非待機寵!!:%s ", CHAR_getChar( charaindex, CHAR_CDKEY) );
 		//		iNum = -1;
 		//	}
 		//}
@@ -280,7 +280,7 @@ void BattleCommandDispach( int fd,	char *command )
 */
 #ifdef _PET_VALIDITY
 	if(CHAR_getInt ( petindex, CHAR_PETVALIDITY) > 0 && CHAR_getInt ( petindex, CHAR_PETVALIDITY) < time(NULL) ){
-		CHAR_talkToCli(charaindex, -1, "該寵物已經失效瞭！", CHAR_COLORYELLOW);
+		CHAR_talkToCli(charaindex, -1, "該寵物已經失效了！", CHAR_COLORYELLOW);
 		iNum = -1;
 	}
 #endif
@@ -291,7 +291,7 @@ void BattleCommandDispach( int fd,	char *command )
 			//sprintf( szBuffer, "Command(%s)(喚迴寵物)", CHAR_getUseName( charaindex ) );
 		}else{
 			CHAR_setWorkInt( charaindex, CHAR_WORKBATTLECOM1, BATTLE_COM_PETOUT );
-			//sprintf( szBuffer, "Command(%s)(叫齣寵物)", CHAR_getUseName( charaindex ) );
+			//sprintf( szBuffer, "Command(%s)(叫出寵物)", CHAR_getUseName( charaindex ) );
 		}
 		CHAR_setWorkInt( charaindex, CHAR_WORKBATTLEMODE, BATTLE_CHARMODE_C_OK );
 
@@ -837,12 +837,12 @@ BOOL BATTLE_MakeCharaString(
 			}else {
 				if( CHAR_getWorkInt( charaindex, CHAR_WORKPETFALL ) == 1 ){
 					rideflg = -1;
-#ifdef _PETSKILL_BECOMEFOX // 若中瞭媚惑術而落馬時將訊息傳給 Client
+#ifdef _PETSKILL_BECOMEFOX // 若中了媚惑術而落馬時將訊息傳給 Client
 					if( CHAR_getWorkInt( charaindex, CHAR_WORKFOXROUND ) != -1 )
 						rideflg = -2; //client用來判斷顯示落馬的文字 (對應的client變數為p_party[ BattleMyNo ]->onRide)
 #endif
-#ifdef _PETSKILL_BECOMEPIG // 若中瞭烏力化而落馬時將訊息傳給 Client
-					if( CHAR_getInt( charaindex, CHAR_BECOMEPIG) > 120 )//變成烏力瞭
+#ifdef _PETSKILL_BECOMEPIG // 若中了烏力化而落馬時將訊息傳給 Client
+					if( CHAR_getInt( charaindex, CHAR_BECOMEPIG) > 120 )//變成烏力了
 						rideflg = -3; //client用來判斷顯示落馬的文字 (對應的client變數為p_party[ BattleMyNo ]->onRide)
 #endif
 					 CHAR_setWorkInt( charaindex, CHAR_WORKPETFALL, 0 );
@@ -966,7 +966,7 @@ void BATTLE_CharSendAll( int battleindex )
 		讓開,讓開~~~~~~~
              qTTr
            qsΘΘU
-           t⊙T⊙s我來給你送月餅瞭
+           t⊙T⊙s我來給你送月餅了
 */
 		char msg[32]={0};
 		//print("\n寵物id:%d",CHAR_getInt( pindex, CHAR_PETID));
@@ -981,7 +981,7 @@ void BATTLE_CharSendAll( int battleindex )
 	} 
 #endif
 
-#ifdef _PETSKILL_BECOMEFOX // 限製中瞭媚惑術的寵物的技能
+#ifdef _PETSKILL_BECOMEFOX // 限製中了媚惑術的寵物的技能
 		    //if( CHAR_getInt( pindex, CHAR_BASEIMAGENUMBER) == 101749 ){
 	        if( CHAR_getWorkInt( pindex, CHAR_WORKFOXROUND ) != -1 ){ //若是變成小狐狸
 			    char msg[32]={0};
@@ -1177,7 +1177,7 @@ void BATTLE_CharSendOne( int battleindex,int mycharaindex )
 		讓開,讓開~~~~~~~
              qTTr
            qsΘΘU
-           t⊙T⊙s我來給你送月餅瞭
+           t⊙T⊙s我來給你送月餅了
 */
 		char msg[32]={0};
 		//print("\n寵物id:%d",CHAR_getInt( pindex, CHAR_PETID));
@@ -1192,7 +1192,7 @@ void BATTLE_CharSendOne( int battleindex,int mycharaindex )
 	}
 #endif
 
-#ifdef _PETSKILL_BECOMEFOX // 限製中瞭媚惑術的寵物的技能
+#ifdef _PETSKILL_BECOMEFOX // 限製中了媚惑術的寵物的技能
 		    //if( CHAR_getInt( pindex, CHAR_BASEIMAGENUMBER) == 101749 ){
 	        if( CHAR_getWorkInt( pindex, CHAR_WORKFOXROUND ) != -1 ){ //若是變成小狐狸
 			    char msg[32]={0};

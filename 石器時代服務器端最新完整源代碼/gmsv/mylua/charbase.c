@@ -58,7 +58,7 @@ static CharBase CharBaseWorkInt[] = {
 	,{{"修正腕力"},				CHAR_WORKFIXSTR}
 	,{{"修正耐力"},				CHAR_WORKFIXTOUGH}
 	,{{"修正速度"},				CHAR_WORKFIXDEX}
-	,{{"傢族地圖"},				CHAR_WORKFMFLOOR}
+	,{{"家族地圖"},				CHAR_WORKFMFLOOR}
 	,{{"攻擊"},						CHAR_WORKATTACKPOWER}
 	,{{"防禦"},						CHAR_WORKDEFENCEPOWER}
 	,{{"敏捷"},						CHAR_WORKQUICK}
@@ -107,7 +107,7 @@ static CharBase CharBaseWorkInt[] = {
 	,{{"莊園特效"},			CHAR_PLAYER_EFFECT_MANOR}
 #endif
 #ifdef _SINGLE_ONLINE
-	,{{"單號在綫"},			CHAR_WORK_SINGLE_ONLINE}
+	,{{"單號在線"},			CHAR_WORK_SINGLE_ONLINE}
 #endif
 	,{{"主人索引"},			CHAR_WORKPLAYERINDEX}
 #ifdef _NPC_EVENT_NOTICE
@@ -186,7 +186,7 @@ static CharBase CharBaseWorkValue[] = {
 	,{{"幫助戰鬥"}, 					BATTLE_CHARMODE_RESCUE}
 	,{{"結束戰鬥"}, 					BATTLE_CHARMODE_FINAL}
 	,{{"觀戰初始化"}, 				BATTLE_CHARMODE_WATCHINIT}
-	,{{"沒有傢族"}, 					FMMEMBER_NONE}
+	,{{"沒有家族"}, 					FMMEMBER_NONE}
   ,{{"申請入族"}, 					FMMEMBER_APPLY}
   ,{{"族長"}, 							FMMEMBER_LEADER}
   ,{{"成員"}, 							FMMEMBER_MEMBER}
@@ -243,12 +243,12 @@ static CharBase CharBaseInt[] = {
 	,{{"升級點"}, 		CHAR_LEVELUPPOINT}
 	,{{"DP"}, 				CHAR_DUELPOINT}
 	,{{"經驗"}, 			CHAR_EXP}
-	,{{"齣生地"}, 		CHAR_LASTTALKELDER}
+	,{{"出生地"}, 		CHAR_LASTTALKELDER}
 	,{{"轉數"}, 			CHAR_TRANSMIGRATION}
 	,{{"禁言"}, 			CHAR_SILENT}
-	,{{"傢族索引"}, 	CHAR_FMINDEX}
-	,{{"傢族地位"}, 	CHAR_FMLEADERFLAG}
-	,{{"傢族類型"}, 	CHAR_FMSPRITE}
+	,{{"家族索引"}, 	CHAR_FMINDEX}
+	,{{"家族地位"}, 	CHAR_FMLEADERFLAG}
+	,{{"家族類型"}, 	CHAR_FMSPRITE}
 #ifdef _NEW_RIDEPETS
 	,{{"證書騎寵"}, 	CHAR_LOWRIDEPETS}
 #endif
@@ -272,7 +272,7 @@ static CharBase CharBaseInt[] = {
 #ifdef _TRUMP_EQUIPMENT
 	,{{"法寶人物特效"},			CHAR_TRUMP_EFFECT}
 #endif
-#ifdef _PERSONAL_FAME	// Arminius 8.30: 傢族個人聲望
+#ifdef _PERSONAL_FAME	// Arminius 8.30: 家族個人聲望
 	,{{"聲望"}, 			CHAR_FAME}
 #endif
 #ifdef _ATTACK_EFFECT
@@ -347,7 +347,7 @@ static CharBase CharBaseInt[] = {
 	,{{"進化"}, 		CHAR_EVOLVE}
 #endif
 #ifdef _ONLINE_TIME
-	,{{"在綫時間"}, 		CHAR_ONLINE_TIME}
+	,{{"在線時間"}, 		CHAR_ONLINE_TIME}
 #endif
 
 #ifdef _FLOOR_DIFI_FIELD
@@ -378,13 +378,13 @@ static CharBase CharBaseInt[] = {
 	,{{"初等級"}, 		CHAR_YLV}
 #endif
 #ifdef _PET_FUSION
-	,{{"融閤寵"}, 		CHAR_FUSIONBEIT}
-	,{{"融閤蛋"}, 		CHAR_FUSIONRAISE}
+	,{{"融合寵"}, 		CHAR_FUSIONBEIT}
+	,{{"融合蛋"}, 		CHAR_FUSIONRAISE}
 #endif
 #ifdef _REGISTRATION_TIME
 	,{{"簽到時間"}, 		CHAR_REGISTRATION_TIME}
 	,{{"簽到次數"}, 		CHAR_REGISTRATION_COUNT}
-	,{{"簽到在綫時間"}, CHAR_REGISTRATION_ONLINE_TIME}
+	,{{"簽到在線時間"}, CHAR_REGISTRATION_ONLINE_TIME}
 #endif
 #ifdef _SPECIAL_COUNTER 
 	,{{"計數器"}, 		CHAR_SPCOUNTER}
@@ -396,7 +396,7 @@ static CharBase CharBaseInt[] = {
 	,{{"離綫時間"}, 	CHAR_OFFLINE_TIME}
 #endif
 #ifdef _FAME_REG_TIME
-	,{{"傢族簽到時間"}, 	CHAR_FAME_REG_TIME}
+	,{{"家族簽到時間"}, 	CHAR_FAME_REG_TIME}
 #endif
 #ifdef _PET_VALIDITY
 	,{{"寵物有效期"},		CHAR_PETVALIDITY}
@@ -442,7 +442,7 @@ static CharBase CharBaseChar[] = {
 	,{{"昵稱"}, 			CHAR_OWNTITLE}
 	,{{"主人"},				CHAR_USERPETNAME}
 	,{{"賬號"}, 			CHAR_CDKEY}
-	,{{"傢族"}, 			CHAR_FMNAME}
+	,{{"家族"}, 			CHAR_FMNAME}
 #ifdef _TEACHER_SYSTEM
 	,{{"導師帳號"}, 	CHAR_TEACHER_ID}
 	,{{"導師名字"}, 	CHAR_TEACHER_NAME}
@@ -495,7 +495,7 @@ static CharBase CharBaseEvent[] = {
 	,{{"重疊事件"}, 		CHAR_OVERLAPEDFUNC}
 	,{{"戰後事件"}, 		CHAR_BATTLEOVERDFUNC}
 #ifdef _ALLBLUES_LUA_1_4
-	,{{"登齣事件"}, 		CHAR_LOGINOUTFUNC}
+	,{{"登出事件"}, 		CHAR_LOGINOUTFUNC}
 #endif
 #ifdef _ALLBLUES_LUA_1_9
 	,{{"戰鬥設置事件"}, CHAR_BATTLESETFUNC}
@@ -560,7 +560,7 @@ static CharBase CharBaseFlg[] = {
   ,{{"交易"},       		CHAR_ISTRADE}
 #ifdef _CHANNEL_MODIFY
   ,{{"密語頻道"},       CHAR_ISTELL}
-  ,{{"傢族頻道"},       CHAR_ISFM}
+  ,{{"家族頻道"},       CHAR_ISFM}
   ,{{"職業頻道"},       CHAR_ISOCC}
   ,{{"對話儲存"},       CHAR_ISSAVE}
   ,{{"聊天室"},       	CHAR_ISCHAT}
@@ -1900,7 +1900,7 @@ static int dropPetFollow(lua_State *L)
     if( CHAR_CHECKINDEX( petindex) == FALSE ) return FALSE;
 
 	if (CHAR_getInt(petindex, CHAR_PETFAMILY) == 1){
-     	CHAR_talkToCli(charaindex, -1, "傢族守護獸無法丟齣！", CHAR_COLORYELLOW);
+     	CHAR_talkToCli(charaindex, -1, "家族守護獸無法丟出！", CHAR_COLORYELLOW);
     	return	FALSE;  
   }
   if (CHAR_getInt(charaindex, CHAR_RIDEPET) == havepetindex){

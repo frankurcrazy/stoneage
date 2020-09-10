@@ -173,18 +173,18 @@ void NPC_ManorSmanTalked(int meindex, int talkerindex, char *msg, int color)
     saacproto_ACFMPointList_send(acfd);
 #ifdef _MANOR_PKRULE
 	sprintf(buf, "莊園所有權爭奪戰的挑戰資格\n\n"
-                 "一、沒有擁有莊園的傢族\n"
+                 "一、沒有擁有莊園的家族\n"
 	#ifdef _FIX_FAMILY_PK_LIMIT	   // WON ADD 將可挑戰莊園的由前十大改為前三十大
-				 "二、傢族排行必需為前三十大傢族\n"
+				 "二、家族排行必需為前三十大家族\n"
 	#else
-                 "二、傢族排行必需為前十大傢族\n"
+                 "二、家族排行必需為前十大家族\n"
 	#endif
 				 "三、踢館時間：下午六點至晚上十點\n\n"
                  "請稍待，我將確認你的資格。");
 #else
     sprintf(buf, "莊園所有權爭奪戰的挑戰資格\n\n"
-                 "一、沒有擁有莊園的傢族\n"
-                 "二、傢族的聲望高於莊園傢族的聲望\n\n"
+                 "一、沒有擁有莊園的家族\n"
+                 "二、家族的聲望高於莊園家族的聲望\n\n"
                  "請稍待，我將確認你的資格。");
 #endif
     lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
@@ -315,8 +315,8 @@ void NPC_ManorSmanTalked(int meindex, int talkerindex, char *msg, int color)
 	case FMPKS_FLAG_WAIT:
     saacproto_ACFMPointList_send(acfd);
 		sprintf(buf,"莊園所有權爭奪戰的挑戰資格\n\n"
-								"一、沒有莊園的傢族\n"
-								"二、傢族的氣勢高於莊園傢族的氣勢\n"
+								"一、沒有莊園的家族\n"
+								"二、家族的氣勢高於莊園家族的氣勢\n"
 								"三、約戰時間結束氣勢第一者獲得挑戰資格\n"
 								"四、氣勢相同者以最先報名者獲得資格\n"
 								"按 OK 確認你的資格，按NO觀看挑戰排名\n"
@@ -331,7 +331,7 @@ void NPC_ManorSmanTalked(int meindex, int talkerindex, char *msg, int color)
 			hadfmindex = atoi(token);
 			if(hadfmindex != -1){
 				for(index=0;index<FAMILY_MAXNUM;index++){
-					// 找齣守莊傢族的索引
+					// 找出守莊家族的索引
 					if(fmdptop.fmtopid[index] == (hadfmindex - 1)) break;
 				}
 				if(index >= FAMILY_MAXNUM){
@@ -339,13 +339,13 @@ void NPC_ManorSmanTalked(int meindex, int talkerindex, char *msg, int color)
 					printf("\nNPC_ManorSmanTalked():save fm_momentum error(%d:%s)",hadfmindex,token);
 					break;
 				}
-				// 記錄這個時刻守莊傢族的氣勢
+				// 記錄這個時刻守莊家族的氣勢
 				else fmpointlist.fm_momentum[manorid-1] = fmdptop.fmMomentum[index];
 			}
 		}
 		SortManorSchedule();
     break;
-	// 挑戰準備期 2200~取得挑戰資格的傢族當時挑戰的時間(隔天的 1800~2200 之間)
+	// 挑戰準備期 2200~取得挑戰資格的家族當時挑戰的時間(隔天的 1800~2200 之間)
   case FMPKS_FLAG_MANOR_PREPARE:
     // 目前已經定好戰鬥，準備中
     {
@@ -498,14 +498,14 @@ void NPC_ManorSmanWindowTalked(int meindex, int talkerindex, int seqno, int sele
 							won1 = 1;
 
 							for(index=0;index<FAMILY_MAXNUM;index++){
-								// 找齣挑戰傢族的索引
+								// 找出挑戰家族的索引
 								if(fmdptop.fmtopid[index] == tkfmindex) break;
 							}
 							if(index >= FAMILY_MAXNUM){
 								printf("\nNPC_ManorSmanWindowTalked():find tkfmIndex error (%d)",tkfmindex);
 							}
 							else
-								// 如果挑戰傢族氣勢不足守莊傢族氣勢的九成,不能挑戰
+								// 如果挑戰家族氣勢不足守莊家族氣勢的九成,不能挑戰
 								//if(fmdptop.fmMomentum[index] < fmpointlist.fm_momentum[manorid-1]*0.9) won1 = 0;
 									if(fmdptop.fmMomentum[index] < 300000 ) won1 = 0;
 		//-----------------------------------------
@@ -562,18 +562,18 @@ void NPC_ManorSmanWindowTalked(int meindex, int talkerindex, int seqno, int sele
     					}
 							else{
 #ifdef _NEW_MANOR_LAW
-								sprintf(buf, "你的傢族氣勢尚未到達 3000 ，請再加油。");
-														//	sprintf(buf, "你的傢族氣勢尚未到達莊園傢族氣勢的九成，請再加油。");
+								sprintf(buf, "你的家族氣勢尚未到達 3000 ，請再加油。");
+														//	sprintf(buf, "你的家族氣勢尚未到達莊園家族氣勢的九成，請再加油。");
 #else
 	#ifdef _MANOR_PKRULE
 		#ifdef _FIX_FAMILY_PK_LIMIT	   // WON ADD 將可挑戰莊園的由前十大改為前三十大
-                sprintf(buf, "你的傢族聲望尚未進入前三十大傢族，請再加油。");
+                sprintf(buf, "你的家族聲望尚未進入前三十大家族，請再加油。");
 		#else
-                sprintf(buf, "你的傢族聲望尚未進入前十大傢族，請再加油。");
+                sprintf(buf, "你的家族聲望尚未進入前十大家族，請再加油。");
 		#endif
 	#else
-                sprintf(buf, "你的傢族聲望尚不足以挑戰\n"
-                             "擁有這個莊園的傢族，請再加油。");
+                sprintf(buf, "你的家族聲望尚不足以挑戰\n"
+                             "擁有這個莊園的家族，請再加油。");
 	#endif
 #endif
                 lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
@@ -584,15 +584,15 @@ void NPC_ManorSmanWindowTalked(int meindex, int talkerindex, int seqno, int sele
 		   	      }
             }
 						else if(check == 2){
-              sprintf(buf, "你的傢族正在挑戰其他莊園，\n"
-                           "請把機會留給其他傢族吧！");
+              sprintf(buf, "你的家族正在挑戰其他莊園，\n"
+                           "請把機會留給其他家族吧！");
               lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 													    	WINDOW_BUTTONTYPE_OK,
 											    			CHAR_WINDOWTYPE_CHECKMAN_END,
 											    			CHAR_getWorkInt(meindex, CHAR_WORKOBJINDEX),
 											    			buf);
             }else if(check == 3){
-            	sprintf(buf, "該莊園必需有莊園的傢族纔可以下書挑戰喲!\n");
+            	sprintf(buf, "該莊園必需有莊園的家族纔可以下書挑戰喲!\n");
               lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 													    	WINDOW_BUTTONTYPE_OK,
 											    			CHAR_WINDOWTYPE_CHECKMAN_END,
@@ -600,9 +600,9 @@ void NPC_ManorSmanWindowTalked(int meindex, int talkerindex, int seqno, int sele
 											    			buf);
             }
 						else{
-              sprintf(buf, "一個傢族隻能擁有一個莊園，\n"
-                           "如果莊園傢族之間需要切磋\n"
-                           "請到傢族ＰＫ場。");
+              sprintf(buf, "一個家族隻能擁有一個莊園，\n"
+                           "如果莊園家族之間需要切磋\n"
+                           "請到家族ＰＫ場。");
               lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
               	    						WINDOW_BUTTONTYPE_OK,
 											    			CHAR_WINDOWTYPE_CHECKMAN_END,
@@ -611,7 +611,7 @@ void NPC_ManorSmanWindowTalked(int meindex, int talkerindex, int seqno, int sele
             }
           }
 					else{
-            sprintf(buf, "這個莊園已經是你的傢族的喔。");
+            sprintf(buf, "這個莊園已經是你的家族的喔。");
             lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
               						  	WINDOW_BUTTONTYPE_OK,
 									    				CHAR_WINDOWTYPE_CHECKMAN_END,
@@ -620,8 +620,8 @@ void NPC_ManorSmanWindowTalked(int meindex, int talkerindex, int seqno, int sele
           }
         }
 				else{
-          sprintf(buf, "現在並沒有莊園傢族！\n"
-                       "直接去申請遷入就可以瞭喲。");
+          sprintf(buf, "現在並沒有莊園家族！\n"
+                       "直接去申請遷入就可以了喲。");
           lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 			              	    	WINDOW_BUTTONTYPE_OK,
     												CHAR_WINDOWTYPE_CHECKMAN_END,
@@ -643,9 +643,9 @@ void NPC_ManorSmanWindowTalked(int meindex, int talkerindex, int seqno, int sele
 			int i,index,manorindex;
 			char szMsg[3072];
 
-			sprintf(buf,"              莊園挑戰排名錶\n名次 傢族名稱         時間          氣勢\n");
+			sprintf(buf,"              莊園挑戰排名錶\n名次 家族名稱         時間          氣勢\n");
 			manorindex = CHAR_getWorkInt(meindex,NPC_WORK_MANORID) - 1;
-			// 送齣挑戰排名
+			// 送出挑戰排名
 			for(i=0;i<10;i++){
 				index = ManorSchedule[manorindex].iSort[i];
 				if(ManorSchedule[manorindex].iFmIndex[index] != -1){
@@ -698,9 +698,9 @@ void NPC_ManorSmanWindowTalked(int meindex, int talkerindex, int seqno, int sele
 		  }
 	#endif
 #endif
-			// WON ADD 修正傢族pk場的約戰問題
+			// WON ADD 修正家族pk場的約戰問題
 			if( fmpks[fmpks_pos+1].flag != FMPKS_FLAG_NONE ){
-			     sprintf(buf, "這個莊園已經有人約戰瞭喔。");
+			     sprintf(buf, "這個莊園已經有人約戰了喔。");
 					 lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 						 WINDOW_BUTTONTYPE_OK,
 						 CHAR_WINDOWTYPE_CHECKMAN_END,
@@ -815,7 +815,7 @@ void NPC_ManorSmanWindowTalked(int meindex, int talkerindex, int seqno, int sele
 			             	    	WINDOW_BUTTONTYPE_OK,
 			   			        CHAR_WINDOWTYPE_CHECKMAN_END,
 			   			        CHAR_getWorkInt(meindex, CHAR_WORKOBJINDEX),
-			   							"你的傢族正在約戰之中,所以無法進行約戰!");
+			   							"你的家族正在約戰之中,所以無法進行約戰!");
           	return;
         }else if(strcmp(fmpks[i*MAX_SCHEDULE+1].host_name, hadfmname)==0
 								|| strcmp(fmpks[i*MAX_SCHEDULE+1].guest_name, hadfmname)==0
@@ -824,7 +824,7 @@ void NPC_ManorSmanWindowTalked(int meindex, int talkerindex, int seqno, int sele
 			             	    	WINDOW_BUTTONTYPE_OK,
 			   			        CHAR_WINDOWTYPE_CHECKMAN_END,
 			   			        CHAR_getWorkInt(meindex, CHAR_WORKOBJINDEX),
-			   			        "對方的傢族正在約戰中,所以無法進行約戰!");
+			   			        "對方的家族正在約戰中,所以無法進行約戰!");
           return;
         }
       }
@@ -834,7 +834,7 @@ void NPC_ManorSmanWindowTalked(int meindex, int talkerindex, int seqno, int sele
 {
 		int index;
 		for(index=0;index<FAMILY_MAXNUM;index++){
-			// 找齣挑戰傢族的索引
+			// 找出挑戰家族的索引
 			if(fmdptop.fmtopid[index] == tkfmindex) break;
 		}
 		if(index >= FAMILY_MAXNUM){
@@ -847,8 +847,8 @@ void NPC_ManorSmanWindowTalked(int meindex, int talkerindex, int seqno, int sele
 						              	    	WINDOW_BUTTONTYPE_OK,
 													   			CHAR_WINDOWTYPE_CHECKMAN_END,
 												    			CHAR_getWorkInt(meindex, CHAR_WORKOBJINDEX),
-				//									   			"你的傢族氣勢尚未到達莊園傢族氣勢的九成，請再加油。");
-													   			"你的傢族氣勢尚未達到1000，請再加油。");
+				//									   			"你的家族氣勢尚未到達莊園家族氣勢的九成，請再加油。");
+													   			"你的家族氣勢尚未達到1000，請再加油。");
 			return;
 		}
 }
@@ -918,7 +918,7 @@ void NPC_ManorSmanWindowTalked(int meindex, int talkerindex, int seqno, int sele
 #ifndef _NEW_MANOR_LAW
 		makeEscapeString( CHAR_getChar(talkerindex, CHAR_FMNAME), n2, sizeof(n2));		
 #else
-		// 找齣挑戰傢族中氣勢最高傢族索引
+		// 找出挑戰家族中氣勢最高家族索引
 		int index = ManorSchedule[manorid-1].iSort[0];
 		makeEscapeString(ManorSchedule[manorid-1].szFmName[index],n2,sizeof(n2));
 #endif
@@ -998,7 +998,7 @@ void NPC_ManorSmanLoop(int meindex)
 			hadfmindex = atoi(token);
 			if(hadfmindex != -1){
 				for(index=0;index<FAMILY_MAXNUM;index++){
-					// 找齣守莊傢族的索引
+					// 找出守莊家族的索引
 					if(fmdptop.fmtopid[index] == (hadfmindex - 1)) break;
 				}
 				if(index >= FAMILY_MAXNUM){
@@ -1006,7 +1006,7 @@ void NPC_ManorSmanLoop(int meindex)
 					//printf("\nNPC_ManorSmanLoop():save fm_momentum error(%d:%s)",hadfmindex,token);
 					break;
 				}
-				// 記錄這個時刻守莊傢族的氣勢
+				// 記錄這個時刻守莊家族的氣勢
 				else fmpointlist.fm_momentum[manorid-1] = fmdptop.fmMomentum[index];
 				// 進入下一個狀態
 				fmpks[fmpks_pos+1].flag = FMPKS_FLAG_WAIT;
@@ -1020,7 +1020,7 @@ void NPC_ManorSmanLoop(int meindex)
     break;
 
 #ifdef _NEW_MANOR_LAW
-	// 進入挑戰期,已記錄傢族氣勢,等待挑戰排程
+	// 進入挑戰期,已記錄家族氣勢,等待挑戰排程
 	case FMPKS_FLAG_WAIT:
 		{
 			int manorid,i,iPlayerNum = CHAR_getPlayerMaxNum();
@@ -1030,7 +1030,7 @@ void NPC_ManorSmanLoop(int meindex)
 			// 還沒開打,氣勢改變要去嚮AC要即時資料
 			fmpointlist.fm_inwar[manorid-1] = TRUE;
 			if(fmpks[fmpks_pos+1].dueltime <= NowTime.tv_sec){
-				// 挑戰傢族中氣勢最高的獲得挑戰權
+				// 挑戰家族中氣勢最高的獲得挑戰權
 				int manorindex = CHAR_getWorkInt(meindex,NPC_WORK_MANORID) - 1;
 				int iNo1FmIndexSort = ManorSchedule[manorindex].iSort[0];
 				int index = ManorSchedule[manorindex].iFmIndex[iNo1FmIndexSort],iFmIndex1,iCharindex;
@@ -1043,7 +1043,7 @@ void NPC_ManorSmanLoop(int meindex)
 					// 通知所有人
 					for(i=0;i<iPlayerNum;i++){
 						if(CHAR_getCharUse(i) != FALSE){
-							CHAR_talkToCli(i,-1,"由於無傢族挑戰莊園，莊園進入休戰時期",CHAR_COLORBLUE2);
+							CHAR_talkToCli(i,-1,"由於無家族挑戰莊園，莊園進入休戰時期",CHAR_COLORBLUE2);
 						}
 					}
 					getStringFromIndexWithDelim(fmpointlist.pointlistarray[manorid-1],"|",5,token,sizeof(token));
@@ -1055,10 +1055,10 @@ void NPC_ManorSmanLoop(int meindex)
 						// 增加莊園戰勝負Log
 						sprintf(token," (%d:%d) %d/%d/%d",tm1.tm_hour,tm1.tm_min,tm1.tm_year+1900,tm1.tm_mon+1,tm1.tm_mday);
 						Logfmpk(fmname,iFmIndex1,-1,"無人挑戰",-1,-1,token,"","",2);
-						// 原傢族守住瞭莊園,傢族成員可得到石幣
+						// 原家族守住了莊園,家族成員可得到石幣
 						for(i=0;i<FAMILY_MAXMEMBER;i++){
 							iCharindex = familyMemberIndex[iFmIndex1][i];
-							// 若在綫上纔給錢
+							// 若在線上纔給錢
 							if(iCharindex >= 0 && CHAR_getCharUse(iCharindex)){
 								// 獲得金錢 = 個人氣勢 * 5000
 								int iAddGold = ((float)CHAR_getInt(iCharindex,CHAR_MOMENTUM)/100.0f) * 200.0f ;
@@ -1066,7 +1066,7 @@ void NPC_ManorSmanLoop(int meindex)
 								// 先放入個人銀行
 								if(iGold + iAddGold > CHAR_MAXBANKGOLDHAVE){
 									CHAR_setInt(iCharindex,CHAR_BANKGOLD,CHAR_MAXBANKGOLDHAVE);
-									// 個人銀行放不下瞭,放到個人身上
+									// 個人銀行放不下了,放到個人身上
 									iAddGold = iGold + iAddGold - CHAR_MAXBANKGOLDHAVE;
 									iGold = CHAR_getInt(iCharindex,CHAR_GOLD);
 									iMaxGold = CHAR_getMaxHaveGold(iCharindex);
@@ -1084,21 +1084,21 @@ void NPC_ManorSmanLoop(int meindex)
 																	CHAR_getChar(iCharindex,CHAR_NAME),
 																	CHAR_getInt(iCharindex,CHAR_MOMENTUM),iAddGold,1);
 								}
-								CHAR_talkToCli(iCharindex,-1,"辛苦瞭!守護住莊園的奬金已匯入你的個人銀行",CHAR_COLORRED);
-								// 傢族的個人及傢族氣勢都要歸零
+								CHAR_talkToCli(iCharindex,-1,"辛苦了!守護住莊園的奬金已匯入你的個人銀行",CHAR_COLORRED);
+								// 家族的個人及家族氣勢都要歸零
 								CHAR_setInt(iCharindex,CHAR_MOMENTUM,0);
-								CHAR_talkToCli(iCharindex,-1,"莊園戰後個人及傢族氣勢歸零",CHAR_COLORRED);
+								CHAR_talkToCli(iCharindex,-1,"莊園戰後個人及家族氣勢歸零",CHAR_COLORRED);
 							}
 						}
 					}
 				}
 				else{
-					// 挑戰時間已過,選齣的挑戰傢族和守莊傢族有約一天的時間可以準備
+					// 挑戰時間已過,選出的挑戰家族和守莊家族有約一天的時間可以準備
 					NPC_ManorSavePKSchedule(meindex,index,0,-1,ManorSchedule[manorindex].tm1[iNo1FmIndexSort]);
-					// 開打瞭,氣勢改變也不用去嚮AC要即時資料瞭
+					// 開打了,氣勢改變也不用去嚮AC要即時資料了
 					fmpointlist.fm_inwar[manorid-1] = FALSE;
 					// 通知所有人
-					sprintf(szMsg,"%s 傢族獲得挑戰莊園資格",ManorSchedule[manorindex].szFmName[iNo1FmIndexSort]);
+					sprintf(szMsg,"%s 家族獲得挑戰莊園資格",ManorSchedule[manorindex].szFmName[iNo1FmIndexSort]);
 					
 					for(i=0;i<iPlayerNum;i++){
 						if(CHAR_getCharUse(i) != FALSE){
@@ -1155,7 +1155,7 @@ void NPC_ManorSmanLoop(int meindex)
 			fmpks[fmpks_pos+1].dueltime = CHAR_getWorkInt(meindex, NPC_WORK_PEACEWAIT) + NowTime.tv_sec;
 #else
 			// 打完後要再過五天纔能再挑戰
-			// 若開打的日期和結束戰鬥的日期不一樣錶示打超過瞭一天以上,以一天計
+			// 若開打的日期和結束戰鬥的日期不一樣表示打超過了一天以上,以一天計
 			if(CHAR_getWorkInt(meindex,NPC_WORK_BETTLETIME) != tm1.tm_mday){
 				iOffsetTime = tm1.tm_hour * 3600 * -1;	// 扣迴00:00
 			}
@@ -1247,7 +1247,7 @@ void NPC_ManorLoadPKSchedule(int meindex)
 	if (getStringFromIndexWithDelim(tmp,"|",2,token,sizeof(token))) {
 	    fmpks[fmpks_pos+1].host_index=atoi(token);
 	}
-	// 主隊 傢族名
+	// 主隊 家族名
 	if (getStringFromIndexWithDelim(tmp,"|",3,token,sizeof(token))) {
 		strcpy(fmpks[fmpks_pos+1].host_name,makeStringFromEscaped(token));
 	}
@@ -1255,7 +1255,7 @@ void NPC_ManorLoadPKSchedule(int meindex)
 	if (getStringFromIndexWithDelim(tmp,"|",4,token,sizeof(token))) {
 	    fmpks[fmpks_pos+1].guest_index=atoi(token);
 	}
-	// 客隊 傢族名
+	// 客隊 家族名
 	if (getStringFromIndexWithDelim(tmp,"|",5,token,sizeof(token))) {
 	    strcpy(fmpks[fmpks_pos+1].guest_name,makeStringFromEscaped(token));
 	}
@@ -1328,7 +1328,7 @@ void NPC_ManorSavePKSchedule(int meindex, int toindex, int flg,int setTime,struc
 #ifndef _NEW_MANOR_LAW
 		tkfmindex = CHAR_getWorkInt(toindex, CHAR_WORKFMINDEXI);
 #else
-		// toindex 變成 傢族的index
+		// toindex 變成 家族的index
 		tkfmindex = toindex;
 #endif
 		fmpks_pos = CHAR_getWorkInt(meindex, NPC_WORK_ID) * MAX_SCHEDULE;
@@ -1363,7 +1363,7 @@ void NPC_ManorSavePKSchedule(int meindex, int toindex, int flg,int setTime,struc
 		makeEscapeString( CHAR_getChar(toindex, CHAR_FMNAME), n2, sizeof(n2));		
 #else
 		int index;
-		// 找齣挑戰傢族中氣勢最高傢族索引
+		// 找出挑戰家族中氣勢最高家族索引
 		index = ManorSchedule[manorid-1].iSort[0];
 		makeEscapeString(ManorSchedule[manorid-1].szFmName[index],n2,sizeof(n2));
 #endif
@@ -1416,7 +1416,7 @@ void NPC_ManorAddToSchedule(int meindex,int charaindex, int dueltime)
 			if(ManorSchedule[j].iFmIndex[i] != -1){
 				if(ManorSchedule[j].iFmIndex[i] == iFmIndex){
 					lssproto_WN_send(getfdFromCharaIndex(charaindex),WINDOW_MESSAGETYPE_MESSAGE,WINDOW_BUTTONTYPE_OK,CHAR_WINDOWTYPE_CHECKMAN_END,
-						CHAR_getWorkInt(meindex, CHAR_WORKOBJINDEX),"你已經報名過挑戰莊園瞭喔～");
+						CHAR_getWorkInt(meindex, CHAR_WORKOBJINDEX),"你已經報名過挑戰莊園了喔～");
 					return;
 				}
 			}
@@ -1425,11 +1425,11 @@ void NPC_ManorAddToSchedule(int meindex,int charaindex, int dueltime)
 			}
 		}
 	}
-	// 如果程式執行到這裏,錶示沒有加入排程,檢查有沒有空的位置
+	// 如果程式執行到這裏,表示沒有加入排程,檢查有沒有空的位置
 	if(iEmpty != -1){ // 有空位置,把報名者加入
-		// 記錄傢族索引
+		// 記錄家族索引
 		ManorSchedule[manorindex].iFmIndex[iEmpty] = iFmIndex;
-		// 記錄傢族名稱
+		// 記錄家族名稱
 		sprintf(ManorSchedule[manorindex].szFmName[iEmpty],"%s",CHAR_getChar(charaindex,CHAR_FMNAME));
 		// 記錄挑戰時間
 		memcpy(&tm1,localtime((time_t *)&dueltime),sizeof(tm1));
@@ -1438,19 +1438,19 @@ void NPC_ManorAddToSchedule(int meindex,int charaindex, int dueltime)
 		lssproto_WN_send(getfdFromCharaIndex(charaindex),WINDOW_MESSAGETYPE_MESSAGE,WINDOW_BUTTONTYPE_OK,CHAR_WINDOWTYPE_CHECKMAN_END,
 				CHAR_getWorkInt(meindex, CHAR_WORKOBJINDEX),"加入挑戰排程");
 	}
-	// 滿瞭,和挑戰排程的最後一名作比較,如果後來的氣勢比最後一名高,替換掉最後一名,否則通知目前氣勢無法擠進排程
+	// 滿了,和挑戰排程的最後一名作比較,如果後來的氣勢比最後一名高,替換掉最後一名,否則通知目前氣勢無法擠進排程
 	else{
 		// 取得最後一名在ManorSchedule的位置
 		int index = ManorSchedule[manorindex].iSort[9];
 
 		for(i=0;i<FAMILY_MAXNUM;i++){
-			// 找齣挑戰傢族的索引
+			// 找出挑戰家族的索引
 			if(fmdptop.fmtopid[i] == iFmIndex) break;
 		}
-		// 找不到此傢族
+		// 找不到此家族
 		if(i >= FAMILY_MAXNUM){
 			lssproto_WN_send(getfdFromCharaIndex(charaindex),WINDOW_MESSAGETYPE_MESSAGE,WINDOW_BUTTONTYPE_OK,CHAR_WINDOWTYPE_CHECKMAN_END,
-				CHAR_getWorkInt(meindex, CHAR_WORKOBJINDEX),"抱歉，找不到你的傢族氣勢資料");
+				CHAR_getWorkInt(meindex, CHAR_WORKOBJINDEX),"抱歉，找不到你的家族氣勢資料");
 			return;
 		}
 		// 比較氣勢
@@ -1460,7 +1460,7 @@ void NPC_ManorAddToSchedule(int meindex,int charaindex, int dueltime)
 
 			// 通知所有人
 			fmpks_pos = CHAR_getWorkInt(meindex,NPC_WORK_ID) * MAX_SCHEDULE;
-			sprintf(szMsg,"%s 傢族被 %s 傢族擠下挑戰排程",ManorSchedule[manorindex].szFmName[index],CHAR_getChar(charaindex,CHAR_FMNAME));
+			sprintf(szMsg,"%s 家族被 %s 家族擠下挑戰排程",ManorSchedule[manorindex].szFmName[index],CHAR_getChar(charaindex,CHAR_FMNAME));
 			for(i=0;i<iPlayerNum;i++){
 				if(CHAR_getCharUse(i) != FALSE){
 					CHAR_talkToCli(i,-1,szMsg,CHAR_COLORBLUE2);
@@ -1468,7 +1468,7 @@ void NPC_ManorAddToSchedule(int meindex,int charaindex, int dueltime)
 			}
 			// 最後一名被擠掉
 			ManorSchedule[manorindex].iFmIndex[index] = iFmIndex;
-			// 記錄傢族名稱
+			// 記錄家族名稱
 			sprintf(ManorSchedule[manorindex].szFmName[index],"%s",CHAR_getChar(charaindex,CHAR_FMNAME));
 			// 記錄挑戰時間
 			memcpy(&tm1,localtime((time_t *)&NowTime.tv_sec),sizeof(tm1));
@@ -1478,7 +1478,7 @@ void NPC_ManorAddToSchedule(int meindex,int charaindex, int dueltime)
 		}
 		else{
 			lssproto_WN_send(getfdFromCharaIndex(charaindex),WINDOW_MESSAGETYPE_MESSAGE,WINDOW_BUTTONTYPE_OK,CHAR_WINDOWTYPE_CHECKMAN_END,
-				CHAR_getWorkInt(meindex, CHAR_WORKOBJINDEX),"抱歉，你的傢族氣勢不足以排進挑戰排程");
+				CHAR_getWorkInt(meindex, CHAR_WORKOBJINDEX),"抱歉，你的家族氣勢不足以排進挑戰排程");
 			return;
 		}
 	}
@@ -1491,13 +1491,13 @@ void SortManorSchedule()
 {
 	int i,j,k;
 
-	// 先取得最新傢族氣勢
+	// 先取得最新家族氣勢
 	for(k=0;k<MANORNUM;k++){
 		for(i=0;i<10;i++){
 			ManorSchedule[k].iSort[i] = i;
 			if(ManorSchedule[k].iFmIndex[i] != -1){
 				for(j=0;j<FAMILY_MAXNUM;j++){
-					// 找齣挑戰傢族的索引
+					// 找出挑戰家族的索引
 					if(fmdptop.fmtopid[j] == ManorSchedule[k].iFmIndex[i]){
 						// 取得氣勢值
 						ManorSchedule[k].iFmMomentum[i] = fmdptop.fmMomentum[j];

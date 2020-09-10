@@ -70,8 +70,8 @@ void NPC_OldmanTalked( int meindex , int talkerindex , char *msg , int color )
     	CHAR_talkToCli( talkerindex , meindex , message , CHAR_COLORWHITE );
 		if( delcnt > 0 && addcnt > 0 ) {
 	        snprintf( message, sizeof( message ) ,
-	    			"你喪失瞭%d%s 稱號的資格。"
-	    			"不是得到瞭%d%s 的稱號資格嗎？"
+	    			"你喪失了%d%s 稱號的資格。"
+	    			"不是得到了%d%s 的稱號資格嗎？"
 	    			, delcnt,
 	    			delcnt < 10 ?  NPC_OLDMAN_TITLE_UNIT1:NPC_OLDMAN_TITLE_UNIT2,
 	    			addcnt,

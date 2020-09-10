@@ -24,7 +24,7 @@
 #ifdef _NEW_MANOR_LAW
 #define MAX_PERSONAL_MOMENTUM 10000000
 #endif
-#ifdef _PERSONAL_FAME	// Arminius 8.30: 傢族個人聲望
+#ifdef _PERSONAL_FAME	// Arminius 8.30: 家族個人聲望
 #define MAX_PERSONALFAME 100000000
 #endif
 #ifdef _PROFESSION_SKILL			// WON ADD 人物職業技能
@@ -65,15 +65,15 @@
 #define CHAR_MAXVARIABLEAI		(100*100)
 #define CHAR_MINVARIABLEAI		(-100*100)
 #define CHAR_POISONSTRING           "中毒"
-#define CHAR_RECOVERPOISONSTRING    "解毒瞭"
-#define CHAR_PARALYSISSTRING        "麻痹瞭"
-#define CHAR_RECOVERPARALYSISSTRING "麻醉退瞭"
-#define CHAR_SILENCESTRING          "無法念魔法瞭"
-#define CHAR_RECOVERSILENCESTRING   "可以念魔法瞭"
-#define CHAR_STONESTRING            "石化瞭"
-#define CHAR_RECOVERSTONESTRING     "變靈活瞭"
-#define CHAR_DARKNESSSTRING         "四周不見瞭"
-#define CHAR_RECOVERDARKNESSSTRING  "四周齣現瞭"
+#define CHAR_RECOVERPOISONSTRING    "解毒了"
+#define CHAR_PARALYSISSTRING        "麻痹了"
+#define CHAR_RECOVERPARALYSISSTRING "麻醉退了"
+#define CHAR_SILENCESTRING          "無法念魔法了"
+#define CHAR_RECOVERSILENCESTRING   "可以念魔法了"
+#define CHAR_STONESTRING            "石化了"
+#define CHAR_RECOVERSTONESTRING     "變靈活了"
+#define CHAR_DARKNESSSTRING         "四周不見了"
+#define CHAR_RECOVERDARKNESSSTRING  "四周出現了"
 #define CHAR_CONFUSIONSTRING        "陷入恐慌"
 #define CHAR_RECOVERCONFUSIONSTRING "恢復正常"
 
@@ -243,8 +243,8 @@ typedef enum
 	CHAR_TYPECHECKMAN,
 	CHAR_TYPEJANKEN,
 	CHAR_TYPETRANSMIGRATION,
-	CHAR_TYPEFMWARPMAN,			// 傢族ＰＫ場管理員
-	CHAR_TYPEFMSCHEDULEMAN,		// 傢族ＰＫ場登記員
+	CHAR_TYPEFMWARPMAN,			// 家族ＰＫ場管理員
+	CHAR_TYPEFMSCHEDULEMAN,		// 家族ＰＫ場登記員
 	CHAR_TYPEMANORSCHEDULEMAN,	// 莊園ＰＫ場預約人
 #ifdef _GAMBLE_BANK
 	CHAR_GAMBLEBANK,
@@ -563,10 +563,10 @@ typedef enum
 	CHAR_TRANSEQUATION,
   CHAR_INITDATA,
   CHAR_SILENT,				/* char shutup time */    
-  CHAR_FMINDEX,				// 傢族 index
-  CHAR_FMLEADERFLAG,			/* 傢族成員種類
-    							 * FMMEMBER_NONE	:沒有加入任何傢族
-    							 * FMMEMBER_APPLY	:申請加入傢族中
+  CHAR_FMINDEX,				// 家族 index
+  CHAR_FMLEADERFLAG,			/* 家族成員種類
+    							 * FMMEMBER_NONE	:沒有加入任何家族
+    							 * FMMEMBER_APPLY	:申請加入家族中
     							 * FMMEMBER_LEADER	:族長
     							 * FMMEMBER_MEMBER	:一般成員
     							 * FMMEMBER_ELDER	:長老
@@ -574,7 +574,7 @@ typedef enum
     							 * FMMEMBER_BAILEE	:財務長			// 暫時不用
     							 * FMMEMBER_VICELEADER  :副族長		// 暫時不用
     							*/
-  CHAR_FMSPRITE,		// 傢族守護精靈
+  CHAR_FMSPRITE,		// 家族守護精靈
 
 
   CHAR_BANKGOLD,
@@ -592,7 +592,7 @@ typedef enum
 	CHAR_FUSIONTIMELIMIT,	//  養時間
 #endif
 
-#ifdef _PERSONAL_FAME	// Arminius 8.30: 傢族個人聲望
+#ifdef _PERSONAL_FAME	// Arminius 8.30: 家族個人聲望
     CHAR_FAME,
 #endif
 
@@ -871,7 +871,7 @@ typedef enum {
 	CHAR_PETSENDMAILCOUNT	= CHAR_TALKCOUNT,		/* 矢永玄互丟□夥毛捫氏分莢醒 */
   CHAR_PETRANK			= CHAR_LASTTIMESETLUCK, /* 矢永玄及仿件弁(矢永玄迕  ㄠ  ㄥ［ㄟ反巨仿□迕 */
 	CHAR_PETID				= CHAR_DUELMAXSTWINCOUNT,/* 矢永玄及  件皿伊□玄及     */
-  CHAR_PETFAMILY		= CHAR_FMLEADERFLAG,		// CoolFish: Family 判斷是否為傢族守護獸
+  CHAR_PETFAMILY		= CHAR_FMLEADERFLAG,		// CoolFish: Family 判斷是否為家族守護獸
   CHAR_PETENEMYID	=	 CHAR_GAMBLENUM,
 #ifdef _PET_VALIDITY
 	CHAR_PETVALIDITY	= CHAR_VIPTIME,
@@ -943,7 +943,7 @@ typedef enum
     CHAR_ISTRADE,
 #ifdef _CHANNEL_MODIFY
 		CHAR_ISTELL,				//密語頻道開關
-		CHAR_ISFM,					//傢族頻道開關
+		CHAR_ISFM,					//家族頻道開關
 		CHAR_ISOCC,					//職業頻道開關
 		CHAR_ISSAVE,				//對話儲存開關
 		CHAR_ISCHAT,				//聊天室
@@ -965,7 +965,7 @@ typedef enum
 #define CHAR_FS_TRADE			(1 << 4)
 #ifdef _CHANNEL_MODIFY
 #define CHAR_FS_TELL			(1 << 5)	//密語頻道開關
-#define CHAR_FS_FM				(1 << 6)	//傢族頻道開關
+#define CHAR_FS_FM				(1 << 6)	//家族頻道開關
 #ifdef _VERSION_NEW
 #define	CHAR_FS_OCC				(1 << 7)	//職業頻道開關
 #endif
@@ -1108,15 +1108,15 @@ typedef enum
 	CHAR_NPCWORKINT13,
     CHAR_WORKWARPCHECK,
     CHAR_TENSEICHECKED,    
-    CHAR_WORKFMINDEXI,		// 傢族索引 index
-    CHAR_WORKFMCHANNEL,		// 傢族頻道
+    CHAR_WORKFMINDEXI,		// 家族索引 index
+    CHAR_WORKFMCHANNEL,		// 家族頻道
     CHAR_WORKFMCHANNELQUICK,
-    CHAR_WORKFMFLOOR,		// 傢族據點圖層
-    CHAR_WORKFMDP,			// 傢族ＤＰ值
-    CHAR_WORKFMPKFLAG,		// 是否正參與傢族ＰＫ 1:Yes
-    CHAR_WORKFMSETUPFLAG,	// 傢族是否已正式成立
+    CHAR_WORKFMFLOOR,		// 家族據點圖層
+    CHAR_WORKFMDP,			// 家族ＤＰ值
+    CHAR_WORKFMPKFLAG,		// 是否正參與家族ＰＫ 1:Yes
+    CHAR_WORKFMSETUPFLAG,	// 家族是否已正式成立
     CHAR_WORKFMMANINDEX,	// FMWARPMAN Index
-    CHAR_WORKFMCHARINDEX,	// 傢族成員索引 index
+    CHAR_WORKFMCHARINDEX,	// 家族成員索引 index
     CHAR_WORKBATTLEFLAG,    // -1(戰鬥不能)，1(可戰鬥)
 
 	CHAR_WORK_PET0_STAT,        
@@ -1973,7 +1973,7 @@ typedef enum
 } CHAR_PET_STAT;
 
 
-#ifdef _PERSONAL_FAME	// Arminius: 傢族個人聲望
+#ifdef _PERSONAL_FAME	// Arminius: 家族個人聲望
 void CHAR_earnFame(int index, int fame);
 #endif
 

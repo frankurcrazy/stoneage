@@ -126,7 +126,7 @@ int lssproto_ServerDispatchMessage(int fd, char *encoded)
 
 #ifdef _SERVER_DEF
 	/*
-if (func != 71 && func != 79 && func != 87 && func != 77 && func != 81 && func != 73 && func != 75 && func != 203)//登錄前封包 全部可執行，其他封包檢查是否已經有玩傢在綫！
+if (func != 71 && func != 79 && func != 87 && func != 77 && func != 81 && func != 73 && func != 75 && func != 203)//登錄前封包 全部可執行，其他封包檢查是否已經有玩傢在線！
 		{
 			if( !CHAR_CHECKINDEX( CONNECT_getCharaindex(fd) ) )//並沒有登入人物，僅僅是一個連接！
 			{
@@ -3570,7 +3570,7 @@ void lssproto_VIP_SHOP_send(int fd, int num,int BJ,int type, int shoppage, int p
 
 	checksum += util_mkint(buffer, num);    //有效數目
 	checksum += util_mkint(buffer, BJ);   //貝幣數目
-	checksum += util_mkint(buffer, shoppage);    //顯示頁麵
+	checksum += util_mkint(buffer, shoppage);    //顯示頁面
 	checksum += util_mkint(buffer, page); //總共頁數
 	checksum += util_mkint(buffer, type); //顯示類彆
 	checksum += util_mkstring(buffer, data);

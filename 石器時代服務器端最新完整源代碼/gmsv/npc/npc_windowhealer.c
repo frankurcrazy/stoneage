@@ -140,7 +140,7 @@ static void NPC_WindowHealer_selectWindow( int meindex, int toindex, int num)
 
 	switch( num){
 	  case 0:
-		sprintf(token," 　　　哎呀！你受傷瞭嗎？　 \n\n "
+		sprintf(token," 　　　哎呀！你受傷了嗎？　 \n\n "
 				  "　　　　　　 ＜ 耐久力迴復＞　　　　　 \n"
 					" 　　　　　　＜  氣力迴復 ＞　　　　　 \n"
 					" 　　　　 ＜ 耐久力・氣力迴復 ＞　　 \n\n"
@@ -163,7 +163,7 @@ static void NPC_WindowHealer_selectWindow( int meindex, int toindex, int num)
 		  		sprintf(token,
 				"　　　　　　 ＜　耐久力迴復　＞"
 				"\n\n　　　　      似乎沒有必要迴復唷！　"
-					  "\n\n　　　因為寵物好像也受傷瞭！"
+					  "\n\n　　　因為寵物好像也受傷了！"
 					  "\n                            先幫他迴復吧！");
 		  	
 		  		NPC_WindowHealerAllHeal(toindex,0 );
@@ -198,7 +198,7 @@ static void NPC_WindowHealer_selectWindow( int meindex, int toindex, int num)
 			}else{
 			sprintf(token,  "　　　　　　  ＜　氣力迴復　＞"
 					"\n\n　　　　      似乎沒有必要迴復唷！　"
-					  "\n\n　　　因為寵物好像也受傷瞭！"
+					  "\n\n　　　因為寵物好像也受傷了！"
 					  "\n                            先幫他迴復吧！");
 				NPC_WindowHealerAllHeal(toindex,0 );
 			}
@@ -227,7 +227,7 @@ static void NPC_WindowHealer_selectWindow( int meindex, int toindex, int num)
 	  case 3:
 		sprintf(token,	    "\n　　　　　　＜耐久力已迴復＞"
 						    "\n　　  ＜寵物也已迴復一般狀態＞"
-						"\n\n\n　　　　　  這樣子就沒問題瞭！　　　　");
+						"\n\n\n　　　　　  這樣子就沒問題了！　　　　");
 
 	  	NPC_WindowHealerAllHeal( toindex ,1 );
 	  	buttontype=WINDOW_BUTTONTYPE_OK;
@@ -238,7 +238,7 @@ static void NPC_WindowHealer_selectWindow( int meindex, int toindex, int num)
 	  case 4:
 		sprintf(token,	    "\n　　　　　　＜氣力已迴復＞"
 						    "\n　　 ＜寵物也已迴復一般狀態＞"
-						"\n\n\n　　　　　 這樣子就沒問題瞭！ 　　　");
+						"\n\n\n　　　　　 這樣子就沒問題了！ 　　　");
 	  	NPC_WindowHealerAllHeal( toindex ,2 );
 	 	buttontype=WINDOW_BUTTONTYPE_OK;
 	  	windowno=CHAR_WINDOWTYPE_WINDOWHEALER_OKSPIRITMSG; 
@@ -267,7 +267,7 @@ static void NPC_WindowHealer_selectWindow( int meindex, int toindex, int num)
 				}else{
 				sprintf(token,"　　　　  ＜　耐久力氣力迴復　＞"
 					"\n\n　　　　      似乎沒有必要迴復唷！　"
-					  "\n\n　　　因為寵物好像也受傷瞭！"
+					  "\n\n　　　因為寵物好像也受傷了！"
 					  "\n                            先幫他迴復吧！");
 				NPC_WindowHealerAllHeal(toindex,0 );
 			}
@@ -301,7 +301,7 @@ static void NPC_WindowHealer_selectWindow( int meindex, int toindex, int num)
 	  case 7:
 		sprintf(token,"　　　　 ＜耐久力氣力已迴復＞"
 				  "\n　　  ＜寵物也已迴復一般狀態＞"
-				  "\n\n\n　　　　這樣一來就迴復健康瞭！");
+				  "\n\n\n　　　　這樣一來就迴復健康了！");
 	  	
 	  	NPC_WindowHealerAllHeal( toindex ,3 );
 		buttontype=WINDOW_BUTTONTYPE_OK;
@@ -320,7 +320,7 @@ static void NPC_WindowHealer_selectWindow( int meindex, int toindex, int num)
 
 	  case 9:
 		sprintf(token,"　　　　　　　＜寵物迴復＞　　　　　　"
-				"\n\n\n　　　　　　　已經沒問題瞭啦！　　　　　"
+				"\n\n\n　　　　　　　已經沒問題了啦！　　　　　"
 				  "\n\n　　但是太勉強的話也不行唷！　　");
 		NPC_WindowHealerAllHeal(toindex,0 );
 		buttontype=WINDOW_BUTTONTYPE_OK;

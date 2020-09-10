@@ -9,9 +9,9 @@
 #include "family.h"
 
 /*
- * 傢族 PK 登記員
+ * 家族 PK 登記員
  *
- * 這個 npc 顯示並且登記傢族 pk 排程
+ * 這個 npc 顯示並且登記家族 pk 排程
  * pk 排程以一小時一場 pk 為原則排定 pk 場的賽程, 這個賽程由登記員
  * 登記與設定，主要的設定事項在 FamilyPKSchedule
  *
@@ -26,7 +26,7 @@
  *
  */
 
-// 全部的傢族 pk 賽程
+// 全部的家族 pk 賽程
 FamilyPKSchedule fmpks[MAX_SCHEDULE*MAX_SCHEDULEMAN];
 
 extern  int     familyNumTotal;
@@ -50,10 +50,10 @@ void NPC_LoadPKSchedule(int meindex);	// Load schedule from disk
 void NPC_SavePKSchedule(int meindex);	// save schedule to disk
 void NPC_RemoveExpiredBattle(int meindex);	// 移除過期的戰鬥
 void NPC_ProcessTimeout(int meindex);	// 處理 timeout
-BOOL NPC_AlreadyScheduled(int meindex, int talkerindex);	// 檢查, 一個傢族隻能安排一場
+BOOL NPC_AlreadyScheduled(int meindex, int talkerindex);	// 檢查, 一個家族隻能安排一場
 // 産生排程錶的 data
 void NPC_LIST_gendata(int meindex, int talkerindex, int page, char *buf, int size);
-// 産生選擇傢族的 data
+// 産生選擇家族的 data
 void NPC_SELECT_gendata(int meindex, int talkerindex, int page, char *buf, int size);
 // 産生排程詳細的 data
 void NPC_DETAIL_gendata(int meindex, char *buf, int size, int dueltime);
@@ -168,7 +168,7 @@ void NPC_SchedulemanWindowTalked(int meindex, int talkerindex,
 #endif     
 		  
         (CHAR_getWorkInt(talkerindex, CHAR_WORKFMSETUPFLAG)==1)) {
-        // 隻有已成立傢族的族長可以使用進一步的功能 (設定、更改、同意)
+        // 隻有已成立家族的族長可以使用進一步的功能 (設定、更改、同意)
 
         // decide: send family list or detail or accept
         dt=atoi(data);
@@ -183,9 +183,9 @@ void NPC_SchedulemanWindowTalked(int meindex, int talkerindex,
             switch (fmpks[fmpks_pos+i].flag) {
             case FMPKS_FLAG_NONE:
               if (NPC_AlreadyScheduled(meindex, talkerindex)) {
-                // 同一個傢族隻能有一次排程
+                // 同一個家族隻能有一次排程
                 CHAR_talkToCli(talkerindex, meindex,
-                  "你已經安排過戰鬥，將機會留給其他傢族吧。", CHAR_COLORWHITE);
+                  "你已經安排過戰鬥，將機會留給其他家族吧。", CHAR_COLORWHITE);
               } else {
 				
                 fmpks[fmpks_pos+i].host_index=CHAR_getWorkInt(talkerindex, CHAR_WORKFMINDEXI);
@@ -201,7 +201,7 @@ void NPC_SchedulemanWindowTalked(int meindex, int talkerindex,
                 fmpks[fmpks_pos+i].flag=FMPKS_FLAG_SETTING;
                 fmpks[fmpks_pos+i].setting_timeout=
                     CHAR_getWorkInt(meindex, NPC_WORK_SETTINGTIMEOUT);
-                // 送齣選擇傢族的列錶
+                // 送出選擇家族的列錶
                 CHAR_setWorkInt(talkerindex, CHAR_WORK_PAGE, 1); // page 1
                 CHAR_setWorkInt(talkerindex, CHAR_WORK_DUELTIME, dt);
                 NPC_SELECT_gendata(meindex, talkerindex, 1, buf, sizeof(buf));
@@ -223,7 +223,7 @@ void NPC_SchedulemanWindowTalked(int meindex, int talkerindex,
                   fmpks[fmpks_pos+i].flag=FMPKS_FLAG_SETTING;
                   fmpks[fmpks_pos+i].setting_timeout=
                     CHAR_getWorkInt(meindex, NPC_WORK_SETTINGTIMEOUT);
-                  // 送齣細部調整的列錶
+                  // 送出細部調整的列錶
                   CHAR_setWorkInt(talkerindex, CHAR_WORK_DUELTIME, dt);
                   NPC_DETAIL_gendata(meindex, buf, sizeof(buf), dt);
                   lssproto_WN_send(fd, WINDOW_MESSAGETYPE_PKSCHEDULEDETAIL,
@@ -244,8 +244,8 @@ void NPC_SchedulemanWindowTalked(int meindex, int talkerindex,
 						buttontype=WINDOW_BUTTONTYPE_PREV | WINDOW_BUTTONTYPE_OK;
 					} 
                     CHAR_talkToCli(talkerindex, meindex,
-						"你的傢族已經接受挑戰。", CHAR_COLORWHITE);
-                    // 重新送齣 list
+						"你的家族已經接受挑戰。", CHAR_COLORWHITE);
+                    // 重新送出 list
       				NPC_LIST_gendata(meindex, talkerindex, page, buf, sizeof(buf));
 					lssproto_WN_send(fd, WINDOW_MESSAGETYPE_PKSCHEDULELIST,
         			   buttontype,
@@ -262,7 +262,7 @@ void NPC_SchedulemanWindowTalked(int meindex, int talkerindex,
                   fmpks[fmpks_pos+i].flag=FMPKS_FLAG_SETTING;
                   fmpks[fmpks_pos+i].setting_timeout=
                     CHAR_getWorkInt(meindex, NPC_WORK_SETTINGTIMEOUT);
-                  // 送齣細部調整的列錶
+                  // 送出細部調整的列錶
                   CHAR_setWorkInt(talkerindex, CHAR_WORK_DUELTIME, dt);
                   NPC_DETAIL_gendata(meindex, buf, sizeof(buf), dt);
                   lssproto_WN_send(fd, WINDOW_MESSAGETYPE_PKSCHEDULEDETAIL,
@@ -272,7 +272,7 @@ void NPC_SchedulemanWindowTalked(int meindex, int talkerindex,
 				   buf);
 				}
               }    
-              // WON ADD 修正傢族pk場的約戰問題
+              // WON ADD 修正家族pk場的約戰問題
 			  break;
 			}
 
@@ -286,10 +286,10 @@ void NPC_SchedulemanWindowTalked(int meindex, int talkerindex,
         if (CHAR_getInt(talkerindex,CHAR_FMLEADERFLAG)!=FMMEMBER_MEMBER) {
 #endif         
           CHAR_talkToCli(talkerindex, meindex,
-            "隻有族長纔能預約傢族ＰＫ喔。", CHAR_COLORWHITE);
+            "隻有族長纔能預約家族ＰＫ喔。", CHAR_COLORWHITE);
 		}else if (CHAR_getWorkInt(talkerindex, CHAR_WORKFMSETUPFLAG)!=1) {
           CHAR_talkToCli(talkerindex, meindex,
-            "你的傢族還沒有正式成立喔。", CHAR_COLORWHITE);
+            "你的家族還沒有正式成立喔。", CHAR_COLORWHITE);
         }
       }
       break;
@@ -339,10 +339,10 @@ void NPC_SchedulemanWindowTalked(int meindex, int talkerindex,
                 a=atoi(token);
                 if (a!=fmpks[fmpks_pos+i].host_index) {
                   fmpks[fmpks_pos+i].guest_index=a;
-                  // 必須要再檢查是否有這個客隊傢族 /**/
+                  // 必須要再檢查是否有這個客隊家族 /**/
                   if (getStringFromIndexWithDelim(data,"|",2,token,sizeof(token))) {
                     strcpy(fmpks[fmpks_pos+i].guest_name, makeStringFromEscaped(token));
-                    // 送齣 detail 編輯窗
+                    // 送出 detail 編輯窗
                     NPC_DETAIL_gendata(meindex, buf, sizeof(buf), dt);
                     lssproto_WN_send(fd, WINDOW_MESSAGETYPE_PKSCHEDULEDETAIL,
         	  		   WINDOW_BUTTONTYPE_OK | WINDOW_BUTTONTYPE_CANCEL,
@@ -394,7 +394,7 @@ void NPC_SchedulemanWindowTalked(int meindex, int talkerindex,
                 fmpks[fmpks_pos+i].challenge_timeout=
                     CHAR_getWorkInt(meindex, NPC_WORK_CHALLENGETIMEOUT);
                 CHAR_talkToCli(talkerindex, meindex,
-                    "傢族挑戰設定完成。", CHAR_COLORWHITE);
+                    "家族挑戰設定完成。", CHAR_COLORWHITE);
               }
               break;
             case WINDOW_BUTTONTYPE_CANCEL:
@@ -404,7 +404,7 @@ void NPC_SchedulemanWindowTalked(int meindex, int talkerindex,
               fmpks[fmpks_pos+i].guest_index=-1;
               strcpy(fmpks[fmpks_pos+i].guest_name,"");
               CHAR_talkToCli(talkerindex, meindex,
-                  "清除傢族挑戰。", CHAR_COLORWHITE);
+                  "清除家族挑戰。", CHAR_COLORWHITE);
               break;
             }
             NPC_SavePKSchedule(meindex);
@@ -468,13 +468,13 @@ void NPC_RemoveExpiredBattle(int meindex)
   }
 
   if (expired>=0) {
-    // 移動後麵的排程來取代已經失效的排程
+    // 移動後面的排程來取代已經失效的排程
     for (i=expired+1; i<MAX_SCHEDULE; i++) {
       memcpy(&fmpks[fmpks_pos+i-expired-1],
              &fmpks[fmpks_pos+i],sizeof(FamilyPKSchedule));
     }
 
-    // 將後麵的排程設成未排程
+    // 將後面的排程設成未排程
     for (i=MAX_SCHEDULE-expired-1; i<MAX_SCHEDULE; i++) {
       memset(&fmpks[fmpks_pos+i], 0, sizeof(FamilyPKSchedule));
       fmpks[fmpks_pos+i].flag=-1;
@@ -552,7 +552,7 @@ void NPC_ProcessTimeout(int meindex)
   }
 }
 
-// 檢查, 一個傢族隻能安排一場戰鬥
+// 檢查, 一個家族隻能安排一場戰鬥
 BOOL NPC_AlreadyScheduled(int meindex, int talkerindex)
 {
   int i;
@@ -608,7 +608,7 @@ void NPC_LoadPKSchedule(int meindex)
     if (getStringFromIndexWithDelim(tmp,"|",2,token,sizeof(token))) {
       fmpks[fmpks_pos+i].host_index=atoi(token);
     } else continue;
-    // 主隊 傢族名
+    // 主隊 家族名
     if (getStringFromIndexWithDelim(tmp,"|",3,token,sizeof(token))) {
       strcpy(fmpks[fmpks_pos+i].host_name,makeStringFromEscaped(token));
     } else continue;
@@ -616,7 +616,7 @@ void NPC_LoadPKSchedule(int meindex)
     if (getStringFromIndexWithDelim(tmp,"|",4,token,sizeof(token))) {
       fmpks[fmpks_pos+i].guest_index=atoi(token);
     } else continue;
-    // 客隊 傢族名
+    // 客隊 家族名
     if (getStringFromIndexWithDelim(tmp,"|",5,token,sizeof(token))) {
       strcpy(fmpks[fmpks_pos+i].guest_name,makeStringFromEscaped(token));
     } else continue;

@@ -2,7 +2,7 @@
 /*----------  Shan (BEGIN) ----------*/
 /*---------  AD 2001/05/28  ---------*/
 // 
-//            傢族醫療 
+//            家族醫療 
 // 
 /*----------   Shan(END)   ----------*/
 #include <stdio.h>
@@ -56,7 +56,7 @@ void NPC_FmHealerTalked( int meindex , int talker , char *msg ,int color )
         //print("\n npc floor->%d player floor->%d",CHAR_getInt(meindex, CHAR_FLOOR),
         //       CHAR_getWorkInt(talker, CHAR_WORKFMFLOOR));
     //    CHAR_talkToCli(talker, meindex,
-    //             "抱歉！你不是本傢族人員，無法幫你迴復。",CHAR_COLORWHITE);
+    //             "抱歉！你不是本家族人員，無法幫你迴復。",CHAR_COLORWHITE);
     //    return;
     //}
      
@@ -68,7 +68,7 @@ void NPC_FmHealerTalked( int meindex , int talker , char *msg ,int color )
 		    "已經全部迴復。請小心自己的身體唷！",CHAR_COLORWHITE);
 	}else if(msgNo == 2){
 	    CHAR_talkToCli( talker, meindex,
-	       	   "由於你是本傢族人員，請讓我幫你迴復吧！",CHAR_COLORWHITE);
+	       	   "由於你是本家族人員，請讓我幫你迴復吧！",CHAR_COLORWHITE);
 	}
     }else{
 	int i = 0;
@@ -82,7 +82,7 @@ void NPC_FmHealerTalked( int meindex , int talker , char *msg ,int color )
 		       	"已經全部迴復。請小心自己的身體唷！",CHAR_COLORWHITE);
 		}else if(msgNo == 2){
 		    CHAR_talkToCli( otherindex, meindex, 
-			"由於你是本傢族人員，請讓我幫你迴復吧！",CHAR_COLORWHITE);
+			"由於你是本家族人員，請讓我幫你迴復吧！",CHAR_COLORWHITE);
 		}
             }
         }

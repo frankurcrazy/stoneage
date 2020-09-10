@@ -90,7 +90,7 @@ static FunctionNameSet  functionSet[]={
       "","HealerTalked","","",
       "","", "","",""},
 
-        /* 傢族Healer add code by shan */  
+        /* 家族Healer add code by shan */  
     { "FmHealer","FmHealerInit","","",
       "","","","",
       "","FmHealerTalked","","",
@@ -116,7 +116,7 @@ static FunctionNameSet  functionSet[]={
      "DengonInit", "", "", "", "", "", "", "", "",
      "", "", "", "DengonLooked", "", "","DengonWindowTalked"},
      
-     	/* 傢族留言闆 add code by shan */
+     	/* 家族留言闆 add code by shan */
     {"FmDengon",
      "FmDengonInit", "", "", "", "", "", "", "", "",
      "", "", "", "FmDengonLooked", "", "","FmDengonWindowTalked"},
@@ -1037,7 +1037,7 @@ BOOL NPC_readNPCTemplateFiles( char* topdirectory ,int templatesize)
     filenames = (STRING64 *)allocateMemory( sizeof( STRING64 ) *
                                                (int)getFilesearchnum( ) );
 	if( filenames == NULL ){
-	    print( "讀取NPC創建文件... 內存齣錯\n" );
+	    print( "讀取NPC創建文件... 內存出錯\n" );
 		return FALSE;
 	}
     filenum = rgetFileName( topdirectory ,filenames ,getFilesearchnum( ) );

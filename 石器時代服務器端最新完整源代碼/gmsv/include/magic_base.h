@@ -71,14 +71,14 @@ typedef struct tagAttMagic
   int           siSx;                   // 顯示的位置 - X軸
   int           siSy;                   // 顯示的位置 - Y軸
   unsigned int  uiShowBehindChar;       // 顯示在人物的前方或下方
-  unsigned int  uiShakeScreen;          // 是否震動畫麵
-  unsigned int  uiShakeFrom;            // 震動畫麵的起始時間( 毫秒 )
-  unsigned int  uiShakeTo;              // 震動畫麵的結束時間( 毫秒 _
-  unsigned int  uiPrevMagicNum;         // 前置咒術的索引號( 0XFFFFFFFFFF 錶示無前置咒術 )
+  unsigned int  uiShakeScreen;          // 是否震動畫面
+  unsigned int  uiShakeFrom;            // 震動畫面的起始時間( 毫秒 )
+  unsigned int  uiShakeTo;              // 震動畫面的結束時間( 毫秒 _
+  unsigned int  uiPrevMagicNum;         // 前置咒術的索引號( 0XFFFFFFFFFF 表示無前置咒術 )
   int           siPrevMagicSx;          // 前置咒術的顯示位置 - X軸
   int           siPrevMagicSy;          // 前置咒術的顯示位置 - Y軸
   int           siPrevMagicOnChar;      // 前置咒術顯示在人物的前方或下方
-  unsigned int  uiPostMagicNum;         // 後置咒術的索引號( 0XFFFFFFFF 錶示無後置咒術 )
+  unsigned int  uiPostMagicNum;         // 後置咒術的索引號( 0XFFFFFFFF 表示無後置咒術 )
   int           siPostMagicSx;          // 後置咒術的顯示位置 - X軸
   int           siPostMagicSy;          // 後置咒術的顯示位置 - Y軸
   int           siPostMagicOnChar;      // 後置咒術顯示在人物的前方或下方
@@ -98,14 +98,14 @@ typedef struct tagToCallMagic
   int           siSx;                   // 顯示的位置 - X軸
   int           siSy;                   // 顯示的位置 - Y軸
   unsigned int  uiShowBehindChar;       // 顯示在人物的前方或下方
-  unsigned int  uiShakeScreen;          // 是否震動畫麵
-  unsigned int  uiShakeFrom;            // 震動畫麵的起始時間( 毫秒 )
-  unsigned int  uiShakeTo;              // 震動畫麵的結束時間( 毫秒 _
-  unsigned int  uiPrevMagicNum;         // 前置咒術的索引號( 0XFFFFFFFFFF 錶示無前置咒術 )
+  unsigned int  uiShakeScreen;          // 是否震動畫面
+  unsigned int  uiShakeFrom;            // 震動畫面的起始時間( 毫秒 )
+  unsigned int  uiShakeTo;              // 震動畫面的結束時間( 毫秒 _
+  unsigned int  uiPrevMagicNum;         // 前置咒術的索引號( 0XFFFFFFFFFF 表示無前置咒術 )
   int           siPrevMagicSx;          // 前置咒術的顯示位置 - X軸
   int           siPrevMagicSy;          // 前置咒術的顯示位置 - Y軸
   int           siPrevMagicOnChar;      // 前置咒術顯示在人物的前方或下方
-  unsigned int  uiPostMagicNum;         // 後置咒術的索引號( 0XFFFFFFFF 錶示無後置咒術 )
+  unsigned int  uiPostMagicNum;         // 後置咒術的索引號( 0XFFFFFFFF 表示無後置咒術 )
   int           siPostMagicSx;          // 後置咒術的顯示位置 - X軸
   int           siPostMagicSy;          // 後置咒術的顯示位置 - Y軸
   int           siPostMagicOnChar;      // 後置咒術顯示在人物的前方或下方

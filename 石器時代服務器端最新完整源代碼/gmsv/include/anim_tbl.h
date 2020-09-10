@@ -781,7 +781,7 @@
 
 #define CG_YES_BTN				26094	// "是"示正件
 #define CG_NO_BTN				26095	// "否"示正件
-#define CG_EXIT_BTN				26096	// "齣現"示正件
+#define CG_EXIT_BTN				26096	// "出現"示正件
 #define CG_SEAL_BTN				26097	// "賣"示正件
 #define CG_BUY_BTN				26098	// "買"示正件
 

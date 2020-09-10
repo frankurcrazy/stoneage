@@ -213,7 +213,7 @@ void NPC_PoolItemShopWindowTalked( int meindex, int talkerindex,
 			}else {
 				if( NPC_DepotItem_gettItem( meindex, talkerindex, atoi( data)-1) == FALSE ){
 					NPC_PoolItemShop_DepotItem_Menu( meindex, talkerindex);
-					CHAR_talkToCli( talkerindex, -1, "取齣道具失敗，請稍後再試！", CHAR_COLORYELLOW);
+					CHAR_talkToCli( talkerindex, -1, "取出道具失敗，請稍後再試！", CHAR_COLORYELLOW);
 				}
 			}
 		  break;
@@ -498,7 +498,7 @@ BOOL NPC_DepotItem_InsertItem( int meindex, int talkerindex, int num)
 	itemindex = CHAR_getItemIndex( talkerindex, num);
 	if( !ITEM_CHECKINDEX( itemindex) )return FALSE;
 #if 1 // 共同倉庫不可存的物品
-	if( ITEM_getInt( itemindex, ITEM_DROPATLOGOUT) || // 登齣後消失
+	if( ITEM_getInt( itemindex, ITEM_DROPATLOGOUT) || // 登出後消失
 			ITEM_getInt( itemindex, ITEM_VANISHATDROP) || // 丟棄後消失
 			!ITEM_getInt( itemindex, ITEM_CANPETMAIL)) { // 不可寵郵寄
 		print("\n 改封包!!非法存放道具:%s ", CHAR_getChar( talkerindex, CHAR_CDKEY) );
@@ -611,7 +611,7 @@ BOOL NPC_DepotItem_gettItem( int meindex, int talkerindex, int num)
 #else
 		ITEM_getInt( itemindex, ITEM_ID),
 #endif
-		"Depot(取齣道具)",
+		"Depot(取出道具)",
 		CHAR_getInt( talkerindex,CHAR_FLOOR),
 		CHAR_getInt( talkerindex,CHAR_X ),
  		CHAR_getInt( talkerindex,CHAR_Y ),
@@ -686,7 +686,7 @@ static void NPC_PoolItemShop_printWindow_HaveItemFull( int meindex, int talkerin
 		char	buf[2048];
 		
 		strcpy( message, 
-			"\n\n    道具不是已經滿瞭嗎"
+			"\n\n    道具不是已經滿了嗎"
 				);
 		lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE, 
 						WINDOW_BUTTONTYPE_OK,
@@ -892,7 +892,7 @@ static BOOL NPC_PoolItemShop_PoolItem( int meindex, int talkerindex, int num)
 	}
 	
 #if 1 // 共同倉庫不可存的物品
-	if( ITEM_getInt( itemindex, ITEM_DROPATLOGOUT) || // 登齣後消失
+	if( ITEM_getInt( itemindex, ITEM_DROPATLOGOUT) || // 登出後消失
 			ITEM_getInt( itemindex, ITEM_VANISHATDROP) || // 丟棄後消失
 			!ITEM_getInt( itemindex, ITEM_CANPETMAIL)) { // 不可寵郵寄
 		print("\n 改封包!!非法存放道具:%s ", CHAR_getChar( talkerindex, CHAR_CDKEY) );

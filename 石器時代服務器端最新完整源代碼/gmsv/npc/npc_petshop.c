@@ -259,7 +259,7 @@ void NPC_PetShop_selectWindow( int meindex, int toindex, int num,int select)
 		if(CHAR_getInt(toindex, CHAR_LOCKED)==1){
 			char message[256];
 			char	buf[256];
-			sprintf( message, "為瞭確保你的物品安全，請輸入你的安全密碼進行解鎖！\n");
+			sprintf( message, "為了確保你的物品安全，請輸入你的安全密碼進行解鎖！\n");
 		
 			lssproto_WN_send( getfdFromCharaIndex(toindex), WINDOW_MESSAGETYPE_MESSAGEANDLINEINPUT, 
 							WINDOW_BUTTONTYPE_OKCANCEL,
@@ -344,7 +344,7 @@ void NPC_PetShop_selectWindow( int meindex, int toindex, int num,int select)
 		windowno = CHAR_WINDOWTYPE_WINDOWPETSHOP_END; 
 	    break;
 	  // 婁五潸曰矢永玄域  它奴件玉它
-	  case 9: // 取齣寄放寵列錶
+	  case 9: // 取出寄放寵列錶
 	  	if( CHAR_getWorkInt( meindex, CHAR_WORK_POOLFLG) != 1 )
 	  		return;
 	  	NPC_getDrawPet( meindex, toindex, token, &buttontype, select);
@@ -382,7 +382,7 @@ void NPC_PetShop_selectWindow( int meindex, int toindex, int num,int select)
 	  	windowtype=WINDOW_MESSAGETYPE_PETSELECT;
 		windowno=CHAR_WINDOWTYPE_DEPOTPETSHOP_ADD;
 	    break;
-	  case 14: // 取齣倉庫列錶
+	  case 14: // 取出倉庫列錶
 	  	if( !CHAR_CheckDepotPet( toindex) )
 	  		return;
 		NPC_DepotPet_List( meindex, toindex, token, &buttontype, select);
@@ -406,7 +406,7 @@ void NPC_PetShop_selectWindow( int meindex, int toindex, int num,int select)
 		windowno = CHAR_WINDOWTYPE_DEPOTPETSHOP_ASKADD;
 	    break;
 
-	  case 16: // 詢問確認取齣倉庫
+	  case 16: // 詢問確認取出倉庫
 		NPC_DepotPet_AskGet( meindex, toindex, select, token);
 
 		buttontype = WINDOW_BUTTONTYPE_YESNO;
@@ -428,7 +428,7 @@ void NPC_PetShop_selectWindow( int meindex, int toindex, int num,int select)
 		windowno = CHAR_WINDOWTYPE_WINDOWPETSHOP_END; 
 	    break;
 
-	  case 18: // 確認取齣倉庫
+	  case 18: // 確認取出倉庫
 	  	if( CHAR_getWorkInt( meindex, CHAR_WORK_POOLFLG ) != 1 )
 	  		return;
 		if( NPC_DepotPet_CheckLevel( meindex, toindex, select, token) == TRUE) {
@@ -587,7 +587,7 @@ void NPC_PetShopWindowTalked( int meindex, int talkerindex,
 				//NPC_DepotPet_Pet_printWindow( meindex, talkerindex);
 				NPC_PetShop_selectWindow( meindex, talkerindex, 13, -1 );
 			  break;
-		  case 2://取齣
+		  case 2://取出
 				if( CHAR_getCharPetElement( talkerindex) < 0 ) {
 					CHAR_talkToCli( talkerindex, -1, "身上寵物欄位已滿！", CHAR_COLORYELLOW);
 					return;
@@ -632,7 +632,7 @@ void NPC_PetShopWindowTalked( int meindex, int talkerindex,
 	  	}
 		break;
 			
-	  case CHAR_WINDOWTYPE_DEPOTPETSHOP_ASKGET: // 確認取齣倉庫
+	  case CHAR_WINDOWTYPE_DEPOTPETSHOP_ASKGET: // 確認取出倉庫
 		if( select == WINDOW_BUTTONTYPE_YES){
 			if( CHAR_getCharPetElement( talkerindex) != -1 ) {
 				NPC_PetShop_selectWindow( meindex, talkerindex, 18,-1 );
@@ -1066,7 +1066,7 @@ void NPC_PetDel3( int meindex, int talker, int select, char *token)
 	);
 #ifdef _PET_EVOLUTION
 	if( CHAR_getInt( petindex, CHAR_FUSIONBEIT) == 1 &&
-		CHAR_getInt( petindex, CHAR_FUSIONRAISE) > 0 ){//檢查是否為融閤寵
+		CHAR_getInt( petindex, CHAR_FUSIONRAISE) > 0 ){//檢查是否為融合寵
 		CHAR_setInt( petindex, CHAR_FUSIONTIMELIMIT, (int)time( NULL));
 	}
 #endif
@@ -1169,7 +1169,7 @@ void NPC_PoolPetShop_DepotPet_Menu( int meindex, int talkerindex)
 		strcpy( message, 
 			"3\n"
 			"              使用寵物倉庫\n"
-			"◆特彆注意：請勿將貴重寵物存入公共倉庫\n"
+			"◆特別注意：請勿將貴重寵物存入公共倉庫\n"
 			"　　　　　　『寵物公共倉庫』\n"
 			"          ＜＜＜存放寵物＞＞＞\n"
 			"          ＜＜＜取迴寵物＞＞＞\n"
@@ -1214,7 +1214,7 @@ void NPC_DepotPet_List( int meindex, int toindex, char *token, int *buttontype, 
 	}
 	CHAR_setWorkInt( toindex, CHAR_WORKSHOPRELEVANT, page +select);
 	
-	strcpy( token, "2\n　　　　請選擇要從倉庫取齣的寵物　　　　\n\n");
+	strcpy( token, "2\n　　　　請選擇要從倉庫取出的寵物　　　　\n\n");
 	for( i =  startnum; i < endnum; i ++ ) {
 		petindex = CHAR_getDepotPetIndex( toindex, i);
 		if( CHAR_CHECKINDEX( petindex) ) {
@@ -1268,7 +1268,7 @@ void NPC_DepotPet_Add( int meindex, int talker, int select, char *token)
 
 	if( CHAR_getInt( petindex, CHAR_PETFAMILY) == 1 )
 	{
-		sprintf(token,"\n\n傢族守護獸無法存入倉庫喔！");
+		sprintf(token,"\n\n家族守護獸無法存入倉庫喔！");
 		return;
 	} 
 	
@@ -1433,7 +1433,7 @@ void NPC_DepotPet_Get( int meindex, int talker, int select, char *token)
 	);
 #ifdef _PET_EVOLUTION
 	if( CHAR_getInt( petindex, CHAR_FUSIONBEIT) == 1 &&
-		CHAR_getInt( petindex, CHAR_FUSIONRAISE) > 0 ){//檢查是否為融閤寵
+		CHAR_getInt( petindex, CHAR_FUSIONRAISE) > 0 ){//檢查是否為融合寵
 		CHAR_setInt( petindex, CHAR_FUSIONTIMELIMIT, (int)time( NULL));
 	}
 #endif
@@ -1476,7 +1476,7 @@ int NPC_DepotPet_CheckRepeat( int charaindex)
 			if( !strcmp( CHAR_getChar( petindex1, CHAR_UNIQUECODE),
 						CHAR_getChar( petindex2, CHAR_UNIQUECODE) ) )
 			{
-				print(" 在倉庫找到非法寵瞭 ");
+				print(" 在倉庫找到非法寵了 ");
 				CHAR_setDepotPetIndex( charaindex, j, -1);
 				NPC_DepotPet_CheckRepeat_del( charaindex, petindex2);
 				find ++;

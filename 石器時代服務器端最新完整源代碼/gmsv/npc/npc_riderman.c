@@ -197,7 +197,7 @@ void NPC_RidermanWindowTalked( int meindex, int talkerindex,
 			{
 				lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 					WINDOW_BUTTONTYPE_OK, -1, -1,
-					makeEscapeString( "\n\n你已經學會初級班瞭呀。\n不需要再學瞭。",
+					makeEscapeString( "\n\n你已經學會初級班了呀。\n不需要再學了。",
 							buf, sizeof(buf)));
 				return;
 			}
@@ -223,10 +223,10 @@ void NPC_RidermanWindowTalked( int meindex, int talkerindex,
 			lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 					WINDOW_BUTTONTYPE_OK, -1, -1,
 					makeEscapeString(
-						"\n\n恭喜你！你已經完成騎乘初級班瞭。\n可以騎乘 Lv40 以下的寵物，\n請小心騎乘喔！",
+						"\n\n恭喜你！你已經完成騎乘初級班了。\n可以騎乘 Lv40 以下的寵物，\n請小心騎乘喔！",
 						buf, sizeof(buf)));
 						
-			// 傢族收入
+			// 家族收入
 			{
 			 int fmindex, fmindexi, village, i;
 			 char fmname[256], token[256], buf2[64];
@@ -267,7 +267,7 @@ void NPC_RidermanWindowTalked( int meindex, int talkerindex,
 			{
 				lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 					WINDOW_BUTTONTYPE_OK, -1, -1,
-					makeEscapeString( "\n\n你已經學會中級班瞭呀。\n不需要再學瞭。",
+					makeEscapeString( "\n\n你已經學會中級班了呀。\n不需要再學了。",
 							buf, sizeof(buf)));
 				return;
 			}
@@ -300,10 +300,10 @@ void NPC_RidermanWindowTalked( int meindex, int talkerindex,
 			//lssproto_FM_send( fd, buf );
 			lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 					WINDOW_BUTTONTYPE_OK, -1, -1,
-					makeEscapeString( "\n\n恭喜你！你已經完成騎乘中級班瞭。\n可以騎乘 Lv80 以下的寵物，\n請小心騎乘喔！",
+					makeEscapeString( "\n\n恭喜你！你已經完成騎乘中級班了。\n可以騎乘 Lv80 以下的寵物，\n請小心騎乘喔！",
 							buf, sizeof(buf)));
 
-			// 傢族收入
+			// 家族收入
 			{
 			 int fmindex, fmindexi, village, i;
 			 char fmname[256], token[256], buf2[64];
@@ -344,7 +344,7 @@ void NPC_RidermanWindowTalked( int meindex, int talkerindex,
 			{
 				lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 					WINDOW_BUTTONTYPE_OK, -1, -1,
-					makeEscapeString( "\n\n你已經學會高級班瞭呀。\n不需要再學瞭。",
+					makeEscapeString( "\n\n你已經學會高級班了呀。\n不需要再學了。",
 							buf, sizeof(buf)));
 				return;
 			}
@@ -377,10 +377,10 @@ void NPC_RidermanWindowTalked( int meindex, int talkerindex,
 			//lssproto_FM_send( fd, buf );
 			lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 					WINDOW_BUTTONTYPE_OK, -1, -1,
-					makeEscapeString( "\n\n恭喜你！你已經完成騎乘高級班瞭。\n可以騎乘 Lv120 以下的寵物，\n請小心騎乘喔！",
+					makeEscapeString( "\n\n恭喜你！你已經完成騎乘高級班了。\n可以騎乘 Lv120 以下的寵物，\n請小心騎乘喔！",
 							buf, sizeof(buf)));						
 
-			// 傢族收入
+			// 家族收入
 			{
 			 int fmindex, fmindexi, village, i;
 			 char fmname[256], token[256], buf2[64];
@@ -420,7 +420,7 @@ void NPC_RidermanWindowTalked( int meindex, int talkerindex,
 			{
 				lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 					WINDOW_BUTTONTYPE_OK, -1, -1,
-					makeEscapeString( "\n\n你已經學會特級班瞭呀。\n不需要再學瞭。",
+					makeEscapeString( "\n\n你已經學會特級班了呀。\n不需要再學了。",
 							buf, sizeof(buf)));
 				return;
 			}
@@ -453,10 +453,10 @@ void NPC_RidermanWindowTalked( int meindex, int talkerindex,
 			//lssproto_FM_send( fd, buf );
 			lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 					WINDOW_BUTTONTYPE_OK, -1, -1,
-					makeEscapeString( "\n\n恭喜你！你已經完成騎乘特級班瞭。\n可以騎乘所有等級的寵物，\n請小心騎乘喔！",
+					makeEscapeString( "\n\n恭喜你！你已經完成騎乘特級班了。\n可以騎乘所有等級的寵物，\n請小心騎乘喔！",
 							buf, sizeof(buf)));
 
-			// 傢族收入
+			// 家族收入
 			{
 			 int fmindex, fmindexi, village, i;
 			 char fmname[256], token[256], buf2[64];

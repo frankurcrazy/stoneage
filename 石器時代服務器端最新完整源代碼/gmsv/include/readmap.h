@@ -16,7 +16,7 @@ typedef struct tagMAP_Map
 {
     int     id;             /*        ID    */
     int     xsiz,ysiz;      /*          */
-    char    string[64];     /*  錶示    */
+    char    string[64];     /*  表示    */
     unsigned short*  tile;           /*          */
     unsigned short*  obj;            /*                  */
     MAP_Objlink** olink;
@@ -38,7 +38,7 @@ typedef enum
     MAP_DEFENCE,            /*  \        、守備力、0 以下    \        */
 
     MAP_INTODAMAGE,         /*        入    時  HP  足  ?  */
-    MAP_OUTOFDAMAGE,        /*          齣  時  HP  足  ?  */
+    MAP_OUTOFDAMAGE,        /*          出  時  HP  足  ?  */
 
     MAP_SETED_BATTLEMAP,    /*             設定? */
 	MAP_BATTLEMAP,			/*               番A １*/

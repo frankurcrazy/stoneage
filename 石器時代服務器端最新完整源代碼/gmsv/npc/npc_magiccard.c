@@ -45,12 +45,12 @@ int NPC_magiccard_sort( const void *card1, const void *card2 );
 enum {
 	NPC_WORK_BANKER = CHAR_NPCWORKINT1,		// 記錄跟哪一個莊傢玩
 	NPC_WORK_GIVEGOLD = CHAR_NPCWORKINT2,   // 紀錄挑戰者是否是付保證金的
-	//NPC_WORK_ABANDON = CHAR_NPCWORKINT2,	// 挑戰者是否放棄齣牌
+	//NPC_WORK_ABANDON = CHAR_NPCWORKINT2,	// 挑戰者是否放棄出牌
 	//NPC_WORK_TURN = CHAR_NPCWORKINT3,		// 記錄迴閤數
 	NPC_WORK_HAND = CHAR_NPCWORKINT4,		// 記錄挑戰者手上的牌
-	NPC_WORK_SELECT = CHAR_NPCWORKINT5,		// 記錄挑戰者選擇齣第幾張牌
+	NPC_WORK_SELECT = CHAR_NPCWORKINT5,		// 記錄挑戰者選擇出第幾張牌
 	NPC_WORK_ACTION = CHAR_NPCWORKINT6,		// 記錄挑戰者選擇攻擊還是防禦
-	NPC_WORK_HISTORY = CHAR_NPCWORKINT7,	// 記錄挑戰者齣過的牌
+	NPC_WORK_HISTORY = CHAR_NPCWORKINT7,	// 記錄挑戰者出過的牌
 	NPC_WORK_DAMAGE = CHAR_NPCWORKINT8,		// 記錄挑戰者受的傷害
 	//NPC_WORK_LOCATION = CHAR_NPCWORKINT9,	// 記錄挑戰者的位置
 	//NPC_WORK_ = CHAR_NPCWORKINT10,		// 記錄莊傢的index	
@@ -383,7 +383,7 @@ void NPC_Magiccard_Loop( int meindex )  //莊傢跑自己的LOOP
 		if( NPC_magiccard_checkExist( meindex , bkid , j ) != -1 )
 			playertotal++;
 	}
-	if( playertotal == 0 ) NPC_magiccard_resetbanker( meindex , bkid );  //這個莊傢已經沒有挑戰者在瞭
+	if( playertotal == 0 ) NPC_magiccard_resetbanker( meindex , bkid );  //這個莊傢已經沒有挑戰者在了
 	else banker[bkid].playertotal = playertotal ;
 
 	switch( banker[bkid].state )  //由莊傢來控製流程
@@ -401,14 +401,14 @@ void NPC_Magiccard_Loop( int meindex )  //莊傢跑自己的LOOP
 			}
 		}
 		break;
-	case 1: //要求齣牌
+	case 1: //要求出牌
 		NPC_magiccard_selectcard( meindex , bkid);			
 		break;
-	case 2: //等待齣牌
+	case 2: //等待出牌
 		if( (long)banker[bkid].turntime - NowTime.tv_sec != banker[bkid].waittime ){
 			banker[bkid].waittime = (long)banker[bkid].turntime - NowTime.tv_sec;
 			if(banker[bkid].waittime < 4 && banker[bkid].waittime >= 0 ){
-				sprintf( buf ,"齣牌時間剩下%d秒", banker[bkid].waittime );
+				sprintf( buf ,"出牌時間剩下%d秒", banker[bkid].waittime );
 				showString( meindex, buf , 0);
 			}
 		}
@@ -465,8 +465,8 @@ int NPC_magiccard_checkplace( int meindex , int toindex , char *token )
 	}
 
 	i = CHAR_getInt( meindex, CHAR_LV );
-	if( banker[i].state > 0 || banker[i].playertotal >= MAXGUY ){ //continue; //滿瞭或遊戲進行中
-		strcpy(token,"比賽已經額滿瞭或是進行中，請等候下一場謝謝");
+	if( banker[i].state > 0 || banker[i].playertotal >= MAXGUY ){ //continue; //滿了或遊戲進行中
+		strcpy(token,"比賽已經額滿了或是進行中，請等候下一場謝謝");
 		return FALSE;	
 	}
 
@@ -564,7 +564,7 @@ void NPC_magiccard_gameinit( int meindex , int bkid )
 			flag = TRUE;
 		}else{
 			k = rand()%(30-j);
-			if( Cardbox[6+7*bkid][k].cardindex == 28 && flag == FALSE && rand()%100 > 50){	//降低召靈齣現機率
+			if( Cardbox[6+7*bkid][k].cardindex == 28 && flag == FALSE && rand()%100 > 50){	//降低召靈出現機率
 				flag = TRUE;
 				continue;
 			}
@@ -592,7 +592,7 @@ void NPC_magiccard_gameinit( int meindex , int bkid )
 		j=0;
 		while(j<5){
 			k = rand()%(30-j);
-			if( Cardbox[i+7*bkid][k].cardindex == 28 && flag == FALSE && rand()%100 > 50){	//降低召靈齣現機率
+			if( Cardbox[i+7*bkid][k].cardindex == 28 && flag == FALSE && rand()%100 > 50){	//降低召靈出現機率
 				flag = TRUE;
 				continue;
 			}
@@ -629,7 +629,7 @@ void NPC_magiccard_gameinit( int meindex , int bkid )
 	banker[bkid].state = 1;
 }
 
-//讓挑戰者選擇齣什麼牌
+//讓挑戰者選擇出什麼牌
 void NPC_magiccard_selectcard( int meindex , int bkid )
 {
 	int i,j,fd,allhp=0,charindex;
@@ -643,7 +643,7 @@ void NPC_magiccard_selectcard( int meindex , int bkid )
 		if( charindex == -1 ) continue;
 ////////////
 		if( banker[bkid].pauseflag[i] == TRUE ){	
-			sprintf( token,"%d號挑戰者%s被封印瞭，暫停一迴閤",i+1,CHAR_getChar( charindex, CHAR_NAME) );
+			sprintf( token,"%d號挑戰者%s被封印了，暫停一迴閤",i+1,CHAR_getChar( charindex, CHAR_NAME) );
 			showString( meindex, token , 0);
 			continue;
 		}
@@ -681,7 +681,7 @@ void NPC_magiccard_checkselect( int meindex , int toindex ,int choise )
 		if( (card<<i) & (unsigned int)CHAR_getWorkInt( toindex , NPC_WORK_HAND) ){
 			j++;
 			if( j == choise ){ 
-				CHAR_setWorkInt( toindex , NPC_WORK_SELECT , i ); //記錄挑戰者選擇齣的牌0~29
+				CHAR_setWorkInt( toindex , NPC_WORK_SELECT , i ); //記錄挑戰者選擇出的牌0~29
 				sprintf( token, "%s\n",Cardfunctiontable[i].name.string);
 				//if( Cardfunctiontable[i].attack > 0 || Cardfunctiontable[i].defence > 0 ){
 				if( i < 25 ){
@@ -737,7 +737,7 @@ void NPC_magiccard_selectback( int meindex , int toindex )
 
 }
 
-//檢查挑戰者是否都選擇好瞭
+//檢查挑戰者是否都選擇好了
 void NPC_magiccard_waitselect( int meindex , int bkid )
 {
 	int i,charindex,select=0;
@@ -749,18 +749,18 @@ void NPC_magiccard_waitselect( int meindex , int bkid )
 		if( charindex == -1 ) continue;
 		if( //CHAR_getWorkInt( charindex , NPC_WORK_SELECT ) != -1 &&
 			CHAR_getWorkInt( charindex , NPC_WORK_ACTION ) != 0 || banker[bkid].pauseflag[i] == TRUE ){	
-			select++;  //選好瞭
+			select++;  //選好了
 		}else if( banker[bkid].turntime < NowTime.tv_sec ){
 			CHAR_setWorkInt( charindex , NPC_WORK_SELECT , -1 );
 			CHAR_setWorkInt( charindex , NPC_WORK_ACTION , 0 );
 			//取消選擇			
 			lssproto_MagiccardDamage_send(getfdFromCharaIndex(charindex), 10 , 0 ,0 ,0 );
-			sprintf(buf,"齣牌時間到，%d號挑戰者放棄齣牌",i+1);	
+			sprintf(buf,"出牌時間到，%d號挑戰者放棄出牌",i+1);	
 			showString( meindex, buf , 0);
-			select++;  //不等瞭不讓你選瞭 
+			select++;  //不等了不讓你選了 
 		}
 	}	 
-	if( select >= banker[bkid].playertotal )  okflag = TRUE;	//大傢都選好瞭
+	if( select >= banker[bkid].playertotal )  okflag = TRUE;	//大傢都選好了
 	//sprintf(buf,"剩餘%d挑戰者  已選擇挑戰者有%d ",banker[bkid].playertotal,select);	
 	//showString( meindex, buf , 0);
 	if( okflag == TRUE ) {
@@ -804,7 +804,7 @@ void NPC_magiccard_aiselect( int meindex , int bkid )
 	if( banker[bkid].pauseflag[BANKERID] == TRUE )
 	{
 		banker[bkid].pauseflag[BANKERID] = FALSE;
-		sprintf( buf,"魔王被封印瞭 暫停一迴閤" );
+		sprintf( buf,"魔王被封印了 暫停一迴閤" );
 		showString( meindex, buf , 0);
 		return;
 	}
@@ -854,7 +854,7 @@ void NPC_magiccard_aiselect( int meindex , int bkid )
 		//sprintf( buf,"allA=%d   allD=%d",allattack,alldefence );
 		//showString( meindex, buf , 0);
 
-		//紀錄每一張牌的結果 沒有給值錶示是0
+		//紀錄每一張牌的結果 沒有給值表示是0
 		j=0;
 		for( k=0;k<30;k++){
 			if((SHIFTBASE<<k) & banker[bkid].hand ){
@@ -873,14 +873,14 @@ void NPC_magiccard_aiselect( int meindex , int bkid )
 						defencelist[j] = Cardfunctiontable[k].defence * enemy - allattack;
 					}
 				}else{ //魔法牌
-					attacklist[j] -= allattack;	//讓下麵判斷寵牌不用考慮到魔法牌
+					attacklist[j] -= allattack;	//讓下面判斷寵牌不用考慮到魔法牌
 					defencelist[j] -= allattack; 
 				}
 				cardnum[j]=k;
 				j++;	
 			}
 		}
-		//sprintf( buf,"讀齣的手牌是 %d %d %d %d %d",cardnum[0],cardnum[1],cardnum[2],cardnum[3],cardnum[4]);
+		//sprintf( buf,"讀出的手牌是 %d %d %d %d %d",cardnum[0],cardnum[1],cardnum[2],cardnum[3],cardnum[4]);
 		//showString( meindex, buf , 0);
 
 //召靈術---------------------------------------------------------------------
@@ -1073,7 +1073,7 @@ void NPC_magiccard_aiselect( int meindex , int bkid )
 				}
 			}			
 		}
-//如果目前是贏的狀態 同時如果發現場上有人快沒血瞭  就用強攻牌------------------------
+//如果目前是贏的狀態 同時如果發現場上有人快沒血了  就用強攻牌------------------------
 		if( banker[bkid].action == 0 ){
 			if( allhp < banker[bkid].hp[BANKERID] ){
 				for( j=0;j<BANKERID;j++){
@@ -1098,7 +1098,7 @@ void NPC_magiccard_aiselect( int meindex , int bkid )
 			if( allhp >= banker[bkid].hp[BANKERID] || rand()%100 > 50 ){	//穩贏攻擊
 				for( i=0;i<5;i++){
 					if( cardnum[i] >= 25) continue;	
-					if( banker[bkid].hp[BANKERID] < banker[bkid].playertotal * 13 ) break; //快沒血瞭
+					if( banker[bkid].hp[BANKERID] < banker[bkid].playertotal * 13 ) break; //快沒血了
 					if( attacklist[i] > bestattack ){
 						bestattack = attacklist[i];
 						banker[bkid].select = cardnum[i];
@@ -1158,7 +1158,7 @@ void NPC_magiccard_aiselect( int meindex , int bkid )
 		}
 	}
 
-	//如果沒有選擇就隨機齣寵物牌 
+	//如果沒有選擇就隨機出寵物牌 
 	if( banker[bkid].action == 0 )
 	{	
 		j=0;
@@ -1168,7 +1168,7 @@ void NPC_magiccard_aiselect( int meindex , int bkid )
 				j++;
 			}
 		}
-		//sprintf( buf,"隨機讀齣的手牌是 %d %d %d %d %d",cardnum[0],cardnum[1],cardnum[2],cardnum[3],cardnum[4]);
+		//sprintf( buf,"隨機讀出的手牌是 %d %d %d %d %d",cardnum[0],cardnum[1],cardnum[2],cardnum[3],cardnum[4]);
 		//showString( meindex, buf , 0);
 
 		if( j==0 ) j = 1; 
@@ -1244,7 +1244,7 @@ void NPC_magiccard_checkdamage( int meindex , int bkid )
 	
 	//秀動畫
 	if( banker[bkid].select != 29 &&  banker[bkid].select != 27 ){
-		//sprintf( buf,"-----------------魔王選擇齣 第%d張------------------",banker[bkid].select);
+		//sprintf( buf,"-----------------魔王選擇出 第%d張------------------",banker[bkid].select);
 		//showString( meindex, buf , 0);
 		NPC_magiccard_action2( meindex , meindex , BANKERID , banker[bkid].select , banker[bkid].action );
 	}
@@ -1255,7 +1255,7 @@ void NPC_magiccard_checkdamage( int meindex , int bkid )
 		//挑戰者扣血
 		banker[bkid].hp[i] -= CHAR_getWorkInt( charindex , NPC_WORK_DAMAGE ) ;
 		NPC_magiccard_showdamage( meindex , charindex , i , CHAR_getWorkInt( charindex , NPC_WORK_DAMAGE ) );
-		//if( CHAR_getWorkInt( charindex , NPC_WORK_ACTION ) == 0 ) continue; //放棄齣牌
+		//if( CHAR_getWorkInt( charindex , NPC_WORK_ACTION ) == 0 ) continue; //放棄出牌
 		//sprintf( buf,"i=%d Action=%d",i,CHAR_getWorkInt( charindex , NPC_WORK_ACTION ));
 		//showString( meindex, buf , 0);
 		if( banker[bkid].hp[i] > MAXHP ) banker[bkid].hp[i] = MAXHP;
@@ -1318,7 +1318,7 @@ void NPC_magiccard_specialcard( int meindex , int bkid )
 				targetarray[k] = j;
 				k++;
 			}
-			if( k == 0 )  target = BANKERID;  //沒有玩傢在場瞭
+			if( k == 0 )  target = BANKERID;  //沒有玩傢在場了
 			else  target = targetarray[rand()%k];
 		}
 	
@@ -1408,7 +1408,7 @@ void NPC_magiccard_specialcard( int meindex , int bkid )
 	}
 	
 	if(strcmp( buf1 , "" ) !=0 ){
-		strcat( buf1,"被封印瞭");
+		strcat( buf1,"被封印了");
 	}
 
 	//播報迴閤對戰結果	
@@ -1535,7 +1535,7 @@ void NPC_magiccard_showdamage(int meindex , int charindex , int position , int d
 
 }
 
-//哪個挑戰者齣局
+//哪個挑戰者出局
 void NPC_magiccard_out( int meindex , int bkid , int player )
 {
 	int gift=0,charindex,allhp=0,i;
@@ -1562,7 +1562,7 @@ void NPC_magiccard_out( int meindex , int bkid , int player )
 			sprintf(buf,"目前總積分為%d，謝謝光臨",CHAR_getInt( charindex , CHAR_GAMBLENUM));
 			CHAR_talkToCli( charindex , -1 , buf,  CHAR_COLORYELLOW);
 		}else{
-			sprintf(buf,"很抱歉你輸瞭扣 6 點積分，目前總積分為%d，謝謝光臨",CHAR_getInt( charindex , CHAR_GAMBLENUM));
+			sprintf(buf,"很抱歉你輸了扣 6 點積分，目前總積分為%d，謝謝光臨",CHAR_getInt( charindex , CHAR_GAMBLENUM));
 			CHAR_talkToCli( charindex , -1 , buf,  CHAR_COLORYELLOW);
 		}
 	}else{		
@@ -1625,21 +1625,21 @@ void NPC_magiccard_turnover( int meindex , int bkid	)
 
 		//檢查還有沒有資格活下來
 		if( banker[bkid].hp[i] <= 0 ) {
-			sprintf( buf,"%d號挑戰者齣局瞭",i+1);
+			sprintf( buf,"%d號挑戰者出局了",i+1);
 			showString( meindex, buf , 0);	
 			NPC_magiccard_out( meindex , bkid , i );
 			continue;
 		}
 		goflag = TRUE; //代錶還有玩傢可以進入下迴閤
-		if( CHAR_getWorkInt( charindex , NPC_WORK_ACTION ) == 0 ) continue;	//放棄齣牌的人
-		//清除齣過的牌
+		if( CHAR_getWorkInt( charindex , NPC_WORK_ACTION ) == 0 ) continue;	//放棄出牌的人
+		//清除出過的牌
 		card = SHIFTBASE << CHAR_getWorkInt( charindex , NPC_WORK_SELECT );
 		CHAR_setWorkInt( charindex , NPC_WORK_HISTORY , (unsigned int)CHAR_getWorkInt( charindex , NPC_WORK_HISTORY ) | card ); 
 		card = ~card;
 		CHAR_setWorkInt( charindex , NPC_WORK_HAND , (unsigned int)CHAR_getWorkInt( charindex , NPC_WORK_HAND ) & card );	
 		//抽牌
 		k = rand()%(26-banker[bkid].turn);
-		if( Cardbox[i+7*bkid][k].cardindex == 28 && rand()%100 > 50 ) k = rand()%(26-banker[bkid].turn); //降低召靈齣現機率
+		if( Cardbox[i+7*bkid][k].cardindex == 28 && rand()%100 > 50 ) k = rand()%(26-banker[bkid].turn); //降低召靈出現機率
 
 		Cardbox[i+7*bkid][k].use = 1;
 		card = SHIFTBASE << Cardbox[i+7*bkid][k].cardindex ; 
@@ -1655,7 +1655,7 @@ void NPC_magiccard_turnover( int meindex , int bkid	)
 
 	if( banker[bkid].action != 0 )  //沒有被封印
 	{
-		//把莊傢齣過的牌拿掉 
+		//把莊傢出過的牌拿掉 
 		card = SHIFTBASE << banker[bkid].select ;	
 		banker[bkid].history |= card;
 		card = ~card;
@@ -1663,7 +1663,7 @@ void NPC_magiccard_turnover( int meindex , int bkid	)
 
 		//莊傢抽牌
 		k = rand()%(26-banker[bkid].turn);
-		if( Cardbox[6+7*bkid][k].cardindex == 28 && rand()%100 > 50 ) k = rand()%(26-banker[bkid].turn); //降低召靈齣現機率
+		if( Cardbox[6+7*bkid][k].cardindex == 28 && rand()%100 > 50 ) k = rand()%(26-banker[bkid].turn); //降低召靈出現機率
 		Cardbox[6+7*bkid][k].use = 1;
 		card = SHIFTBASE << Cardbox[6+7*bkid][k].cardindex ; 
 		banker[bkid].hand |= card;
@@ -1716,7 +1716,7 @@ void NPC_magiccard_gameover( int meindex , int bkid )
 	}
 	showString( meindex, buf , 0);
 
-	for( i=0;i<MAXGUY;i++) NPC_magiccard_out(  meindex , bkid , i );	//所有挑戰者齣場
+	for( i=0;i<MAXGUY;i++) NPC_magiccard_out(  meindex , bkid , i );	//所有挑戰者出場
 	NPC_magiccard_resetbanker(meindex,bkid);	
 }
 

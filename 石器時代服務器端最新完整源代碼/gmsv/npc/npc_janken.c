@@ -266,7 +266,7 @@ void NPC_JnakenJudge(int meindex,int talker,int sel)
 	}
 
 	if(shouhai == 1){
-		//Change add 玩傢猜勝瞭給的道具
+		//Change add 玩傢猜勝了給的道具
 		NPC_JankenItemGet( meindex, talker, "WinItem" );
 
 		 NPC_WarpPointGet(meindex, talker, &fl, &x, &y, 0);
@@ -292,7 +292,7 @@ void NPC_JnakenJudge(int meindex,int talker,int sel)
 
 	}else if(shouhai == 2){
 
-		//Change add 玩傢猜輸瞭給的道具
+		//Change add 玩傢猜輸了給的道具
 		NPC_JankenItemGet( meindex, talker, "LoseItem" );
 
 		 NPC_WarpPointGet(meindex, talker, &fl, &x, &y, 1);
@@ -300,7 +300,7 @@ void NPC_JnakenJudge(int meindex,int talker,int sel)
 						"              ～　結  果　～      \n\n"
 						"  %16s      %-16s\n"
 						"        [%s]    VS    [%s]\n\n\n"
-						"      %-16s 輸瞭",
+						"      %-16s 輸了",
 						 CHAR_getChar(meindex,CHAR_NAME),CHAR_getChar(talker,CHAR_NAME),
 						 j_char[jankenman],j_char[player],
 						 CHAR_getChar(talker,CHAR_NAME)
@@ -471,7 +471,7 @@ BOOL NPC_JankenEntryItemDel(int talker,char *buf)
 #else
 							ITEM_getInt( itemindex, ITEM_ID),  /* 失奶  丞  寞 */
 #endif
-							"QuizDelItem(猜謎->交齣道具)",
+							"QuizDelItem(猜謎->交出道具)",
 							CHAR_getInt( talker, CHAR_FLOOR),
 							CHAR_getInt( talker, CHAR_X ),
  							CHAR_getInt( talker, CHAR_Y ),
@@ -505,7 +505,7 @@ BOOL NPC_JankenEntryItemDel(int talker,char *buf)
 #else
 							ITEM_getInt( itemindex, ITEM_ID),  /* 失奶  丞  寞 */
 #endif
-							"QuizDelItem(猜謎->交齣道具)",
+							"QuizDelItem(猜謎->交出道具)",
 							CHAR_getInt( talker,CHAR_FLOOR),
 							CHAR_getInt( talker,CHAR_X ),
 							CHAR_getInt( talker,CHAR_Y ),

@@ -125,13 +125,13 @@ void NPC_PetRacePetLoop( int meindex)
 						int master = CHAR_getWorkInt(meindex, NPC_WORK_MASTER);
 						int randomi = RAND(1, 9);
 						if (randomi == 1)
-							snprintf(tmpbuf, sizeof(tmpbuf), "哦～看來%s好像發威瞭唷！",
+							snprintf(tmpbuf, sizeof(tmpbuf), "哦～看來%s好像發威了唷！",
 								CHAR_getChar(meindex, CHAR_NAME));
 						else if (randomi == 2)
-							snprintf(tmpbuf, sizeof(tmpbuf), "%s使齣瞭奮力的一擊～",
+							snprintf(tmpbuf, sizeof(tmpbuf), "%s使出了奮力的一擊～",
 								CHAR_getChar(meindex, CHAR_NAME));
 						else if (randomi == 3)
-							snprintf(tmpbuf, sizeof(tmpbuf), "咦...%s發怒瞭？",
+							snprintf(tmpbuf, sizeof(tmpbuf), "咦...%s發怒了？",
 								CHAR_getChar(meindex, CHAR_NAME));
 						if (randomi > 0 && randomi < 4)
 							CHAR_talkToFloor(floor, master, tmpbuf, CHAR_COLORWHITE);
@@ -149,13 +149,13 @@ void NPC_PetRacePetLoop( int meindex)
 						int master = CHAR_getWorkInt(meindex, NPC_WORK_MASTER);
 						int randomi = RAND(1, 9);
 						if (randomi == 1)
-							snprintf(tmpbuf, sizeof(tmpbuf), "%s好像暈倒瞭呢...",
+							snprintf(tmpbuf, sizeof(tmpbuf), "%s好像暈倒了呢...",
 								CHAR_getChar(meindex, CHAR_NAME));
 						else if (randomi == 2)
-							snprintf(tmpbuf, sizeof(tmpbuf), "%s受傷瞭嗎？",
+							snprintf(tmpbuf, sizeof(tmpbuf), "%s受傷了嗎？",
 								CHAR_getChar(meindex, CHAR_NAME));
 						else if (randomi == 3)
-							snprintf(tmpbuf, sizeof(tmpbuf), "嘿...%s暈倒後又勇敢的爬起來瞭！",
+							snprintf(tmpbuf, sizeof(tmpbuf), "嘿...%s暈倒後又勇敢的爬起來了！",
 								CHAR_getChar(meindex, CHAR_NAME));
 						if (randomi > 0 && randomi < 4)
 							CHAR_talkToFloor(floor, master, tmpbuf, CHAR_COLORWHITE);

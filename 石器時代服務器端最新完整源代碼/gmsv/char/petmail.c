@@ -89,7 +89,7 @@ BOOL PETMAIL_sendPetMail( int cindex, int aindex,
 		return	FALSE;
 	}
     if (CHAR_getInt(petindex, CHAR_PETFAMILY) == 1){
-	   	CHAR_talkToCli(cindex, -1, "傢族守護獸無法傳遞郵件喔！", CHAR_COLORYELLOW);
+	   	CHAR_talkToCli(cindex, -1, "家族守護獸無法傳遞郵件喔！", CHAR_COLORYELLOW);
 	   	return	FALSE;
 	}
 #ifdef _LOCK_PET_ITEM
@@ -125,7 +125,7 @@ if (getPetMailFlg()==1){
 #endif
 // Terry add fix can send mail to offline character 2004/2/5
 	if(ae->online == 0){
-		CHAR_talkToCli(cindex, -1, "該玩傢不在綫上！", CHAR_COLORYELLOW);
+		CHAR_talkToCli(cindex, -1, "該玩傢不在線上！", CHAR_COLORYELLOW);
    	return	FALSE;
 	}
 	playernum = CHAR_getPlayerMaxNum();
@@ -564,8 +564,8 @@ static void PETMAIL_sendPetmail( int index, int tocharaindex)
 		char	msgbuf[512];
 
 		snprintf( msgbuf, sizeof( msgbuf), 
-					"%s的%s 終於來瞭！"
-					"由於對方沒有您的名片，所以信件被退迴瞭。",
+					"%s的%s 終於來了！"
+					"由於對方沒有您的名片，所以信件被退迴了。",
 					CHAR_getChar( index, CHAR_OWNERCHARANAME),
 					CHAR_getUseName( index));
 		CHAR_talkToCli( tocharaindex, -1, msgbuf, CHAR_COLORWHITE);
@@ -1014,14 +1014,14 @@ static void PETMAIL_returnMail( int index, int tocharaindex)
 #endif
 	if( CHAR_getInt( index, CHAR_PETMAILBUFINDEX) != -1 ) {
 		snprintf( msgbuf, sizeof( msgbuf), 
-					"%s 迴來瞭！"
+					"%s 迴來了！"
 					"似乎無法寄送信件。",
 					CHAR_getUseName( index));
 		CHAR_talkToCli( tocharaindex, -1, msgbuf, CHAR_COLORWHITE);
 		PETMAIL_deleteOffmsg( CHAR_getInt( index, CHAR_PETMAILBUFINDEX));
 	}else {
 		snprintf( msgbuf, sizeof( msgbuf), 
-					"%s 迴來瞭！", CHAR_getUseName( index));
+					"%s 迴來了！", CHAR_getUseName( index));
 		CHAR_talkToCli( tocharaindex, -1, msgbuf, CHAR_COLORWHITE);		
 	}
 
@@ -1040,7 +1040,7 @@ void CHAR_AutoPickupMailPet( int charaindex, int petindex )
 	char category[3];
 	Char 	*ch;
 	if( !CHAR_CHECKINDEX( charaindex ) ) return;
-#ifdef _AVID_TRADETRYBUG //丟齣寵物
+#ifdef _AVID_TRADETRYBUG //丟出寵物
 	if( CHAR_getWorkInt( charaindex, CHAR_WORKTRADEMODE) != CHAR_TRADE_FREE ){
 		CHAR_talkToCli( charaindex, -1, "交易狀態中無法自動拾迴郵件寵物！", CHAR_COLORYELLOW );
 		return;

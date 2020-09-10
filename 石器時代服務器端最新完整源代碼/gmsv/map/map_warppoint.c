@@ -320,7 +320,7 @@ int SetMapPoint( char* buf)//加載地圖傳送點
 	char buf1[256];
 	char buf2[256];
 	int objtype,i;
-	if( getStringFromIndexWithDelim( buf, ":", 1, buf1, sizeof(buf1)) ==FALSE )//找齣傳送點類型
+	if( getStringFromIndexWithDelim( buf, ":", 1, buf1, sizeof(buf1)) ==FALSE )//找出傳送點類型
 	{
 		return -2;
 	}
@@ -331,7 +331,7 @@ int SetMapPoint( char* buf)//加載地圖傳送點
 		return -3 ;
 	}
 	MapWarppoint[MapWarpPoints].type = i;//設置地圖的傳送點類型
-	if( getStringFromIndexWithDelim( buf, ":", 2, buf1, sizeof(buf1)) ==FALSE ) //找齣傳送點有效時間
+	if( getStringFromIndexWithDelim( buf, ":", 2, buf1, sizeof(buf1)) ==FALSE ) //找出傳送點有效時間
 	{
 		return -4 ;
 	}
@@ -345,26 +345,26 @@ int SetMapPoint( char* buf)//加載地圖傳送點
 		objtype = CHAR_EVENT_WARP_NOON;//設置對象為中午傳送點
 	}
 	memset( buf1, 0, sizeof(buf1));
-	if( getStringFromIndexWithDelim( buf, ":", 3, buf1, sizeof(buf1)) ==FALSE )//找齣原點
+	if( getStringFromIndexWithDelim( buf, ":", 3, buf1, sizeof(buf1)) ==FALSE )//找出原點
 	{
 		return -5 ;
 	}
 	int fl = -1,x = -1,y = -1;
-	if( getStringFromIndexWithDelim( buf1, ",", 1, buf2, sizeof(buf1)) !=FALSE )//找齣原點
+	if( getStringFromIndexWithDelim( buf1, ",", 1, buf2, sizeof(buf1)) !=FALSE )//找出原點
 	{
 		fl = atoi(buf2);
 	}
-	if( getStringFromIndexWithDelim( buf1, ",", 2, buf2, sizeof(buf1)) !=FALSE )//找齣原點
+	if( getStringFromIndexWithDelim( buf1, ",", 2, buf2, sizeof(buf1)) !=FALSE )//找出原點
 	{
 		x = atoi(buf2);
 	}
-	if( getStringFromIndexWithDelim( buf1, ",", 3, buf2, sizeof(buf1)) !=FALSE )//找齣原點
+	if( getStringFromIndexWithDelim( buf1, ",", 3, buf2, sizeof(buf1)) !=FALSE )//找出原點
 	{
 		y = atoi(buf2);
 	}
 	if (fl == -1 || x == -1 || y == -1) return -5;
 	if (get_mappointindex( fl,x, y) != -1) return -5;//設置過傳送點！
-	for (i=0;i<MapWarpPoints;i++)//找齣一個空閑的傳送點
+	for (i=0;i<MapWarpPoints;i++)//找出一個空閑的傳送點
 	{
 		if (MapWarppoint[i].use != 1) break;//找到空閑傳送點
 	}
@@ -376,7 +376,7 @@ int SetMapPoint( char* buf)//加載地圖傳送點
 		return -7 ;
 	}
 	memset( buf1, 0, sizeof(buf1));
-	if( getStringFromIndexWithDelim( buf, ":", 4, buf1, sizeof(buf1)) ==FALSE ){//找齣傳送點
+	if( getStringFromIndexWithDelim( buf, ":", 4, buf1, sizeof(buf1)) ==FALSE ){//找出傳送點
 		return -8 ;
 	}
 	if( MAPPOINT_setMapWarpGoal( i, buf1) == -1 ){//設置傳送點

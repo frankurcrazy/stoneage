@@ -421,7 +421,7 @@ static int DelItemNum (lua_State *L)
 		itemindex = CHAR_getItemIndex( index , i );
 		if( !ITEM_CHECKINDEX(itemindex) ) continue;
 		if( ITEM_getInt(itemindex, ITEM_ID) != itemID ) continue;
-		sprintf( token, "交齣道具%s",ITEM_getChar( itemindex, ITEM_NAME));
+		sprintf( token, "交出道具%s",ITEM_getChar( itemindex, ITEM_NAME));
 		CHAR_talkToCli( index, -1, token, CHAR_COLORYELLOW);
 
 						LogItem(

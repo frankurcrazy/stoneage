@@ -271,7 +271,7 @@ static void NPC_Pauction_selectWindow( int meindex, int toindex, int seqno, int 
 			char *cdkey = CHAR_getChar(toindex, CHAR_CDKEY);
 			char *name = CHAR_getChar(toindex, CHAR_NAME);
 			sasql_addPauctionInfo(cdkey, name, effect, cost, type, info, string);
-			sprintf(token, "成功為您登記瞭一條委托交易信息,我們會盡心盡力為您服務,如有一切動態,我們會第一時間通知您!");
+			sprintf(token, "成功為您登記了一條委托交易信息,我們會盡心盡力為您服務,如有一切動態,我們會第一時間通知您!");
 		}
 		break;
 	case WINDOW_PAUCTION_LIST_BUY_ALL:
@@ -319,7 +319,7 @@ static void NPC_Pauction_selectWindow( int meindex, int toindex, int seqno, int 
 				if(type == 1){
 					int havepetelement = CHAR_getCharPetElement( toindex);
     			if( havepetelement < 0 ) {
-    				sprintf(token, "很抱歉,你身上寵物已滿,請空齣一個寵物欄位!");
+    				sprintf(token, "很抱歉,你身上寵物已滿,請空出一個寵物欄位!");
     				break;
     			}
     			Char petone;
@@ -346,7 +346,7 @@ static void NPC_Pauction_selectWindow( int meindex, int toindex, int seqno, int 
 				}else if(type == 2){
 		    	int emptyitemindexinchara = CHAR_findEmptyItemBox( toindex );
 					if( emptyitemindexinchara < 0 ){
-						sprintf(token, "很抱歉,你身上物品已滿,請空齣一個物品欄位!");
+						sprintf(token, "很抱歉,你身上物品已滿,請空出一個物品欄位!");
 						break;
 					}
 					ITEM_Item   itmone;
@@ -386,7 +386,7 @@ static void NPC_Pauction_selectWindow( int meindex, int toindex, int seqno, int 
 			if(type == 1){
 				int havepetelement = CHAR_getCharPetElement( toindex);
     		if( havepetelement < 0 ) {
-    			sprintf(token, "很抱歉,你身上寵物已滿,請空齣一個寵物欄位!");
+    			sprintf(token, "很抱歉,你身上寵物已滿,請空出一個寵物欄位!");
     			break;
     		}
     		int flg = sasql_PauctionOK(atoi(data), CHAR_getChar(toindex, CHAR_CDKEY));
@@ -412,7 +412,7 @@ static void NPC_Pauction_selectWindow( int meindex, int toindex, int seqno, int 
           }
 					sprintf(token, "成功購買委托寵物!");
 				}else if(flg == -1){
-					sprintf(token, "你所要購買的委托寵物不存在或已被他人購買瞭!");
+					sprintf(token, "你所要購買的委托寵物不存在或已被他人購買了!");
 				}else if(flg == -2){
 					sprintf(token, "很抱歉,你身上的重迴幣數不夠購買!");
 				}else{
@@ -421,7 +421,7 @@ static void NPC_Pauction_selectWindow( int meindex, int toindex, int seqno, int 
     	}else if(type == 2){
 		    int emptyitemindexinchara = CHAR_findEmptyItemBox( toindex );
 				if( emptyitemindexinchara < 0 ){
-					sprintf(token, "很抱歉,你身上物品已滿,請空齣一個物品欄位!");
+					sprintf(token, "很抱歉,你身上物品已滿,請空出一個物品欄位!");
 					break;
 				}
 				int flg = sasql_PauctionOK(atoi(data), CHAR_getChar(toindex, CHAR_CDKEY));
@@ -444,7 +444,7 @@ static void NPC_Pauction_selectWindow( int meindex, int toindex, int seqno, int 
           }
 					sprintf(token, "成功購買委托物品!");
 				}else if(flg == -1){
-					sprintf(token, "你所要購買的委托物品不存在或已被他人購買瞭!");
+					sprintf(token, "你所要購買的委托物品不存在或已被他人購買了!");
 				}else if(flg == -2){
 					sprintf(token, "很抱歉,你身上的重迴幣數不夠購買!");
 				}else{

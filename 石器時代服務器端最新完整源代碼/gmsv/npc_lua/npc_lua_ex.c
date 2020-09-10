@@ -138,7 +138,7 @@ int NPC_Lua_Create(const char *_DoFile, const char *_InitFuncName, char *_seek, 
 
 	if( CHAR_getDefaultChar( &TM_char, TM_seekint) == FALSE )
 	{
-		LRetErrInt(M_Script_Lua, -1, "設置數據默認值失敗。程序內部可能産生溢齣。");
+		LRetErrInt(M_Script_Lua, -1, "設置數據默認值失敗。程序內部可能産生溢出。");
 	}
 	
   //加載指定的LUA腳本文件
@@ -320,7 +320,7 @@ int NPC_Lua_NTInt_Get(lua_State *_NLL)
 	
 	if(TM_Index < 1 || TM_Index > TM_Point->Size)
 	{
-		luaL_argerror(_NLL, 1, "超齣數據範圍，不允許操作。");
+		luaL_argerror(_NLL, 1, "超出數據範圍，不允許操作。");
 	}
 
 	TM_Index--;
@@ -343,7 +343,7 @@ int NPC_Lua_NTInt_Set(lua_State *_NLL)
 	
 	if(TM_Index < 1 || TM_Index > TM_Point->Size)
 	{
-		luaL_argerror(_NLL, 1, "超齣數據範圍，不允許操作。");
+		luaL_argerror(_NLL, 1, "超出數據範圍，不允許操作。");
 	}
 	TM_Index--;
 

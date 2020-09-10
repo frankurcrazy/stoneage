@@ -7109,7 +7109,7 @@ static int BATTLE_StatusSeq( int charaindex )
 					CHAR_setInt( defindex, CHAR_HP,0);
 					CHAR_setFlg( defindex, CHAR_ISDIE, 1 );
 					CHAR_setWorkInt( defindex, CHAR_WORKBATTLECOM1, BATTLE_COM_NONE );
-					sprintf(szBuffer, "%s身中劇毒未解而陣亡瞭!!", CHAR_getChar( defindex, CHAR_NAME ));
+					sprintf(szBuffer, "%s身中劇毒未解而陣亡了!!", CHAR_getChar( defindex, CHAR_NAME ));
 					if( CHAR_getInt( defindex, CHAR_WHICHTYPE ) == CHAR_TYPEPET ){
 						CHAR_talkToCli( CHAR_getWorkInt(defindex, CHAR_WORKPLAYERINDEX), -1, szBuffer, CHAR_COLORYELLOW);
 					}else{
@@ -8591,9 +8591,9 @@ static int BATTLE_Battling( int battleindex )
 			&&  pBattle->Side[j].Entry[i].charaindex == -1){
 				if( pBattle->iEntryBack2[k] >= 0 ){
 					sprintf( szBattleString, "BE|et%X|f1|", k );
-					//BATTLE_BroadCast( battleindex, "突然有人不見瞭。", CHAR_COLORYELLOW );
+					//BATTLE_BroadCast( battleindex, "突然有人不見了。", CHAR_COLORYELLOW );
 				}else{
-					print( "應是輸入ID不正確齣現的error。\n" );
+					print( "應是輸入ID不正確出現的error。\n" );
 					//BATTLE_BroadCast( battleindex, "ID錯誤的error。", CHAR_COLORYELLOW );
 				}
 			}
@@ -8674,7 +8674,7 @@ static int BATTLE_Battling( int battleindex )
 		}
 #endif
 #ifdef _PETSKILL_BECOMEPIG
-        if( CHAR_getInt( charaindex, CHAR_BECOMEPIG) > -1 //變成烏力瞭
+        if( CHAR_getInt( charaindex, CHAR_BECOMEPIG) > -1 //變成烏力了
 		    && (CHAR_getInt( charaindex, CHAR_WHICHTYPE ) == CHAR_TYPEPLAYER) )
 		{
 			int COM = CHAR_getWorkInt( charaindex, CHAR_WORKBATTLECOM1 );
@@ -8788,7 +8788,7 @@ static int BATTLE_Battling( int battleindex )
 				}
 #endif
 #ifdef _PETSKILL_BECOMEPIG
-				if( CHAR_getInt( charaindex, CHAR_BECOMEPIG) > -1 ){//變成烏力瞭
+				if( CHAR_getInt( charaindex, CHAR_BECOMEPIG) > -1 ){//變成烏力了
 				    gWeponType = ITEM_FIST;
 					CHAR_setWorkInt( charaindex, CHAR_WORKBATTLECOM1, BATTLE_COM_ATTACK );
 				}
@@ -8900,7 +8900,7 @@ static int BATTLE_Battling( int battleindex )
 			BattleArray[battleindex].flgTime += flgtime;
 		}
 #endif
-#ifdef _PETSKILL_BECOMEFOX // 中瞭媚惑術後攻防敏能力各降 20%
+#ifdef _PETSKILL_BECOMEFOX // 中了媚惑術後攻防敏能力各降 20%
 		if( CHAR_getWorkInt( charaindex, CHAR_WORKFOXROUND ) != -1 ){ //變成小狐狸
 			CHAR_setWorkInt( charaindex, CHAR_WORKATTACKPOWER, CHAR_getWorkInt( charaindex, CHAR_WORKFIXSTR)*0.8);//攻降20%
 			CHAR_setWorkInt( charaindex, CHAR_WORKDEFENCEPOWER, CHAR_getWorkInt( charaindex, CHAR_WORKFIXTOUGH)*0.8);//防降20%
@@ -9195,7 +9195,7 @@ static int BATTLE_Battling( int battleindex )
 				else 
 					f_num = 15;
 
-				// 取齣戰場上存活的人
+				// 取出戰場上存活的人
 				for( i=f_num; i<f_num+5; i++ ){			
 					if(BATTLE_TargetCheck(battleindex, i) != FALSE){
 						temp[j++] = i;
@@ -9754,7 +9754,7 @@ static int BATTLE_Battling( int battleindex )
 				}
 			}
 			break;
-		case BATTLE_COM_COMPELESCAPE: //強製離開
+		case BATTLE_COM_COMPELESCAPE: //強制離開
 			if( CHAR_getInt( charaindex, CHAR_WHICHTYPE ) != CHAR_TYPEPET ){
 				BATTLE_Escape( battleindex, attackNo, 1);
 				if (CHAR_getWorkInt(charaindex, CHAR_WORKFMPKFLAG) == 1)
@@ -9819,7 +9819,7 @@ static int BATTLE_Battling( int battleindex )
 //			print("magic->%d,toindex->%d\n",magic,toindex);
 			// 判斷攻    圍
 			for(magic_count=0;magic_count<MAX_MAGIC_NUMBER;magic_count++){
-				// 比對魔法的id值來找齣魔法的攻擊  圍
+				// 比對魔法的id值來找出魔法的攻擊  圍
 				if(magic == TargetIndex[magic_count][0]){
 					// 如果是打全體的魔法
 					if(TargetIndex[magic_count][1] == 20){
@@ -9835,10 +9835,10 @@ static int BATTLE_Battling( int battleindex )
 					}
 					// 如果不是打單人的魔法
 					else if(TargetIndex[magic_count][1] != -1){
-						// 如果是打右下的後麵那一排
+						// 如果是打右下的後面那一排
 						if(toindex >= 0 && toindex <= 4)
 							toindex = TargetIndex[magic_count][1];
-						// 打右下的前麵那一排
+						// 打右下的前面那一排
 						else	
 							toindex = TargetIndex[magic_count][1]-1;
 					}
@@ -10533,7 +10533,7 @@ static int BATTLE_Battling( int battleindex )
 			}
 		}
 #endif
-#ifdef _PETSKILL_BECOMEFOX	// 判斷中瞭媚惑術後是否已到恢復的迴閤數
+#ifdef _PETSKILL_BECOMEFOX	// 判斷中了媚惑術後是否已到恢復的迴閤數
 		//if(CHAR_getInt( charaindex, CHAR_BASEIMAGENUMBER)==101749) //用圖號判斷的話,若是人變身時,會被自動改迴去
 		if( CHAR_getWorkInt( charaindex, CHAR_WORKFOXROUND ) != -1 ) //若是變成小狐狸
 		{		
@@ -10672,7 +10672,7 @@ static int BATTLE_Battling( int battleindex )
 			for( k=0; k<20; k++)	{
 				userindex = BATTLE_getBattleDieIndex( battleindex, k);
 				if( !CHAR_CHECKINDEX( userindex) ) continue;
-				//Change fix CHECK_ITEM_RELIFE裏麵有檢查瞭,這裏不用
+				//Change fix CHECK_ITEM_RELIFE裏面有檢查了,這裏不用
 				//if( CHAR_getFlg( userindex, CHAR_ISDIE ) == FALSE )
 				//	continue;
 				if( CHAR_getInt( userindex, CHAR_HP) > 0 )

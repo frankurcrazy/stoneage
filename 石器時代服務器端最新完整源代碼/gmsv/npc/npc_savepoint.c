@@ -134,25 +134,25 @@ void NPC_SavePointTalked( int meindex , int talkerindex , char *msg ,
 #ifdef _SAVE_GAME_ID
 					if (dd>0) {
 	        	snprintf( timeMsg, sizeof( timeMsg ) ,
-        			  "本星球%s已經啓動瞭 %d 日 %d 小時 %d 分 %d 秒。",getGameservername(),dd,hh,mm,ss);
+        			  "本星球%s已經啓動了 %d 日 %d 小時 %d 分 %d 秒。",getGameservername(),dd,hh,mm,ss);
                 } else if (hh>0) {
  	                snprintf( timeMsg, sizeof( timeMsg ) ,
-      		                  "本星球%s已經啓動瞭 %d 小時 %d 分 %d 秒。",getGameservername(),hh,mm,ss);
+      		                  "本星球%s已經啓動了 %d 小時 %d 分 %d 秒。",getGameservername(),hh,mm,ss);
                 } else {
                         snprintf( timeMsg, sizeof( timeMsg ) ,
-                                  "本星球%s已經啓動瞭 %d 分 %d 秒。",getGameservername(),mm,ss);
+                                  "本星球%s已經啓動了 %d 分 %d 秒。",getGameservername(),mm,ss);
                 }
                 strcat(buf2,timeMsg);
 #else
 					if (dd>0) {
 	        	snprintf( timeMsg, sizeof( timeMsg ) ,
-        			  "本星球已經啓動瞭 %d 日 %d 小時 %d 分 %d 秒。",dd,hh,mm,ss);
+        			  "本星球已經啓動了 %d 日 %d 小時 %d 分 %d 秒。",dd,hh,mm,ss);
                 } else if (hh>0) {
  	                snprintf( timeMsg, sizeof( timeMsg ) ,
-      		                  "本星球已經啓動瞭 %d 小時 %d 分 %d 秒。",hh,mm,ss);
+      		                  "本星球已經啓動了 %d 小時 %d 分 %d 秒。",hh,mm,ss);
                 } else {
                         snprintf( timeMsg, sizeof( timeMsg ) ,
-                                  "本星球已經啓動瞭 %d 分 %d 秒。",mm,ss);
+                                  "本星球已經啓動了 %d 分 %d 秒。",mm,ss);
                 }
                 strcat(buf2,timeMsg);
 #endif

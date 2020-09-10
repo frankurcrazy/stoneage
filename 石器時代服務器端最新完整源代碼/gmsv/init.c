@@ -264,8 +264,8 @@ BOOL init(int argc , char** argv , char** env )
         print("重復地址使用: %d\n", getReuseaddr() );
 
 
-        print("最大在綫人數: %d\n", getFdnum() );
-        print("最大在綫寵數: %d\n", getPetcharnum() );
+        print("最大在線人數: %d\n", getFdnum() );
+        print("最大在線寵數: %d\n", getPetcharnum() );
         print("最大其他數目: %d\n", getOtherscharnum() );
         print("最大對象數目: %d\n", getObjnum() );
         print("最大物品數目: %d\n", getItemnum() );
@@ -330,23 +330,23 @@ BOOL init(int argc , char** argv , char** env )
 				print("戰鬥經驗倍數: %d倍\n", getBattleexp() );
 #endif
 #ifdef _NEW_PLAYER_CF
-				print("齣生人物轉數: %d轉\n", getNewplayertrans());
-				print("齣生人物等級: %d級\n", getNewplayerlv());
-				print("齣生人物金錢: %d S\n", getNewplayergivegold());
-				print("齣生寵物等級: %d級\n", getNewplayerpetlv());
+				print("出生人物轉數: %d轉\n", getNewplayertrans());
+				print("出生人物等級: %d級\n", getNewplayerlv());
+				print("出生人物金錢: %d S\n", getNewplayergivegold());
+				print("出生寵物等級: %d級\n", getNewplayerpetlv());
 #ifdef _VIP_SERVER
-				print("齣生擁有點數: %d點\n", getNewplayergivevip());
+				print("出生擁有點數: %d點\n", getNewplayergivevip());
 #endif
-				print("齣生能騎等級: %d\n", getRidePetLevel());
+				print("出生能騎等級: %d\n", getRidePetLevel());
 #ifdef _NEW_PLAYER_RIDE
-				print("齣生配套騎寵: %s\n", getPlayerRide());
+				print("出生配套騎寵: %s\n", getPlayerRide());
 #endif
-				print("齣生擁有寵物: NO1:%d NO2:%d NO3:%d NO4:%d NO5:%d\n",getNewplayergivepet(0),
+				print("出生擁有寵物: NO1:%d NO2:%d NO3:%d NO4:%d NO5:%d\n",getNewplayergivepet(0),
 																																	getNewplayergivepet(1),
 																																	getNewplayergivepet(2),
 																																	getNewplayergivepet(3),
 																																	getNewplayergivepet(4));
-				print("齣生擁有物品: ITEM1:%d ITEM2:%d ITEM3:%d ITEM4:%d ITEM5:%d\n"
+				print("出生擁有物品: ITEM1:%d ITEM2:%d ITEM3:%d ITEM4:%d ITEM5:%d\n"
 							"　　　　　　　ITEM1:%d ITEM2:%d ITEM3:%d ITEM4:%d ITEM5:%d\n"
 							"　　　　　　　ITEM1:%d ITEM2:%d ITEM3:%d ITEM4:%d ITEM5:%d\n"
 																																	,getNewplayergiveitem(0)
@@ -384,9 +384,9 @@ BOOL init(int argc , char** argv , char** env )
 #endif
 
 #ifdef _BATTLE_FLOOR
-		print("是否強製戰鬥: %s\n",getBattleFloorCF());
+		print("是否強制戰鬥: %s\n",getBattleFloorCF());
 		if(strcmp(getBattleFloorCF(),"是"))
-			print("強製戰鬥地圖: 地圖1:%d 地圖2:%d 地圖3:%d 地圖4:%d 地圖5:%d\n",getBattleFloor(1),
+			print("強制戰鬥地圖: 地圖1:%d 地圖2:%d 地圖3:%d 地圖4:%d 地圖5:%d\n",getBattleFloor(1),
 																																		getBattleFloor(2),
 																																		getBattleFloor(3),
 																																		getBattleFloor(4),
@@ -451,7 +451,7 @@ BOOL init(int argc , char** argv , char** env )
 		print("戰鬥獲得金錢: %d\n",getBattleGold());
 #endif
 #ifdef _ANGEL_TIME
-		print("精靈召喚時間: (%d人/在綫人數)分\n",getAngelPlayerTime());
+		print("精靈召喚時間: (%d人/在線人數)分\n",getAngelPlayerTime());
 		print("精靈召喚人數: %d人\n",getAngelPlayerMun());
 #endif
 #ifdef _RIDEMODE_20
@@ -713,7 +713,7 @@ BOOL init(int argc , char** argv , char** env )
 #endif
 
 #ifdef _ONLINE_SHOP
-	print( "讀取在綫商城配置文件..." );
+	print( "讀取在線商城配置文件..." );
 	if(!OnlineShop_init())
 		print("...失敗\n");
 	print("完成\n");

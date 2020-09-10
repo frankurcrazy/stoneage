@@ -55,7 +55,7 @@ extern	tagRidePetTable ridePetTable[296];
 void LeaveMemberIndex( int charaindex, int fmindexi);
 
 
-// Arminius: 取得傢族 pk dp 增加/損失值
+// Arminius: 取得家族 pk dp 增加/損失值
 // getFMdpAward
 // arg: windp=winner's fmdp	losedp=loser's fmdp
 // ret: dp award
@@ -238,15 +238,15 @@ void CHAR_Family(int fd, int index, char *message)
       switch(tolower(firstToken[0]))
       {
 			case 'a':
-				// 成立傢族
+				// 成立家族
 				FAMILY_Add(fd, index, message);
 				break;
 			case 'j':
-				// 加入傢族
+				// 加入家族
 				FAMILY_Join(fd, index, message);
 				break;
 			case 'e':
-				// 離開、退齣傢族
+				// 離開、退出家族
 				FAMILY_Leave(fd, index, message);
 				break;
 			case 'm':
@@ -254,19 +254,19 @@ void CHAR_Family(int fd, int index, char *message)
 				FAMILY_CheckMember(fd, index, message);
 				break;         
 			case 's':
-				// 取得傢族相關資料
+				// 取得家族相關資料
 				FAMILY_Detail(fd, index, message);
 				break;
 			case 'c':
-				// 傢族頻道
+				// 家族頻道
 				FAMILY_Channel(fd, index, message);
 				break;
 			case 'b':
-				// 傢族銀行
+				// 家族銀行
 				FAMILY_Bank(fd, index, message);
 				break;
 			case 'p':
-				// 申請傢族據點
+				// 申請家族據點
 				FAMILY_SetPoint(fd, index, message);
 				break;
 			case 't':
@@ -274,7 +274,7 @@ void CHAR_Family(int fd, int index, char *message)
 				FAMILY_SetAcceptFlag(fd, index, message);
 				break;
 			case 'x':
-				// 修改傢族主旨
+				// 修改家族主旨
 				FAMILY_FixRule( fd, index, message );
 				break;
 #ifdef _RIDEFLG_
@@ -294,7 +294,7 @@ void CHAR_Family(int fd, int index, char *message)
 				FAMILY_LeaderFunc( fd, index, message );
 				break;
 #ifdef _FM_MODIFY
-				// 傢族布告欄功能
+				// 家族布告欄功能
 			case 'd':
 #ifdef _UN_FMMEMO
 #else
@@ -362,7 +362,7 @@ void FAMILY_Add(int fd, int meindex, char* message)
 		lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 			WINDOW_BUTTONTYPE_OK,
 			-1, -1,
-			makeEscapeString( "\n你已經加入傢族羅～無法再成立傢族！", buf, sizeof(buf)));
+			makeEscapeString( "\n你已經加入家族羅～無法再成立家族！", buf, sizeof(buf)));
    	return;
 	}
 	tmpflag = CheckLeaderQ(meindex);
@@ -390,7 +390,7 @@ void FAMILY_Add(int fd, int meindex, char* message)
 		lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 			WINDOW_BUTTONTYPE_OK,
 			-1, -1,
-			makeEscapeString( "\n很抱歉喔！成立傢族需要1000石幣的手續費！", buf, sizeof(buf)));
+			makeEscapeString( "\n很抱歉喔！成立家族需要1000石幣的手續費！", buf, sizeof(buf)));
    	return;
 	}
 	else {
@@ -406,7 +406,7 @@ void FAMILY_Add(int fd, int meindex, char* message)
 		lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 			WINDOW_BUTTONTYPE_OK,
 			-1, -1,
-			makeEscapeString( "\n傢族的名稱請勿輸入空格！", buf, sizeof(buf)));
+			makeEscapeString( "\n家族的名稱請勿輸入空格！", buf, sizeof(buf)));
    	return;
 	}
 	if (getStringFromIndexWithDelim(message, "|", 3, token,
@@ -418,7 +418,7 @@ void FAMILY_Add(int fd, int meindex, char* message)
 		lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 			WINDOW_BUTTONTYPE_OK,
 			-1, -1,
-			makeEscapeString( "\n請選擇一隻寵物作為傢族守護獸！", buf, sizeof(buf)));
+			makeEscapeString( "\n請選擇一隻寵物作為家族守護獸！", buf, sizeof(buf)));
    	return;
 	}
 	if (getStringFromIndexWithDelim(message, "|", 4, token,
@@ -437,7 +437,7 @@ void FAMILY_Add(int fd, int meindex, char* message)
 		lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 			WINDOW_BUTTONTYPE_OK,
 			-1, -1,
-			makeEscapeString( "\n傢族徽章設置錯誤", buf, sizeof(buf)));
+			makeEscapeString( "\n家族徽章設置錯誤", buf, sizeof(buf)));
 		return;
 	}
 	fmbadge = atoi(token);
@@ -447,7 +447,7 @@ void FAMILY_Add(int fd, int meindex, char* message)
 		lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 			WINDOW_BUTTONTYPE_OK,
 			-1, -1,
-			makeEscapeString( "\n傢族徽章設置錯誤", buf, sizeof(buf)));
+			makeEscapeString( "\n家族徽章設置錯誤", buf, sizeof(buf)));
 		return;
 	}
 	fmbadge = FamilyBadgeData[fmbadge];
@@ -492,7 +492,7 @@ void FAMILY_Add(int fd, int meindex, char* message)
    	petname, petattr, fmrule, fmsprite, chargrano, CONNECT_getFdid(fd));
 #endif
 	
-	// 要求最新傢族列錶
+	// 要求最新家族列錶
 	//saacproto_ACShowFMList_send( acfd );
 	
 }
@@ -531,16 +531,16 @@ void ACAddFM(int fd, int result, int fmindex, int index)
 		CHAR_setWorkInt(meindex, CHAR_WORKFMSETUPFLAG, 0);
 #ifdef _NEW_MANOR_LAW
 		CHAR_setInt(meindex,CHAR_MOMENTUM,0);
-		CHAR_talkToCli(meindex,-1,"成立傢族個人氣勢歸零",CHAR_COLORYELLOW);
+		CHAR_talkToCli(meindex,-1,"成立家族個人氣勢歸零",CHAR_COLORYELLOW);
 #endif
 		 lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 			 WINDOW_BUTTONTYPE_OK,
 			 -1, -1,
-			 makeEscapeString( "\n恭喜你成立瞭新的傢族！但請在７天之內召集到１０名族人加入，不然會取消傢族資格喔。", buf, sizeof(buf)));
+			 makeEscapeString( "\n恭喜你成立了新的家族！但請在７天之內召集到１０名族人加入，不然會取消家族資格喔。", buf, sizeof(buf)));
 		 JoinMemberIndex( meindex, index);
 		 CHAR_charSaveFromConnect(meindex, FALSE);
 		 
-		 // 要求最新傢族資料
+		 // 要求最新家族資料
 		 saacproto_ACShowFMList_send( acfd );
 		 saacproto_ACShowMemberList_send( acfd, index );
 		 saacproto_ACShowTopFMList_send(acfd, FM_TOP_INTEGRATE);
@@ -552,7 +552,7 @@ void ACAddFM(int fd, int result, int fmindex, int index)
 			 CHAR_getInt( meindex, CHAR_FMINDEX),
 			 CHAR_getChar( meindex, CHAR_NAME),
 			 CHAR_getChar( meindex, CHAR_CDKEY),
-			 "ADDFAMILY(成立傢族)",
+			 "ADDFAMILY(成立家族)",
 			 ""
 			 );
    }
@@ -572,9 +572,9 @@ void ACAddFM(int fd, int result, int fmindex, int index)
    	   CHAR_setInt(petindex, CHAR_PETFAMILY, -1);
    	}
    	if (fmindex == -2)
-   		sprintf(tmpbuf, "\n已經有相同名字的傢族成立瞭！");
+   		sprintf(tmpbuf, "\n已經有相同名字的家族成立了！");
    	else
-   		sprintf(tmpbuf, "\n申請成立傢族失敗！");
+   		sprintf(tmpbuf, "\n申請成立家族失敗！");
 	lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 		WINDOW_BUTTONTYPE_OK,
 		-1, -1,
@@ -598,14 +598,14 @@ void FAMILY_Join(int fd, int meindex, char *message)
 		lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 			WINDOW_BUTTONTYPE_OK,
 			-1, -1,
-			makeEscapeString( "\n你已經加入其他傢族瞭喔！", buf, sizeof(buf)));
+			makeEscapeString( "\n你已經加入其他家族了喔！", buf, sizeof(buf)));
 		return;
    }
 
 #ifdef _FM_JOINLIMIT
 	if( CHAR_getInt( meindex, CHAR_FMTIMELIMIT ) > (int)time(NULL) ){
 		char buff[255];
-		sprintf(buff, "\n如之前退齣傢族，\n需滿%d小時纔能再加入傢族喔！",(CHAR_getInt( meindex, CHAR_FMTIMELIMIT )-(int)time(NULL))/3600+1);
+		sprintf(buff, "\n如之前退出家族，\n需滿%d小時纔能再加入家族喔！",(CHAR_getInt( meindex, CHAR_FMTIMELIMIT )-(int)time(NULL))/3600+1);
 		lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 			WINDOW_BUTTONTYPE_OK, -1, -1,
 			makeEscapeString( buff, buf, sizeof(buf)));
@@ -630,7 +630,7 @@ void FAMILY_Join(int fd, int meindex, char *message)
 			lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 				WINDOW_BUTTONTYPE_OK,
 				-1, -1,
-				makeEscapeString( "\n此傢族目前無法招收成員，傢族成員人數已到達上限！", buf, sizeof(buf)));
+				makeEscapeString( "\n此家族目前無法招收成員，家族成員人數已到達上限！", buf, sizeof(buf)));
 			return;
 	 }
    
@@ -649,7 +649,7 @@ void FAMILY_Join(int fd, int meindex, char *message)
 
 //   print("JoinFM index:%d fmindex:%d fmname:%s charname:%s charid:%s charlv:%d sprite:%d\n",
 //   	index, fmindex, fmname, charname, charid, charlv, fmsprite);
-#ifdef _PERSONAL_FAME	// Arminius: 傢族個人聲望
+#ifdef _PERSONAL_FAME	// Arminius: 家族個人聲望
 //   print("fame:%d charfdid:%d\n", CHAR_getInt(meindex, CHAR_FAME),
 //   	CONNECT_getFdid(fd));
    saacproto_ACJoinFM_send(acfd, fmname, fmindex, charname, charid, charlv,
@@ -681,7 +681,7 @@ void ACJoinFM(int fd, int result, int recv)
 		  JoinMemberIndex( meindex, CHAR_getWorkInt(meindex, CHAR_WORKFMINDEXI) );
 #ifdef _NEW_MANOR_LAW
 			CHAR_setInt(meindex,CHAR_MOMENTUM,0);
-			CHAR_talkToCli(meindex,-1,"加入傢族個人氣勢歸零",CHAR_COLORYELLOW);
+			CHAR_talkToCli(meindex,-1,"加入家族個人氣勢歸零",CHAR_COLORYELLOW);
 #endif
 		 
 		sprintf(buf,"fame:%d",CHAR_getInt(meindex,CHAR_FAME));
@@ -691,7 +691,7 @@ void ACJoinFM(int fd, int result, int recv)
 			 CHAR_getInt( meindex, CHAR_FMINDEX),
 			 CHAR_getChar( meindex, CHAR_NAME),
 			 CHAR_getChar( meindex, CHAR_CDKEY),
-			 "JOINFAMILY(申請加入傢族)",
+			 "JOINFAMILY(申請加入家族)",
 			 buf
 			 );
 		 
@@ -704,20 +704,20 @@ void ACJoinFM(int fd, int result, int recv)
 		lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 			WINDOW_BUTTONTYPE_OK,
 			-1, -1,
-			makeEscapeString( "\n此傢族目前不願意招收成員！", buf, sizeof(buf)));
+			makeEscapeString( "\n此家族目前不願意招收成員！", buf, sizeof(buf)));
 	}
 	else if (recv == -3)
 	{
 		lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 			WINDOW_BUTTONTYPE_OK,
 			-1, -1,
-			makeEscapeString( "\n此傢族目前無法招收成員，傢族成員人數已到達上限！", buf, sizeof(buf)));
+			makeEscapeString( "\n此家族目前無法招收成員，家族成員人數已到達上限！", buf, sizeof(buf)));
 	}
 	else
 		lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 			WINDOW_BUTTONTYPE_OK,
 			-1, -1,
-			makeEscapeString( "\n申請加入傢族失敗！", buf, sizeof(buf)));
+			makeEscapeString( "\n申請加入家族失敗！", buf, sizeof(buf)));
    }
    
    CHAR_sendStatusString( meindex, "F");   
@@ -744,7 +744,7 @@ void FAMILY_Leave(int fd, int meindex, char *message)
 	lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 		WINDOW_BUTTONTYPE_OK,
 		-1, -1,
-		makeEscapeString( "\n你並沒有加入傢族喔！", buf, sizeof(buf)));
+		makeEscapeString( "\n你並沒有加入家族喔！", buf, sizeof(buf)));
       	return;
    }
 
@@ -763,7 +763,7 @@ void FAMILY_Leave(int fd, int meindex, char *message)
 		    		   lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 			                             WINDOW_BUTTONTYPE_OK,
 			                             -1, -1,
-			                             makeEscapeString( "\n你目前的傢族正約戰中，因此無法解散傢族！", buf, sizeof(buf)));
+			                             makeEscapeString( "\n你目前的家族正約戰中，因此無法解散家族！", buf, sizeof(buf)));
 	      	     return;
 	      	 }
 			   }
@@ -790,7 +790,7 @@ void FAMILY_Leave(int fd, int meindex, char *message)
 //         print("DelFM index:%d fmindex:%d fmname:%s\n", index, fmindex, fmname);
          saacproto_ACDelFM_send(acfd, fmname, fmindex, index, charname, charid,CONNECT_getFdid(fd));
 
-         // 要求最新傢族列錶
+         // 要求最新家族列錶
          //saacproto_ACShowFMList_send( acfd );
       }else {
 //         print("LeaveFM index:%d fmindex:%d fmname:%s charname:%s charid:%s\n",
@@ -813,7 +813,7 @@ void ACLeaveFM( int fd, int result, int resultflag)
 			CHAR_getInt( meindex, CHAR_FMINDEX),
 			CHAR_getChar( meindex, CHAR_NAME),
 			CHAR_getChar( meindex, CHAR_CDKEY),
-	    	"LEAVEFAMILY(離開傢族)",
+	    	"LEAVEFAMILY(離開家族)",
 				""
 				);
 		if(  CHAR_getWorkInt( meindex, CHAR_WORKFMCHANNEL) != -1 )
@@ -822,14 +822,14 @@ void ACLeaveFM( int fd, int result, int resultflag)
 		SetFMVarInit(meindex);
 		lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 			WINDOW_BUTTONTYPE_OK, -1, -1,
-			makeEscapeString( "\n申請退齣傢族ＯＫ！", buf, sizeof(buf)));
+			makeEscapeString( "\n申請退出家族ＯＫ！", buf, sizeof(buf)));
 		CHAR_setWorkInt( meindex, CHAR_WORKFMFLOOR, -1);
 #ifdef _FM_JOINLIMIT
 		CHAR_setInt( meindex, CHAR_FMTIMELIMIT, (int)time(NULL)+getJoinFamilyTime()*(60*60) );
 #endif
 #ifdef _NEW_MANOR_LAW
 		CHAR_setInt(meindex,CHAR_MOMENTUM,0);
-		CHAR_talkToCli(meindex,-1,"退齣傢族個人氣勢歸零",CHAR_COLORYELLOW);
+		CHAR_talkToCli(meindex,-1,"退出家族個人氣勢歸零",CHAR_COLORYELLOW);
 #endif
 		CHAR_setInt( meindex , CHAR_RIDEPET, -1 );
 		CHAR_setInt( meindex , CHAR_BASEIMAGENUMBER , CHAR_getInt( meindex , CHAR_BASEBASEIMAGENUMBER) );
@@ -842,7 +842,7 @@ void ACLeaveFM( int fd, int result, int resultflag)
 	}else
 		lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 		WINDOW_BUTTONTYPE_OK, -1, -1,
-		makeEscapeString( "\n申請退齣傢族失敗！", buf, sizeof(buf)));
+		makeEscapeString( "\n申請退出家族失敗！", buf, sizeof(buf)));
 	
 	CHAR_sendStatusString( meindex, "F" );
 }
@@ -865,7 +865,7 @@ void ACDelFM(int fd, int result)
 		CHAR_getInt( meindex, CHAR_FMINDEX),
 		CHAR_getChar( meindex, CHAR_NAME),
 		CHAR_getChar( meindex, CHAR_CDKEY),
-		"DELFAMILY(傢族解散)",
+		"DELFAMILY(家族解散)",
 		""
 	);
 
@@ -881,19 +881,19 @@ void ACDelFM(int fd, int result)
 	lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 		WINDOW_BUTTONTYPE_OK,
 		-1, -1,
-		makeEscapeString( "\n傢族已經解散瞭！", buf, sizeof(buf)));
+		makeEscapeString( "\n家族已經解散了！", buf, sizeof(buf)));
 
-	// 要求最新傢族列錶
+	// 要求最新家族列錶
 	saacproto_ACShowFMList_send( acfd );
 
-// won 移到前麵去
+// won 移到前面去
 /*
 	LogFamily(
 		CHAR_getChar( meindex, CHAR_FMNAME),
 		CHAR_getInt( meindex, CHAR_FMINDEX),
 		CHAR_getChar( meindex, CHAR_NAME),
 		CHAR_getChar( meindex, CHAR_CDKEY),
-		"DELFAMILY(傢族解散)",
+		"DELFAMILY(家族解散)",
 		""
 	);
 */
@@ -902,7 +902,7 @@ void ACDelFM(int fd, int result)
 	 lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 		WINDOW_BUTTONTYPE_OK,
 		-1, -1,
-		makeEscapeString( "\n申請解散傢族失敗！", buf, sizeof(buf)));
+		makeEscapeString( "\n申請解散家族失敗！", buf, sizeof(buf)));
 
    CHAR_sendStatusString( meindex, "F");
 }
@@ -1150,7 +1150,7 @@ void ACShowFMMemo(int result, int index, int num, int dataindex, char *data)
    }
 }
 
-#ifdef _PERSONAL_FAME   // Arminius: 傢族顯\\個人聲望
+#ifdef _PERSONAL_FAME   // Arminius: 家族顯\\個人聲望
 void ACFMCharLogin(int fd, int result, int index, int floor, int fmdp,
 	int joinflag, int fmsetupflag, int flag, int charindex, int charfame
 	#ifdef _NEW_MANOR_LAW
@@ -1227,10 +1227,10 @@ void ACFMCharLogin(int fd, int result, int index, int floor, int fmdp,
 			 lssproto_WN_send(fd, WINDOW_MESSAGETYPE_MESSAGE,
 				 WINDOW_BUTTONTYPE_OK,
 				 -1, -1,
-				 makeEscapeString("\n傢族守護獸消失瞭！\n請立刻再選定一隻守護獸，\n否則傢族在七天之後會消失唷！\n", buf, sizeof(buf)));
+				 makeEscapeString("\n家族守護獸消失了！\n請立刻再選定一隻守護獸，\n否則家族在七天之後會消失唷！\n", buf, sizeof(buf)));
 */
 				
-			CHAR_talkToCli(meindex, -1, "\n傢族守護獸消失瞭！\n請立刻再選定一隻守護獸，\n否則傢族在七天之後會消失唷！\n", CHAR_COLORRED);
+			CHAR_talkToCli(meindex, -1, "\n家族守護獸消失了！\n請立刻再選定一隻守護獸，\n否則家族在七天之後會消失唷！\n", CHAR_COLORRED);
 			
 			 saacproto_ACFixFMData_send(acfd,
 				 CHAR_getChar(meindex, CHAR_FMNAME),
@@ -1247,7 +1247,7 @@ void ACFMCharLogin(int fd, int result, int index, int floor, int fmdp,
 #ifdef _FM_JOINLIMIT
 			 		CHAR_setInt( meindex, CHAR_FMTIMELIMIT, (int)time(NULL)+getJoinFamilyTime()*(60*60) );
 #endif
-   		    CHAR_talkToCli(meindex, -1, "你已經退齣傢族或傢族已經不存在瞭！", CHAR_COLORYELLOW);
+   		    CHAR_talkToCli(meindex, -1, "你已經退出家族或家族已經不存在了！", CHAR_COLORYELLOW);
 					CHAR_setWorkInt( meindex, CHAR_WORKFMFLOOR, -1);
 					CHAR_setInt( meindex , CHAR_RIDEPET, -1 );
 					CHAR_setInt( meindex , CHAR_BASEIMAGENUMBER , CHAR_getInt( meindex , CHAR_BASEBASEIMAGENUMBER) );
@@ -1504,7 +1504,7 @@ void FAMILY_Detail(int fd, int meindex, char *message)
       
       getStringFromIndexWithDelim(memberlist[fmindex_wk].numberlistarray[0],
 				"|",2,leadernamebuf,sizeof(leadernamebuf));
-      // sendbuf -> 傢族名稱|人數|族長名稱|傢族排行|傢族聲望|個人聲望|個人職位|傢族精靈|PK
+      // sendbuf -> 家族名稱|人數|族長名稱|家族排行|家族聲望|個人聲望|個人職位|家族精靈|PK
 #ifdef _VERSION_NEW
 			sprintf( sendbuf, "%s|%d|%s|%d|%d|%d|%d|%d|%s|%d|%d", 
 #else
@@ -1533,7 +1533,7 @@ void FAMILY_Detail(int fd, int meindex, char *message)
 				tmpbuf
 
 #ifdef _NEW_MANOR_LAW
-				,fmdptop.fmMomentum[h]/100	// 傢族氣勢
+				,fmdptop.fmMomentum[h]/100	// 家族氣勢
 				,CHAR_getInt(meindex,CHAR_MOMENTUM)/100 // 個人氣勢
 #endif
 				);
@@ -1697,7 +1697,7 @@ void FAMILY_CheckMember(int fd, int meindex, char *message)
       	 	lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
       	 		WINDOW_BUTTONTYPE_OK,
       	 		-1, -1,
-      	 		makeEscapeString( "\n傢族目前正在戰鬥中，所以無法審核成員。", buf, sizeof(buf)));
+      	 		makeEscapeString( "\n家族目前正在戰鬥中，所以無法審核成員。", buf, sizeof(buf)));
 //      	 	print("fmpks_pos:%d index:%d host:%d guest:%d\n", fmpks_pos,
 //      	 		index, fmpks[fmpks_pos].host_index, fmpks[fmpks_pos].guest_index);
       	 	return;
@@ -1707,7 +1707,7 @@ void FAMILY_CheckMember(int fd, int meindex, char *message)
 	  {	  
 	  // shan begin
       char sbuf[1024];	  
-	  sprintf( sbuf, "族長代號:%d -> 人物名稱:%s 人物索引:%d (將該人物退齣傢族)\n", CHAR_getInt(meindex, CHAR_FMLEADERFLAG), charname, charindex);
+	  sprintf( sbuf, "族長代號:%d -> 人物名稱:%s 人物索引:%d (將該人物退出家族)\n", CHAR_getInt(meindex, CHAR_FMLEADERFLAG), charname, charindex);
 	  LogFamily(
 		  CHAR_getChar(meindex, CHAR_FMNAME),
 		  CHAR_getInt(meindex, CHAR_FMINDEX),
@@ -1773,7 +1773,7 @@ void FAMILY_CheckMember(int fd, int meindex, char *message)
 #endif
    }
 #endif
-   // 要求最新傢族列錶
+   // 要求最新家族列錶
    saacproto_ACShowFMList_send( acfd );
 }
 
@@ -1791,7 +1791,7 @@ void FAMILY_Channel(int fd, int meindex, char *message)
 		lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 			WINDOW_BUTTONTYPE_OK,
 			-1, -1,
-			makeEscapeString( "\n你還沒有加入任何傢族！", buf, sizeof(buf)));
+			makeEscapeString( "\n你還沒有加入任何家族！", buf, sizeof(buf)));
 		return;
 	}
 	
@@ -1829,11 +1829,11 @@ void FAMILY_Channel(int fd, int meindex, char *message)
 				CHAR_talkToCli( meindex, -1, "此頻道人數已滿。", CHAR_COLORWHITE);
 				return;
 			}
-			sprintf( buf, "加入傢族頻道 [%d]。", channel );
+			sprintf( buf, "加入家族頻道 [%d]。", channel );
 			CHAR_talkToCli( meindex, -1, buf, CHAR_COLORWHITE);
 			
 			if( nowchannel >=0 && nowchannel < FAMILY_MAXCHANNEL ) {
-				sprintf( buf, "%s 退齣頻道。", CHAR_getChar( meindex, CHAR_NAME) );
+				sprintf( buf, "%s 退出頻道。", CHAR_getChar( meindex, CHAR_NAME) );
 				for( i=0; i < FAMILY_MAXCHANNELMEMBER; i++ ) {
 					if( CHAR_CHECKINDEX(channelMember[fmindexi][nowchannel][i])
 						&& channelMember[fmindexi][nowchannel][i] != meindex ) {
@@ -1866,10 +1866,10 @@ void FAMILY_Channel(int fd, int meindex, char *message)
 				return;
 			}
 #ifndef _CHANNEL_MODIFY
-			sprintf( buf, "加入傢族頻道 [全]。");
+			sprintf( buf, "加入家族頻道 [全]。");
 			CHAR_talkToCli( meindex, -1, buf, CHAR_COLORWHITE);
 			if( nowchannel >=0 && nowchannel < FAMILY_MAXCHANNEL ) {
-				sprintf( buf, "%s 退齣頻道。", CHAR_getChar( meindex, CHAR_NAME) );
+				sprintf( buf, "%s 退出頻道。", CHAR_getChar( meindex, CHAR_NAME) );
 				for( i=0; i < FAMILY_MAXCHANNELMEMBER; i++ ) {
 					if( CHAR_CHECKINDEX(channelMember[fmindexi][nowchannel][i])
 						&& channelMember[fmindexi][nowchannel][i] != meindex ) {
@@ -1897,7 +1897,7 @@ void FAMILY_Channel(int fd, int meindex, char *message)
 		else {
 			channel = -1;
 #ifndef _CHANNEL_MODIFY
-			CHAR_talkToCli( meindex, -1, "退齣傢族頻道。", CHAR_COLORWHITE);
+			CHAR_talkToCli( meindex, -1, "退出家族頻道。", CHAR_COLORWHITE);
 #else
 			CHAR_talkToCli( meindex, -1, "關閉族長廣播。", CHAR_COLORWHITE);
 			channel = 0;
@@ -1911,7 +1911,7 @@ void FAMILY_Channel(int fd, int meindex, char *message)
 			}
 #endif
 			
-			sprintf( buf, "%s 退齣頻道。", CHAR_getChar( meindex, CHAR_NAME) );
+			sprintf( buf, "%s 退出頻道。", CHAR_getChar( meindex, CHAR_NAME) );
 			for( i=0; i < FAMILY_MAXCHANNELMEMBER; i++ ) {
 				if( CHAR_CHECKINDEX(channelMember[fmindexi][nowchannel][i])
 					&& channelMember[fmindexi][nowchannel][i] != meindex ) {
@@ -1979,7 +1979,7 @@ void FAMILY_Bank(int fd, int meindex, char *message)
 	fmindex = CHAR_getInt( meindex, CHAR_FMINDEX);
 	// add shan
 	if( fmindex <= 0 && CHAR_getInt( meindex, CHAR_BANKGOLD) < 1) {
-		CHAR_talkToCli( meindex, -1, "你必須先加入傢族。", CHAR_COLORWHITE);
+		CHAR_talkToCli( meindex, -1, "你必須先加入家族。", CHAR_COLORWHITE);
 		return;
 	}
 	
@@ -1998,12 +1998,12 @@ void FAMILY_Bank(int fd, int meindex, char *message)
 			   	|| toBank < 0) ) {
 			// shan add       
 			if( toBank > 0 && CHAR_getInt( meindex, CHAR_FMINDEX ) < 1 ) {
-				sprintf(buf, "抱歉！你沒有加入任何傢族，所以僅能領取存款");
+				sprintf(buf, "抱歉！你沒有加入任何家族，所以僅能領取存款");
 				CHAR_talkToCli( meindex, -1, buf, CHAR_COLORWHITE);
 				return;
 			}
 			if( bank + toBank <0) {
-				sprintf(buf, "抱歉！你的傢族銀行個人帳戶沒有這麼多存款");
+				sprintf(buf, "抱歉！你的家族銀行個人帳戶沒有這麼多存款");
 				CHAR_talkToCli( meindex, -1, buf, CHAR_COLORWHITE);
 				return;
 			}
@@ -2012,15 +2012,15 @@ void FAMILY_Bank(int fd, int meindex, char *message)
 			CHAR_send_P_StatusString( meindex , CHAR_P_STRING_GOLD);
 			
 			if( toBank >= 0 ) {
-				sprintf(buf, "存入%d到傢族銀行個人帳戶。", toBank);
+				sprintf(buf, "存入%d到家族銀行個人帳戶。", toBank);
 				CHAR_talkToCli( meindex, -1, buf, CHAR_COLORWHITE);
-				// Syu ADD 新增傢族個人銀行存取Log (不含傢族銀行)
+				// Syu ADD 新增家族個人銀行存取Log (不含家族銀行)
 				LogFamilyBankStone(
 					CHAR_getChar( meindex, CHAR_NAME ), 
 					CHAR_getChar( meindex, CHAR_CDKEY ),
 					toBank,                            
 					CHAR_getInt( meindex, CHAR_GOLD ),
-					"myBank(存款)(傢族個人銀行)",
+					"myBank(存款)(家族個人銀行)",
 					CHAR_getInt( meindex,CHAR_FLOOR),
 					CHAR_getInt( meindex,CHAR_X ),
 					CHAR_getInt( meindex,CHAR_Y ),
@@ -2029,15 +2029,15 @@ void FAMILY_Bank(int fd, int meindex, char *message)
 				
 			}
 			else {
-				sprintf(buf, "從傢族銀行個人帳戶取齣%d。", -toBank);
+				sprintf(buf, "從家族銀行個人帳戶取出%d。", -toBank);
 				CHAR_talkToCli( meindex, -1, buf, CHAR_COLORWHITE);
-				// Syu ADD 新增傢族個人銀行存取Log (不含傢族銀行)
+				// Syu ADD 新增家族個人銀行存取Log (不含家族銀行)
 				LogFamilyBankStone(
 					CHAR_getChar( meindex, CHAR_NAME ), 
 					CHAR_getChar( meindex, CHAR_CDKEY ),
 					toBank,                            
 					CHAR_getInt( meindex, CHAR_GOLD ),
-					"myBank(提款)(傢族個人銀行)",
+					"myBank(提款)(家族個人銀行)",
 					CHAR_getInt( meindex,CHAR_FLOOR),
 					CHAR_getInt( meindex,CHAR_X ),
 					CHAR_getInt( meindex,CHAR_Y ),
@@ -2045,14 +2045,14 @@ void FAMILY_Bank(int fd, int meindex, char *message)
 					);
 				
 			}
-			// Syu ADD 新增傢族個人銀行存取Log (不含傢族銀行)
+			// Syu ADD 新增家族個人銀行存取Log (不含家族銀行)
 			LogStone(
 				-1,
 				CHAR_getChar( meindex, CHAR_NAME ), /* 平乓仿   */
 				CHAR_getChar( meindex, CHAR_CDKEY ), /* 交□扒□ID */
 				-toBank,                                 /* 嗯喊 */
 				CHAR_getInt( meindex, CHAR_GOLD ),
-				"myBank(傢族個人銀行)",
+				"myBank(家族個人銀行)",
 				CHAR_getInt( meindex,CHAR_FLOOR),
 				CHAR_getInt( meindex,CHAR_X ),
 				CHAR_getInt( meindex,CHAR_Y )
@@ -2100,7 +2100,7 @@ void FAMILY_Bank(int fd, int meindex, char *message)
 		if( toTax>0 ) {	//存款預先扣款
 			CHAR_setInt( meindex, CHAR_GOLD, CHAR_getInt( meindex, CHAR_GOLD)-toTax );
 		}
-		sprintf( buf, "傢族銀行%s處理中....", (toTax>0)?"存款":"取款");
+		sprintf( buf, "家族銀行%s處理中....", (toTax>0)?"存款":"取款");
 		CHAR_talkToCli( meindex , -1, buf, CHAR_COLORYELLOW);
 		
 		CHAR_send_P_StatusString( meindex , CHAR_P_STRING_GOLD);
@@ -2147,7 +2147,7 @@ void FAMILY_SetPoint(int fd, int meindex, char *message)
 #ifdef _FM_POINT_APPLY_FAME
   if(fmdp < 100000){
    	lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,WINDOW_BUTTONTYPE_OK,-1, -1,
-		makeEscapeString( "\n你傢族的聲望不足1000聲望，無法申請莊園！", buf, sizeof(buf)));
+		makeEscapeString( "\n你家族的聲望不足1000聲望，無法申請莊園！", buf, sizeof(buf)));
     return;
   }
 #endif
@@ -2157,7 +2157,7 @@ void FAMILY_SetPoint(int fd, int meindex, char *message)
    	   && ((fmpks[i * MAX_SCHEDULE + 1].flag = FMPKS_FLAG_MANOR_BATTLEBEGIN)
    	   	|| (fmpks[i * MAX_SCHEDULE + 1].flag == FMPKS_FLAG_MANOR_PREPARE))){
    		char	tmpbuf[256];
-   		sprintf(tmpbuf, "\n你跟%s已經有預約莊園爭奪賽瞭～\n無法再申請莊園瞭喔！",
+   		sprintf(tmpbuf, "\n你跟%s已經有預約莊園爭奪賽了～\n無法再申請莊園了喔！",
    			fmpks[i * MAX_SCHEDULE + 1].host_name);
    		lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
    			WINDOW_BUTTONTYPE_OK,
@@ -2204,20 +2204,20 @@ void ACSetFMPoint(int ret, int r, int clifd)
          return;
    if (ret == 0){
    		if (r == -1)
-   			sprintf(message, "申請傢族失敗！");
+   			sprintf(message, "申請家族失敗！");
    		else if (r == -2)
-   			sprintf(message, "你已經有傢族據點瞭～不得重復申請！");
+   			sprintf(message, "你已經有家族據點了～不得重復申請！");
    		else if (r == -3)
-   			sprintf(message, "尚未到達申請傢族據點的資格！");
+   			sprintf(message, "尚未到達申請家族據點的資格！");
    		else if (r == -4)
-   			sprintf(message, "傢族據點已經有傢族在使用中羅！");
+   			sprintf(message, "家族據點已經有家族在使用中羅！");
    		else if (r == -5)
-   			sprintf(message, "您的傢族人數未達申請標準唷！");
+   			sprintf(message, "您的家族人數未達申請標準唷！");
    		else if (r == -6)
    			sprintf(message, "由於你失守莊園，需在三十分鍾後申請喲！");
    }
    else if (ret == 1)
-			sprintf(message, "申請傢族據點ＯＫ！");
+			sprintf(message, "申請家族據點ＯＫ！");
    
    lssproto_WN_send( clifd, WINDOW_MESSAGETYPE_MESSAGE,
    	WINDOW_BUTTONTYPE_OK,
@@ -2228,7 +2228,7 @@ void ACSetFMPoint(int ret, int r, int clifd)
 void ACFMAnnounce(int ret, char *fmname, int fmindex, int index,
 	int kindflag, char *data, int color)
 {
-   // kindflag 1:族長廣播 2:係統公告傢族被刪除 3:係統通知訊息
+   // kindflag 1:族長廣播 2:係統公告家族被刪除 3:係統通知訊息
    int i, chindex;
    if( ret != 1 )	return;
 //   print("fmname:%s fmindex:%d index:%d kindflag:%d data:%s color:%d\n",
@@ -2256,7 +2256,7 @@ void ACFMAnnounce(int ret, char *fmname, int fmindex, int index,
                int fd = getfdFromCharaIndex( chindex );
                if (fd == -1)	return;
                SetFMVarInit( chindex );
-               CHAR_talkToCli( chindex , -1, "由於您的傢族在七天之內沒有召收到１０名傢族成員，所以被迫解散瞭！",
+               CHAR_talkToCli( chindex , -1, "由於您的家族在七天之內沒有召收到１０名家族成員，所以被迫解散了！",
                		CHAR_COLORRED);
             }
          }else
@@ -2273,7 +2273,7 @@ void ACFMAnnounce(int ret, char *fmname, int fmindex, int index,
       CHAR_talkToCli(meindex, -1, data, CHAR_COLORRED);
       if(strstr(data,"已經審核完畢您的加入申請！")!=NULL){
 
-			}else if(strstr(data,"已經將你踢齣傢族瞭！")!=NULL){
+			}else if(strstr(data,"已經將你踢出家族了！")!=NULL){
 				CHAR_setInt( meindex , CHAR_RIDEPET, -1 );
 				CHAR_setInt( meindex , CHAR_BASEIMAGENUMBER , CHAR_getInt( meindex , CHAR_BASEBASEIMAGENUMBER) );
 				CHAR_complianceParameter( meindex );
@@ -2379,7 +2379,7 @@ void FAMILY_FixRule( int fd, int meindex, char* message )
 		lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 			WINDOW_BUTTONTYPE_OK,
 			-1, -1,
-			makeEscapeString( "\n傢族主旨不可為空白唷！", buf, sizeof(buf)));
+			makeEscapeString( "\n家族主旨不可為空白唷！", buf, sizeof(buf)));
 	      	return;
 	   }
 
@@ -2402,7 +2402,7 @@ void FAMILY_FixRule( int fd, int meindex, char* message )
 			   lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 				   WINDOW_BUTTONTYPE_OK,
 				   -1, -1,
-				   makeEscapeString( "\n傢族徽章設置錯誤", buf, sizeof(buf)));
+				   makeEscapeString( "\n家族徽章設置錯誤", buf, sizeof(buf)));
 			   return;
 	   }
 	   int badgeindex = atoi( buf );
@@ -2413,7 +2413,7 @@ void FAMILY_FixRule( int fd, int meindex, char* message )
 		   lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 			   WINDOW_BUTTONTYPE_OK,
 			   -1, -1,
-			   makeEscapeString( "\n傢族徽章設置錯誤", buf, sizeof(buf)));
+			   makeEscapeString( "\n家族徽章設置錯誤", buf, sizeof(buf)));
 		   return;
 	   }
 	   int vippoint = sasql_getVipPoint(meindex);
@@ -2628,7 +2628,7 @@ int FAMILY_RidePet( int fd, int meindex, char* message )
 
 #ifdef _PET_VALIDITY
 			if(CHAR_getInt ( petindex, CHAR_PETVALIDITY) > 0 && CHAR_getInt ( petindex, CHAR_PETVALIDITY) < time(NULL) ){
-				CHAR_talkToCli(meindex, -1, "該寵物已經失效瞭！", CHAR_COLORYELLOW);
+				CHAR_talkToCli(meindex, -1, "該寵物已經失效了！", CHAR_COLORYELLOW);
 				int s_pet = CHAR_getWorkInt( meindex, CHAR_WORKSTANDBYPET);
 				s_pet ^= ( 1 << atoi( token2 ) );
 				CHAR_setWorkInt( meindex, CHAR_WORKSTANDBYPET, s_pet);
@@ -2688,8 +2688,8 @@ void ACFixFMPK(int winindex, int loseindex, int data)
    int i = 0, charindex = 0;
    char msg1[256], msg2[256];
    
-   sprintf(msg1, "恭喜您！傢族聲望提高瞭%8d點！", (data / 100));
-   sprintf(msg2, "傢族聲望減少瞭%8d點！", (data / 100));
+   sprintf(msg1, "恭喜您！家族聲望提高了%8d點！", (data / 100));
+   sprintf(msg2, "家族聲望減少了%8d點！", (data / 100));
    for (i = 0; i < FAMILY_MAXMEMBER; i++)
    {
       charindex = familyMemberIndex[winindex][i];
@@ -2773,7 +2773,7 @@ void FAMILY_LeaderFunc( int fd, int meindex, char *message )
 	lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 		WINDOW_BUTTONTYPE_OK,
 		-1, -1,
-		makeEscapeString( "你還未加入傢族，所以不能使用唷！", buf, sizeof(buf) ));
+		makeEscapeString( "你還未加入家族，所以不能使用唷！", buf, sizeof(buf) ));
       	return;
    }
    
@@ -2865,7 +2865,7 @@ void FAMILY_LeaderFunc( int fd, int meindex, char *message )
 				} else
 				if( kind == 2 ) {
 					if(getRideMode()==2 || getRideMode()==4){
-						CHAR_talkToCli( meindex, -1, "算瞭吧，還是彆點吧，點來也沒用!", CHAR_COLORYELLOW);
+						CHAR_talkToCli( meindex, -1, "算了吧，還是彆點吧，點來也沒用!", CHAR_COLORYELLOW);
 						return;
 					}
 					switch( atoi(subtoken) ) {
@@ -3130,9 +3130,9 @@ void ACFMJob( int fd, int ret, char* data1, char* data2 )
 		lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 			WINDOW_BUTTONTYPE_OK,
 			-1, -1,
-			makeEscapeString( "\n恭喜你！你已經是新任的族長瞭。\n請好好的努力吧！\n對瞭～記得請先到村長傢的傢族管理員選擇\n新的傢族守護獸，否則傢族將會被解散唷！", buf, sizeof(buf)));
+			makeEscapeString( "\n恭喜你！你已經是新任的族長了。\n請好好的努力吧！\n對了～記得請先到村長傢的家族管理員選擇\n新的家族守護獸，否則家族將會被解散唷！", buf, sizeof(buf)));
 			
-		sprintf( buf2, "\n辛苦你瞭！你已經將族長的位子交給%s瞭。", CHAR_getChar( charaindex, CHAR_NAME) );
+		sprintf( buf2, "\n辛苦你了！你已經將族長的位子交給%s了。", CHAR_getChar( charaindex, CHAR_NAME) );
 		lssproto_WN_send( CHAR_getWorkInt( leaderindex, CHAR_WORKFD) , WINDOW_MESSAGETYPE_MESSAGE,
 			WINDOW_BUTTONTYPE_OK,
 			-1, -1,
@@ -3160,12 +3160,12 @@ int Char_GetFm( int id, int x)
 {
 
 	int	fd = getfdFromCharaIndex( id);
-	if (x == 1) //獲得傢族氣勢
+	if (x == 1) //獲得家族氣勢
 		return fmdptop.fmMomentum[id];
 
-	else if (x == 2)//獲得傢族聲望fmtopdp
+	else if (x == 2)//獲得家族聲望fmtopdp
 		return fmdptop.fmtopdp[id];
-	else if (x == 3)//獲得傢族資金
+	else if (x == 3)//獲得家族資金
 	{
 		//saacproto_ACGetFMData_send( fd, CHAR_getChar( id, CHAR_FMNAME),
 		//CHAR_getInt( id, CHAR_FMINDEX ),

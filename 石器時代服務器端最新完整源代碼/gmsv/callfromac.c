@@ -54,7 +54,7 @@ void saacproto_ACGmsvDownRequest_recv( int fd, int min)
 	SERVSTATE_setDsptime( 0 );
 	
 }
-//檢查是否有和ac連接,以及載入傢族
+//檢查是否有和ac連接,以及載入家族
 void saacproto_ACServerLogin_recv (int fd, char* result,char* data)
 {
 #ifdef _OTHER_SAAC_LINK
@@ -72,7 +72,7 @@ void saacproto_ACServerLogin_recv (int fd, char* result,char* data)
 {
 
   if( strcmp( result , SUCCESSFUL ) != 0 ){
-    print( "與AC服務器連接失敗!退齣運行...[%s][%s]\n", result,data );
+    print( "與AC服務器連接失敗!退出運行...[%s][%s]\n", result,data );
     shutdownProgram( );
     exit(1);
   }
@@ -89,7 +89,7 @@ void saacproto_ACServerLogin_recv (int fd, char* result,char* data)
 	print( "注: AllBlue's在此說明.我們發布免費服務端。嚴禁商業用途。\n" );
   // Robin 0530
   //saacproto_ACShowFMList_send( acfd );
-  print("初始化傢族...");
+  print("初始化家族...");
   FAMILY_Init();
   print("完成\n");
 #ifdef _ANGEL_SUMMON
@@ -532,7 +532,7 @@ void saacproto_ACShowMemberList_recv(int fd, char *result, int index, int fmmemn
 	)
 {
 	int ret;
-	// fmmemnum -1:無此索引值, -2:無更新 else:錶示此傢族人數
+	// fmmemnum -1:無此索引值, -2:無更新 else:表示此家族人數
 	if (strcmp(result, SUCCESSFUL) == 0)	ret = 1;
 	else	ret = 0;
 	ACShowMemberList(ret, index, fmmemnum, fmacceptflag, fmjoinnum, data
@@ -558,7 +558,7 @@ void saacproto_ACMemberLeaveFM_recv(int fd, char *result, char *data, int charfd
 {
 
 }
-#ifdef _PERSONAL_FAME   // Arminius: 傢族個人聲望
+#ifdef _PERSONAL_FAME   // Arminius: 家族個人聲望
 void saacproto_ACFMCharLogin_recv(int fd, char *result, int index, int floor,
 	int fmdp, int joinflag, int fmsetupflag, int flag, int charindex,
 	int charfame, int charfdid
@@ -579,7 +579,7 @@ void saacproto_ACFMCharLogin_recv(int fd, char *result, int index, int floor,
 	else	ret = 0;
 //	print("Login fd:%d result:%s index:%d floor:%d fmdp:%d joinflag:%d setup:%d charfdid:%d\n",
 //		fd, result, index, floor, fmdp, joinflag, fmsetupflag, charfdid);
-#ifdef _PERSONAL_FAME   // Arminius: 傢族個人聲望
+#ifdef _PERSONAL_FAME   // Arminius: 家族個人聲望
 //        print("Login charfame:%d\n", charfame);
 	ACFMCharLogin(clifd, ret, index, floor, fmdp, joinflag, fmsetupflag,
 		flag, charindex, charfame
@@ -599,9 +599,9 @@ void saacproto_ACFMReadMemo_recv(int fd, char *result, int index, int num,
         int dataindex, char *data)
 {
 	int ret;
-	// index(傢族 WORK 的索引)，num(資料筆數，最大35筆)
+	// index(家族 WORK 的索引)，num(資料筆數，最大35筆)
 	// dataindex(最新的資料數)，data(資料)。
-	// 注：num -1:無此索引值, -2:無更新 else:錶示此傢族人數
+	// 注：num -1:無此索引值, -2:無更新 else:表示此家族人數
 	if (strcmp(result, SUCCESSFUL) == 0)	ret = 1;
 	else	ret = 0;
 	ACShowFMMemo(ret, index, num, dataindex, data);
@@ -675,7 +675,7 @@ void saacproto_ACFixFMData_recv(int fd, char *result, int kindflag, char *data1,
 	else    ret = 0;
 	if( !CHAR_CHECKINDEX(charaindex) )	return;
 	if( kindflag == FM_FIX_FMRULE ){
-		CHAR_talkToCli( charaindex , -1, "傢族主旨修改ＯＫ！", CHAR_COLORWHITE);
+		CHAR_talkToCli( charaindex , -1, "家族主旨修改ＯＫ！", CHAR_COLORWHITE);
 	}else if( kindflag == FM_FIX_FMGOLD ) {
 		intdata = atoi( data1 );
 		if( ret == 0 ) {
@@ -695,7 +695,7 @@ void saacproto_ACFixFMData_recv(int fd, char *result, int kindflag, char *data1,
 				CHAR_getChar( charaindex, CHAR_CDKEY ),
 				-intdata,
 				CHAR_getInt( charaindex, CHAR_GOLD ),
-				"FMBank(傢族銀行)",
+				"FMBank(家族銀行)",
 				CHAR_getInt( charaindex,CHAR_FLOOR),
 				CHAR_getInt( charaindex,CHAR_X ),
 				CHAR_getInt( charaindex,CHAR_Y )
@@ -723,7 +723,7 @@ void saacproto_ACFixFMData_recv(int fd, char *result, int kindflag, char *data1,
 		LogFMPOP(tmpbuf);
 #ifdef _NEW_MANOR_LAW
 		for(i=0;i<FAMILY_MAXNUM;i++){
-			// 傢族索引
+			// 家族索引
 			if(fmdptop.fmtopid[i] == CHAR_getWorkInt(charaindex,CHAR_WORKFMINDEXI)) break;
 		}
 		if(i < FAMILY_MAXNUM){
@@ -746,7 +746,7 @@ void saacproto_ACFixFMPK_recv(int fd, char *result, int data, int winindex,
         {
         	char	tmpbuf[256];
         	ACFixFMPK(winindex, loseindex, data);
-        	sprintf(tmpbuf, "FMPK(傢族PK)::win(優勝傢族):%d lose(落敗傢族):%d point:%d", winindex, loseindex, data);
+        	sprintf(tmpbuf, "FMPK(家族PK)::win(優勝家族):%d lose(落敗家族):%d point:%d", winindex, loseindex, data);
 		//print("FixFMPK tmpbuf:%s\n", tmpbuf);
         	LogFMPOP(tmpbuf);
         }
@@ -836,7 +836,7 @@ void saacproto_ACSendFmPk_recv( int fd, int toindex, int flg)
 		sprintf( buf, "莊園挑戰登錄失敗！！");
 		CHAR_talkToCli( toindex, -1, buf, CHAR_COLORRED);
 	}else{
-		sprintf(buf,"%s 傢族獲得挑戰莊園資格",CHAR_getChar(toindex, CHAR_FMNAME));
+		sprintf(buf,"%s 家族獲得挑戰莊園資格",CHAR_getChar(toindex, CHAR_FMNAME));
 		int i;
 		for(i=0;i<CHAR_getPlayerMaxNum();i++){
 			if(CHAR_getCharUse(i) != FALSE){
@@ -868,7 +868,7 @@ void saacproto_ACLoadFmPk_recv(int fd, char *data)
 	 if (getStringFromIndexWithDelim(data,"|",3,token,sizeof(token))) {
 		 fmpks[fmpks_pos+1].host_index=atoi(token);
 	 }
-	 // 主隊 傢族名
+	 // 主隊 家族名
 	 if (getStringFromIndexWithDelim(data,"|",4,token,sizeof(token))) {
 		 strcpy(fmpks[fmpks_pos+1].host_name,makeStringFromEscaped(token));
 	 }
@@ -876,7 +876,7 @@ void saacproto_ACLoadFmPk_recv(int fd, char *data)
 	 if (getStringFromIndexWithDelim(data,"|",5,token,sizeof(token))) {
 		 fmpks[fmpks_pos+1].guest_index=atoi(token);
 	 }
-	 // 客隊 傢族名
+	 // 客隊 家族名
 	 if (getStringFromIndexWithDelim(data,"|",6,token,sizeof(token))) {
 		 strcpy(fmpks[fmpks_pos+1].guest_name,makeStringFromEscaped(token));
 	 }
@@ -944,7 +944,7 @@ void saacproto_ACManorPKAck_recv(int fd, char *data)
                 if (getStringFromIndexWithDelim(data,"|",3,token,sizeof(token))) {
                   fmpks[fmpks_pos+1].host_index=atoi(token);
                 }
-                // 主隊 傢族名
+                // 主隊 家族名
                 if (getStringFromIndexWithDelim(data,"|",4,token,sizeof(token))) {
                   strcpy(fmpks[fmpks_pos+1].host_name,makeStringFromEscaped(token));
                 }
@@ -952,7 +952,7 @@ void saacproto_ACManorPKAck_recv(int fd, char *data)
                 if (getStringFromIndexWithDelim(data,"|",5,token,sizeof(token))) {
                   fmpks[fmpks_pos+1].guest_index=atoi(token);
                 }
-                // 客隊 傢族名
+                // 客隊 家族名
                 if (getStringFromIndexWithDelim(data,"|",6,token,sizeof(token))) {
                   strcpy(fmpks[fmpks_pos+1].guest_name,makeStringFromEscaped(token));
                 }
@@ -1067,7 +1067,7 @@ void saacproto_ACKick_recv(int fd , int act, char* data ,int retfd)
 */
 			if( find == TRUE && retfd != -1 && CHAR_CHECKINDEX( cindex) )	{
 				char buf1[256];//, buf2[256];
-				sprintf(buf1,"係統將[%s]逐齣伺服器。", /*CHAR_getChar( cindex, CHAR_NAME),*/ szName);
+				sprintf(buf1,"係統將[%s]逐出伺服器。", /*CHAR_getChar( cindex, CHAR_NAME),*/ szName);
 				for( i=0; i<MAX_USER; i++){
 					if( CONNECT_getUse(i) )	{
 						int fd_charaindex = CONNECT_getCharaindex( i);
@@ -1189,7 +1189,7 @@ void saacproto_ACCharGetPoolPet_recv(int fd ,char* result, char* data,int retfd,
 		strcpy( message, 
 			"3\n"
 			"              使用寵物倉庫\n"
-			"◆特彆注意：請勿將貴重寵物存入公共倉庫\n"
+			"◆特別注意：請勿將貴重寵物存入公共倉庫\n"
 			"　　　　　　『寵物公共倉庫』\n"
 			"          ＜＜＜存放寵物＞＞＞\n"
 			"          ＜＜＜取迴寵物＞＞＞\n"

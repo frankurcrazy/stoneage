@@ -451,7 +451,7 @@ void defPlayerGold( int meindex , int flg)
 			player_type = CHAR_getWorkInt( toindex, i+CHAR_WORKSTAKETYPE1);
 			gamble_num = 0;
 			if( player_type > 0 )	{
-				if( player_type == EndTypedef[End_type].m_type )	{	//中瞭號碼
+				if( player_type == EndTypedef[End_type].m_type )	{	//中了號碼
 					if( EndTypedef[End_type].m_type == roulette45 )	{
 						gamble_num += 40;
 					}else	{
@@ -460,11 +460,11 @@ void defPlayerGold( int meindex , int flg)
 					GAMBLE_YES = TRUE;
 					//算錢
 					Codef_Gold( meindex, toindex, gamble_num, 0, EndTypedef[End_type].str_type );
-				}else if( player_type == EndTypedef[End_type].m_RG )    {	//中瞭紅綠
+				}else if( player_type == EndTypedef[End_type].m_RG )    {	//中了紅綠
 					gamble_num += 1;
 					GAMBLE_YES = TRUE;
 					Codef_Gold( meindex, toindex, gamble_num, 0, buf2 );
-				}else if( player_type == EndTypedef[End_type].m_EO )	{	//中瞭單雙
+				}else if( player_type == EndTypedef[End_type].m_EO )	{	//中了單雙
 					gamble_num += 1;
 					GAMBLE_YES = TRUE;
 					Codef_Gold( meindex, toindex, gamble_num, 0, buf1 );
@@ -540,7 +540,7 @@ void Codef_Gold( int meindex, int toindex, int stone,int flg, char *token)
 	Master_gnum = CHAR_getWorkInt( meindex, NPC_WORK_MASTERSTONE);
 	Master_gnum += stone;
 	if( !flg )	{
-		sprintf( buf1,"恭喜你中瞭：%s，可拿得 %d 點積分", token, stone);
+		sprintf( buf1,"恭喜你中了：%s，可拿得 %d 點積分", token, stone);
 		CHAR_talkToCli( toindex, meindex, buf1,  CHAR_COLORYELLOW);
 #ifdef _FIX_GAMBLENUM
 		stone += 1;	//加上一開始下注扣的積分

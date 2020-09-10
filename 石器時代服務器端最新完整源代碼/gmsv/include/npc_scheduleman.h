@@ -13,10 +13,10 @@
 // 每一個 scheduleman 控管的 schedule 數量
 #define MAX_SCHEDULE	24
 
-// schedule 列錶的一頁所能列齣的最大數量
+// schedule 列錶的一頁所能列出的最大數量
 #define MAXSCHEDULEINONEWINDOW	10
 
-// family 列錶的一頁所能列齣的最大數量
+// family 列錶的一頁所能列出的最大數量
 #define MAXFAMILYINONEWINDOW	8
 
 // 每一個 scheduleman 所使用的 schedule 儲存位置
@@ -27,12 +27,12 @@
 
 typedef struct tagFamilyPKSchedule {
 	int	dueltime;	// 比賽時刻
-	int	host_index;	// 主隊傢族
-	char host_name[CHARNAME_MAX];	// 主隊傢族名稱
-	int	guest_index;	// 客隊傢族
-	char guest_name[CHARNAME_MAX];	// 客隊傢族名稱
+	int	host_index;	// 主隊家族
+	char host_name[CHARNAME_MAX];	// 主隊家族名稱
+	int	guest_index;	// 客隊家族
+	char guest_name[CHARNAME_MAX];	// 客隊家族名稱
 	int	prepare_time;	// 準備時間 (1~40 分鍾)
-	int	max_player;	// 最大齣場人數 (1~傢族人數上限)
+	int	max_player;	// 最大出場人數 (1~家族人數上限)
 	int	flag;		// 狀態
 	int	win;		// 勝利條件設定
 	int	challenge_timeout;	// 挑戰時限
@@ -58,7 +58,7 @@ typedef struct tagFamilyPKSchedule {
 #define FMPKS_FLAG_MANOR_READYTOFIGHT	13	// (GM: manorpk) 全星係變成可約戰狀態
 #define FMPKS_FLAG_MANOR_CLEANFLAG	14	// (GM: manorpk) 本星球清除狀態
 #ifdef _NEW_MANOR_LAW
-#define FMPKS_FLAG_WAIT		15	// 進入挑戰期,已記錄傢族氣勢,等待挑戰排程
+#define FMPKS_FLAG_WAIT		15	// 進入挑戰期,已記錄家族氣勢,等待挑戰排程
 #endif
 
 

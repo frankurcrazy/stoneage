@@ -26,7 +26,7 @@
 extern int CheckCharMaxItem(int charindex);
 #endif
 #define TRADE_WAIT		"請稍候，連絡%s中・・・"
-#define TRADE_REFUSE   "%s拒絕瞭你的交易請求！"
+#define TRADE_REFUSE   "%s拒絕了你的交易請求！"
 #define TRADE_NONE		"前方什麽人也沒有！"
 #define	TRADE_OVERPLAYER	"前方不隻一位玩傢喔！"
 #define	TRADE_NOWILL		"真是抱歉，對方不願意跟你交易！"
@@ -34,7 +34,7 @@ extern int CheckCharMaxItem(int charindex);
 #define	TRADE_VANISHITEM	"丟在地上會消失的物品無法交易！"
 #define TRADE_PETFULL		"%s寵物欄已滿，交易取消！"
 #define	TRADE_ITEMFULL		"%s物品欄已滿，請整理後再交易～"
-#define TRADE_CANCEL		"%s將交易取消瞭！"
+#define TRADE_CANCEL		"%s將交易取消了！"
 #define TRADE_POOR		"%s錢不夠，無法交易！"
 #define	TRADE_RICH		"%s金錢交易請勿超過一百萬！"
 #define TRADE_TOORICH		"%s金錢將會超過一百萬！"
@@ -42,7 +42,7 @@ extern int CheckCharMaxItem(int charindex);
 #define	TRADE_LOCK		"交易鎖定・・・"
 #define	TRADE_SUCCESS		"交易ＯＫ！"
 #define	TRADE_FAILED		"交易失敗！"
-#define TRADE_FMPET		"傢族守護獸無法交易！"
+#define TRADE_FMPET		"家族守護獸無法交易！"
 #ifdef _LOCK_PET_ITEM
 #define TRADE_LOCKPET		"綁定的寵物無法交易！"
 #define TRADE_LOCKITEM	"綁定的道具無法交易！"
@@ -283,11 +283,11 @@ BOOL TRADE_addSomeTradeList( int meindex, int usTi, int *num, int type)
 			petindex = CHAR_getCharPet( meindex, usTi );
 			if( !CHAR_CHECKINDEX(petindex))	return FALSE;
 			if( CHAR_getInt( petindex, CHAR_PETFAMILY) == 1 ){
-				CHAR_talkToCli( meindex, -1, "傢族守護獸無法交易。", CHAR_COLORYELLOW);
-				return FALSE;//傢族守護獸
+				CHAR_talkToCli( meindex, -1, "家族守護獸無法交易。", CHAR_COLORYELLOW);
+				return FALSE;//家族守護獸
 			}
 			if(FreeTradePet(meindex, petindex) == 1){
-				return FALSE;//傢族守護獸
+				return FALSE;//家族守護獸
 			}
 			
 #ifdef _LOCK_PET_ITEM
@@ -507,7 +507,7 @@ BOOL TRADE_Search(int fd, int meindex, char* message)
 		if(CHAR_getInt(meindex, CHAR_LOCKED)==1){
 			char message[256];
 			char	buf[256];
-			sprintf( message, "為瞭確保你的物品安全，請輸入你的安全密碼進行解鎖！\n");
+			sprintf( message, "為了確保你的物品安全，請輸入你的安全密碼進行解鎖！\n");
 		
 			lssproto_WN_send( getfdFromCharaIndex(meindex), WINDOW_MESSAGETYPE_MESSAGEANDLINEINPUT, 
 							WINDOW_BUTTONTYPE_OKCANCEL,

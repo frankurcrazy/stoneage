@@ -190,7 +190,7 @@ static void NPC_PetRaceMaster_selectWindow(int meindex, int toindex, int num, in
 				"\n的狀況或個人喜好下注，請將兌換得到的彩券"
 				"\n放置於欲下注的號碼前方。當競速結束時，主"
 				"\n持人將會自動幫您計算積分。"
-				"\n請注意：當您離開此房間或登齣時，下注的彩"
+				"\n請注意：當您離開此房間或登出時，下注的彩"
 				"\n捲及積分將無法取迴唷！");
 #else
 			sprintf(token, 
@@ -200,7 +200,7 @@ static void NPC_PetRaceMaster_selectWindow(int meindex, int toindex, int num, in
 				"\n方。當競速結束時，主持人會自動地將金額放"
 				"\n迴你的身上或存入個人銀行。"
 				"\n請注意：銀行金額請勿超過一韆萬！當您離開"
-				"\n此房間或登齣時，下注的金額將無法取迴唷！");
+				"\n此房間或登出時，下注的金額將無法取迴唷！");
 #endif
 			buttontype = WINDOW_BUTTONTYPE_OK;
 			windowtype = WINDOW_MESSAGETYPE_MESSAGE;
@@ -324,23 +324,23 @@ void NPC_PetRaceMasterLoop( int meindex)
 					if (statechangetime - t1 <= 5)
 					{
 						CHAR_setInt(meindex, CHAR_LOOPINTERVAL, PETRACEMASTER_WAITDROPIV_LOOPTIME);
-						snprintf(tmpbuf, sizeof(tmpbuf), "還有%2d秒就要開跑瞭，請大傢踴躍下注！",
+						snprintf(tmpbuf, sizeof(tmpbuf), "還有%2d秒就要開跑了，請大傢踴躍下注！",
 							(int)(statechangetime - t1) % 60);
 					}
 					else if (statechangetime - t1 <= 10)
 					{
 						CHAR_setInt(meindex, CHAR_LOOPINTERVAL, PETRACEMASTER_WAITDROPIII_LOOPTIME);
-						snprintf(tmpbuf, sizeof(tmpbuf), "還有%2d秒就要開跑瞭，請大傢踴躍下注！",
+						snprintf(tmpbuf, sizeof(tmpbuf), "還有%2d秒就要開跑了，請大傢踴躍下注！",
 							(int)(statechangetime - t1) % 60);
 					}
 					else if (statechangetime - t1 <= 30)
 					{
 						CHAR_setInt(meindex, CHAR_LOOPINTERVAL, PETRACEMASTER_WAITDROPII_LOOPTIME);
-						snprintf(tmpbuf, sizeof(tmpbuf), "還有%2d秒就要開跑瞭，請大傢踴躍下注！",
+						snprintf(tmpbuf, sizeof(tmpbuf), "還有%2d秒就要開跑了，請大傢踴躍下注！",
 							(int)(statechangetime - t1) % 60);
 					}
 					else
-						snprintf(tmpbuf, sizeof(tmpbuf), "還有%2d分鍾%2d秒就要開跑瞭，請大傢踴躍下注！",
+						snprintf(tmpbuf, sizeof(tmpbuf), "還有%2d分鍾%2d秒就要開跑了，請大傢踴躍下注！",
 							(int)(statechangetime - t1) / 60, (int)(statechangetime - t1) % 60);
 				}
 				if (t1 >= statechangetime)
@@ -357,7 +357,7 @@ void NPC_PetRaceMasterLoop( int meindex)
 #endif
 					int i = 0;
 					CHAR_setWorkInt(meindex, NPC_WORK_STATE, NPC_State_PetRacing);
-					// 設定地麵不可下注
+					// 設定地面不可下注
 					SetCasinoMap(meindex, 0, FALSE);
 #ifdef _DROPSTAKENEW
 					snprintf(tmpbuf, sizeof(tmpbuf), "請大傢停止下注，寵物賽跑開始羅！");
@@ -464,7 +464,7 @@ void NPC_PetRaceMasterLoop( int meindex)
 					CHAR_setWorkInt(meindex, NPC_WORK_PETGOAL, 0);
 					CHAR_setWorkInt(meindex, NPC_WORK_STATECHANGE, t1 + PETRACEDROPSTAKETIME);
 					CHAR_setInt(meindex, CHAR_LOOPINTERVAL, PETRACEMASTER_WAITDROPI_LOOPTIME);
-					// 設定地麵可下注
+					// 設定地面可下注
 					SetCasinoMap(meindex, 0, TRUE);
 					// 設定寵物
 					CHAR_setWorkInt(petindex1, NPC_WORK_STATE, NPC_State_Wait);

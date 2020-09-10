@@ -150,7 +150,7 @@ void addAngelData( int angelindex, int heroindex, int mission, int flag)
 //void selectAngel( int charaindex)
 void selectAngel( int charaindex, int heroindex, int mission, int gm_cmd)
 {
-	// gm_cmd 錶示是否由GM指令産生, 
+	// gm_cmd 表示是否由GM指令産生, 
 
 	//int heroindex =-1;
 	int findindex, startindex;
@@ -170,7 +170,7 @@ void selectAngel( int charaindex, int heroindex, int mission, int gm_cmd)
 	{
 		if( checkIfAngel( charaindex) != -1) // 是否天使或勇者
 		{
-			print(" ANGEL已經是天使或勇者瞭 ");
+			print(" ANGEL已經是天使或勇者了 ");
 			return;
 		}
 		
@@ -312,12 +312,12 @@ int AngelCreate( int angelindex)
 	
 	if( !CHAR_CHECKINDEX( angelindex))	return FALSE;
 
-	print(" 天使答應瞭!! ");
+	print(" 天使答應了!! ");
 	
 	mindex = checkIfAngel( angelindex);
 	if( mindex == -1 || missiontable[mindex].flag == MISSION_TIMEOVER ) {
 		//print("\n ANGEL錯誤!!Table逾時或無資料??:%d ", angelindex );
-		CHAR_talkToCli( angelindex, -1, "很抱歉，你太晚迴答，已經逾時瞭。", CHAR_COLORYELLOW);
+		CHAR_talkToCli( angelindex, -1, "很抱歉，你太晚迴答，已經逾時了。", CHAR_COLORYELLOW);
 		
 		sprintf( msgbuf, " 迴答逾時或無資料 i:%d 使者:%s %s ", mindex, CHAR_getChar( angelindex, CHAR_CDKEY), CHAR_getChar( angelindex, CHAR_NAME));
 		print( msgbuf);
@@ -426,11 +426,11 @@ int AngelCreate( int angelindex)
 	sprintf( msgbuf, "%s|%d", missiontable[mindex].angelinfo, missionlist[missiontable[mindex].mission].limittime );
 	saacproto_ACMissionTable_send( acfd, MISSION_DOING, 4, msgbuf, "");
 
-	//CHAR_talkToCli( angelindex, -1, "天之聲：非常感謝你答應幫忙，那我就將信物交給你瞭，請將勇者的信物轉交給勇者。", CHAR_COLORYELLOW);
+	//CHAR_talkToCli( angelindex, -1, "天之聲：非常感謝你答應幫忙，那我就將信物交給你了，請將勇者的信物轉交給勇者。", CHAR_COLORYELLOW);
 
 	lssproto_WN_send( getfdFromCharaIndex(angelindex), WINDOW_MESSAGETYPE_MESSAGE, 
 			WINDOW_BUTTONTYPE_YES, -1, -1,
-			"非常感謝你答應幫忙，那我就將信物交給你瞭，請將勇者的信物轉交給勇者。");
+			"非常感謝你答應幫忙，那我就將信物交給你了，請將勇者的信物轉交給勇者。");
 
 #ifdef _ANGLE_EMAIL
 		int maxchar = CHAR_getPlayerMaxNum();
@@ -458,7 +458,7 @@ int AngelCreate( int angelindex)
 		}
 #endif
 
-	sprintf( msgbuf, " 使者答應幫忙瞭 i:%d 使者:%s 勇者:%s ci=%d ", mindex, missiontable[mindex].angelinfo, missiontable[mindex].heroinfo, angelindex);
+	sprintf( msgbuf, " 使者答應幫忙了 i:%d 使者:%s 勇者:%s ci=%d ", mindex, missiontable[mindex].angelinfo, missiontable[mindex].heroinfo, angelindex);
 	print( msgbuf);
 	LogAngel( msgbuf);
 
@@ -513,14 +513,14 @@ void Use_AngelToken( int charaindex, int toindex, int haveitemindex )
 			CHAR_talkToCli( charaindex, -1, msg, CHAR_COLORRED);
 		}
 		else if( missiontable[mindex].flag == MISSION_HERO_COMPLETE ) {
-			// 可以去領奬瞭
+			// 可以去領奬了
 			getStringFromIndexWithDelim( missiontable[mindex].heroinfo, ":", 2, tokenbuf, sizeof(tokenbuf));
-			sprintf( msg, "勇者 %s 的使命已經完成瞭，你可以去領奬瞭，時間還剩餘%d小時%d分。",
+			sprintf( msg, "勇者 %s 的使命已經完成了，你可以去領奬了，時間還剩餘%d小時%d分。",
 				tokenbuf, hour, min);
 			CHAR_talkToCli( charaindex, -1, msg, CHAR_COLORRED);
 		}
 		else if( missiontable[mindex].flag == MISSION_TIMEOVER ) {
-			// 時間超過瞭
+			// 時間超過了
 			sprintf( msg, "很可惜，使者和勇者並沒有在時限內完成使命，下次再加油吧。");
 			CHAR_talkToCli( charaindex, -1, msg, CHAR_COLORRED);
 		}
@@ -561,7 +561,7 @@ void Use_AngelToken( int charaindex, int toindex, int haveitemindex )
 		}
 		if( fl <= 0 )
 		{
-			sprintf( msg, "使者 %s 目前不在綫上或不在本伺服器上。", name);
+			sprintf( msg, "使者 %s 目前不在線上或不在本伺服器上。", name);
 			CHAR_talkToCli( charaindex, -1, msg, CHAR_COLORRED);
 			return;
 		}
@@ -620,13 +620,13 @@ void Use_HeroToken( int charaindex, int toindex, int haveitemindex )
 			CHAR_talkToCli( charaindex, -1, msg, CHAR_COLORRED);
 		}
 		else if( missiontable[mindex].flag == MISSION_HERO_COMPLETE ) {
-			// 可以去領奬瞭
-			sprintf( msg, "你的使命已經完成瞭，可以去領奬瞭，時間還剩餘%d小時%d分。",
+			// 可以去領奬了
+			sprintf( msg, "你的使命已經完成了，可以去領奬了，時間還剩餘%d小時%d分。",
 				hour, min);
 			CHAR_talkToCli( charaindex, -1, msg, CHAR_COLORRED);
 		}
 		else if( missiontable[mindex].flag == MISSION_TIMEOVER ) {
-			// 時間超過瞭
+			// 時間超過了
 			sprintf( msg, "很可惜，使者和勇者並沒有在時限內完成使命，下次再加油吧。");
 			CHAR_talkToCli( charaindex, -1, msg, CHAR_COLORRED);
 		}
@@ -651,7 +651,7 @@ void Use_HeroToken( int charaindex, int toindex, int haveitemindex )
 
 		//if( CHAR_CheckInItemForWares( charaindex, 0) == FALSE ){
 		if( CheckDropatLogout( charaindex) == TRUE ) {
-			CHAR_talkToCli( charaindex, -1, "攜帶登齣後消失的道具時無法使用。", CHAR_COLORYELLOW);
+			CHAR_talkToCli( charaindex, -1, "攜帶登出後消失的道具時無法使用。", CHAR_COLORYELLOW);
 			return;
 		}
 
@@ -679,7 +679,7 @@ void Use_HeroToken( int charaindex, int toindex, int haveitemindex )
 		}
 		if( fl <= 0 )
 		{
-			sprintf( msg, "勇者 %s 目前不在綫上或不在本伺服器上。", name);
+			sprintf( msg, "勇者 %s 目前不在線上或不在本伺服器上。", name);
 			CHAR_talkToCli( charaindex, -1, msg, CHAR_COLORRED);
 			return;
 		}

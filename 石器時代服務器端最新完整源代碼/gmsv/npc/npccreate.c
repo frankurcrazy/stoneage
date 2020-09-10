@@ -227,7 +227,7 @@ int NPC_readCreateFile( char* filename )
             if( start == ON ){
                 fprint( "Find {. But already START state. %s:%d\n",
                         filename, linenum);
-                fprint( "退齣\n" );
+                fprint( "退出\n" );
                 goto FCLOSERETURNFALSE;
 
             }else{

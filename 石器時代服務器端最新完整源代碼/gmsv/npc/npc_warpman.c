@@ -780,7 +780,7 @@ static void NPC_NewWarpMan_selectWindow( int meindex, int toindex, int num,int s
 	    if((NPC_ActionPassCheck(meindex,toindex,token)==TRUE) || (strstr( token, "ALLFREE")!=NULL) )	{
 		  CHAR_setWorkInt( toindex, CHAR_WORKSHOPRELEVANT, talkNo-1);
 
-	      //若附閤條件 取齣 FreeMsg 字串
+	      //若附閤條件 取出 FreeMsg 字串
 	      if(NPC_Util_GetStrFromStrWithDelim( buf, "FreeMsg", token, sizeof( token))==NULL)
 	        return;
 	      CONNECT_set_pass(fd,TRUE);
@@ -999,7 +999,7 @@ BOOL NPC_TreasureRandItemGet(int meidex,int talker,int rand_j,char *buf)
 	char token[128];
 
 	if(rand_j == 0) {
-		print("Event:由於０的介入，齣現錯誤。");
+		print("Event:由於０的介入，出現錯誤。");
  		return FALSE;
  	}
  	
@@ -1037,7 +1037,7 @@ BOOL NPC_TreasureRandItemGet(int meidex,int talker,int rand_j,char *buf)
 		);
 	}
 					
-	sprintf(token,"收下瞭%s",ITEM_getChar( itemindex, ITEM_NAME));
+	sprintf(token,"收下了%s",ITEM_getChar( itemindex, ITEM_NAME));
 	CHAR_talkToCli( talker, -1, token, CHAR_COLORWHITE);
 
 	CHAR_sendItemDataOne( talker, ret);

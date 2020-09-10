@@ -249,33 +249,33 @@ void NPC_WarpWarpCharacter( int warpnpcindex, int charaindex )
 				if ((ff==100)||(ff==200)||(ff==300)||(ff==400)||(ff==500)) {
 				  if ((of!=100)&&(of!=200)&&(of!=300)&&(of!=400)&&(of!=500)) {
 					CHAR_talkToCli(charaindex, -1,
-					  "太陽神的首飾發齣一道奇異的光芒，隱藏瞭你的行蹤。", CHAR_COLORWHITE);
+					  "太陽神的首飾發出一道奇異的光芒，隱藏了你的行蹤。", CHAR_COLORWHITE);
 				  }
 				} else {
 				  if ((of==100)||(of==200)||(of==300)||(of==400)||(of==500)) {
-					CHAR_talkToCli(charaindex, -1, "環繞著你的光芒消失瞭。", CHAR_COLORWHITE);
+					CHAR_talkToCli(charaindex, -1, "環繞著你的光芒消失了。", CHAR_COLORWHITE);
 				  }
 				}
 			  } else if (eqen>=80) {
 				if ((ff==100)||(ff==200)||(ff==300)||(ff==400)) {
 				  if ((of!=100)&&(of!=200)&&(of!=300)&&(of!=400)) {
 					CHAR_talkToCli(charaindex, -1,
-					  "太陽神的首飾發齣一道奇異的光芒，隱藏瞭你的行蹤。", CHAR_COLORWHITE);
+					  "太陽神的首飾發出一道奇異的光芒，隱藏了你的行蹤。", CHAR_COLORWHITE);
 				  }
 				} else {
 				  if ((of==100)||(of==200)||(of==300)||(of==400)) {
-					CHAR_talkToCli(charaindex, -1, "環繞著你的光芒消失瞭。", CHAR_COLORWHITE);
+					CHAR_talkToCli(charaindex, -1, "環繞著你的光芒消失了。", CHAR_COLORWHITE);
 				  }
 				}
 			  } else if (eqen>=40) {
 				if ((ff==100)||(ff==200)) {
 				  if ((of!=100)&&(of!=200)) {
 					CHAR_talkToCli(charaindex, -1,
-					  "太陽神的首飾發齣一道奇異的光芒，隱藏瞭你的行蹤。", CHAR_COLORWHITE);
+					  "太陽神的首飾發出一道奇異的光芒，隱藏了你的行蹤。", CHAR_COLORWHITE);
 				  }
 				} else {
 				  if ((of==100)||(of==200)) {
-					CHAR_talkToCli(charaindex, -1, "環繞著你的光芒消失瞭。", CHAR_COLORWHITE);
+					CHAR_talkToCli(charaindex, -1, "環繞著你的光芒消失了。", CHAR_COLORWHITE);
 				  }
 				}
 			  }
@@ -288,7 +288,7 @@ void NPC_WarpWarpCharacter( int warpnpcindex, int charaindex )
 			for (i = 0; i < MAXSTAKENUM; i++){
 				if (CHAR_getWorkInt(charaindex, CHAR_WORKSTAKETYPE1 + i) > 0){
 					char tmpbuf[256];
-					snprintf(tmpbuf, sizeof(tmpbuf), "由於你離開瞭房間，所以將無法取迴彩券！");
+					snprintf(tmpbuf, sizeof(tmpbuf), "由於你離開了房間，所以將無法取迴彩券！");
 					CHAR_setWorkInt(charaindex, CHAR_WORKSTAKETYPE1 + i, 0);
 					CHAR_talkToCli(charaindex, -1, tmpbuf, CHAR_COLORYELLOW);
 				}

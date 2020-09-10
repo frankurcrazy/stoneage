@@ -48,7 +48,7 @@ static CharBase EnemytempBaseInt[] = {
 	,{{"形象"},				E_T_IMGNUMBER}
 	,{{"等級限製"},		E_T_LIMITLEVEL}
 #ifdef _PET_FUSION
-	,{{"融閤寵編碼"},		E_T_FUSIONCODE}
+	,{{"融合寵編碼"},		E_T_FUSIONCODE}
 #endif
 };
 

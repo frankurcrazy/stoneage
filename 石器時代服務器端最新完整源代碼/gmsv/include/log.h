@@ -25,7 +25,7 @@ typedef enum
 //Syu 增加莊園戰勝負Log
 	LOG_FMPKRESULT,
 
-// Syu ADD 新增傢族個人銀行存取Log (不含傢族銀行)
+// Syu ADD 新增家族個人銀行存取Log (不含家族銀行)
 	LOG_BANKSTONELOG,
 
 	LOG_ACMESS,
@@ -136,7 +136,7 @@ void LogTensei(
 	int dex,		//  祭蟆      
 	int b_dex		//  祭        
 );
-// Syu ADD 新增傢族個人銀行存取Log (不含傢族銀行)
+// Syu ADD 新增家族個人銀行存取Log (不含家族銀行)
 void LogFamilyBankStone(
         char *CharName,
         char *CharId,  

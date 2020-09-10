@@ -150,7 +150,7 @@ BOOL PROFESSION_initSkill( char *filename)
         if( line[0] == '\n' )continue;
         chomp( line );
         profession_skill_num++;
-#ifdef _PROSKILL_OPTIMUM // Robin 取齣最大職技ID
+#ifdef _PROSKILL_OPTIMUM // Robin 取出最大職技ID
 		if( getStringFromIndexWithDelim( line, ",", 
 				PROFESSION_SKILL_DATACHARNUM+PROFESSION_SKILL_ID+1,
 				token, sizeof(token)) == FALSE )
@@ -616,7 +616,7 @@ int PROFESSION_SKILL_DEC_COST_MP( int charaindex, int skill, int Pskillid, int s
 		int	dec_mp;
 		int old_mp = CHAR_getInt( charaindex, CHAR_MP );
 		int mp=0;
-		// 取齣耗損 MP 
+		// 取出耗損 MP 
 		if( (dec_mp = PROFESSION_MAGIC_COST_MP( charaindex, skill )) == -1 )
 			dec_mp = PROFESSION_SKILL_getInt( Pskillid, PROFESSION_SKILL_COST_MP );
 		// 檢查 MP量			

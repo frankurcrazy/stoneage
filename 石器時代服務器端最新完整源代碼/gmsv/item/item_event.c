@@ -90,7 +90,7 @@ int ITEM_eventDrop( int itemindex, int charaindex, int itemcharaindex )
 	}
 #endif
     if( ITEM_getInt( itemindex, ITEM_VANISHATDROP) != 1 )return 0;
-	snprintf( szBuffer, sizeof( szBuffer), "%s 消滅瞭。",
+	snprintf( szBuffer, sizeof( szBuffer), "%s 消滅了。",
 		ITEM_getAppropriateName(itemindex) );
 	CHAR_talkToCli( charaindex, -1, szBuffer, CHAR_COLORWHITE );
 
@@ -103,7 +103,7 @@ int ITEM_eventDrop( int itemindex, int charaindex, int itemcharaindex )
 #else
        		ITEM_getInt( itemindex, ITEM_ID ),  /* 失奶  丞  寞 */
 #endif
-			"Drop&Delete(丟齣後消失)",
+			"Drop&Delete(丟出後消失)",
 			CHAR_getInt( charaindex,CHAR_FLOOR),
 			CHAR_getInt( charaindex,CHAR_X ),
  	      	CHAR_getInt( charaindex,CHAR_Y ),
@@ -128,8 +128,8 @@ typedef struct {
     int   maxElement; /* element匹隙爛今木凶邰豳及    襖毛手勾邰豳 */
 } ITEM_EFFECTPARAM;
 static ITEM_EFFECTPARAM ITEM_restorableParam[] = {
-    {"hp", "HP迴復瞭。", "HP降低瞭。",CHAR_HP, CHAR_WORKMAXHP},
-    {"mp", "MP迴復瞭。", "MP降低瞭。",CHAR_MP, CHAR_WORKMAXMP},
+    {"hp", "HP迴復了。", "HP降低了。",CHAR_HP, CHAR_WORKMAXHP},
+    {"mp", "MP迴復了。", "MP降低了。",CHAR_MP, CHAR_WORKMAXMP},
 };
 static ITEM_EFFECTPARAM ITEM_statusParam[] = {
     {"po", CHAR_POISONSTRING, CHAR_RECOVERPOISONSTRING,
@@ -259,7 +259,7 @@ static BOOL ITEM_medicineRaiseEffect(int charaindex, char* cmd,int value)
                 amount = 30;
                 if(curv + amount < 0) amount = -curv;
                 CHAR_setInt(charaindex, ITEM_restorableParam[i].element, min((curv+amount), maxv));
-                snprintf( ansmsg, sizeof(ansmsg), "%s迴復瞭。",
+                snprintf( ansmsg, sizeof(ansmsg), "%s迴復了。",
                           ITEM_restorableParam[i].onmessage );
                 CHAR_talkToCli( charaindex, -1, ansmsg, CHAR_COLORWHITE);
                 return TRUE;
@@ -318,7 +318,7 @@ void ITEM_MedicineUsed(int charaindex, int to_charaindex, int itemindex)
     itemid = CHAR_getItemIndex(charaindex, itemindex);
     if(!ITEM_CHECKINDEX(itemid)) return;
     effectarg = ITEM_getChar(itemid, ITEM_ARGUMENT);
-    snprintf( ansmsg, sizeof(ansmsg), "抓到瞭%s 。", ITEM_getChar(itemid, ITEM_NAME) );
+    snprintf( ansmsg, sizeof(ansmsg), "抓到了%s 。", ITEM_getChar(itemid, ITEM_NAME) );
     CHAR_talkToCli( charaindex, -1, ansmsg, CHAR_COLORWHITE );
     for( p=effectarg ; *p != '\0'; ){
         int i;
@@ -355,7 +355,7 @@ void ITEM_SandClockDetach( int charaindex , int itemid )
     for( i=0 ; i<CheckCharMaxItem(charaindex) ; i++ ){
         if( CHAR_getItemIndex(charaindex,i ) == itemid ){
 			CHAR_DelItem( charaindex, i);
-            CHAR_talkToCli( charaindex, -1, "一卸下沙漏，竟忽然壞瞭！", CHAR_COLORWHITE );
+            CHAR_talkToCli( charaindex, -1, "一卸下沙漏，竟忽然壞了！", CHAR_COLORWHITE );
             print( "deleted sand clock!\n" );
             break;
         }
@@ -462,7 +462,7 @@ void ITEM_DeleteByWatched(
     	if( CHAR_getInt( moveindex , CHAR_WHICHTYPE ) == CHAR_TYPEPLAYER ){
     		snprintf( szBuffer, sizeof( szBuffer ), "%s",
     							ITEM_getAppropriateName(itemindex) );
-            CHAR_talkToCli( moveindex	, -1, "%s 消滅瞭。", CHAR_COLORWHITE );
+            CHAR_talkToCli( moveindex	, -1, "%s 消滅了。", CHAR_COLORWHITE );
     	}
     }
 
@@ -588,12 +588,12 @@ void ITEM_useEffectTohelos( int charaindex, int to_charaindex, int haveitemindex
 	CHAR_setWorkInt( sendcharaindex, CHAR_WORK_TOHELOS_COUNT, limitcount);
 
     snprintf( msgbuf, sizeof(msgbuf),
-              "抓到瞭%s 。", ITEM_getChar(itemindex, ITEM_NAME) );
+              "抓到了%s 。", ITEM_getChar(itemindex, ITEM_NAME) );
     CHAR_talkToCli( charaindex, -1, msgbuf, CHAR_COLORWHITE );
 
     if( sendcharaindex != charaindex ) {
 	    snprintf( msgbuf, sizeof(msgbuf),
-	              "%s 抓到瞭 %s。 ",
+	              "%s 抓到了 %s。 ",
 	              CHAR_getChar( charaindex, CHAR_NAME),
 	              ITEM_getChar( itemindex, ITEM_NAME) );
 	    CHAR_talkToCli( sendcharaindex, -1, msgbuf, CHAR_COLORWHITE );
@@ -717,7 +717,7 @@ void ITEM_useRecovery_Field(
 			CHAR_complianceParameter( toindex );
 		    CHAR_sendCToArroundCharacter( CHAR_getWorkInt( toindex , CHAR_WORKOBJINDEX ));
 		    CHAR_send_P_StatusString( toindex , CHAR_P_STRING_BASEBASEIMAGENUMBER);
-		    CHAR_talkToCli( toindex,-1,"烏力化失效瞭。",CHAR_COLORWHITE);
+		    CHAR_talkToCli( toindex,-1,"烏力化失效了。",CHAR_COLORWHITE);
        		CHAR_DelItemMess( charaindex, haveitemindex, 0);
 		}
 		return;
@@ -755,7 +755,7 @@ void ITEM_useRecovery_Field(
 			CHAR_talkToCli( charaindex,-1,"封印魔咒減弱，最高等級提升",CHAR_COLORWHITE);
 			if( CHAR_getInt(toindex, CHAR_LIMITLEVEL) == 140 ){
 				CHAR_setInt(toindex, CHAR_LIMITLEVEL, 0);
-			    CHAR_talkToCli( charaindex,-1,"封印魔咒解除瞭",CHAR_COLORWHITE);
+			    CHAR_talkToCli( charaindex,-1,"封印魔咒解除了",CHAR_COLORWHITE);
 			}
 			CHAR_DelItemMess( charaindex, haveitemindex, 0);
 			CHAR_complianceParameter( toindex );
@@ -778,7 +778,7 @@ void ITEM_useRecovery_Field(
 				return;
 			}
 			CHAR_setInt(toindex, CHAR_LIMITLEVEL, 0);
-			CHAR_talkToCli( charaindex,-1,"封印魔咒解除瞭",CHAR_COLORWHITE);
+			CHAR_talkToCli( charaindex,-1,"封印魔咒解除了",CHAR_COLORWHITE);
 			CHAR_DelItemMess( charaindex, haveitemindex, 0);
 			CHAR_complianceParameter( toindex );
 		    CHAR_sendCToArroundCharacter( CHAR_getWorkInt( toindex , CHAR_WORKOBJINDEX ));
@@ -867,7 +867,7 @@ void ITEM_useRecovery_Field(
 						int UpLevel = 0;
 						CHAR_setWorkInt( toindex, CHAR_WORKGETEXP, atoi(msgbuf) );//迴存CHAR_WORKGETEXP
 						CHAR_AddMaxExp( toindex, CHAR_getWorkInt( toindex, CHAR_WORKGETEXP ) );
-						sprintf( msgbuf,"這石頭裏麵不知道有什麽樣的礦，讓我看看。(增加經驗%d)", CHAR_getWorkInt( toindex, CHAR_WORKGETEXP ) );
+						sprintf( msgbuf,"這石頭裏面不知道有什麽樣的礦，讓我看看。(增加經驗%d)", CHAR_getWorkInt( toindex, CHAR_WORKGETEXP ) );
 						CHAR_talkToCli( charaindex,-1,msgbuf,CHAR_COLORWHITE);  
 						UpLevel = CHAR_LevelUpCheck( toindex , charaindex);
 						if( UpLevel > 0 ){
@@ -1150,7 +1150,7 @@ void ITEM_useOtherEditBase( int charaindex, int toindex, int haveitemindex)
 			int maxnums=50;
 
 			if( CHAR_getInt( toindex,CHAR_LV ) < 74 )	{
-				sprintf(buf1,"給我的嗎？好美麗的項鏈喔！〈能力起瞭變化〉");
+				sprintf(buf1,"給我的嗎？好美麗的項鏈喔！〈能力起了變化〉");
 				CHAR_talkToCli( charaindex, toindex, buf1, CHAR_COLORWHITE);
 				num = ITEM_MODIFYATTACK;
 				LevelUpPoint = CHAR_getInt( toindex, CHAR_ALLOCPOINT );
@@ -1164,10 +1164,10 @@ void ITEM_useOtherEditBase( int charaindex, int toindex, int haveitemindex)
 					work[i] += type;
 					strcpy( buf1,"\0");
 					if( work[i] > maxnums )	{
-						sprintf(buf1,"%s 已經達到最高瞭。", buf2[i]);
+						sprintf(buf1,"%s 已經達到最高了。", buf2[i]);
 						work[i] = maxnums;
 					}else if( work[i] < 0 )	{
-						sprintf(buf1,"%s 已經為零瞭。", buf2[i]);
+						sprintf(buf1,"%s 已經為零了。", buf2[i]);
 						work[i] = 0;
 					}else	{
 						if( type > 0 )	{
@@ -1417,7 +1417,7 @@ void ITEM_usePetSkillCanned_WindowResult( int charaindex, int seqno, int select,
 	CHAR_sendStatusString( charaindex, "P");
 	{
 		int skillarray = PETSKILL_getPetskillArray( SkillID);
-		sprintf( buf1, "寵物%s學習%s，道具 %s消失瞭。",
+		sprintf( buf1, "寵物%s學習%s，道具 %s消失了。",
 			CHAR_getUseName( petindex), PETSKILL_getChar( skillarray, PETSKILL_NAME),
 			ITEM_getChar( itemindex, ITEM_NAME) );
 	}
@@ -1672,7 +1672,7 @@ void ITEM_useRenameItem_WindowResult( int charaindex, int seqno, int select, cha
 			if( remain != 0 ) {
 				remain --;
 				if( remain <= 0 ) {
-					snprintf( msgbuf, sizeof(msgbuf),"%s 消失瞭",
+					snprintf( msgbuf, sizeof(msgbuf),"%s 消失了",
 							ITEM_getChar( renameitemindex, ITEM_NAME));
 				    CHAR_talkToCli( charaindex, -1, msgbuf, CHAR_COLORYELLOW);
 				    CHAR_setItemIndex( charaindex, renameitemhaveindex, -1);
@@ -1895,7 +1895,7 @@ void ITEM_useLottery( int charaindex, int toindex, int haveitemindex)
 						ITEM_getChar( newitemindex, ITEM_EFFECTSTRING));
 			ITEM_setChar( newitemindex, ITEM_EFFECTSTRING, strbuff);
 			CHAR_sendItemDataOne( charaindex, haveitemindex);
-            snprintf( msgbuff, sizeof( msgbuff), "中瞭第%d奬", hit+1 );
+            snprintf( msgbuff, sizeof( msgbuff), "中了第%d奬", hit+1 );
             CHAR_talkToCli( charaindex, -1,
                             msgbuff,
                             CHAR_COLORYELLOW );
@@ -1918,7 +1918,7 @@ void ITEM_useLottery( int charaindex, int toindex, int haveitemindex)
 			int spc = 16 + ( 6-count)*2;
 			char space[17];
 			space[spc] = '\0';
-			snprintf( strbuff, sizeof( strbuff), "%s%s快中瞭", buff, space);
+			snprintf( strbuff, sizeof( strbuff), "%s%s快中了", buff, space);
 		}
 		else {
 			strcpy( strbuff, buff);
@@ -2083,7 +2083,7 @@ void ITEM_petFollow( int charaindex, int toindex, int haveitemindex )
 	int itemindex, followLv, haveindex, i;
 	if( CHAR_getWorkInt( charaindex, CHAR_WORKPETFOLLOW ) != -1 ){
 		if( CHAR_CHECKINDEX( CHAR_getWorkInt( charaindex, CHAR_WORKPETFOLLOW ) ) ){
-			CHAR_talkToCli( charaindex, -1, "請先收迴放齣的寵物！", CHAR_COLORWHITE );
+			CHAR_talkToCli( charaindex, -1, "請先收迴放出的寵物！", CHAR_COLORWHITE );
 			return;
 		}
 		CHAR_setWorkInt( charaindex, CHAR_WORKPETFOLLOW, -1);
@@ -2138,7 +2138,7 @@ void ITEM_petFollowNew( int charaindex, int toindex, int haveitemindex )
 	for(;petnum<5;petnum++){
 		if( CHAR_getWorkInt( charaindex, CHAR_WORKPETFOLLOW +petnum) != -1 ){
 			if( CHAR_CHECKINDEX( CHAR_getWorkInt( charaindex, CHAR_WORKPETFOLLOW+petnum) ) ){
-				//CHAR_talkToCli( charaindex, -1, "請先收迴放齣的寵物！", CHAR_COLORWHITE );
+				//CHAR_talkToCli( charaindex, -1, "請先收迴放出的寵物！", CHAR_COLORWHITE );
 				//return;
 				c++;
 			}else
@@ -2146,7 +2146,7 @@ void ITEM_petFollowNew( int charaindex, int toindex, int haveitemindex )
 		}
 	}
 	if(c==5){
-		CHAR_talkToCli( charaindex, -1, "請先收迴放齣的寵物！", CHAR_COLORWHITE );
+		CHAR_talkToCli( charaindex, -1, "請先收迴放出的寵物！", CHAR_COLORWHITE );
 		return;	
 	}
 
@@ -2202,7 +2202,7 @@ void ITEM_useSkup( int charaindex, int toindex, int haveitemindex)
 	CHAR_setInt(charaindex,CHAR_SKILLUPPOINT,
 	CHAR_getInt(charaindex,CHAR_SKILLUPPOINT)+1);
 	CHAR_Skillupsend(charaindex);
-	CHAR_talkToCli(charaindex, -1, "你感受到自己的能力被提升瞭。", CHAR_COLORWHITE);
+	CHAR_talkToCli(charaindex, -1, "你感受到自己的能力被提升了。", CHAR_COLORWHITE);
 
 	CHAR_DelItem( charaindex, haveitemindex);
 }
@@ -2216,7 +2216,7 @@ void ITEM_useNoenemy( int charaindex, int toindex, int haveitemindex)
 	if(!ITEM_CHECKINDEX(itemindex)) return;	
 	fd=CHAR_getWorkInt( charaindex, CHAR_WORKFD);
 	setNoenemy(fd);
-	CHAR_talkToCli(charaindex, -1, "你感受到周邊的殺氣消失瞭。", CHAR_COLORWHITE);
+	CHAR_talkToCli(charaindex, -1, "你感受到周邊的殺氣消失了。", CHAR_COLORWHITE);
 	CHAR_DelItem( charaindex, haveitemindex);
 
 }
@@ -2240,26 +2240,26 @@ void ITEM_equipNoenemy( int charaindex, int itemindex )
   fd=CHAR_getWorkInt( charaindex, CHAR_WORKFD);
   if (evadelevel>=200) {
     setEqNoenemy(fd, 200);
-    CHAR_talkToCli(charaindex, -1, "一道奇異的光芒隱藏瞭你的行蹤。", CHAR_COLORWHITE);
+    CHAR_talkToCli(charaindex, -1, "一道奇異的光芒隱藏了你的行蹤。", CHAR_COLORWHITE);
     return;
   } else if (evadelevel>=120) {
     setEqNoenemy(fd, 120);
 
 	if ( (fl==100)||(fl==200)||(fl==300)||(fl==400)||(fl==500) ){
-	  CHAR_talkToCli(charaindex, -1, "一道奇異的光芒隱藏瞭你的行蹤。", CHAR_COLORWHITE);
+	  CHAR_talkToCli(charaindex, -1, "一道奇異的光芒隱藏了你的行蹤。", CHAR_COLORWHITE);
       return;
     }
   } else if (evadelevel>=80) {
     setEqNoenemy(fd, 80);
 	if ( (fl==100)||(fl==200)||(fl==300)||(fl==400) ){
 	
-      CHAR_talkToCli(charaindex, -1, "一道奇異的光芒隱藏瞭你的行蹤。", CHAR_COLORWHITE);
+      CHAR_talkToCli(charaindex, -1, "一道奇異的光芒隱藏了你的行蹤。", CHAR_COLORWHITE);
       return;
     }
   } else if (evadelevel>=40) {
     setEqNoenemy(fd, 40);
     if ( (fl==100)||(fl==200) ) {
-      CHAR_talkToCli(charaindex, -1, "一道奇異的光芒隱藏瞭你的行蹤。", CHAR_COLORWHITE);
+      CHAR_talkToCli(charaindex, -1, "一道奇異的光芒隱藏了你的行蹤。", CHAR_COLORWHITE);
       return;
     }
   }
@@ -2282,8 +2282,8 @@ void ITEM_randEnemyEquipOne( int charaindex, int toindex, int haveitemindex)
 	if( (RandNum=atoi( buf)) > 0 ){
 		int fd = CHAR_getWorkInt( charaindex, CHAR_WORKFD);
 		setEqRandenemy(fd, RandNum);
-		CHAR_talkToCli(charaindex, -1, "遇敵率降低瞭。", CHAR_COLORWHITE);
-		sprintf( buf, "道具 %s消失瞭。", ITEM_getChar( itemindex, ITEM_NAME) );
+		CHAR_talkToCli(charaindex, -1, "遇敵率降低了。", CHAR_COLORWHITE);
+		sprintf( buf, "道具 %s消失了。", ITEM_getChar( itemindex, ITEM_NAME) );
 		CHAR_talkToCli( charaindex, -1, buf, CHAR_COLORYELLOW);
 		CHAR_DelItem( charaindex, haveitemindex);
 		return;
@@ -2308,7 +2308,7 @@ void ITEM_randEnemyEquip( int charaindex, int itemindex)
   fd=CHAR_getWorkInt( charaindex, CHAR_WORKFD);
   if (RandNum > 0 ) {
     setEqRandenemy(fd, RandNum);
-    CHAR_talkToCli(charaindex, -1, "遇敵率降低瞭。", CHAR_COLORWHITE);
+    CHAR_talkToCli(charaindex, -1, "遇敵率降低了。", CHAR_COLORWHITE);
     return;
   }
 
@@ -2543,21 +2543,21 @@ void ITEM_remNoenemy( int charaindex, int itemindex )
 
   clearEqNoenemy(CHAR_getWorkInt(charaindex, CHAR_WORKFD));
   if (el>=200) {
-    CHAR_talkToCli(charaindex, -1, "環繞著你的光芒消失瞭。", CHAR_COLORWHITE);
+    CHAR_talkToCli(charaindex, -1, "環繞著你的光芒消失了。", CHAR_COLORWHITE);
     return;
   } else if (el>=120) {
     if ( (fl==100)||(fl==200)||(fl==300)||(fl==400)||(fl==500) ) {
-      CHAR_talkToCli(charaindex, -1, "環繞著你的光芒消失瞭。", CHAR_COLORWHITE);
+      CHAR_talkToCli(charaindex, -1, "環繞著你的光芒消失了。", CHAR_COLORWHITE);
       return;
     }
   } else if (el>=80) {
     if ( (fl==100)||(fl==200)||(fl==300)||(fl==400) ) {
-      CHAR_talkToCli(charaindex, -1, "環繞著你的光芒消失瞭。", CHAR_COLORWHITE);
+      CHAR_talkToCli(charaindex, -1, "環繞著你的光芒消失了。", CHAR_COLORWHITE);
       return;
     }
   } else if (el>=40) {
     if ( (fl==100)||(fl==200) ) {
-      CHAR_talkToCli(charaindex, -1, "環繞著你的光芒消失瞭。", CHAR_COLORWHITE);
+      CHAR_talkToCli(charaindex, -1, "環繞著你的光芒消失了。", CHAR_COLORWHITE);
       return;
     }
   }
@@ -2621,7 +2621,7 @@ void ITEM_UseDeathCounter( int charaindex, int toindex, int haveitemindex)
 			itemmaxuse--;
 			ITEM_setInt( itemindex, ITEM_DAMAGEBREAK, itemmaxuse);
 			if( itemmaxuse < 1 )	{
-				sprintf( buf1, "%s消失瞭。", ITEM_getChar( itemindex, ITEM_NAME) );
+				sprintf( buf1, "%s消失了。", ITEM_getChar( itemindex, ITEM_NAME) );
 				CHAR_talkToCli(charaindex, -1, buf1, CHAR_COLORYELLOW);
 				CHAR_DelItem( charaindex, haveitemindex);
 				if(Useflag==FALSE) {
@@ -2641,7 +2641,7 @@ void ITEM_UseDeathCounter( int charaindex, int toindex, int haveitemindex)
 			setStayEncount(fd);
 			CHAR_talkToCli(charaindex, -1, "你身邊籠罩陰暗氣息！", CHAR_COLORYELLOW);
 		}else{
-			sprintf( buf1, "%s消失瞭。", ITEM_getChar( itemindex, ITEM_NAME) );
+			sprintf( buf1, "%s消失了。", ITEM_getChar( itemindex, ITEM_NAME) );
 			CHAR_talkToCli(charaindex, -1, buf1, CHAR_COLORYELLOW);
 			CHAR_DelItem( charaindex, haveitemindex);
 			if(Useflag==FALSE) {
@@ -2660,7 +2660,7 @@ void ITEM_UseDeathCounter( int charaindex, int toindex, int haveitemindex)
 		itemmaxuse--;
 		ITEM_setInt( itemindex, ITEM_DAMAGEBREAK, itemmaxuse);
 		if( itemmaxuse < 1 )	{
-			sprintf( buf1, "道具 %s消失瞭。", ITEM_getChar( itemindex, ITEM_NAME) );
+			sprintf( buf1, "道具 %s消失了。", ITEM_getChar( itemindex, ITEM_NAME) );
 			CHAR_talkToCli(charaindex, -1, buf1, CHAR_COLORYELLOW);
 			CHAR_DelItem( charaindex, haveitemindex);
 		}else{
@@ -2678,7 +2678,7 @@ void ITEM_UseDeathCounter( int charaindex, int toindex, int haveitemindex)
 #else
 	fd = CHAR_getWorkInt( charaindex, CHAR_WORKFD);
 	setStayEncount(fd);
-	sprintf( buf1, "道具 %s消失瞭。", ITEM_getChar( itemindex, ITEM_NAME) );
+	sprintf( buf1, "道具 %s消失了。", ITEM_getChar( itemindex, ITEM_NAME) );
 	CHAR_talkToCli(charaindex, -1, buf1, CHAR_COLORYELLOW);
 	CHAR_DelItem( charaindex, haveitemindex);
 #endif
@@ -2889,7 +2889,7 @@ void ITEM_metamo( int charaindex, int toindex, int haveitemindex )
 	}
 #endif
 #ifdef _PETSKILL_BECOMEPIG
-    if( CHAR_getInt( charaindex, CHAR_BECOMEPIG) > -1 ){//變成烏力瞭
+    if( CHAR_getInt( charaindex, CHAR_BECOMEPIG) > -1 ){//變成烏力了
 		CHAR_talkToCli( charaindex, -1, "無法變身，烏力化中不能變身！", CHAR_COLORYELLOW );
 	    return;
 	}
@@ -3617,7 +3617,7 @@ void ITEM_useLearnRideCode( int charaindex, int toindex, int haveitemindex)
 			if( getStringFromIndexWithDelim(itemarg,"|", 2, buf1, sizeof(buf1)) != FALSE ){
 				char token[256];
 
-				sprintf( token, "學習瞭新的騎寵 (%s)。", buf1);
+				sprintf( token, "學習了新的騎寵 (%s)。", buf1);
 				CHAR_talkToCli( charaindex, -1, token, CHAR_COLORYELLOW);
 				CHAR_DelItem( charaindex, haveitemindex);
 				CHAR_sendStatusString( charaindex, "x");
@@ -3645,7 +3645,7 @@ void ITEM_useFusionEditBase( int charaindex, int toindex, int haveitemindex)
 	itemindex = CHAR_getItemIndex( charaindex, haveitemindex);
 	if( !ITEM_CHECKINDEX(itemindex) )  return;
 	if( CHAR_getInt( toindex, CHAR_FUSIONBEIT) >=1 &&
-		CHAR_getInt( toindex, CHAR_FUSIONRAISE) > 0 ){//檢查是否為融閤寵
+		CHAR_getInt( toindex, CHAR_FUSIONRAISE) > 0 ){//檢查是否為融合寵
 		int time_l;
 		int nowTime; // Robin fix
 		time_l = CHAR_getInt( toindex, CHAR_FUSIONTIMELIMIT);
@@ -3669,7 +3669,7 @@ void ITEM_useFusionEditBase( int charaindex, int toindex, int haveitemindex)
 					deftime = nowTime - (time_l + anhour);
 					min = deftime/60;
 					sec = deftime%60;
-					sprintf( msg, "寵物蛋已經可以喂食瞭，超過喂食時間%d分%d秒。", min, sec);
+					sprintf( msg, "寵物蛋已經可以喂食了，超過喂食時間%d分%d秒。", min, sec);
 					CHAR_talkToCli( charaindex, -1, msg, CHAR_COLORYELLOW);
 					return;
 				}
@@ -3939,7 +3939,7 @@ void ITEM_LoverSelectUser( int charaindex, int toindex, int haveitemindex)
 					ITEM_setInt( itemindex, ITEM_DAMAGEBREAK, itemmaxuse);
 #endif
 					if( itemmaxuse < 1 )	{
-						sprintf( buf1, "道具 %s消失瞭。", ITEM_getChar( itemindex, ITEM_NAME) );
+						sprintf( buf1, "道具 %s消失了。", ITEM_getChar( itemindex, ITEM_NAME) );
 						CHAR_talkToCli(charaindex, -1, buf1, CHAR_COLORYELLOW);
 						CHAR_DelItem( charaindex, haveitemindex);
 						return;
@@ -3960,7 +3960,7 @@ void ITEM_LoverSelectUser( int charaindex, int toindex, int haveitemindex)
 				return;
 			}
 		}
-		CHAR_talkToCli( charaindex, -1, "對象不在此伺服器或不在綫上。", CHAR_COLORYELLOW );
+		CHAR_talkToCli( charaindex, -1, "對象不在此伺服器或不在線上。", CHAR_COLORYELLOW );
 	}
 }
 #endif
@@ -3992,9 +3992,9 @@ void ITEM_MapEffect(int charaindex,int toindex,int haveitemindex)
 	itemindex = CHAR_getItemIndex(charaindex,haveitemindex);
 	if(!ITEM_CHECKINDEX(itemindex)) return;
 	
-	// 找齣玩傢所在的地圖編號
+	// 找出玩傢所在的地圖編號
 	floor = CHAR_getInt(charaindex,CHAR_FLOOR);
-	// 找齣道具要放的特效的編號
+	// 找出道具要放的特效的編號
 	pActionNumber = ITEM_getChar(itemindex,ITEM_ARGUMENT);
 	sprintf(szMsg,"%d 8 %s",floor,pActionNumber);
 	// 執行
@@ -4031,7 +4031,7 @@ void ITEM_changePetOwner( int charaindex, int toindex, int haveitemindex)
 		if( CHAR_getCharPet( charaindex, i) == toindex )
 			CHAR_send_K_StatusString( charaindex, i,CHAR_K_STRING_NAME|CHAR_K_STRING_CHANGENAMEFLG);
 
-	CHAR_talkToCli( charaindex, -1, "現在你可以幫這隻寵物改名字瞭。", CHAR_COLORYELLOW );
+	CHAR_talkToCli( charaindex, -1, "現在你可以幫這隻寵物改名字了。", CHAR_COLORYELLOW );
 
 	CHAR_DelItemMess( charaindex, haveitemindex, 0);
 }
@@ -4169,7 +4169,7 @@ void ITEM_SetLoverUser( int charaindex, int toindex, int haveitemindex)
 
    if( !strcmp( CHAR_getChar( charaindex, CHAR_LOVE), "YES"))
         {
-            CHAR_talkToCli( charaindex, -1, "重婚是違法的！您已經結婚瞭哦~", CHAR_COLORYELLOW);
+            CHAR_talkToCli( charaindex, -1, "重婚是違法的！您已經結婚了哦~", CHAR_COLORYELLOW);
             return;
         }
    if( !CHAR_CHECKINDEX( charaindex ) ) return;
@@ -4207,9 +4207,9 @@ void ITEM_SetLoverUser( int charaindex, int toindex, int haveitemindex)
 	    	 if (strcmp(CHAR_getChar( toindex, CHAR_LOVERID), CHAR_getChar( charaindex, CHAR_CDKEY))==0 &&
          			strcmp(CHAR_getChar( toindex, CHAR_LOVERNAME), CHAR_getChar( charaindex, CHAR_NAME))==0){
          		int i;
-            sprintf( token, "已經答應瞭%s的求婚", CHAR_getChar( toindex, CHAR_NAME));
+            sprintf( token, "已經答應了%s的求婚", CHAR_getChar( toindex, CHAR_NAME));
 		        CHAR_talkToCli( charaindex, -1, token, CHAR_COLORYELLOW);
-		        sprintf( token, "%s已經響應瞭你的求婚", CHAR_getChar( charaindex, CHAR_NAME));
+		        sprintf( token, "%s已經響應了你的求婚", CHAR_getChar( charaindex, CHAR_NAME));
 		        CHAR_talkToCli( toindex, -1, token, CHAR_COLORYELLOW);
             CHAR_setChar( toindex, CHAR_LOVE,"YES");
 		        CHAR_setChar( charaindex, CHAR_LOVE,"YES");
@@ -4280,7 +4280,7 @@ void ITEM_LoverWarp( int charaindex, int toindex, int haveitemindex)
     }//從index中對比LOVERNAME
         if (i>=playernum)
           {
-            CHAR_talkToCli( charaindex, -1, "很抱歉，您的愛人不在綫哦~", CHAR_COLORYELLOW );
+            CHAR_talkToCli( charaindex, -1, "很抱歉，您的愛人不在線哦~", CHAR_COLORYELLOW );
             return;
           }
 
@@ -4309,7 +4309,7 @@ void ITEM_LoverWarp( int charaindex, int toindex, int haveitemindex)
           y = CHAR_getInt( i, CHAR_Y);
 
           CHAR_warpToSpecificPoint( charaindex, floor, x, y );
-          sprintf( token, "%s:親愛的，我來瞭！", CHAR_getChar( charaindex, CHAR_NAME));
+          sprintf( token, "%s:親愛的，我來了！", CHAR_getChar( charaindex, CHAR_NAME));
           CHAR_talkToCli( i, -1, token, CHAR_COLORYELLOW );
           sprintf( token, "已傳送到愛人%s身邊！", CHAR_getChar( i, CHAR_NAME));
           CHAR_talkToCli( charaindex, -1, token, CHAR_COLORYELLOW );
@@ -4341,7 +4341,7 @@ void ITEM_LoverUnmarry( int charaindex, int toindex, int haveitemindex)
     }//從index中對比LOVERNAME
         if (i>=playernum)
           {
-            CHAR_talkToCli( charaindex, -1, "很抱歉，您的愛人不在綫哦~", CHAR_COLORYELLOW );
+            CHAR_talkToCli( charaindex, -1, "很抱歉，您的愛人不在線哦~", CHAR_COLORYELLOW );
             return;
           }
 
@@ -4370,7 +4370,7 @@ void ITEM_LoverUnmarry( int charaindex, int toindex, int haveitemindex)
 				      ITEM_setChar( itemindex, ITEM_EFFECTSTRING, token);
 			      	CHAR_sendItemDataOne( i, emptyitemindexinchara);
 			      	ITEM_endExistItemsOne(itemindex);
-		       		sprintf( token, " %s嚮您提齣離婚並把 %s 給你！", CHAR_getChar( charaindex, CHAR_NAME),ITEM_getChar( itemindex, ITEM_NAME));
+		       		sprintf( token, " %s嚮您提出離婚並把 %s 給你！", CHAR_getChar( charaindex, CHAR_NAME),ITEM_getChar( itemindex, ITEM_NAME));
 		       		CHAR_talkToCli( i, -1, token, CHAR_COLORYELLOW);
 		       		sprintf( token, "已經嚮%s發起離婚", CHAR_getChar( i, CHAR_NAME));
 		       		CHAR_talkToCli( charaindex, -1, token, CHAR_COLORYELLOW);
@@ -4465,7 +4465,7 @@ void ITEM_ColorMetamo( int charaindex, int toindex, int haveitemindex)
 							break;
 						}
 					default:
-						CHAR_talkToCli( charaindex, -1, "該戒指隻能擁有莊園的光明傢族成員使用！", CHAR_COLORYELLOW);
+						CHAR_talkToCli( charaindex, -1, "該戒指隻能擁有莊園的光明家族成員使用！", CHAR_COLORYELLOW);
 						return;
 				}
 #endif
@@ -4493,7 +4493,7 @@ void ITEM_ColorMetamo( int charaindex, int toindex, int haveitemindex)
 							break;
 						}
 					default:
-						CHAR_talkToCli( charaindex, -1, "該戒指隻能擁有莊園的黑暗傢族成員使用！", CHAR_COLORYELLOW);
+						CHAR_talkToCli( charaindex, -1, "該戒指隻能擁有莊園的黑暗家族成員使用！", CHAR_COLORYELLOW);
 						return;
 				}
 #endif
@@ -4977,7 +4977,7 @@ void ITEM_MetamoTime( int charaindex, int toindex, int haveitemindex )
 	}
 #endif
 #ifdef _PETSKILL_BECOMEPIG
-    if( CHAR_getInt( charaindex, CHAR_BECOMEPIG) > -1 ){//變成烏力瞭
+    if( CHAR_getInt( charaindex, CHAR_BECOMEPIG) > -1 ){//變成烏力了
 		CHAR_talkToCli( charaindex, -1, "無法變身，烏力化中不能變身！", CHAR_COLORYELLOW );
 	    return;
 	}
@@ -5245,7 +5245,7 @@ void PET_BEATITUDE( int charaindex, int toindex, int haveitemindex)
 	int beat=CHAR_getInt( toindex, CHAR_BEATITUDE);
 	if(strcmp( beatitude, "體")==0){
 		if(CHAR_getInt( toindex, CHAR_BEATITUDE)&BEATITUDE_VITAL){
-			CHAR_talkToCli( charaindex, -1, "您的寵物該項屬性已提升過瞭！", CHAR_COLORYELLOW);
+			CHAR_talkToCli( charaindex, -1, "您的寵物該項屬性已提升過了！", CHAR_COLORYELLOW);
 			return;
 		}else{
 			sprintf(token, "%s體力上升%d", CHAR_getChar( toindex, CHAR_NAME),atoi(mun));
@@ -5254,7 +5254,7 @@ void PET_BEATITUDE( int charaindex, int toindex, int haveitemindex)
 		}
 	}else if(strcmp( beatitude, "攻")==0){
 		if(CHAR_getInt( toindex, CHAR_BEATITUDE)&BEATITUDE_STR){
-			CHAR_talkToCli( charaindex, -1, "您的寵物該項屬性已提升過瞭！", CHAR_COLORYELLOW);
+			CHAR_talkToCli( charaindex, -1, "您的寵物該項屬性已提升過了！", CHAR_COLORYELLOW);
 			return;
 		}else{
 			sprintf(token, "%s攻擊力上升%d", CHAR_getChar( toindex, CHAR_NAME),atoi(mun));
@@ -5263,7 +5263,7 @@ void PET_BEATITUDE( int charaindex, int toindex, int haveitemindex)
 		}
 	}else if(strcmp( beatitude, "防")==0){
 		if(CHAR_getInt( toindex, CHAR_BEATITUDE)&BEATITUDE_TOUGH){
-			CHAR_talkToCli( charaindex, -1, "您的寵物該項屬性已提升過瞭！", CHAR_COLORYELLOW);
+			CHAR_talkToCli( charaindex, -1, "您的寵物該項屬性已提升過了！", CHAR_COLORYELLOW);
 			return;
 		}else{
 			sprintf(token, "%s防禦力上升%d", CHAR_getChar( toindex, CHAR_NAME),atoi(mun));
@@ -5272,7 +5272,7 @@ void PET_BEATITUDE( int charaindex, int toindex, int haveitemindex)
 		}
 	}else if(strcmp( beatitude, "敏")==0){
 		if(CHAR_getInt( toindex, CHAR_BEATITUDE)&BEATITUDE_DEX){
-			CHAR_talkToCli( charaindex, -1, "您的寵物該項屬性已提升過瞭！", CHAR_COLORYELLOW);
+			CHAR_talkToCli( charaindex, -1, "您的寵物該項屬性已提升過了！", CHAR_COLORYELLOW);
 			return;
 		}else{
 			sprintf(token, "%s敏捷力上升%d", CHAR_getChar( toindex, CHAR_NAME),atoi(mun));
@@ -5288,7 +5288,7 @@ void PET_BEATITUDE( int charaindex, int toindex, int haveitemindex)
 		CHAR_talkToCli( charaindex, -1, token, CHAR_COLORYELLOW);
 		return;
 	}
-	CHAR_talkToCli( charaindex, -1, "主人，這東西太棒瞭，我已充滿力量瞭！", CHAR_COLORYELLOW);
+	CHAR_talkToCli( charaindex, -1, "主人，這東西太棒了，我已充滿力量了！", CHAR_COLORYELLOW);
 	CHAR_setInt( toindex, CHAR_BEATITUDE,beat);
 	CHAR_talkToCli( charaindex, -1, token, CHAR_COLORYELLOW);
 	int i;
@@ -5407,7 +5407,7 @@ void ITEM_ItemPetLocked( int charaindex, int toindex, int haveitemindex)
 	}else if(CHAR_getInt(charaindex,CHAR_LOCKED)==1){
 		char message[256];
 		char	buf[256];
-		sprintf( message, "為瞭確保你的物品安全，請輸入你的安全密碼進行解鎖！\n");
+		sprintf( message, "為了確保你的物品安全，請輸入你的安全密碼進行解鎖！\n");
 	
 		lssproto_WN_send( getfdFromCharaIndex( charaindex), WINDOW_MESSAGETYPE_MESSAGEANDLINEINPUT, 
 						WINDOW_BUTTONTYPE_OKCANCEL,
@@ -5757,7 +5757,7 @@ void ITEM_WarpItem( int charaindex, int toindex, int haveitemindex )
 #endif
 
 		if( --usenum <= 0 )	{
-			CHAR_talkToCli(charaindex, -1, "該道具已經沒有使用次數瞭，永久消失！", CHAR_COLORYELLOW);
+			CHAR_talkToCli(charaindex, -1, "該道具已經沒有使用次數了，永久消失！", CHAR_COLORYELLOW);
 			CHAR_DelItem( charaindex, haveitemindex);
 		}else{
 			sprintf( buf, "該道具使用次數剩餘%d次", usenum);
@@ -5949,7 +5949,7 @@ void ITEM_FindTreasures( int charaindex, int toindex, int haveitemindex )
 					  ITEM_setWorkInt(itemindex, ITEM_WORKCHARAINDEX,charaindex);
 					  CHAR_sendItemDataOne( charaindex, emptyitemindexinchara);
 	
-						sprintf( buf, "恭喜你，尋找到寶物品瞭 %s", ITEM_getChar( itemindex, ITEM_NAME));
+						sprintf( buf, "恭喜你，尋找到寶物品了 %s", ITEM_getChar( itemindex, ITEM_NAME));
 						CHAR_talkToCli( charaindex, -1,buf, CHAR_COLORGREEN);
 					}
 				}else{
@@ -6080,7 +6080,7 @@ void ITEM_NewGMItem( int charaindex, int toindex, int haveitemindex )
 			CHAR_getInt( charaindex, CHAR_FLOOR), CHAR_getInt( charaindex, CHAR_X),
 			CHAR_getInt( charaindex, CHAR_Y) );
 		func( charaindex, arg + strlen( magicname)+1);
-		sprintf(token, "使用已成功!交齣 %s\n", ITEM_getChar(itemindex, ITEM_NAME ));
+		sprintf(token, "使用已成功!交出 %s\n", ITEM_getChar(itemindex, ITEM_NAME ));
 		CHAR_talkToCli( charaindex, -1, token,  CHAR_COLORYELLOW);
 		CHAR_DelItem( charaindex, haveitemindex);
 	}
@@ -6172,7 +6172,7 @@ void ITEM_NewPetBeatitude( int charaindex, int toindex, int haveitemindex )
 	if(getStringFromIndexWithDelim( arg, "|", 2, token,  sizeof( token))==TRUE){
 		flg = atoi(token);
 		if(NPC_EventCheckFlg(toindex, flg)==TRUE){
-			CHAR_talkToCli( charaindex, -1, "該寵物已經無法再次使用該物品瞭!",  CHAR_COLORRED);
+			CHAR_talkToCli( charaindex, -1, "該寵物已經無法再次使用該物品了!",  CHAR_COLORRED);
 			return;
 		}
 	}else{

@@ -88,7 +88,7 @@ void saacproto_SetClientLogFiles( char *read , char *write);
 void saacproto_CleanupClient(void);
 int saacproto_ClientDispatchMessage(int fd ,char*line);
 
-// 成立傢族
+// 成立家族
 #ifdef _PERSONAL_FAME
 void saacproto_ACAddFM_send(int fd, char *fmname, char *fmleadername,
 	char *fmleaderid, int fmleaderlv, char *petname, char *petarrt,
@@ -104,8 +104,8 @@ void saacproto_ACAddFM_send(int fd, char *fmname, char *fmleadername,
 #endif
 void saacproto_ACAddFM_recv(int fd, char *result, int fmindex, int index,
 	int charfdid);
-// 加入傢族
-// #ifdef _PERSONAL_FAME	// Arminius: 傢族個人聲望
+// 加入家族
+// #ifdef _PERSONAL_FAME	// Arminius: 家族個人聲望
 void saacproto_ACJoinFM_send(int fd, char *fmname, int fmindex, char *charname,
         char *charid, int charlv, int index, int fame, int charfdid);
 // #else
@@ -113,19 +113,19 @@ void saacproto_ACJoinFM_send(int fd, char *fmname, int fmindex, char *charname,
 //        char *charid, int charlv, int index, int charfdid);
 // #endif
 void saacproto_ACJoinFM_recv(int fd, char *result, int recv, int charfdid);
-// 退齣傢族
+// 退出家族
 void saacproto_ACLeaveFM_send(int fd, char *fmname, int fmindex, char *charname,
         char *charid, int index, int charfdid);
 void saacproto_ACLeaveFM_recv(int fd, char *result, int resultflag, int charfdid);
-// 解散傢族
+// 解散家族
 void saacproto_ACDelFM_send(int fd, char *fmname, int fmindex, int index,
 	char *charname, char *charid, int charfdid);
 
 void saacproto_ACDelFM_recv(int fd, char *result, int charfdid);
-// 列齣傢族列錶
+// 列出家族列錶
 void saacproto_ACShowFMList_send(int fd);
 void saacproto_ACShowFMList_recv(int fd, char *result, int num, char *data);
-// 列齣成員列錶
+// 列出成員列錶
 void saacproto_ACShowMemberList_send(int fd, int index);
 void saacproto_ACShowMemberList_recv(int fd, char *result, int index, int num,
 	int fmacceptflag, int fmjoinnum, char *data
@@ -133,11 +133,11 @@ void saacproto_ACShowMemberList_recv(int fd, char *result, int index, int num,
 	,int badge
 #endif
 	);
-// 列齣傢族詳細資料
+// 列出家族詳細資料
 void saacproto_ACFMDetail_send(int fd, char *fmname, int fmindex,
 	int index, int charfdid);
 void saacproto_ACFMDetail_recv(int fd, char *result, char *data, int charfdid);
-//族長審核成員加入傢族、修改傢族成員職位
+//族長審核成員加入家族、修改家族成員職位
 #ifdef _FMVER21
 void saacproto_ACMemberJoinFM_send(int fd, char *fmname, int fmindex, char *charname,
 	int charindex, int index, int result, int meindex, int charfdid);
@@ -146,7 +146,7 @@ void saacproto_ACMemberJoinFM_send(int fd, char *fmname, int fmindex, char *char
 	int charindex, int index, int result, int charfdid);
 #endif
 void saacproto_ACMemberJoinFM_recv(int fd, char *result, char *data, int charfdid);
-//族長審核成員離開傢族
+//族長審核成員離開家族
 #ifdef _FMVER21
 void saacproto_ACMemberLeaveFM_send(int fd, char *fmname, int fmindex, char *charname,
 	int charindex, int index, int meindex, int charfdid);
@@ -168,7 +168,7 @@ void saacproto_ACFMCharLogin_send(int fd, char *fmname, int fmindex, char *charn
 		char *charid, int result, int charfdid);
 	#endif
 #endif
-#ifdef _PERSONAL_FAME   // Arminius: 傢族個人聲望
+#ifdef _PERSONAL_FAME   // Arminius: 家族個人聲望
 void saacproto_ACFMCharLogin_recv(int fd, char *result, int index, int floor,
 	int fmdp, int joinflag, int fmsetupflag, int flag, int charindex,
 	int charfame, int charfdid
@@ -185,38 +185,38 @@ void saacproto_ACFMCharLogin_recv(int fd, char *result, int index, int floor,
 void saacproto_ACFMCharLogout_send(int fd, char *fmname, int fmindex, char *charname,
 	char *charid, int result, int index, int charfdid);
 void saacproto_ACFMCharLogout_recv(int fd, char *result, int charfdid);
-// 列齣傢族留言闆
+// 列出家族留言闆
 void saacproto_ACFMReadMemo_send(int fd, int index);
 void saacproto_ACFMReadMemo_recv(int fd, char *result, int index, int num,
         int dataindex, char *data);
-// 寫入傢族留言闆
+// 寫入家族留言闆
 void saacproto_ACFMWriteMemo_send(int fd, char *fmname, int fmindex,
         char *data, int index);
 void saacproto_ACFMWriteMemo_recv(int fd, char *result, int index);
-// 列齣傢族據點
+// 列出家族據點
 void saacproto_ACFMPointList_send(int fd);
 void saacproto_ACFMPointList_recv(int fd, char *result, char *data);
 
-// 申請傢族據點
+// 申請家族據點
 void saacproto_ACSetFMPoint_send(int fd, char* fmname, int fmindex, int index,
 	int fmpointindex, int fl, int x, int y, int charfdid);
 void saacproto_ACSetFMPoint_recv(int fd, char *result, int r, int charfdid);
-// 設定傢族據點
+// 設定家族據點
 void saacproto_ACFixFMPoint_send(int fd, char *winfmname, int winfmindex,
         int winindex, char *losefmname, int losefmindex, int loseindex,
         int village);
 void saacproto_ACFixFMPoint_recv(int fd, char *result, int r);
-// 族長對星係傢族成員廣播
-// kindflag 1:族長廣播 2:傢族被係統刪除 3:係統通知訊息
+// 族長對星係家族成員廣播
+// kindflag 1:族長廣播 2:家族被係統刪除 3:係統通知訊息
 void saacproto_ACFMAnnounce_send(int fd, char *fmname, int fmindex, int index,
 	char *data, int color);
 void saacproto_ACFMAnnounce_recv(int fd, char *result, char *fmname,
 	int fmindex, int index, int kindflag, char *data, int color);
-// 列齣 TOP 50 傢族列錶
+// 列出 TOP 50 家族列錶
 void saacproto_ACShowTopFMList_send(int fd, int kindflag);
 void saacproto_ACShowTopFMList_recv(int fd, char *result, int kindflag,
 	int num, char *data);
-// 修正傢族資料(是否招收成員)
+// 修正家族資料(是否招收成員)
 // flag 1:acceptjoinflag 2:dpchanged 3:change fmpet 4:change fminfo 5:predel FM Time
 void saacproto_ACFixFMData_send(int fd, char *fmname, int fmindex, int index,
 	int kindflag,char *data1,char *data2,int charindex, int charfdid);
@@ -224,22 +224,22 @@ void saacproto_ACFixFMData_send(int fd, char *fmname, int fmindex, int index,
 void saacproto_ACFixFMData_recv(int fd, char *result, int kindflag, char *data1,
 	char *data2, int charfdid);
 
-// ＰＫ後更新傢族聲望
+// ＰＫ後更新家族聲望
 void saacproto_ACFixFMPK_send(int fd, char *winfmname, int winfmindex,
         int winindex, char *losefmname, int losefmindex, int loseindex);
 void saacproto_ACFixFMPK_recv(int fd, char *result, int data, int winindex,
 	int loseindex);
-// 取得傢族資料
-// kindflag 1:傢族銀行
+// 取得家族資料
+// kindflag 1:家族銀行
 void saacproto_ACGetFMData_send(int fd, char *fmname, int fmindex, int index,
         int kindflag, int charfdid);
 void saacproto_ACGetFMData_recv(int fd, char *result, int kindflag, int data,
 	int charfdid);
-// ＧＭ修正傢族資料
+// ＧＭ修正家族資料
 void saacproto_ACGMFixFMData_send(int fd, int index, char *charid, char *cmd,
 	char *data, int charfdid);
 void saacproto_ACGMFixFMData_recv(int fd, char *result, char *fmindex, int charfdid);
-// 刪除傢族後清除對戰排程
+// 刪除家族後清除對戰排程
 void saacproto_ACFMClearPK_recv(int fd, char *result, char *fmname, int fmindex,
         int index);
 

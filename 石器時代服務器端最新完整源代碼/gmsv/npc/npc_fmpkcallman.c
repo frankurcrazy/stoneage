@@ -118,9 +118,9 @@ static void NPC_FMPKCallMan_selectWindow( int meindex, int toindex,
 	   	if (NPC_Util_GetStrFromStrWithDelim(npcarg, "MainMsg", buf,
 	   		sizeof(buf)) == NULL)
 	   			return;
-	   	sprintf(token, "3\n               ★傢族ＰＫ場★\n"
+	   	sprintf(token, "3\n               ★家族ＰＫ場★\n"
 	   			"%s"
-	   			"\n              《召喚傢族成員》"
+	   			"\n              《召喚家族成員》"
 	   			"\n               《返迴記錄點》"
 	   			"\n                  《取消》",
 	   			buf);
@@ -159,19 +159,19 @@ static void NPC_FMPKCallMan_selectWindow( int meindex, int toindex,
 					int fmindex, fmpk_pos=-1, j;
 					int now_time;
 					struct  tm tm1;
-// Terry add for 索引值為 0 的傢族會有問題,所以多加判斷傢族名稱
+// Terry add for 索引值為 0 的家族會有問題,所以多加判斷家族名稱
 					char szFMName[32];
 // end
 					
 					memcpy(&tm1,localtime((time_t *)&NowTime.tv_sec),sizeof(tm1));
 
 					fmindex = CHAR_getWorkInt(toindex, CHAR_WORKFMINDEXI);
-// Terry add for 索引值為 0 的傢族會有問題,所以多加判斷傢族名稱
+// Terry add for 索引值為 0 的家族會有問題,所以多加判斷家族名稱
 					strncpy(szFMName,CHAR_getChar(toindex,CHAR_FMNAME),sizeof(szFMName));
 // end
 
 					for( j=0; j <= MAX_SCHEDULEMAN*MAX_SCHEDULE; j++ ){
-// Terry fix for 索引值為 0 的傢族會有問題,所以多加判斷傢族名稱
+// Terry fix for 索引值為 0 的家族會有問題,所以多加判斷家族名稱
 //						if( (fmindex == fmpks[j].host_index ) || (fmindex == fmpks[j].guest_index ) ){
 						if((fmindex == fmpks[j].host_index && strcmp(szFMName,fmpks[j].host_name) == 0) || 
 							 (fmindex == fmpks[j].guest_index && strcmp(szFMName,fmpks[j].guest_name) == 0)){
@@ -193,7 +193,7 @@ static void NPC_FMPKCallMan_selectWindow( int meindex, int toindex,
 						if( (fmpks[fmpk_pos].flag != FMPKS_FLAG_SCHEDULED) &&
 							(fmpks[fmpk_pos].flag != FMPKS_FLAG_MANOR_PREPARE) )
 						{
-                            sprintf(token,"你沒有傢族約戰，請先約戰吧。");
+                            sprintf(token,"你沒有家族約戰，請先約戰吧。");
 	   						lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 	   							WINDOW_BUTTONTYPE_OK, -1, -1, token);
 
@@ -210,7 +210,7 @@ static void NPC_FMPKCallMan_selectWindow( int meindex, int toindex,
 	   							CHAR_getWorkInt( meindex, CHAR_WORKOBJINDEX), token);
 						}
 					}else{
-                            sprintf(token,"你沒有傢族約戰，請先約戰吧。");
+                            sprintf(token,"你沒有家族約戰，請先約戰吧。");
                             lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
                                      WINDOW_BUTTONTYPE_OK, -1, -1, token);
 					}
@@ -333,7 +333,7 @@ void NPC_FMPKCallManWindowTalked( int meindex, int talkerindex,
 	  			{
 	  				lssproto_WN_send(fd, WINDOW_MESSAGETYPE_MESSAGE,
 	  					WINDOW_BUTTONTYPE_OK, -1, -1,
-	  					makeEscapeString("\n您身上有貴重物品喔！\n為瞭避免在傳送途中不小心損壞，\n請先將這類物品卸下，\n謝謝您的閤作！", buf, sizeof(buf)));
+	  					makeEscapeString("\n您身上有貴重物品喔！\n為了避免在傳送途中不小心損壞，\n請先將這類物品卸下，\n謝謝您的閤作！", buf, sizeof(buf)));
 	  				return;
 	  			}
 	  				
@@ -385,7 +385,7 @@ void NPC_CallFMMember(int meindex, int floor, int fmindex, char *fmname, int ind
 	            	lssproto_WN_send(fd, WINDOW_MESSAGETYPE_MESSAGE,
 	            		WINDOW_BUTTONTYPE_YESNO, CHAR_WINDOWTYPE_FMPKCALLMAN_COME,
 	            		CHAR_getWorkInt(meindex, CHAR_WORKOBJINDEX),
-	            		makeEscapeString("\n傢族已經在ＰＫ羅～要不要加入呢？\n不過若是在組隊狀態中，將會脫離團隊唷！", buf, sizeof(buf)));
+	            		makeEscapeString("\n家族已經在ＰＫ羅～要不要加入呢？\n不過若是在組隊狀態中，將會脫離團隊唷！", buf, sizeof(buf)));
 	         }
 	      }	 
 	      else

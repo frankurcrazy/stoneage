@@ -17,7 +17,7 @@
 #include "configfile.h"
 
 #ifdef _FM_POINT_PK
-extern struct  FM_POINTLIST fmpointlist;                   // 傢族據點
+extern struct  FM_POINTLIST fmpointlist;                   // 家族據點
 #endif
 
 #define FMWARPMAN_INIT_LOOPTIME		600	// 0.1秒
@@ -221,7 +221,7 @@ void NPC_FMWarpManLoop(int meindex)
 			if (fmpks[fmpks_pos].flag == FMPKS_FLAG_SCHEDULED)
 				NPC_talkToFloor(CHAR_getInt(meindex, CHAR_FLOOR),
 				fmpks[fmpks_pos].host_index,
-				fmpks[fmpks_pos].guest_index, "可以準備進場瞭！");
+				fmpks[fmpks_pos].guest_index, "可以準備進場了！");
 			CHAR_setWorkInt(meindex, NPC_WORK_TALKFLAG, tm1.tm_min);
 		}
 		if ((fmpks[fmpks_pos].prepare_time > 0) && (fmpks[fmpks_pos].flag == FMPKS_FLAG_SCHEDULED))
@@ -316,7 +316,7 @@ void NPC_FMWarpManLoop(int meindex)
 #ifdef _MANOR_PKRULE      
 			if(meid > MANORNUM){
 #endif
-				// 流浪傢族pk 過聲望
+				// 流浪家族pk 過聲望
 				if (winflag == 1){	 		 
 					saacproto_ACFixFMPK_send(acfd,
 						fmpks[fmpks_pos].host_name,
@@ -365,11 +365,11 @@ void NPC_FMWarpManLoop(int meindex)
 							fmpks[fmpks_pos].guest_index,
 							num2, token, "", "", 2);
 #ifdef _NEW_MANOR_LAW
-						// 原傢族守住瞭莊園,傢族成員可得到石幣
+						// 原家族守住了莊園,家族成員可得到石幣
 						iFmIndex1 = fmpks[fmpks_pos].host_index;
 						for(i=0;i<FAMILY_MAXMEMBER;i++){
 							iCharindex = familyMemberIndex[iFmIndex1][i];
-							// 若在綫上纔給錢
+							// 若在線上纔給錢
 							if(iCharindex >= 0 && CHAR_getCharUse(iCharindex)){
 								// 獲得金錢 = 個人氣勢 * 5000
 								int iAddGold = ((float)CHAR_getInt(iCharindex,CHAR_MOMENTUM)/100.0f)/* * 5000.0f */;
@@ -377,7 +377,7 @@ void NPC_FMWarpManLoop(int meindex)
 								// 先放入個人銀行
 								if(iGold + iAddGold > CHAR_MAXBANKGOLDHAVE){
 									CHAR_setInt(iCharindex,CHAR_BANKGOLD,CHAR_MAXBANKGOLDHAVE);
-									// 個人銀行放不下瞭,放到個人身上
+									// 個人銀行放不下了,放到個人身上
 									iAddGold = iGold + iAddGold - CHAR_MAXBANKGOLDHAVE;
 									iGold = CHAR_getInt(iCharindex,CHAR_GOLD);
 									iMaxGold = CHAR_getMaxHaveGold(iCharindex);
@@ -395,7 +395,7 @@ void NPC_FMWarpManLoop(int meindex)
 																	CHAR_getChar(iCharindex,CHAR_NAME),
 																	CHAR_getInt(iCharindex,CHAR_MOMENTUM),iAddGold,1);
 								}
-								CHAR_talkToCli(iCharindex,-1,"辛苦瞭!守護住莊園的奬金已匯入你的個人銀行",CHAR_COLORRED);
+								CHAR_talkToCli(iCharindex,-1,"辛苦了!守護住莊園的奬金已匯入你的個人銀行",CHAR_COLORRED);
 							}
 						}
 #else
@@ -494,20 +494,20 @@ void NPC_FMWarpManLoop(int meindex)
 					CHAR_setInt(meindex, CHAR_LOOPINTERVAL, FMWARPMAN_FREE_LOOPTIME);
 					print("FMWarpMan State:%d\n", CHAR_getWorkInt(meindex, NPC_WORK_MODEFLAG));
 #ifdef _NEW_MANOR_LAW
-					// 雙方的個人及傢族氣勢都要歸零
+					// 雙方的個人及家族氣勢都要歸零
 					iFmIndex1 = fmpks[fmpks_pos].host_index;
 					iFmIndex2 = fmpks[fmpks_pos].guest_index;
 					for(i=0;i<FAMILY_MAXMEMBER;i++){
 						iCharindex = familyMemberIndex[iFmIndex1][i];
-						// 若有在綫上則清除,不在綫上的在登入遊戲時清除
+						// 若有在線上則清除,不在線上的在登入遊戲時清除
 						if(iCharindex >= 0 && CHAR_getCharUse(iCharindex)){
 							CHAR_setInt(iCharindex,CHAR_MOMENTUM,0);
-							CHAR_talkToCli(iCharindex,-1,"莊園戰後個人及傢族氣勢歸零",CHAR_COLORRED);
+							CHAR_talkToCli(iCharindex,-1,"莊園戰後個人及家族氣勢歸零",CHAR_COLORRED);
 						}
 						iCharindex = familyMemberIndex[iFmIndex2][i];
 						if(iCharindex >= 0 && CHAR_getCharUse(iCharindex)){
 							CHAR_setInt(iCharindex,CHAR_MOMENTUM,0);
-							CHAR_talkToCli(iCharindex,-1,"莊園戰後個人及傢族氣勢歸零",CHAR_COLORRED);
+							CHAR_talkToCli(iCharindex,-1,"莊園戰後個人及家族氣勢歸零",CHAR_COLORRED);
 						}
 					}
 #endif
@@ -554,20 +554,20 @@ void NPC_FMWarpManLoop(int meindex)
 							num1, token, "", "", 2);
 #ifdef _NEW_MANOR_LAW
 					int i,iFmIndex1,iFmIndex2,iCharindex;
-					// 雙方的個人及傢族氣勢都要歸零
+					// 雙方的個人及家族氣勢都要歸零
 					iFmIndex1 = fmpks[fmpks_pos].host_index;
 					iFmIndex2 = fmpks[fmpks_pos].guest_index;
 					for(i=0;i<FAMILY_MAXMEMBER;i++){
 						iCharindex = familyMemberIndex[iFmIndex1][i];
-						// 若有在綫上則清除,不在綫上的在登入遊戲時清除
+						// 若有在線上則清除,不在線上的在登入遊戲時清除
 						if(iCharindex >= 0 && CHAR_getCharUse(iCharindex)){
 							CHAR_setInt(iCharindex,CHAR_MOMENTUM,0);
-							CHAR_talkToCli(iCharindex,-1,"莊園戰後個人及傢族氣勢歸零",CHAR_COLORRED);
+							CHAR_talkToCli(iCharindex,-1,"莊園戰後個人及家族氣勢歸零",CHAR_COLORRED);
 						}
 						iCharindex = familyMemberIndex[iFmIndex2][i];
 						if(iCharindex >= 0 && CHAR_getCharUse(iCharindex)){
 							CHAR_setInt(iCharindex,CHAR_MOMENTUM,0);
-							CHAR_talkToCli(iCharindex,-1,"莊園戰後個人及傢族氣勢歸零",CHAR_COLORRED);
+							CHAR_talkToCli(iCharindex,-1,"莊園戰後個人及家族氣勢歸零",CHAR_COLORRED);
 						}
 					}
 #endif
@@ -640,7 +640,7 @@ void NPC_FMWarpManWindowTalked( int meindex, int talkerindex,
 			return;
 		}
 	}else{
-		CHAR_talkToCli( talkerindex, meindex, "你並非對戰雙方所屬任一傢族成員！", CHAR_COLORYELLOW);
+		CHAR_talkToCli( talkerindex, meindex, "你並非對戰雙方所屬任一家族成員！", CHAR_COLORYELLOW);
 		return;
 	}
 	getStringFromIndexWithDelim(buf,",",1,buff2,sizeof(buff2));
@@ -670,7 +670,7 @@ void NPC_FMWarpManWindowTalked( int meindex, int talkerindex,
 			     		int tmpnum2 = CHAR_getWorkInt(meindex, NPC_WORK_FMNUMII) + 1;
 				   		CHAR_setWorkInt(meindex, NPC_WORK_FMNUMII, tmpnum2);
 						}else{
-							CHAR_talkToCli( talkerindex, meindex, "你並非對戰雙方所屬任一傢族成員！", CHAR_COLORYELLOW);
+							CHAR_talkToCli( talkerindex, meindex, "你並非對戰雙方所屬任一家族成員！", CHAR_COLORYELLOW);
 						}
 	         	CHAR_setWorkInt(talkerindex, CHAR_WORKFMPKFLAG, 1);
 		       	CHAR_setWorkInt(talkerindex, CHAR_WORKFMMANINDEX, meindex);
@@ -707,8 +707,8 @@ void NPC_FMWarpManWindowTalked( int meindex, int talkerindex,
 						clock = ((fmpks[fmpks_pos].dueltime % 100) + fmpks[fmpks_pos].prepare_time) - tm1.tm_min;
 						if (clock >= 60)	clock = clock - 60;
 						sprintf(tmpbuf, "\n請等候雙方準備完畢後再開戰！"
-							"\n戰鬥時請不要隨意登齣或離開。"
-							"\n贏得勝利的傢族也請先稍後一下，"
+							"\n戰鬥時請不要隨意登出或離開。"
+							"\n贏得勝利的家族也請先稍後一下，"
 							"\n等待裁判的宣布後再離場！"
 							"\n謝謝您的閤作！"
 							"\n距離對戰時間還剩下：%4d分鍾",
@@ -822,11 +822,11 @@ static void NPC_FMWarpMan_selectWindow( int meindex, int toindex, int num,int se
 		fl = NPC_FMFloorUse(atoi(buf3));
 	}
 	   	
-	//修正無傢族使用係統
+	//修正無家族使用係統
 	if (CHAR_getInt(toindex, CHAR_FMLEADERFLAG) == FMMEMBER_NONE)	   	
 	{
 		char	tmpbuf[256];
-		sprintf(tmpbuf, "\n你還沒有正式加入傢族，所以不能進場！");
+		sprintf(tmpbuf, "\n你還沒有正式加入家族，所以不能進場！");
 		lssproto_WN_send(fd, WINDOW_MESSAGETYPE_MESSAGE,
 			WINDOW_BUTTONTYPE_OK, -1, -1,
 			makeEscapeString(tmpbuf, token, sizeof(token)));
@@ -847,7 +847,7 @@ static void NPC_FMWarpMan_selectWindow( int meindex, int toindex, int num,int se
 			if ((fmpks[fmpks_pos].host_index != -1)
 		      && (CHAR_getWorkInt(toindex, CHAR_WORKFMINDEXI) == fmpks[fmpks_pos].host_index))
 			{
-				// WON ADD 修正傢族pk場的約戰問題
+				// WON ADD 修正家族pk場的約戰問題
 				
 				if(fmpks[fmpks_pos].flag == -1)		return;
 				
@@ -866,7 +866,7 @@ static void NPC_FMWarpMan_selectWindow( int meindex, int toindex, int num,int se
 #endif		   	
 				{	
 					char	tmpbuf[256];
-					sprintf(tmpbuf, "\n你還沒有正式加入%s傢族，所以不能進場！", fmpks[fmpks_pos].host_name);
+					sprintf(tmpbuf, "\n你還沒有正式加入%s家族，所以不能進場！", fmpks[fmpks_pos].host_name);
 					lssproto_WN_send(fd, WINDOW_MESSAGETYPE_MESSAGE,
 						WINDOW_BUTTONTYPE_OK, -1, -1,
 						makeEscapeString(tmpbuf, token, sizeof(token)));
@@ -876,14 +876,14 @@ static void NPC_FMWarpMan_selectWindow( int meindex, int toindex, int num,int se
 				CHECK_FMPknumInFloor( meindex);
 				if (CHAR_getWorkInt(meindex, NPC_WORK_FMNUMI) > (fmpks[fmpks_pos].max_player - 1)){
 					lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
-						WINDOW_BUTTONTYPE_OK, -1, -1, makeEscapeString("\n已經不能再進去羅～！\n傢族進場人數已經到達設定上限瞭！", token, sizeof(token)));
+						WINDOW_BUTTONTYPE_OK, -1, -1, makeEscapeString("\n已經不能再進去羅～！\n家族進場人數已經到達設定上限了！", token, sizeof(token)));
 					return;
 				}
 			}
 			else if ((fmpks[fmpks_pos].guest_index != -1)
 		      && (CHAR_getWorkInt(toindex, CHAR_WORKFMINDEXI) == fmpks[fmpks_pos].guest_index))
 			{
-				// WON ADD 修正傢族pk場的約戰問題
+				// WON ADD 修正家族pk場的約戰問題
 				
 				if(fmpks[fmpks_pos].flag == -1)		return;
 				
@@ -902,7 +902,7 @@ static void NPC_FMWarpMan_selectWindow( int meindex, int toindex, int num,int se
 #endif		   	
 				{
 					char	tmpbuf[256];
-					sprintf(tmpbuf, "\n你還沒有正式加入%s傢族，所以不能進場！", fmpks[fmpks_pos].guest_name);
+					sprintf(tmpbuf, "\n你還沒有正式加入%s家族，所以不能進場！", fmpks[fmpks_pos].guest_name);
 					lssproto_WN_send(fd, WINDOW_MESSAGETYPE_MESSAGE,
 						WINDOW_BUTTONTYPE_OK, -1, -1,
 						makeEscapeString(tmpbuf, token, sizeof(token)));
@@ -913,7 +913,7 @@ static void NPC_FMWarpMan_selectWindow( int meindex, int toindex, int num,int se
 				if( CHAR_getWorkInt( meindex, NPC_WORK_FMNUMII) > (fmpks[fmpks_pos].max_player - 1)){
 					lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 						WINDOW_BUTTONTYPE_OK, -1, -1,
-						makeEscapeString("已經不能再進去羅～！\n傢族進場人數已經到達設定上限瞭！", token, sizeof(token)));
+						makeEscapeString("已經不能再進去羅～！\n家族進場人數已經到達設定上限了！", token, sizeof(token)));
 					return;
 				}
 			}
@@ -952,7 +952,7 @@ static void NPC_FMWarpMan_selectWindow( int meindex, int toindex, int num,int se
 			sprintf(token, buf2, fmpks[fmpks_pos].guest_name, fmpks[fmpks_pos].host_name);
 		}
 	}
-	else if (CHAR_getWorkInt(meindex, NPC_WORK_MODEFLAG) == NPC_STATEBUSY) // 兩傢族戰鬥中
+	else if (CHAR_getWorkInt(meindex, NPC_WORK_MODEFLAG) == NPC_STATEBUSY) // 兩家族戰鬥中
 	{
 		if (((CHAR_getWorkInt(toindex, CHAR_WORKFMINDEXI) == fmpks[fmpks_pos].host_index)
 			&& (strcmp(CHAR_getChar(toindex, CHAR_FMNAME), fmpks[fmpks_pos].host_name) == 0))
@@ -988,7 +988,7 @@ static void NPC_FMWarpMan_selectWindow( int meindex, int toindex, int num,int se
 		CONNECT_set_pass(fd, FALSE);
 		CONNECT_set_first_warp(fd, FALSE);
 	}
-	else if (CHAR_getWorkInt(meindex, NPC_WORK_MODEFLAG) == NPC_STATEWAIT) // 兩傢族戰鬥結束
+	else if (CHAR_getWorkInt(meindex, NPC_WORK_MODEFLAG) == NPC_STATEWAIT) // 兩家族戰鬥結束
 	{
 		if (((CHAR_getWorkInt(toindex, CHAR_WORKFMINDEXI) == fmpks[fmpks_pos].host_index)
 			&& (strcmp(CHAR_getChar(toindex, CHAR_FMNAME), fmpks[fmpks_pos].host_name) == 0))
@@ -1006,7 +1006,7 @@ static void NPC_FMWarpMan_selectWindow( int meindex, int toindex, int num,int se
 				&num1, &num2);
 			if (strcmp(CHAR_getWorkChar(meindex, NPC_WORK_WINFMNAME), "") == 0)
 				sprintf(tmpbuf, "雙方平手！");
-			else sprintf(tmpbuf, "%s獲勝瞭！！", CHAR_getWorkChar(meindex, NPC_WORK_WINFMNAME));
+			else sprintf(tmpbuf, "%s獲勝了！！", CHAR_getWorkChar(meindex, NPC_WORK_WINFMNAME));
 			sprintf(token, buf2,  fmpks[fmpks_pos].guest_name,
 				fmpks[fmpks_pos].host_name, tmpbuf);
 		} else if ((((CHAR_getWorkInt(toindex, CHAR_WORKFMINDEXI) == fmpks[fmpks_pos + 1].host_index)

@@ -147,7 +147,7 @@ int NPC_Lua_NLG_WarpToSpecificPoint(lua_State *_NLL);	  //移動NPC 可做團體
 BOOL NPC_Lua_NLG_UpSkillupPoint(lua_State *_NLL);       //更新人物點數
 int NPC_Lua_NLG_StayEncount(lua_State *_NLL);	          //原地
 
-int NPC_Lua_NLG_CheckInFront(lua_State *_NLL);					//用於檢查某個對象是否在某個對象麵前
+int NPC_Lua_NLG_CheckInFront(lua_State *_NLL);					//用於檢查某個對象是否在某個對象面前
 int NPC_Lua_NLG_CheckObj(lua_State *_NLL);							//檢查某個地圖位置是否有對象存在
 int NPC_Lua_NLG_CharLook(lua_State *_NLL);							//設置人物方嚮(發送更新封包)
 int NPC_Lua_NLG_CreateBattle(lua_State *_NLL);					//創建戰鬥
@@ -168,7 +168,7 @@ int NPC_Lua_NLG_GiveOnePet(lua_State *_NLL);								//給指定玩傢一個寵�
 int NPC_Lua_NLG_GiveItem(lua_State *_NLL);							//給指定玩傢一個或多個寵物
 int NPC_Lua_NLG_GiveOneItem(lua_State *_NLL);							//給指定玩傢一個道具
 int NPC_Lua_NLG_GiveRandItem(lua_State *_NLL);
-int NPC_Lua_Char_GetOnLinePlayer(lua_State *_NLL);			//獲取當前在綫人數
+int NPC_Lua_Char_GetOnLinePlayer(lua_State *_NLL);			//獲取當前在線人數
 
 int NPC_Lua_NLG_ShowWindowTalked(lua_State *_NLL);			//在指定玩傢客戶端顯示指定內容、類型的對話框
 int NPC_Lua_NLG_SetAction(lua_State *_NLL);							//設置對象的動作
@@ -185,7 +185,7 @@ int NPC_Lua_NLG_Warp(lua_State *_NLL);									//傳送一個對象
 int NPC_Lua_NLG_WalkMove(lua_State *_NLL);							//移動一個對象
 int NPC_Lua_NLG_WatchEntry(lua_State *_NLL);						//觀戰
 int NPC_Lua_NLG_HealerAllHeal(lua_State *_NLL);         //加血
-int NPC_Lua_NLG_GetMaxPlayNum(lua_State *_NLL);					//獲取服務器最大在綫數
+int NPC_Lua_NLG_GetMaxPlayNum(lua_State *_NLL);					//獲取服務器最大在線數
 int NPC_Lua_NLG_CheckPlayIndex(lua_State *_NLL);				//檢查玩傢索引是否正常
 int NPC_Lua_NLG_Save(lua_State *_NLL);
 ////add by mo
@@ -218,14 +218,14 @@ int NPC_Lua_Char_SetPetSkillNo(lua_State *_NLL);
 int NPC_Lua_Char_ComplianceParameter(lua_State *_NLL);	//根據對象屬性來重新計算並設置WORK屬性，以達到生效的目的。
 int NPC_Lua_Char_HcItemId(lua_State *_NLL);					  	//閤成用到的搜索身上符閤物品。
 int NPC_Lua_Char_DelHcItem(lua_State *_NLL);					  //刪除身上某個位置的物品。
-int NPC_Lua_Char_GETFM(lua_State *_NLL);					      //獲取傢族氣勢 聲望 資金
+int NPC_Lua_Char_GETFM(lua_State *_NLL);					      //獲取家族氣勢 聲望 資金
 int NPC_Lua_Char_FindPetEnemyBaseId(lua_State *_NLL);		//搜索指定對象身上是否擁有寵物EnemyBase文件的對應ID
 int NPC_Lua_Char_ITEMID_NAME(lua_State *_NLL);					//獲得指定道具ID的名字
 int NPC_Lua_Char_ITEMID_NAME2(lua_State *_NLL);					//獲得指定道具ID的說明
 int NPC_Lua_Char_ITEMID_LEVEL(lua_State *_NLL);					//獲得指定道具ID的等級
 int NPC_Lua_Char_ITEMID_GOLD(lua_State *_NLL);					//獲得指定道具ID的價格
 int NPC_Lua_Char_ITEMID_RANO(lua_State *_NLL);					//獲得指定道具ID的圖形
-int NPC_Lua_Char_CharRidNo(lua_State *_NLL);					  //檢查對像是否已經吃瞭某騎寵證；
+int NPC_Lua_Char_CharRidNo(lua_State *_NLL);					  //檢查對像是否已經吃了某騎寵證；
 int NPC_Lua_Char_GetPetOwner(lua_State *_NLL);				  //獲得寵物主人的索引號
 int NPC_Lua_Char_GetEnemyBaseIdFromEnemyId(lua_State *_NLL);	//通過enemy.txt上所設置的寵物編號來查找enemybase.txt上所設定的寵物編號。
 int NPC_Lua_Char_GetEnemyIdFromEnemyBaseId(lua_State *_NLL);	//通過enemybase.txt上所設置的寵物編號來查找enemy.txt上所設定的寵物編號。
@@ -242,7 +242,7 @@ int NPC_Lua_Char_CheckItemIndex(lua_State *_NLL);           //檢查道具索引
 int NPC_Lua_Char_GetfdFromCharaIndex(lua_State *_NLL);
 
 BOOL NPC_Lua_Char_JoinParty(lua_State *_NLL);           //加入團隊
-int NPC_Lua_Char_getFamilyPlayIndex(lua_State *_NLL);   //獲得傢族裏邊人數的索引。
+int NPC_Lua_Char_getFamilyPlayIndex(lua_State *_NLL);   //獲得家族裏邊人數的索引。
 
 int NPC_Lua_Char_SetEvtEnd(lua_State *_NLL);						//設置任務標誌為結束狀態
 int NPC_Lua_Char_SetEvtNow(lua_State *_NLL);						//設置任務標誌為正在做狀態
@@ -304,9 +304,9 @@ int NPC_Lua_Char_RandMsg(lua_State *_NLL);
 int NPC_Lua_Char_GetBeatitudeNum(lua_State *_NLL);
 ///////////////////////////////////////////////GAME////////////////////////////////////////////////
 int NPC_Lua_Game_FMPOINT_GetData(lua_State *_NLL);           //獲得莊園據點的信息
-int NPC_Lua_Game_FMPOINT_ACSetFMPoint(lua_State *_NLL);      //設定傢族據點信息。僅當據點未被占據時有效。
-int NPC_Lua_Game_FMPOINT_ACFixFMPoint(lua_State *_NLL);      //修改傢族據點信息，並清空氣勢。一般用於族戰結束。
-int NPC_Lua_Game_FMPOINT_ACCleanFMPoint(lua_State *_NLL);    //無條件清除傢族據點。
+int NPC_Lua_Game_FMPOINT_ACSetFMPoint(lua_State *_NLL);      //設定家族據點信息。僅當據點未被占據時有效。
+int NPC_Lua_Game_FMPOINT_ACFixFMPoint(lua_State *_NLL);      //修改家族據點信息，並清空氣勢。一般用於族戰結束。
+int NPC_Lua_Game_FMPOINT_ACCleanFMPoint(lua_State *_NLL);    //無條件清除家族據點。
 ///////////////////////////////////////////////Item////////////////////////////////////////////////
 //獲取數據的接口
 int NPC_Lua_Item_GetData(lua_State *_NLL);							//獲取道具數據
@@ -378,7 +378,7 @@ int NPC_Lua_Battle_CheckIndex(lua_State *_NLL);				  //檢查戰鬥索引是否�
 int NPC_Lua_Battle_SetNORisk(lua_State *_NLL);					//設置是否開啓無風險模式
 int NPC_Lua_Battle_SetMod(lua_State *_NLL);							//設置戰鬥模式標誌
 int NPC_Lua_Battle_SetType(lua_State *_NLL);						//設置戰鬥類型
-int NPC_Lua_Battle_Exit(lua_State *_NLL);				        //退齣戰鬥
+int NPC_Lua_Battle_Exit(lua_State *_NLL);				        //退出戰鬥
 //事件設置的接口
 int NPC_Lua_Battle_SetWinEvent(lua_State *_NLL);				//設置Win事件響應
 int NPC_Lua_Battle_SetEndEvent(lua_State *_NLL);				//設置Win事件響應
@@ -388,7 +388,7 @@ int NPC_Lua_GetFuncPoint(lua_State *_NLL);							//獲取函數指針
 //////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////MAP////////////////////////////////////////////////
 int NPC_Lua_Map_CheckCoordinates(lua_State *_NLL);         //檢測某點是否在地圖範圍內。
-int NPC_Lua_Map_GetExitFloorXY(lua_State *_NLL);           //檢測地圖是否支持登齣
+int NPC_Lua_Map_GetExitFloorXY(lua_State *_NLL);           //檢測地圖是否支持登出
 int NPC_Lua_Map_GetfloorX(lua_State *_NLL);                //獲取地圖X長度
 int NPC_Lua_Map_GetfloorY(lua_State *_NLL);                 //獲取地圖Y長度
 int NPC_Lua_Map_GetTileAndObjId(lua_State *_NLL);           //獲取地圖某點的地闆和裝飾層
@@ -402,7 +402,7 @@ int NPC_Lua_Map_CheckImageIndex(lua_State *_NLL);           //檢測某地圖號
 int NPC_Lua_Map_CheckIndex(lua_State *_NLL);                //檢測某地圖號地圖是否存在
 int NPC_Lua_Map_MakeNewMap(lua_State *_NLL);                //製造一個新的地圖 並返迴地圖的ID
 int NPC_Lua_Map_DelNewMap(lua_State *_NLL);                 //刪除一個副本地圖
-int NPC_Lua_Map_SetExWarp(lua_State *_NLL);                 //設置人物登齣後地圖的傳送點
+int NPC_Lua_Map_SetExWarp(lua_State *_NLL);                 //設置人物登出後地圖的傳送點
 int NPC_Lua_Map_SetMapPoint(lua_State *_NLL);               //添加地圖傳送點
 int NPC_Lua_Map_DelMapPoint(lua_State *_NLL);               //刪除地圖傳送點
 int NPC_Lua_Map_getFloorName(lua_State *_NLL);               //獲得地圖名
@@ -419,7 +419,7 @@ int NPC_Lua_Spell_MAGIC_SetData(lua_State *_NLL);       //設置對應ID的技�
 ///////////////////////////////////////////////SQL/////////////////////////////////////////////////
 int NPC_Lua_SQL_Push(lua_State *_NLL);						//用於推送MySQL指令
 int NPC_Lua_SQL_PushPop(lua_State *_NLL);			//用於推送MySQL指令並設置響應函數
-int NPC_Lua_SQL_PushPopAdv(lua_State *_NLL);            //嚮SAAC發齣一個SQL查詢請求，並指定當SAAC返迴處理結果時對結果進行處理的迴調函數,該函數將返迴第一行結果，並釋放結果集。
+int NPC_Lua_SQL_PushPopAdv(lua_State *_NLL);            //嚮SAAC發出一個SQL查詢請求，並指定當SAAC返迴處理結果時對結果進行處理的迴調函數,該函數將返迴第一行結果，並釋放結果集。
 int NPC_Lua_SQL_QueryFirstRow(lua_State *_NLL);         //迴調函數,該函數將返迴第一行結果，並釋放結果集。
 int NPC_Lua_SQL_FetchRow(lua_State *_NLL);              //下一條結果
 int NPC_Lua_SQL_FreeResult(lua_State *_NLL);            //釋放結果集
@@ -541,7 +541,7 @@ int NPC_Lua_SQL_FreeResult(lua_State *_NLL);            //釋放結果集
 }
 
 #ifdef _LUA_Debug
-int pcall_callback_err_fun(lua_State* L,const char *_InitFuncName); //調試LUA腳本齣錯信息
+int pcall_callback_err_fun(lua_State* L,const char *_InitFuncName); //調試LUA腳本出錯信息
 #endif
 
 #endif //#ifndef __NPC_LUA__

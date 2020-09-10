@@ -1501,7 +1501,7 @@ static int BATTLE_GuardianCheck( int attackindex, int defindex )
 	}
 
 	//snprintf( szBuffer, sizeof(szBuffer),
-	//	"(%s)護住瞭(%s)。",
+	//	"(%s)護住了(%s)。",
 	//	CHAR_getUseName( GuardianIndex ),
 	//	CHAR_getUseName( defindex )
 	//);
@@ -1524,7 +1524,7 @@ static int BATTLE_DamageWakeUp( int battleindex, int defindex )
 	if( CHAR_getWorkInt( defindex, CHAR_WORKSLEEP ) > 0 ){
 		CHAR_setWorkInt( defindex, CHAR_WORKSLEEP, 0 );
 		bid = BATTLE_Index2No( battleindex, defindex );
-		//sprintf( szBuffer, "(%s)被擊中跳瞭起來。\n",
+		//sprintf( szBuffer, "(%s)被擊中跳了起來。\n",
 		//	CHAR_getUseName( defindex ) );
 		//BATTLE_BroadCast( battleindex, szBuffer,
 		//	(bid >= 10)? CHAR_COLORGRAY : CHAR_COLORPURPLE ) ;
@@ -2715,7 +2715,7 @@ int BATTLE_Attack( int battleindex, int attackNo, int defNo )
 			break;
 		case BATTLE_RET_DODGE:
 			//snprintf( szBuffer, sizeof(szBuffer),
-			//	"(%s)攻擊瞭(%s)躲開瞭(%.2f%%)",
+			//	"(%s)攻擊了(%s)躲開了(%.2f%%)",
 			//	CHAR_getUseName( attackindex ),
 			//	CHAR_getUseName( defindex ),
 			//	gDuckPer
@@ -2758,7 +2758,7 @@ int BATTLE_Attack( int battleindex, int attackNo, int defNo )
 #ifdef _EQUIT_ARRANGE
 		case BATTLE_RET_ARRANGE:
 			//snprintf( szBuffer, sizeof(szBuffer),
-			//	"(%s)攻擊瞭(%s)擋掉瞭(%.2f%%)",
+			//	"(%s)攻擊了(%s)擋掉了(%.2f%%)",
 			//	CHAR_getUseName( attackindex ),
 			//	CHAR_getUseName( defindex ),
 			//	gDuckPer
@@ -2936,7 +2936,7 @@ int BATTLE_Attack( int battleindex, int attackNo, int defNo )
 	if ( ( damage > 0 ) && ( CHAR_getWorkInt( attackindex , CHAR_WORKBATTLECOM1 ) == BATTLE_COM_S_ATTSHOOT ) ) {
 		if ( RAND ( 1 , 5 ) > 4 ) {
 			CHAR_setWorkInt( defindex, CHAR_WORKSLEEP , 3 ); //設定昏睡
-			CHAR_setWorkInt( defindex, CHAR_WORKBATTLECOM1, BATTLE_COM_NONE );//因為設定瞭昏睡,所以設定無動作
+			CHAR_setWorkInt( defindex, CHAR_WORKBATTLECOM1, BATTLE_COM_NONE );//因為設定了昏睡,所以設定無動作
 		}
 	}
 #endif
@@ -3154,7 +3154,7 @@ int BATTLE_Attack_FIREKILL( int battleindex, int attackNo, int defNo )
 			break;
 		case BATTLE_RET_DODGE:
 			//snprintf( szBuffer, sizeof(szBuffer),
-			//	"(%s)攻擊瞭(%s)躲開瞭(%.2f%%)",
+			//	"(%s)攻擊了(%s)躲開了(%.2f%%)",
 			//	CHAR_getUseName( attackindex ),
 			//	CHAR_getUseName( defindex ),
 			//	gDuckPer
@@ -3197,7 +3197,7 @@ int BATTLE_Attack_FIREKILL( int battleindex, int attackNo, int defNo )
 #ifdef _EQUIT_ARRANGE
 		case BATTLE_RET_ARRANGE:
 			//snprintf( szBuffer, sizeof(szBuffer),
-			//	"(%s)攻擊瞭(%s)擋掉瞭(%.2f%%)",
+			//	"(%s)攻擊了(%s)擋掉了(%.2f%%)",
 			//	CHAR_getUseName( attackindex ),
 			//	CHAR_getUseName( defindex ),
 			//	gDuckPer
@@ -3310,7 +3310,7 @@ int BATTLE_Attack_FIREKILL( int battleindex, int attackNo, int defNo )
 	if ( ( damage > 0 ) && ( CHAR_getWorkInt( attackindex , CHAR_WORKBATTLECOM1 ) == BATTLE_COM_S_ATTSHOOT ) ) {
 		if ( RAND ( 1 , 5 ) > 4 ) {
 			CHAR_setWorkInt( defindex, CHAR_WORKSLEEP , 3 ); //設定昏睡
-			CHAR_setWorkInt( defindex, CHAR_WORKBATTLECOM1, BATTLE_COM_NONE );//因為設定瞭昏睡,所以設定無動作
+			CHAR_setWorkInt( defindex, CHAR_WORKBATTLECOM1, BATTLE_COM_NONE );//因為設定了昏睡,所以設定無動作
 		}
 	}
 #endif
@@ -3668,7 +3668,7 @@ BOOL BATTLE_Counter( int battleindex, int attackNo, int defNo )
 
 	case BATTLE_RET_DODGE:
 		//snprintf( szBuffer, sizeof(szBuffer),
-		//	"(%s)意外攻擊(%d%%)!但是(%s)閃開瞭(%.2f%%)",
+		//	"(%s)意外攻擊(%d%%)!但是(%s)閃開了(%.2f%%)",
 		//	CHAR_getUseName( attackindex ),
 		//	per,
 		//	CHAR_getUseName( defindex ),
@@ -3709,7 +3709,7 @@ BOOL BATTLE_Counter( int battleindex, int attackNo, int defNo )
 #ifdef _EQUIT_ARRANGE
 	case BATTLE_RET_ARRANGE:
 		//snprintf( szBuffer, sizeof(szBuffer),
-		//	"(%s)攻擊瞭(%s)擋掉瞭(%.2f%%)",
+		//	"(%s)攻擊了(%s)擋掉了(%.2f%%)",
 		//	CHAR_getUseName( attackindex ),
 		//	CHAR_getUseName( defindex ),
 		//	gDuckPer
@@ -4128,7 +4128,7 @@ BOOL BATTLE_Capture(
 		}else{
 			int ai;
 			CHAR_setInt( pindex, CHAR_PETGETLV, CHAR_getInt( pindex, CHAR_LV ) );
-			//snprintf( szBuffer, sizeof(szBuffer), "(%s)捕獲瞭(%s)(%.2f%%)",
+			//snprintf( szBuffer, sizeof(szBuffer), "(%s)捕獲了(%s)(%.2f%%)",
 			//	CHAR_getUseName( attackindex ),
 			//	CHAR_getUseName( defindex ),
 			//	per
@@ -4224,7 +4224,7 @@ void BATTLE_Guard(
 	/*attackindex = BATTLE_No2Index( battleindex, attackNo );
 	{
 		char szBuffer[256]="";
-		//snprintf( szBuffer, sizeof(szBuffer), "(%s)保住瞭自身安全。",
+		//snprintf( szBuffer, sizeof(szBuffer), "(%s)保住了自身安全。",
 		//	CHAR_getUseName( attackindex )
 		//);
 		//BATTLE_BroadCast( battleindex, szBuffer,
@@ -4352,7 +4352,7 @@ BOOL BATTLE_Escape( int battleindex, int attackNo, int flag)
 	}
 	
 	if( flg == 1 || flag == 1 ){
-		//snprintf( szBuffer, sizeof(szBuffer), "(%s)逃跑瞭(%d%%)",
+		//snprintf( szBuffer, sizeof(szBuffer), "(%s)逃跑了(%d%%)",
 		//	CHAR_getUseName( attackindex ), iPar
 		//);
 		//if( getBattleDebugMsg( ) != 0 ){
@@ -4375,7 +4375,7 @@ BOOL BATTLE_Escape( int battleindex, int attackNo, int flag)
 		BATTLE_Exit( attackindex, battleindex );
 	}else{
 		//if( getBattleDebugMsg( ) != 0 ){
-			//snprintf( szBuffer, sizeof(szBuffer), "(%s)差點跑瞭(%d%%)",
+			//snprintf( szBuffer, sizeof(szBuffer), "(%s)差點跑了(%d%%)",
 			//	CHAR_getUseName( attackindex ), iPar
 			//);
 			//BATTLE_BroadCast( battleindex, szBuffer,
@@ -4466,7 +4466,7 @@ int BATTLE_PetIn( int battleindex, int attackNo )
 		CHAR_setWorkInt( petindex, CHAR_WORKQUICK, CHAR_getWorkInt( petindex , CHAR_WORKFIXDEX));
     }
 #endif
-#ifdef _PETSKILL_BECOMEFOX // 寵物中媚惑術收迴後再放齣來時要恢復正常狀態
+#ifdef _PETSKILL_BECOMEFOX // 寵物中媚惑術收迴後再放出來時要恢復正常狀態
     if ( CHAR_getWorkInt ( petindex , CHAR_WORKFOXROUND) != -1 
 		|| CHAR_getInt( petindex, CHAR_BASEIMAGENUMBER) == 101749 ){ //若是變身為狸
 		CHAR_setInt( petindex, CHAR_BASEIMAGENUMBER, CHAR_getInt( petindex , CHAR_BASEBASEIMAGENUMBER));
@@ -4519,12 +4519,12 @@ int BATTLE_PetOut( int battleindex, int attackNo )
 		CHAR_getWorkInt( attackindex, CHAR_WORKBATTLESIDE ) );
 
 	if( iRet < 0 ){
-		//snprintf( szBuffer, sizeof(szBuffer), "(%s)呼喚寵物,可是沒有齣現其蹤跡。",
+		//snprintf( szBuffer, sizeof(szBuffer), "(%s)呼喚寵物,可是沒有出現其蹤跡。",
 		//	CHAR_getUseName( attackindex )
 		//);
 	}else
 	if( CHAR_getInt( attackindex, CHAR_DEFAULTPET ) < 0 ){
-		//snprintf( szBuffer, sizeof(szBuffer), "(%s)呼喚寵物,可是沒有齣現其蹤跡。",
+		//snprintf( szBuffer, sizeof(szBuffer), "(%s)呼喚寵物,可是沒有出現其蹤跡。",
 		//	CHAR_getUseName( attackindex )
 		//);
 	}else{
@@ -4579,7 +4579,7 @@ int BATTLE_S_PetOut( int battleindex, int attackNo, int petNo )
 		CHAR_getWorkInt( attackindex, CHAR_WORKBATTLESIDE ) );
 
 	if( iRet < 0 ){
-		//snprintf( szBuffer, sizeof(szBuffer), "(%s)呼喚寵物,可是沒有齣現其蹤跡。",
+		//snprintf( szBuffer, sizeof(szBuffer), "(%s)呼喚寵物,可是沒有出現其蹤跡。",
 		//	CHAR_getUseName( attackindex )
 		//);
 	}else{
@@ -4686,7 +4686,7 @@ int BATTLE_S_GBreak( int battleindex, int attackNo, int defNo )
 
 	case BATTLE_RET_DODGE:
 		//snprintf( szBuffer, sizeof(szBuffer),
-		//	"(%s)展開防禦攻擊(%s)躲開瞭(%.2f%%)",
+		//	"(%s)展開防禦攻擊(%s)躲開了(%.2f%%)",
 		//	CHAR_getUseName( attackindex ),
 		//	CHAR_getUseName( defindex ),
 		//	gDuckPer
@@ -4729,7 +4729,7 @@ int BATTLE_S_GBreak( int battleindex, int attackNo, int defNo )
 #ifdef _EQUIT_ARRANGE
 	case BATTLE_RET_ARRANGE:
 		//snprintf( szBuffer, sizeof(szBuffer),
-		//	"(%s)攻擊瞭(%s)擋掉瞭(%.2f%%)",
+		//	"(%s)攻擊了(%s)擋掉了(%.2f%%)",
 		//	CHAR_getUseName( attackindex ),
 		//	CHAR_getUseName( defindex ),
 		//	gDuckPer
@@ -4932,7 +4932,7 @@ int BATTLE_S_Roar( int battleindex, int attackNo, int defNo, int marray )
 //送訊息至玩傢
 	if( FINDPET == TRUE )	{//若為年獸
 		char buf4[255];
-		sprintf( buf4, "%s被吼聲嚇跑瞭！", CHAR_getChar( index2, CHAR_NAME));
+		sprintf( buf4, "%s被吼聲嚇跑了！", CHAR_getChar( index2, CHAR_NAME));
 		BATTLE_Exit(index2,battleindex);//離開戰鬥
 		if( CHAR_CHECKINDEX( masteridx) ){
 			CHAR_setInt(masteridx,CHAR_DEFAULTPET,-1);//無參戰寵
@@ -5011,7 +5011,7 @@ int BATTLE_S_GBreak2( int battleindex, int attackNo, int defNo )
 
 	case BATTLE_RET_DODGE:
 		//snprintf( szBuffer, sizeof(szBuffer),
-		//	"(%s)展開防禦攻擊(%s)躲開瞭(%.2f%%)",
+		//	"(%s)展開防禦攻擊(%s)躲開了(%.2f%%)",
 		//	CHAR_getUseName( attackindex ),
 		//	CHAR_getUseName( defindex ),
 		//	gDuckPer
@@ -5054,7 +5054,7 @@ int BATTLE_S_GBreak2( int battleindex, int attackNo, int defNo )
 #ifdef _EQUIT_ARRANGE
 	case BATTLE_RET_ARRANGE:
 		//snprintf( szBuffer, sizeof(szBuffer),
-		//	"(%s)攻擊瞭(%s)擋掉瞭(%.2f%%)",
+		//	"(%s)攻擊了(%s)擋掉了(%.2f%%)",
 		//	CHAR_getUseName( attackindex ),
 		//	CHAR_getUseName( defindex ),
 		//	gDuckPer
@@ -5652,7 +5652,7 @@ BOOL BATTLE_LostEscape( int battleindex, int attackNo )
 				CHAR_getChar( attackindex, CHAR_UNIQUECODE)   // shan 2001/12/14
 			);
 
-	//snprintf( szBuffer, sizeof(szBuffer), "(%s)走掉瞭。",
+	//snprintf( szBuffer, sizeof(szBuffer), "(%s)走掉了。",
 	//	CHAR_getUseName( attackindex )
 	//);
 	//if( getBattleDebugMsg( ) != 0 ){
@@ -5854,7 +5854,7 @@ void BATTLE_StealMoney( int battleindex, int attackNo, int defNo)
 			S_FLG = 0;
 		}else{
 			//snprintf( szBuffer, sizeof(szBuffer),
-			//		"(%s)從(%s)獲得瞭(%d)STONE(%d%%)",
+			//		"(%s)從(%s)獲得了(%d)STONE(%d%%)",
 			//		CHAR_getUseName( attackindex ),
 			//		CHAR_getUseName( defindex ),
 			//		GOLD,
@@ -5873,7 +5873,7 @@ void BATTLE_StealMoney( int battleindex, int attackNo, int defNo)
 		//	per
 		//);
 	}
-	sprintf( buf1, "被偷瞭一些石幣");
+	sprintf( buf1, "被偷了一些石幣");
 	if( S_FLG)	{
 		sprintf( szBuffer, "BK|%s%s。|", CHAR_getUseName( defindex ), buf1 );
 		strcat( szBadStatusString, szBuffer );
@@ -5940,7 +5940,7 @@ void BATTLE_Steal( int battleindex, int attackNo, int defNo )
 				flg = 0;
 			}else{
 				//snprintf( szBuffer, sizeof(szBuffer),
-				//	"(%s)從(%s)獲得瞭(%d)STONE(%d%%)",
+				//	"(%s)從(%s)獲得了(%d)STONE(%d%%)",
 				//	CHAR_getUseName( attackindex ),
 				//	CHAR_getUseName( defindex ),
 				//	gold,
@@ -5981,7 +5981,7 @@ void BATTLE_Steal( int battleindex, int attackNo, int defNo )
 				flg = 0;
 			}else{
 				//snprintf( szBuffer, sizeof(szBuffer),
-				//	"(%s)從(%s)獲得瞭(%s)(%d%%)",
+				//	"(%s)從(%s)獲得了(%s)(%d%%)",
 				//	CHAR_getUseName( attackindex ),
 				//	CHAR_getUseName( defindex ),
 				//	ITEM_getAppropriateName( itemindex ),
@@ -6016,7 +6016,7 @@ void BATTLE_Steal( int battleindex, int attackNo, int defNo )
 		//	CHAR_getUseName( attackindex ),	CHAR_getUseName( defindex ), per );
 	}
 	if( flg == 1 ){
-		sprintf( szBuffer, "BK|%s被偷瞭一些東西。|",
+		sprintf( szBuffer, "BK|%s被偷了一些東西。|",
 			CHAR_getUseName( defindex ) );
 		strcat( szBadStatusString, szBuffer );
 		if( CHAR_getInt( attackindex, CHAR_WHICHTYPE ) == CHAR_TYPEPET ){
@@ -6091,7 +6091,7 @@ int BATTLE_S_FallGround( int battleindex, int attackNo, int defNo, int skill_typ
 		break;
 	case BATTLE_RET_DODGE:
 		//snprintf( szBuffer, sizeof(szBuffer),
-		//	"(%s)展開防禦攻擊(%s)躲開瞭(%.2f%%)",
+		//	"(%s)展開防禦攻擊(%s)躲開了(%.2f%%)",
 		//	CHAR_getUseName( attackindex ),
 		//	CHAR_getUseName( defindex ),
 		//	gDuckPer
@@ -6131,7 +6131,7 @@ int BATTLE_S_FallGround( int battleindex, int attackNo, int defNo, int skill_typ
 #ifdef _EQUIT_ARRANGE
 	case BATTLE_RET_ARRANGE:
 		//snprintf( szBuffer, sizeof(szBuffer),
-		//	"(%s)攻擊瞭(%s)擋掉瞭(%.2f%%)",
+		//	"(%s)攻擊了(%s)擋掉了(%.2f%%)",
 		//	CHAR_getUseName( attackindex ),
 		//	CHAR_getUseName( defindex ),
 		//	gDuckPer
@@ -6580,7 +6580,7 @@ int BATTLE_DefineAttack( int attackindex, int defindex, int iWork,
 		break;
 	case BATTLE_RET_DODGE:
 		//snprintf( szBuffer, sizeof(szBuffer),
-		//	"(%s)展開防禦攻擊(%s)躲開瞭(%.2f%%)",
+		//	"(%s)展開防禦攻擊(%s)躲開了(%.2f%%)",
 		//	CHAR_getUseName( attackindex ),
 		//	CHAR_getUseName( defindex ),
 		//	gDuckPer
@@ -6620,7 +6620,7 @@ int BATTLE_DefineAttack( int attackindex, int defindex, int iWork,
 #ifdef _EQUIT_ARRANGE
 	case BATTLE_RET_ARRANGE:
 		//snprintf( szBuffer, sizeof(szBuffer),
-		//	"(%s)攻擊瞭(%s)擋掉瞭(%.2f%%)",
+		//	"(%s)攻擊了(%s)擋掉了(%.2f%%)",
 		//	CHAR_getUseName( attackindex ),
 		//	CHAR_getUseName( defindex ),
 		//	gDuckPer
@@ -7016,7 +7016,7 @@ int BATTLE_S_AttackDamage( int battleindex, int attackNo, int defNo, int skill_t
 	if( CHAR_getInt( defindex, CHAR_HP ) <= 0 )
 		iRet = BATTLE_DefDieType( defindex, iRet, &ultimate, &flg, szBuffer);
 #ifdef _PETSKILL_ANTINTER
-		//強製將死掉的寵打飛
+		//強制將死掉的寵打飛
 		if( CHAR_getWorkInt( attackindex, CHAR_WORKBATTLECOM1 ) == BATTLE_COM_S_ANTINTER 
 			&& CHAR_getInt( defindex, CHAR_WHICHTYPE ) == CHAR_TYPEPET ){
 				ultimate = 2;	
@@ -7024,7 +7024,7 @@ int BATTLE_S_AttackDamage( int battleindex, int attackNo, int defNo, int skill_t
 				flg |= BCF_DEATH;
 				flg |= BCF_ULTIMATE_2;
 				CHAR_setWorkInt( defindex, CHAR_WORKULTIMATE, 0 );
-				damage=1;//因後麵有判斷若 damage<=0 則 skill_type=-1 所以這裏damage設為1
+				damage=1;//因後面有判斷若 damage<=0 則 skill_type=-1 所以這裏damage設為1
 		}
 #endif
 
@@ -8002,7 +8002,7 @@ int battle_profession_attack_fun(int battleindex, int attackNo, int defNo, int c
 		}
 	}
 
-	// 取齣各技能參數
+	// 取出各技能參數
 	switch( skill_type){		
 		case BATTLE_COM_S_BRUST:		// 爆擊
 			{	
@@ -8334,7 +8334,7 @@ int battle_profession_attack_fun(int battleindex, int attackNo, int defNo, int c
 									attackNo, defNo, flg, damage, petdamage, effect, img1, img2 );
 				BATTLESTR_ADD( szCommand );
 
-				// 取齣戰場上存活的人
+				// 取出戰場上存活的人
 				for( i=f_num; i<f_num+10; i++ ){
 					if(BATTLE_TargetCheck(battleindex, i) != FALSE){
 						if( CHAR_getInt( BATTLE_No2Index( battleindex, i ), CHAR_WHICHTYPE) != CHAR_TYPEPET 
@@ -8382,7 +8382,7 @@ int battle_profession_attack_fun(int battleindex, int attackNo, int defNo, int c
 						memset( chose_temp, -1, sizeof( chose_temp ) );
 						j = 0; k = 0;
 
-						// 取齣戰場上存活的人
+						// 取出戰場上存活的人
 						for( i=f_num; i<f_num+10; i++ ){
 							if(BATTLE_TargetCheck(battleindex, i) != FALSE){
 								if( CHAR_getInt( BATTLE_No2Index( battleindex, i ), CHAR_WHICHTYPE) != CHAR_TYPEPET 
@@ -8917,7 +8917,7 @@ int battle_profession_status_chang_fun(int battleindex, int attackNo, int defNo,
 				if( skill_type == BATTLE_COM_S_DRAGNET ){
 					int DRAGNET=0,dragnet_idx=-1;
 					int PLAYER=0;
-					//找齣攻方是那一邊的
+					//找出攻方是那一邊的
 					if( attackNo > 9 ){//左邊
 						for(i=0;i<10;i++){//計算右邊有多少人中天羅
 							dragnet_idx = BATTLE_No2Index( battleindex, i );
@@ -10171,7 +10171,7 @@ void BATTLE_BattleModel_ATTACK(
 	iPetindex = BATTLE_getRidePet(iToindex);
 	// 計算傷害
 	iDefState = BATTLE_AttackSeq(charaindex,iToindex,&iDamage,&iGuardian,-1);
-	// iType & 0x00000004 為 true 錶示為物理攻擊
+	// iType & 0x00000004 為 true 表示為物理攻擊
 	if(iType & 0x00000004){
 		// 若忠犬沒死亡,設定忠犬
 		if(BATTLE_TargetCheck(battleindex,iGuardian)){
@@ -10251,7 +10251,7 @@ void BATTLE_BattleModel_ATTACK(
 			if(iEffect == BATTLE_ST_PARALYSIS || iEffect == BATTLE_ST_SLEEP || iEffect == BATTLE_ST_STONE || iEffect == BATTLE_ST_BARRIER)
 				CHAR_setWorkInt(iDefindex,CHAR_WORKBATTLECOM1,BATTLE_COM_NONE);
 			// 迴傳client那一個目標要執行狀態改變
-			if(iGuardian >= 0) BATTLE_BadStatusString(iGuardian,iEffect);	// iGuardian 大於等於 0 錶示有目標使用瞭忠犬,該目標狀態改變
+			if(iGuardian >= 0) BATTLE_BadStatusString(iGuardian,iEffect);	// iGuardian 大於等於 0 表示有目標使用了忠犬,該目標狀態改變
 			else BATTLE_BadStatusString(pAAttackObject->target,iEffect);	// 否則原目標狀態改變
 		}
 	}
@@ -10380,7 +10380,7 @@ void BATTLE_BattleModel(int battleindex,int attackNo,int myside)
 		i0 = i;		// 記錄場上目標隻數
 
 		for(i=0;i<iObjectNum;i++){
-			// 若 iToList[i] 為 -1 錶示已打完所有的目標
+			// 若 iToList[i] 為 -1 表示已打完所有的目標
 			if(iToList[i] == -1) break;
 			// 設定攻擊目標內容
 			if(AAttackObject[i].index != -1){
@@ -10409,13 +10409,13 @@ void BATTLE_BattleModel(int battleindex,int attackNo,int myside)
 				BATTLE_BattleModel_ATTACK(battleindex,charaindex,&AAttackObject[i],iEffect,iTurn,iEffectHit,iType);
 			}
 		}
-		// 型態 1 :每個目標都要打到,會有一個攻擊物件打二個目標以上的情形,所以若為型態 1 的話,除瞭型態 2 的攻擊處理要執外,要再作以下處理
+		// 型態 1 :每個目標都要打到,會有一個攻擊物件打二個目標以上的情形,所以若為型態 1 的話,除了型態 2 的攻擊處理要執外,要再作以下處理
 		if(iType & 0x00000001){
 			// 處理還沒有被打的目標
 			// i0 - iObjectNum 為剩下沒打的目標數量
 			for(i1=0;i1<i0 - iObjectNum;i1++){	// 計算剩幾個目標沒打
 				for(i2=0;i2<iObjectNum;i2++){			// 攻擊物件計數
-					// 若 iToList[i] 為 -1 錶示已打完所有的目標
+					// 若 iToList[i] 為 -1 表示已打完所有的目標
 					if(iToList[i] == -1) break;			// 這裏的 i 保留型態 2 打完後的值
 					// 設定攻擊目標內容
 					if(AAttackObject[i2].index != -1){

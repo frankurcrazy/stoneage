@@ -50,7 +50,7 @@
 #define ADDRESSBOOK_UNSENT  "無法送信給%s 。"
 
 /* 簿井毛創尹方丹午仄凶互｝湃卞創尹化中凶   */
-#define ADDRESSBOOK_ALREADYADDED  "已經和%s交換過名片瞭。 "
+#define ADDRESSBOOK_ALREADYADDED  "已經和%s交換過名片了。 "
 
 /*   銅毛域  讀卞  丹橇謫   */
 #define ADDRESSBOOK_GIVEADDRESS  "從%s得到名片。"
@@ -58,13 +58,13 @@
 /*   銅毛域  讀卞丐僕月橇謫   */
 #define ADDRESSBOOK_TAKEADDRESS1  "給%s自己的名片。"
 /*   銅毛域  讀卞丐僕月橇謫   */
-#define ADDRESSBOOK_TAKEADDRESS2  "因為%s想要名片，所以將名片給他瞭。"
+#define ADDRESSBOOK_TAKEADDRESS2  "因為%s想要名片，所以將名片給他了。"
 
 #define	ADDRESSBOOK_RETURNED1	\
 "從%s寄來信件，但由於沒有%s的名片又將信件退迴。"
 
 #define	ADDRESSBOOK_RETURNED2	\
-"寄信件給%s，但由於%s 沒有名片，所以信件又被退迴來瞭。"
+"寄信件給%s，但由於%s 沒有名片，所以信件又被退迴來了。"
 
 #define	PETMAIL_RETURNED1	\
 "%s不在這個世界裏，所以無法寄送信件給他。"

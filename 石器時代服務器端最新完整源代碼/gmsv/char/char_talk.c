@@ -163,7 +163,7 @@ static CHAR_ChatMagicTable CHAR_cmtbl[]={
 #endif
 	{ "gold",			CHAR_CHAT_DEBUG_gold,			TRUE,	0,	2, "數量 (賬號)" },
 
-	//傢族工具
+	//家族工具
 	{ "manorpk",		CHAR_CHAT_DEBUG_manorpk,		TRUE,	0,	2, "allpeace/peace 莊園編號" },
 	{ "fixfmleader",	CHAR_CHAT_DEBUG_fixfmleader,	TRUE,	0,	2, "帳號 1" },
 	{ "fixfmpk",		CHAR_CHAT_DEBUG_fixfmpk,		TRUE,	0,	2, "" },
@@ -221,10 +221,10 @@ static CHAR_ChatMagicTable CHAR_cmtbl[]={
 	// 設定個人氣勢
 	{ "set_momentum",CHAR_CHAT_DEBUG_set_momentum,TRUE,0,2,"名字 數值" },
 #endif
-	// 設定傢族擁有莊園
-	{ "set_manor_owner",CHAR_CHAT_DEBUG_set_manor_owner,TRUE,0,2,"莊園ID 0/1 傢族ID" },
+	// 設定家族擁有莊園
+	{ "set_manor_owner",CHAR_CHAT_DEBUG_set_manor_owner,TRUE,0,2,"莊園ID 0/1 家族ID" },
 	// 設定莊園挑戰時間,設定的時間為目前每個挑戰時期的經過時間(單位:分),ex:現在是休戰期,共需要經過五天纔會進
-	// 入挑戰期,則下指令設定為 5 ,則會由五天的等待期變成瞭隻等五分鍾
+	// 入挑戰期,則下指令設定為 5 ,則會由五天的等待期變成了隻等五分鍾
 	{ "set_schedule_time",CHAR_CHAT_DEBUG_set_schedule_time,TRUE,0,2,"莊園ID 分鍾" },
 
 
@@ -885,7 +885,7 @@ void OneByOneTkChannel ( int fd , char *tmp1 , char *tmp2 , int color )
 			return;
 #ifdef _CHANNEL_MODIFY
 		if(CHAR_getFlg(IndexList[0],CHAR_ISTELL) == FALSE){
-			snprintf(buf,sizeof(buf) - 1,"%s 關閉瞭此頻道" ,tmp1);
+			snprintf(buf,sizeof(buf) - 1,"%s 關閉了此頻道" ,tmp1);
 			CHAR_talkToCli(myindex,-1,buf,color);
 			return;
 		}
@@ -917,7 +917,7 @@ void OneByOneTkChannel ( int fd , char *tmp1 , char *tmp2 , int color )
 					return ; 
 #ifdef _CHANNEL_MODIFY
 				if(CHAR_getFlg(IndexList[target],CHAR_ISTELL) == FALSE){
-					snprintf(buf,sizeof(buf) - 1,"%s 關閉瞭此頻道" ,tmp1);
+					snprintf(buf,sizeof(buf) - 1,"%s 關閉了此頻道" ,tmp1);
 					CHAR_talkToCli(myindex,-1,buf,color);
 					return;
 				}
@@ -1141,7 +1141,7 @@ void CHAR_Talk( int fd, int index,char* message,int color, int area )
 						  	itemmaxuse--;
 								ITEM_setInt( itemindex, ITEM_DAMAGEBREAK, itemmaxuse);
 								if( itemmaxuse < 1 )	{
-									sprintf( buf, "道具 %s消失瞭。", ITEM_getChar( itemindex, ITEM_NAME) );
+									sprintf( buf, "道具 %s消失了。", ITEM_getChar( itemindex, ITEM_NAME) );
 									CHAR_talkToCli(index, -1, buf, CHAR_COLORYELLOW);
 									CHAR_DelItem( index, i);
 								}else{
@@ -1158,7 +1158,7 @@ void CHAR_Talk( int fd, int index,char* message,int color, int area )
 								sprintf(buf, "onlinetalkip/%02d-%02d-%02d.txt", 1900 + now.tm_year, 1 + now.tm_mon, now.tm_mday);
 								
 								FILE * f1 = fopen(buf,"a+");
-								sprintf(token, "[%02d-%02d-%02d %02d:%02d:%02d]玩傢 %s 人物名 %s 在綫舉報對方 %s 人物名 %s  \n",
+								sprintf(token, "[%02d-%02d-%02d %02d:%02d:%02d]玩傢 %s 人物名 %s 在線舉報對方 %s 人物名 %s  \n",
 																																									1900 + now.tm_year, 1 + now.tm_mon, now.tm_mday,
 																																									now.tm_hour, now.tm_min, now.tm_sec,
 																																									CHAR_getChar(index, CHAR_CDKEY), 
@@ -1204,7 +1204,7 @@ void CHAR_Talk( int fd, int index,char* message,int color, int area )
 			}
 		}
 		if(num==0){
-			CHAR_talkToCli( index, -1, "當前並沒有GM在綫", CHAR_COLORRED);
+			CHAR_talkToCli( index, -1, "當前並沒有GM在線", CHAR_COLORRED);
 		}
 			
 	}
@@ -1244,14 +1244,14 @@ void CHAR_Talk( int fd, int index,char* message,int color, int area )
 					CHAR_talkToCli(index, -1, "3秒內隻充許一個玩傢存檔!", CHAR_COLORRED);
 				}
 			}else{
-				CHAR_talkToCli( index, -1,"你已經沒有足夠的聲望進行保存瞭！", CHAR_COLORRED );
+				CHAR_talkToCli( index, -1,"你已經沒有足夠的聲望進行保存了！", CHAR_COLORRED );
 			}
 			return;
 	}
 #endif
 
 #ifdef _CHANNEL_MODIFY
-	// 傢族頻道
+	// 家族頻道
 	if(messageeraseescape[0] == '/' && messageeraseescape[1] == 'F' && messageeraseescape[2] == 'M'){
 		sprintf(messageeraseescape,"%s",messageeraseescape + 3);
 	}
@@ -1330,7 +1330,7 @@ void CHAR_Talk( int fd, int index,char* message,int color, int area )
 							sprintf( token, "你還能使用%s權限%d次!", CHAR_getChar( index, CHAR_GMFUNCTION),CHAR_getInt( index, CHAR_GMTIME));
 							CHAR_talkToCli( index, -1,token, CHAR_COLORRED );
 						}else{
-							sprintf( token, "你已經沒有使用%s權限瞭!", CHAR_getChar( index, CHAR_GMFUNCTION));
+							sprintf( token, "你已經沒有使用%s權限了!", CHAR_getChar( index, CHAR_GMFUNCTION));
 							CHAR_talkToCli( index, -1,token, CHAR_COLORRED );
 						}
 					}else if(!strcmp( "help", magicname) || !strcmp( "幫助", magicname)){
@@ -1379,7 +1379,7 @@ void CHAR_Talk( int fd, int index,char* message,int color, int area )
 			 }
 #endif
 			}else
-					CHAR_talkToCli( index, -1,"你已經沒有足夠的積分點數順移瞭！", CHAR_COLORRED );
+					CHAR_talkToCli( index, -1,"你已經沒有足夠的積分點數順移了！", CHAR_COLORRED );
 			return;
 		}
 	}
@@ -1418,7 +1418,7 @@ void CHAR_Talk( int fd, int index,char* message,int color, int area )
 #endif
 			 
 			}else{
-				CHAR_talkToCli( index, -1,"你已經沒有足夠的積分點數小喇叭瞭！", CHAR_COLORRED );
+				CHAR_talkToCli( index, -1,"你已經沒有足夠的積分點數小喇叭了！", CHAR_COLORRED );
 			}
 			return;
 		}

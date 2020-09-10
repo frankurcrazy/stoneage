@@ -278,8 +278,8 @@ typedef enum
 //#endif
 
 //#ifdef _NEW_MANOR_LAW
-	WINDOW_FMMESSAGETYPE_10_MEMONTUM,	// 十大氣勢傢族
-	WINDOW_FMMESSAGETYPE_FM_MEMONTUM,	// 自己傢族氣勢排名
+	WINDOW_FMMESSAGETYPE_10_MEMONTUM,	// 十大氣勢家族
+	WINDOW_FMMESSAGETYPE_FM_MEMONTUM,	// 自己家族氣勢排名
 	WINDOW_FMMESSAGETYPE_MANOR_SCHEDULE,	// 挑戰莊園排行
 //#endif
 
@@ -433,8 +433,8 @@ typedef enum
 	CHAR_WINDOWTYPE_MANORPK_END = 362,
 
         // shan
-        CHAR_WINDOWTYPE_FM_DENGON      = 370,     // 傢族留言闆
-        CHAR_WINDOWTYPE_FM_FMSDENGON   = 371,     // 傢族之間留言闆
+        CHAR_WINDOWTYPE_FM_DENGON      = 370,     // 家族留言闆
+        CHAR_WINDOWTYPE_FM_FMSDENGON   = 371,     // 家族之間留言闆
         CHAR_WINDOWTYPE_FM_MESSAGE1    = 372,     // 說明視窗(據點)
         CHAR_WINDOWTYPE_FM_MESSAGE2    = 373,     // 說明視窗(成員)
         CHAR_WINDOWTYPE_FM_SELECT      = 374,     // 選項視窗

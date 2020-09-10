@@ -3940,7 +3940,7 @@ int getSkillRange(int skillLevel,int start){
 
 }
 
-//獲得融閤寵物的範圍 PETID
+//獲得融合寵物的範圍 PETID
 int getFusionRange(int start){
 	char index[20];
 	if(getStringFromIndexWithDelim(config.fusionrange,"|", start, index, sizeof(index)) == FALSE)
@@ -3948,7 +3948,7 @@ int getFusionRange(int start){
 	return atoi(index);
 
 }
-//是否是融閤寵物
+//是否是融合寵物
 int isFusionPet(int petId){
 	if ((petId>=getFusionRange(1)&& petId<=getFusionRange(2))|| petId==1045) return 1;
 	return 0;

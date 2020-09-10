@@ -73,7 +73,7 @@ void NPC_PetMakerTalked( int meindex , int talker , char *msg ,int color )
         return;
     }
     else if( ckpoint & (1 << shift) ){
-        sprintf(tmpbuf, "哦～我記得我好像給過你瞭吧！");
+        sprintf(tmpbuf, "哦～我記得我好像給過你了吧！");
         CHAR_talkToCli( talker, meindex,
                         tmpbuf,CHAR_COLORWHITE);
         return;
@@ -110,7 +110,7 @@ void pet_make( int charaindex, char* message )
     if(i==enemynum) return;
 
     ret = ENEMY_createPetFromEnemyIndex( charaindex, i);
-    snprintf( msgbuf, sizeof( msgbuf), "哦～以你的能力足以配得上一隻傳說寵物，好吧！就是你瞭。");
+    snprintf( msgbuf, sizeof( msgbuf), "哦～以你的能力足以配得上一隻傳說寵物，好吧！就是你了。");
     CHAR_talkToCli( charaindex, -1, msgbuf, CHAR_COLORYELLOW);
                 
     for( i=0; i<CHAR_MAXPETHAVE; i++ ){

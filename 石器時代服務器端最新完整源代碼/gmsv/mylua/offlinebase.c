@@ -42,7 +42,7 @@
 			}
 #endif
 #ifdef _PETSKILL_BECOMEPIG
-			if( CHAR_getInt( charaindex, CHAR_BECOMEPIG) > -1 ){//變成烏力瞭
+			if( CHAR_getInt( charaindex, CHAR_BECOMEPIG) > -1 ){//變成烏力了
 			    CHAR_setWorkInt( charaindex, CHAR_WORKBATTLECOM1, BATTLE_COM_ATTACK );
 			}
 #endif

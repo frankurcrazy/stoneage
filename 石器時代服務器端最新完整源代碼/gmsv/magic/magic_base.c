@@ -178,7 +178,7 @@ BOOL MAGIC_initMagic( char *filename)
         if( line[0] == '\n' )continue;       /* none    */
         chomp( line );
 
-#ifdef _MAGIC_OPTIMUM // Robin 取齣最大MAGIC ID
+#ifdef _MAGIC_OPTIMUM // Robin 取出最大MAGIC ID
 		if( getStringFromIndexWithDelim( line, ",", MAGIC_DATACHARNUM+MAGIC_ID+1,
 				token, sizeof(token)) == FALSE )
 			continue;

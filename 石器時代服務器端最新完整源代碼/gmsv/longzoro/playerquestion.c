@@ -16,7 +16,7 @@ BOOL PlayQuestionOnline(int charaindex, char *messageeraseescape)
 	if(messageeraseescape[0] == '/' && messageeraseescape[1] == 'h' && messageeraseescape[2] == 'd'){
 		
 		if(strlen(PlayerQuestion.question)==0 || strlen(PlayerQuestion.result)==0){
-			CHAR_talkToCli(charaindex,-1,"GM還未在綫發問題!",CHAR_COLORRED);
+			CHAR_talkToCli(charaindex,-1,"GM還未在線發問題!",CHAR_COLORRED);
 			return FALSE;
 		}
 		
@@ -140,7 +140,7 @@ extern int CheckCharMaxItem(int charindex);
 									         	CHAR_getChar( charaindex, CHAR_CDKEY ),
 									          PlayerQuestion.value,
 									   				CHAR_getInt( charaindex, CHAR_AMPOINT ),
-									         	"(在綫問題)",
+									         	"(在線問題)",
 									         	CHAR_getInt( charaindex,CHAR_FLOOR),
 									         	CHAR_getInt( charaindex,CHAR_X ),
 									         	CHAR_getInt( charaindex,CHAR_Y ));

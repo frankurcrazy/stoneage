@@ -310,10 +310,10 @@ void NPC_SysinfoTalked( int meindex, int tindex, char *msg, int color)
 					CHAR_setWorkInt( meindex, CHAR_WORK_PLAYER, tindex);
 					CHAR_setWorkInt( meindex, CHAR_WORK_TIME, NowTime.tv_sec);
 					CHAR_talkToCli( tindex, meindex,
-								"已移到指令模式。按下help即會齣現說明檔。",
+								"已移到指令模式。按下help即會出現說明檔。",
 								CHAR_getWorkInt( meindex, CHAR_WORK_MSGCOLOR));
 					CHAR_talkToCli( tindex, meindex,
-								"可以在enemystate 中瞭解敵人的産生和行動數。",
+								"可以在enemystate 中了解敵人的産生和行動數。",
 								CHAR_getWorkInt( meindex, CHAR_WORK_MSGCOLOR));
 
 				}
@@ -366,7 +366,7 @@ static void NPC_Sysinfo_Msg_Help( int meindex, int tindex, char *msg)
 	SYSINFO_MSGWK	msgwk[] = {
 	{ "指令HELP"},
 	{ "help                  此項訊息。"},
-	{ "player                錶示現在LOGIN的玩傢人數。"},
+	{ "player                表示現在LOGIN的玩傢人數。"},
 	{ "list                  訊息一覽。"},
 	{ "send number          「number」 是數值。指定訊息的號碼後將該訊息內容傳送給全部的玩傢。"},
 	{ "sendmsg msgs          msgs為想傳送的訊息。在send 之後空一格，即可將之後的文章送信給全部的玩傢。"},
@@ -678,12 +678,12 @@ static void NPC_Sysinfo_Born_Num( int meindex, int tindex, char *msg ){
 			work = 2; /* 贋癲 */
 		}
 		one_loop_born = work;
-		snprintf( buff, sizeof( buff), "敵人同時派齣最高的%d。",
+		snprintf( buff, sizeof( buff), "敵人同時派出最高的%d。",
 			one_loop_born );
 		CHAR_talkToCli( tindex, meindex, buff,
 					CHAR_getWorkInt( meindex, CHAR_WORK_MSGCOLOR));
 	}else{
-		snprintf( buff, sizeof( buff), "現在敵人同時派齣最高的%d。",
+		snprintf( buff, sizeof( buff), "現在敵人同時派出最高的%d。",
 			one_loop_born );
 		CHAR_talkToCli( tindex, meindex, buff,
 					CHAR_getWorkInt( meindex, CHAR_WORK_MSGCOLOR));
@@ -714,7 +714,7 @@ static void NPC_Sysinfo_Enemy_State( int meindex, int tindex, char *msg ){
 				CHAR_getWorkInt( meindex, CHAR_WORK_MSGCOLOR));
 	}
 	snprintf( buff, sizeof( buff),
-              "bornnum 現在敵人同時派齣最高的%d。",
+              "bornnum 現在敵人同時派出最高的%d。",
               one_loop_born );
 	CHAR_talkToCli( tindex, meindex, buff,
 				CHAR_getWorkInt( meindex, CHAR_WORK_MSGCOLOR));

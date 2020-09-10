@@ -312,7 +312,7 @@ BOOL MAP_readBattleMapConfFile( char* filename )
 
 		for( i = iFirst; i <= iLast; i ++ ){
 			if( MAP_getImageInt( i, MAP_SETED_BATTLEMAP ) > 0 ){
-				print( "!!!!!錯誤 相同金錢重復設定瞭兩次(%s)( line %d )(%d)(%d & %d)\n",
+				print( "!!!!!錯誤 相同金錢重復設定了兩次(%s)( line %d )(%d)(%d & %d)\n",
 					filename, linenum, i,
 					MAP_getImageInt( i, MAP_BATTLEMAP ),
 					BattleMapNo[0] );
@@ -1713,7 +1713,7 @@ int MAP_makenew( int mapid ,char* map_name)
     print( "副本地圖ID以到達上限，請注意及時釋放一些不必要的地圖\n");
     return -1;
     }
-    for(i=0;i<MAP_mapnum_index;i++)//先找一個空間，是否有被釋放，如果有，責不需要重新開闢空間瞭。
+    for(i=0;i<MAP_mapnum_index;i++)//先找一個空間，是否有被釋放，如果有，責不需要重新開闢空間了。
     	{
     		if (MAP_map[i].id == 0) break;
     	}
@@ -1810,7 +1810,7 @@ BOOL MAP_DelMap(int mapid )
 	if (MAP_map[tomapindex].tile != 0) freeMemory( MAP_map[tomapindex].tile );//釋放掉舊資料
 	if (MAP_map[tomapindex].obj != 0) freeMemory( MAP_map[tomapindex].obj );//釋放掉舊資料
 	freeMemory( MAP_map[tomapindex].olink );//釋放掉舊資料
-	MAP_map[tomapindex].startpoint = -1;//釋放退齣地圖傳送點
+	MAP_map[tomapindex].startpoint = -1;//釋放退出地圖傳送點
 	MAP_map[tomapindex].MapType = 0;//地圖類型？ 目前不清楚乾嘛的
 	MAP_idjumptbl[mapid] = -1;//地圖索引
 	return TRUE;

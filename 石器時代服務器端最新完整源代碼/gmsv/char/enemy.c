@@ -2000,12 +2000,12 @@ BOOL PETFUSION_getIndexForChar( int toindex, int *MainIndex, int *Subindex1, int
 		if( !CHAR_CHECKINDEX( petindex) ) continue;
 #ifdef _PET_2TRANS
 		if( CHAR_getInt( petindex, CHAR_TRANSMIGRATION ) > 1){
-			CHAR_talkToCli( toindex, -1, "二轉寵物不能融閤。", CHAR_COLORYELLOW);
+			CHAR_talkToCli( toindex, -1, "二轉寵物不能融合。", CHAR_COLORYELLOW);
 			return FALSE;
 		}
 #endif
 		if( rideindex == petindex) {
-			CHAR_talkToCli( toindex, -1, "騎乘中的寵不能融閤。", CHAR_COLORYELLOW);
+			CHAR_talkToCli( toindex, -1, "騎乘中的寵不能融合。", CHAR_COLORYELLOW);
 			return FALSE;
 		}
 		if( i == 0 ) {
@@ -2183,7 +2183,7 @@ int EVOLUTION_createPetFromEnemyIndex( int charaindex, int baseindex, int flg)
 		}
 	}
 	if( flg == 1 ){
-		havepetelement = CHAR_getCharPetElement( charaindex);//找齣寵物空位
+		havepetelement = CHAR_getCharPetElement( charaindex);//找出寵物空位
 		if( havepetelement < 0 ) return -1;
 	}
 //------------------------------------------------------
@@ -2301,7 +2301,7 @@ int PET_CheckIncubate( int charaindex)
 		int petindex = CHAR_getCharPet( charaindex, i);
 		if( !CHAR_CHECKINDEX( petindex) ) continue;
 		if( CHAR_getInt( petindex, CHAR_FUSIONBEIT) != 1 ||
-			CHAR_getInt( petindex, CHAR_FUSIONRAISE) <= 0 )return;//檢查是否為融閤寵
+			CHAR_getInt( petindex, CHAR_FUSIONRAISE) <= 0 )return;//檢查是否為融合寵
 
 		time_l = CHAR_getInt( petindex, CHAR_FUSIONTIMELIMIT);
 		if( time_l < 0 || time_l > checkeage ){
@@ -2331,7 +2331,7 @@ int PET_CheckIncubate( int charaindex)
 			//扣屬性
 			levelup = (vital<<24) + (str<<16) + (tgh<<8) + (dex<<0);
 			CHAR_setInt( petindex, CHAR_ALLOCPOINT, levelup);
-			sprintf( buf, "蛋〈%s〉的品質變差瞭。", CHAR_getUseName( petindex ));
+			sprintf( buf, "蛋〈%s〉的品質變差了。", CHAR_getUseName( petindex ));
 			CHAR_talkToCli( charaindex, -1, buf, CHAR_COLORYELLOW);
 
 			LogPetFeed(
@@ -2364,7 +2364,7 @@ int PET_CheckIncubate( int charaindex)
 		if( !CHAR_CHECKINDEX( masterindex) )return 0;
 
 		if( CHAR_getInt( charaindex, CHAR_FUSIONBEIT) != 1 ||
-			CHAR_getInt( charaindex, CHAR_FUSIONRAISE) <= 0 ) return 0;//檢查是否為融閤寵
+			CHAR_getInt( charaindex, CHAR_FUSIONRAISE) <= 0 ) return 0;//檢查是否為融合寵
 
 		for(i=0 ; i < CHAR_MAXPETHAVE ; i++)	{
 			if( charaindex != CHAR_getCharPet( masterindex, i) ) continue;
@@ -2399,7 +2399,7 @@ int PET_CheckIncubate( int charaindex)
 			//扣屬性
 			levelup = (vital<<24) + (str<<16) + (tgh<<8) + (dex<<0);
 			CHAR_setInt( charaindex, CHAR_ALLOCPOINT, levelup);
-			sprintf( buf, "蛋〈%s〉的品質變差瞭。", CHAR_getUseName( charaindex ));
+			sprintf( buf, "蛋〈%s〉的品質變差了。", CHAR_getUseName( charaindex ));
 			CHAR_talkToCli( masterindex, -1, buf, CHAR_COLORYELLOW);
 
 			LogPetFeed(

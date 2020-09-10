@@ -122,7 +122,7 @@ void NPC_DoormanTalked( int meindex , int talkerindex , char *msg ,
             	CHAR_talkToCli( talkerindex, meindex , msg, CHAR_COLORWHITE );
             } else {
                 snprintf( msg , sizeof( msg ),
-                          "%d 收到金子瞭。現在就來開門。", g );
+                          "%d 收到金子了。現在就來開門。", g );
             	CHAR_talkToCli( talkerindex, meindex , msg, CHAR_COLORWHITE );
 
                 /* 雲嗯毛必永玄 */

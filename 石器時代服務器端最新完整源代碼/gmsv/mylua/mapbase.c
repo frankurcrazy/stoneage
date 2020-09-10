@@ -149,7 +149,7 @@ static int getCharaNearBy(lua_State *L) {
 
 
 	lua_newtable(L); //新建一個錶，並壓入棧頂
-	lua_pushnumber(L,-1); //這行和下麵一行，沒搞懂為什麼需要這樣，但如果不執行，lua中獲取的數據就會齣錯
+	lua_pushnumber(L,-1); //這行和下面一行，沒搞懂為什麼需要這樣，但如果不執行，lua中獲取的數據就會出錯
 	lua_rawseti(L,-2,0);
 
 	int o, chara_index;
@@ -173,7 +173,7 @@ static int getCharaNearBy(lua_State *L) {
 							!= type)
 						continue;
 					if (chara_index == charaindex)
-						continue;  //找到自己瞭
+						continue;  //找到自己了
 
 					lua_pushinteger(L,chara_index);
 					getnum++;
@@ -193,7 +193,7 @@ static int getCharaAhead(lua_State *L) {
 
 
 	lua_newtable(L); //新建一個錶，並壓入棧頂
-	lua_pushnumber(L,-1); //這行和下麵一行，沒搞懂為什麼需要這樣，但如果不執行，lua中獲取的數據就會齣錯
+	lua_pushnumber(L,-1); //這行和下面一行，沒搞懂為什麼需要這樣，但如果不執行，lua中獲取的數據就會出錯
 	lua_rawseti(L,-2,0);
 
 	int o, chara_index;
@@ -222,7 +222,7 @@ static int getCharaAhead(lua_State *L) {
 							!= type)
 						continue;
 					if (chara_index == charaindex)
-						continue;  //找到自己瞭
+						continue;  //找到自己了
 
 					lua_pushinteger(L,chara_index);
 					getnum++;
@@ -243,7 +243,7 @@ static int getCharaByCoord(lua_State *L) {
 	const int type = luaL_checkint(L, 6);
 
 	lua_newtable(L); //新建一個錶，並壓入棧頂
-	lua_pushnumber(L,-1); //這行和下麵一行，沒搞懂為什麼需要這樣，但如果不執行，lua中獲取的數據就會齣錯
+	lua_pushnumber(L,-1); //這行和下面一行，沒搞懂為什麼需要這樣，但如果不執行，lua中獲取的數據就會出錯
 	lua_rawseti(L,-2,0);
 
 	int o, chara_index;
@@ -263,7 +263,7 @@ static int getCharaByCoord(lua_State *L) {
 							!= type)
 						continue;
 					if (chara_index == charaindex)
-						continue;  //找到自己瞭
+						continue;  //找到自己了
 
 					lua_pushinteger(L,chara_index);
 					getnum++;

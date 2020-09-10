@@ -137,14 +137,14 @@ static void NPC_Charm_selectWindow( int meindex, int toindex, int num)
 			  case CHAR_IMAGETYPE_GIRL:
 				sprintf(token,"　　　　         美容師       "
 					  "\n\n 　嗯,這樣你的魅力就上升羅！"
-					  "\n\n　　　愈來愈可愛瞭呢！"
+					  "\n\n　　　愈來愈可愛了呢！"
 				);
 
 				break;
 			  case CHAR_IMAGETYPE_BOY:
 				sprintf(token,"　　　　         美容師     "
 					  "\n\n 　嗯,這樣你的魅力就上升羅！"
-					  "\n\n　　是不是比剛纔要帥多瞭呢？"
+					  "\n\n　　是不是比剛纔要帥多了呢？"
 				);
 			  	break;
 			  	
@@ -159,14 +159,14 @@ static void NPC_Charm_selectWindow( int meindex, int toindex, int num)
 			   case CHAR_IMAGETYPE_MAN:
 				sprintf(token,"　　　　         美容師       "
 					  "\n\n 　嗯,這樣你的魅力就上升羅！"
-					  "\n\n 　　　變得更酷瞭呢！"
+					  "\n\n 　　　變得更酷了呢！"
 				);
 			 	break;
 			 	
 			   case CHAR_IMAGETYPE_WOMAN:
 				sprintf(token,"　　　　         美容師      "
 				  "\n\n 　嗯,這樣你的魅力就上升羅！"
-				  "\n\n    可真是變得愈來愈美瞭呢！"
+				  "\n\n    可真是變得愈來愈美了呢！"
 				);
 			 	break;
 			 

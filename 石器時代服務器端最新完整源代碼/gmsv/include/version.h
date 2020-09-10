@@ -18,12 +18,12 @@
 
 #define _FAMILY_MANORNUM_CHANGE	 // CoolFish 用來修改裝園數量(4.0)
 #ifdef _FAMILY_MANORNUM_CHANGE
-#define FAMILY_MAXHOME 		MANOR_MAX_NUM        // (4.0) 傢族據點
+#define FAMILY_MAXHOME 		MANOR_MAX_NUM        // (4.0) 家族據點
 #define MANORNUM       		MANOR_MAX_NUM        // (4.0) 莊園數量
-#define FMPOINTNUM     		MANOR_MAX_NUM        // (4.0) 有據點傢族的最大數量
+#define FMPOINTNUM     		MANOR_MAX_NUM        // (4.0) 有據點家族的最大數量
 #endif
-#define _FMVER21                 // (可開放) 傢族職掌功能
-#define _PERSONAL_FAME           // (可開放) Arminius 8.30 傢族個人聲望
+#define _FMVER21                 // (可開放) 家族職掌功能
+#define _PERSONAL_FAME           // (可開放) Arminius 8.30 家族個人聲望
 // -------------------------------------------------------------------
 //專案：石器活動自動化		人員：曉威、傢麟
 
@@ -107,7 +107,7 @@
 #define _WAEI_KICK               // (可開放) ANDY 跨星球踢人
 #define _BATTLE_TIMESPEED        // (可開放) ANDY 戰鬥時間 測試(北京不必開，擋加速功能)
 #define _FIXBUG_ATTACKBOW        // (可開放) ANDY 修正騎寵使用投擲武器bug
-#define _NPCCHANGE_PLAYERIMG     // (可開放) ANDY NPC改變玩傢圖號, 強製落馬,認玩傢圖號 (測完)
+#define _NPCCHANGE_PLAYERIMG     // (可開放) ANDY NPC改變玩傢圖號, 強制落馬,認玩傢圖號 (測完)
 #define _EQUIT_DEFMAGIC          // (可開放) ANDY 抗魔裝備
 #define _FIX_MAGICDAMAGE         // (可開放) ANDY 修正魔法公式 叁期開放
 #define _ITEM_CONSTITUTION       // (可開放) ANDY 修正個人體質
@@ -167,12 +167,12 @@
 #define _AVID_TRADETRYBUG        // (可開放) ANDY 防止交易中丟寵/道具 寄(寵物)郵件 石幣
 #define _ASSESS_SYSEFFICACY      // (可開放) ANDY 評估係統效能 12/04 更新
 #define _ASSESS_SYSEFFICACY_SUB  // (可開放) Robin 評估係統效能 增加檢查內迴圈
-#define _ITEM_ORNAMENTS          // (可開放) ANDY 裝飾道具  12/04 更新  //齣版部
+#define _ITEM_ORNAMENTS          // (可開放) ANDY 裝飾道具  12/04 更新  //出版部
 #define _CHIKULA_STONE           // (可開放) ANDY 奇剋拉之石 12/04 更新  //來吉卡 寵包
 #define _SEND_EFFECT             // (可開放) WON  AC送下雪、下雨等特效 12/04 更新
 #define _PETMAIL_DEFNUMS         // (可開放) ANDY 寵物郵件限製
 #define _PETSKILL_TIMID          // (可開放) ANDY 寵技-怯戰
-#define _PETS_SELECTCON          // (可開放) ANDY 寵物不可點選齣戰
+#define _PETS_SELECTCON          // (可開放) ANDY 寵物不可點選出戰
 #define _CHRISTMAS_REDSOCKS      // (可開放) ANDY 聖誕紅襪
 #define _FIX_ARRAYBUG            // (可開放) ANDY 修正array 溢位
 #define _USER_CHARLOOPS          // (可開放) ANDY 新用物件LOOP
@@ -199,7 +199,7 @@
 #define _THROWITEM_ITEMS         // (可開放) 丟擲後有奬品
 //--------------------------------------------------------------------------
 //專案 7.0  職業係統  人員：彥豪 誌旺 旭誠 奇銓
-#define _ACFMPK_LIST             // (可開放) ANDY 傢族對戰列錶修正
+#define _ACFMPK_LIST             // (可開放) ANDY 家族對戰列錶修正
 #define _PETSKILL2_TXT           // (可開放) ANDY petskill2.txt
 #define _PETSKILL_CHECKTYPE      // (可開放) ANDY 寵物技能使用時機
 #define _PETSKILL_TEAR           // (可開放) ANDY 寵技 撕裂傷口
@@ -240,11 +240,11 @@
 
 
 //11/26
-#define _NPC_NewDelPet           // (可開) Change 替NPC加入刪除寵物(原本就有瞭,隻是用warpman使用時不成功,所以先做一個頂一下)
+#define _NPC_NewDelPet           // (可開) Change 替NPC加入刪除寵物(原本就有了,只是用warpman使用時不成功,所以先做一個頂一下)
 
 //20031217
 #define _CHRISTMAS_REDSOCKS_NEW  // (可開) Change 新聖誕紅襪
-#define _PETSKILL_COMBINED       // (可開) Change 寵技:難得糊塗 [綜閤魔法(依參數亂數取齣魔法)]
+#define _PETSKILL_COMBINED       // (可開) Change 寵技:難得糊塗 [綜閤魔法(依參數亂數取出魔法)]
 //情人節活動
 #define _NPC_ADDWARPMAN1         // (可開放) Change npcgen_warpman增加功能(設定組隊人數、設定組隊男女人數)
 #define _ITEM_QUITPARTY          // (可開放) Change 隊伍解散時特定道具即會消失
@@ -260,8 +260,8 @@
 #define _ITEM_PROPERTY           // (可開) Change 改變四屬性道具
 #define _SUIT_ADDENDUM           // (可開) Change 替套裝增加功能 (_SUIT_ITEM要開)
 //2004/05/05
-#define _ITEM_CHECKDROPATLOGOUT  // (可開) Change 檢查迴紀錄點時身上有無登齣後消失道具,若有,不可迴紀錄點
-#define _FM_MODIFY               // 傢族功能修改(開放)
+#define _ITEM_CHECKDROPATLOGOUT  // (可開) Change 檢查迴紀錄點時身上有無登出後消失道具,若有,不可迴紀錄點
+#define _FM_MODIFY               // 家族功能修改(開放)
 #define  _PETSKILL_OPTIMUM       // Robin 寵物技能處理最佳化
 #define _MAGIC_OPTIMUM           // Robin Magic table 最佳化
 #define _AC_PIORITY              // Nuke 提高AC的優先權(可開)

@@ -52,7 +52,7 @@ struct tagLogconf{
 //Syu 增加莊園戰勝負Log
 	{ "FMPKRESULT: ", "fmpkresultlog" ,"", NULL , TRUE},
 
-// Syu ADD 新增傢族個人銀行存取Log (不含傢族銀行)
+// Syu ADD 新增家族個人銀行存取Log (不含家族銀行)
 	{ "BANKSTONELOG: ", "bankstonelog" ,"", NULL , TRUE},
 
 	{ "ACMESSAGE: ", "acmessagelog" ,"", NULL , TRUE},
@@ -696,7 +696,7 @@ void backupAllLogFile( struct tm *ptm )
 * 雲嗯毛膠丹
 *
 -------------------------------------------------------------*/
-// Syu ADD 新增傢族個人銀行存取Log (不含傢族銀行)
+// Syu ADD 新增家族個人銀行存取Log (不含家族銀行)
 void LogFamilyBankStone(
         char *CharName,
         char *CharId, 

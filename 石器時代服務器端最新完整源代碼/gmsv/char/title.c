@@ -479,7 +479,7 @@ static int TITLE_getConfigOneLine( FILE *fp, char *line, int linelen)
 
 		if( buf[0] == '{' ) {
 			if( startflg == TRUE ) {
-				print( "titleconfig:明明沒有關閉「{」卻齣現瞭: %d \n",linenum);
+				print( "titleconfig:明明沒有關閉「{」卻出現了: %d \n",linenum);
 				/* } */
 				return -1;
 			}
@@ -487,7 +487,7 @@ static int TITLE_getConfigOneLine( FILE *fp, char *line, int linelen)
 		}
 		else if( buf[0] == '}' ) {
 			if( startflg == FALSE) {
-				print( "titleconfig:明明沒有關閉「{」卻齣現瞭: %d \n",linenum);
+				print( "titleconfig:明明沒有關閉「{」卻出現了: %d \n",linenum);
 				/* } */
 				return -1;
 			}

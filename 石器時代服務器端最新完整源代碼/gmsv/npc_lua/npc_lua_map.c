@@ -64,7 +64,7 @@ int NPC_Lua_Map_CheckCoordinates(lua_State *_NLL)           //檢測某點是否
 }
 
 
-int NPC_Lua_Map_GetExitFloorXY(lua_State *_NLL)           //檢測地圖是否支持登齣
+int NPC_Lua_Map_GetExitFloorXY(lua_State *_NLL)           //檢測地圖是否支持登出
 {
 	CheckEx(_NLL, 1);
 	CheckIndexNull(_NLL, 1);
@@ -271,7 +271,7 @@ int NPC_Lua_Map_DelNewMap(lua_State *_NLL)          //刪除一個副本地圖
 	LRetBool(_NLL, TM_Ret);
 }
 
-int NPC_Lua_Map_SetExWarp(lua_State *_NLL)          //設置一個地圖的退齣傳送點
+int NPC_Lua_Map_SetExWarp(lua_State *_NLL)          //設置一個地圖的退出傳送點
 {
 	CheckEx(_NLL, 5);
 	CheckIndexNull(_NLL, 1);

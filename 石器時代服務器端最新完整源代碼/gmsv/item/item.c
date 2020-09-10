@@ -1999,7 +1999,7 @@ void ITEM_equipEffect( int index )
 	if( angelmode == FALSE && angelequip == TRUE ) {
 		CHAR_setWorkInt( index, CHAR_WORKANGELMODE, TRUE);
 		CHAR_sendAngelMark( CHAR_getWorkInt( index, CHAR_WORKOBJINDEX), 1);
-		CHAR_talkToCli( index, -1, "你受到瞭精靈保護，不會被敵人攻擊。", CHAR_COLORYELLOW );
+		CHAR_talkToCli( index, -1, "你受到了精靈保護，不會被敵人攻擊。", CHAR_COLORYELLOW );
 		print(" 裝備使者信物 ");
 	}
 #endif
@@ -2348,7 +2348,7 @@ BOOL CHAR_CheckInItemForWares( int charaindex, int flg)
 			if( flg == 0 ){
 				return FALSE;
 			}
-			sprintf(token,"交齣%s",ITEM_getChar( itemindex, ITEM_NAME));
+			sprintf(token,"交出%s",ITEM_getChar( itemindex, ITEM_NAME));
 			CHAR_talkToCli( charaindex, -1, token, CHAR_COLORYELLOW);
 
 			CHAR_setItemIndex( charaindex, i ,-1);

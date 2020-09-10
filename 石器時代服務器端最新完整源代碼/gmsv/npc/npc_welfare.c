@@ -298,7 +298,7 @@ void NPC_WelfareWindowTalked( int meindex, int talkerindex,
 		CHAR_setInt( talkerindex, PROFESSION_SKILL_POINT, next_profession_skill_point );
 		
 		memset(token, -1, sizeof(token) );
-		sprintf( token, "您學習瞭 %s，剩餘學習點數 %d"
+		sprintf( token, "您學習了 %s，剩餘學習點數 %d"
 				,PROFESSION_SKILL_getChar( skillarray, PROFESSION_SKILL_NAME )
 				,next_profession_skill_point );
 		CHAR_talkToCli( talkerindex, -1, token, CHAR_COLORYELLOW);

@@ -733,7 +733,7 @@ void ITEM_useCracker_Effect( int charaindex, int toindex, int haveitemindex)
 	lssproto_IC_send(tofd, x, y);
 	//清除道具
 	BATTLE_ItemUseDelete(charaindex,haveitemindex);
-	CHAR_talkToCli(charaindex,-1,"道具消失瞭。",CHAR_COLORYELLOW);
+	CHAR_talkToCli(charaindex,-1,"道具消失了。",CHAR_COLORYELLOW);
 
 }
 #endif
@@ -858,8 +858,8 @@ void ITEM_useAddexp_Effect( int charaindex, int toindex, int haveitemindex)
 			
 	//清除道具
 	BATTLE_ItemUseDelete(charaindex,haveitemindex);
-	//sprintf(szBuffer, "學習經驗的能力提升瞭%d％", power);
-	sprintf(szBuffer, "%s學習經驗的能力提升瞭%d％，時效剩餘%d分鍾。", CHAR_getChar( toindex, CHAR_NAME), power, vtime);
+	//sprintf(szBuffer, "學習經驗的能力提升了%d％", power);
+	sprintf(szBuffer, "%s學習經驗的能力提升了%d％，時效剩餘%d分鍾。", CHAR_getChar( toindex, CHAR_NAME), power, vtime);
 	CHAR_talkToCli(charaindex,-1,szBuffer,CHAR_COLORYELLOW);
 
 }
@@ -939,11 +939,11 @@ void ITEM_useFirecracker_Battle( int charaindex, int toindex, int haveitemindex)
 	}
 
 	sprintf(szWork,"BB|a%X|w3|r%X|f0|d0|p0|FF|",BATTLE_Index2No(battleindex,charaindex),toindex);
-	BATTLESTR_ADD(szWork);//丟齣鞭炮的動畫
+	BATTLESTR_ADD(szWork);//丟出鞭炮的動畫
 //送訊息至玩傢
 	if( FINDPET == TRUE )	{//若為年獸
 		char buf4[255];
-		sprintf( buf4, "%s被嚇跑瞭！", CHAR_getChar( index2, CHAR_NAME));
+		sprintf( buf4, "%s被嚇跑了！", CHAR_getChar( index2, CHAR_NAME));
 
 		BATTLE_Exit(index2,battleindex);//離開戰鬥
 		if( CHAR_CHECKINDEX( masteridx) ){
@@ -969,7 +969,7 @@ void ITEM_useFirecracker_Battle( int charaindex, int toindex, int haveitemindex)
 			masteridx = BATTLE_No2Index(battleindex,toindex-5);
 			// 如果對戰的是玩傢
 			if(CHAR_getInt(masteridx,CHAR_WHICHTYPE) == CHAR_TYPEPLAYER) PetEscape = 1;
-			else																									       print("\n年獸在遇敵時齣現");
+			else																									       print("\n年獸在遇敵時出現");
 		}
 	}
 	
@@ -984,12 +984,12 @@ void ITEM_useFirecracker_Battle( int charaindex, int toindex, int haveitemindex)
 			CHAR_setInt(masteridx,CHAR_DEFAULTPET,-1);
 			sprintf(szWork,"BQ|e%X|",toindex);
 			BATTLESTR_ADD(szWork);
-			CHAR_talkToCli(masteridx,-1,"年獸被嚇跑瞭！",CHAR_COLORWHITE);
-			CHAR_talkToCli(charaindex,-1,"年獸被嚇跑瞭！",CHAR_COLORWHITE);
+			CHAR_talkToCli(masteridx,-1,"年獸被嚇跑了！",CHAR_COLORWHITE);
+			CHAR_talkToCli(charaindex,-1,"年獸被嚇跑了！",CHAR_COLORWHITE);
 		}
 	}
 	CHAR_talkToCli(charaindex,-1,"什麽事都沒發生。",CHAR_COLORWHITE);
-	CHAR_talkToCli(charaindex,-1,"道具消失瞭。",CHAR_COLORWHITE);
+	CHAR_talkToCli(charaindex,-1,"道具消失了。",CHAR_COLORWHITE);
 	// 使用後道具消失
 	BATTLE_ItemUseDelete(charaindex,haveitemindex);
 #endif
@@ -1001,7 +1001,7 @@ void ITEM_useFirecracker_Battle( int charaindex, int toindex, int haveitemindex)
 
 
 
-//氣絕狀態迴復耐力,復加復活(光,鏡,守)精靈 參數同魔法(光,鏡,守)精靈,但隻能在戰鬥之使用,用完就沒瞭 
+//氣絕狀態迴復耐力,復加復活(光,鏡,守)精靈 參數同魔法(光,鏡,守)精靈,但隻能在戰鬥之使用,用完就沒了 
 //參數 例如:耐力值 吸 turn 1
 #ifdef  _FEV_ADD_NEW_ITEM			// FEV ADD 增加復活守精
 void ITEM_ResAndDef( int charaindex, int toindex, int haveitemindex )

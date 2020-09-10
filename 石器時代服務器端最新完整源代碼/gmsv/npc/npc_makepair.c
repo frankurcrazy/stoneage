@@ -352,7 +352,7 @@ BOOL NPC_PairForage( int meindex, int toindex, char *arg, char *token)
 			PairList[Psex][i].forindex = -1;
 			continue;
 		}
-		sprintf( token, "你的配對對象為： %s\n已送齣邀請，請等候對方迴應。", name);
+		sprintf( token, "你的配對對象為： %s\n已送出邀請，請等候對方迴應。", name);
 		if( NPC_Util_GetStrFromStrWithDelim( arg, "InviteMsg", buf1, sizeof( buf1) ) == NULL){
 			break;
 		}

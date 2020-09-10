@@ -131,8 +131,8 @@ void NPC_ItemShopTalked( int meindex , int talker , char *szMes ,int color )
     	return;
     }
 
-	if(NPC_Util_isFaceToFace( meindex, talker, 2) == FALSE) {//交談時檢查是否麵對麵
-		if( NPC_Util_CharDistance( talker, meindex ) > 1) return; //若距離大於1跳齣
+	if(NPC_Util_isFaceToFace( meindex, talker, 2) == FALSE) {//交談時檢查是否面對面
+		if( NPC_Util_CharDistance( talker, meindex ) > 1) return; //若距離大於1跳出
 	}
 
 	//取得npc買賣設定檔內的內容,若為NULL,則錯誤
@@ -147,7 +147,7 @@ void NPC_ItemShopTalked( int meindex , int talker , char *szMes ,int color )
 		strcpysafe(sellmsg, sizeof( sellmsg), token);//例如:sellmsg的值可能是->並不是專門收買東西的店。
 	}
 
-    //取得玩傢買東西的指令. buff為一串買東西指令的字串,例如:買,購買,感謝您,kau,buy,menu,謝謝,買東西,當玩傢打齣這些字句時,就可以買東西瞭
+    //取得玩傢買東西的指令. buff為一串買東西指令的字串,例如:買,購買,感謝您,kau,buy,menu,謝謝,買東西,當玩傢打出這些字句時,就可以買東西了
 	if( NPC_Util_GetStrFromStrWithDelim( argstr, "buy_msg",	buff, sizeof( buff)) != NULL ){
 	    while(getStringFromIndexWithDelim(buff,",",i,buf2,sizeof(buf2)) != FALSE ){
 			i++; //若買東西的指令有8個,i就會加到8
@@ -179,7 +179,7 @@ void NPC_ItemShopTalked( int meindex , int talker , char *szMes ,int color )
 	}
 	i=1;
 
-    //取得玩傢賣東西的指令. buff為一串賣東西指令的字串,例如:賣東西,賣,sell,uru  當玩傢打齣這些字句時,就可以賣東西瞭
+    //取得玩傢賣東西的指令. buff為一串賣東西指令的字串,例如:賣東西,賣,sell,uru  當玩傢打出這些字句時,就可以賣東西了
 	if( NPC_Util_GetStrFromStrWithDelim( argstr, "sell_msg", buff, sizeof( buff)) != NULL ){
 	    while( getStringFromIndexWithDelim(buff,",", i,buf2,sizeof(buf2)) != FALSE ){
 			i++;
@@ -239,7 +239,7 @@ static void NPC_ItemShop_selectWindow( int meindex, int talker, int num,int sele
 {
 	switch( num) {
 	  case 0:
-		CHAR_send_P_StatusString( talker, CHAR_P_STRING_GOLD);//傳送金錢,若100元 送齣去的資料格式可能為 P8Nz2|100|
+		CHAR_send_P_StatusString( talker, CHAR_P_STRING_GOLD);//傳送金錢,若100元 送出去的資料格式可能為 P8Nz2|100|
 		
 		if(CHAR_getWorkInt( meindex, NPC_SHOP_WORK_EXPRESS) == 1 ) {
 			if(CHAR_getWorkInt( meindex, NPC_SHOP_WORK_NO) ==0 ) {
@@ -693,7 +693,7 @@ BOOL NPC_AddItemBuy(int meindex, int talker,int itemID,int kosuu,double rate,int
 
 }
 
-//選擇 (買,賣,齣去) 的小視窗
+//選擇 (買,賣,出去) 的小視窗
 void NPC_ItemShop_Menu(int meindex,int talker)
 {	
 	char	argstr[NPC_UTIL_GETARGSTR_BUFSIZE];
@@ -707,7 +707,7 @@ void NPC_ItemShop_Menu(int meindex,int talker)
        	return;
     }
     
-	//token為視窗上麵的title文字  例如: 薩姆吉爾的防具店|歡迎光臨
+	//token為視窗上面的title文字  例如: 薩姆吉爾的防具店|歡迎光臨
     NPC_Util_GetStrFromStrWithDelim( argstr, "main_msg", buff, sizeof( buff));
 #ifdef _VERSION_25
 	snprintf(token, sizeof(token),"%s|%s",CHAR_getChar( meindex, CHAR_NAME), buff);
@@ -734,7 +734,7 @@ void NPC_ItemShop_SellMain(int meindex,int talker,int before)
 		if(CHAR_getInt(talker, CHAR_LOCKED)==1){
 			char message[256];
 			char	buf[256];
-			sprintf( message, "為瞭確保你的物品安全，請輸入你的安全密碼進行解鎖！\n");
+			sprintf( message, "為了確保你的物品安全，請輸入你的安全密碼進行解鎖！\n");
 		
 			lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGEANDLINEINPUT, 
 							WINDOW_BUTTONTYPE_OKCANCEL,
@@ -790,7 +790,7 @@ void NPC_ItemShop_SellMain(int meindex,int talker,int before)
 			NPC_Util_GetStrFromStrWithDelim( argstr, "realy_msg", buff2, sizeof( buff2));
 		}
 		sprintf( token2,"%s|%s|", buff, buff2);
-		NPC_GetLimtItemList( talker,argstr, token2, -1);//詳細玩傢要賣齣的道具資料
+		NPC_GetLimtItemList( talker,argstr, token2, -1);//詳細玩傢要賣出的道具資料
 		strncat( token, token2, sizeof( token));
 
 		lssproto_WN_send( fd, WINDOW_MESSAGETYPE_ITEMSHOPMAIN+

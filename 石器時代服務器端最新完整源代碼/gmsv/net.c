@@ -922,7 +922,7 @@ ANYTHREAD BOOL _CONNECT_endOne( char *file, int fromline, int sockfd , int line 
 	    if( !CHAR_logout( Connect[sockfd].charaindex,TRUE )) {
 	    	//print( "err %s:%d from %s:%d \n", __FILE__, __LINE__, file, fromline);
 	    }
-	    print( "退齣賬號=%s \n", Connect[sockfd].cdkey );
+	    print( "退出賬號=%s \n", Connect[sockfd].cdkey );
 		}
     CONNECT_LOCK_ARG2( sockfd ,line);
   }
@@ -2017,8 +2017,8 @@ ANYTHREAD int getfdFromFdid( int fdid )
  * 苞眶
  *  fdid    int     fdのid
  * 手り猛
- *  -1 の箕はログイン麵のキャラはみつからなかった。0笆懼なら
- * ログイン麵のキャラのキャラはいれつへの index
+ *  -1 の箕はログイン面のキャラはみつからなかった。0笆懼なら
+ * ログイン面のキャラのキャラはいれつへの index
  ------------------------------------------------------------*/
 ANYTHREAD int getCharindexFromFdid( int fdid )
 {
@@ -2110,7 +2110,7 @@ ANYTHREAD BOOL CONNECT_isUnderLogin( int fd )
 }
 
 /*------------------------------------------------------------
- * Login藉妄麵かどうか拇べる
+ * Login藉妄面かどうか拇べる
  * 苞眶
  *  fd  int     ファイルディスクリプタ
  ------------------------------------------------------------*/
@@ -2251,7 +2251,7 @@ void CONNECT_SysEvent_Loop( void)
 #ifdef _PETSKILL_BECOMEPIG
           if ( CHAR_getInt( charaindex, CHAR_BECOMEPIG ) > -1 ) { //處於烏力化狀態
 
-            if ( ( CHAR_getInt( charaindex, CHAR_BECOMEPIG ) - 1 ) <= 0 ) { //烏力時間結束瞭
+            if ( ( CHAR_getInt( charaindex, CHAR_BECOMEPIG ) - 1 ) <= 0 ) { //烏力時間結束了
               CHAR_setInt( charaindex, CHAR_BECOMEPIG, 0 );
 
               if ( CHAR_getWorkInt( charaindex, CHAR_WORKBATTLEMODE ) == BATTLE_CHARMODE_NONE ) { //不是在戰鬥狀態下
@@ -2259,7 +2259,7 @@ void CONNECT_SysEvent_Loop( void)
                 CHAR_complianceParameter( charaindex );
                 CHAR_sendCToArroundCharacter( CHAR_getWorkInt( charaindex , CHAR_WORKOBJINDEX ) );
                 CHAR_send_P_StatusString( charaindex , CHAR_P_STRING_BASEBASEIMAGENUMBER );
-                CHAR_talkToCli( charaindex, -1, "烏力化失效瞭。", CHAR_COLORWHITE );
+                CHAR_talkToCli( charaindex, -1, "烏力化失效了。", CHAR_COLORWHITE );
               }
             }
             else {
@@ -2303,7 +2303,7 @@ void CONNECT_SysEvent_Loop( void)
 	            if ( exptime <= 0 ) {
 	              CHAR_setWorkInt( charaindex, CHAR_WORKITEM_ADDEXP, 0 );
 	              CHAR_setWorkInt( charaindex, CHAR_WORKITEM_ADDEXPTIME, 0 );
-				  			CHAR_talkToCli( charaindex,-1,"提升學習經驗的能力消失瞭!",CHAR_COLORYELLOW);
+				  			CHAR_talkToCli( charaindex,-1,"提升學習經驗的能力消失了!",CHAR_COLORYELLOW);
 	            } else {
 	              CHAR_setWorkInt( charaindex, CHAR_WORKITEM_ADDEXPTIME, exptime );
 	              //print("\n 檢查ADDEXPTIME %d ", exptime);
@@ -2325,7 +2325,7 @@ void CONNECT_SysEvent_Loop( void)
 			          if ( exptime <= 0 ) {
 			            CHAR_setWorkInt( petindex, CHAR_WORKITEM_ADDEXP, 0 );
 			            CHAR_setWorkInt( petindex, CHAR_WORKITEM_ADDEXPTIME, 0 );
-						  		CHAR_talkToCli( charaindex,-1,"提升學習經驗的能力消失瞭!",CHAR_COLORYELLOW);
+						  		CHAR_talkToCli( charaindex,-1,"提升學習經驗的能力消失了!",CHAR_COLORYELLOW);
 			          } else {
 			            CHAR_setWorkInt( petindex, CHAR_WORKITEM_ADDEXPTIME, exptime );
 			            //print("\n 檢查ADDEXPTIME %d ", exptime);
@@ -2348,7 +2348,7 @@ void CONNECT_SysEvent_Loop( void)
             if ( exptime <= 0 ) {
               CHAR_setWorkInt( charaindex, CHAR_WORKITEM_ADDEXP, 0 );
               CHAR_setWorkInt( charaindex, CHAR_WORKITEM_ADDEXPTIME, 0 );
-			  			CHAR_talkToCli( charaindex,-1,"提升學習經驗的能力消失瞭!",CHAR_COLORYELLOW);
+			  			CHAR_talkToCli( charaindex,-1,"提升學習經驗的能力消失了!",CHAR_COLORYELLOW);
             }
             else {
               CHAR_setWorkInt( charaindex, CHAR_WORKITEM_ADDEXPTIME, exptime );
@@ -2377,7 +2377,7 @@ void CONNECT_SysEvent_Loop( void)
             CHAR_complianceParameter( charaindex );
             CHAR_sendCToArroundCharacter( CHAR_getWorkInt( charaindex , CHAR_WORKOBJINDEX ) );
             CHAR_send_P_StatusString( charaindex , CHAR_P_STRING_BASEBASEIMAGENUMBER );
-            CHAR_talkToCli( charaindex, -1, "變身失效瞭。", CHAR_COLORWHITE );
+            CHAR_talkToCli( charaindex, -1, "變身失效了。", CHAR_COLORWHITE );
           }
 
 #endif
@@ -2407,8 +2407,8 @@ void CONNECT_SysEvent_Loop( void)
           CHAR_setWorkInt( charaindex, CHAR_WORK_MAP_TIME, CHAR_getWorkInt( charaindex, CHAR_WORK_MAP_TIME ) - 10 );
 
           if ( CHAR_getWorkInt( charaindex, CHAR_WORK_MAP_TIME ) <= 0 ) {
-            // 時間到瞭,傳迴入口
-            CHAR_talkToCli( charaindex, -1, "你因為受不瞭高熱而熱死！傳迴裂縫入口。", CHAR_COLORRED );
+            // 時間到了,傳迴入口
+            CHAR_talkToCli( charaindex, -1, "你因為受不了高熱而熱死！傳迴裂縫入口。", CHAR_COLORRED );
             CHAR_warpToSpecificPoint( charaindex, 30008, 39, 38 );
             CHAR_setInt( charaindex, CHAR_HP, 1 );
             CHAR_AddCharm( charaindex, -3 );
@@ -2486,7 +2486,7 @@ void CONNECT_SysEvent_Loop( void)
             Connect[ i ].noenemy--;
 
             if ( Connect[ i ].noenemy == 0 ) {
-              CHAR_talkToCli( CONNECT_getCharaindex( i ), -1, "守護消失瞭。", CHAR_COLORWHITE );
+              CHAR_talkToCli( CONNECT_getCharaindex( i ), -1, "守護消失了。", CHAR_COLORWHITE );
             }
           }
         }
@@ -2688,7 +2688,7 @@ SINGLETHREAD BOOL netloop_faster( void )
 #ifdef _SAME_IP_ONLINE_NUM
     	else if(SameIpOnlineNum(sinip) == 1){
         char mess[64];
-        sprintf(mess, "E您的IP已有%d個在綫瞭，請勿過量登陸，自覺維護遊戲平衡！\n", getSameIpOnlineNum());
+        sprintf(mess, "E您的IP已有%d個在線了，請勿過量登陸，自覺維護遊戲平衡！\n", getSameIpOnlineNum());
         write(sockfd,mess,strlen(mess)+1);
 	      close(sockfd);
     	}
@@ -2873,7 +2873,7 @@ SINGLETHREAD BOOL netloop_faster( void )
 											PETMAIL_getPetMailTotalnums(), 
 											Battle_getTotalBattleNum(), szBuff1 );
 	*/
-							sprintf( buff1,"\n在綫玩傢=%d 離綫玩傢=%d 寵物=%d 物品=%d 郵件:%d 戰鬥:%d %s",
+							sprintf( buff1,"\n在線玩傢=%d 離綫玩傢=%d 寵物=%d 物品=%d 郵件:%d 戰鬥:%d %s",
 											player_online,luaplayernum, petcnt,total_item_use,
 											PETMAIL_getPetMailTotalnums(),
 											Battle_getTotalBattleNum(), szBuff1 );
@@ -3349,7 +3349,7 @@ SINGLETHREAD BOOL netloop_faster( void )
 					printf("讀取SAAC數據:%s\n",rbmess);
 #endif
           if ( saacproto_ClientDispatchMessage( fdremember, rbmess ) < 0 ) {
-          	print("\nSAAC服務器數據齣錯!!!\n");
+          	print("\nSAAC服務器數據出錯!!!\n");
           }
         }
 #ifdef _OTHER_SAAC_LINK
@@ -3358,7 +3358,7 @@ SINGLETHREAD BOOL netloop_faster( void )
 					printf("讀取點捲數據:%s\n",rbmess);
 #endif
 		      if ( saacproto_ClientDispatchMessage( fdremember, rbmess ) < 0 ) {
-          	print("\n點捲服務器數據齣錯!!!\n");
+          	print("\n點捲服務器數據出錯!!!\n");
           }
 		    }
 #endif
@@ -3378,7 +3378,7 @@ SINGLETHREAD BOOL netloop_faster( void )
       }
     }
 		if ( Connect[ fdremember ].errornum > allowerrornum ) {
-			print( "用戶:%s發生太多錯誤瞭，所以強製關閉\n",inet_ntoa(Connect[fdremember].sin.sin_addr ));
+			print( "用戶:%s發生太多錯誤了，所以強制關閉\n",inet_ntoa(Connect[fdremember].sin.sin_addr ));
 
 #ifdef _NETLOG_
 			char cdkey[16];
@@ -3386,7 +3386,7 @@ SINGLETHREAD BOOL netloop_faster( void )
 			CONNECT_getCharname(fdremember,charname,32);
 			CONNECT_getCdkey(fdremember,cdkey,16);
 			char token[128];
-			sprintf(token, "用戶:%s發生太多錯誤瞭，所以強製關閉\n",inet_ntoa(Connect[fdremember].sin.sin_addr ));
+			sprintf(token, "用戶:%s發生太多錯誤了，所以強制關閉\n",inet_ntoa(Connect[fdremember].sin.sin_addr ));
 			LogCharOut(charname,cdkey,__FILE__,__FUNCTION__,__LINE__,token);
 #endif
 		  CONNECT_endOne_debug( fdremember );
@@ -3396,7 +3396,7 @@ SINGLETHREAD BOOL netloop_faster( void )
 #ifdef _NEW_FUNC_DECRYPT
 
 		if ( Connect[ fdremember ].newerrnum > getAllowerrornum2() ) {
-			print( "用戶:%s發生太多錯誤瞭，所以(封IP)斷開連接\n",inet_ntoa(Connect[fdremember].sin.sin_addr ));
+			print( "用戶:%s發生太多錯誤了，所以(封IP)斷開連接\n",inet_ntoa(Connect[fdremember].sin.sin_addr ));
 
 #ifdef _NETLOG_
 			char cdkey[16];
@@ -3404,7 +3404,7 @@ SINGLETHREAD BOOL netloop_faster( void )
 			CONNECT_getCharname(fdremember,charname,32);
 			CONNECT_getCdkey(fdremember,cdkey,16);
 			char token[128];
-			sprintf(token, "用戶:%s發生太多錯誤瞭，所以(封IP)斷開連接\n",inet_ntoa(Connect[fdremember].sin.sin_addr ));
+			sprintf(token, "用戶:%s發生太多錯誤了，所以(封IP)斷開連接\n",inet_ntoa(Connect[fdremember].sin.sin_addr ));
 			LogCharOut(charname,cdkey,__FILE__,__FUNCTION__,__LINE__,token);
 #endif
 
@@ -4350,7 +4350,7 @@ void procAcceptEpoll()
 	int sockfd;
 	if ((sockfd = accept(bindedfd,(struct sockaddr *) &sin,&addrlen)) > 0){
 		if(Connect[ sockfd ].use) return;
-		if(lianjielog) printf("進入到瞭連接A    sockfd=%d   Connect[ sockfd ].use=%d\n",sockfd,Connect[ sockfd ].use);
+		if(lianjielog) printf("進入到了連接A    sockfd=%d   Connect[ sockfd ].use=%d\n",sockfd,Connect[ sockfd ].use);
 		if(fcntl (sockfd, F_SETFL, O_NONBLOCK) < 0){
 			close(sockfd);
 			return;
@@ -4393,12 +4393,12 @@ void procAcceptEpoll()
 			close(sockfd);
 			return;
 		}else if( sockfd < ConnectLen){
-			if(lianjielog) printf("成功連接瞭A    sockfd=%d\n",sockfd);
+			if(lianjielog) printf("成功連接了A    sockfd=%d\n",sockfd);
 			char mess[2]={};
 			strcpy(mess,getSaVersion());
 			send(sockfd,mess,strlen(mess)+1,0);
 			initConnectOne(sockfd,&sin,addrlen);
-			if(lianjielog) printf("成功連接瞭B    sockfd=%d     %d\n",sockfd,Connect[ sockfd ].use);
+			if(lianjielog) printf("成功連接了B    sockfd=%d     %d\n",sockfd,Connect[ sockfd ].use);
 			AddEpoll(sockfd);
 			return;
 		}else{
@@ -4438,7 +4438,7 @@ BOOL procRecvEpoll(int sockfd)
 					CONNECT_getCharname(sockfd,charname,32);
 					CONNECT_getCdkey(sockfd,cdkey,16);
 					char yuanyin[128];
-					snprintf(yuanyin,128,"封包recv齣錯 error=%d  %s",errno,strerror( errno));
+					snprintf(yuanyin,128,"封包recv出錯 error=%d  %s",errno,strerror( errno));
 					LogCharOut(charname,cdkey,__FILE__,__FUNCTION__,__LINE__,yuanyin);
 					CONNECT_endOne_debug(sockfd );
 					return FALSE;

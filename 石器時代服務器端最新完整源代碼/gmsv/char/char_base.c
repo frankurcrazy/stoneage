@@ -982,9 +982,9 @@ char* CHAR_setintdata[CHAR_DATAINTNUM]={
     
   "ini",              /*  CHAR_INITDATA   */
   "silent",              /*  CHAR_SILENT   */    
-  "fmi",		// CoolFish: Family 2001/5/24 傢族 index
-  "fmlf",		// CoolFish: Family 2001/5/24 是否為傢族族長
-  "fmspr",		// CoolFish: Family 2001/7/13 傢族守護精靈
+  "fmi",		// CoolFish: Family 2001/5/24 家族 index
+  "fmlf",		// CoolFish: Family 2001/5/24 是否為家族族長
+  "fmspr",		// CoolFish: Family 2001/7/13 家族守護精靈
 //#ifndef _SAEX_TW_25
 //  "fmbdg",
 //#endif
@@ -1003,7 +1003,7 @@ char* CHAR_setintdata[CHAR_DATAINTNUM]={
 	"futimelimit",	//CHAR_FUSIONTIMELIMIT
 #endif
 
-#ifdef _PERSONAL_FAME	// Arminius 8.30: 傢族個人聲望
+#ifdef _PERSONAL_FAME	// Arminius 8.30: 家族個人聲望
   "fame",
 #endif
 
@@ -1262,7 +1262,7 @@ char* CHAR_setchardata[CHAR_DATACHARNUM]={
   "arg",                 /*  CHAR_NPCARGUMENT */
   "ocd",				/* CHAR_OWNERCDKEY */
   "ocn",				/* CHAR_OWNERCHARANAME */
-  "fmname",	// CoolFish: Family 2001/5/24 傢族名稱 CHAR_FMNAME
+  "fmname",	// CoolFish: Family 2001/5/24 家族名稱 CHAR_FMNAME
 #ifdef _UNIQUE_P_I    
   "ucode",	// CoolFish: 2001/10/11 UNIQUE_P_I CHAR_UNIQUECODE
 #endif
@@ -2828,7 +2828,7 @@ BOOL CHAR_makeCharFromStringToArg( char* data, Char* one)
 			;//print("\n登陸成功 人物名稱錯誤! ");
 			
 		if( data[strlen(data)-2] != '\n' ){
-				//print("\n玩傢登陸齣錯! ");
+				//print("\n玩傢登陸出錯! ");
 				return FALSE;
 			}
     }
@@ -3050,7 +3050,7 @@ int CHAR_makePetFromStringToArg( char *src, Char *ch, int ti)
 	return TRUE;
 }
 
-#ifdef _PERSONAL_FAME	// Arminius 8.30: 傢族個人聲望
+#ifdef _PERSONAL_FAME	// Arminius 8.30: 家族個人聲望
 
 void CHAR_earnFame(int index, int fame)
 {
@@ -3404,7 +3404,7 @@ INLINE int _CHAR_DelItem( char *file, int line, int charaindex, int ti, int num,
 #endif
 /*
 		if( flg == 1 ){
-			sprintf( token, "交齣%s。", ITEM_getChar( itemindex, ITEM_NAME));
+			sprintf( token, "交出%s。", ITEM_getChar( itemindex, ITEM_NAME));
 			CHAR_talkToCli( charaindex, -1, token, CHAR_COLORYELLOW);
 		}
 */

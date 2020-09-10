@@ -57,13 +57,13 @@ enum {
 #define     NPC_ROOMADMINNEW_MSG_NONE               \
 "很可惜本次沒有人獲得房間的擁有權。"
 #define     NPC_ROOMADMINNEW_MSG_CONGRATULATION     \
-"恭喜您！%s獲得房間的所有權！%s的金錢全部被徵收瞭。%s請嚮管理員詢問房間暗號。"
+"恭喜您！%s獲得房間的所有權！%s的金錢全部被徵收了。%s請嚮管理員詢問房間暗號。"
 #define     NPC_ROOMADMINNEW_MSG_PRINTPASSWD_NONE    \
 "由於你未持有房間因此沒有暗號。"
 #define     NPC_ROOMADMINNEW_MSG_DSPPASSWD1          \
 "你的房間是 %s %s %s。"
 #define     NPC_ROOMADMINNEW_MSG_DSPPASSWD2          \
-"房間的暗號是 「%s 」。隻要在對著門說話時在與尾加上「...」，彆人就看不見瞭唷！"
+"房間的暗號是 「%s 」。隻要在對著門說話時在與尾加上「...」，彆人就看不見了唷！"
 #define     NPC_ROOMADMINNEW_MSG_DSPNEXTAUCTION_NONE        \
 "本日的活動結束。"
 #define     NPC_ROOMADMINNEW_MSG_DSPNEXTAUCTION1     \

@@ -89,7 +89,7 @@ BOOL NPC_QuizInit( int meindex )
 
 	if( CHAR_getWorkInt( meindex, CHAR_WORK_QUIZNUM) > ( tbl[0] - 1)){
 		print(
-		 "%s?符閤條件,圓圈quiz的問題數(%d?)比齣題數(%d題)不足",
+		 "%s?符閤條件,圓圈quiz的問題數(%d?)比出題數(%d題)不足",
 			CHAR_getChar( meindex, CHAR_NAME),
 			(tbl[0]-1),
 			CHAR_getWorkInt( meindex, CHAR_WORK_QUIZNUM)
@@ -397,7 +397,7 @@ static void NPC_Quiz_selectWindow( int meindex, int talker, int num)
 				
 				/*--蜃夥□皿剩鞅--*/
 				if(loop == 5000) {
-					print("問題不足i全部重覆瞭j");
+					print("問題不足i全部重覆了j");
 				 	break;
 				}
 			}
@@ -1246,7 +1246,7 @@ BOOL NPC_EntryStoneDel(int talker,char *buf)
 		CHAR_DelGold( talker, cost );
 	}
 
-	sprintf( token, "%d 交齣stone。", cost);
+	sprintf( token, "%d 交出stone。", cost);
 	CHAR_talkToCli( talker, -1, token, CHAR_COLORWHITE);
 
 	CHAR_send_P_StatusString( talker, CHAR_P_STRING_GOLD);
@@ -1288,7 +1288,7 @@ BOOL NPC_EntryItemDel(int talker,char *buf)
 						LogItem(
 							CHAR_getChar( talker, CHAR_NAME ),
 							CHAR_getChar( talker, CHAR_CDKEY ),
-							"QuizDelItem(猜謎->交齣的道具)",
+							"QuizDelItem(猜謎->交出的道具)",
 							CHAR_getInt( talker, CHAR_FLOOR),
 							CHAR_getInt( talker, CHAR_X ),
  							CHAR_getInt( talker, CHAR_Y ),

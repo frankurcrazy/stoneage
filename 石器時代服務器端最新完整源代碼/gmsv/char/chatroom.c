@@ -181,7 +181,7 @@ void ChatRoom_Kick ( int myindex , int toindex )
 		else {
 			CHAR_setWorkInt ( toindex , CHAR_WORKCHATROOMTYPE , 0 ) ; 
 			CHAR_setWorkInt ( toindex , CHAR_WORKCHATROOMNUM , -1) ; 
-			//CHAR_talkToCli ( toindex , -1 , "室長將你踢齣聊天室！" , CHAR_COLORRED ) ; 
+			//CHAR_talkToCli ( toindex , -1 , "室長將你踢出聊天室！" , CHAR_COLORRED ) ; 
 			fd = getfdFromCharaIndex( toindex );
 			lssproto_CHATROOM_send ( fd , "K|" ) ; 
 			ChatRoom[ Num ].NowPeople --;
@@ -404,7 +404,7 @@ void ChatRoom_recvall ( int fd , char *data )
 		ChatRoom_Join ( myindex , atoi( message ) ) ; 
 	}else if ( strcmp ( Head , "L" ) == 0 ) {// 離開頻道
 		ChatRoom_Leave ( myindex ) ; 
-	}else if ( strcmp ( Head , "K" ) == 0 ) {//踢齣頻道
+	}else if ( strcmp ( Head , "K" ) == 0 ) {//踢出頻道
 		getStringFromIndexWithDelim( data , "|", 2, message, sizeof(message));
 		ChatRoom_Kick ( myindex , atoi( message ) ); 
 	}else if ( strcmp ( Head , "M" ) == 0 ) { // 更換室長

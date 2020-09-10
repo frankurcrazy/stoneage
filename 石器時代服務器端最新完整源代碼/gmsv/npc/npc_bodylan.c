@@ -250,7 +250,7 @@ void NPC_BodyLanWatch(
 		// 卅兮井卅井勻凶日  賡井日
 		CHAR_setWorkInt( actindex, CHAR_WORKSHOPRELEVANT, 1 );
 
-//		print( "做過頭瞭。迴到最初。\n", seqNo, needSeq );
+//		print( "做過頭了。迴到最初。\n", seqNo, needSeq );
 		// 窒井韻月屯五井’’’
 		return;
 	}

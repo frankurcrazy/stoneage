@@ -547,7 +547,7 @@ BOOL Action_RunDoEventAction( int meindex, int toindex, char *buf1)
 		int p_class = atoi(buf2);
 		// 判斷職業
 		if( CHAR_getInt( toindex, PROFESSION_CLASS ) != PROFESSION_CLASS_NONE && (p_class != 0) ){
-			sprintf( buf2, "你已經有職業瞭!!" );
+			sprintf( buf2, "你已經有職業了!!" );
 			CHAR_talkToCli( toindex, -1, buf2,  CHAR_COLORYELLOW);
 			return FALSE;
 		}
@@ -875,7 +875,7 @@ BOOL NPC_ActionDelGold( int talker,char *buf)
 		return FALSE;
 	}else	{
 		char buf1[256];
-		sprintf( buf1, "交齣%d石幣", Golds);
+		sprintf( buf1, "交出%d石幣", Golds);
 		CHAR_talkToCli( talker, -1, buf1, CHAR_COLORYELLOW);
 	}
 	CHAR_setInt( talker, CHAR_GOLD, PGold-Golds);
@@ -1243,7 +1243,7 @@ BOOL NPC_ActionPlayerDiyMapSend( int talker, char *buf)
 								ITEM_getInt( itemindex, ITEM_ID)
 	
 							);
-							sprintf( token, "交齣%s。",
+							sprintf( token, "交出%s。",
 											ITEM_getChar( itemindex, ITEM_NAME));
 							CHAR_talkToCli( talker, -1, token, CHAR_COLORYELLOW);
 							CHAR_DelItem( talker, j);
@@ -1567,7 +1567,7 @@ BOOL NPC_ActionLotteryBuy( int talker, char *buf)
 												"請輸入您要購買的彩票號，格式如:\n"
 												"1,2,3,4,5,6,7\n"
 												"每個號碼最大數為36，一共7組數字\n"
-												"PS:如已購買瞭票彩則會覆蓋已購買的號碼及倍數\n");
+												"PS:如已購買了票彩則會覆蓋已購買的號碼及倍數\n");
 	
 	return TRUE;
 }
@@ -1893,7 +1893,7 @@ BOOL NPC_ActionDelPet( int talker, char *buf)
 				CHAR_send_P_StatusString( talker , CHAR_P_STRING_RIDEPET);
 			}
 
-			snprintf( msgbuf,sizeof( msgbuf), "交齣%s。", CHAR_getChar( petindex, CHAR_NAME));
+			snprintf( msgbuf,sizeof( msgbuf), "交出%s。", CHAR_getChar( petindex, CHAR_NAME));
 			CHAR_talkToCli( talker, -1, msgbuf,  CHAR_COLORYELLOW);
 				LogPet(			
 					CHAR_getChar( talker, CHAR_NAME ),
@@ -1997,7 +1997,7 @@ BOOL NPC_ActionNewDelPet( int toindex, char *msg)
 
 	            if( CHAR_getInt( toindex, CHAR_RIDEPET) == i ) {
 
-		//CHAR_talkToCli( talker, -1, "騎乘中的寵物無法交齣！", CHAR_COLORYELLOW );
+		//CHAR_talkToCli( talker, -1, "騎乘中的寵物無法交出！", CHAR_COLORYELLOW );
     	//return	FALSE;
 
 		            CHAR_setInt( toindex, CHAR_RIDEPET, -1);
@@ -2016,7 +2016,7 @@ BOOL NPC_ActionNewDelPet( int toindex, char *msg)
 		            lssproto_KS_send( fd, -1, TRUE);
 				}
 
-	            snprintf( msgbuf,sizeof( msgbuf), "交齣%s。",
+	            snprintf( msgbuf,sizeof( msgbuf), "交出%s。",
 						  CHAR_getChar( petindex, CHAR_NAME));
 	            CHAR_talkToCli( toindex, -1, msgbuf,  CHAR_COLORWHITE);
 
@@ -2256,7 +2256,7 @@ void NPC_ActionDoPileClearItem( int toindex, int itemID)
 		itemindex = CHAR_getItemIndex( toindex , i );
 		if( !ITEM_CHECKINDEX(itemindex) ) continue;
 		if( ITEM_getInt(itemindex, ITEM_ID) != itemID ) continue;
-		sprintf( token, "交齣道具%s",ITEM_getChar( itemindex, ITEM_NAME));
+		sprintf( token, "交出道具%s",ITEM_getChar( itemindex, ITEM_NAME));
 		CHAR_talkToCli( toindex, -1, token, CHAR_COLORYELLOW);
 
 						LogItem(
@@ -2303,7 +2303,7 @@ BOOL NPC_ActionDoPileDelItem( int toindex, int itemID, int num)
 		finditem += onenum;
 		
 		ITEM_setInt( itemindex, ITEM_USEPILENUMS, pilenum);
-		sprintf( token, "交齣%d個%s", onenum, ITEM_getChar( itemindex, ITEM_NAME));
+		sprintf( token, "交出%d個%s", onenum, ITEM_getChar( itemindex, ITEM_NAME));
 		CHAR_talkToCli( toindex, -1, token, CHAR_COLORYELLOW);
 		if( pilenum <= 0 ){
 						LogItem(
@@ -2403,7 +2403,7 @@ BOOL NPC_ActionDelItem( int talker, char *buf)
 			for( i=0; i<20; i++)	{
 				itemindex = ItemArray[i].itemindex;
 				if( !ITEM_CHECKINDEX(itemindex) ) break;
-				sprintf(token,"交齣%s",ITEM_getChar( itemindex, ITEM_NAME));
+				sprintf(token,"交出%s",ITEM_getChar( itemindex, ITEM_NAME));
 				CHAR_talkToCli( talker, -1, token, CHAR_COLORYELLOW);
 				CHAR_setItemIndex( talker, ItemArray[i].index ,-1);
 				ITEM_endExistItemsOne( itemindex);
@@ -2444,7 +2444,7 @@ BOOL NPC_ActionDelItem( int talker, char *buf)
 							ITEM_getInt( itemindex, ITEM_ID)
 
 						);
-						sprintf( token, "交齣%s。",
+						sprintf( token, "交出%s。",
 										ITEM_getChar( itemindex, ITEM_NAME));
 						CHAR_talkToCli( talker, -1, token, CHAR_COLORYELLOW);
 						CHAR_DelItem( talker, j);
@@ -3027,7 +3027,7 @@ BOOL NPC_ActionBigSmallCheck(int meindex,int talker,char* buf)
 }
 
 #ifdef _NPC_ActionFreeCmp 
-//其實功能和原本的NPC_ActionWarpManReduce差不多,但為瞭不影響以前的設定,所以不去修改原本的
+//其實功能和原本的NPC_ActionWarpManReduce差不多,但為了不影響以前的設定,所以不去修改原本的
 BOOL NPC_ActionWarpManReduce2(int meindex,int talker,char *buf)
 {
 	char buf2[512];
@@ -3302,7 +3302,7 @@ BOOL NPC_ActionFreeIfCheck(int meindex,int talker, char* buf, char *opt, int kos
 #endif
 #ifdef _NEW_MANOR_LAW
 	if(strcmp(buf,"MANOR") == 0){
-		// 大於-1錶示要檢查是否為莊園傢族成員纔能warp
+		// 大於-1表示要檢查是否為莊園家族成員纔能warp
 		if(kosuu > -1){
 			int iFmIndex = -1,iHadFmindex = -1;
 			char token[256];
@@ -3311,9 +3311,9 @@ BOOL NPC_ActionFreeIfCheck(int meindex,int talker, char* buf, char *opt, int kos
 			getStringFromIndexWithDelim(fmpointlist.pointlistarray[kosuu],"|",5,token,sizeof(token));
 			iHadFmindex = atoi(token);
 			if(iFmIndex > -1){
-				// 是莊園擁有傢族的成員
+				// 是莊園擁有家族的成員
 				if(iFmIndex == iHadFmindex){
-					// 必須有傢族且是正式族員
+					// 必須有家族且是正式族員
 					if(CHAR_getInt(talker,CHAR_FMLEADERFLAG) != FMMEMBER_NONE &&
 						 CHAR_getInt(talker,CHAR_FMLEADERFLAG) != FMMEMBER_APPLY) return TRUE;
 				}
@@ -3783,7 +3783,7 @@ BOOL NPC_ActionChangePlayerBBI( int meindex, int charindex, char *Img)
 	}
 #endif
 #ifdef _PETSKILL_BECOMEPIG
-    if( CHAR_getInt( charindex, CHAR_BECOMEPIG) > -1 ){//變成烏力瞭
+    if( CHAR_getInt( charindex, CHAR_BECOMEPIG) > -1 ){//變成烏力了
 		CHAR_talkToCli( charindex, -1, "無法變身，烏力化中不能變身！", CHAR_COLORYELLOW );
 	    return FALSE;
 	}
@@ -3809,11 +3809,11 @@ BOOL NPC_ActionChangePlayerBBI( int meindex, int charindex, char *Img)
 	CHAR_setWorkInt( charindex, CHAR_WORKNPCMETAMO, meindex);
 	if( strstr( Img, "NPCBBI") != NULL )	{
 		cBBI = CHAR_getInt( meindex, CHAR_BASEBASEIMAGENUMBER);
-		sprintf( buf1, "你化身成瞭%s的樣子。", CHAR_getChar( meindex, CHAR_NAME));
+		sprintf( buf1, "你化身成了%s的樣子。", CHAR_getChar( meindex, CHAR_NAME));
 	}else if( strstr( Img, "MYBBI") != NULL )	{
 		cBBI = CHAR_getInt( charindex, CHAR_BASEBASEIMAGENUMBER);
 		CHAR_setWorkInt( charindex, CHAR_WORKNPCMETAMO, 0);
-		sprintf( buf1, "變迴瞭原來的樣子。");
+		sprintf( buf1, "變迴了原來的樣子。");
 	}else if( strstr( Img, ",") != NULL )	{
 		int imgindex=1, maxImg=0;
 		while( getStringFromIndexWithDelim( Img, ",", imgindex, buf1, sizeof( buf1)) != FALSE )	{
@@ -3826,10 +3826,10 @@ BOOL NPC_ActionChangePlayerBBI( int meindex, int charindex, char *Img)
 		if( getStringFromIndexWithDelim( Img, ",", imgindex, buf1, sizeof( buf1)) == FALSE )
 			return FALSE;
 		cBBI = atoi( buf1);
-		sprintf( buf1, "你樣子改變瞭。");
+		sprintf( buf1, "你樣子改變了。");
 	}else	{
 		cBBI = atoi( Img);
-		sprintf( buf1, "你樣子改變瞭。");
+		sprintf( buf1, "你樣子改變了。");
 	}
 //=======================
 	if( cBBI < 0 )	{
@@ -4175,7 +4175,7 @@ BOOL NPC_ActionTreasureRandItemGet(int meidex,int talker,int rand_j,char *buf)
 	char token[128];
 
 	if(rand_j == 0) {
-		print("Event:由於０的介入，齣現錯誤。");
+		print("Event:由於０的介入，出現錯誤。");
  		return FALSE;
  	}
  	
@@ -4214,7 +4214,7 @@ BOOL NPC_ActionTreasureRandItemGet(int meidex,int talker,int rand_j,char *buf)
 		);
 	}
 					
-	sprintf(token,"收下瞭%s",ITEM_getChar( itemindex, ITEM_NAME));
+	sprintf(token,"收下了%s",ITEM_getChar( itemindex, ITEM_NAME));
 	CHAR_talkToCli( talker, -1, token, CHAR_COLORWHITE);
 
 	CHAR_sendItemDataOne( talker, ret);
